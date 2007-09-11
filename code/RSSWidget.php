@@ -31,13 +31,15 @@ class RSSWidget extends Widget {
 	
 	function FeedItems() {
 		$output = new DataObjectSet();
-		foreach($this->feed->get_items(0, $this->NumberToShow) as $item) {
-			$output->push(new ArrayData(array(
-				"Title" => $item->get_title(),
-				"Link" => $item->get_link()
-			)));
+		if($items = $this->feed->get_items(0, $this->NumberToShow)) {
+			foreach($items as $item) {
+				$output->push(new ArrayData(array(
+					"Title" => $item->get_title(),
+					"Link" => $item->get_link()
+				)));
+			}
+			return $output;
 		}
-		return $output;
 	}
 }
 
