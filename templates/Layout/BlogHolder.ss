@@ -4,8 +4,6 @@
 	
 	<% include BreadCrumbs %>
 	
-	$Content
-	
 	<% if Tag %>
 		<h3>Viewing entries tagged with '$Tag'</h3>
 	<% end_if %>
