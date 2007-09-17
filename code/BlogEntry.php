@@ -1,4 +1,4 @@
-<?
+<?php
 
 class BlogEntry extends Page {
 	

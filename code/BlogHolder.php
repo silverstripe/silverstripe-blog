@@ -1,4 +1,4 @@
-<?
+<?php
 
 class BlogHolder extends Page {
 	
