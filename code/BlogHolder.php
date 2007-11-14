@@ -10,7 +10,7 @@
  
 class BlogHolder extends Page {
 	
-		static $icon = "blog/images/blogholder";
+	static $icon = "blog/images/blogholder";
 	
 	static $db = array(
 	);
