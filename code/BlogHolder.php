@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @package blog
+ */
+ 
+/**
+ * Blog holder to display summarised blog entries
+ */
+ 
 class BlogHolder extends Page {
 	
 		static $icon = "blog/images/blogholder";
@@ -23,6 +31,9 @@ class BlogHolder extends Page {
 		return $fields;
 	}
 	
+	/**
+	 * The DataObject of blog entries
+	 */
 	public function BlogEntries($limit = 10) {
 		$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 		$tagCheck = '';
@@ -51,10 +62,16 @@ class BlogHolder extends Page {
 		return DataObject::get("Page","`ParentID` = $this->ID AND ShowInMenus = 1 $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$start, $limit");
 	}
 
+	/**
+	 * Only display the blog entries that have the specified tag
+	 */
 	function Tag() {
 		return isset($_GET['tag']) ? $_GET['tag'] : false;
 	}
 	
+	/**
+	 * A simple form for creating blog entries
+	 */
 	function BlogEntryForm(){
 		Requirements::javascript('jsparty/behaviour.js');
 		Requirements::javascript('jsparty/prototype.js');
@@ -101,14 +118,23 @@ class BlogHolder extends Page {
 		return $form;
 	}
 
+	/**
+	 * Check if url has "/post"
+	 */
 	function isPost(){
 		return Director::urlParam('Action') == 'post';
 	}
 	
+	/**
+	 * Link for creating a new blog entry
+	 */
 	function postURL(){
 		return  $this->Link('post');
 	}
 
+	/**
+	 * Create default blog setup
+	 */
 	function requireDefaultRecords() {
 		parent::requireDefaultRecords();
 		
@@ -157,8 +183,7 @@ class BlogHolder extends Page {
 
 class BlogHolder_Controller extends Page_Controller {
 	function init() {
-		parent::init();
-		
+		parent::init();	
 		// This will create a <link> tag point to the RSS feed
 		RSSFeed::linkToFeed($this->Link() . "rss", "RSS feed of this blog");
 		Requirements::themedCSS("blog");
@@ -166,6 +191,9 @@ class BlogHolder_Controller extends Page_Controller {
 
 	}
 
+	/**
+	 * Get the archived blogs for a particular month or year, in the format /year/month/ eg: /2008/10/
+	 */
 	function showarchive() {
 		$month = addslashes($this->urlParams['ID']);
 		return array(
@@ -183,16 +211,25 @@ class BlogHolder_Controller extends Page_Controller {
 		return $output;
 	}
 	
+	/**
+	 * Get the rss fee for this blog holder's entries
+	 */
 	function rss() {
 		global $project;
 		$rss = new RSSFeed($this->Children(), $this->Link(), $project . " blog", "", "Title", "ParsedContent");
 		$rss->outputToBrowser();
 	}
 	
+	/**
+	 * Return list of usable tags for help
+	 */
 	function BBTags() {
 		return BBCodeParser::usable_tags();
 	}
 	
+	/**
+	 * Post a new blog entry
+	 */
 	function post(){
 		if(!Permission::check('ADMIN')){
 			Security::permissionFailure($this,
@@ -212,7 +249,9 @@ class BlogHolder_Controller extends Page_Controller {
 	
 }
 
-
+/**
+ * Blog entry form
+ */
 class BlogEntry_Form extends Form {
 	function postblog($data) {
 		Cookie::set("BlogHolder_Name", $data['Author']);

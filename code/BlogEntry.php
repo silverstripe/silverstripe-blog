@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * @package blog
+ */
+ 
+/**
+ * An individual blog entry page to show a blog entry in full
+ */
 class BlogEntry extends Page {
 	
 	static $default_parent = array('BlogHolder');
@@ -62,6 +69,9 @@ class BlogEntry extends Page {
 		return $fields;
 	}
 	
+	/**
+	 * Returns the tags added to this blog entry
+	 */
 	function Tags() {
 		$theseTags = split(" *, *", trim($this->Tags));
 		
@@ -77,11 +87,16 @@ class BlogEntry extends Page {
 		}
 	}
 
-	
+	/**
+	 * Get the sidebar
+	 */
 	function SideBar() {
 		return $this->getParent()->SideBar();
 	}
 	
+	/**
+	 * Get a bbcode parsed summary of the blog entry
+	 */
 	function ParagraphSummary(){
 		$content = new Text('Content');
 		$content->value = Convert::raw2xml($this->Content);
@@ -89,6 +104,9 @@ class BlogEntry extends Page {
 		return $parser->parse();		
 	}
 	
+	/**
+	 * Get the bbcode parsed content
+	 */
 	function ParsedContent() {
 		$parser = new BBCodeParser($this->Content);
 		$content = new Text('Content');
@@ -96,6 +114,9 @@ class BlogEntry extends Page {
 		return $content;
 	}
 	
+	/**
+	 * Link for editing this blog entry 
+	 */
 	function EditURL(){
 		return $this->getParent()->Link('post')."/".$this->ID."/";
 	}
@@ -108,6 +129,9 @@ class BlogEntry_Controller extends Page_Controller {
 		Requirements::themedCSS("blog");
 	}
 	
+	/**
+	 * Gets a link to unpublish the blog entry
+	 */
 	function unpublishPost(){	
 		if(!Permission::check('ADMIN')){
 			Security::permissionFailure($this,
