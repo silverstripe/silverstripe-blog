@@ -264,7 +264,6 @@ class BlogEntry_Form extends Form {
 			$blogentry->setDate($data['Date']);
 		}else{
 			$blogentry->setDate(date("Y-m-d H:i:s",time()));
-			$blogentry->URLSegment = $data['Title'];		
 		}
 		
 		$blogentry->Status = "Published";
