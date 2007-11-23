@@ -79,7 +79,7 @@ class BlogEntry extends Page {
 		foreach($theseTags as $tag) {
 			$output->push(new ArrayData(array(
 				"Tag" => $tag,
-				"Link" => $this->getParent()->Link() . '?tag=' . urlencode($tag)		
+				"Link" => $this->getParent()->Link() . 'tag/' . urlencode($tag)		
 			)));
 		}
 		if($this->Tags){

@@ -47,15 +47,20 @@ class BlogHolder extends Page {
 		
 		
 		if(Director::urlParams()){
-
-			$year = Director::urlParam('Action');
-			$month = Director::urlParam('ID');
+			if(Director::urlParam('Action') == 'tag') {
+				$tag = addslashes(Director::urlParam('ID'));
+				$tag = str_replace(array("\\",'_','%',"'"), array("\\\\","\\_","\\%","\\'"), $tag);
+				$tagCheck = "AND `BlogEntry`.Tags LIKE '%$tag%'";
+			} else {
+				$year = Director::urlParam('Action');
+				$month = Director::urlParam('ID');
 			
-			if(is_numeric($month) && is_numeric($month)){
-				$dateCheck = "AND Date BETWEEN '$year-$month-1' AND '$year-$month-31'";
-			}
-			else if(isset($year)){
-					$dateCheck = "AND Date BETWEEN '$year-1-1' AND '$year-12-31'";			
+				if(is_numeric($month) && is_numeric($month)){
+					$dateCheck = "AND Date BETWEEN '$year-$month-1' AND '$year-$month-31'";
+				}
+				else if(isset($year)){
+						$dateCheck = "AND Date BETWEEN '$year-1-1' AND '$year-12-31'";			
+				}
 			}
 		}
 		
