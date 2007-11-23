@@ -9,7 +9,7 @@
 					<p class="tags">
 						 Tags: 
 						<% control Tags %>
-							<a href="$Link" title="View all posts tagged '$Tag'">$Tag</a><% if Last %><% else %>,<% end_if %>
+							<a href="$Link" title="View all posts tagged '$Tag'" rel="tag">$Tag</a><% if Last %><% else %>,<% end_if %>
 						<% end_control %>
 					</p>
 				<% end_if %>
