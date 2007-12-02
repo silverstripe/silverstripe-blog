@@ -56,10 +56,10 @@ class BlogHolder extends Page {
 				$month = Director::urlParam('ID');
 			
 				if(is_numeric($month) && is_numeric($month)){
-					$dateCheck = "AND Date BETWEEN '$year-$month-1' AND '$year-$month-31'";
+					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-$month-1' AND '$year-$month-31'";
 				}
 				else if(isset($year)){
-						$dateCheck = "AND Date BETWEEN '$year-1-1' AND '$year-12-31'";			
+						$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-1-1' AND '$year-12-31'";			
 				}
 			}
 		}
