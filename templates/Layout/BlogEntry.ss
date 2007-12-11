@@ -13,7 +13,7 @@
 						<% end_control %>
 					</p>
 				<% end_if %>
-			<p>$Content.Parse(BBCodeParser)</p>
+			<p>$ParsedContent</p>
 			<br />
 	</div>
 			<% if CurrentMember %><p><a href="$EditURL" id="editpost" title="Edit this post">Edit this post</a> | <a href="$Link(unpublishPost)" id="unpublishpost">Unpublish this post</a></p><% end_if %>

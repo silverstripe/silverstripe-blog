@@ -30,7 +30,12 @@ class BlogEntry extends Page {
 	);
 		
 	static $allowed_children = "none";
-		
+	
+	/**
+	 * Is WYSIWYG editing allowed?
+	 */
+	static $allow_wysiwyg_editing = false;
+	
 	/**
 	 * overload so that the default date is today.
 	 */
@@ -56,14 +61,20 @@ class BlogEntry extends Page {
 		 $codeparser = new BBCodeParser();
 		 
 		$fields = parent::getCMSFields();
-		$fields->removeFieldFromTab("Root.Content.Main","Content");
-		$fields->addFieldToTab("Root.Content.Main", new TextareaField("Content", "Content", 20));
+		
+		if(!self::$allow_wysiwyg_editing) {
+			$fields->removeFieldFromTab("Root.Content.Main","Content");
+			$fields->addFieldToTab("Root.Content.Main", new TextareaField("Content", "Content", 20));
+		}
+		
 		$fields->addFieldToTab("Root.Content.Main", new CalendarDateField("Date", "Date"),"Content");
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Author", "Author", $firstName),"Content");
 		
-		$fields->addFieldToTab("Root.Content.Main", new LiteralField("BBCodeHelper", "<div id='BBCode' class='field'>" .
-						"<a  id=\"BBCodeHint\" target='new'>BBCode help</a>" .
-						"<div id='BBTagsHolder' style='display:none;'>".$codeparser->useable_tagsHTML()."</div></div>"));
+		if(!self::$allow_wysiwyg_editing) {
+			$fields->addFieldToTab("Root.Content.Main", new LiteralField("BBCodeHelper", "<div id='BBCode' class='field'>" .
+							"<a  id=\"BBCodeHint\" target='new'>BBCode help</a>" .
+							"<div id='BBTagsHolder' style='display:none;'>".$codeparser->useable_tagsHTML()."</div></div>"));
+		}
 				
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Tags", "Tags (comma sep.)"),"Content");
 		return $fields;
@@ -98,20 +109,28 @@ class BlogEntry extends Page {
 	 * Get a bbcode parsed summary of the blog entry
 	 */
 	function ParagraphSummary(){
-		$content = new Text('Content');
-		$content->value = Convert::raw2xml($this->Content);
-		$parser = new BBCodeParser($content->FirstParagraph());
-		return $parser->parse();		
+		if(self::$allow_wysiwyg_editing) {
+			return $this->obj('Content')->FirstParagraph();
+		} else {
+			$content = new Text('Content');
+			$content->value = Convert::raw2xml($this->Content);
+			$parser = new BBCodeParser($content->FirstParagraph());
+			return $parser->parse();		
+		}
 	}
 	
 	/**
 	 * Get the bbcode parsed content
 	 */
 	function ParsedContent() {
-		$parser = new BBCodeParser($this->Content);
-		$content = new Text('Content');
-		$content->value =$parser->parse();
-		return $content;
+		if(self::$allow_wysiwyg_editing) {
+			return $this->Content;
+		} else {
+			$parser = new BBCodeParser($this->Content);
+			$content = new Text('Content');
+			$content->value =$parser->parse();
+			return $content;
+		}
 	}
 	
 	/**
@@ -121,6 +140,14 @@ class BlogEntry extends Page {
 		return $this->getParent()->Link('post')."/".$this->ID."/";
 	}
 
+
+	/**
+	 * Call this to enable WYSIWYG editing on your blog entries.
+	 * By default the blog uses BBCode
+	 */
+	static function allow_wysiwyg_editing() {
+		self::$allow_wysiwyg_editing = true;
+	}
 }
 
 class BlogEntry_Controller extends Page_Controller {
