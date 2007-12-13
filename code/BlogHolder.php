@@ -213,6 +213,7 @@ class BlogHolder_Controller extends Page_Controller {
 			$month['Link'] = $this->Link() . "showarchive/$month[Year]-$month[Month]";
 			$output->push(new ArrayData($month));
 		}
+		Debug::show($output);
 		return $output;
 	}
 	

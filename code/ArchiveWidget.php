@@ -9,7 +9,7 @@ class ArchiveWidget extends Widget {
 		"DisplayMode" => "month"
 	);
 	
-	static $title = "Archive";
+	static $title = "Browse by Date";
 	static $cmsTitle = "Blog Archive";
 	static $description = "Show a list of months or years in which there are blog posts, and provide links to them.";
 	
