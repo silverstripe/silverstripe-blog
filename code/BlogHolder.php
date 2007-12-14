@@ -217,6 +217,10 @@ class BlogHolder_Controller extends Page_Controller {
 		return $output;
 	}
 	
+	function NewsletterSignupForm() {
+		return new NewsletterSignupForm($this, 'NewsletterSignupForm');
+	}
+	
 	/**
 	 * Get the rss fee for this blog holder's entries
 	 */

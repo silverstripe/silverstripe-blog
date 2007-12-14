@@ -1,8 +1,11 @@
 <?php
-/*
- * Created on 9/07/2007
- *
- * To change the template for this generated file go to
- * Window - Preferences - PHPeclipse - PHP - Code Templates
- */
+
+// Add the extension to the Member class.
+Object::add_extension('Member', 'BlogRole');
+
+// Director rule for ability to visit mysite.com/confirm/signup/123
+Director::addRules(50, array(
+	'confirm-subscription/$Action/$ID' => 'ConfirmNewsletterSignup'
+));
+
 ?>
