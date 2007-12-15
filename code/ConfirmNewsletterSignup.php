@@ -19,7 +19,7 @@ class ConfirmNewsletterSignup extends Controller {
 				$content = "<p><strong>Error:</strong> Member does not exist by given parameters.</p>";
 			} else {
 				// Check if a group was passed in and exists.
-				if($groupCode = NewsletterSignupForm::get_group_code()) {
+				if($groupCode = $member->GroupCode) {
 					// Check if the member is in this group.
 					if($group = DataObject::get_one('Group', "Code = '$groupCode'")) {
 						if($member->inGroup($group->ID)) {
@@ -29,7 +29,7 @@ class ConfirmNewsletterSignup extends Controller {
 							$member->Groups()->add($group);
 							
 							// Send an email welcoming the member.
-							$email = new ConfirmNewsletterSignup_Email($member);
+							$email = new ConfirmNewsletterSignup_Email();
 							$email->to = $member->Email;
 							$email->from = Email::getAdminEmail();
 							$email->subject = 'Welcome to the mailing list';

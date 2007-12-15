@@ -16,7 +16,8 @@ class BlogHolder extends Page {
 	);
 	
 	static $has_one = array(
-		"SideBar" => "WidgetArea"
+		"SideBar" => "WidgetArea",
+		'Newsletter' => 'NewsletterType'
 	);
 	
 	static $allowed_children = array(
@@ -27,9 +28,22 @@ class BlogHolder extends Page {
 		$fields = parent::getCMSFields();
 		$fields->removeFieldFromTab("Root.Content.Main","Content");
 		$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("SideBar"));
+	
+		// Add a dropdown to display all newsletter types.	
+		if($groups = $this->getNewsletters()) {
+			$groupsMap = $groups->toDropdownMap('ID', 'Title');
+			$fields->addFieldToTab('Root.Content.Main', new DropdownField('NewsletterID', 'Subscription newsletter type', $groupsMap, '', '', '(Select one)'));
+		}
 		
 		return $fields;
 	}
+	
+	/**
+	 * Get all newsletter type instances.
+	 */
+	function getNewsletters() {
+		return DataObject::get('NewsletterType');
+	}	
 	
 	/**
 	 * The DataObject of blog entries

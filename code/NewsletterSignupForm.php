@@ -3,25 +3,20 @@
 class NewsletterSignupForm extends Form {	
 
 	/**
-	 * Code of a group.
+	 * Gets a NewsletterType which is associated with the BlogHolder, the
+	 * controller of this sign up form. It then uses the relationship getter
+	 * to find the Group of a NewsletterType.
 	 */
-	protected static $groupCode;
-	
-	/**
-	 * Set a group for sign up. Must be a code value of an instance of Group.
-	 * Members who sign up will be added to this group.
-	 */
-	public static function set_group_code($code) {
-		self::$groupCode = $code;
+	function get_group_code() {
+		if($controller = $this->controller) {
+			if($controller->ClassName == 'BlogHolder') {
+				if($controller->Newsletter()) {
+					return $controller->Newsletter()->Group()->Code;
+				}
+			}
+		}
 	}
 	
-	/**
-	 * Get the group used for sign ups.
-	 */
-	public static function get_group_code() {
-		return self::$groupCode;
-	}
-
 	function __construct($controller, $name) {
 
 		$fields = new FieldSet(
@@ -31,10 +26,9 @@ class NewsletterSignupForm extends Form {
 		);
 		
 		$validator = new RequiredFields(array(
-				'FirstName',
-				'Email'
-			)
-		);
+			'FirstName',
+			'Email'
+		));
 		
 		$actions = new FieldSet(
 			new FormAction('subscribe', 'Subscribe')
@@ -48,7 +42,7 @@ class NewsletterSignupForm extends Form {
 
 		// Check if there is a current member of given email in data. Check if in group.
 		if($member = DataObject::get_one('Member', "`Member`.`Email` = '$SQL_email'")) {
-			if($groupCode = self::get_group_code()) {
+			if($groupCode = $this->get_group_code()) {
 				if($group = DataObject::get_one('Group', "Code = '$groupCode'")) {
 					if($member->inGroup($group->ID)) {
 						$form->sessionMessage('You are already subscribed.', 'warning');
@@ -66,13 +60,21 @@ class NewsletterSignupForm extends Form {
 			
 		// Hash the email of the subscriber and microtime, write the member.
 		$member->Hash = md5(microtime() . $member->Email);
+
+		// If there is a group code found, add it to a field on the member for
+		// later use (when a member confirms to be added).
+		if($groupCode = $this->get_group_code()) {
+			$member->GroupCode = $groupCode;
+		}
+		
+		// Write the member to the database.
 		$member->write();
 
 		// Create an array with data to populate in the email.
 		$populateArray = array();
 		$populateArray['Member'] = $member;
 		// If there is a group, populate a confirm link.
-		if(self::get_group_code()) {
+		if($this->get_group_code()) {
 			$populateArray['ConfirmLink'] = Director::absoluteBaseURL() . 'confirm-subscription/member/' . $member->Hash;
 		}
 
