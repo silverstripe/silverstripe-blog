@@ -113,7 +113,7 @@ class BlogEntry extends Page {
 			return $this->obj('Content')->FirstParagraph();
 		} else {
 			$content = new Text('Content');
-			$content->value = Convert::raw2xml($this->Content);
+			$content->value = $this->Content;
 			$parser = new BBCodeParser($content->FirstParagraph());
 			return $parser->parse();		
 		}
