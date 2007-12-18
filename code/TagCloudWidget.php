@@ -30,8 +30,8 @@ class TagCloudWidget extends Widget {
 
 	function getCMSFields() {
 		return new FieldSet(
-			new TextField("Limit", "Limit number of tags"),
-			new OptionsetField("Sortby","Sort by",array("alphabet"=>"alphabet","frequency"=>"frequency"))
+			new TextField("Limit", _t("TagCloudWidget.LIMIT", "Limit number of tags")),
+			new OptionsetField("Sortby",_t("TagCloudWidget.SORTBY","Sort by"),array("alphabet"=>_t("TagCloudWidget.SBAL", "alphabet"),"frequency"=>_t("TagCloudWidget.SBFREQ", "frequency")))
 		);
 	}
 	

@@ -10,11 +10,11 @@ class BlogManagementWidget extends Widget {
 	function CommentText() {
 		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM PageComment WHERE NeedsModeration=1")->value();
 		if($unmoderatedcount == 1) {
-			return "You have 1 unmoderated comment";
+			return _t("BlogManagementWidget.UNM1", "You have 1 unmoderated comment");
 		} else if($unmoderatedcount > 1) {
-			return "You have $unmoderatedcount unmoderated comments";
+			return sprintf(_t("BlogManagementWidget.UNMM", "You have %i unmoderated comments"), $unmoderatedcount);
 		} else {
-			return "Comment administration";
+			return _t("BlogManagementWidget.COMADM", "Comment administration");
 		}
 	}
 	

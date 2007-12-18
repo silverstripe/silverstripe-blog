@@ -1,6 +1,6 @@
 <div class="blogSummary">
-	<h2><a href="$Link" title="View full post titled - '$Title'">$MenuTitle</a></h2>
-	<p class="authorDate">Posted by $Author.XML on $Date.Long | <a href="$Link#PageComments_holder" title="View Comments Posted">$Comments.Count Comments</a></p>
+	<h2><a href="$Link" title="<% _t('VIEWFULL', 'View full post titled -') %> '$Title'">$MenuTitle</a></h2>
+	<p class="authorDate"><% _t('BlogEntry.ss.POSTEDBY') %> $Author.XML <% _t('BlogEntry.ss.POSTEDON', 'on') %> $Date.Long | <a href="$Link#PageComments_holder" title="View Comments Posted">$Comments.Count <% _t('BlogEntry.ss.COMMENTS', 'Comments') %></a></p>
 	<% if Tags %>
 		<p class="tags">
 			Tags:

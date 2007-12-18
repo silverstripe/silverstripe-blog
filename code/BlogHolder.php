@@ -3,11 +3,11 @@
 /**
  * @package blog
  */
- 
+
 /**
  * Blog holder to display summarised blog entries
  */
- 
+
 class BlogHolder extends Page {
 	
 	static $icon = "blog/images/blogholder";
@@ -43,7 +43,7 @@ class BlogHolder extends Page {
 	 */
 	function getNewsletters() {
 		return DataObject::get('NewsletterType');
-	}	
+	}
 	
 	/**
 	 * The DataObject of blog entries
@@ -68,12 +68,11 @@ class BlogHolder extends Page {
 			} else {
 				$year = Director::urlParam('Action');
 				$month = Director::urlParam('ID');
-			
+				
 				if(is_numeric($month) && is_numeric($month)){
 					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-$month-1' AND '$year-$month-31'";
-				}
-				else if(isset($year)){
-						$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-1-1' AND '$year-12-31'";			
+				} else if(isset($year)){
+					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-1-1' AND '$year-12-31'";			
 				}
 			}
 		}
@@ -85,6 +84,9 @@ class BlogHolder extends Page {
 	 * Only display the blog entries that have the specified tag
 	 */
 	function Tag() {
+		if(Director::urlParam('Action') == 'tag') {
+			return Director::urlParam('ID');
+		}
 		return isset($_GET['tag']) ? $_GET['tag'] : false;
 	}
 	
@@ -110,19 +112,19 @@ class BlogHolder extends Page {
 			new HiddenField("ParentID", "ParentID", $this->ID),
 			new HiddenField("ID","ID"),
 			new HiddenField("Date","Date"),
-			new TextField("Title","Subject"),
-			new TextField("Author","Author",$membername),
+			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
+			new TextField("Author",_t('BlogEntry.AU'),$membername),
 			new CompositeField( 
-				new LiteralField("BBCodeHelper","<a  id=\"BBCodeHint\" target='new'>BBCode help</a><div class='clear'><!-- --></div>" ),
-				new TextareaField("Content", "Content",20),
+				new LiteralField("BBCodeHelper","<a  id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
+				new TextareaField("Content", _t("BlogEntry.CN"),20),
 				new LiteralField("BBCodeTags","<div id='BBTagsHolder' style='display:none;'>".$codeparser->useable_tagsHTML()."</div>")	
 			),
 			new TextField("Tags","Tags"),
-			new LiteralField("Tagsnote"," <label id='tagsnote'>For example: sport, personal, science fiction<br/>" .
-												"Please separate tags using commas.</label>")
+			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
+												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
 		);	
 		
-		$submitAction = new FormAction('postblog', 'Post blog entry');
+		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
 		$actions = new FieldSet($submitAction);
 		$validator = new RequiredFields('Title','Content');
 			
@@ -136,7 +138,7 @@ class BlogHolder extends Page {
 		
 		return $form;
 	}
-
+	
 	/**
 	 * Check if url has "/post"
 	 */
@@ -150,7 +152,7 @@ class BlogHolder extends Page {
 	function postURL(){
 		return  $this->Link('post');
 	}
-
+	
 	/**
 	 * Create default blog setup
 	 */
@@ -185,11 +187,11 @@ class BlogHolder extends Page {
 			$widgetarea->write();
 			
 			$blog = new BlogEntry();
-			$blog->Title = "SilverStripe blog module successfully installed";
+			$blog->Title = _t('BlogHolder.SUCTITLE', "SilverStripe blog module successfully installed");
 			$blog->URLSegment = 'sample-blog-entry';
 			$blog->setDate(date("Y-m-d H:i:s",time()));
-			$blog->Tags = "silverstripe, blog";
-			$blog->Content = "Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in [url=admin]the CMS[/url].";
+			$blog->Tags = _t('BlogHolder.SUCTAGS',"silverstripe, blog");
+			$blog->Content = _t('BlogHolder.SUCCONTENT',"Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in [url=admin]the CMS[/url].");
 			$blog->Status = "Published";
 			$blog->ParentID = $blogholder->ID;
 			$blog->write();
@@ -202,16 +204,17 @@ class BlogHolder extends Page {
 
 class BlogHolder_Controller extends Page_Controller {
 	function init() {
-		parent::init();	
+		parent::init();
+		
 		// This will create a <link> tag point to the RSS feed
-		RSSFeed::linkToFeed($this->Link() . "rss", "RSS feed of this blog");
+		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of this blog"));
 		Requirements::themedCSS("blog");
 		Requirements::themedCSS("bbcodehelp");
 
 	}
-
+	
 	/**
-	 * Get the archived blogs for a particular month or year, in the format /year/month/ eg: /2008/10/
+	 * Gets the archived blogs for a particular month or year, in the format /year/month/ eg: /2008/10/
 	 */
 	function showarchive() {
 		$month = addslashes($this->urlParams['ID']);
@@ -236,7 +239,7 @@ class BlogHolder_Controller extends Page_Controller {
 	}
 	
 	/**
-	 * Get the rss fee for this blog holder's entries
+	 * Get the rss feed for this blog holder's entries
 	 */
 	function rss() {
 		global $project;
@@ -257,7 +260,7 @@ class BlogHolder_Controller extends Page_Controller {
 	function post(){
 		if(!Permission::check('ADMIN')){
 			Security::permissionFailure($this,
-				"Posting blogs is an administrator task. Please log in.");
+				_t('BlogHolder.HAVENTPERM',"Posting blogs is an administrator task. Please log in."));
 		}
 		return array();
 	}
@@ -270,7 +273,6 @@ class BlogHolder_Controller extends Page_Controller {
 		
 		return parent::defaultAction($action);
 	}
-	
 }
 
 /**

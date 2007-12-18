@@ -27,7 +27,7 @@ class ArchiveWidget extends Widget {
 	
 		function getCMSFields() {
 		return new FieldSet(
-			new OptionsetField("DisplayMode","Display by",array("month"=>"month","year"=>"year"))
+			new OptionsetField("DisplayMode",_t('ArchiveWidget.DispBY', "Display by"),array("month"=>_t('ArchiveWidget.MONTH',"month"),"year"=>_t('ArchiveWidget.YEAR', "year")))
 		);
 	}
 	

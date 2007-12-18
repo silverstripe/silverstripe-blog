@@ -3,7 +3,7 @@
 /**
  * @package blog
  */
- 
+
 /**
  * An individual blog entry page to show a blog entry in full
  */
@@ -64,19 +64,19 @@ class BlogEntry extends Page {
 		
 		if(!self::$allow_wysiwyg_editing) {
 			$fields->removeFieldFromTab("Root.Content.Main","Content");
-			$fields->addFieldToTab("Root.Content.Main", new TextareaField("Content", "Content", 20));
+			$fields->addFieldToTab("Root.Content.Main", new TextareaField("Content", _t("BlogEntry.CN", "Content"), 20));
 		}
 		
-		$fields->addFieldToTab("Root.Content.Main", new CalendarDateField("Date", "Date"),"Content");
-		$fields->addFieldToTab("Root.Content.Main", new TextField("Author", "Author", $firstName),"Content");
+		$fields->addFieldToTab("Root.Content.Main", new CalendarDateField("Date", _t("BlogEntry.DT", "Date")),"Content");
+		$fields->addFieldToTab("Root.Content.Main", new TextField("Author", _t("BlogEntry.AU", "Author"), $firstName),"Content");
 		
 		if(!self::$allow_wysiwyg_editing) {
 			$fields->addFieldToTab("Root.Content.Main", new LiteralField("BBCodeHelper", "<div id='BBCode' class='field'>" .
-							"<a  id=\"BBCodeHint\" target='new'>BBCode help</a>" .
+							"<a  id=\"BBCodeHint\" target='new'>" . _t("BlogEntry.BBH", "BBCode help") / "</a>" .
 							"<div id='BBTagsHolder' style='display:none;'>".$codeparser->useable_tagsHTML()."</div></div>"));
 		}
 				
-		$fields->addFieldToTab("Root.Content.Main", new TextField("Tags", "Tags (comma sep.)"),"Content");
+		$fields->addFieldToTab("Root.Content.Main", new TextField("Tags", _t("BlogEntry.TS", "Tags (comma sep.)")),"Content");
 		return $fields;
 	}
 	
@@ -134,7 +134,7 @@ class BlogEntry extends Page {
 	}
 	
 	/**
-	 * Link for editing this blog entry 
+	 * Link for editing this blog entry
 	 */
 	function EditURL(){
 		return $this->getParent()->Link('post')."/".$this->ID."/";

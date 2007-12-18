@@ -5,7 +5,7 @@
 	<% include BreadCrumbs %>
 	
 	<% if Tag %>
-		<h3>Viewing entries tagged with '$Tag'</h3>
+		<h3><% _t('VIEWINGTAGGED', 'Viewing entries tagged with') %> '$Tag'</h3>
 	<% end_if %>
 	
 	<% if BlogEntries %>
@@ -13,7 +13,7 @@
 				<% include BlogSummary %>
 		<% end_control %>
 	<% else %>
-		<h3>There are no blog entries</h3>
+		<h3><% _t('NOENTRIES', 'There are no blog entries') %></h3>
 	<% end_if %>
 	
 	<% include BlogPagination %>

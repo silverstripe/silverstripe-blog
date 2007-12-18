@@ -17,9 +17,9 @@ class RSSWidget extends Widget {
 	
 	function getCMSFields() {
 		return new FieldSet(
-			new TextField("CustomTitle","Custom title for the feed"),
-			new TextField("RssUrl", "URL of RSS Feed"),
-			new NumericField("NumberToShow", "Number of Items to show")
+			new TextField("CustomTitle", _t('RSSWidget.CT', "Custom title for the feed")),
+			new TextField("RssUrl", _t('RSSWidget.URL', "URL of RSS Feed")),
+			new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
 		);
 	}
 	
