@@ -47,6 +47,7 @@ class NewsletterSignupForm extends Form {
 					if($member->inGroup($group->ID)) {
 						$form->sessionMessage('You are already subscribed.', 'warning');
 						Director::redirectBack();
+						return false;
 					}
 				}
 			}
