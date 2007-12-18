@@ -103,7 +103,7 @@ class TagCloudWidget extends Widget {
 						"Tag" => $tag,
 						"Count" => $count,
 						"Class" => $class,
-						"Link" => $blogHolder->Link() . '?tag=' . urlencode($tag)
+						"Link" => $blogHolder->Link() . 'tag/' . urlencode($tag)		
 					);
 				
 				}
