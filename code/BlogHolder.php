@@ -91,6 +91,13 @@ class BlogHolder extends Page {
 	}
 	
 	/**
+	 * Return a new instance of NewsletterSignupForm.
+	 */
+	function NewsletterSignupForm() {
+		return new NewsletterSignupForm($this, 'NewsletterSignupForm');
+	}	
+	
+	/**
 	 * A simple form for creating blog entries
 	 */
 	function BlogEntryForm(){
@@ -232,10 +239,6 @@ class BlogHolder_Controller extends Page_Controller {
 		}
 		Debug::show($output);
 		return $output;
-	}
-	
-	function NewsletterSignupForm() {
-		return new NewsletterSignupForm($this, 'NewsletterSignupForm');
 	}
 	
 	/**

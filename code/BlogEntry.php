@@ -140,6 +140,14 @@ class BlogEntry extends Page {
 		return $this->getParent()->Link('post')."/".$this->ID."/";
 	}
 
+	/**
+	 * Return the NewsletterSignupForm from the parent (BlogHolder).
+	 */
+	function NewsletterSignupForm() {
+		if(isset($this->Parent->ID) && $this->Parent->NewsletterSignupForm()) {
+			return $this->Parent->NewsletterSignupForm();
+		}
+	}
 
 	/**
 	 * Call this to enable WYSIWYG editing on your blog entries.
@@ -177,7 +185,7 @@ class BlogEntry_Controller extends Page_Controller {
 			Director::redirect($this->getParent()->Link());
 		}		
 	}
-	
+		
 }
 
 ?>
