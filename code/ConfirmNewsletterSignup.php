@@ -12,7 +12,7 @@ class ConfirmNewsletterSignup extends Controller {
 		Requirements::themedCSS('typography');
 		Requirements::themedCSS('form');
 	}
-
+	
 	/**
 	 * Action for signing up a member to a given group in NewsletterSignupForm.
 	 * Used as mysite.com/confirm-subscription/member/123 (where 123 is a md5 hash to find the member)

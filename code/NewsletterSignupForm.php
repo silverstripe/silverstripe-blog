@@ -3,9 +3,8 @@
 class NewsletterSignupForm extends Form {	
 
 	/**
-	 * Gets a NewsletterType which is associated with the BlogHolder, the
-	 * controller of this sign up form. It then uses the relationship getter
-	 * to find the Group of a NewsletterType.
+	 * Get the group code of the newsletter associated with the
+	 * BlogHolder instance that this form was created from.
 	 */
 	function get_group_code() {
 		if($controller = $this->controller) {
@@ -17,26 +16,32 @@ class NewsletterSignupForm extends Form {
 		}
 	}
 	
+	/**
+	 * Create the NewsletterSignupForm.
+	 * Take the fields and required fields from the extension role.
+	 */
 	function __construct($controller, $name) {
+		$member = singleton('Member');
 
-		$fields = new FieldSet(
-			new TextField('FirstName', 'Your first name'),
-			new TextField('Surname', 'Your surname'),
-			new EmailField('Email', 'Your email')
-		);
-		
-		$validator = new RequiredFields(array(
-			'FirstName',
-			'Email'
-		));
-		
+		$fields = $member->subscribeFields();
+
+		$validator = $member->subscribeRequiredFields();
+
 		$actions = new FieldSet(
 			new FormAction('subscribe', 'Subscribe')
 		);
-		
+
 		parent::__construct($controller, $name, $fields, $actions, $validator);		
 	}
-	
+
+	/**
+	 * NewsletterSignupForm action.
+	 * Requires that the email address be submitted in the form.
+	 * 
+	 * Checks if there is a member in the system by submitted email, and checks if
+	 * that member has already signed up. If member has, then form gives message and
+	 * redirects back. If not, then it carries on with the process.
+	 */	
 	function subscribe($data, $form) {
 		$SQL_email = $data['Email'];
 
