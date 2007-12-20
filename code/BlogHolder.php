@@ -92,9 +92,12 @@ class BlogHolder extends Page {
 	
 	/**
 	 * Return a new instance of NewsletterSignupForm.
+	 * If there is no related Newsletter, then don't show it.
 	 */
 	function NewsletterSignupForm() {
-		return new NewsletterSignupForm($this, 'NewsletterSignupForm');
+		if($this->Newsletter() && $this->Newsletter()->ID) {
+			return new NewsletterSignupForm($this, 'NewsletterSignupForm');
+		}
 	}	
 	
 	/**
