@@ -9,7 +9,7 @@ class NewsletterSignupForm extends Form {
 	 */
 	function get_group_code() {
 		if($controller = $this->controller) {
-			if($controller->ClassName == 'BlogHolder') {
+			if($controller instanceof BlogHolder) {
 				if($controller->Newsletter()) {
 					return $controller->Newsletter()->Group()->Code;
 				}
