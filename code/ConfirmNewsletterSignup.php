@@ -3,6 +3,17 @@
 class ConfirmNewsletterSignup extends Controller {
 
 	/**
+	 * Add theme CSS requirements to make this look controller look a bit prettier.
+	 * If these aren't here, the page looks like a mess to users.
+	 */
+	function init() {
+		parent::init();
+		Requirements::themedCSS('layout');
+		Requirements::themedCSS('typography');
+		Requirements::themedCSS('form');
+	}
+
+	/**
 	 * Action for signing up a member to a given group in NewsletterSignupForm.
 	 * Used as mysite.com/confirm-subscription/member/123 (where 123 is a md5 hash to find the member)
 	 */	
