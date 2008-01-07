@@ -124,7 +124,7 @@ class BlogEntry extends Page {
 	 */
 	function ParsedContent() {
 		if(self::$allow_wysiwyg_editing) {
-			return $this->Content;
+			return $this->obj('Content');
 		} else {
 			$parser = new BBCodeParser($this->Content);
 			$content = new Text('Content');
