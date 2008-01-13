@@ -249,7 +249,9 @@ class BlogHolder_Controller extends Page_Controller {
 	 */
 	function rss() {
 		global $project;
-		$rss = new RSSFeed($this->Children(), $this->Link(), $project . " blog", "", "Title", "ParsedContent");
+		$children = $this->Children();
+		$children->sort('Date', 'DESC');
+		$rss = new RSSFeed($children, $this->Link(), $project . " blog", "", "Title", "ParsedContent");
 		$rss->outputToBrowser();
 	}
 	
