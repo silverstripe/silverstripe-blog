@@ -69,10 +69,13 @@ class BlogHolder extends Page {
 				$year = Director::urlParam('Action');
 				$month = Director::urlParam('ID');
 				
-				if(is_numeric($month) && is_numeric($month)){
-					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-$month-1' AND '$year-$month-31'";
+				if(is_numeric($month) && is_numeric($month)){				
+					$nextyear =  ($month==12) ? $year + 1 : $year;
+					$nextmonth = $month % 12 + 1;	
+					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-$month-1' AND '$nextyear-$nextmonth-1'";
 				} else if(isset($year)){
-					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-1-1' AND '$year-12-31'";			
+					$nextyear = $year + 1;
+					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-1-1' AND '".$nextyear."-1-1'";			
 				}
 			}
 		}
