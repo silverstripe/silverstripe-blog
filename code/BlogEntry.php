@@ -41,7 +41,7 @@ class BlogEntry extends Page {
 	 */
 	public function populateDefaults(){
 		parent::populateDefaults();
-		$this->Date = date("d/m/Y H:i:s",time());
+		$this->Date = date("Y-m-d H:i:s",time());
 	}
 	
 	/**
