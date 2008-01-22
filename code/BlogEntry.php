@@ -110,12 +110,12 @@ class BlogEntry extends Page {
 	 */
 	function ParagraphSummary(){
 		if(self::$allow_wysiwyg_editing) {
-			return $this->obj('Content')->FirstParagraph();
+			return $this->obj('Content')->FirstParagraph('html');
 		} else {
-			$content = new Text('Content');
-			$content->value = $this->Content;
-			$parser = new BBCodeParser($content->FirstParagraph());
-			return $parser->parse();		
+			$parser = new BBCodeParser($this->Content);
+			$html = new HTMLText('Content');
+			$html->setValue($parser->parse());
+			return $html->FirstParagraph('html');
 		}
 	}
 	
