@@ -11,7 +11,7 @@ class TagCloudWidget extends Widget {
 		"Sortby" => "alphabet"
 	);
 	
-	static $title = "Browse by Tag";
+	static $title = "Tag Cloud";
 	static $cmsTitle = "Tag Cloud";
 	static $description = "Shows a tag cloud of tags on your blog.";
 	
