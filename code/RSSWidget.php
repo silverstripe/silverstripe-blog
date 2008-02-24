@@ -23,14 +23,10 @@ class RSSWidget extends Widget {
 		);
 	}
 	
-	function Title() {
-		$this->feed = new SimplePie($this->RssUrl);
-		$this->feed->init();
-		return ($this->CustomTitle) ? $this->CustomTitle : $this->feed->get_feed_title();
-	}
-	
 	function FeedItems() {
 		$output = new DataObjectSet();
+		$this->feed = new SimplePie($this->RssUrl);
+		$this->feed->init();
 		if($items = $this->feed->get_items(0, $this->NumberToShow)) {
 			foreach($items as $item) {
 				$output->push(new ArrayData(array(
