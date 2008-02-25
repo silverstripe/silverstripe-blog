@@ -2,24 +2,27 @@
 
 class RSSWidget extends Widget {
 	static $db = array(
-		"Title" => "Text",
+		"RSSTitle" => "Text",
 		"RssUrl" => "Text",
-		"NumberToShow" => "Int",
+		"NumberToShow" => "Int"
 	);
 	
 	static $defaults = array(
 		"NumberToShow" => 10,
-		"Title" => 'RSS Feed'
+		"RSSTitle" => 'RSS Feed'
 	);
 	static $cmsTitle = "RSS Feed";
 	static $description = "Shows the latest entries of a RSS feed.";
 	
 	function getCMSFields() {
 		return new FieldSet(
-			new TextField("Title", _t('RSSWidget.CT', "Custom title for the feed")),
+			new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
 			new TextField("RssUrl", _t('RSSWidget.URL', "URL of RSS Feed")),
 			new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
 		);
+	}
+	function Title() {
+		return ($this->RSSTitle) ? $this->RSSTitle : 'RSS Feed';
 	}
 	
 	function FeedItems() {
