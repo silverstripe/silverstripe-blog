@@ -2,7 +2,7 @@
 
 global $lang;
 
-$lang['en_US']['ArchiveWidget']['DISPBY'] = 'Display by';
+$lang['en_US']['ArchiveWidget']['DispBY'] = 'Display by';
 $lang['en_US']['ArchiveWidget']['MONTH'] = 'month';
 $lang['en_US']['ArchiveWidget']['YEAR'] = 'year';
 $lang['en_US']['BlogEntry']['CN'] = 'Content';
@@ -12,7 +12,7 @@ $lang['en_US']['BlogEntry']['BBH'] = 'BBCode help';
 $lang['en_US']['BlogEntry']['TS'] = 'Tags (comma sep.)';
 $lang['en_US']['BlogHolder']['SJ'] = 'Subject';
 $lang['en_US']['BlogHolder']['TE'] = 'For example: sport, personal, science fiction';
-$lang['en_US']['BlogHolder']['SPuC'] = 'Please separate tags using commas.';
+$lang['en_US']['BlogHolder']['SPUC'] = 'Please separate tags using commas.';
 $lang['en_US']['BlogHolder']['POST'] = 'Post blog entry';
 $lang['en_US']['BlogHolder']['SUCTITLE'] = 'SilverStripe blog module successfully installed';
 $lang['en_US']['BlogHolder']['SUCTAGS'] = 'silverstripe, blog';
