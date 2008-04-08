@@ -2,16 +2,17 @@
 
 class TagCloudWidget extends Widget {
 	static $db = array(
+			"Title" => "Varchar",
 			"Limit" => "Int",
 			"Sortby" => "Varchar"
 		);
 	
 	static $defaults = array(
+		"Title" => "Tag Cloud",
 		"Limit" => "0",
 		"Sortby" => "alphabet"
 	);
 	
-	static $title = "Tag Cloud";
 	static $cmsTitle = "Tag Cloud";
 	static $description = "Shows a tag cloud of tags on your blog.";
 	
@@ -30,9 +31,14 @@ class TagCloudWidget extends Widget {
 
 	function getCMSFields() {
 		return new FieldSet(
+			new TextField("Title", _t("TagCloudWidget.TILE", "Title")),
 			new TextField("Limit", _t("TagCloudWidget.LIMIT", "Limit number of tags")),
 			new OptionsetField("Sortby",_t("TagCloudWidget.SORTBY","Sort by"),array("alphabet"=>_t("TagCloudWidget.SBAL", "alphabet"),"frequency"=>_t("TagCloudWidget.SBFREQ", "frequency")))
 		);
+	}
+	
+	function Title() {
+		return $this->Title ? $this->Title : 'Tag Cloud';
 	}
 	
 	function Tags() {
