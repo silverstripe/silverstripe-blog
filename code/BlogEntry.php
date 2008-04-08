@@ -18,9 +18,7 @@ class BlogEntry extends Page {
 	static $db = array(
 		"Date" => "Datetime",
 		"Author" => "Text",
-		"Tags" => "Text",
-		"ShowOnHomepage" => "Boolean",
-		"RedirectionURL" => "Varchar(255)",
+		"Tags" => "Text"
 	);
 	
 	static $casting = array(
@@ -28,8 +26,7 @@ class BlogEntry extends Page {
 	);
 	
 	static $defaults = array(
-		"ProvideComments" => true,
-		"ShowOnHomepage" => 1,
+		"ProvideComments" => true
 	);
 		
 	static $allowed_children = "none";
@@ -80,8 +77,6 @@ class BlogEntry extends Page {
 		}
 				
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Tags", _t("BlogEntry.TS", "Tags (comma sep.)")),"Content");
-		$fields->addFieldToTab("Root.Content.Main", new CheckboxField("ShowOnHomepage", _t("BlogEntry.SHOWONHOMEPAGE", "Show on homepage?")),"Content");
-		$fields->addFieldToTab("Root.Content.Main", new TextField("RedirectionURL", _t("BlogEntry.REDIRECTIONURL", "Redirect straight to this URL")),"Content");
 		return $fields;
 	}
 	
@@ -166,10 +161,6 @@ class BlogEntry extends Page {
 class BlogEntry_Controller extends Page_Controller {
 	function init() {
 		parent::init();
-		if($this->RedirectionURL) {
-			Director::redirect($this->RedirectionURL);
-			return;
-		}
 		Requirements::themedCSS("blog");
 	}
 	
