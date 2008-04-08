@@ -13,6 +13,7 @@ class BlogHolder extends Page {
 	static $icon = "blog/images/blogholder";
 	
 	static $db = array(
+		"LandingPageFreshness" => "Varchar",
 	);
 	
 	static $has_one = array(
@@ -24,10 +25,30 @@ class BlogHolder extends Page {
 		'BlogEntry'
 	);
 	
+	static $defaults = array(
+		"LandingPageFreshness" => "3 MONTH",
+	);
+	
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->removeFieldFromTab("Root.Content.Main","Content");
 		$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("SideBar"));
+
+		$fields->addFieldToTab('Root.Content.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array(
+			"" => "All entries",
+			"1 MONTH" => "Last month's entries",
+			"2 MONTH" => "Last 2 months' entries",
+			"3 MONTH" => "Last 3 months' entries",
+			"4 MONTH" => "Last 4 months' entries",
+			"5 MONTH" => "Last 5 months' entries",
+			"6 MONTH" => "Last 6 months' entries",
+			"7 MONTH" => "Last 7 months' entries",
+			"8 MONTH" => "Last 8 months' entries",
+			"9 MONTH" => "Last 9 months' entries",
+			"10 MONTH" => "Last 10 months' entries",
+			"11 MONTH" => "Last 11 months' entries",
+			"12 MONTH" => "Last year's entries",
+		)));
 	
 		// Add a dropdown to display all newsletter types.	
 		if($groups = $this->getNewsletters()) {
@@ -76,6 +97,8 @@ class BlogHolder extends Page {
 				} else if(isset($year)){
 					$nextyear = $year + 1;
 					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-1-1' AND '".$nextyear."-1-1'";			
+				} else if($this->LandingPageFreshness) {					
+					$dateCheck = "AND `BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
 				}
 			}
 		}
