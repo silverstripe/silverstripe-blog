@@ -109,7 +109,7 @@ class BlogHolder extends Page {
 	/**
 	 * Only display the blog entries that have the specified tag
 	 */
-	function Tag() {
+	function ShowTag() {
 		if(Director::urlParam('Action') == 'tag') {
 			return Director::urlParam('ID');
 		}
@@ -268,6 +268,15 @@ class BlogHolder_Controller extends Page_Controller {
 		}
 		
 		return $output;
+	}
+	function tag() {
+		if($this->ShowTag()) {
+			return array(
+				'Tag' => $this->ShowTag()
+			);
+		} else {
+			return array();
+		}
 	}
 	
 	/**

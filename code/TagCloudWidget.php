@@ -2,10 +2,10 @@
 
 class TagCloudWidget extends Widget {
 	static $db = array(
-			"Title" => "Varchar",
-			"Limit" => "Int",
-			"Sortby" => "Varchar"
-		);
+		"Title" => "Varchar",
+		"Limit" => "Int",
+		"Sortby" => "Varchar"
+	);
 	
 	static $defaults = array(
 		"Title" => "Tag Cloud",
@@ -111,7 +111,6 @@ class TagCloudWidget extends Widget {
 						"Class" => $class,
 						"Link" => $blogHolder->Link() . 'tag/' . urlencode($tag)		
 					);
-						Debug::show($allTags[$tag]);
 				}
 				
 			}
@@ -139,18 +138,16 @@ function column_sort_by_popularity($a, $b){
 	return $result;
 }
 
-function natksort(&$aToBeSorted)
-    {
+function natksort(&$aToBeSorted) {
     $aResult = array();
     $aKeys = array_keys($aToBeSorted);
     natcasesort($aKeys);
-    foreach ($aKeys as $sKey)
-        {
+    foreach ($aKeys as $sKey) {
         $aResult[$sKey] = $aToBeSorted[$sKey];
-        }
+    }
     $aToBeSorted = $aResult;
 
     return true;
-    }
+}
 
 ?>
