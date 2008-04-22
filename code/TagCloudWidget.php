@@ -58,7 +58,7 @@ class TagCloudWidget extends Widget {
 					$max = ($allTags[$tag] > $max) ? $allTags[$tag] : $max;
 				}
 			}
-	
+		
 			if($allTags) {		
 				
 				//TODO: move some or all of the sorts to the database for more efficiency
@@ -77,8 +77,8 @@ class TagCloudWidget extends Widget {
 				}
 				$numsizes = count($sizes)-1; //Work out the number of different sizes
 				if($numsizes > 5){$numsizes = 5;}
-				
 				foreach($allTags as $tag => $count) {
+				
 					$popularity = floor($count / $max * $numsizes);
 					
 					switch($popularity) {
@@ -111,7 +111,7 @@ class TagCloudWidget extends Widget {
 						"Class" => $class,
 						"Link" => $blogHolder->Link() . 'tag/' . urlencode($tag)		
 					);
-				
+						Debug::show($allTags[$tag]);
 				}
 				
 			}
