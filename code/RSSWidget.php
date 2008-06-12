@@ -14,6 +14,23 @@ class RSSWidget extends Widget {
 	static $cmsTitle = "RSS Feed";
 	static $description = "Shows the latest entries of a RSS feed.";
 	
+	/**
+	 * If the RssUrl is relative, convert it to absolute with the
+	 * current baseURL to avoid confusing simplepie.
+	 * Passing relative URLs to simplepie will result
+	 * in strange DNS lookups and request timeouts.
+	 * 
+	 * @return string
+	 */
+	function getAbsoluteRssUrl() {
+		$urlParts = parse_url($this->RssUrl);
+		if(!isset($urlParts['host']) || !$urlParts['host']) {
+			return Director::absoluteBaseURL() . $this->RssUrl;
+		} else {
+			return $this->RssUrl;
+		}
+	}
+	
 	function getCMSFields() {
 		return new FieldSet(
 			new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
@@ -27,7 +44,7 @@ class RSSWidget extends Widget {
 	
 	function FeedItems() {
 		$output = new DataObjectSet();
-		$this->feed = new SimplePie($this->RssUrl);
+		$this->feed = new SimplePie($this->AbsoluteRssUrl);
 		$this->feed->init();
 		if($items = $this->feed->get_items(0, $this->NumberToShow)) {
 			foreach($items as $item) {
