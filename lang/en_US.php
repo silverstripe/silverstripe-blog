@@ -25,6 +25,7 @@ $lang['en_US']['BlogManagementWidget']['COMADM'] = 'Comment administration';
 $lang['en_US']['RSSWidget']['CT'] = 'Custom title for the feed';
 $lang['en_US']['RSSWidget']['URL'] = 'URL of RSS Feed';
 $lang['en_US']['RSSWidget']['NTS'] = 'Number of Items to show';
+$lang['en_US']['TagCloudWidget']['TILE'] = 'Title';
 $lang['en_US']['TagCloudWidget']['LIMIT'] = 'Limit number of tags';
 $lang['en_US']['TagCloudWidget']['SORTBY'] = 'Sort by';
 $lang['en_US']['TagCloudWidget']['SBAL'] = 'alphabet';
