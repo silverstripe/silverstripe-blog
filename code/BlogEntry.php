@@ -83,7 +83,7 @@ class BlogEntry extends Page {
 	/**
 	 * Returns the tags added to this blog entry
 	 */
-	function Tags() {
+	function TagsCollection() {
 		$theseTags = split(" *, *", trim($this->Tags));
 		
 		$output = new DataObjectSet();
