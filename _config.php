@@ -1,13 +1,5 @@
 <?php
 
-// Add the extension to the Member class.
-Object::add_extension('Member', 'BlogRole');
-
-// Director rule for ability to visit mysite.com/confirm/signup/123
-Director::addRules(50, array(
-	'confirm-subscription/$Action/$ID' => 'ConfirmNewsletterSignup'
-));
-
 if(method_exists('LeftAndMain', 'require_javascript')) {
 	LeftAndMain::require_javascript('blog/javascript/bbcodehelp.js');
 }

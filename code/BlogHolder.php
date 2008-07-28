@@ -17,8 +17,7 @@ class BlogHolder extends Page {
 	);
 	
 	static $has_one = array(
-		"SideBar" => "WidgetArea",
-		'Newsletter' => 'NewsletterType'
+		"SideBar" => "WidgetArea"
 	);
 	
 	static $allowed_children = array(
@@ -50,20 +49,7 @@ class BlogHolder extends Page {
 			"12 MONTH" => "Last year's entries",
 		)));
 	
-		// Add a dropdown to display all newsletter types.	
-		if($groups = $this->getNewsletters()) {
-			$groupsMap = $groups->toDropdownMap('ID', 'Title');
-			$fields->addFieldToTab('Root.Content.Main', new DropdownField('NewsletterID', 'Subscription newsletter type', $groupsMap, '', '', '(Select one)'));
-		}
-		
 		return $fields;
-	}
-	
-	/**
-	 * Get all newsletter type instances.
-	 */
-	function getNewsletters() {
-		return DataObject::get('NewsletterType');
 	}
 	
 	/**
@@ -115,16 +101,6 @@ class BlogHolder extends Page {
 		}
 		return isset($_GET['tag']) ? $_GET['tag'] : false;
 	}
-	
-	/**
-	 * Return a new instance of NewsletterSignupForm.
-	 * If there is no related Newsletter, then don't show it.
-	 */
-	function NewsletterSignupForm() {
-		if($this->Newsletter() && $this->Newsletter()->ID) {
-			return new NewsletterSignupForm($this, 'NewsletterSignupForm');
-		}
-	}	
 	
 	/**
 	 * A simple form for creating blog entries

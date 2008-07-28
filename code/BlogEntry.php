@@ -141,15 +141,6 @@ class BlogEntry extends Page {
 	}
 
 	/**
-	 * Return the NewsletterSignupForm from the parent (BlogHolder).
-	 */
-	function NewsletterSignupForm() {
-		if(isset($this->Parent->ID) && $this->Parent->NewsletterSignupForm()) {
-			return $this->Parent->NewsletterSignupForm();
-		}
-	}
-
-	/**
 	 * Call this to enable WYSIWYG editing on your blog entries.
 	 * By default the blog uses BBCode
 	 */
