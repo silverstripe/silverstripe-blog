@@ -1,4 +1,7 @@
-<% include BlogSideBar %>
+<div id="left_column">
+	<% include MainMenu %>
+	$SideBar
+</div>
 
 <div id="BlogContent" class="blogcontent typography">
 	
