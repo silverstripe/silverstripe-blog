@@ -41,7 +41,7 @@ class TagCloudWidget extends Widget {
 		return $this->Title ? $this->Title : 'Tag Cloud';
 	}
 	
-	function Tags() {
+	function TagsCollection() {
 		Requirements::css("blog/css/tagcloud.css");
 		
 		$allTags = array();
