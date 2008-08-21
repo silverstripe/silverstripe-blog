@@ -105,13 +105,13 @@ class BlogHolder extends Page {
 	/**
 	 * A simple form for creating blog entries
 	 */
-	function BlogEntryForm(){
+	function BlogEntryForm() {
 		Requirements::javascript('jsparty/behaviour.js');
 		Requirements::javascript('jsparty/prototype.js');
 		Requirements::javascript('jsparty/scriptaculous/effects.js');
 		Requirements::javascript('cms/javascript/PageCommentInterface.js');
 		Requirements::javascript('blog/javascript/bbcodehelp.js');
-				
+					
 		$id = 0;
 		if(Director::urlParam('ID')){
 			$id = Director::urlParam('ID');
@@ -127,9 +127,9 @@ class BlogHolder extends Page {
 			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
 			new TextField("Author",_t('BlogEntry.AU'),$membername),
 			new CompositeField( 
-				new LiteralField("BBCodeHelper","<a  id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
+				new LiteralField("BBCodeHelper","<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
 				new TextareaField("Content", _t("BlogEntry.CN"),20),
-				new LiteralField("BBCodeTags","<div id='BBTagsHolder' style='display:none;'>".$codeparser->useable_tagsHTML()."</div>")	
+				new LiteralField("BBCodeTags","<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>")
 			),
 			new TextField("Tags","Tags"),
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
