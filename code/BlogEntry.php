@@ -13,7 +13,7 @@ class BlogEntry extends Page {
 	
 	static $can_be_root = false;
 	
-		static $icon = "blog/images/blogpage";
+	static $icon = "blog/images/blogpage";
 	
 	static $db = array(
 		"Date" => "Datetime",
