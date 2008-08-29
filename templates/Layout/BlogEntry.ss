@@ -13,7 +13,7 @@
 						<% end_control %>
 					</p>
 				<% end_if %>
-			<p>$ParsedContent</p>
+			$ParsedContent
 			<br />
 	</div>
 	
