@@ -14,6 +14,7 @@ class BlogHolder extends Page {
 	
 	static $db = array(
 		"LandingPageFreshness" => "Varchar",
+		"Name" => "Varchar"
 	);
 	
 	static $has_one = array(
@@ -32,7 +33,8 @@ class BlogHolder extends Page {
 		$fields = parent::getCMSFields();
 		$fields->removeFieldFromTab("Root.Content.Main","Content");
 		$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("SideBar"));
-
+		$fields->addFieldToTab("Root.Content.Main", new TextField("Name", "Name of blog"));
+		
 		$fields->addFieldToTab('Root.Content.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array(
 			"" => "All entries",
 			"1 MONTH" => "Last month's entries",
@@ -260,9 +262,13 @@ class BlogHolder_Controller extends Page_Controller {
 	 */
 	function rss() {
 		global $project;
+
+		$blogName = $this->Name;
+		$altBlogName = $project . ' blog';
+		
 		$children = $this->Children();
 		$children->sort('Date', 'DESC');
-		$rss = new RSSFeed($children, $this->Link(), $project . " blog", "", "Title", "ParsedContent");
+		$rss = new RSSFeed($children, $this->Link(), ($blogName ? $blogName : $altBlogName), "", "Title", "ParsedContent");
 		$rss->outputToBrowser();
 	}
 	
