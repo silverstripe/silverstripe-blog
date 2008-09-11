@@ -55,43 +55,39 @@ class BlogHolder extends Page {
 	}
 	
 	/**
-	 * The DataObject of blog entries
+	 * Get entries in this blog.
+	 * @param string limit A clause to insert into the limit clause.
+	 * @param string tag Only get blog entries with this tag
+	 * @param string date Only get blog entries on this date - either a year, or a year-month eg '2008' or '2008-02'
+	 * @return DataObjectSet
 	 */
-	public function BlogEntries($limit = 10) {
-		$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+	public function Entries($limit = '', $tag = '', $date = '') {
 		$tagCheck = '';
-		$dateCheck = "";
+		$dateCheck = '';
 		
-		if(isset($_GET['tag'])) {
-			$tag = addslashes($_GET['tag']);
-			$tag = str_replace(array("\\",'_','%',"'"), array("\\\\","\\_","\\%","\\'"), $tag);
+		if($tag) {
+			$SQL_tag = addslashes($tag);
+			$SQL_tag = str_replace(array("\\",'_','%',"'"), array("\\\\","\\_","\\%","\\'"), $tag);
 			$tagCheck = "AND `BlogEntry`.Tags LIKE '%$tag%'";
 		}
 		
-		
-		if(Director::urlParams()){
-			if(Director::urlParam('Action') == 'tag') {
-				$tag = addslashes(Director::urlParam('ID'));
-				$tag = str_replace(array("\\",'_','%',"'"), array("\\\\","\\_","\\%","\\'"), $tag);
-				$tagCheck = "AND `BlogEntry`.Tags LIKE '%$tag%'";
-			} else {
-				$year = Director::urlParam('Action');
-				$month = Director::urlParam('ID');
+		if($date) {
+			if(strpos($date, '-')) {
+				$year = (int) substr($date, 0, strpos($date, '-'));
+				$month = (int) substr($date, strpos($date, '-') + 1);
 				
-				if(is_numeric($month) && is_numeric($month)){				
-					$nextyear =  ($month==12) ? $year + 1 : $year;
-					$nextmonth = $month % 12 + 1;	
-					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-$month-1' AND '$nextyear-$nextmonth-1'";
-				} else if(isset($year)){
-					$nextyear = $year + 1;
-					$dateCheck = "AND `BlogEntry`.Date BETWEEN '$year-1-1' AND '".$nextyear."-1-1'";			
-				} else if($this->LandingPageFreshness) {					
-					$dateCheck = "AND `BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
+				if($year && $month) {
+					$dateCheck = "AND MONTH(`BlogEntry`.Date) = $month AND YEAR(`BlogEntry`.Date) = $year";
+				}
+			} else {
+				$year = (int) $date;
+				if($year) {
+					$dateCheck = "AND YEAR(`BlogEntry`.Date) = $year";
 				}
 			}
 		}
 		
-		return DataObject::get("Page","`ParentID` = $this->ID AND ShowInMenus = 1 $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$start, $limit");
+		return DataObject::get("Page","`ParentID` = $this->ID AND ShowInMenus = 1 $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$limit");
 	}
 
 	/**
@@ -225,6 +221,34 @@ class BlogHolder_Controller extends Page_Controller {
 		Requirements::themedCSS("blog");
 		Requirements::themedCSS("bbcodehelp");
 
+	}
+	
+	function BlogEntries($limit = 10) {
+		$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+		$tag = '';
+		$date = '';
+		
+		if(isset($_GET['tag'])) {
+			$tag = $_GET['tag'];
+		}
+		
+		
+		if(Director::urlParams()){
+			if(Director::urlParam('Action') == 'tag') {
+				$tag = Director::urlParam('ID');
+			} else {
+				$year = Director::urlParam('Action');
+				$month = Director::urlParam('ID');
+				
+				if($month && is_numeric($month) &&  $month >= 1 && $month <= 12 && is_numeric($year)) {
+					$date = "$year-$month";
+				} else if(is_numeric($year)) {
+					$date = $year;
+				}
+			}
+		}
+		
+		return $this->Entries(array('start' => $start, 'limit' => $limit), $tag, $date);
 	}
 	
 	/**
