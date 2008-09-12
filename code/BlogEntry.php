@@ -8,7 +8,6 @@
  * An individual blog entry page to show a blog entry in full
  */
 class BlogEntry extends Page {
-	
 	static $default_parent = array('BlogHolder');
 	
 	static $can_be_root = false;
@@ -27,6 +26,10 @@ class BlogEntry extends Page {
 	
 	static $defaults = array(
 		"ProvideComments" => true
+	);
+	
+	static $extensions = array(
+		'TrackBackDecorator'
 	);
 		
 	static $allowed_children = "none";

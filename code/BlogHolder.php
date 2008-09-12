@@ -248,7 +248,7 @@ class BlogHolder_Controller extends Page_Controller {
 			}
 		}
 		
-		return $this->Entries(array('start' => $start, 'limit' => $limit), $tag, $date);
+		return $this->Entries("$start,$limit", $tag, $date);
 	}
 	
 	/**
