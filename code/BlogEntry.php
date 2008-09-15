@@ -29,7 +29,9 @@ class BlogEntry extends Page {
 	);
 	
 	static $extensions = array(
-		'TrackBackDecorator'
+		'Hierarchy',
+		'TrackBackDecorator',
+		"Versioned('Stage', 'Live')"
 	);
 		
 	static $allowed_children = "none";
