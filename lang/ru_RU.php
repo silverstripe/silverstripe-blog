@@ -1,47 +1,62 @@
 <?php
 
+/**
+ * Russian (Russia) language pack
+ * @package modules: blog
+ * @subpackage i18n
+ */
+
+i18n::include_locale_file('modules: blog', 'en_US');
+
 global $lang;
 
-$lang['ru_RU']['ArchiveWidget']['DISPBY'] = 'Ïîêàçûâàòü ïî';
-$lang['ru_RU']['ArchiveWidget']['MONTH'] = 'ìåñÿöàì';
-$lang['ru_RU']['ArchiveWidget']['YEAR'] = 'ãîäàì';
-$lang['ru_RU']['BlogEntry']['CN'] = 'Òåêñò';
-$lang['ru_RU']['BlogEntry']['DT'] = 'Äàòà';
-$lang['ru_RU']['BlogEntry']['AU'] = 'Àâòîð';
-$lang['ru_RU']['BlogEntry']['BBH'] = 'Ñïðàâêà ïî BBCode';
-$lang['ru_RU']['BlogEntry']['TS'] = 'Òåãè (÷åðåç çàïÿòóþ)';
-$lang['ru_RU']['BlogHolder']['SJ'] = 'Òåìà';
-$lang['ru_RU']['BlogHolder']['TE'] = 'Íàïðèìåð: ñïîðò, íàó÷íàÿ ôàíòàñòèêà, ëè÷íîå';
-$lang['ru_RU']['BlogHolder']['SPuC'] = 'Ïîæàëóéñòà, ðàçäåëÿéòå òåãè çàïÿòûìè.';
-$lang['ru_RU']['BlogHolder']['POST'] = 'Îòïðàâèòü â áëîã';
-$lang['ru_RU']['BlogHolder']['SUCTITLE'] = 'Ìîäóëü áëîãà äëÿ SilverStripe óñïåøíî óñòàíîâëåí!';
-$lang['ru_RU']['BlogHolder']['SUCTAGS'] = 'silverstripe, blog';
-$lang['ru_RU']['BlogHolder']['SUCCONTENT'] = 'Ïîçäðàâëÿåì, ìîäóëü áëîãà äëÿ SilverStripe óñïåøíî óñòàíîâëåí. Âû ìîæåòå óäàëèòü ýòó çàïèñü. Âû ìîæåòå ïîìåíÿòü âíåøíèé âèä ýòîãî áëîãà (íàïðèìåð, âèäæåòû íà áîêîâîé ïàíåëè) â [url=admin]CMS[/url].';
-$lang['ru_RU']['BlogHolder']['RSSFEED'] = 'RSS-ïîòîê áëîãà';
-$lang['ru_RU']['BlogHolder']['HAVENTPERM'] = 'Ïèñàòü â áëîã ìîãóò ëèøü àäìèíèñòðàòîðû. Ïîæàëóéñòà, çàéäèòå íà ñàéò.';
-$lang['ru_RU']['BlogManagementWidget']['UNM1'] = 'Åñòü îäèí íåïðîâåðåííûé êîììåíòàðèé';
-$lang['ru_RU']['BlogManagementWidget']['UNMM'] = 'Åñòü %i íåïðîâåðåííûõ êîììåíòàðèåâ';
-$lang['ru_RU']['BlogManagementWidget']['COMADM'] = 'Óïðàâëåíèå êîíòåíòîì';
-$lang['ru_RU']['RSSWidget']['CT'] = 'Íàçâàíèå RSS-ïîòîêà';
-$lang['ru_RU']['RSSWidget']['URL'] = 'URL RSS-ïîòîêà';
-$lang['ru_RU']['RSSWidget']['NTS'] = 'Êîëè÷åñòâî îòîáðàæàåìûõ ýëåìåíòîâ';
-$lang['ru_RU']['TagCloudWidget']['LIMIT'] = 'Îãðàíè÷èòü êîëè÷åñòâî òåãîâ';
-$lang['ru_RU']['TagCloudWidget']['SORTBY'] = 'Ñîðòèðîâàòü ïî';
-$lang['ru_RU']['TagCloudWidget']['SBAL'] = 'àëôàâèòó';
-$lang['ru_RU']['TagCloudWidget']['SBFREQ'] = '÷àñòîòå';
-$lang['ru_RU']['BlogManagementWidget.ss']['POSTNEW'] = 'Íàïèñàòü â áëîã';
-$lang['ru_RU']['BlogManagementWidget.ss']['LOGOUT'] = 'Âûõîä';
-$lang['ru_RU']['BlogSummary.ss']['VIEWFULL'] = 'Ïîñìîòðåòü ïîëíûé òåêñò -';
-$lang['ru_RU']['BlogSummary.ss']['POSTEDON'] = 'â';
-$lang['ru_RU']['BlogSummary.ss']['COMMENTS'] = 'Êîììåíòàðèè';
-$lang['ru_RU']['BlogEntry.ss']['POSTEDBY'] = 'Àâòîð: ';
-$lang['ru_RU']['BlogEntry.ss']['POSTEDON'] = 'â';
-$lang['ru_RU']['BlogEntry.ss']['COMMENTS'] = 'Êîììåíòàðèè';
-$lang['ru_RU']['BlogEntry.ss']['TAGS'] = 'Òåãè:';
-$lang['ru_RU']['BlogEntry.ss']['VIEWALLPOSTTAGGED'] = 'Âñå çàïèñè ñ òåãîì';
-$lang['ru_RU']['BlogEntry.ss']['EDITTHIS'] = 'Ðåäàêòèðîâàòü';
-$lang['ru_RU']['BlogEntry.ss']['UNPUBLISHTHIS'] = 'Îòïóáëèêîâàòü';
-$lang['ru_RU']['BlogHolder.ss']['VIEWINGTAGGED'] = 'Ïðîñìîòð çàïèñåé ñ òåãîì';
-$lang['ru_RU']['BlogHolder.ss']['NOENTRIES'] = 'Íåò çàïèñåé';
+if(array_key_exists('ru_RU', $lang) && is_array($lang['ru_RU'])) {
+	$lang['ru_RU'] = array_merge($lang['en_US'], $lang['ru_RU']);
+} else {
+	$lang['ru_RU'] = $lang['en_US'];
+}
+
+$lang['ru_RU']['ArchiveWidget']['DispBY'] = 'Ð“Ñ€ÑƒÐ¿Ð¿Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾';
+$lang['ru_RU']['ArchiveWidget']['MONTH'] = 'Ð¼ÐµÑÑÑ†Ñƒ';
+$lang['ru_RU']['ArchiveWidget']['YEAR'] = 'Ð³Ð¾Ð´Ñƒ';
+$lang['ru_RU']['BlogEntry']['AU'] = 'ÐÐ²Ñ‚Ð¾Ñ€';
+$lang['ru_RU']['BlogEntry']['BBH'] = 'ÐŸÐ¾Ð´ÑÐºÐ°Ð·ÐºÐ° Ð¿Ð¾ BBCode';
+$lang['ru_RU']['BlogEntry']['CN'] = 'Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ';
+$lang['ru_RU']['BlogEntry']['DT'] = 'Ð”Ð°Ñ‚Ð°';
+$lang['ru_RU']['BlogEntry.ss']['COMMENTS'] = 'ÐšÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¸';
+$lang['ru_RU']['BlogEntry.ss']['EDITTHIS'] = 'Ð ÐµÐ´Ð°ÐºÑ‚. ÑÑ‚Ñƒ Ð·Ð°Ð¿Ð¸ÑÑŒ';
+$lang['ru_RU']['BlogEntry.ss']['POSTEDBY'] = 'ÐÐ²Ñ‚Ð¾Ñ€: ';
+$lang['ru_RU']['BlogEntry.ss']['POSTEDON'] = ':';
+$lang['ru_RU']['BlogEntry.ss']['TAGS'] = 'ÐœÐµÑ‚ÐºÐ¸:';
+$lang['ru_RU']['BlogEntry.ss']['UNPUBLISHTHIS'] = 'Ð£Ð±Ñ€Ð°Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ Ñ Ð¾Ð¿ÑƒÐ±Ð»Ð¸ÐºÐ¾Ð². ÑÐ°Ð¹Ñ‚Ð°';
+$lang['ru_RU']['BlogEntry.ss']['VIEWALLPOSTTAGGED'] = 'Ð¡Ð¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ Ð²ÑÐµ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ñ Ð¼ÐµÑ‚ÐºÐ°Ð¼Ð¸';
+$lang['ru_RU']['BlogEntry']['TS'] = 'ÐœÐµÑ‚ÐºÐ¸ (Ñ€Ð°Ð·Ð´ÐµÐ». Ð·Ð°Ð¿ÑÑ‚.)';
+$lang['ru_RU']['BlogHolder']['HAVENTPERM'] = 'ÐŸÑƒÐ±Ð»Ð¸ÐºÐ°Ñ†Ð¸Ñ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ð² Ð±Ð»Ð¾Ð³Ðµ Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ð° Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð°Ð´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€Ñƒ. ÐŸÐ¾Ð¶Ð°Ð»ÑƒÐ¹ÑÑ‚Ð°, Ð²Ð¾Ð¹Ð´Ð¸Ñ‚Ðµ.';
+$lang['ru_RU']['BlogHolder']['POST'] = 'ÐžÐ¿ÑƒÐ±Ð»Ð¸ÐºÐ¾Ð²Ð°Ñ‚ÑŒ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð² Ð±Ð»Ð¾Ð³Ðµ';
+$lang['ru_RU']['BlogHolder']['RSSFEED'] = 'RSS Ð¿Ð¾Ð´Ð¿Ð¸ÑÐºÐ° Ð½Ð° ÑÑ‚Ð¾Ñ‚ Ð±Ð»Ð¾Ð³';
+$lang['ru_RU']['BlogHolder']['SJ'] = 'Ð¢ÐµÐ¼Ð°';
+$lang['ru_RU']['BlogHolder']['SPUC'] = 'Ð Ð°Ð·Ð´ÐµÐ»ÑÐ¹Ñ‚Ðµ Ð¼ÐµÑ‚ÐºÐ¸ Ð·Ð°Ð¿ÑÑ‚Ñ‹Ð¼Ð¸.';
+$lang['ru_RU']['BlogHolder.ss']['NOENTRIES'] = 'Ð’ Ð±Ð»Ð¾Ð³Ðµ Ð½ÐµÑ‚ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹';
+$lang['ru_RU']['BlogHolder.ss']['VIEWINGTAGGED'] = 'ÐŸÑ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹ Ñ Ð¼ÐµÑ‚ÐºÐ°Ð¼Ð¸ ';
+$lang['ru_RU']['BlogHolder']['SUCCONTENT'] = 'ÐŸÐ¾Ð·Ð´Ñ€Ð°Ð²Ð»ÑÐµÐ¼, Ð¼Ð¾Ð´ÑƒÐ»ÑŒ Ð±Ð»Ð¾Ð³Ð° SilverStripe Ð±Ñ‹Ð» ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½. Ð­Ñ‚Ð° Ð·Ð°Ð¿Ð¸ÑÑŒ Ð² Ð±Ð»Ð¾Ð³Ðµ Ð¼Ð¾Ð¶ÐµÑ‚ Ð±Ñ‹Ñ‚ÑŒ ÑƒÐ´Ð°Ð»ÐµÐ½Ð°. Ð’Ñ‹ Ð¼Ð¾Ð¶ÐµÑ‚Ðµ Ð½Ð°ÑÑ‚Ñ€Ð¾Ð¸Ñ‚ÑŒ Ð²Ð¸Ð´ Ð±Ð»Ð¾Ð³Ð° (Ð½Ð°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, Ð¾Ñ‚Ð¾Ð±Ñ€Ð°Ð¶ÐµÐ½Ð¸Ðµ Ð²Ð¸Ð´Ð¶ÐµÑ‚Ð¾Ð² Ð² Ð±Ð¾ÐºÐ¾Ð²Ð¾Ð¹ Ð¿Ð°Ð½ÐµÐ»Ð¸) Ð² [url=admin]Ð¡Ð¸ÑÑ‚ÐµÐ¼Ðµ Ð£Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ñ Ð¡Ð¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ñ‹Ð¼[/url].';
+$lang['ru_RU']['BlogHolder']['SUCTAGS'] = 'silverstripe, Ð±Ð»Ð¾Ð³';
+$lang['ru_RU']['BlogHolder']['SUCTITLE'] = 'ÐœÐ¾Ð´ÑƒÐ»ÑŒ Ð±Ð»Ð¾Ð³Ð° SilverStripe ÑƒÑÐ¿ÐµÑˆÐ½Ð¾ ÑƒÑÑ‚Ð°Ð½Ð¾Ð²Ð»ÐµÐ½';
+$lang['ru_RU']['BlogHolder']['TE'] = 'ÐÐ°Ð¿Ñ€Ð¸Ð¼ÐµÑ€, ÑÐ¿Ð¾Ñ€Ñ‚, Ð»Ð¸Ñ‡Ð½Ð¾Ðµ, Ñ„Ð°Ð½Ñ‚Ð°ÑÑ‚Ð¸ÐºÐ°';
+$lang['ru_RU']['BlogManagementWidget']['COMADM'] = 'Ð£Ð¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸Ðµ ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸ÑÐ¼Ð¸';
+$lang['ru_RU']['BlogManagementWidget.ss']['LOGOUT'] = 'Ð’Ñ‹Ñ…Ð¾Ð´';
+$lang['ru_RU']['BlogManagementWidget.ss']['POSTNEW'] = 'ÐžÐ¿ÑƒÐ±Ð»Ð¸ÐºÐ¾Ð²Ð°Ñ‚ÑŒ Ð½Ð¾Ð²ÑƒÑŽ Ð·Ð°Ð¿Ð¸ÑÑŒ';
+$lang['ru_RU']['BlogManagementWidget']['UNM1'] = 'Ð£ Ð²Ð°Ñ 1 Ð½ÐµÐ¿Ñ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð½Ñ‹Ð¹ ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¹';
+$lang['ru_RU']['BlogManagementWidget']['UNMM'] = 'Ð£ Ð²Ð°Ñ %i Ð½ÐµÐ¿Ñ€Ð¾Ð²ÐµÑ€ÐµÐ½Ð½Ñ‹Ñ… ÐºÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸ÐµÐ²';
+$lang['ru_RU']['BlogSummary.ss']['COMMENTS'] = 'ÐšÐ¾Ð¼Ð¼ÐµÐ½Ñ‚Ð°Ñ€Ð¸Ð¸';
+$lang['ru_RU']['BlogSummary.ss']['POSTEDON'] = ':';
+$lang['ru_RU']['BlogSummary.ss']['VIEWFULL'] = 'Ð¡Ð¼. Ð¿Ð¾Ð»Ð½Ð¾ÑÑ‚ÑŒÑŽ Ð·Ð°Ð¿Ð¸ÑÑŒ Ð¿Ð¾Ð´ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸ÐµÐ¼: ';
+$lang['ru_RU']['RSSWidget']['CT'] = 'Ð¡Ð¾Ð±ÑÑ‚Ð²ÐµÐ½Ð½Ð¾Ðµ Ð½Ð°Ð·Ð²Ð°Ð½Ð¸Ðµ Ð»ÐµÐ½Ñ‚Ñ‹ Ð½Ð¾Ð²Ð¾ÑÑ‚ÐµÐ¹';
+$lang['ru_RU']['RSSWidget']['NTS'] = 'ÐŸÐ¾ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ ÐºÐ¾Ð»-Ð²Ð¾ Ð·Ð°Ð¿Ð¸ÑÐµÐ¹';
+$lang['ru_RU']['RSSWidget']['URL'] = 'URL Ð»ÐµÐ½Ñ‚Ñ‹ RSS';
+$lang['ru_RU']['TagCloudWidget']['LIMIT'] = 'ÐžÐ³Ñ€Ð°Ð½Ð¸Ñ‡Ð¸Ñ‚ÑŒ ÐºÐ¾Ð»-Ð²Ð¾ Ð¼ÐµÑ‚Ð¾Ðº';
+$lang['ru_RU']['TagCloudWidget']['SBAL'] = 'Ð°Ð»Ñ„Ð°Ð²Ð¸Ñ‚Ñƒ';
+$lang['ru_RU']['TagCloudWidget']['SBFREQ'] = 'Ñ‡Ð°ÑÑ‚Ð¾Ñ‚Ðµ';
+$lang['ru_RU']['TagCloudWidget']['SORTBY'] = 'Ð¡Ð¾Ñ€Ñ‚Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¿Ð¾';
+$lang['ru_RU']['TagCloudWidget']['TILE'] = 'ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ';
 
 ?>
