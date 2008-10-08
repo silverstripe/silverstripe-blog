@@ -33,6 +33,7 @@ $lang['en_US']['TagCloudWidget']['SBFREQ'] = 'frequency';
 $lang['en_US']['BlogManagementWidget.ss']['POSTNEW'] = 'Post a new blog entry';
 $lang['en_US']['BlogManagementWidget.ss']['LOGOUT'] = 'Logout';
 $lang['en_US']['BlogSummary.ss']['VIEWFULL'] = 'View full post titled -';
+$lang['en_US']['BlogSummary.ss']['POSTEDBY'] = 'Posted by';
 $lang['en_US']['BlogSummary.ss']['POSTEDON'] = 'on';
 $lang['en_US']['BlogSummary.ss']['COMMENTS'] = 'Comments';
 $lang['en_US']['BlogEntry.ss']['POSTEDBY'] = 'Posted by';
