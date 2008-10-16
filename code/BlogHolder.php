@@ -345,7 +345,7 @@ class BlogEntry_Form extends Form {
 		$blogentry->writeToStage("Stage");
 		$blogentry->publish("Stage", "Live");
 
-		Director::redirect(Director::currentURLSegment());
+		Director::redirect($this->controller->Link());
 		
 	}
 }
