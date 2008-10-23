@@ -44,16 +44,19 @@ class RSSWidget extends Widget {
 	
 	function FeedItems() {
 		$output = new DataObjectSet();
-		$this->feed = new SimplePie($this->AbsoluteRssUrl);
-		$this->feed->init();
-		if($items = $this->feed->get_items(0, $this->NumberToShow)) {
-			foreach($items as $item) {
-				$output->push(new ArrayData(array(
-					"Title" => $item->get_title(),
-					"Link" => $item->get_link()
-				)));
+		
+		if(class_exists('SimplePie')) {
+			$this->feed = new SimplePie($this->AbsoluteRssUrl);
+			$this->feed->init();
+			if($items = $this->feed->get_items(0, $this->NumberToShow)) {
+				foreach($items as $item) {
+					$output->push(new ArrayData(array(
+						"Title" => $item->get_title(),
+						"Link" => $item->get_link()
+					)));
+				}
+				return $output;
 			}
-			return $output;
 		}
 	}
 }
