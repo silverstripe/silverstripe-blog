@@ -133,7 +133,7 @@ class BlogEntry extends Page {
 		} else {
 			$parser = new BBCodeParser($this->Content);
 			$content = new Text('Content');
-			$content->value =$parser->parse();
+			$content->value = $parser->parse();
 			return $content;
 		}
 	}
