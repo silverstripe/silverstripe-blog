@@ -8,7 +8,7 @@
  * An individual blog entry page to show a blog entry in full
  */
 class BlogEntry extends Page {
-	static $default_parent = array('BlogHolder');
+	static $default_parent = 'BlogHolder';
 	
 	static $can_be_root = false;
 	
