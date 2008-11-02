@@ -15,11 +15,6 @@ $lang['en_US']['ArchiveWidget']['SINGULARNAME'] = array(
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
 );
 $lang['en_US']['ArchiveWidget']['YEAR'] = 'year';
-$lang['en_US']['ArchiveWidget']['db_DisplayMode'] = array(
-	'DisplayMode',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
 $lang['en_US']['BlogEntry']['AU'] = 'Author';
 $lang['en_US']['BlogEntry']['BBH'] = 'BBCode help';
 $lang['en_US']['BlogEntry']['CN'] = 'Content';
@@ -35,21 +30,6 @@ $lang['en_US']['BlogEntry']['SINGULARNAME'] = array(
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
 );
 $lang['en_US']['BlogEntry']['TS'] = 'Tags (comma sep.)';
-$lang['en_US']['BlogEntry']['db_Author'] = array(
-	'Author',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['BlogEntry']['db_Date'] = array(
-	'Date',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['BlogEntry']['db_Tags'] = array(
-	'Tags',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
 $lang['en_US']['BlogEntry.ss']['COMMENTS'] = 'Comments';
 $lang['en_US']['BlogEntry.ss']['EDITTHIS'] = 'Edit this post';
 $lang['en_US']['BlogEntry.ss']['POSTEDBY'] = 'Posted by';
@@ -76,16 +56,6 @@ $lang['en_US']['BlogHolder']['SUCCONTENT'] = 'Congratulations, the SilverStripe 
 $lang['en_US']['BlogHolder']['SUCTAGS'] = 'silverstripe, blog';
 $lang['en_US']['BlogHolder']['SUCTITLE'] = 'SilverStripe blog module successfully installed';
 $lang['en_US']['BlogHolder']['TE'] = 'For example: sport, personal, science fiction';
-$lang['en_US']['BlogHolder']['db_LandingPageFreshness'] = array(
-	'LandingPageFreshness',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['BlogHolder']['db_Name'] = array(
-	'Name',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
 $lang['en_US']['BlogHolder.ss']['NOENTRIES'] = 'There are no blog entries';
 $lang['en_US']['BlogHolder.ss']['VIEWINGTAGGED'] = 'Viewing entries tagged with';
 $lang['en_US']['BlogManagementWidget']['COMADM'] = 'Comment administration';
@@ -120,21 +90,6 @@ $lang['en_US']['RSSWidget']['SINGULARNAME'] = array(
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
 );
 $lang['en_US']['RSSWidget']['URL'] = 'URL of RSS Feed';
-$lang['en_US']['RSSWidget']['db_NumberToShow'] = array(
-	'NumberToShow',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['RSSWidget']['db_RSSTitle'] = array(
-	'RSSTitle',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['RSSWidget']['db_RssUrl'] = array(
-	'RssUrl',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
 $lang['en_US']['TagCloudWidget']['LIMIT'] = 'Limit number of tags';
 $lang['en_US']['TagCloudWidget']['PLURALNAME'] = array(
 	'Tag Cloud Widgets',
@@ -150,21 +105,6 @@ $lang['en_US']['TagCloudWidget']['SINGULARNAME'] = array(
 );
 $lang['en_US']['TagCloudWidget']['SORTBY'] = 'Sort by';
 $lang['en_US']['TagCloudWidget']['TILE'] = 'Title';
-$lang['en_US']['TagCloudWidget']['db_Limit'] = array(
-	'Limit',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['TagCloudWidget']['db_Sortby'] = array(
-	'Sortby',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['TagCloudWidget']['db_Title'] = array(
-	'Title',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
 $lang['en_US']['TrackBackPing']['PLURALNAME'] = array(
 	'Track Back Pings',
 	50,
@@ -174,26 +114,6 @@ $lang['en_US']['TrackBackPing']['SINGULARNAME'] = array(
 	'Track Back Ping',
 	50,
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
-);
-$lang['en_US']['TrackBackPing']['db_BlogName'] = array(
-	'BlogName',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['TrackBackPing']['db_Excerpt'] = array(
-	'Excerpt',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['TrackBackPing']['db_Title'] = array(
-	'Title',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
-);
-$lang['en_US']['TrackBackPing']['db_Url'] = array(
-	'Url',
-	50,
-	'Name of the object property, mainly used for automatically generating forms'
 );
 
 ?>
