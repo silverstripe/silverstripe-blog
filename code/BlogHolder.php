@@ -53,7 +53,7 @@ class BlogHolder extends Page {
 	
 		return $fields;
 	}
-	
+
 	/**
 	 * Get entries in this blog.
 	 * @param string limit A clause to insert into the limit clause.
@@ -66,9 +66,8 @@ class BlogHolder extends Page {
 		$dateCheck = '';
 		
 		if($tag) {
-			$SQL_tag = addslashes($tag);
-			$SQL_tag = str_replace(array("\\",'_','%',"'"), array("\\\\","\\_","\\%","\\'"), $tag);
-			$tagCheck = "AND `BlogEntry`.Tags LIKE '%$tag%'";
+			$SQL_tag = Convert::raw2sql($tag);
+			$tagCheck = "AND `BlogEntry`.Tags LIKE '%$SQL_tag%'";
 		}
 		
 		if($date) {
@@ -95,9 +94,8 @@ class BlogHolder extends Page {
 	 */
 	function ShowTag() {
 		if(Director::urlParam('Action') == 'tag') {
-			return Director::urlParam('ID');
+			return Convert::raw2xml(Director::urlParam('ID'));
 		}
-		return isset($_GET['tag']) ? $_GET['tag'] : false;
 	}
 	
 	/**
@@ -111,10 +109,10 @@ class BlogHolder extends Page {
 		Requirements::javascript('blog/javascript/bbcodehelp.js');
 					
 		$id = 0;
-		if(Director::urlParam('ID')){
-			$id = Director::urlParam('ID');
+		if(Director::urlParam('ID')) {
+			$id = (int) Director::urlParam('ID');
 		}
-				
+		
 		$codeparser = new BBCodeParser();
 		$membername = Member::currentMember() ? Member::currentMember()->getName() : "";
 		
@@ -140,10 +138,10 @@ class BlogHolder extends Page {
 			
 		$form = new BlogEntry_Form($this, 'BlogEntryForm',$fields, $actions,$validator);
 	
-		if($id != 0){
-			$form->loadNonBlankDataFrom(DataObject::get_by_id('BlogEntry',$id));
-		}else{
-				$form->loadNonBlankDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
+		if($id != 0) {
+			$form->loadNonBlankDataFrom(DataObject::get_by_id('BlogEntry', $id));
+		} else {
+			$form->loadNonBlankDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
 		}
 		
 		return $form;
@@ -152,7 +150,7 @@ class BlogHolder extends Page {
 	/**
 	 * Check if url has "/post"
 	 */
-	function isPost(){
+	function isPost() {
 		return Director::urlParam('Action') == 'post';
 	}
 	
@@ -160,7 +158,7 @@ class BlogHolder extends Page {
 	 * Link for creating a new blog entry
 	 */
 	function postURL(){
-		return  $this->Link('post');
+		return $this->Link('post');
 	}
 	
 	/**
@@ -224,16 +222,11 @@ class BlogHolder_Controller extends Page_Controller {
 	}
 	
 	function BlogEntries($limit = 10) {
-		$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
 		$tag = '';
 		$date = '';
 		
-		if(isset($_GET['tag'])) {
-			$tag = $_GET['tag'];
-		}
-		
-		
-		if(Director::urlParams()){
+		if(Director::urlParams()) {
 			if(Director::urlParam('Action') == 'tag') {
 				$tag = Director::urlParam('ID');
 			} else {
@@ -271,6 +264,7 @@ class BlogHolder_Controller extends Page_Controller {
 		
 		return $output;
 	}
+	
 	function tag() {
 		if($this->ShowTag()) {
 			return array(
