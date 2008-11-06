@@ -62,8 +62,9 @@ class BlogEntry extends Page {
 	function getCMSFields() {
 		Requirements::javascript('blog/javascript/bbcodehelp.js');
 		Requirements::css('blog/css/bbcodehelp.css');
-		$firstName = Member::CurrentMember() ? Member::currentMember()->FirstName : '';
-		 $codeparser = new BBCodeParser();
+		
+		$firstName = Member::currentUser() ? Member::currentUser()->FirstName : '';
+		$codeparser = new BBCodeParser();
 		 
 		$fields = parent::getCMSFields();
 		
@@ -141,7 +142,7 @@ class BlogEntry extends Page {
 	/**
 	 * Link for editing this blog entry
 	 */
-	function EditURL(){
+	function EditURL() {
 		return $this->getParent()->Link('post')."/".$this->ID."/";
 	}
 
