@@ -8,6 +8,7 @@
  * An individual blog entry page to show a blog entry in full
  */
 class BlogEntry extends Page {
+	
 	static $default_parent = 'BlogHolder';
 	
 	static $can_be_root = false;
@@ -18,6 +19,15 @@ class BlogEntry extends Page {
 		"Date" => "SSDatetime",
 		"Author" => "Text",
 		"Tags" => "Text"
+	);
+	
+	static $has_one = array(
+	);
+	
+	static $has_many = array(
+	);
+	
+	static $many_many = array(
 	);
 	
 	static $casting = array(
