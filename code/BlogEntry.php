@@ -48,8 +48,19 @@ class BlogEntry extends Page {
 	
 	/**
 	 * Is WYSIWYG editing allowed?
+	 * @var boolean
 	 */
 	static $allow_wysiwyg_editing = false;
+	
+	/**
+	 * Is WYSIWYG editing enabled?
+	 * Used in templates.
+	 *
+	 * @return boolean
+	 */
+	public function IsWYSIWYGEnabled() {
+		return self::$allow_wysiwyg_editing;
+	}
 	
 	/**
 	 * overload so that the default date is today.
