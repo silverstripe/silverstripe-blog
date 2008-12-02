@@ -16,7 +16,6 @@ class BlogEntry extends Page {
 	static $icon = "blog/images/blogpage";
 	
 	static $db = array(
-		"LegacyID" => "Varchar(5)", // used for blog migration only
 		"Date" => "SSDatetime",
 		"Author" => "Text",
 		"Tags" => "Text"

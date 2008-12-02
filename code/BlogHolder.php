@@ -67,9 +67,10 @@ class BlogHolder extends Page {
 	 * @param string date Only get blog entries on this date - either a year, or a year-month eg '2008' or '2008-02'
 	 * @return DataObjectSet
 	 */
-	public function Entries($limit = '', $tag = '', $date = '') {
+	public function Entries($limit = '', $tag = '', $date = '', $author = '') {
 		$tagCheck = '';
 		$dateCheck = '';
+		$authorCheck = '';
 		
 		if($tag) {
 			$SQL_tag = Convert::raw2sql($tag);
@@ -92,7 +93,11 @@ class BlogHolder extends Page {
 			}
 		}
 		
-		return DataObject::get("Page","`ParentID` = $this->ID AND ShowInMenus = 1 $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$limit");
+		if($author) {
+			$authorCheck = "AND Author = '{$author}'";
+		}
+		
+		return DataObject::get("Page","`ParentID` = $this->ID AND ShowInMenus = 1 $authorCheck $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$limit");
 	}
 
 	/**
@@ -228,6 +233,7 @@ class BlogHolder_Controller extends Page_Controller {
 	}
 	
 	function BlogEntries($limit = 10) {
+		$author = isset($_GET['author']) ? $_GET['author'] : '';
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
 		$tag = '';
 		$date = '';
@@ -247,7 +253,7 @@ class BlogHolder_Controller extends Page_Controller {
 			}
 		}
 		
-		return $this->Entries("$start,$limit", $tag, $date);
+		return $this->Entries("$start,$limit", $tag, $date, $author);
 	}
 	
 	/**
@@ -286,13 +292,25 @@ class BlogHolder_Controller extends Page_Controller {
 	 */
 	function rss() {
 		global $project;
-
-		$blogName = $this->Name;
-		$altBlogName = $project . ' blog';
+		$limit=10;
+		$authorCheck = '';
 		
-		$children = $this->Children();
-		$children->sort('Date', 'DESC');
+		$author = isset($_GET['author']) ? $_GET['author'] : '';
+		$blogName = $this->Name;
+		$altBlogName = "$this->Title » SilverStripe.com";
+		
+		if($author) {
+			$authorCheck = "AND Author = '{$author}'";
+		}
+		
+		$children = DataObject::get("Page","`ParentID` = $this->ID AND ShowInMenus = 1 $authorCheck","`BlogEntry`.Date DESC",'', "$limit");
+		
+		if($author AND $children) {
+			$altBlogName = ucwords($author) . "'s blog » SilverStripe.com";
+		}
+		
 		$rss = new RSSFeed($children, $this->Link(), ($blogName ? $blogName : $altBlogName), "", "Title", "ParsedContent");
+		
 		$rss->outputToBrowser();
 	}
 	
