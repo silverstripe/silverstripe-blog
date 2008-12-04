@@ -52,17 +52,17 @@ class TagCloudWidget extends Widget {
 		
 		if($entries) {
 			foreach($entries as $entry) {
-				$theseTags = split(" *, *", trim($entry->Tags));
+				$theseTags = split(" *, *", strtolower(trim($entry->Tags)));
 				foreach($theseTags as $tag) {
-					$allTags[$tag] = isset($allTags[$tag]) ? $allTags[$tag] + 1 : 1; //getting the count into key => value map
-					$max = ($allTags[$tag] > $max) ? $allTags[$tag] : $max;
+					if($tag != "") {
+						$allTags[$tag] = isset($allTags[$tag]) ? $allTags[$tag] + 1 : 1; //getting the count into key => value map
+						$max = ($allTags[$tag] > $max) ? $allTags[$tag] : $max;
+					}
 				}
 			}
 		
 			if($allTags) {		
-				
 				//TODO: move some or all of the sorts to the database for more efficiency
-				
 				if($this->Limit > 0){
 					uasort($allTags, "column_sort_by_popularity");	//sort by popularity
 					$allTags = array_slice($allTags, 0, $this->Limit);
@@ -112,7 +112,6 @@ class TagCloudWidget extends Widget {
 						"Link" => $blogHolder->Link() . 'tag/' . urlencode($tag)		
 					);
 				}
-				
 			}
 			
 			$output = new DataObjectSet();
@@ -126,15 +125,19 @@ class TagCloudWidget extends Widget {
 	}	
 }
 
+/**
+ * Helper method to compare 2 Vars to work out the results.
+ * @param mixed
+ * @param mixed
+ * @return int
+ */
 function column_sort_by_popularity($a, $b){
-
 	if($a == $b) {
 		$result  = 0;
 	} 
 	else {
 		$result = $b - $a;
 	}
-
 	return $result;
 }
 
