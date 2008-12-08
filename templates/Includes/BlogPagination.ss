@@ -6,11 +6,15 @@
 			<% end_if %>
 		
 			<span>
-		    	<% control BlogEntries.Pages %>
+		    	<% control BlogEntries.PaginationSummary(4) %>
 					<% if CurrentBool %>
 						$PageNum
 					<% else %>
-						<a href="$Link" title="View page number $PageNum">$PageNum</a>
+						<% if PageNum = --- %>
+							...
+						<% else %>
+							<a href="$Link" title="View page number $PageNum">$PageNum</a>
+						<% end_if %>
 					<% end_if %>
 				<% end_control %>
 			</span>
