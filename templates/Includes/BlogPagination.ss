@@ -10,10 +10,10 @@
 					<% if CurrentBool %>
 						$PageNum
 					<% else %>
-						<% if PageNum = --- %>
-							&hellip;
-						<% else %>
+						<% if Link %>
 							<a href="$Link" title="View page number $PageNum">$PageNum</a>
+						<% else %>
+							&hellip;
 						<% end_if %>
 					<% end_if %>
 				<% end_control %>
