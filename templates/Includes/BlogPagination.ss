@@ -11,7 +11,7 @@
 						$PageNum
 					<% else %>
 						<% if PageNum = --- %>
-							...
+							&hellip;
 						<% else %>
 							<a href="$Link" title="View page number $PageNum">$PageNum</a>
 						<% end_if %>
