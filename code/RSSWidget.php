@@ -51,9 +51,19 @@ class RSSWidget extends Widget {
 		$this->feed->init();
 		if($items = $this->feed->get_items(0, $this->NumberToShow)) {
 			foreach($items as $item) {
+				
+				// Cast the Date
+				$date = new Date('Date');
+				$date->setValue($item->get_date());
+
+				// Cast the Title
+				$title = new Text('Title');
+				$title->setValue($item->get_title());
+
 				$output->push(new ArrayData(array(
-					"Title" => $item->get_title(),
-					"Link" => $item->get_link()
+					'Title' => $title,
+					'Date' => $date,
+					'Link' => $item->get_link()
 				)));
 			}
 			return $output;
