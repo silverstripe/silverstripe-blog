@@ -9,10 +9,6 @@
  */
 class SubscribeRSSWidget extends Widget {
 	
-	static $db = array(
-		'Title' => 'Varchar'
-	);
-	
 	static $title = 'Subscribe via RSS';
 	
 	static $cmsTitle = 'Subscribe via RSS widget';
