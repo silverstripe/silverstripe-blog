@@ -1,11 +1,8 @@
 <?php
-
 /**
+ * An individual blog entry page type.
+ * 
  * @package blog
- */
-
-/**
- * An individual blog entry page to show a blog entry in full
  */
 class BlogEntry extends Page {
 	
@@ -185,25 +182,25 @@ class BlogEntry_Controller extends Page_Controller {
 	/**
 	 * Gets a link to unpublish the blog entry
 	 */
-	function unpublishPost(){	
-		if(!Permission::check('ADMIN')){
-			Security::permissionFailure($this,
-				"Unpublishing blogs is an administrator task. Please log in.");
-		}
-		else{
-			$SQL_id = Convert::raw2sql($this->ID);
+	function unpublishPost() {
+		if(!Permission::check('ADMIN')) {
+			Security::permissionFailure(
+				$this,
+				'Unpublishing blogs is an administrator task. Please log in.'
+			);
+		} else {
+			$SQL_id = (int) $this->ID;
 	
-			$page = DataObject::get_by_id("SiteTree", $SQL_id);
+			$page = DataObject::get_by_id('SiteTree', $SQL_id);
 			$page->deleteFromStage('Live');
 			$page->flushCache();
 	
-			$page = DataObject::get_by_id("SiteTree", $SQL_id);
-			$page->Status = "Unpublished";
+			$page = DataObject::get_by_id('SiteTree', $SQL_id);
+			$page->Status = 'Unpublished';
 
 			Director::redirect($this->getParent()->Link());
 		}		
 	}
 		
 }
-
 ?>
