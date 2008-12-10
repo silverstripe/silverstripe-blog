@@ -41,8 +41,6 @@ class BlogEntry extends Page {
 		"Versioned('Stage', 'Live')"
 	);
 		
-	static $allowed_children = "none";
-	
 	/**
 	 * Is WYSIWYG editing allowed?
 	 * @var boolean
@@ -60,26 +58,28 @@ class BlogEntry extends Page {
 	}
 	
 	/**
-	 * overload so that the default date is today.
+	 * Overload so that the default date is today.
 	 */
 	public function populateDefaults(){
 		parent::populateDefaults();
-		$this->Date = date("Y-m-d H:i:s",time());
+		
+		$this->Date = date('Y-m-d H:i:s', time());
 	}
 	
 	/**
 	 * Ensures the most recent article edited on the same day is shown first.
 	 */
-	public function setDate($val){
-		$datepart = date("Y-m-d",strtotime($val));
-		$minutepart = date("H:i:s",time());
-		$date = $datepart . " " . $minutepart;	
-		return $this->setField("Date",$date);
+	public function setDate($val) {
+		$datepart = date('Y-m-d', strtotime($val));
+		$minutepart = date('H:i:s', time());
+		$date = $datepart . " " . $minutepart;
+		
+		return $this->setField('Date', $date);
 	}
 
 	function getCMSFields() {
 		Requirements::javascript('blog/javascript/bbcodehelp.js');
-		Requirements::css('blog/css/bbcodehelp.css');
+		Requirements::themedCSS('bbcodehelp');
 		
 		$firstName = Member::currentUser() ? Member::currentUser()->FirstName : '';
 		$codeparser = new BBCodeParser();
@@ -108,22 +108,23 @@ class BlogEntry extends Page {
 	 * Returns the tags added to this blog entry
 	 */
 	function TagsCollection() {
-		$theseTags = split(" *, *", trim($this->Tags));
-		
+		$tags = split(" *, *", trim($this->Tags));
 		$output = new DataObjectSet();
-		foreach($theseTags as $tag) {
+		
+		foreach($tags as $tag) {
 			$output->push(new ArrayData(array(
-				"Tag" => $tag,
-				"Link" => $this->getParent()->Link() . 'tag/' . urlencode($tag)		
+				'Tag' => $tag,
+				'Link' => $this->getParent()->Link() . 'tag/' . urlencode($tag)
 			)));
 		}
-		if($this->Tags){
+		
+		if($this->Tags) {
 			return $output;
 		}
 	}
 
 	/**
-	 * Get the sidebar
+	 * Get the sidebar from the BlogHolder.
 	 */
 	function SideBar() {
 		return $this->getParent()->SideBar();
@@ -153,6 +154,7 @@ class BlogEntry extends Page {
 			$parser = new BBCodeParser($this->Content);
 			$content = new Text('Content');
 			$content->value = $parser->parse();
+			
 			return $content;
 		}
 	}
@@ -161,7 +163,7 @@ class BlogEntry extends Page {
 	 * Link for editing this blog entry
 	 */
 	function EditURL() {
-		return $this->getParent()->Link('post')."/".$this->ID."/";
+		return $this->getParent()->Link('post') . '/' . $this->ID . '/';
 	}
 
 	/**
@@ -174,9 +176,11 @@ class BlogEntry extends Page {
 }
 
 class BlogEntry_Controller extends Page_Controller {
+
 	function init() {
 		parent::init();
-		Requirements::themedCSS("blog");
+		
+		Requirements::themedCSS('blog');
 	}
 	
 	/**
