@@ -47,7 +47,8 @@ class RSSWidget extends Widget {
 		
 		include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/SimplePie.php'));
 		
-		$this->feed = new SimplePie($this->AbsoluteRssUrl);
+		$t1 = microtime(true);
+		$this->feed = new SimplePie($this->AbsoluteRssUrl, TEMP_FOLDER);
 		$this->feed->init();
 		if($items = $this->feed->get_items(0, $this->NumberToShow)) {
 			foreach($items as $item) {
