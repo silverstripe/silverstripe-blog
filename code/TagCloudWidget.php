@@ -48,7 +48,7 @@ class TagCloudWidget extends Widget {
 		$max = 0;
 		$blogHolder = $this->getBlogHolder();
 		
-		$entries = $blogHolder->Children();
+		$entries = $blogHolder->Entries();
 		
 		if($entries) {
 			foreach($entries as $entry) {
