@@ -154,7 +154,6 @@ class BlogHolder extends Page {
 			$blog = new BlogEntry();
 			$blog->Title = _t('BlogHolder.SUCTITLE', "SilverStripe blog module successfully installed");
 			$blog->URLSegment = 'sample-blog-entry';
-			$blog->setDate(date("Y-m-d H:i:s",time()));
 			$blog->Tags = _t('BlogHolder.SUCTAGS',"silverstripe, blog");
 			$blog->Content = _t('BlogHolder.SUCCONTENT',"Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in [url=admin]the CMS[/url].");
 			$blog->Status = "Published";
