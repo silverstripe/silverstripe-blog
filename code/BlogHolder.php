@@ -295,15 +295,21 @@ class BlogHolder_Controller extends Page_Controller {
 		$codeparser = new BBCodeParser();
 		$membername = Member::currentMember() ? Member::currentMember()->getName() : "";
 		
+		if(BlogEntry::$allow_wysiwyg_editing) {
+			$contentfield = new HtmlEditorField("BlogPost", _t("BlogEntry.CN"));
+		} else {
+			$contentfield = new CompositeField( 
+				new LiteralField("BBCodeHelper","<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
+				new TextareaField("BlogPost", _t("BlogEntry.CN"),20), // This is called BlogPost as the id #Content is generally used already
+				new LiteralField("BBCodeTags","<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>")
+			);
+		}
+		
 		$fields = new FieldSet(
 			new HiddenField("ID", "ID"),
 			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
 			new TextField("Author",_t('BlogEntry.AU'),$membername),
-			new CompositeField( 
-				new LiteralField("BBCodeHelper","<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
-				new TextareaField("BlogPost", _t("BlogEntry.CN"),20), // This is called BlogPost as the id #Content is generally used already
-				new LiteralField("BBCodeTags","<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>")
-			),
+			$contentfield,
 			new TextField("Tags","Tags"),
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
 												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
