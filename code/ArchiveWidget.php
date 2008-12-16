@@ -52,10 +52,14 @@ class ArchiveWidget extends Widget {
 		$blogHolder = $this->getBlogHolder();
 		$id = $blogHolder->ID;
 		
+		$stage = Versioned::current_stage();
+		$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
+
+		
 		if($this->DisplayMode == 'month') {
-			$sqlResults = DB::query("SELECT DISTINCT MONTH(`Date`) AS `Month`, YEAR(`Date`) AS `Year` FROM `SiteTree` NATURAL JOIN `BlogEntry` WHERE `ParentID` = $id ORDER BY `Date` DESC");	
+			$sqlResults = DB::query("SELECT DISTINCT MONTH(`Date`) AS `Month`, YEAR(`Date`) AS `Year` FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` WHERE `ParentID` = $id ORDER BY `Date` DESC");	
 		} else {
-			$sqlResults = DB::query("SELECT DISTINCT YEAR(`Date`) AS `Year` FROM `SiteTree` NATURAL JOIN `BlogEntry` WHERE `ParentID` = $id ORDER BY `Date` DESC");
+			$sqlResults = DB::query("SELECT DISTINCT YEAR(`Date`) AS `Year` FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` WHERE `ParentID` = $id ORDER BY `Date` DESC");
 		}
 		
 		if(!$sqlResults) return new DataObjectSet();
