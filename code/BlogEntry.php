@@ -151,6 +151,21 @@ class BlogEntry extends Page {
 	function EditURL() {
 		return $this->getParent()->Link('post') . '/' . $this->ID . '/';
 	}
+	
+	/**
+	 * Check to see if trackbacks are enabled.
+	 */
+	function TrackBacksEnabled() {
+		return $this->getParent()->TrackBacksEnabled;
+	}
+	
+	function trackbackping() {
+		if($this->TrackBacksEnabled()) {
+			return $this->extInstance('TrackBackDecorator')->trackbackping();
+		} else {
+			Director::redirect($this->Link());
+		}
+	}
 
 	/**
 	 * Call this to enable WYSIWYG editing on your blog entries.

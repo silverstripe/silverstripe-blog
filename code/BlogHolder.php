@@ -13,8 +13,9 @@ class BlogHolder extends Page {
 	static $icon = "blog/images/blogholder";
 	
 	static $db = array(
-		"LandingPageFreshness" => "Varchar",
-		"Name" => "Varchar"
+		'LandingPageFreshness' => 'Varchar',
+		'Name' => 'Varchar',
+		'TrackBacksEnabled' => 'Boolean'
 	);
 	
 	static $has_one = array(
@@ -29,10 +30,6 @@ class BlogHolder extends Page {
 	
 	static $allowed_children = array(
 		'BlogEntry'
-	);
-	
-	static $defaults = array(
-		"LandingPageFreshness" => "3 MONTH",
 	);
 	
 	function getCMSFields() {
@@ -54,8 +51,10 @@ class BlogHolder extends Page {
 			"9 MONTH" => "Last 9 months' entries",
 			"10 MONTH" => "Last 10 months' entries",
 			"11 MONTH" => "Last 11 months' entries",
-			"12 MONTH" => "Last year's entries",
+			"12 MONTH" => "Last year's entries"
 		)));
+		
+		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
 	
 		return $fields;
 	}
