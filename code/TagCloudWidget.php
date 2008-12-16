@@ -64,11 +64,11 @@ class TagCloudWidget extends Widget {
 			if($allTags) {		
 				//TODO: move some or all of the sorts to the database for more efficiency
 				if($this->Limit > 0){
-					uasort($allTags, "column_sort_by_popularity");	//sort by popularity
+					uasort($allTags, array($this, "column_sort_by_popularity"));	//sort by popularity
 					$allTags = array_slice($allTags, 0, $this->Limit);
 				 }
 				 if($this->Sortby == "alphabet"){
-					natksort($allTags);
+					$this->natksort($allTags);
 				 }
 				
 				$sizes = array();	
@@ -122,35 +122,37 @@ class TagCloudWidget extends Widget {
 		}
 		
 		return;		
-	}	
-}
-
-/**
- * Helper method to compare 2 Vars to work out the results.
- * @param mixed
- * @param mixed
- * @return int
- */
-function column_sort_by_popularity($a, $b){
-	if($a == $b) {
-		$result  = 0;
-	} 
-	else {
-		$result = $b - $a;
 	}
-	return $result;
+	
+	/**
+	 * Helper method to compare 2 Vars to work out the results.
+	 * @param mixed
+	 * @param mixed
+	 * @return int
+	 */
+	private function column_sort_by_popularity($a, $b){
+		if($a == $b) {
+			$result  = 0;
+		} 
+		else {
+			$result = $b - $a;
+		}
+		return $result;
+	}
+
+	private function natksort(&$aToBeSorted) {
+		$aResult = array();
+		$aKeys = array_keys($aToBeSorted);
+		natcasesort($aKeys);
+		foreach ($aKeys as $sKey) {
+		    $aResult[$sKey] = $aToBeSorted[$sKey];
+		}
+		$aToBeSorted = $aResult;
+
+		return true;
+	}
 }
 
-function natksort(&$aToBeSorted) {
-    $aResult = array();
-    $aKeys = array_keys($aToBeSorted);
-    natcasesort($aKeys);
-    foreach ($aKeys as $sKey) {
-        $aResult[$sKey] = $aToBeSorted[$sKey];
-    }
-    $aToBeSorted = $aResult;
 
-    return true;
-}
 
 ?>
