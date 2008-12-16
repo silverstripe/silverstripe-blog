@@ -27,12 +27,9 @@ class BlogEntry extends Page {
 	static $many_many = array(
 	);
 	
-	static $casting = array(
-		"Date" => "Date"
-	);
-	
 	static $defaults = array(
-		"ProvideComments" => true
+		"ProvideComments" => true,
+		'ShowInMenus' => false
 	);
 	
 	static $extensions = array(
@@ -63,20 +60,9 @@ class BlogEntry extends Page {
 	public function populateDefaults(){
 		parent::populateDefaults();
 		
-		$this->Date = date('Y-m-d H:i:s', time());
+		$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
 	}
 	
-	/**
-	 * Ensures the most recent article edited on the same day is shown first.
-	 */
-	public function setDate($val) {
-		$datepart = date('Y-m-d', strtotime($val));
-		$minutepart = date('H:i:s', time());
-		$date = $datepart . " " . $minutepart;
-		
-		return $this->setField('Date', $date);
-	}
-
 	function getCMSFields() {
 		Requirements::javascript('blog/javascript/bbcodehelp.js');
 		Requirements::themedCSS('bbcodehelp');
@@ -91,7 +77,7 @@ class BlogEntry extends Page {
 			$fields->addFieldToTab("Root.Content.Main", new TextareaField("Content", _t("BlogEntry.CN", "Content"), 20));
 		}
 		
-		$fields->addFieldToTab("Root.Content.Main", new CalendarDateField("Date", _t("BlogEntry.DT", "Date")),"Content");
+		$fields->addFieldToTab("Root.Content.Main", new PopupDateTimeField("Date", _t("BlogEntry.DT", "Date")),"Content");
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Author", _t("BlogEntry.AU", "Author"), $firstName),"Content");
 		
 		if(!self::$allow_wysiwyg_editing) {

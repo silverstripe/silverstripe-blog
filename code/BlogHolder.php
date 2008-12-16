@@ -92,7 +92,7 @@ class BlogHolder extends Page {
 			}
 		}
 		
-		return DataObject::get("Page","`ParentID` = $this->ID AND ShowInMenus = 1 $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$limit");
+		return DataObject::get("Page","`ParentID` = $this->ID $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$limit");
 	}
 
 	/**
@@ -102,55 +102,6 @@ class BlogHolder extends Page {
 		if(Director::urlParam('Action') == 'tag') {
 			return Convert::raw2xml(Director::urlParam('ID'));
 		}
-	}
-	
-	/**
-	 * A simple form for creating blog entries
-	 */
-	function BlogEntryForm() {
-		Requirements::javascript('jsparty/behaviour.js');
-		Requirements::javascript('jsparty/prototype.js');
-		Requirements::javascript('jsparty/scriptaculous/effects.js');
-		Requirements::javascript('cms/javascript/PageCommentInterface.js');
-		Requirements::javascript('blog/javascript/bbcodehelp.js');
-					
-		$id = 0;
-		if(Director::urlParam('ID')) {
-			$id = (int) Director::urlParam('ID');
-		}
-		
-		$codeparser = new BBCodeParser();
-		$membername = Member::currentMember() ? Member::currentMember()->getName() : "";
-		
-		$fields = new FieldSet(
-			new HiddenField("ParentID", "ParentID", $this->ID),
-			new HiddenField("ID","ID"),
-			new HiddenField("Date","Date"),
-			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
-			new TextField("Author",_t('BlogEntry.AU'),$membername),
-			new CompositeField( 
-				new LiteralField("BBCodeHelper","<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
-				new TextareaField("Content", _t("BlogEntry.CN"),20),
-				new LiteralField("BBCodeTags","<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>")
-			),
-			new TextField("Tags","Tags"),
-			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
-												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
-		);	
-		
-		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
-		$actions = new FieldSet($submitAction);
-		$validator = new RequiredFields('Title','Content');
-			
-		$form = new BlogEntry_Form($this, 'BlogEntryForm',$fields, $actions,$validator);
-	
-		if($id != 0) {
-			$form->loadNonBlankDataFrom(DataObject::get_by_id('BlogEntry', $id));
-		} else {
-			$form->loadNonBlankDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
-		}
-		
-		return $form;
 	}
 	
 	/**
@@ -308,10 +259,15 @@ class BlogHolder_Controller extends Page_Controller {
 	 */
 	function post(){
 		if(!Permission::check('ADMIN')){
-			Security::permissionFailure($this,
-				_t('BlogHolder.HAVENTPERM',"Posting blogs is an administrator task. Please log in."));
+			Security::permissionFailure($this, _t('BlogHolder.HAVENTPERM', 'Posting blogs is an administrator task. Please log in.'));
 		}
-		return array();
+		
+		$page = $this->customise(array(
+			'Content' => false,
+			'Form' => $this->BlogEntryForm()
+		));
+		
+		return $page->renderWith('Page');
 	}
 	
 	function defaultAction($action) {
@@ -322,32 +278,79 @@ class BlogHolder_Controller extends Page_Controller {
 		
 		return parent::defaultAction($action);
 	}
-}
-
-/**
- * Blog entry form
- */
-class BlogEntry_Form extends Form {
-	function postblog($data) {
-		Cookie::set("BlogHolder_Name", $data['Author']);
-		$blogentry = new BlogEntry();
-		$this->saveInto($blogentry);
-				
-		if($data['ID'] != 0){ //new post
-			$blogentry = DataObject::get_by_id("BlogEntry",$data['ID']);
-			$this->saveInto($blogentry);
-			$blogentry->setDate($data['Date']);
-		}else{
-			$blogentry->setDate(date("Y-m-d H:i:s",time()));
+	
+	/**
+	 * A simple form for creating blog entries
+	 */
+	function BlogEntryForm() {
+		Requirements::javascript('jsparty/behaviour.js');
+		Requirements::javascript('jsparty/prototype.js');
+		Requirements::javascript('jsparty/scriptaculous/effects.js');
+		Requirements::javascript('cms/javascript/PageCommentInterface.js');
+		Requirements::javascript('blog/javascript/bbcodehelp.js');
+					
+		$id = 0;
+		if(Director::urlParam('ID')) {
+			$id = (int) Director::urlParam('ID');
 		}
+		
+		$codeparser = new BBCodeParser();
+		$membername = Member::currentMember() ? Member::currentMember()->getName() : "";
+		
+		$fields = new FieldSet(
+			new HiddenField("ID", "ID"),
+			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
+			new TextField("Author",_t('BlogEntry.AU'),$membername),
+			new CompositeField( 
+				new LiteralField("BBCodeHelper","<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
+				new TextareaField("BlogPost", _t("BlogEntry.CN"),20), // This is called BlogPost as the id #Content is generally used already
+				new LiteralField("BBCodeTags","<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>")
+			),
+			new TextField("Tags","Tags"),
+			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
+												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
+		);	
+		
+		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
+		$actions = new FieldSet($submitAction);
+		$validator = new RequiredFields('Title','Content');
+			
+		$form = new Form($this, 'BlogEntryForm',$fields, $actions,$validator);
+	
+		if($id != 0) {
+			$entry = DataObject::get_by_id('BlogEntry', $id);
+			$form->loadNonBlankDataFrom($entry);
+			$form->datafieldByName('BlogPost')->setValue($entry->Content);
+		} else {
+			$form->loadNonBlankDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
+		}
+		
+		return $form;
+	}
+	
+	function postblog($data, $form) {
+		Cookie::set("BlogHolder_Name", $data['Author']);
+		$blogentry = false;
+		
+		if($data['ID']) {
+			$blogentry = DataObject::get_by_id("BlogEntry", $data['ID']);
+		}
+		
+		if(!$blogentry) {
+			$blogentry = new BlogEntry();
+		}
+		
+		$form->saveInto($blogentry);
+		$blogentry->ParentID = $this->ID;
+		$blogentry->Content = $form->datafieldByName('BlogPost')->dataValue();
 		
 		$blogentry->Status = "Published";
 		$blogentry->writeToStage("Stage");
 		$blogentry->publish("Stage", "Live");
-
-		Director::redirect($this->controller->Link());
 		
+		Director::redirect($this->Link());
 	}
 }
+
 
 ?>
