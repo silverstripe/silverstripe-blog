@@ -239,10 +239,12 @@ class BlogHolder_Controller extends Page_Controller {
 		$blogName = $this->Name;
 		$altBlogName = $project . ' blog';
 		
-		$children = $this->Children();
-		$children->sort('Date', 'DESC');
-		$rss = new RSSFeed($children, $this->Link(), ($blogName ? $blogName : $altBlogName), "", "Title", "ParsedContent");
-		$rss->outputToBrowser();
+		$entries = $this->Entries(20);
+		
+		if($entries) {
+			$rss = new RSSFeed($entries, $this->Link(), ($blogName ? $blogName : $altBlogName), "", "Title", "ParsedContent");
+			$rss->outputToBrowser();
+		}
 	}
 	
 	/**
@@ -305,12 +307,19 @@ class BlogHolder_Controller extends Page_Controller {
 			);
 		}
 		
+		if(class_exists('TagField')) {
+			$tagfield = new TagField('Tags', null, null, 'BlogEntry');
+			$tagfield->setSeparator(', ');
+		} else {
+			$tagfield = new TextField('Tags');
+		}
+		
 		$fields = new FieldSet(
 			new HiddenField("ID", "ID"),
 			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
 			new TextField("Author",_t('BlogEntry.AU'),$membername),
 			$contentfield,
-			new TextField("Tags","Tags"),
+			$tagfield,
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
 												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
 		);	
