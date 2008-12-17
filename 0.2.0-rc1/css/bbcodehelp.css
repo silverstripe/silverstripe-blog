@@ -1,0 +1,32 @@
+/*
+	Foundational BBHelper formatting
+*/
+
+ul.bbcodeExamples li {
+	list-style-type:none;
+	font-size: 1em;
+}
+ul.bbcodeExamples li.last {
+	border: none;
+}
+
+ul.bbcodeExamples li span.example {
+	
+}
+
+#BBTagsHolder{
+	color: #777;
+	padding: 5px;
+	width: 270px;
+	background-color: #fff;
+	font-size:0.8em;
+}
+
+.bbcodeExamples{
+	margin: 0 !important;
+	padding: 0;
+}
+
+#BBCodeHint{
+	cursor: pointer;
+}

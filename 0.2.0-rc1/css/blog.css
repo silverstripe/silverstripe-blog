@@ -1,0 +1,11 @@
+.BlogError {
+	text-align: center;
+}
+
+.BlogError p {
+	color: #fff;
+	display: inline;
+	background-color:	#f77;
+	padding: 7px;
+	font-weight:bold;
+}
