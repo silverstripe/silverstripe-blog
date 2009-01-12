@@ -48,6 +48,7 @@ $lang['bg_BG']['BlogManagementWidget.ss']['POSTNEW'] = 'Публикувайте
 $lang['bg_BG']['BlogManagementWidget']['UNM1'] = 'Вие имате 1 непрегледан коментар';
 $lang['bg_BG']['BlogManagementWidget']['UNMM'] = 'Вие имате %i непрегледани коментара';
 $lang['bg_BG']['BlogSummary.ss']['COMMENTS'] = 'Коментари';
+$lang['bg_BG']['BlogSummary.ss']['POSTEDBY'] = 'Публикувано от';
 $lang['bg_BG']['BlogSummary.ss']['POSTEDON'] = 'на';
 $lang['bg_BG']['BlogSummary.ss']['VIEWFULL'] = 'Разгледай цялата статия';
 $lang['bg_BG']['RSSWidget']['CT'] = 'Собствено заглавие за емисията';

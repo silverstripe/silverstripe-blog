@@ -48,6 +48,7 @@ $lang['ar_SA']['BlogManagementWidget.ss']['POSTNEW'] = 'نشر تدوينة جد
 $lang['ar_SA']['BlogManagementWidget']['UNM1'] = 'يوجد تعليق واحد لا يحتاج إلى موافقة';
 $lang['ar_SA']['BlogManagementWidget']['UNMM'] = 'يوجد %i تعليقات لا تحتاج إلى موافقة';
 $lang['ar_SA']['BlogSummary.ss']['COMMENTS'] = 'التعليقات';
+$lang['ar_SA']['BlogSummary.ss']['POSTEDBY'] = 'بواسطة';
 $lang['ar_SA']['BlogSummary.ss']['POSTEDON'] = 'في';
 $lang['ar_SA']['BlogSummary.ss']['VIEWFULL'] = 'عرض كامل التدوينة';
 $lang['ar_SA']['RSSWidget']['CT'] = 'العنوان المخصص للخلاصة';

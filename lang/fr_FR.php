@@ -48,6 +48,7 @@ $lang['fr_FR']['BlogManagementWidget.ss']['POSTNEW'] = 'Publier une nouvelle ent
 $lang['fr_FR']['BlogManagementWidget']['UNM1'] = 'Vous avez 1 commentaire non modéré';
 $lang['fr_FR']['BlogManagementWidget']['UNMM'] = 'Vous avez %i commentaires non modérés';
 $lang['fr_FR']['BlogSummary.ss']['COMMENTS'] = 'Commentaires';
+$lang['fr_FR']['BlogSummary.ss']['POSTEDBY'] = 'Posté par';
 $lang['fr_FR']['BlogSummary.ss']['POSTEDON'] = 'sur';
 $lang['fr_FR']['BlogSummary.ss']['VIEWFULL'] = 'Voir le titre du post en entier -';
 $lang['fr_FR']['RSSWidget']['CT'] = 'Titre personnalisé pour le flux';

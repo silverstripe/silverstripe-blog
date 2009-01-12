@@ -48,6 +48,7 @@ $lang['tr_TR']['BlogManagementWidget.ss']['POSTNEW'] = 'Yeni bir blog girdisi ol
 $lang['tr_TR']['BlogManagementWidget']['UNM1'] = '1 adet onay bekleyen yorumunuz var';
 $lang['tr_TR']['BlogManagementWidget']['UNMM'] = '%i adet onay bekleyen yorumunuz var';
 $lang['tr_TR']['BlogSummary.ss']['COMMENTS'] = 'Yorumlar';
+$lang['tr_TR']['BlogSummary.ss']['POSTEDBY'] = 'Gönderen: ';
 $lang['tr_TR']['BlogSummary.ss']['POSTEDON'] = 'üzerinde';
 $lang['tr_TR']['BlogSummary.ss']['VIEWFULL'] = 'Postun tamamını görüntüle -';
 $lang['tr_TR']['RSSWidget']['CT'] = 'Besleme için özel başlık';

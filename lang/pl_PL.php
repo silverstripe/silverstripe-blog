@@ -48,6 +48,7 @@ $lang['pl_PL']['BlogManagementWidget.ss']['POSTNEW'] = 'Dodaj nowy wpis';
 $lang['pl_PL']['BlogManagementWidget']['UNM1'] = 'Masz 1 niesprawdzony komentarz';
 $lang['pl_PL']['BlogManagementWidget']['UNMM'] = 'Masz %i niesprawdzonych komentarzy';
 $lang['pl_PL']['BlogSummary.ss']['COMMENTS'] = 'Komentarze';
+$lang['pl_PL']['BlogSummary.ss']['POSTEDBY'] = 'Napisane przez';
 $lang['pl_PL']['BlogSummary.ss']['POSTEDON'] = 'w';
 $lang['pl_PL']['BlogSummary.ss']['VIEWFULL'] = 'Zobacz pełny post zatytułowany - ';
 $lang['pl_PL']['RSSWidget']['CT'] = 'Tytuł dla kanału';

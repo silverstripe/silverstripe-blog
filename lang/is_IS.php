@@ -49,6 +49,7 @@ $lang['is_IS']['BlogManagementWidget.ss']['POSTNEW'] = 'Birta nýju blogg færsl
 $lang['is_IS']['BlogManagementWidget']['UNM1'] = 'Þú átt 1 óskoðaða athugasemd';
 $lang['is_IS']['BlogManagementWidget']['UNMM'] = 'Þú átt %i óskoðaða athugasemd';
 $lang['is_IS']['BlogSummary.ss']['COMMENTS'] = 'Athugasemdir';
+$lang['is_IS']['BlogSummary.ss']['POSTEDBY'] = 'Skráð af';
 $lang['is_IS']['BlogSummary.ss']['POSTEDON'] = 'á';
 $lang['is_IS']['BlogSummary.ss']['VIEWFULL'] = 'Skoða alla færslu -';
 $lang['is_IS']['RSSWidget']['CT'] = 'Titill fyrir þjónustuna';
