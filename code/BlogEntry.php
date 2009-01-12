@@ -181,7 +181,8 @@ class BlogEntry_Controller extends Page_Controller {
 	static $allowed_actions = array(
 		'trackbackping',
 		'unpublishPost',
-		'PageComments'
+		'PageComments',
+		'SearchForm'
 	);
 
 	function init() {
