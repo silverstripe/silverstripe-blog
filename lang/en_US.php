@@ -90,6 +90,18 @@ $lang['en_US']['RSSWidget']['SINGULARNAME'] = array(
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
 );
 $lang['en_US']['RSSWidget']['URL'] = 'URL of RSS Feed';
+$lang['en_US']['SubscribeRSSWidget']['PLURALNAME'] = array(
+	'Subscribe R S S Widgets',
+	50,
+	'Pural name of the object, used in dropdowns and to generally identify a collection of this object in the interface'
+);
+$lang['en_US']['SubscribeRSSWidget']['SINGULARNAME'] = array(
+	'Subscribe R S S Widget',
+	50,
+	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
+);
+$lang['en_US']['SubscribeRSSWidget.ss']['SUBSCRIBETEXT'] = 'Subscribe';
+$lang['en_US']['SubscribeRSSWidget.ss']['SUBSCRIBETITLE'] = 'Subscribe to this blog via RSS';
 $lang['en_US']['TagCloudWidget']['LIMIT'] = 'Limit number of tags';
 $lang['en_US']['TagCloudWidget']['PLURALNAME'] = array(
 	'Tag Cloud Widgets',
