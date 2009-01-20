@@ -22,11 +22,13 @@ class BlogHolder extends Page {
 		"SideBar" => "WidgetArea"
 	);
 	
-	static $has_many = array(
-	);
+	static $has_many = array();
 	
-	static $many_many = array(
-	);
+	static $many_many = array();
+	
+	static $belongs_many_many = array();
+	
+	static $defaults = array();
 	
 	static $allowed_children = array(
 		'BlogEntry'

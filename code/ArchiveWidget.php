@@ -6,9 +6,17 @@
  * @package blog
  */
 class ArchiveWidget extends Widget {
+	
 	static $db = array(
 		'DisplayMode' => 'Varchar'
 	);
+	static $has_one = array();
+	
+	static $has_many = array();
+	
+	static $many_many = array();
+	
+	static $belongs_many_many = array();
 	
 	static $defaults = array(
 		'DisplayMode' => 'month'

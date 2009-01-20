@@ -1,7 +1,21 @@
 <?php
-
+/**
+ * Blog Management Widget
+ * @package blog
+ */
 class BlogManagementWidget extends Widget {
+	
 	static $db = array();
+	
+	static $has_one = array();
+	
+	static $has_many = array();
+	
+	static $many_many = array();
+	
+	static $belongs_many_many = array();
+	
+	static $defaults = array();
 	
 	static $title = "Blog Management";
 	static $cmsTitle = "Blog Management";

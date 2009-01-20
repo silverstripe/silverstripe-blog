@@ -7,6 +7,14 @@ class TagCloudWidget extends Widget {
 		"Sortby" => "Varchar"
 	);
 	
+	static $has_one = array();
+	
+	static $has_many = array();
+	
+	static $many_many = array();
+	
+	static $belongs_many_many = array();
+	
 	static $defaults = array(
 		"Title" => "Tag Cloud",
 		"Limit" => "0",
