@@ -16,7 +16,7 @@ class TrackBackPing extends DataObject {
 	
 	static $many_many = array();
 	
-	static $belongs_many_many = array()
+	static $belongs_many_many = array();
 }
 
 ?>
