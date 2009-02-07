@@ -167,6 +167,9 @@ class BlogEntry extends Page {
 		}
 	}
 
+	function IsOwner() {
+		return $this->Parent()->IsOwner();
+	}
 	/**
 	 * Call this to enable WYSIWYG editing on your blog entries.
 	 * By default the blog uses BBCode
@@ -194,7 +197,7 @@ class BlogEntry_Controller extends Page_Controller {
 	 * Gets a link to unpublish the blog entry
 	 */
 	function unpublishPost() {
-		if(!Permission::check('ADMIN')) {
+		if(!$this->IsOwner()) {
 			Security::permissionFailure(
 				$this,
 				'Unpublishing blogs is an administrator task. Please log in.'

@@ -33,6 +33,9 @@ class BlogManagementWidget extends Widget {
 	}
 	
 	function CommentLink() {
+		if(!Permission::check('ADMIN')) {
+			return false;
+		}
 		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM PageComment WHERE NeedsModeration=1")->value();
 		
 		if($unmoderatedcount > 0) {
@@ -43,9 +46,10 @@ class BlogManagementWidget extends Widget {
 	}
 	
 	function WidgetHolder() {
-		if(Permission::check("ADMIN")) {
-			return $this->renderWith("WidgetHolder");
+		if($this->getBlogHolder()->IsOwner()) {
+			return $this->renderWith('WidgetHolder');
 		}
+		return '';
 	}
 	
 	function PostLink() {

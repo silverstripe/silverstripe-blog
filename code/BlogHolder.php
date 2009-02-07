@@ -15,11 +15,13 @@ class BlogHolder extends Page {
 	static $db = array(
 		'LandingPageFreshness' => 'Varchar',
 		'Name' => 'Varchar',
-		'TrackBacksEnabled' => 'Boolean'
+		'TrackBacksEnabled' => 'Boolean',
+		'AllowCustomAuthors' => 'Boolean',
 	);
 	
 	static $has_one = array(
-		"SideBar" => "WidgetArea"
+		"SideBar" => "WidgetArea",
+		'Owner' => 'Member',
 	);
 	
 	static $has_many = array();
@@ -57,6 +59,8 @@ class BlogHolder extends Page {
 		)));
 		
 		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
+		$fields->addFieldToTab('Root.Content.Main', new DropdownField('OwnerID', 'Blog owner', DataObject::get('Member')->toDropDownMap('ID', 'Name', 'None')));
+		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'));
 	
 		return $fields;
 	}
@@ -117,6 +121,15 @@ class BlogHolder extends Page {
 	 */
 	function postURL(){
 		return $this->Link('post');
+	}
+	
+	/**
+	 * Returns true if the current user is an admin, or is the owner of this blog
+	 *
+	 * @return Boolean
+	 */
+	function IsOwner() {
+		return Permission::check('ADMIN') || (Member::CurrentMember() && Member::CurrentMember()->ID == $this->OwnerID);
 	}
 	
 	/**
@@ -260,7 +273,7 @@ class BlogHolder_Controller extends Page_Controller {
 	 * Post a new blog entry
 	 */
 	function post(){
-		if(!Permission::check('ADMIN')){
+		if(!$this->IsOwner()){
 			Security::permissionFailure($this, _t('BlogHolder.HAVENTPERM', 'Posting blogs is an administrator task. Please log in.'));
 		}
 		
@@ -315,11 +328,14 @@ class BlogHolder_Controller extends Page_Controller {
 		} else {
 			$tagfield = new TextField('Tags');
 		}
-		
+		$field = 'TextField';
+		if(!$this->AllowCustomAuthors && !Permission::check('ADMIN')) {
+			$field = 'ReadonlyField';
+		}
 		$fields = new FieldSet(
 			new HiddenField("ID", "ID"),
 			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
-			new TextField("Author",_t('BlogEntry.AU'),$membername),
+			new $field("Author",_t('BlogEntry.AU'),$membername),
 			$contentfield,
 			$tagfield,
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
@@ -334,8 +350,10 @@ class BlogHolder_Controller extends Page_Controller {
 	
 		if($id != 0) {
 			$entry = DataObject::get_by_id('BlogEntry', $id);
-			$form->loadNonBlankDataFrom($entry);
-			$form->datafieldByName('BlogPost')->setValue($entry->Content);
+			if($entry->IsOwner()) {
+				$form->loadNonBlankDataFrom($entry);
+				$form->datafieldByName('BlogPost')->setValue($entry->Content);
+			}
 		} else {
 			$form->loadNonBlankDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
 		}
@@ -349,6 +367,9 @@ class BlogHolder_Controller extends Page_Controller {
 		
 		if($data['ID']) {
 			$blogentry = DataObject::get_by_id("BlogEntry", $data['ID']);
+			if(!$blogentry->IsOwner()) {
+				unset($blogentry);
+			}
 		}
 		
 		if(!$blogentry) {
