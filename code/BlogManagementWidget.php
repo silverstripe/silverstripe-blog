@@ -46,7 +46,7 @@ class BlogManagementWidget extends Widget {
 	}
 	
 	function WidgetHolder() {
-		if($this->getBlogHolder()->IsOwner()) {
+		if($this->getBlogHolder()->canEdit()) {
 			return $this->renderWith('WidgetHolder');
 		}
 		return '';
