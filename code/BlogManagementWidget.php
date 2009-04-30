@@ -46,28 +46,15 @@ class BlogManagementWidget extends Widget {
 	}
 	
 	function WidgetHolder() {
-		if($this->getBlogHolder()->canEdit()) {
-			return $this->renderWith('WidgetHolder');
-		}
+		$container = BlogTree::current();
+		
+		if ($container && $container instanceof BlogHolder && $container->canEdit()) return $this->renderWith('WidgetHolder');
 		return '';
 	}
 	
 	function PostLink() {
-		$blogholder = $this->getBlogHolder();
-		
-		return $blogholder->Link('post');
-	}
-	
-	function getBlogHolder() {
-		$page = Director::currentPage();
-		
-		if($page->is_a("BlogHolder")) {
-			return $page;
-		} else if($page->is_a("BlogEntry") && $page->getParent()->is_a("BlogHolder")) {
-			return $page->getParent();
-		} else {
-			return DataObject::get_one("BlogHolder");
-		}
+		$container = BlogTree::current();
+		if ($container) return $container->Link('post');
 	}
 }
 

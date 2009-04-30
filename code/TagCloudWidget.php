@@ -24,19 +24,6 @@ class TagCloudWidget extends Widget {
 	static $cmsTitle = "Tag Cloud";
 	static $description = "Shows a tag cloud of tags on your blog.";
 	
-	function getBlogHolder() {
-		$page = Director::currentPage();
-		
-		if($page->is_a("BlogHolder")) {
-			return $page;
-		} else if($page->is_a("BlogEntry") && $page->getParent()->is_a("BlogHolder")) {
-			return $page->getParent();
-		} else {
-			return DataObject::get_one("BlogHolder");
-		}
-	}
-
-
 	function getCMSFields() {
 		return new FieldSet(
 			new TextField("Title", _t("TagCloudWidget.TILE", "Title")),
@@ -54,9 +41,9 @@ class TagCloudWidget extends Widget {
 		
 		$allTags = array();
 		$max = 0;
-		$blogHolder = $this->getBlogHolder();
+		$container = BlogTree::current();
 		
-		$entries = $blogHolder->Entries();
+		$entries = $container->Entries();
 		
 		if($entries) {
 			foreach($entries as $entry) {
@@ -117,7 +104,7 @@ class TagCloudWidget extends Widget {
 						"Tag" => $tag,
 						"Count" => $count,
 						"Class" => $class,
-						"Link" => $blogHolder->Link() . 'tag/' . urlencode($tag)		
+						"Link" => $container->Link() . 'tag/' . urlencode($tag)		
 					);
 				}
 			}

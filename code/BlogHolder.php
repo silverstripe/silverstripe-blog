@@ -5,32 +5,25 @@
  */
 
 /**
- * Blog holder to display summarised blog entries
+ * Blog holder to display summarised blog entries. 
+ * 
+ * A blog holder is the leaf end of a BlogTree, but can also be used standalone in simpler circumstances.
+ * BlogHolders can only hold BlogEntries, BlogTrees can only hold BlogTrees and BlogHolders
+ * BlogHolders have a form on them for easy posting, and an owner that can post to them, BlogTrees don't
  */
-
-class BlogHolder extends Page {
+class BlogHolder extends BlogTree {
 	
 	static $icon = "blog/images/blogholder";
 	
 	static $db = array(
-		'LandingPageFreshness' => 'Varchar',
 		'Name' => 'Varchar',
 		'TrackBacksEnabled' => 'Boolean',
 		'AllowCustomAuthors' => 'Boolean',
 	);
 	
 	static $has_one = array(
-		"SideBar" => "WidgetArea",
 		'Owner' => 'Member',
 	);
-	
-	static $has_many = array();
-	
-	static $many_many = array();
-	
-	static $belongs_many_many = array();
-	
-	static $defaults = array();
 	
 	static $allowed_children = array(
 		'BlogEntry'
@@ -38,26 +31,8 @@ class BlogHolder extends Page {
 	
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$fields->removeFieldFromTab("Root.Content.Main","Content");
-		$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("SideBar"));
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Name", "Name of blog"));
-		
-		$fields->addFieldToTab('Root.Content.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array(
-			"" => "All entries",
-			"1 MONTH" => "Last month's entries",
-			"2 MONTH" => "Last 2 months' entries",
-			"3 MONTH" => "Last 3 months' entries",
-			"4 MONTH" => "Last 4 months' entries",
-			"5 MONTH" => "Last 5 months' entries",
-			"6 MONTH" => "Last 6 months' entries",
-			"7 MONTH" => "Last 7 months' entries",
-			"8 MONTH" => "Last 8 months' entries",
-			"9 MONTH" => "Last 9 months' entries",
-			"10 MONTH" => "Last 10 months' entries",
-			"11 MONTH" => "Last 11 months' entries",
-			"12 MONTH" => "Last year's entries"
-		)));
-		
+
 		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
 		$fields->addFieldToTab('Root.Content.Main', new DropdownField('OwnerID', 'Blog owner', DataObject::get('Member')->toDropDownMap('ID', 'Name', 'None')));
 		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'));
@@ -65,41 +40,14 @@ class BlogHolder extends Page {
 		return $fields;
 	}
 
-	/**
-	 * Get entries in this blog.
-	 * @param string limit A clause to insert into the limit clause.
-	 * @param string tag Only get blog entries with this tag
-	 * @param string date Only get blog entries on this date - either a year, or a year-month eg '2008' or '2008-02'
-	 * @return DataObjectSet
-	 */
-	public function Entries($limit = '', $tag = '', $date = '') {
-		$tagCheck = '';
-		$dateCheck = '';
-		
-		if($tag) {
-			$SQL_tag = Convert::raw2sql($tag);
-			$tagCheck = "AND `BlogEntry`.Tags LIKE '%$SQL_tag%'";
-		}
-		
-		if($date) {
-			if(strpos($date, '-')) {
-				$year = (int) substr($date, 0, strpos($date, '-'));
-				$month = (int) substr($date, strpos($date, '-') + 1);
-				
-				if($year && $month) {
-					$dateCheck = "AND MONTH(`BlogEntry`.Date) = $month AND YEAR(`BlogEntry`.Date) = $year";
-				}
-			} else {
-				$year = (int) $date;
-				if($year) {
-					$dateCheck = "AND YEAR(`BlogEntry`.Date) = $year";
-				}
-			}
-		}
-		
-		return DataObject::get("Page","`ParentID` = $this->ID $tagCheck $dateCheck","`BlogEntry`.Date DESC",'',"$limit");
+	public function BlogHolderIDs() {
+		return array( $this->ID );
 	}
-
+	
+	/*
+	 * @todo: These next few functions don't really belong in the model. Can we remove them?
+	 */
+	
 	/**
 	 * Only display the blog entries that have the specified tag
 	 */
@@ -180,88 +128,12 @@ class BlogHolder extends Page {
 	}
 }
 
-class BlogHolder_Controller extends Page_Controller {
+class BlogHolder_Controller extends BlogTree_Controller {
 	function init() {
 		parent::init();
-		
-		// This will create a <link> tag point to the RSS feed
-		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of this blog"));
-		Requirements::themedCSS("blog");
 		Requirements::themedCSS("bbcodehelp");
-
 	}
-	
-	function BlogEntries($limit = 10) {
-		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
-		$tag = '';
-		$date = '';
 		
-		if(Director::urlParams()) {
-			if(Director::urlParam('Action') == 'tag') {
-				$tag = Director::urlParam('ID');
-			} else {
-				$year = Director::urlParam('Action');
-				$month = Director::urlParam('ID');
-				
-				if($month && is_numeric($month) &&  $month >= 1 && $month <= 12 && is_numeric($year)) {
-					$date = "$year-$month";
-				} else if(is_numeric($year)) {
-					$date = $year;
-				}
-			}
-		}
-		
-		return $this->Entries("$start,$limit", $tag, $date);
-	}
-	
-	/**
-	 * Gets the archived blogs for a particular month or year, in the format /year/month/ eg: /2008/10/
-	 */
-	function showarchive() {
-		$month = addslashes($this->urlParams['ID']);
-		return array(
-			"Children" => DataObject::get('SiteTree', "ParentID = $this->ID AND DATE_FORMAT(`BlogEntry`.`Date`, '%Y-%M') = '$month'"),
-		);		
-	}
-
-	function ArchiveMonths() {
-		$months = DB::query("SELECT DISTINCT DATE_FORMAT(`BlogEntry`.`Date`, '%M') AS `Month`, DATE_FORMAT(`BlogEntry`.`Date`, '%Y') AS `Year` FROM `BlogEntry` ORDER BY `BlogEntry`.`Date` DESC");
-		$output = new DataObjectSet();
-		foreach($months as $month) {
-			$month['Link'] = $this->Link() . "showarchive/$month[Year]-$month[Month]";
-			$output->push(new ArrayData($month));
-		}
-		
-		return $output;
-	}
-	
-	function tag() {
-		if($this->ShowTag()) {
-			return array(
-				'Tag' => $this->ShowTag()
-			);
-		} else {
-			return array();
-		}
-	}
-	
-	/**
-	 * Get the rss feed for this blog holder's entries
-	 */
-	function rss() {
-		global $project;
-
-		$blogName = $this->Name;
-		$altBlogName = $project . ' blog';
-		
-		$entries = $this->Entries(20);
-		
-		if($entries) {
-			$rss = new RSSFeed($entries, $this->Link() . 'rss', ($blogName ? $blogName : $altBlogName), "", "Title", "ParsedContent");
-			$rss->outputToBrowser();
-		}
-	}
-	
 	/**
 	 * Return list of usable tags for help
 	 */
@@ -284,16 +156,7 @@ class BlogHolder_Controller extends Page_Controller {
 		
 		return $page->renderWith('Page');
 	}
-	
-	function defaultAction($action) {
-		// Protection against infinite loops when an RSS widget pointing to this page is added to this page
-		if(stristr($_SERVER['HTTP_USER_AGENT'], 'SimplePie')) {
-			return $this->rss();
-		}
 		
-		return parent::defaultAction($action);
-	}
-	
 	/**
 	 * A simple form for creating blog entries
 	 */

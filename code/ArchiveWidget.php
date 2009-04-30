@@ -28,18 +28,6 @@ class ArchiveWidget extends Widget {
 	
 	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
 	
-	function getBlogHolder() {
-		$page = Director::currentPage();
-		
-		if($page instanceof BlogHolder) {
-			return $page;
-		} elseif(($page instanceof BlogEntry) && ($page->getParent() instanceof BlogHolder)) {
-			return $page->getParent();
-		} else {
-			return DataObject::get_one('BlogHolder');
-		}
-	}
-	
 	function getCMSFields() {
 		return new FieldSet(
 			new OptionsetField(
@@ -57,17 +45,27 @@ class ArchiveWidget extends Widget {
 		Requirements::themedCSS('archivewidget');
 		
 		$results = new DataObjectSet();
-		$blogHolder = $this->getBlogHolder();
-		$id = $blogHolder->ID;
+		$container = BlogTree::current();
+		$ids = $container->BlogHolderIDs();
 		
 		$stage = Versioned::current_stage();
 		$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
 
 		
 		if($this->DisplayMode == 'month') {
-			$sqlResults = DB::query("SELECT DISTINCT MONTH(`Date`) AS `Month`, YEAR(`Date`) AS `Year` FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` WHERE `ParentID` = $id ORDER BY `Date` DESC");	
+			$sqlResults = DB::query("
+				SELECT DISTINCT MONTH(`Date`) AS `Month`, YEAR(`Date`) AS `Year` 
+				FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` 
+				WHERE `ParentID` in (".implode(', ',$ids).")
+				ORDER BY `Date` DESC"
+			);	
 		} else {
-			$sqlResults = DB::query("SELECT DISTINCT YEAR(`Date`) AS `Year` FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` WHERE `ParentID` = $id ORDER BY `Date` DESC");
+			$sqlResults = DB::query("
+				SELECT DISTINCT YEAR(`Date`) AS `Year` 
+				FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` 
+				WHERE `ParentID` in (".implode(', ',$ids).")
+				ORDER BY `Date` DESC"
+			);
 		}
 		
 		if(!$sqlResults) return new DataObjectSet();
@@ -83,9 +81,9 @@ class ArchiveWidget extends Widget {
 			));
 			
 			if($this->DisplayMode == 'month') {
-				$link = $blogHolder->Link() . $sqlResult['Year']. '/' . sprintf("%'02d", $sqlResult['Month']);
+				$link = $container->Link() . $sqlResult['Year']. '/' . sprintf("%'02d", $sqlResult['Month']);
 			} else {
-				$link = $blogHolder->Link() . $sqlResult['Year'];
+				$link = $container->Link() . $sqlResult['Year'];
 			}
 			
 			$results->push(new ArrayData(array(
