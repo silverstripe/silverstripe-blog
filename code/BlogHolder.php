@@ -77,7 +77,7 @@ class BlogHolder extends BlogTree {
 	 * @return Boolean
 	 */
 	function IsOwner() {
-		return Permission::check('ADMIN') || (Member::CurrentMember() && Member::CurrentMember()->ID == $this->OwnerID);
+		return Permission::check('ADMIN') || (Member::currentUserID() == $this->OwnerID);
 	}
 	
 	/**
