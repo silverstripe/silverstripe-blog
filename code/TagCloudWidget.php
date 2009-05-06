@@ -23,6 +23,8 @@ class TagCloudWidget extends Widget {
 	
 	static $cmsTitle = "Tag Cloud";
 	static $description = "Shows a tag cloud of tags on your blog.";
+
+	static $popularities = array( 'not-popular', 'not-very-popular', 'somewhat-popular', 'popular', 'very-popular', 'ultra-popular' );
 	
 	function getCMSFields() {
 		return new FieldSet(
@@ -67,38 +69,24 @@ class TagCloudWidget extends Widget {
 				 }
 				
 				$sizes = array();	
-				foreach($allTags as $tag => $count){
-					$sizes[$count] = true;
-				}
-				$numsizes = count($sizes)-1; //Work out the number of different sizes
-				if($numsizes > 5){$numsizes = 5;}
-				foreach($allTags as $tag => $count) {
+				foreach ($allTags as $tag => $count) $sizes[$count] = true;
 				
-					$popularity = floor($count / $max * $numsizes);
-					
-					switch($popularity) {
-						case 0:
-							$class = "not-popular";
-							break;
-						case 1:
-							$class = "not-very-popular";
-							break;
-						case 2:
-							$class = "somewhat-popular";
-							break;
-						case 3:
-							$class = "popular";
-							break;
-						case 4:
-							$class = "very-popular";
-							break;
-						case 5:
-							$class = "ultra-popular";
-							break;
-						default:
-							$class = "broken";
-							break;
-					}
+				$offset = 0; 
+				$numsizes = count($sizes)-1; //Work out the number of different sizes
+				$buckets = count(self::$popularities)-1;
+				
+				// If there are more frequencies then buckets, divide frequencies into buckets
+				if ($numsizes > $buckets) {
+					$numsizes = $buckets;
+				}
+				// Otherwise center use central buckets
+				else {
+					$offset   = round(($buckets-$numsizes)/2);
+				}
+				
+				foreach($allTags as $tag => $count) {
+					$popularity = round($count / $max * $numsizes) + $offset; $popularity=min($buckets,$popularity);
+					$class = self::$popularities[$popularity];
 					
 					$allTags[$tag] = array(
 						"Tag" => $tag,
