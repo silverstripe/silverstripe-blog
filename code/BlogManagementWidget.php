@@ -48,7 +48,7 @@ class BlogManagementWidget extends Widget {
 	function WidgetHolder() {
 		$container = BlogTree::current();
 		
-		if ($container && $container instanceof BlogHolder && $container->canEdit()) return $this->renderWith('WidgetHolder');
+		if ($container && $container instanceof BlogHolder && $container->canAddChildren()) return $this->renderWith('WidgetHolder');
 		return '';
 	}
 	
