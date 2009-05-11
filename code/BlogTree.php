@@ -46,7 +46,12 @@ class BlogTree extends Page {
 		}
 		
 		// Try to find a top-level BlogTree
-		$top = DataObject::get_one('BlogTree','ParentId = 0');
+		if(defined('Database::USE_ANSI_SQL')) {
+			$top = DataObject::get_one('BlogTree', "\"ParentID\" = '0'");
+		} else {
+			$top = DataObject::get_one('BlogTree', 'ParentID = 0');
+		}
+		
 		if ($top) return $top;
 		
 		// Try to find any BlogTree that is not inside another BlogTree
@@ -136,7 +141,11 @@ class BlogTree extends Page {
 		
 		if ($tag) {
 			$SQL_tag = Convert::raw2sql($tag);
-			$tagCheck = "AND `BlogEntry`.Tags LIKE '%$SQL_tag%'";
+			if(defined('Database::USE_ANSI_SQL')) {
+				$tagCheck = "AND \"BlogEntry\".\"Tags\" LIKE '%$SQL_tag%'";
+			} else {
+				$tagCheck = "AND `BlogEntry`.Tags LIKE '%$SQL_tag%'";
+			}
 		}
 		
 		if ($date) {
@@ -145,17 +154,29 @@ class BlogTree extends Page {
 				$month = (int) substr($date, strpos($date, '-') + 1);
 				
 				if($year && $month) {
-					$dateCheck = "AND MONTH(`BlogEntry`.Date) = $month AND YEAR(`BlogEntry`.Date) = $year";
+					if(defined('Database::USE_ANSI_SQL')) {
+						$dateCheck = "AND MONTH(\"BlogEntry\".\"Date\") = '$month' AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
+					} else {
+						$dateCheck = "AND MONTH(`BlogEntry`.Date) = $month AND YEAR(`BlogEntry`.Date) = $year";
+					}
 				}
 			} else {
 				$year = (int) $date;
 				if($year) {
-					$dateCheck = "AND YEAR(`BlogEntry`.Date) = $year";
+					if(defined('Database::USE_ANSI_SQL')) {
+						$dateCheck = "AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
+					} else {
+						$dateCheck = "AND YEAR(`BlogEntry`.Date) = $year";
+					}
 				}
 			}
 		}
-		elseif ($this->LandingPageFreshness) {	
-			$dateCheck = "AND `BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
+		elseif ($this->LandingPageFreshness) {
+			if(defined('Database::USE_ANSI_SQL')) {
+				$dateCheck = "AND \"BlogEntry\".\"Date\" > NOW() - INTERVAL " . $this->LandingPageFreshness;
+			} else {
+				$dateCheck = "AND `BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
+			}
 		}
 		
 		// Build a list of all IDs for BlogHolders that are children of us
@@ -165,11 +186,21 @@ class BlogTree extends Page {
 		if (empty($holderIDs)) return false;
 		
 		// Otherwise, do the actual query
-		$where = 'ParentID IN ('.implode(',', $holderIDs).") $tagCheck $dateCheck";
+		if(defined('Database::USE_ANSI_SQL')) {
+			$where = '"ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
+		} else {
+			$where = 'ParentID IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
+		}
+
+		if(defined('Database::USE_ANSI_SQL')) {
+			$order = '"BlogEntry"."Date" DESC';
+		} else {
+			$order = '`BlogEntry`.`Date` DESC';
+		}
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
 		if ($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $where, $limit);
-		else                   return DataObject::get('BlogEntry', $where, '`BlogEntry`.`Date` DESC', '', $limit);
+		else return DataObject::get('BlogEntry', $where, $order, '', $limit);
 	}
 }
 
