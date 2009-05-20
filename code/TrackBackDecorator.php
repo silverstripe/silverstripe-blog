@@ -1,7 +1,7 @@
 <?php
 
 class TrackBackDecorator extends DataObjectDecorator {
-	function extraDBFields() {
+	function extraStatics() {
 		return array(
 			'has_many' => array(
 				'TrackBacks' => 'TrackBackPing'
