@@ -280,10 +280,10 @@ class BlogTree_Controller extends Page_Controller {
 	 * Get the rss feed for this blog holder's entries
 	 */
 	function rss() {
-		global $project;
+		global $project_name;
 
 		$blogName = $this->Name;
-		$altBlogName = $project . ' blog';
+		$altBlogName = $project_name . ' blog';
 		
 		$entries = $this->Entries(20);
 
