@@ -16,7 +16,6 @@ class BlogHolder extends BlogTree {
 	static $icon = "blog/images/blogholder";
 	
 	static $db = array(
-		'Name' => 'Varchar',
 		'TrackBacksEnabled' => 'Boolean',
 		'AllowCustomAuthors' => 'Boolean',
 	);
@@ -31,7 +30,6 @@ class BlogHolder extends BlogTree {
 	
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$fields->addFieldToTab("Root.Content.Main", new TextField("Name", "Name of blog"));
 
 		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
 		$fields->addFieldToTab('Root.Content.Main', new DropdownField('OwnerID', 'Blog owner', DataObject::get('Member')->toDropDownMap('ID', 'Name', 'None')));

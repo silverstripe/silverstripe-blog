@@ -11,6 +11,7 @@
 class BlogTree extends Page {
 	
 	static $db = array(
+		'Name' => 'Varchar',
 		'InheritSideBar' => 'Boolean',
 		'LandingPageFreshness' => 'Varchar',
 	);
@@ -85,6 +86,7 @@ class BlogTree extends Page {
 	
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
+		$fields->addFieldToTab("Root.Content.Main", new TextField("Name", "Name of blog"));
 		$fields->addFieldToTab('Root.Content.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
  			"" => "All entries", 
 			"1 MONTH" => "Last month's entries", 
