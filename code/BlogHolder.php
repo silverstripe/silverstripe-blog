@@ -212,11 +212,11 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		if($id != 0) {
 			$entry = DataObject::get_by_id('BlogEntry', $id);
 			if($entry->IsOwner()) {
-				$form->loadNonBlankDataFrom($entry);
+				$form->loadDataFrom($entry);
 				$form->datafieldByName('BlogPost')->setValue($entry->Content);
 			}
 		} else {
-			$form->loadNonBlankDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
+			$form->loadDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
 		}
 		
 		return $form;
