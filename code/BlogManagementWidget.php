@@ -60,17 +60,5 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 		if ($container) return $container->Link('post');
 	}
 
-	function getBlogHolder() {
-		$page = Director::currentPage();
-
-		if($page->is_a("BlogHolder")) {
-			return $page;
-		} else if($page->is_a("BlogEntry") && $page->getParent()->is_a("BlogHolder")) {
-			return $page->getParent();
-		} else {
-			return DataObject::get_one("BlogHolder");
-		}
-	}
 }
-
 ?>
