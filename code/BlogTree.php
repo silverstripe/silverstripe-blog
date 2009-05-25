@@ -77,7 +77,9 @@ class BlogTree extends Page {
 	}
 	
 	function SideBar() {
-		if ($this->InheritSideBar && $this->getParent()) return $this->getParent()->SideBar() ;
+		if ($this->InheritSideBar && $this->getParent()) {
+			if (method_exists($this->getParent(), 'SideBar')) return $this->getParent()->SideBar();
+		}
 		return DataObject::get_by_id('WidgetArea', $this->SideBarID);
 		// @todo: This segfaults - investigate why then fix: return $this->getComponent('SideBar');
 	}
