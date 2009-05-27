@@ -33,7 +33,7 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 	}
 
 	function CommentLink() {
-		if(!Permission::check('ADMIN')) {
+		if(!Permission::check('BLOGMANAGEMENT')) {
 			return false;
 		}
 		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM PageComment WHERE NeedsModeration=1")->value();
@@ -46,11 +46,11 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 	}
 
 	function providePermissions() {
-		return array("BLOGMANAGEMENTWIDGET_VIEW" => "View blog management widget");
+		return array("BLOGMANAGEMENT" => "Blog management");
 	}
 
 	function WidgetHolder() {
-		if(Permission::check("BLOGMANAGEMENTWIDGET_VIEW")) {
+		if(Permission::check("BLOGMANAGEMENT")) {
 			return $this->renderWith("WidgetHolder");
 		}
 	}
