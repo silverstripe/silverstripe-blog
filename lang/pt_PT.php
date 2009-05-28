@@ -16,6 +16,7 @@ if(array_key_exists('pt_PT', $lang) && is_array($lang['pt_PT'])) {
 	$lang['pt_PT'] = $lang['en_US'];
 }
 
+$lang['pt_PT']['BlogEntry']['PLURALNAME'] = 'Posts no Blog';
 $lang['pt_PT']['BlogEntry.ss']['COMMENTS'] = 'Comentários';
 $lang['pt_PT']['BlogEntry.ss']['EDITTHIS'] = 'Editar este post';
 $lang['pt_PT']['BlogEntry.ss']['POSTEDBY'] = 'Inserido por';
