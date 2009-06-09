@@ -37,14 +37,14 @@ $lang['en_US']['BlogEntry.ss']['POSTEDON'] = 'on';
 $lang['en_US']['BlogEntry.ss']['TAGS'] = 'Tags:';
 $lang['en_US']['BlogEntry.ss']['UNPUBLISHTHIS'] = 'Unpublish this post';
 $lang['en_US']['BlogEntry.ss']['VIEWALLPOSTTAGGED'] = 'View all posts tagged';
-$lang['en_US']['BlogHolder']['HAVENTPERM'] = 'Posting blogs is an administrator task. Please log in.';
+$lang['en_US']['BlogHolder']['HAVENTPERM'] = 'You do not have sufficient permissions to post blog entries. Please log in.';
 $lang['en_US']['BlogHolder']['PLURALNAME'] = array(
 	'Blog Holders',
 	50,
 	'Pural name of the object, used in dropdowns and to generally identify a collection of this object in the interface'
 );
 $lang['en_US']['BlogHolder']['POST'] = 'Post blog entry';
-$lang['en_US']['BlogHolder']['RSSFEED'] = 'RSS feed of this blog';
+$lang['en_US']['BlogHolder']['RSSFEED'] = 'RSS feed of these blogs';
 $lang['en_US']['BlogHolder']['SINGULARNAME'] = array(
 	'Blog Holder',
 	50,
@@ -77,6 +77,16 @@ $lang['en_US']['BlogSummary.ss']['COMMENTS'] = 'Comments';
 $lang['en_US']['BlogSummary.ss']['POSTEDBY'] = 'Posted by';
 $lang['en_US']['BlogSummary.ss']['POSTEDON'] = 'on';
 $lang['en_US']['BlogSummary.ss']['VIEWFULL'] = 'View full post titled -';
+$lang['en_US']['BlogTree']['PLURALNAME'] = array(
+	'Blog Tres',
+	50,
+	'Pural name of the object, used in dropdowns and to generally identify a collection of this object in the interface'
+);
+$lang['en_US']['BlogTree']['SINGULARNAME'] = array(
+	'Blog Tree',
+	50,
+	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
+);
 $lang['en_US']['RSSWidget']['CT'] = 'Custom title for the feed';
 $lang['en_US']['RSSWidget']['NTS'] = 'Number of Items to show';
 $lang['en_US']['RSSWidget']['PLURALNAME'] = array(
@@ -89,7 +99,7 @@ $lang['en_US']['RSSWidget']['SINGULARNAME'] = array(
 	50,
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
 );
-$lang['en_US']['RSSWidget']['URL'] = 'URL of RSS Feed';
+$lang['en_US']['RSSWidget']['URL'] = 'URL of the other page\'s RSS Feed.  Please make sure this URL points to an RSS feed.';
 $lang['en_US']['SubscribeRSSWidget']['PLURALNAME'] = array(
 	'Subscribe R S S Widgets',
 	50,

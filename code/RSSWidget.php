@@ -19,7 +19,7 @@ class RSSWidget extends Widget {
 		"RSSTitle" => 'RSS Feed'
 	);
 	static $cmsTitle = "RSS Feed";
-	static $description = "Shows the latest entries of a RSS feed.";
+	static $description = "Downloads another page's RSS feed and displays items in a list.";
 	
 	/**
 	 * If the RssUrl is relative, convert it to absolute with the
@@ -41,7 +41,7 @@ class RSSWidget extends Widget {
 	function getCMSFields() {
 		return new FieldSet(
 			new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
-			new TextField("RssUrl", _t('RSSWidget.URL', "URL of RSS Feed")),
+			new TextField("RssUrl", _t('RSSWidget.URL', "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed.")),
 			new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
 		);
 	}
@@ -51,6 +51,11 @@ class RSSWidget extends Widget {
 	
 	function FeedItems() {
 		$output = new DataObjectSet();
+
+		// Protection against infinite loops when an RSS widget pointing to this page is added to this page 
+		if(stristr($_SERVER['HTTP_USER_AGENT'], 'SimplePie')) { 
+			return $output;
+		}
 		
 		include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/SimplePie.php'));
 		
