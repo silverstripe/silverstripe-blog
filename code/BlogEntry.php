@@ -168,8 +168,11 @@ class BlogEntry extends Page {
 	}
 
 	function IsOwner() {
-		return $this->Parent()->IsOwner();
+		if(method_exists($this->Parent(), 'IsOwner')) {
+			return $this->Parent()->IsOwner();
+		}
 	}
+	
 	/**
 	 * Call this to enable WYSIWYG editing on your blog entries.
 	 * By default the blog uses BBCode
