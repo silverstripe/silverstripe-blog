@@ -155,6 +155,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 * Post a new blog entry
 	 */
 	function post(){
+		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
+		
 		$page = $this->customise(array(
 			'Content' => false,
 			'Form' => $this->BlogEntryForm()
@@ -167,6 +169,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 * A simple form for creating blog entries
 	 */
 	function BlogEntryForm() {
+		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
+
 		Requirements::javascript('jsparty/behaviour.js');
 		Requirements::javascript('jsparty/prototype.js');
 		Requirements::javascript('jsparty/scriptaculous/effects.js');
@@ -231,6 +235,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	}
 
 	function postblog($data, $form) {
+		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
+
 		Cookie::set("BlogHolder_Name", $data['Author']);
 		$blogentry = false;
 
