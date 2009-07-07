@@ -232,7 +232,7 @@ class BlogURL {
 
 class BlogTree_Controller extends Page_Controller {
 	static $allowed_actions = array(
-		'rss' => true,
+		'rss',
 	);
 	
 	function init() {
