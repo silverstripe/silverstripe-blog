@@ -128,6 +128,13 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 }
 
 class BlogHolder_Controller extends BlogTree_Controller {
+	
+	static $allowed_actions = array(
+		'postblog' => 'BLOGMANAGEMENT',
+		'post' => 'BLOGMANAGEMENT',
+		'BlogEntryForm' => 'BLOGMANAGEMENT',
+	);
+	
 	function init() {
 		parent::init();
 		Requirements::themedCSS("bbcodehelp");
@@ -148,10 +155,6 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 * Post a new blog entry
 	 */
 	function post(){
-		if(!$this->IsOwner()){
-			Security::permissionFailure($this, _t('BlogHolder.HAVENTPERM', 'You do not have sufficient permissions to post blog entries. Please log in.'));
-		}
-
 		$page = $this->customise(array(
 			'Content' => false,
 			'Form' => $this->BlogEntryForm()
@@ -231,7 +234,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		Cookie::set("BlogHolder_Name", $data['Author']);
 		$blogentry = false;
 
-		if($data['ID']) {
+		if(isset($data['ID']) && $data['ID']) {
 			$blogentry = DataObject::get_by_id("BlogEntry", $data['ID']);
 			if(!$blogentry->IsOwner()) {
 				unset($blogentry);
