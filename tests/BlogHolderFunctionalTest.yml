@@ -1,0 +1,20 @@
+Permission:
+    blog_management:
+        Code: BLOGMANAGEMENT
+Group:
+    blog_editors:
+        Code: blog-editors
+        Permissions: =>Permission.blog_management
+Member:
+    blog_editor:
+        Email: blogeditor@test.com
+        Groups: =>Group.blog_editors
+BlogHolder:
+   blogholder:
+      Title: Blog Holder
+      URLSegment: blog
+BlogEntry:
+    entry1:
+        Title: Blog Entry
+        ProvideComments: 1
+        Parent: =>BlogHolder.blogholder

@@ -166,6 +166,16 @@ class BlogHolder extends Page {
 }
 
 class BlogHolder_Controller extends Page_Controller {
+	
+	static $allowed_actions = array(
+		'postblog' => 'BLOGMANAGEMENT',
+		'post' => 'BLOGMANAGEMENT',
+		'BlogEntryForm' => 'BLOGMANAGEMENT',
+		'rss',
+		'tag',
+		'showarchive',
+	);
+	
 	function init() {
 		parent::init();
 		
@@ -258,9 +268,7 @@ class BlogHolder_Controller extends Page_Controller {
 	 * Post a new blog entry
 	 */
 	function post(){
-		if(!Permission::check('ADMIN')){
-			Security::permissionFailure($this, _t('BlogHolder.HAVENTPERM', 'Posting blogs is an administrator task. Please log in.'));
-		}
+		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
 		
 		$page = $this->customise(array(
 			'Content' => false,
@@ -283,6 +291,8 @@ class BlogHolder_Controller extends Page_Controller {
 	 * A simple form for creating blog entries
 	 */
 	function BlogEntryForm() {
+		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
+
 		Requirements::javascript('jsparty/behaviour.js');
 		Requirements::javascript('jsparty/prototype.js');
 		Requirements::javascript('jsparty/scriptaculous/effects.js');
@@ -342,10 +352,12 @@ class BlogHolder_Controller extends Page_Controller {
 	}
 	
 	function postblog($data, $form) {
+		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
+
 		Cookie::set("BlogHolder_Name", $data['Author']);
 		$blogentry = false;
 		
-		if($data['ID']) {
+		if(isset($data['ID']) && $data['ID']) {
 			$blogentry = DataObject::get_by_id("BlogEntry", $data['ID']);
 		}
 		
