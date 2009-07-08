@@ -11,9 +11,9 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 		parent::setUp();
 		
 		$blogHolder = $this->objFromFixture('BlogHolder', 'blogholder');
-		$blogHolder->publish('Stage', 'LIve');
+		$blogHolder->publish('Stage', 'Live');
 		$blogEntry = $this->objFromFixture('BlogEntry', 'entry1');
-		$blogEntry->publish('Stage', 'LIve');
+		$blogEntry->publish('Stage', 'Live');
 	}
 	
 	function testFrontendBlogPostRequiresPermission() {
