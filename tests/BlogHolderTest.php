@@ -4,13 +4,13 @@ class BlogHolderTest extends SapphireTest {
 	static $fixture_file = 'blog/tests/BlogTest.yml';
 
 	function testGetAllBlogEntries() {
-		$mainblog = $this->fixture->objFromFixture('BlogHolder', 'mainblog');
+		$mainblog = $this->objFromFixture('BlogHolder', 'mainblog');
 		
 		$this->assertEquals($mainblog->Entries()->Count(), 3);
 	}
 	
 	function testEntriesByMonth() {
-		$mainblog = $this->fixture->objFromFixture('BlogHolder', 'mainblog');
+		$mainblog = $this->objFromFixture('BlogHolder', 'mainblog');
 		
 		$entries = $mainblog->Entries('', '', '2008-01');
 		$this->assertEquals($entries->Count(), 2);
@@ -25,7 +25,7 @@ class BlogHolderTest extends SapphireTest {
 	}
 	
 	function textEntriesByYear() {
-		$mainblog = $this->fixture->objFromFixture('BlogHolder', 'mainblog');
+		$mainblog = $this->objFromFixture('BlogHolder', 'mainblog');
 		
 		$entries = $mainblog->Entries('', '', '2007');
 		$this->assertEquals($entries->Count(), 1);
@@ -39,7 +39,7 @@ class BlogHolderTest extends SapphireTest {
 	}
 	
 	function testEntriesByTag() {
-		$mainblog = $this->fixture->objFromFixture('BlogHolder', 'mainblog');
+		$mainblog = $this->objFromFixture('BlogHolder', 'mainblog');
 		
 		$entries = $mainblog->Entries('', 'tag1');
 		$this->assertEquals($entries->Count(), 2);
