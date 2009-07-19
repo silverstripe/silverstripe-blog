@@ -69,10 +69,9 @@ class BlogTree extends Page {
 	public function getLandingPageFreshness() {
 		$freshness = $this->getField('LandingPageFreshness');
 		// If we want to inherit freshness, try that first
-		if ($freshness = "INHERIT" && $this->getParent()) $freshness = $this->getParent()->LandingPageFreshness;
+		if ($freshness == "INHERIT" && $this->getParent()) $freshness = $this->getParent()->LandingPageFreshness;
 		// If we don't have a parent, or the inherited result was still inherit, use default
-		if ($freshness = "INHERIT") $freshness = '';
-		
+		if ($freshness == "INHERIT") $freshness = '';
 		return $freshness;
 	}
 	
