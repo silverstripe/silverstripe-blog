@@ -10,6 +10,9 @@
 
 class BlogTree extends Page {
 	
+	// Default number of blog entries to show
+	static $default_entries_limit = 10;
+	
 	static $db = array(
 		'Name' => 'Varchar',
 		'InheritSideBar' => 'Boolean',
@@ -242,7 +245,9 @@ class BlogTree_Controller extends Page_Controller {
 		Requirements::themedCSS("blog");
 	}
 
-	function BlogEntries($limit = 10) {
+	function BlogEntries($limit = null) {
+		if ($limit === null) $limit = BlogTree::$default_entries_limit;
+		
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
 		return $this->Entries("$start,$limit", BlogURL::tag(), BlogURL::date());
 	}
