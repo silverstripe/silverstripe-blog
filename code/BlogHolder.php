@@ -140,6 +140,17 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		parent::init();
 		Requirements::themedCSS("bbcodehelp");
 	}
+	
+	/**
+	 * TODO: this is an urgent fix to work with archive link (e.g. 2009/04) for Nelsoncc project. Replace this with something better.
+	 */
+	function checkAccessAction($action) {
+		if (preg_match('/[0-9]{4}/', $action)) 
+		{
+			return true; 
+		}
+		return parent::checkAccessAction($action);
+	}
 
 	/**
 	 * Return list of usable tags for help
