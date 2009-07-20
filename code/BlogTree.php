@@ -203,7 +203,7 @@ class BlogTree extends Page {
 		}
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
-		if ($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $where, $limit);
+		if ($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $where, $limit, $order);
 		else return DataObject::get('BlogEntry', $where, $order, '', $limit);
 	}
 }
