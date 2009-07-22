@@ -142,7 +142,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	}
 	
 	/**
-	 * TODO: this is an urgent fix to work with archive link (e.g. 2009/04) for Nelsoncc project. Replace this with something better.
+	 * TODO: this is an urgent fix to work with archive link (e.g. page_url/2009/04). Replace this with something better.
 	 */
 	function checkAccessAction($action) {
 		if (preg_match('/[0-9]{4}/', $action)) 
