@@ -85,20 +85,21 @@ class ArchiveWidget extends Widget {
 			}
 		}
 		
-		if(!$sqlResults) return new DataObjectSet();
-		
-		foreach($sqlResults as $sqlResult) {
-			$date = new Date('Date');
-			$month = ($this->DisplayMode == 'month') ? (int)$sqlResult['Month'] : 1;
+		if($sqlResults) foreach($sqlResults as $sqlResult) {
+			$isMonthDisplay = $this->DisplayMode == 'month';
 			
-			$date->setValue(array(
+			$monthVal = ($sqlResult['Month']) ? (int) $sqlResult['Month'] : 1;
+			$month = ($isMonthDisplay) ? $monthVal : 1;
+			$year = ($sqlResult['Year']) ? (int) $sqlResult['Year'] : date('Y');
+			
+			$date = DBField::create('Date', array(
 				'Day' => 1,
-				'Month' => $month, 
-				'Year' => (int) $sqlResult['Year']
+				'Month' => $month,
+				'Year' => $year
 			));
 			
-			if($this->DisplayMode == 'month') {
-				$link = $container->Link() . $sqlResult['Year']. '/' . sprintf("%'02d", $sqlResult['Month']);
+			if($isMonthDisplay) {
+				$link = $container->Link() . $sqlResult['Year']. '/' . sprintf("%'02d", $monthVal);
 			} else {
 				$link = $container->Link() . $sqlResult['Year'];
 			}
@@ -111,5 +112,5 @@ class ArchiveWidget extends Widget {
 		
 		return $results;
 	}
+	
 }
-?>
