@@ -160,8 +160,8 @@ class BlogEntry extends Page {
 	}
 	
 	function trackbackping() {
-		if($this->TrackBacksEnabled()) {
-			return $this->extInstance('TrackBackDecorator')->trackbackping();
+		if($this->TrackBacksEnabled() && $this->hasExtension('TrackBackDecorator')) {
+			return $this->decoratedTrackbackping();
 		} else {
 			Director::redirect($this->Link());
 		}

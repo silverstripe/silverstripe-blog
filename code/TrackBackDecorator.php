@@ -17,7 +17,7 @@ class TrackBackDecorator extends DataObjectDecorator {
 		return $this->owner->AbsoluteLink() . 'trackbackping';
 	}
 	
-	function trackbackping() {
+	function decoratedTrackbackping() {
 		$error = 0;
 		$message = '';
 		
