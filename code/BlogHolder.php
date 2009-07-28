@@ -86,7 +86,8 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		parent::requireDefaultRecords();
 
 		$blogHolder = DataObject::get_one('BlogHolder');
-		if(!($blogHolder && $blogHolder->exists())) {
+		//TODO: This does not check for whether this blogholder is an orphan or not
+		if(!$blogHolder) {
 			$blogholder = new BlogHolder();
 			$blogholder->Title = "Blog";
 			$blogholder->URLSegment = "blog";
