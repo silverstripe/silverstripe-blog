@@ -121,8 +121,12 @@ class BlogTree extends Page {
 			foreach($children as $child) {
 				if (in_array($child->ID, $idList)) continue;
 				
-				if ($child instanceof BlogHolder) $idList[] = $child->ID;
-				else                              $child->loadDescendantBlogHolderIDListInto($idList);
+				if ($child instanceof BlogHolder) {
+					$idList[] = $child->ID; 
+				}
+				else if ($child instanceof BlogTree) {
+					$child->loadDescendantBlogHolderIDListInto($idList);
+				}                             
 			}
 		}
 	}
