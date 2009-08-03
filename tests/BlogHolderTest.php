@@ -5,7 +5,8 @@ class BlogHolderTest extends SapphireTest {
 
 	function testGetAllBlogEntries() {
 		$mainblog = $this->objFromFixture('BlogHolder', 'mainblog');
-		
+
+		$this->assertNotNull($mainblog->Entries());
 		$this->assertEquals($mainblog->Entries()->Count(), 3);
 	}
 	
