@@ -88,7 +88,7 @@ class ArchiveWidget extends Widget {
 		if($sqlResults) foreach($sqlResults as $sqlResult) {
 			$isMonthDisplay = $this->DisplayMode == 'month';
 			
-			$monthVal = ($sqlResult['Month']) ? (int) $sqlResult['Month'] : 1;
+			$monthVal = (isset($sqlResult['Month'])) ? (int) $sqlResult['Month'] : 1;
 			$month = ($isMonthDisplay) ? $monthVal : 1;
 			$year = ($sqlResult['Year']) ? (int) $sqlResult['Year'] : date('Y');
 			
