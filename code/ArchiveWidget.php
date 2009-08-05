@@ -54,33 +54,33 @@ class ArchiveWidget extends Widget {
 		if($this->DisplayMode == 'month') {
 			if(defined('Database::USE_ANSI_SQL')) {
 				$sqlResults = DB::query("
-					SELECT DISTINCT MONTH(\"Date\") AS \"Month\", YEAR(\"Date\") AS \"Year\", \"Date\"
+					SELECT DISTINCT MONTH(\"Date\") AS \"Month\", YEAR(\"Date\") AS \"Year\"
 					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
 					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
-					ORDER BY \"Date\" DESC"
+					ORDER BY \"Year\" DESC, \"Month\" DESC;"
 				);
 			} else {
 				$sqlResults = DB::query("
 					SELECT DISTINCT MONTH(`Date`) AS `Month`, YEAR(`Date`) AS `Year` 
 					FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` 
 					WHERE `ParentID` IN (" . implode(', ', $ids) . ")
-					ORDER BY `Date` DESC"
+					ORDER BY `Year` DESC, `Month` DESC;"
 				);
 			}
 		} else {
 			if(defined('Database::USE_ANSI_SQL')) {
 				$sqlResults = DB::query("
-					SELECT DISTINCT YEAR(\"Date\") AS \"Year\", \"Date\" 
+					SELECT DISTINCT YEAR(\"Date\") AS \"Year\" 
 					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
 					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
-					ORDER BY \"Date\" DESC"
+					ORDER BY \"Year\" DESC"
 				);
 			} else {
 				$sqlResults = DB::query("
 					SELECT DISTINCT YEAR(`Date`) AS `Year` 
 					FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` 
 					WHERE `ParentID` in (".implode(', ',$ids).")
-					ORDER BY `Date` DESC"
+					ORDER BY `Year` DESC"
 				);
 			}
 		}
