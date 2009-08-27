@@ -62,7 +62,7 @@ class TagCloudWidget extends Widget {
 				//TODO: move some or all of the sorts to the database for more efficiency
 				if($this->Limit > 0){
 					uasort($allTags, array($this, "column_sort_by_popularity"));	//sort by popularity
-					$allTags = array_slice($allTags, 0, $this->Limit);
+					$allTags = array_slice($allTags, 0, $this->Limit,true);
 				 }
 				 if($this->Sortby == "alphabet"){
 					$this->natksort($allTags);
