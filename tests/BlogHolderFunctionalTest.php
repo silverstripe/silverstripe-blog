@@ -35,7 +35,9 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 		
 		// with login
 		$blogEditor = $this->objFromFixture('Member', 'blog_editor');
-		$blogEditor->logIn();
+		$this->session()->inst_set('loggedInAs', $blogEditor->ID);
+		Permission::flush_permission_cache();
+
 		$data = array(
 			'Title'=>'Allowed',
 			'Author'=>'Allowed',
@@ -44,6 +46,7 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 			'SecurityID' => $securityID
 		);
 		$response = $this->post('blog/BlogEntryForm', $data);
+
 		$this->assertType('BlogEntry', DataObject::get_one('BlogEntry', sprintf("Title = 'Allowed'")));
 	}
 }
