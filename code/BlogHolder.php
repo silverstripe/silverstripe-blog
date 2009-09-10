@@ -132,6 +132,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 class BlogHolder_Controller extends BlogTree_Controller {
 	
 	static $allowed_actions = array(
+		'index',
 		'tag',
 		'postblog' => 'BLOGMANAGEMENT',
 		'post' => 'BLOGMANAGEMENT',
