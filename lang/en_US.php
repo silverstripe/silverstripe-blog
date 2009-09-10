@@ -37,7 +37,6 @@ $lang['en_US']['BlogEntry.ss']['POSTEDON'] = 'on';
 $lang['en_US']['BlogEntry.ss']['TAGS'] = 'Tags:';
 $lang['en_US']['BlogEntry.ss']['UNPUBLISHTHIS'] = 'Unpublish this post';
 $lang['en_US']['BlogEntry.ss']['VIEWALLPOSTTAGGED'] = 'View all posts tagged';
-$lang['en_US']['BlogHolder']['HAVENTPERM'] = 'You do not have sufficient permissions to post blog entries. Please log in.';
 $lang['en_US']['BlogHolder']['PLURALNAME'] = array(
 	'Blog Holders',
 	50,
@@ -99,7 +98,7 @@ $lang['en_US']['RSSWidget']['SINGULARNAME'] = array(
 	50,
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
 );
-$lang['en_US']['RSSWidget']['URL'] = 'URL of the other page\'s RSS Feed.  Please make sure this URL points to an RSS feed.';
+$lang['en_US']['RSSWidget']['URL'] = 'URL of the other page\'s RSS feed.  Please make sure this URL points to an RSS feed.';
 $lang['en_US']['SubscribeRSSWidget']['PLURALNAME'] = array(
 	'Subscribe R S S Widgets',
 	50,
