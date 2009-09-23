@@ -8,7 +8,7 @@
 			<span>
 		    	<% control BlogEntries.PaginationSummary(4) %>
 					<% if CurrentBool %>
-						$PageNum
+						<span class="current">$PageNum</span>
 					<% else %>
 						<% if Link %>
 							<a href="$Link" title="View page number $PageNum">$PageNum</a>
