@@ -86,6 +86,9 @@ class BlogEntry extends Page {
 		}
 				
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Tags", _t("BlogEntry.TS", "Tags (comma sep.)")),"Content");
+		
+		$this->extend('updateCMSFields', $fields);
+		
 		return $fields;
 	}
 	
