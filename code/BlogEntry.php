@@ -68,8 +68,10 @@ class BlogEntry extends Page {
 		
 		$firstName = Member::currentUser() ? Member::currentUser()->FirstName : '';
 		$codeparser = new BBCodeParser();
-		 
+		
+		SiteTree::disableCMSFieldsExtensions();
 		$fields = parent::getCMSFields();
+		SiteTree::enableCMSFieldsExtensions();
 		
 		if(!self::$allow_wysiwyg_editing) {
 			$fields->removeFieldFromTab("Root.Content.Main","Content");
