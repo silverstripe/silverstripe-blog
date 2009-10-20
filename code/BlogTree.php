@@ -248,8 +248,8 @@ class BlogTree_Controller extends Page_Controller {
 	function init() {
 		parent::init();
 		
-		// This will create a <link> tag point to the RSS feed
-		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
+		$this->IncludeBlogRSS();
+		
 		Requirements::themedCSS("blog");
 	}
 
@@ -260,6 +260,11 @@ class BlogTree_Controller extends Page_Controller {
 		return $this->Entries("$start,$limit", BlogURL::tag(), BlogURL::date());
 	}
 
+	function IncludeBlogRSS() {
+		// This will create a <link> tag point to the RSS feed
+		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
+	}
+	
 	/*
 	 * @todo: It doesn't look like these are used. Remove if no-one complains - Hamish
 	
