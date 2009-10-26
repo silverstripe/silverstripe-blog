@@ -13,7 +13,7 @@ class BlogEntry extends Page {
 	static $icon = "blog/images/blogpage";
 	
 	static $db = array(
-		"Date" => "SSDatetime",
+		"Date" => "Datetime",
 		"Author" => "Text",
 		"Tags" => "Text"
 	);

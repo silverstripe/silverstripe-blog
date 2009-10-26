@@ -52,7 +52,7 @@ class ArchiveWidget extends Widget {
 		$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
 
 		if($this->DisplayMode == 'month') {
-			if(defined('Database::USE_ANSI_SQL')) {
+			if(defined('DB::USE_ANSI_SQL')) {
 				$sqlResults = DB::query("
 					SELECT DISTINCT MONTH(\"Date\") AS \"Month\", YEAR(\"Date\") AS \"Year\"
 					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
@@ -68,7 +68,7 @@ class ArchiveWidget extends Widget {
 				);
 			}
 		} else {
-			if(defined('Database::USE_ANSI_SQL')) {
+			if(defined('DB::USE_ANSI_SQL')) {
 				$sqlResults = DB::query("
 					SELECT DISTINCT YEAR(\"Date\") AS \"Year\" 
 					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"

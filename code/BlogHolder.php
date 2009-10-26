@@ -124,7 +124,8 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 			$blog->write();
 			$blog->publish("Stage", "Live");
 
-			Database::alteration_message("Blog page created","created");
+			// 2.3/2.4 dual compatibility
+			if(method_exists('DB', 'alteration_message')) DB::alteration_message("Blog page created","created");
 		}
 	}
 }

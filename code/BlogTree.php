@@ -50,7 +50,7 @@ class BlogTree extends Page {
 		}
 		
 		// Try to find a top-level BlogTree
-		if(defined('Database::USE_ANSI_SQL')) {
+		if(defined('DB::USE_ANSI_SQL')) {
 			$top = DataObject::get_one('BlogTree', "\"ParentID\" = '0'");
 		} else {
 			$top = DataObject::get_one('BlogTree', 'ParentID = 0');
@@ -155,7 +155,7 @@ class BlogTree extends Page {
 		
 		if ($tag) {
 			$SQL_tag = Convert::raw2sql($tag);
-			if(defined('Database::USE_ANSI_SQL')) {
+			if(defined('DB::USE_ANSI_SQL')) {
 				$tagCheck = "AND \"BlogEntry\".\"Tags\" LIKE '%$SQL_tag%'";
 			} else {
 				$tagCheck = "AND `BlogEntry`.Tags LIKE '%$SQL_tag%'";
@@ -168,7 +168,7 @@ class BlogTree extends Page {
 				$month = (int) substr($date, strpos($date, '-') + 1);
 				
 				if($year && $month) {
-					if(defined('Database::USE_ANSI_SQL')) {
+					if(defined('DB::USE_ANSI_SQL')) {
 						$dateCheck = "AND MONTH(\"BlogEntry\".\"Date\") = '$month' AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
 					} else {
 						$dateCheck = "AND MONTH(`BlogEntry`.Date) = $month AND YEAR(`BlogEntry`.Date) = $year";
@@ -177,7 +177,7 @@ class BlogTree extends Page {
 			} else {
 				$year = (int) $date;
 				if($year) {
-					if(defined('Database::USE_ANSI_SQL')) {
+					if(defined('DB::USE_ANSI_SQL')) {
 						$dateCheck = "AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
 					} else {
 						$dateCheck = "AND YEAR(`BlogEntry`.Date) = $year";
@@ -186,7 +186,7 @@ class BlogTree extends Page {
 			}
 		}
 		elseif ($this->LandingPageFreshness) {
-			if(defined('Database::USE_ANSI_SQL')) {
+			if(defined('DB::USE_ANSI_SQL')) {
 				$dateCheck = "AND \"BlogEntry\".\"Date\" > NOW() - INTERVAL " . $this->LandingPageFreshness;
 			} else {
 				$dateCheck = "AND `BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
@@ -200,13 +200,13 @@ class BlogTree extends Page {
 		if (empty($holderIDs)) return false;
 		
 		// Otherwise, do the actual query
-		if(defined('Database::USE_ANSI_SQL')) {
+		if(defined('DB::USE_ANSI_SQL')) {
 			$where = '"ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
 		} else {
 			$where = 'ParentID IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
 		}
 
-		if(defined('Database::USE_ANSI_SQL')) {
+		if(defined('DB::USE_ANSI_SQL')) {
 			$order = '"BlogEntry"."Date" DESC';
 		} else {
 			$order = '`BlogEntry`.`Date` DESC';
