@@ -104,7 +104,7 @@ class BlogEntry extends Page {
 		foreach($tags as $tag) {
 			$output->push(new ArrayData(array(
 				'Tag' => $tag,
-				'Link' => $this->getParent()->Link() . 'tag/' . urlencode($tag),
+				'Link' => $this->getParent()->Link('tag') . '/' . urlencode($tag),
 				'URLTag' => urlencode($tag)
 			)));
 		}
