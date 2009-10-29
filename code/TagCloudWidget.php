@@ -92,7 +92,7 @@ class TagCloudWidget extends Widget {
 						"Tag" => $tag,
 						"Count" => $count,
 						"Class" => $class,
-						"Link" => $container->Link() . 'tag/' . urlencode($tag)		
+						"Link" => $container->Link('tag') . '/' . urlencode($tag)		
 					);
 				}
 			}
