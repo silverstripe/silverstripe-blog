@@ -38,7 +38,7 @@ class BlogTree extends Page {
 	 * - Otherwise, try and find a 'top-level' BlogTree
 	 */
 	static function current() {
-		$page = Director::currentPage();
+		$page = Director::get_current_page();
 		
 		// If we _are_ a BlogTree, use us
 		if ($page instanceof BlogTree) return $page;

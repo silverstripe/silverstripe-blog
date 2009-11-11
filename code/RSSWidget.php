@@ -60,9 +60,9 @@ class RSSWidget extends Widget {
 		include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/SimplePie.php'));
 		
 		$t1 = microtime(true);
-		$this->feed = new SimplePie($this->AbsoluteRssUrl, TEMP_FOLDER);
-		$this->feed->init();
-		if($items = $this->feed->get_items(0, $this->NumberToShow)) {
+		$feed = new SimplePie($this->AbsoluteRssUrl, TEMP_FOLDER);
+		$feed->init();
+		if($items = $feed->get_items(0, $this->NumberToShow)) {
 			foreach($items as $item) {
 				
 				// Cast the Date
