@@ -2,11 +2,11 @@
 
 /**
  * Estonian (Estonia) language pack
- * @package modules: blog
+ * @package blog
  * @subpackage i18n
  */
 
-i18n::include_locale_file('modules: blog', 'en_US');
+i18n::include_locale_file('blog', 'en_US');
 
 global $lang;
 

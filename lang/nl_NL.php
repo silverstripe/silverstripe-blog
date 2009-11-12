@@ -2,11 +2,11 @@
 
 /**
  * Dutch (Netherlands) language pack
- * @package modules: blog
+ * @package blog
  * @subpackage i18n
  */
 
-i18n::include_locale_file('modules: blog', 'en_US');
+i18n::include_locale_file('blog', 'en_US');
 
 global $lang;
 
@@ -69,9 +69,13 @@ $lang['nl_NL']['SubscribeRSSWidget']['SINGULARNAME'] = 'Abonneer R S S Widget';
 $lang['nl_NL']['SubscribeRSSWidget.ss']['SUBSCRIBETEXT'] = 'Inschrijven';
 $lang['nl_NL']['SubscribeRSSWidget.ss']['SUBSCRIBETITLE'] = 'Inschrijven om dit weblog via RSS te volgen';
 $lang['nl_NL']['TagCloudWidget']['LIMIT'] = 'Beperk aantal tags';
+$lang['nl_NL']['TagCloudWidget']['PLURALNAME'] = 'Tag Cloud Widgets';
 $lang['nl_NL']['TagCloudWidget']['SBAL'] = 'alfabet';
 $lang['nl_NL']['TagCloudWidget']['SBFREQ'] = 'frequentie';
+$lang['nl_NL']['TagCloudWidget']['SINGULARNAME'] = 'Tag Cloud Widget';
 $lang['nl_NL']['TagCloudWidget']['SORTBY'] = 'Sorteer bij';
 $lang['nl_NL']['TagCloudWidget']['TILE'] = 'Titel';
+$lang['nl_NL']['TrackBackPing']['PLURALNAME'] = 'Track Back Pings';
+$lang['nl_NL']['TrackBackPing']['SINGULARNAME'] = 'Track Back Ping';
 
 ?>

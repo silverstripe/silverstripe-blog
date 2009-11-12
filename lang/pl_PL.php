@@ -2,11 +2,11 @@
 
 /**
  * Polish (Poland) language pack
- * @package modules: blog
+ * @package blog
  * @subpackage i18n
  */
 
-i18n::include_locale_file('modules: blog', 'en_US');
+i18n::include_locale_file('blog', 'en_US');
 
 global $lang;
 
@@ -23,17 +23,21 @@ $lang['pl_PL']['BlogEntry']['AU'] = 'Autor';
 $lang['pl_PL']['BlogEntry']['BBH'] = 'Pomoc BBCode';
 $lang['pl_PL']['BlogEntry']['CN'] = 'Zawartość';
 $lang['pl_PL']['BlogEntry']['DT'] = 'Data';
+$lang['pl_PL']['BlogEntry']['PLURALNAME'] = 'Wpisy bloga';
+$lang['pl_PL']['BlogEntry']['SINGULARNAME'] = 'Wpis bloga';
 $lang['pl_PL']['BlogEntry.ss']['COMMENTS'] = 'Komentarze';
 $lang['pl_PL']['BlogEntry.ss']['EDITTHIS'] = 'Edytuj ten post';
 $lang['pl_PL']['BlogEntry.ss']['POSTEDBY'] = 'Dodane przez';
-$lang['pl_PL']['BlogEntry.ss']['POSTEDON'] = 'w';
+$lang['pl_PL']['BlogEntry.ss']['POSTEDON'] = 'Opublikowano';
 $lang['pl_PL']['BlogEntry.ss']['TAGS'] = 'Tagi:';
 $lang['pl_PL']['BlogEntry.ss']['UNPUBLISHTHIS'] = 'Cofnij publikację tego postu';
 $lang['pl_PL']['BlogEntry.ss']['VIEWALLPOSTTAGGED'] = 'Zobacz wszystkie posty otagowane jako';
 $lang['pl_PL']['BlogEntry']['TS'] = 'Tagi (oddziel przecinkami)';
 $lang['pl_PL']['BlogHolder']['HAVENTPERM'] = 'Tylko administrator może publikować wpisy na blogu. Zaloguj się.';
+$lang['pl_PL']['BlogHolder']['PLURALNAME'] = 'Blog Listy';
 $lang['pl_PL']['BlogHolder']['POST'] = 'Publikuj wpis';
 $lang['pl_PL']['BlogHolder']['RSSFEED'] = 'Subskrybuj wpisy na tym blogu przez RSS';
+$lang['pl_PL']['BlogHolder']['SINGULARNAME'] = 'Blog Lista';
 $lang['pl_PL']['BlogHolder']['SJ'] = 'Temat';
 $lang['pl_PL']['BlogHolder']['SPUC'] = 'Oddziel tagi używając przecinków.';
 $lang['pl_PL']['BlogHolder.ss']['NOENTRIES'] = 'Nie ma żadnych wpisów na blogu';
@@ -49,11 +53,15 @@ $lang['pl_PL']['BlogManagementWidget']['UNM1'] = 'Masz 1 niesprawdzony komentarz
 $lang['pl_PL']['BlogManagementWidget']['UNMM'] = 'Masz %i niesprawdzonych komentarzy';
 $lang['pl_PL']['BlogSummary.ss']['COMMENTS'] = 'Komentarze';
 $lang['pl_PL']['BlogSummary.ss']['POSTEDBY'] = 'Napisane przez';
-$lang['pl_PL']['BlogSummary.ss']['POSTEDON'] = 'w';
+$lang['pl_PL']['BlogSummary.ss']['POSTEDON'] = 'Opublikowano';
 $lang['pl_PL']['BlogSummary.ss']['VIEWFULL'] = 'Zobacz pełny post zatytułowany - ';
 $lang['pl_PL']['RSSWidget']['CT'] = 'Tytuł dla kanału';
 $lang['pl_PL']['RSSWidget']['NTS'] = 'Ilość pokazywanych wpisów';
+$lang['pl_PL']['RSSWidget']['PLURALNAME'] = 'Widżety RSS';
+$lang['pl_PL']['RSSWidget']['SINGULARNAME'] = 'Widżet RSS';
 $lang['pl_PL']['RSSWidget']['URL'] = 'URL RSS';
+$lang['pl_PL']['SubscribeRSSWidget']['PLURALNAME'] = 'Subksrybuj widżety RSS';
+$lang['pl_PL']['SubscribeRSSWidget']['SINGULARNAME'] = 'Subksrybuj widżet RSS';
 $lang['pl_PL']['TagCloudWidget']['LIMIT'] = 'Limit tagów';
 $lang['pl_PL']['TagCloudWidget']['SBAL'] = 'alfabetu';
 $lang['pl_PL']['TagCloudWidget']['SBFREQ'] = 'częstości występowania';

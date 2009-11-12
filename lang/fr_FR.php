@@ -2,11 +2,11 @@
 
 /**
  * French (France) language pack
- * @package modules: blog
+ * @package blog
  * @subpackage i18n
  */
 
-i18n::include_locale_file('modules: blog', 'en_US');
+i18n::include_locale_file('blog', 'en_US');
 
 global $lang;
 
@@ -69,8 +69,10 @@ $lang['fr_FR']['SubscribeRSSWidget']['SINGULARNAME'] = 'Widget d\'abonnement RSS
 $lang['fr_FR']['SubscribeRSSWidget.ss']['SUBSCRIBETEXT'] = 'Souscrire';
 $lang['fr_FR']['SubscribeRSSWidget.ss']['SUBSCRIBETITLE'] = 'Souscrire à ce blog par RSS';
 $lang['fr_FR']['TagCloudWidget']['LIMIT'] = 'Nombre limite des tags';
+$lang['fr_FR']['TagCloudWidget']['PLURALNAME'] = 'Widgets Nuage de Tags';
 $lang['fr_FR']['TagCloudWidget']['SBAL'] = 'alphabet';
 $lang['fr_FR']['TagCloudWidget']['SBFREQ'] = 'fréquence';
+$lang['fr_FR']['TagCloudWidget']['SINGULARNAME'] = 'Widget Nuage de Tags';
 $lang['fr_FR']['TagCloudWidget']['SORTBY'] = 'Trier par';
 $lang['fr_FR']['TagCloudWidget']['TILE'] = 'Titre';
 

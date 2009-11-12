@@ -2,11 +2,11 @@
 
 /**
  * English (United Kingdom) language pack
- * @package modules: blog
+ * @package blog
  * @subpackage i18n
  */
 
-i18n::include_locale_file('modules: blog', 'en_US');
+i18n::include_locale_file('blog', 'en_US');
 
 global $lang;
 
@@ -56,6 +56,7 @@ $lang['en_GB']['BlogManagementWidget.ss']['POSTNEW'] = 'Post a new blog entry';
 $lang['en_GB']['BlogManagementWidget']['UNM1'] = 'You have 1 unmoderated comment';
 $lang['en_GB']['BlogManagementWidget']['UNMM'] = 'You have %i unmoderated comments';
 $lang['en_GB']['BlogSummary.ss']['COMMENTS'] = 'Comments';
+$lang['en_GB']['BlogSummary.ss']['POSTEDBY'] = 'Posted by';
 $lang['en_GB']['BlogSummary.ss']['POSTEDON'] = 'on';
 $lang['en_GB']['BlogSummary.ss']['VIEWFULL'] = 'View full post titled -';
 $lang['en_GB']['RSSWidget']['CT'] = 'Custom title for the feed';
@@ -65,6 +66,8 @@ $lang['en_GB']['RSSWidget']['SINGULARNAME'] = 'RSS Widget';
 $lang['en_GB']['RSSWidget']['URL'] = 'URL of RSS Feed';
 $lang['en_GB']['SubscribeRSSWidget']['PLURALNAME'] = 'Subscript to RSS Widgets';
 $lang['en_GB']['SubscribeRSSWidget']['SINGULARNAME'] = 'Subscript to an RSS Widget';
+$lang['en_GB']['SubscribeRSSWidget.ss']['SUBSCRIBETEXT'] = 'Subscribe';
+$lang['en_GB']['SubscribeRSSWidget.ss']['SUBSCRIBETITLE'] = 'Subscribe to this blog via RSS';
 $lang['en_GB']['TagCloudWidget']['LIMIT'] = 'Limit number of tags';
 $lang['en_GB']['TagCloudWidget']['PLURALNAME'] = 'Tag Cloud Widgets';
 $lang['en_GB']['TagCloudWidget']['SBAL'] = 'alphabet';

@@ -2,11 +2,11 @@
 
 /**
  * German (Germany) language pack
- * @package modules: blog
+ * @package blog
  * @subpackage i18n
  */
 
-i18n::include_locale_file('modules: blog', 'en_US');
+i18n::include_locale_file('blog', 'en_US');
 
 global $lang;
 
@@ -38,7 +38,7 @@ $lang['de_DE']['BlogEntry']['TS'] = 'Tags (Komma getrennt)';
 $lang['de_DE']['BlogHolder']['HAVENTPERM'] = 'Beiträge können nur von Administratoren eingestellt werden. Bitte einloggen.';
 $lang['de_DE']['BlogHolder']['PLURALNAME'] = 'Blog-Besitzer';
 $lang['de_DE']['BlogHolder']['POST'] = 'Eintrag senden';
-$lang['de_DE']['BlogHolder']['RSSFEED'] = 'RSS feed von diesem Blog';
+$lang['de_DE']['BlogHolder']['RSSFEED'] = 'RSS Feed dieser Blogs';
 $lang['de_DE']['BlogHolder']['SINGULARNAME'] = 'Blog-Besitzer';
 $lang['de_DE']['BlogHolder']['SJ'] = 'Betreff';
 $lang['de_DE']['BlogHolder']['SPUC'] = 'Bitte Tags mit Kommata trennen.';
@@ -63,7 +63,7 @@ $lang['de_DE']['RSSWidget']['CT'] = 'Eigener Titel für den feed';
 $lang['de_DE']['RSSWidget']['NTS'] = 'Anzahl der angezeigten Items';
 $lang['de_DE']['RSSWidget']['PLURALNAME'] = 'RSS-Widgets';
 $lang['de_DE']['RSSWidget']['SINGULARNAME'] = 'RSS-Widget';
-$lang['de_DE']['RSSWidget']['URL'] = 'URL des RSS Feed';
+$lang['de_DE']['RSSWidget']['URL'] = 'URL des RSS Feed der anderen Seite. Bitte vergewissern Sie sich, dass diese URL auf einen RSS Feed verweist.';
 $lang['de_DE']['SubscribeRSSWidget']['PLURALNAME'] = 'RSS-Abonnier-Widgets';
 $lang['de_DE']['SubscribeRSSWidget']['SINGULARNAME'] = 'RSS-Abonnier-Widget';
 $lang['de_DE']['SubscribeRSSWidget.ss']['SUBSCRIBETEXT'] = 'Abonnieren';
