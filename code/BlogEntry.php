@@ -5,19 +5,18 @@
  * @package blog
  */
 class BlogEntry extends Page {
-	
-	static $default_parent = 'BlogHolder';
-	
-	static $can_be_root = false;
-	
-	static $icon = "blog/images/blogpage";
-	
 	static $db = array(
 		"Date" => "Datetime",
 		"Author" => "Text",
 		"Tags" => "Text"
 	);
 	
+	static $default_parent = 'BlogHolder';
+	
+	static $can_be_root = false;
+	
+	static $icon = "blog/images/blogpage";
+		
 	static $has_one = array();
 	
 	static $has_many = array();

@@ -6,10 +6,10 @@
  * @package blog
  */
 class ArchiveWidget extends Widget {
-	
 	static $db = array(
 		'DisplayMode' => 'Varchar'
 	);
+	
 	static $has_one = array();
 	
 	static $has_many = array();
@@ -52,37 +52,19 @@ class ArchiveWidget extends Widget {
 		$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
 
 		if($this->DisplayMode == 'month') {
-			if(defined('DB::USE_ANSI_SQL')) {
-				$sqlResults = DB::query("
-					SELECT DISTINCT MONTH(\"Date\") AS \"Month\", YEAR(\"Date\") AS \"Year\"
-					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
-					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
-					ORDER BY \"Year\" DESC, \"Month\" DESC;"
-				);
-			} else {
-				$sqlResults = DB::query("
-					SELECT DISTINCT MONTH(`Date`) AS `Month`, YEAR(`Date`) AS `Year` 
-					FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` 
-					WHERE `ParentID` IN (" . implode(', ', $ids) . ")
-					ORDER BY `Year` DESC, `Month` DESC;"
-				);
-			}
+			$sqlResults = DB::query("
+				SELECT DISTINCT MONTH(\"Date\") AS \"Month\", YEAR(\"Date\") AS \"Year\"
+				FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
+				WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
+				ORDER BY \"Year\" DESC, \"Month\" DESC;"
+			);
 		} else {
-			if(defined('DB::USE_ANSI_SQL')) {
-				$sqlResults = DB::query("
-					SELECT DISTINCT YEAR(\"Date\") AS \"Year\" 
-					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
-					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
-					ORDER BY \"Year\" DESC"
-				);
-			} else {
-				$sqlResults = DB::query("
-					SELECT DISTINCT YEAR(`Date`) AS `Year` 
-					FROM `SiteTree$suffix` NATURAL JOIN `BlogEntry$suffix` 
-					WHERE `ParentID` in (".implode(', ',$ids).")
-					ORDER BY `Year` DESC"
-				);
-			}
+			$sqlResults = DB::query("
+				SELECT DISTINCT YEAR(\"Date\") AS \"Year\" 
+				FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
+				WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
+				ORDER BY \"Year\" DESC"
+			);
 		}
 		
 		if($sqlResults) foreach($sqlResults as $sqlResult) {
@@ -111,6 +93,7 @@ class ArchiveWidget extends Widget {
 		}
 		
 		return $results;
-	}
-	
+	}	
 }
+
+?>

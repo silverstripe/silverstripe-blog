@@ -12,7 +12,6 @@
  * BlogHolders have a form on them for easy posting, and an owner that can post to them, BlogTrees don't
  */
 class BlogHolder extends BlogTree implements PermissionProvider {
-
 	static $icon = "blog/images/blogholder";
 
 	static $db = array(
@@ -76,7 +75,6 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	 */
 	function IsOwner() {
 		return (Permission::check('BLOGMANAGEMENT') || Permission::check('ADMIN'));
-		//return Permission::check('ADMIN') || (Member::currentUserID() == $this->OwnerID);
 	}
 
 	/**
@@ -118,20 +116,18 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 			$blog->Title = _t('BlogHolder.SUCTITLE', "SilverStripe blog module successfully installed");
 			$blog->URLSegment = 'sample-blog-entry';
 			$blog->Tags = _t('BlogHolder.SUCTAGS',"silverstripe, blog");
-			$blog->Content = _t('BlogHolder.SUCCONTENT',"Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in [url=admin]the CMS[/url].");
+			$blog->Content = _t('BlogHolder.SUCCONTENT',"<p>Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in <a href=\"admin\">the CMS</a>.</p>");
 			$blog->Status = "Published";
 			$blog->ParentID = $blogholder->ID;
 			$blog->write();
 			$blog->publish("Stage", "Live");
 
-			// 2.3/2.4 dual compatibility
-			if(method_exists('DB', 'alteration_message')) DB::alteration_message("Blog page created","created");
+			DB::alteration_message("Blog page created","created");
 		}
 	}
 }
 
 class BlogHolder_Controller extends BlogTree_Controller {
-	
 	static $allowed_actions = array(
 		'index',
 		'tag',
@@ -149,10 +145,10 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 * TODO: this is an urgent fix to work with archive link (e.g. page_url/2009/04). Replace this with something better.
 	 */
 	function checkAccessAction($action) {
-		if (preg_match('/[0-9]{4}/', $action)) 
-		{
+		if(preg_match('/[0-9]{4}/', $action)) {
 			return true; 
 		}
+		
 		return parent::checkAccessAction($action);
 	}
 
@@ -217,14 +213,15 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		} else {
 			$tagfield = new TextField('Tags');
 		}
+		
 		$field = 'TextField';
 		if(!$this->AllowCustomAuthors && !Permission::check('ADMIN')) {
 			$field = 'ReadonlyField';
 		}
 		$fields = new FieldSet(
 			new HiddenField("ID", "ID"),
-			new TextField("Title",_t('BlogHolder.SJ', "Subject")),
-			new $field("Author",_t('BlogEntry.AU'),$membername),
+			new TextField("Title", _t('BlogHolder.SJ', "Subject")),
+			new $field("Author", _t('BlogEntry.AU'), $membername),
 			$contentfield,
 			$tagfield,
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .

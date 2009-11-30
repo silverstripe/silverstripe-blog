@@ -6,6 +6,7 @@ class RSSWidget extends Widget {
 		"RssUrl" => "Text",
 		"NumberToShow" => "Int"
 	);
+	
 	static $has_one = array();
 	
 	static $has_many = array();

@@ -26,7 +26,6 @@ class SubscribeRSSWidget extends Widget {
 		$container = BlogTree::current();
 		if ($container) return $container->Link() . 'rss';
 	}
-	
 }
 
 ?>

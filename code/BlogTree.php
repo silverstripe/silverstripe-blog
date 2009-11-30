@@ -46,23 +46,18 @@ class BlogTree extends Page {
 		if ($page instanceof BlogTree) return $page;
 		
 		// Or, if we a a BlogEntry underneath a BlogTree, use our parent
-		if ($page->is_a("BlogEntry")) {
+		if($page->is_a("BlogEntry")) {
 			$parent = $page->getParent();
-			if ($parent instanceof BlogTree) return $parent;
+			if($parent instanceof BlogTree) return $parent;
 		}
 		
 		// Try to find a top-level BlogTree
-		if(defined('DB::USE_ANSI_SQL')) {
-			$top = DataObject::get_one('BlogTree', "\"ParentID\" = '0'");
-		} else {
-			$top = DataObject::get_one('BlogTree', 'ParentID = 0');
-		}
-		
-		if ($top) return $top;
+		$top = DataObject::get_one('BlogTree', "\"ParentID\" = '0'");
+		if($top) return $top;
 		
 		// Try to find any BlogTree that is not inside another BlogTree
 		foreach(DataObject::get('BlogTree') as $tree) {
-			if (!($tree->getParent() instanceof BlogTree)) return $tree;
+			if(!($tree->getParent() instanceof BlogTree)) return $tree;
 		}
 		
 		// This shouldn't be possible, but assuming the above fails, just return anything you can get
@@ -81,7 +76,7 @@ class BlogTree extends Page {
 	}
 	
 	function SideBar() {
-		if ($this->InheritSideBar && $this->getParent()) {
+		if($this->InheritSideBar && $this->getParent()) {
 			if (method_exists($this->getParent(), 'SideBar')) return $this->getParent()->SideBar();
 		}
 		
@@ -124,12 +119,11 @@ class BlogTree extends Page {
 	public function loadDescendantBlogHolderIDListInto(&$idList) {
 		if ($children = $this->AllChildren()) {
 			foreach($children as $child) {
-				if (in_array($child->ID, $idList)) continue;
+				if(in_array($child->ID, $idList)) continue;
 				
-				if ($child instanceof BlogHolder) {
+				if($child instanceof BlogHolder) {
 					$idList[] = $child->ID; 
-				}
-				else if ($child instanceof BlogTree) {
+				} elseif($child instanceof BlogTree) {
 					$child->loadDescendantBlogHolderIDListInto($idList);
 				}                             
 			}
@@ -155,72 +149,47 @@ class BlogTree extends Page {
 		$tagCheck = '';
 		$dateCheck = '';
 		
-		if ($tag) {
+		if($tag) {
 			$SQL_tag = Convert::raw2sql($tag);
-			if(defined('DB::USE_ANSI_SQL')) {
-				$tagCheck = "AND \"BlogEntry\".\"Tags\" LIKE '%$SQL_tag%'";
-			} else {
-				$tagCheck = "AND `BlogEntry`.Tags LIKE '%$SQL_tag%'";
-			}
+			$tagCheck = "AND \"BlogEntry\".\"Tags\" LIKE '%$SQL_tag%'";
 		}
 		
-		if ($date) {
+		if($date) {
 			if(strpos($date, '-')) {
 				$year = (int) substr($date, 0, strpos($date, '-'));
 				$month = (int) substr($date, strpos($date, '-') + 1);
 				
 				if($year && $month) {
-					if(defined('DB::USE_ANSI_SQL')) {
-						$dateCheck = "AND MONTH(\"BlogEntry\".\"Date\") = '$month' AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
-					} else {
-						$dateCheck = "AND MONTH(`BlogEntry`.Date) = $month AND YEAR(`BlogEntry`.Date) = $year";
-					}
+					$dateCheck = "AND MONTH(\"BlogEntry\".\"Date\") = '$month' AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
 				}
 			} else {
 				$year = (int) $date;
 				if($year) {
-					if(defined('DB::USE_ANSI_SQL')) {
-						$dateCheck = "AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
-					} else {
-						$dateCheck = "AND YEAR(`BlogEntry`.Date) = $year";
-					}
+					$dateCheck = "AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
 				}
 			}
-		}
-		elseif ($this->LandingPageFreshness) {
-			if(defined('DB::USE_ANSI_SQL')) {
-				$dateCheck = "AND \"BlogEntry\".\"Date\" > NOW() - INTERVAL " . $this->LandingPageFreshness;
-			} else {
-				$dateCheck = "AND `BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
-			}
+		} elseif ($this->LandingPageFreshness) {
+			$dateCheck = "AND \"BlogEntry\".\"Date\" > NOW() - INTERVAL " . $this->LandingPageFreshness;
 		}
 		
 		// Build a list of all IDs for BlogHolders that are children of us
 		$holderIDs = $this->BlogHolderIDs();
 		
 		// If no BlogHolders, no BlogEntries. So return false
-		if (empty($holderIDs)) return false;
+		if(empty($holderIDs)) return false;
 		
 		// Otherwise, do the actual query
-		if(defined('DB::USE_ANSI_SQL')) {
-			$where = '"ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
-		} else {
-			$where = 'ParentID IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
-		}
+		$where = '"ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
 
-		if(defined('DB::USE_ANSI_SQL')) {
-			$order = '"BlogEntry"."Date" DESC';
-		} else {
-			$order = '`BlogEntry`.`Date` DESC';
-		}
+		$order = '"BlogEntry"."Date" DESC';
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
-		if ($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $where, $limit, $order);
+		if($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $where, $limit, $order);
 		else return DataObject::get('BlogEntry', $where, $order, '', $limit);
 	}
 }
 
-class BlogURL {
+class BlogTree_URL {
 	static function tag() {
 		if (Director::urlParam('Action') == 'tag') return Director::urlParam('ID');
 		return '';
@@ -230,10 +199,9 @@ class BlogURL {
 		$year = Director::urlParam('Action');
 		$month = Director::urlParam('ID');
 		
-		if ($month && is_numeric($month) && $month >= 1 && $month <= 12 && is_numeric($year)) {
+		if($month && is_numeric($month) && $month >= 1 && $month <= 12 && is_numeric($year)) {
 			return "$year-$month";
-		} 
-		elseif (is_numeric($year)) {
+		} elseif (is_numeric($year)) {
 			return $year;
 		}
 		
@@ -256,50 +224,16 @@ class BlogTree_Controller extends Page_Controller {
 	}
 
 	function BlogEntries($limit = null) {
-		if ($limit === null) $limit = BlogTree::$default_entries_limit;
+		if($limit === null) $limit = BlogTree::$default_entries_limit;
 		
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
-		return $this->Entries("$start,$limit", BlogURL::tag(), BlogURL::date());
+		return $this->Entries("$start,$limit", BlogTree_URL::tag(), BlogTree_URL::date());
 	}
 
 	function IncludeBlogRSS() {
 		// This will create a <link> tag point to the RSS feed
 		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
 	}
-	
-	/*
-	 * @todo: It doesn't look like these are used. Remove if no-one complains - Hamish
-	
-	/**
-	 * Gets the archived blogs for a particular month or year, in the format /year/month/ eg: /2008/10/
-	 * /
-	function showarchive() {
-		$month = addslashes($this->urlParams['ID']);
-		return array(
-			"Children" => DataObject::get('SiteTree', "ParentID = $this->ID AND DATE_FORMAT(`BlogEntry`.`Date`, '%Y-%M') = '$month'"),
-		);		
-	}
-
-	function ArchiveMonths() {
-		$months = DB::query("SELECT DISTINCT DATE_FORMAT(`BlogEntry`.`Date`, '%M') AS `Month`, DATE_FORMAT(`BlogEntry`.`Date`, '%Y') AS `Year` FROM `BlogEntry` ORDER BY `BlogEntry`.`Date` DESC");
-		$output = new DataObjectSet();
-		foreach($months as $month) {
-			$month['Link'] = $this->Link() . "showarchive/$month[Year]-$month[Month]";
-			$output->push(new ArrayData($month));
-		}
-		
-		return $output;
-	}
-	
-	function tag() {
-		if (Director::urlParam('Action') == 'tag') {
-			return array(
-				'Tag' => Convert::raw2xml(Director::urlParam('ID'))
-			);
-		}
-		return array();
-	}
-	*/
 	
 	/**
 	 * Get the rss feed for this blog holder's entries
@@ -325,3 +259,5 @@ class BlogTree_Controller extends Page_Controller {
 		return parent::defaultAction($action);
 	}	
 }
+
+?>

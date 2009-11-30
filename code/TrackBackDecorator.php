@@ -49,5 +49,4 @@ class TrackBackDecorator extends DataObjectDecorator {
 	}
 }
 
-
 ?>

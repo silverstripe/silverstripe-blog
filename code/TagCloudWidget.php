@@ -101,7 +101,8 @@ class TagCloudWidget extends Widget {
 			foreach($allTags as $tag => $fields) {
 				$output->push(new ArrayData($fields));
 			}
-		return $output;	
+			
+			return $output;	
 		}
 		
 		return;		
@@ -135,7 +136,6 @@ class TagCloudWidget extends Widget {
 		return true;
 	}
 }
-
 
 
 ?>
