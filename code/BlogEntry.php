@@ -40,7 +40,7 @@ class BlogEntry extends Page {
 	 * Is WYSIWYG editing allowed?
 	 * @var boolean
 	 */
-	static $allow_wysiwyg_editing = false;
+	static $allow_wysiwyg_editing = true;
 	
 	/**
 	 * Is WYSIWYG editing enabled?
