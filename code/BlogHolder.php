@@ -131,6 +131,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	static $allowed_actions = array(
 		'index',
 		'tag',
+		'metaweblog',
 		'postblog' => 'BLOGMANAGEMENT',
 		'post' => 'BLOGMANAGEMENT',
 		'BlogEntryForm' => 'BLOGMANAGEMENT',
