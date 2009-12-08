@@ -4,7 +4,9 @@ class TrackBackPing extends DataObject {
 	static $db = array(
 		'Title' => 'Varchar',
 		'Excerpt' => 'Text',
-		'Url' => 'Varchar',
+		// 2083 is URL-length limit for IE, AFAIK.
+		// see: http://www.boutell.com/newfaq/misc/urllength.html
+		'Url' => 'Varchar(2048)',
 		'BlogName' => 'Varchar'
 	);
 	
