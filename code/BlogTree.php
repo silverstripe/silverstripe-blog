@@ -196,16 +196,18 @@ class BlogTree_URL {
 	}
 
 	static function date() {
-		$year = Director::urlParam('Action');
-		$month = Director::urlParam('ID');
-		
-		if($month && is_numeric($month) && $month >= 1 && $month <= 12 && is_numeric($year)) {
-			return "$year-$month";
-		} elseif (is_numeric($year)) {
-			return $year;
+		if(Director::urlParam('Action') == 'date') {
+			$year = Director::urlParam('ID');
+			$month = Director::urlParam('OtherID');
+	
+			if($month && is_numeric($month) && $month >= 1 && $month <= 12 && is_numeric($year)) {
+				return "$year-$month";
+			} elseif (is_numeric($year)) {
+				return $year;
+			}
+	
+			return '';
 		}
-		
-		return '';
 	}
 }
 

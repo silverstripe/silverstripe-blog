@@ -81,9 +81,9 @@ class ArchiveWidget extends Widget {
 			));
 			
 			if($isMonthDisplay) {
-				$link = $container->Link($sqlResult['Year']) . '/' . sprintf("%'02d", $monthVal);
+				$link = $container->Link('date') . '/' . $sqlResult['Year'] . '/' . sprintf("%'02d", $monthVal);
 			} else {
-				$link = $container->Link($sqlResult['Year']);
+				$link = $container->Link('date') . '/' . $sqlResult['Year'];
 			}
 			
 			$results->push(new ArrayData(array(
