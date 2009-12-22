@@ -147,9 +147,10 @@ class BlogTree extends Page {
 	 * @param string tag Only get blog entries with this tag
 	 * @param string date Only get blog entries on this date - either a year, or a year-month eg '2008' or '2008-02'
 	 * @param callback retrieveCallback A function to call with pagetype, filter and limit for custom blog sorting or filtering
+	 * @param string $where
 	 * @return DataObjectSet
 	 */
-	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null) {
+	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
 		$tagCheck = '';
 		$dateCheck = '';
 		
@@ -161,7 +162,7 @@ class BlogTree extends Page {
 				$tagCheck = "AND `BlogEntry`.Tags LIKE '%$SQL_tag%'";
 			}
 		}
-		
+
 		if ($date) {
 			if(strpos($date, '-')) {
 				$year = (int) substr($date, 0, strpos($date, '-'));
@@ -185,14 +186,7 @@ class BlogTree extends Page {
 				}
 			}
 		}
-		elseif ($this->LandingPageFreshness) {
-			if(defined('DB::USE_ANSI_SQL')) {
-				$dateCheck = "AND \"BlogEntry\".\"Date\" > NOW() - INTERVAL " . $this->LandingPageFreshness;
-			} else {
-				$dateCheck = "AND `BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
-			}
-		}
-		
+
 		// Build a list of all IDs for BlogHolders that are children of us
 		$holderIDs = $this->BlogHolderIDs();
 		
@@ -200,10 +194,11 @@ class BlogTree extends Page {
 		if (empty($holderIDs)) return false;
 		
 		// Otherwise, do the actual query
+		if($filter) $filter .= ' AND ';
 		if(defined('DB::USE_ANSI_SQL')) {
-			$where = '"ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
+			$filter .= '"ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
 		} else {
-			$where = 'ParentID IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
+			$filter .= '`ParentID` IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
 		}
 
 		if(defined('DB::USE_ANSI_SQL')) {
@@ -213,8 +208,8 @@ class BlogTree extends Page {
 		}
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
-		if ($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $where, $limit, $order);
-		else return DataObject::get('BlogEntry', $where, $order, '', $limit);
+		if ($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $filter, $limit, $order);
+		else return DataObject::get('BlogEntry', $filter, $order, '', $limit);
 	}
 }
 
@@ -255,9 +250,20 @@ class BlogTree_Controller extends Page_Controller {
 
 	function BlogEntries($limit = null) {
 		if ($limit === null) $limit = BlogTree::$default_entries_limit;
-		
+
+		// only use freshness if no action is present (might be displaying tags or rss)
+		if ($this->LandingPageFreshness && !$this->request->param('Action')) {
+			if(defined('DB::USE_ANSI_SQL')) {
+				$filter = "\"BlogEntry\".\"Date\" > NOW() - INTERVAL " . $this->LandingPageFreshness;
+			} else {
+				$filter = "`BlogEntry`.Date > NOW() - INTERVAL " . $this->LandingPageFreshness;
+			}
+		} else {
+			$filter = '';
+		}
+
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
-		return $this->Entries("$start,$limit", BlogURL::tag(), BlogURL::date());
+		return $this->Entries("$start,$limit", BlogURL::tag(), BlogURL::date(), null, $filter);
 	}
 
 	function IncludeBlogRSS() {
@@ -323,3 +329,4 @@ class BlogTree_Controller extends Page_Controller {
 		return parent::defaultAction($action);
 	}	
 }
+?>
