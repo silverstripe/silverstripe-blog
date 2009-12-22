@@ -58,7 +58,7 @@ class RSSWidget extends Widget {
 			return $output;
 		}
 		
-		include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/SimplePie.php'));
+		include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/simplepie.inc'));
 		
 		$t1 = microtime(true);
 		$feed = new SimplePie($this->AbsoluteRssUrl, TEMP_FOLDER);
