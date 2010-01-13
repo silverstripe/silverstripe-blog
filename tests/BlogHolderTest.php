@@ -53,18 +53,7 @@ class BlogHolderTest extends SapphireTest {
 			$this->assertContains($entry->URLSegment, $expectedEntries);
 		}
 	}
-	
-	function testcheckAccessAction() {
-		$blogHolder = new BlogHolder_Controller();
 
-		$this->assertTrue($blogHolder->checkAccessAction('2009'));
-		$this->assertTrue($blogHolder->checkAccessAction('0001'));
-		$this->assertTrue($blogHolder->checkAccessAction('12345'));
-		
-		$this->assertFalse($blogHolder->checkAccessAction('209'));
-		$this->assertFalse($blogHolder->checkAccessAction('123A'));
-		$this->assertFalse($blogHolder->checkAccessAction('ab01a'));
-	}
 }
 
 ?>
