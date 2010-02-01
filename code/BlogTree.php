@@ -159,14 +159,22 @@ class BlogTree extends Page {
 			if(strpos($date, '-')) {
 				$year = (int) substr($date, 0, strpos($date, '-'));
 				$month = (int) substr($date, strpos($date, '-') + 1);
-				
+
 				if($year && $month) {
-					$dateCheck = "AND MONTH(\"BlogEntry\".\"Date\") = '$month' AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
+					if(method_exists(DB::getConn(), 'formattedDatetimeClause')) {
+						$dateCheck = 'AND ' . DB::getConn()->formattedDatetimeClause('"BlogEntry"."Date"', '%m') . " * 1 = $month AND " . DB::getConn()->formattedDatetimeClause('"BlogEntry"."Date"', '%Y') . " = '$year'";
+					} else {
+						$dateCheck = "AND MONTH(\"BlogEntry\".\"Date\") = '$month' AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
+					}
 				}
 			} else {
 				$year = (int) $date;
 				if($year) {
-					$dateCheck = "AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
+					if(method_exists(DB::getConn(), 'formattedDatetimeClause')) {
+						$dateCheck = "AND " . DB::getConn()->formattedDatetimeClause('"BlogEntry"."Date"', '%Y') . " = '$year'";
+					} else {
+						$dateCheck = "AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
+					}
 				}
 			}
 		}
