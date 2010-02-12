@@ -100,10 +100,12 @@ class BlogEntry extends Page {
 		$tags = split(" *, *", trim($this->Tags));
 		$output = new DataObjectSet();
 		
+		$link = $this->getParent() ? $this->getParent()->Link('tag') : '';
+		
 		foreach($tags as $tag) {
 			$output->push(new ArrayData(array(
 				'Tag' => $tag,
-				'Link' => $this->getParent()->Link('tag') . '/' . urlencode($tag),
+				'Link' => $link . '/' . urlencode($tag),
 				'URLTag' => urlencode($tag)
 			)));
 		}
