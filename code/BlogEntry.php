@@ -77,7 +77,9 @@ class BlogEntry extends Page {
 			$fields->addFieldToTab("Root.Content.Main", new TextareaField("Content", _t("BlogEntry.CN", "Content"), 20));
 		}
 		
-		$fields->addFieldToTab("Root.Content.Main", new PopupDateTimeField("Date", _t("BlogEntry.DT", "Date")),"Content");
+		$fields->addFieldToTab("Root.Content.Main", $dateField = new DatetimeField("Date", _t("BlogEntry.DT", "Date")),"Content");
+		$dateField->getDateField()->setConfig('showcalendar', true);
+		$dateField->getTimeField()->setConfig('showdropdown', true);
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Author", _t("BlogEntry.AU", "Author"), $firstName),"Content");
 		
 		if(!self::$allow_wysiwyg_editing) {
