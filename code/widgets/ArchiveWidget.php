@@ -29,7 +29,7 @@ class ArchiveWidget extends Widget {
 	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
 	
 	function getCMSFields() {
-		return new FieldSet(
+		$fields = new FieldSet(
 			new OptionsetField(
 				'DisplayMode',
 				_t('ArchiveWidget.DispBY', 'Display by'),
@@ -39,6 +39,10 @@ class ArchiveWidget extends Widget {
 				)
 			)
 		);
+		
+		$this->extend('updateCMSFields', $fields);
+		
+		return $fields;
 	}
 	
 	function Dates() {

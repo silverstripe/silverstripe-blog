@@ -40,11 +40,15 @@ class RSSWidget extends Widget {
 	}
 	
 	function getCMSFields() {
-		return new FieldSet(
+		$fields = new FieldSet(
 			new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
 			new TextField("RssUrl", _t('RSSWidget.URL', "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed.")),
 			new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
 		);
+		
+		$this->extend('updateCMSFields', $fields);
+		
+		return $fields;
 	}
 	function Title() {
 		return ($this->RSSTitle) ? $this->RSSTitle : 'RSS Feed';

@@ -27,11 +27,15 @@ class TagCloudWidget extends Widget {
 	static $popularities = array( 'not-popular', 'not-very-popular', 'somewhat-popular', 'popular', 'very-popular', 'ultra-popular' );
 	
 	function getCMSFields() {
-		return new FieldSet(
+		$fields = new FieldSet(
 			new TextField("Title", _t("TagCloudWidget.TILE", "Title")),
 			new TextField("Limit", _t("TagCloudWidget.LIMIT", "Limit number of tags")),
 			new OptionsetField("Sortby",_t("TagCloudWidget.SORTBY","Sort by"),array("alphabet"=>_t("TagCloudWidget.SBAL", "alphabet"),"frequency"=>_t("TagCloudWidget.SBFREQ", "frequency")))
 		);
+		
+		$this->extend('updateCMSFields', $fields);
+		
+		return $fields;
 	}
 	
 	function Title() {
