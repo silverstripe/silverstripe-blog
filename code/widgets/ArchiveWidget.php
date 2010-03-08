@@ -55,11 +55,12 @@ class ArchiveWidget extends Widget {
 		$stage = Versioned::current_stage();
 		$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
 
-		$monthclause = method_exists(DB::getConn(), 'formattedDatetimeClause') ? DB::getConn()->formattedDatetimeClause('"Date"', '%m') . ' * 1' : 'MONTH("Date")';
-		$yearclause  = method_exists(DB::getConn(), 'formattedDatetimeClause') ? DB::getConn()->formattedDatetimeClause('"Date"', '%Y')          : 'YEAR("Date")';
+		$monthclause = method_exists(DB::getConn(), 'formattedDatetimeClause') ? DB::getConn()->formattedDatetimeClause('"Date"', '%m') : 'MONTH("Date")';
+		$yearclause  = method_exists(DB::getConn(), 'formattedDatetimeClause') ? DB::getConn()->formattedDatetimeClause('"Date"', '%Y') : 'YEAR("Date")';
+		
 		if($this->DisplayMode == 'month') {
 			$sqlResults = DB::query("
-				SELECT DISTINCT $monthclause AS \"Month\", $yearclause AS \"Year\"
+				SELECT DISTINCT CAST($monthclause AS " . DB::getConn()->dbDataType('unsigned integer') . ") AS \"Month\", $yearclause AS \"Year\"
 				FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
 				WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
 				ORDER BY \"Year\" DESC, \"Month\" DESC;"
