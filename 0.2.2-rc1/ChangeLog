@@ -1,0 +1,42 @@
+ChangeLog
+
+0.2.0
+
+Features
+	- Blogs can now be configured to use HTML instead of BBCode
+	- Tags now follow the rel-tag microformat standard
+	- Blog module is now translatable
+	- The entries shown on the BlogHolder when not browsing by date/tag can now be restricted to only show entries that are younger than a user specified age
+	- The RSS feed name can now be changed in the CMS
+	- Added support for receiving trackback pings
+	- Added SubscribeRSSWidget for linking directly to the blog RSS feed
+	- Tag widget title is now editable
+	- Added empty relationship statics so BlogEntry and BlogHolder can be decorated by a DataObjectDecorator
+	- Use pagination summary, so a full list of pages isnt generated
+	- Added Date variable to RSSWidget feed items, so Date can be used in template if wanted
+	- Cast Title variable on RSSWidget feed items, so Title can have Text functions called in the template if wanted
+	
+Bugfixes
+	- Removed deprecated calls to sapphire, and made other fixes to support sapphire 2.3.0
+	- Don't use PHP short tags
+	- Don't display $Content on a BlogHolder, as it isnt editable in the CMS
+	- Prevent infinite loops when an RSSWidget on a blog points to itself
+	- Fix URL segment generation
+	- RSS feed is now sorted by date, newest first
+	- Fixed pagination
+	- Fixed summaries on BlogHolder
+	- Fixed issues with display by month when blog post is on last month of the day
+	- BlogEntry::Tags() was renamed to TagsCollection() to prevent conflicts with the database fields called Tags
+	- Fixed invalid use of single quotes in BlogEntryForm HTML
+	- Fixed extra <p> tags around blog content
+	- Default parent needs to be a string instead of an array
+	- Fixed escaping in BlogHolder
+	- Use themedCSS instead of hardlinking paths
+	- Fixed rss feed caching
+	- Fixed archive widget showing months and years for unpublished posts
+	- SetDate doesn't need to be called, as the date is automatically set
+
+
+0.1
+
+Initial release
