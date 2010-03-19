@@ -36,11 +36,16 @@ class BlogTree extends Page {
 	 * - If this page is a BlogTree, use that
 	 * - If this page is a BlogEntry, use the parent Holder
 	 * - Otherwise, try and find a 'top-level' BlogTree
+	 *
+	 * @param $page allows you to force a specific page, otherwise,
+	 * 				uses current
 	 */
-	static function current() {
+	static function current($page = null) {
 		
-		$controller = Controller::curr();
-		if($controller) $page = $controller->data();
+		if (!$page) {
+			$controller = Controller::curr();
+			if($controller) $page = $controller->data();
+		}
 		
 		// If we _are_ a BlogTree, use us
 		if ($page instanceof BlogTree) return $page;

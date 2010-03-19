@@ -1,12 +1,17 @@
 BlogTree:
    root:
       Title: Root BlogTree
+      LandingPageFreshness: 7 DAYS
+   otherroot:
+      Title: Other root BlogTree
    levela:
       Title: Level A
       Parent: =>BlogTree.root
+      LandingPageFreshness: 2 DAYS
    levelb:
       Title: Level B
       Parent: =>BlogTree.root
+      LandingPageFreshness: INHERIT
    levelaa:
       Title: Level AA
       Parent: =>BlogTree.levela
@@ -17,9 +22,12 @@ BlogTree:
       Title: Level BA
       Parent: =>BlogTree.levelb
 BlogHolder:
+   otherroot_holder:
+      Title: other root holder
    levelaa_blog1:
       Title: Level AA Blog 1
       Parent: =>BlogTree.levelaa
+      LandingPageFreshness: 1 DAY
    levelaa_blog2:
       Title: Level AA Blog 2
       Parent: =>BlogTree.levelaa
