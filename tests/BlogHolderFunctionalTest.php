@@ -31,7 +31,7 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 			'SecurityID' => $securityID
 		);
 		$response = $this->post('blog/BlogEntryForm', $data);
-		$this->assertFalse(DataObject::get_one('BlogEntry', sprintf("Title = 'Disallowed'")));
+		$this->assertFalse(DataObject::get_one('BlogEntry', sprintf("\"Title\" = 'Disallowed'")));
 		
 		// with login
 		$blogEditor = $this->objFromFixture('Member', 'blog_editor');
@@ -47,6 +47,6 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 		);
 		$response = $this->post('blog/BlogEntryForm', $data);
 
-		$this->assertType('BlogEntry', DataObject::get_one('BlogEntry', sprintf("Title = 'Allowed'")));
+		$this->assertType('BlogEntry', DataObject::get_one('BlogEntry', sprintf("\"Title\" = 'Allowed'")));
 	}
 }
