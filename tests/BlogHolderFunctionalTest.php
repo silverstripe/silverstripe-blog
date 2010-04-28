@@ -19,7 +19,7 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 	function testFrontendBlogPostRequiresPermission() {
 		// get valid SecurityID (from comments form, would usually be copy/pasted)
 		$blogEntry = $this->objFromFixture('BlogEntry', 'entry1');
-		$response = $this->get($blogEntry->URLSegment);
+		$response = $this->get($blogEntry->Link());
 		$securityID = Session::get('SecurityID');
 		
 		// without login
@@ -37,7 +37,6 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 		$blogEditor = $this->objFromFixture('Member', 'blog_editor');
 		$this->session()->inst_set('loggedInAs', $blogEditor->ID);
 		Permission::flush_permission_cache();
-
 		$data = array(
 			'Title'=>'Allowed',
 			'Author'=>'Allowed',
