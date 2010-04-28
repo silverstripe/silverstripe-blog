@@ -19,7 +19,7 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 	function testFrontendBlogPostRequiresPermission() {
 		// get valid SecurityID (from comments form, would usually be copy/pasted)
 		$blogEntry = $this->objFromFixture('BlogEntry', 'entry1');
-		$response = $this->get($blogEntry->Link());
+		$response = $this->get($blogEntry->RelativeLink());
 		$securityID = Session::get('SecurityID');
 		
 		// without login
