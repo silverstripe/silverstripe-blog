@@ -167,7 +167,8 @@ class BlogTree extends Page {
 
 				if($year && $month) {
 					if(method_exists(DB::getConn(), 'formattedDatetimeClause')) {
-						$dateCheck = 'AND ' . DB::getConn()->formattedDatetimeClause('"BlogEntry"."Date"', '%m') . " * 1 = $month AND " . DB::getConn()->formattedDatetimeClause('"BlogEntry"."Date"', '%Y') . " = '$year'";
+						$db_date=DB::getConn()->formattedDatetimeClause('"BlogEntry"."Date"', '%m');
+						$dateCheck = "AND CAST($db_date AS " . DB::getConn()->dbDataType('unsigned integer') . ") = $month AND " . DB::getConn()->formattedDatetimeClause('"BlogEntry"."Date"', '%Y') . " = '$year'";
 					} else {
 						$dateCheck = "AND MONTH(\"BlogEntry\".\"Date\") = '$month' AND YEAR(\"BlogEntry\".\"Date\") = '$year'";
 					}
