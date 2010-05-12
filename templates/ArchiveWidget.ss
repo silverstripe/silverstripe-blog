@@ -1,3 +1,4 @@
+<h3>Dates</h3>
 <% if DisplayMode == month %>
 	<ul class="archiveMonths">
 		<% control Dates %>
