@@ -203,29 +203,8 @@ class BlogTree extends Page {
 	}
 }
 
-class BlogTree_URL {
-	static function tag() {
-		if (Director::urlParam('Action') == 'tag') return Director::urlParam('ID');
-		return '';
-	}
-
-	static function date() {
-		if(Director::urlParam('Action') == 'date') {
-			$year = Director::urlParam('ID');
-			$month = Director::urlParam('OtherID');
-	
-			if($month && is_numeric($month) && $month >= 1 && $month <= 12 && is_numeric($year)) {
-				return "$year-$month";
-			} elseif (is_numeric($year)) {
-				return $year;
-			}
-	
-			return '';
-		}
-	}
-}
-
 class BlogTree_Controller extends Page_Controller {
+	
 	static $allowed_actions = array(
 		'index',
 		'rss',
@@ -250,11 +229,16 @@ class BlogTree_Controller extends Page_Controller {
 		}
 
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
-		return $this->Entries("$start,$limit", BlogTree_URL::tag(), BlogTree_URL::date(), null, $filter);
+		
+		$date = $this->SelectedDate();
+
+		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date->Format('Y-m') : '', null, $filter);
 	}
 
+	/**
+	 * This will create a <link> tag point to the RSS feed
+	 */
 	function IncludeBlogRSS() {
-		// This will create a <link> tag point to the RSS feed
 		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
 	}
 	
@@ -274,13 +258,43 @@ class BlogTree_Controller extends Page_Controller {
 			$rss->outputToBrowser();
 		}
 	}
-		
+	
+	/**
+	 * Protection against infinite loops when an RSS widget pointing to this page is added to this page
+	 */
 	function defaultAction($action) {
-		// Protection against infinite loops when an RSS widget pointing to this page is added to this page
 		if(stristr($_SERVER['HTTP_USER_AGENT'], 'SimplePie')) return $this->rss();
 		
 		return parent::defaultAction($action);
-	}	
+	}
+	
+	/**
+	 * Return the currently viewing tag used in the template as $Tag 
+	 *
+	 * @return String
+	 */
+	function SelectedTag() {
+		return (Director::urlParam('Action') == 'tag') ? Director::urlParam('ID') : '';
+	}
+	
+	/**
+	 * Return the selected date from the blog tree
+	 *
+	 * @return Date
+	 */
+	function SelectedDate() {
+		if(Director::urlParam('Action') == 'date') {
+			$year = Director::urlParam('ID');
+			$month = Director::urlParam('OtherID');
+	
+			if(is_numeric($year) && is_numeric($month) && $month < 13) {
+				$date = new Date();
+				$date->setValue($year .'-'. $month);
+				
+				return $date;
+			}
+		}
+			
+		return false;
+	}
 }
-
-?>
