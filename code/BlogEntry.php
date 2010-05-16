@@ -188,9 +188,39 @@ class BlogEntry extends Page {
 	static function allow_wysiwyg_editing() {
 		self::$allow_wysiwyg_editing = true;
 	}
+	
+	
+	/**
+	 * Get the previous blog entry from this section of blog pages. 
+	 *
+	 * @return BlogEntry
+	 */
+	function PreviousBlogEntry() {
+		return DataObject::get_one(
+			'BlogEntry', 
+			"\"SiteTree\".\"ParentID\" = '$this->ParentID' AND \"BlogEntry\".\"Date\" < '$this->Date'", 
+			true, 
+			'Date DESC'
+		);
+	}
+	
+	/**
+	 * Get the next blog entry from this section of blog pages.
+	 *
+	 * @return BlogEntry
+	 */
+	function NextBlogEntry() {
+		return DataObject::get_one(
+			'BlogEntry', 
+			"\"SiteTree\".\"ParentID\" = '$this->ParentID' AND \"BlogEntry\".\"Date\" > '$this->Date'", 
+			true, 
+			'Date ASC'
+		);		
+	}
 }
 
 class BlogEntry_Controller extends Page_Controller {
+	
 	static $allowed_actions = array(
 		'index',
 		'trackbackping',
