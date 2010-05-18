@@ -199,7 +199,8 @@ class BlogTree extends Page {
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
 		if($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $filter, $limit, $order);
-		else return DataObject::get('BlogEntry', $filter, $order, '', $limit);
+
+		return DataObject::get('BlogEntry', $filter, $order, '', $limit);
 	}
 }
 
@@ -228,6 +229,21 @@ class BlogTree_Controller extends Page_Controller {
 			$filter = '';
 		}
 
+		// allow filtering by author field and some blogs have an authorID field which
+		// may allow filtering by id
+		if(isset($_GET['author']) && isset($_GET['authorID'])) {
+			$author = Convert::raw2sql($_GET['author']);
+			$id = Convert::raw2sql($_GET['authorID']);
+			
+			$filter .= " \"BlogEntry\".\"Author\" LIKE '". $author . "' OR \"BlogEntry\".\"AuthorID\" = '". $id ."'";
+		}
+		else if(isset($_GET['author'])) {
+			$filter .=  " \"BlogEntry\".\"Author\" LIKE '". Convert::raw2sql($_GET['author']) . "'";
+		}
+		else if(isset($_GET['authorID'])) {
+			$filter .=  " \"BlogEntry\".\"AuthorID\" = '". Convert::raw2sql($_GET['authorID']). "'";
+		}
+		
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
 		
 		$date = $this->SelectedDate();
