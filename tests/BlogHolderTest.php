@@ -53,6 +53,21 @@ class BlogHolderTest extends SapphireTest {
 			$this->assertContains($entry->URLSegment, $expectedEntries);
 		}
 	}
+	
+	function testBlogOwners() {
+		$mainblog = $this->objFromFixture('BlogHolder', 'mainblog');
+		$actualMembers = array_values($mainblog->blogOwners()->toDropDownMap('ID', 'Name')); 
+		$expectedMembers = array(
+			'ADMIN User', // test default admin
+			'Admin One',
+			'Admin Two', 
+			'Blog Owner One',
+			'Blog Owner Three',
+			'Blog Owner Two',
+		);
+		
+		$this->assertEquals($expectedMembers, $actualMembers);
+	}
 
 }
 
