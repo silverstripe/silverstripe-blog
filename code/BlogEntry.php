@@ -11,6 +11,10 @@ class BlogEntry extends Page {
 		"Tags" => "Text"
 	);
 	
+	static $casting = array(
+		'ParagraphSummary' => 'HTMLText'
+	);
+	
 	static $default_parent = 'BlogHolder';
 	
 	static $can_be_root = false;
