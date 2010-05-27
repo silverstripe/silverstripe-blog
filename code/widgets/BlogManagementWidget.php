@@ -48,16 +48,19 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 		return array("BLOGMANAGEMENT" => "Blog management");
 	}
 
-	function WidgetHolder() {
-		if(Permission::check("BLOGMANAGEMENT")) {
-			return $this->renderWith("WidgetHolder");
-		}
-	}
+}
 
+class BlogManagementWidget_Controller extends Widget_Controller { 
+	
+	function WidgetHolder() { 
+		if(Permission::check("BLOGMANAGEMENT")) { 
+			return $this->renderWith("WidgetHolder"); 
+		} 
+	}
+	
 	function PostLink() {
 		$container = BlogTree::current();
 		if ($container) return $container->Link('post');
 	}
-
 }
 ?>

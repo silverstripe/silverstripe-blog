@@ -183,7 +183,6 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 */
 	function post(){
 		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
-		
 		$page = $this->customise(array(
 			'Content' => false,
 			'Form' => $this->BlogEntryForm()
@@ -195,14 +194,9 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	/**
 	 * A simple form for creating blog entries
 	 */
-	function BlogEntryForm() {
+	function BlogEntryForm() {	
 		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
-
-		Requirements::javascript('jsparty/behaviour.js');
-		Requirements::javascript('jsparty/prototype.js');
-		Requirements::javascript('jsparty/scriptaculous/effects.js');
-		Requirements::javascript('cms/javascript/PageCommentInterface.js');
-		Requirements::javascript('blog/javascript/bbcodehelp.js');
+		
 
 		$id = 0;
 		if(Director::urlParam('ID')) {
@@ -221,7 +215,6 @@ class BlogHolder_Controller extends BlogTree_Controller {
 				new LiteralField("BBCodeTags","<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>")
 			);
 		}
-
 		if(class_exists('TagField')) {
 			$tagfield = new TagField('Tags', null, null, 'BlogEntry');
 			$tagfield->setSeparator(', ');
@@ -242,7 +235,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
 												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
 		);
-
+		
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
 		$actions = new FieldSet($submitAction);
 		$validator = new RequiredFields('Title','Content');
