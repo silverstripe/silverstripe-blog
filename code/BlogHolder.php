@@ -199,8 +199,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		
 
 		$id = 0;
-		if(Director::urlParam('ID')) {
-			$id = (int) Director::urlParam('ID');
+		if($this->request->latestParam('ID')) {
+			$id = (int) $this->request->latestParam('ID');
 		}
 
 		$codeparser = new BBCodeParser();

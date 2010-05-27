@@ -152,6 +152,7 @@ class BlogTree extends Page {
 	 * @return DataObjectSet
 	 */
 	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
+		
 		$tagCheck = '';
 		$dateCheck = '';
 		
@@ -199,7 +200,7 @@ class BlogTree extends Page {
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
 		if($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $filter, $limit, $order);
-
+		
 		return DataObject::get('BlogEntry', $filter, $order, '', $limit);
 	}
 }
@@ -290,7 +291,7 @@ class BlogTree_Controller extends Page_Controller {
 	 * @return String
 	 */
 	function SelectedTag() {
-		return (Director::urlParam('Action') == 'tag') ? Director::urlParam('ID') : '';
+		return ($this->request->latestParam('Action') == 'tag') ? $this->request->latestParam('ID') : '';
 	}
 	
 	/**
@@ -299,9 +300,9 @@ class BlogTree_Controller extends Page_Controller {
 	 * @return Date
 	 */
 	function SelectedDate() {
-		if(Director::urlParam('Action') == 'date') {
-			$year = Director::urlParam('ID');
-			$month = Director::urlParam('OtherID');
+		if($this->request->latestParam('Action') == 'date') {
+			$year = $this->request->latestParam('ID');
+			$month = $this->request->latestParam('OtherID');
 	
 			if(is_numeric($year) && is_numeric($month) && $month < 13) {
 				$date = new Date();
