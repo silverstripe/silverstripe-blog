@@ -73,7 +73,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	 * Only display the blog entries that have the specified tag
 	 */
 	function ShowTag() {
-		if(Director::urlParam('Action') == 'tag') {
+		if($this->request->latestParam('Action') == 'tag') {
 			return Convert::raw2xml(Director::urlParam('ID'));
 		}
 	}
@@ -82,7 +82,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	 * Check if url has "/post"
 	 */
 	function isPost() {
-		return Director::urlParam('Action') == 'post';
+		return $this->request->latestParam('Action') == 'post';
 	}
 
 	/**
