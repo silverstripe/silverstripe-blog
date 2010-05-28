@@ -222,15 +222,20 @@ class BlogTree_Controller extends Page_Controller {
 	}
 
 	function BlogEntries($limit = null) {
+		require_once('Zend/Date.php');
+		
 		if($limit === null) $limit = BlogTree::$default_entries_limit;
 
 		// only use freshness if no action is present (might be displaying tags or rss)
 		if ($this->LandingPageFreshness && !$this->request->param('Action')) {
-			$filter = "\"BlogEntry\".\"Date\" > NOW() - INTERVAL " . $this->LandingPageFreshness;
+			$d = new Zend_Date(SS_Datetime::now()->getValue());
+			$d->sub($this->LandingPageFreshness);
+			$date = $d->toString('YYYY-MM-dd');
+			
+			$filter = "\"BlogEntry\".\"Date\" > '$date'";
 		} else {
 			$filter = '';
 		}
-
 		// allow filtering by author field and some blogs have an authorID field which
 		// may allow filtering by id
 		if(isset($_GET['author']) && isset($_GET['authorID'])) {
