@@ -3,11 +3,13 @@ Blog Module
 ####################################################
 
 # Maintainer Contact
-Andrew O'Neil (Nickname: aoneil)
-<andrew (at) silverstripe (dot) com>
+Saophalkun Ponlu (Nickname: aoneil)
+<phalkunz (at) silverstripe (dot) com>
+Carlos Barberis
+<carlos (at) silverstripe (dot) com>
 
 # Requirements
-SilverStripe minimum version 2.3.0
+SilverStripe minimum version 2.4.0
 
 # Documentation
 http://doc.silverstripe.com/doku.php?id=modules:blog
