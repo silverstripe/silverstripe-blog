@@ -273,8 +273,13 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		}
 
 		$form->saveInto($blogentry);
+		
 		$blogentry->ParentID = $this->ID;
 		$blogentry->Content = $form->datafieldByName('BlogPost')->dataValue();
+		
+		if(Object::hasExtension('Translatable')) {
+			$blogentry->Locale = $this->Locale; 
+		}
 
 		$blogentry->Status = "Published";
 		$blogentry->writeToStage("Stage");
