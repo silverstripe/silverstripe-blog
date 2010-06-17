@@ -273,9 +273,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		}
 
 		$form->saveInto($blogentry);
-		
 		$blogentry->ParentID = $this->ID;
-		$blogentry->Content = $form->datafieldByName('BlogPost')->dataValue();
+		$blogentry->Content = str_replace("\r\n", "\n", $form->datafieldByName('BlogPost')->dataValue());
 
 		if(Object::has_extension($this->ClassName, 'Translatable')) {
 			$blogentry->Locale = $this->Locale; 
