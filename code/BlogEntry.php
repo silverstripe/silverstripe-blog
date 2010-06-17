@@ -11,10 +11,6 @@ class BlogEntry extends Page {
 		"Tags" => "Text"
 	);
 	
-	static $casting = array(
-		'ParagraphSummary' => 'HTMLText'
-	);
-	
 	static $default_parent = 'BlogHolder';
 	
 	static $can_be_root = false;
@@ -45,16 +41,6 @@ class BlogEntry extends Page {
 	 * @var boolean
 	 */
 	static $allow_wysiwyg_editing = true;
-	
-	/**
-	 * Is WYSIWYG editing enabled?
-	 * Used in templates.
-	 *
-	 * @return boolean
-	 */
-	public function IsWYSIWYGEnabled() {
-		return self::$allow_wysiwyg_editing;
-	}
 	
 	/**
 	 * Overload so that the default date is today.
@@ -128,33 +114,49 @@ class BlogEntry extends Page {
 		return $this->getParent()->SideBar();
 	}
 	
-	/**
-	 * Get a bbcode parsed summary of the blog entry
-	 */
-	function ParagraphSummary(){
+	function Content() {	
 		if(self::$allow_wysiwyg_editing) {
-			return $this->obj('Content')->FirstParagraph('html');
+			return $this->getField('Content');
 		} else {
 			$parser = new BBCodeParser($this->Content);
-			$html = new HTMLText('Content');
-			$html->setValue($parser->parse());
-			return $html->FirstParagraph('html');
+			$content = new HTMLText('Content');
+			$content->value = $parser->parse();
+			return $content;
 		}
 	}
 	
 	/**
+	 * To be used by RSSFeed. If RSSFeed uses Content field, it doesn't pull in correctly parsed content. 
+	 */ 
+	function RSSContent() {
+		return $this->Content();
+	}
+	
+	/**
+	 * Get a bbcode parsed summary of the blog entry
+	 * @deprecated
+	 */
+	function ParagraphSummary(){
+		user_error("BlogEntry::ParagraphSummary() is deprecated; use BlogEntry::Content()", E_USER_NOTICE);
+		
+		$val = $this->Content(); 
+		$content = $val; 
+		
+		if(!($content instanceof HTMLText)) {
+			$content = new HTMLText('Content');
+			$content->value = $val;
+		}
+
+		return $content->FirstParagraph('html');
+	}
+	
+	/**
 	 * Get the bbcode parsed content
+	 * @deprecated
 	 */
 	function ParsedContent() {
-		if(self::$allow_wysiwyg_editing) {
-			return $this->obj('Content');
-		} else {
-			$parser = new BBCodeParser($this->Content);
-			$content = new Text('Content');
-			$content->value = $parser->parse();
-			
-			return $content;
-		}
+		user_error("BlogEntry::ParsedContent() is deprecated; use BlogEntry::Content()", E_USER_NOTICE);
+		return $this->Content();
 	}
 	
 	/**

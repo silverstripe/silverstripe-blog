@@ -9,6 +9,8 @@
 			<% end_control %>
 		</p>
 	<% end_if %>
-	$ParagraphSummary
+	
+	<p>$Content.FirstParagraph(html)</p>
+	
 	<p class="blogVitals"><a href="$Link#PageComments_holder" class="comments" title="View Comments for this post">$Comments.Count comments</a> | <a href="$Link" class="readmore" title="Read Full Post">Read the full post</a></p>
 </div>
