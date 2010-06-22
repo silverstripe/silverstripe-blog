@@ -265,4 +265,3 @@ class BlogEntry_Controller extends Page_Controller {
 	}
 		
 }
-?>
