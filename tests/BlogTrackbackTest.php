@@ -4,7 +4,7 @@
  * @subpackage tests
  */
 class BlogTrackbackTest extends SapphireTest {
-	static $fixture_file = 'blog/tests/BlogTest.yml';
+	static $fixture_file = 'blog/tests/BlogTrackbackTest.yml';
 	
 	function testTrackback() {
 		$blog = $this->objFromFixture('BlogHolder', 'mainblog');
@@ -33,47 +33,66 @@ class BlogTrackbackTest extends SapphireTest {
 		unset($_POST); 
 	}
 	
-	function testShouldTrackbackNotify() {
-		$blog = $this->objFromFixture('BlogHolder', 'mainblog');
-		$blog->TrackBacksEnabled = true;
-		
-		$entry = $this->objFromFixture('BlogEntry', 'testpost');
-		$this->assertFalse($entry->ShouldTrackbackNotify());
-		
-		$entry = $this->objFromFixture('BlogEntry', 'testpost');
-		$entry->TrackbackURL = '    ';
-		$this->assertFalse($entry->ShouldTrackbackNotify());
-		
-		$entry = $this->objFromFixture('BlogEntry', 'testpost');
-		$entry->TrackbackURL = 'someurl';
-		$this->assertTrue($entry->ShouldTrackbackNotify());
-	}
-	
 	function testTrackbackNotify() {
 		$tmpServerClass = TrackBackDecorator::$trackback_server_class;
 		TrackBackDecorator::$trackback_server_class = "TestTrackbackHTTPServer";
-		
+			
 		$blog = $this->objFromFixture('BlogHolder', 'mainblog');
 		$blog->TrackBacksEnabled = true;
+		$blog->write(); 
 		
 		$entry = $this->objFromFixture('BlogEntry', 'testpost');
-		$entry->TrackbackURL = 'testGoodTrackbackURL'; 
-		$this->assertTrue($entry->trackbackNotify());		
-		
-		$entry->TrackbackURL = 'testBadTrackbackURL';
-		$this->assertFalse($entry->trackbackNotify());
-		
-		$entry->TrackbackURL = 'testNonExistingTrackbackURL';
-		$this->assertFalse($entry->trackbackNotify());
+		$this->assertTrue($entry->trackbackNotify('testGoodTrackbackURL'));		
+		$this->assertFalse($entry->trackbackNotify('testBadTrackbackURL'));
+		$this->assertFalse($entry->trackbackNotify('testNonExistingTrackbackURL'));
 		
 		TrackBackDecorator::$trackback_server_class = $tmpServerClass;
+	}
+
+	function testOnBeforePublish() {
+		$tmpServerClass = TrackBackDecorator::$trackback_server_class;
+		TrackBackDecorator::$trackback_server_class = "TestTrackbackHTTPServer";
+			
+		$blog = $this->objFromFixture('BlogHolder', 'mainblog');
+		$blog->TrackBacksEnabled = true;
+		$blog->write(); 
+		
+		$entry1 = $this->objFromFixture('BlogEntry', 'testpost');
+		$entry1->doPublish(); 
+		$this->assertEquals(2, $entry1->TrackBackURLs()->Count());
+		$this->assertEquals(array('testGoodTrackbackURL' => 1), $entry1->TrackBackURLs()->map('URL', 'Pung'));
+		
+		$entry2 = $this->objFromFixture('BlogEntry', 'testpost2');
+		$entry2->doPublish(); 
+		$this->assertEquals(4, $entry2->TrackBackURLs()->Count());
+		$this->assertEquals(array('testBadTrackbackURL' => 0, 'testGoodTrackbackURL2' => 1, 'noneExistingURL' => 0, 'testGoodTrackbackURL3' => 1), $entry2->TrackBackURLs()->map('URL', 'Pung'));
+
+		TrackBackDecorator::$trackback_server_class = $tmpServerClass;
+	}
+	
+	function testDuplicateIsTrackBackURL() {
+		$url1 = $this->objFromFixture('TrackBackURL', 'goodTrackBackURL1');
+		$urlDup = $this->objFromFixture('TrackBackURL', 'dupTrackBackURL');
+		
+		$url2 = $this->objFromFixture('TrackBackURL', 'goodTrackBackURL2');
+		$this->assertFalse($url2->isDuplicate());
+		$this->assertFalse($url2->isDuplicate(true));
+		
+		$this->assertTrue($urlDup->isDuplicate());
+		$this->assertFalse($urlDup->isDuplicate(true));
+		
+		$url1->Pung = true;
+		$url1->write(); 
+		$this->assertTrue($urlDup->isDuplicate(true));
+	
+	
 	}
 }
 
 class TestTrackbackHTTPServer extends TrackbackHTTPServer implements TestOnly {
 	
 	function request($url, $data) {
-		if($url == 'testGoodTrackbackURL') {
+		if(in_array($url, array('testGoodTrackbackURL', 'testGoodTrackbackURL2', 'testGoodTrackbackURL3'))) {
 			$response = $this->goodTrackback();
 			$statusCode = '200';
 		}
