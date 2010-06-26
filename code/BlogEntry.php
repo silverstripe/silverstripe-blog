@@ -163,14 +163,14 @@ class BlogEntry extends Page {
 	 * Link for editing this blog entry
 	 */
 	function EditURL() {
-		return $this->getParent()->Link('post') . '/' . $this->ID . '/';
+		return ($this->getParent()) ? $this->getParent()->Link('post') . '/' . $this->ID . '/' : false;
 	}
 	
 	/**
 	 * Check to see if trackbacks are enabled.
 	 */
 	function TrackBacksEnabled() {
-		return $this->getParent()->TrackBacksEnabled;
+		return ($this->getParent()) ? $this->getParent()->TrackBacksEnabled : false;
 	}
 	
 	function trackbackping() {
