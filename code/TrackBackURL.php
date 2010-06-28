@@ -43,7 +43,7 @@ class TrackBackURL extends DataObject {
 	 */ 
 	function isDuplicate($onPung = false) {
 		$where = "\"BlogEntryID\" = {$this->BlogEntryID} AND \"URL\" = '{$this->URL}' AND TrackBackURL.ID <> {$this->ID}"; 
-		if($onPung) $where .= " AND Pung IS TRUE"; 
+		if($onPung) $where .= " AND \"Pung\" = 1"; 
 
 		if(DataObject::get_one($this->ClassName, $where)) {
 			return true;
