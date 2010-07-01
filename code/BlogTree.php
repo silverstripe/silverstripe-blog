@@ -210,7 +210,8 @@ class BlogTree_Controller extends Page_Controller {
 	static $allowed_actions = array(
 		'index',
 		'rss',
-		'tag'
+		'tag',
+		'date'
 	);
 	
 	function init() {
@@ -255,7 +256,7 @@ class BlogTree_Controller extends Page_Controller {
 		
 		$date = $this->SelectedDate();
 		
-		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date->Format('Y-m') : '', null, $filter);
+		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date : '', null, $filter);
 	}
 
 	/**
@@ -311,13 +312,28 @@ class BlogTree_Controller extends Page_Controller {
 			$month = $this->request->latestParam('OtherID');
 	
 			if(is_numeric($year) && is_numeric($month) && $month < 13) {
-				$date = new Date();
-				$date->setValue($year .'-'. $month);
-				
+		
+				$date = $year .'-'. $month;
 				return $date;
+				
+			} else {
+				
+				if(is_numeric($year)) return $year;	
 			}
 		}
 			
 		return false;
+	}
+	
+	function SelectedNiceDate(){
+		$date = $this->SelectedDate();
+		
+		if(strpos($date, '-')) {
+			$date = explode("-",$date);
+			return date("F", mktime(0, 0, 0, $date[1], 1, date('Y'))). " " .date("Y", mktime(0, 0, 0, date('m'), 1, $date[0]));
+		
+		} else {
+			return date("Y", mktime(0, 0, 0, date('m'), 1, $date));
+		}
 	}
 }
