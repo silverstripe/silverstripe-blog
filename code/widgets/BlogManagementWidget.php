@@ -60,7 +60,7 @@ class BlogManagementWidget_Controller extends Widget_Controller {
 	
 	function PostLink() {
 		$container = BlogTree::current();
-		if ($container) return $container->Link('post');
+		return ($container && $container->ClassName != "BlogTree") ? $container->Link('post') : false; 
 	}
 }
 ?>
