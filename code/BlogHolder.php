@@ -238,7 +238,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
 		$actions = new FieldSet($submitAction);
-		$validator = new RequiredFields('Title','Content');
+		$validator = new RequiredFields('Title','BlogPost');
 
 		$form = new Form($this, 'BlogEntryForm',$fields, $actions,$validator);
 
