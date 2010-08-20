@@ -13,6 +13,13 @@ class BlogTree extends Page {
 	// Default number of blog entries to show
 	static $default_entries_limit = 10;
 	
+	/**
+	 * @var bool Include an automatic link to the rss feed for
+	 * the browser. Disabling this will allow you to include your
+	 * own feedburner link
+	 */
+	static $include_rss_link = true;
+	
 	static $db = array(
 		'Name' => 'Varchar',
 		'InheritSideBar' => 'Boolean',
@@ -243,7 +250,9 @@ class BlogTree_Controller extends Page_Controller {
 	function init() {
 		parent::init();
 		
-		$this->IncludeBlogRSS();
+		if(BlogTree::$include_rss_link) {
+			$this->IncludeBlogRSS();
+		}
 		
 		Requirements::themedCSS("blog");
 	}
@@ -270,40 +279,6 @@ class BlogTree_Controller extends Page_Controller {
 		// This will create a <link> tag point to the RSS feed
 		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
 	}
-	
-	/*
-	 * @todo: It doesn't look like these are used. Remove if no-one complains - Hamish
-	
-	/**
-	 * Gets the archived blogs for a particular month or year, in the format /year/month/ eg: /2008/10/
-	 * /
-	function showarchive() {
-		$month = addslashes($this->urlParams['ID']);
-		return array(
-			"Children" => DataObject::get('SiteTree', "ParentID = $this->ID AND DATE_FORMAT(`BlogEntry`.`Date`, '%Y-%M') = '$month'"),
-		);		
-	}
-
-	function ArchiveMonths() {
-		$months = DB::query("SELECT DISTINCT DATE_FORMAT(`BlogEntry`.`Date`, '%M') AS `Month`, DATE_FORMAT(`BlogEntry`.`Date`, '%Y') AS `Year` FROM `BlogEntry` ORDER BY `BlogEntry`.`Date` DESC");
-		$output = new DataObjectSet();
-		foreach($months as $month) {
-			$month['Link'] = $this->Link() . "showarchive/$month[Year]-$month[Month]";
-			$output->push(new ArrayData($month));
-		}
-		
-		return $output;
-	}
-	
-	function tag() {
-		if (Director::urlParam('Action') == 'tag') {
-			return array(
-				'Tag' => Convert::raw2xml(Director::urlParam('ID'))
-			);
-		}
-		return array();
-	}
-	*/
 	
 	/**
 	 * Get the rss feed for this blog holder's entries
