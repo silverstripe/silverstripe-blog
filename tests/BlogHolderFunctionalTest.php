@@ -26,7 +26,7 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 		$data = array(
 			'Title'=>'Disallowed',
 			'Author'=>'Disallowed',
-			'Content'=>'Disallowed',
+			'BlogPost'=>'Disallowed',
 			'action_postblog' => 'Post blog entry',
 			'SecurityID' => $securityID
 		);
@@ -40,7 +40,7 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 		$data = array(
 			'Title'=>'Allowed',
 			'Author'=>'Allowed',
-			'Content'=>'Allowed',
+			'BlogPost'=>'Allowed',
 			'action_postblog' => 'Post blog entry',
 			'SecurityID' => $securityID
 		);
