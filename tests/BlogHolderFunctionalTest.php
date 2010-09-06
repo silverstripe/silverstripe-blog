@@ -6,14 +6,22 @@
 class BlogHolderFunctionalTest extends FunctionalTest {
 	
 	static $fixture_file = 'blog/tests/BlogHolderFunctionalTest.yml';
+	static $origlThemes;
 	
 	function setUp() {
 		parent::setUp();
+		self::$origlThemes = SSViewer::current_theme();
+		SSViewer::set_theme(null);
 		
 		$blogHolder = $this->objFromFixture('BlogHolder', 'blogholder');
 		$blogHolder->publish('Stage', 'Live');
 		$blogEntry = $this->objFromFixture('BlogEntry', 'entry1');
 		$blogEntry->publish('Stage', 'Live');
+	}
+	
+	function tearDown(){
+		SSViewer::set_theme(self::$origlThemes);
+		parent::tearDown();
 	}
 	
 	function testFrontendBlogPostRequiresPermission() {
