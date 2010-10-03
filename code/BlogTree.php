@@ -222,7 +222,7 @@ class BlogTree extends Page {
 
 class BlogURL {
 	static function tag() {
-		if (Director::urlParam('Action') == 'tag') return Director::urlParam('ID');
+		if (Director::urlParam('Action') == 'tag') return Convert::raw2xml(Director::urlParam('ID'));
 		return '';
 	}
 
