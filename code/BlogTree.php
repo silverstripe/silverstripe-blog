@@ -297,7 +297,7 @@ class BlogTree_Controller extends Page_Controller {
 	 * @return String
 	 */
 	function SelectedTag() {
-		return ($this->request->latestParam('Action') == 'tag') ? $this->request->latestParam('ID') : '';
+		return ($this->request->latestParam('Action') == 'tag') ? Convert::raw2xml($this->request->latestParam('ID')) : ''; 
 	}
 	
 	/**
