@@ -43,7 +43,7 @@ class TagCloudWidget extends Widget {
 	}
 	
 	function TagsCollection() {
-		Requirements::css("blog/css/tagcloud.css");
+		Requirements::themedCSS("tagcloud");
 		
 		$allTags = array();
 		$max = 0;
