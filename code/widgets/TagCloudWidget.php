@@ -64,13 +64,13 @@ class TagCloudWidget extends Widget {
 		
 			if($allTags) {		
 				//TODO: move some or all of the sorts to the database for more efficiency
-				if($this->Limit > 0){
-					uasort($allTags, array($this, "column_sort_by_popularity"));	//sort by popularity
-					$allTags = array_slice($allTags, 0, $this->Limit,true);
-				 }
-				 if($this->Sortby == "alphabet"){
+				if($this->Limit > 0) $allTags = array_slice($allTags, 0, $this->Limit, true);
+				
+				if($this->Sortby == "alphabet"){
 					$this->natksort($allTags);
-				 }
+				} else{
+					uasort($allTags, array($this, "column_sort_by_popularity")); // sort by frequency
+				}
 				
 				$sizes = array();	
 				foreach ($allTags as $tag => $count) $sizes[$count] = true;
@@ -79,7 +79,7 @@ class TagCloudWidget extends Widget {
 				$numsizes = count($sizes)-1; //Work out the number of different sizes
 				$buckets = count(self::$popularities)-1;
 				
-				// If there are more frequencies then buckets, divide frequencies into buckets
+				// If there are more frequencies than buckets, divide frequencies into buckets
 				if ($numsizes > $buckets) {
 					$numsizes = $buckets;
 				}
