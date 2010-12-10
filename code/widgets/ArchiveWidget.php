@@ -29,15 +29,19 @@ class ArchiveWidget extends Widget {
 	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
 	
 	function getCMSFields() {
-		$fields = new FieldSet(
-			new OptionsetField(
-				'DisplayMode',
-				_t('ArchiveWidget.DispBY', 'Display by'),
-				array(
-					'month' => _t('ArchiveWidget.MONTH', 'month'),
-					'year' => _t('ArchiveWidget.YEAR', 'year')
+		$fields = parent::getCMSFields(); 
+		
+		$fields->merge( 
+			new FieldSet(
+				new OptionsetField(
+					'DisplayMode',
+					_t('ArchiveWidget.DispBY', 'Display by'),
+					array(
+						'month' => _t('ArchiveWidget.MONTH', 'month'),
+						'year' => _t('ArchiveWidget.YEAR', 'year')
+					)
 				)
-			)
+			)	
 		);
 		
 		$this->extend('updateCMSFields', $fields);

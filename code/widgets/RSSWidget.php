@@ -40,10 +40,14 @@ class RSSWidget extends Widget {
 	}
 	
 	function getCMSFields() {
-		$fields = new FieldSet(
-			new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
-			new TextField("RssUrl", _t('RSSWidget.URL', "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed.")),
-			new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
+		$fields = parent::getCMSFields(); 
+		
+		$fields->merge(
+			new FieldSet(
+				new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
+				new TextField("RssUrl", _t('RSSWidget.URL', "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed.")),
+				new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
+			)
 		);
 		
 		$this->extend('updateCMSFields', $fields);
