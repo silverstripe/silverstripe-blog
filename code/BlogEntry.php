@@ -263,5 +263,16 @@ class BlogEntry_Controller extends Page_Controller {
 			Director::redirect($this->getParent()->Link());
 		}		
 	}
+	
+	/**
+	 * Temporary workaround for compatibility with 'comments' module
+	 * (has been extracted from sapphire/trunk in 12/2010).
+	 * 
+	 * @return Form
+	 */
+	function PageComments() {
+		if($this->hasMethod('CommentsForm')) return $this->CommentsForm();
+		else return parent::PageComments();
+	}
 		
 }
