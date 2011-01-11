@@ -27,7 +27,7 @@ class BlogEntry extends Page {
 	
 	static $defaults = array(
 		"ProvideComments" => true,
-		'ShowInMenus' => false
+		'ShowInMenus' => true
 	);
 	
 	static $extensions = array(
