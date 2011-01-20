@@ -57,7 +57,7 @@ class TagCloudWidget extends Widget {
 		
 		if($entries) {
 			foreach($entries as $entry) {
-				$theseTags = split(" *, *", strtolower(trim($entry->Tags)));
+				$theseTags = split(" *, *", mb_strtolower(trim($entry->Tags)));
 				foreach($theseTags as $tag) {
 					if($tag != "") {
 						$allTags[$tag] = isset($allTags[$tag]) ? $allTags[$tag] + 1 : 1; //getting the count into key => value map
