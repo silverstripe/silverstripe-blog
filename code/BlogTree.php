@@ -44,7 +44,10 @@ class BlogTree extends Page {
 		
 		if (!$page) {
 			$controller = Controller::curr();
-			if($controller) $page = $controller->data();
+			if($controller) {
+				if (!isset($controller->data)) return false;
+				$page = $controller->data();
+			}
 		}
 		
 		// If we _are_ a BlogTree, use us
@@ -61,13 +64,14 @@ class BlogTree extends Page {
 		if($top) return $top;
 		
 		// Try to find any BlogTree that is not inside another BlogTree
-		foreach(DataObject::get('BlogTree') as $tree) {
+		if($blogTrees=DataObject::get('BlogTree')) foreach($blogTrees as $tree) {
 			if(!($tree->getParent() instanceof BlogTree)) return $tree;
 		}
 		
 		// This shouldn't be possible, but assuming the above fails, just return anything you can get
-		return DataObject::get_one('BlogTree');
+		return $blogTrees;
 	}
+	
 
 	/* ----------- ACCESSOR OVERRIDES -------------- */
 	
@@ -122,16 +126,14 @@ class BlogTree extends Page {
 	/* ----------- New accessors -------------- */
 	
 	public function loadDescendantBlogHolderIDListInto(&$idList) {
-		if ($children = $this->AllChildren()) {
-			foreach($children as $child) {
-				if(in_array($child->ID, $idList)) continue;
-				
-				if($child instanceof BlogHolder) {
-					$idList[] = $child->ID; 
-				} elseif($child instanceof BlogTree) {
-					$child->loadDescendantBlogHolderIDListInto($idList);
-				}                             
-			}
+		if ($children = $this->AllChildren()) foreach($children as $child) {
+			if(in_array($child->ID, $idList)) continue;
+			
+			if($child instanceof BlogHolder) {
+				$idList[] = $child->ID; 
+			} elseif($child instanceof BlogTree) {
+				$child->loadDescendantBlogHolderIDListInto($idList);
+			}                             
 		}
 	}
 	
@@ -317,8 +319,7 @@ class BlogTree_Controller extends Page_Controller {
 				return $date;
 				
 			} else {
-				
-				if(is_numeric($year)) return $year;	
+				if(is_numeric($year)) return $year;
 			}
 		}
 			
