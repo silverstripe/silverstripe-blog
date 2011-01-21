@@ -263,7 +263,7 @@ class BlogTree_Controller extends Page_Controller {
 	 * This will create a <link> tag point to the RSS feed
 	 */
 	function IncludeBlogRSS() {
-		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
+		RSSFeed::linkToFeed($this->Link('rss'), _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
 	}
 	
 	/**
