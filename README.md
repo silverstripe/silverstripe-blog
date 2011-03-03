@@ -39,8 +39,6 @@ We have chosen to go with the following page types to include with the blog modu
 
 *  BlogEntry: This is simply an entry/post for the blog.
 
-In order to activate RSD you have to put $RSDLink in Page.ss, or BlogHolder.ss (if it is located in templates, and not Layout). After doing this, just point the blog service to the BlogHolder's url during that service's configuration. 
-
 
 ## Simple form for adding a post
 
@@ -75,6 +73,7 @@ MetaWeblogController::$MODERATE_PUBLISHING - indicates whether blog entries post
 
 MetaWeblogController::$RESTRICT_POST_TO_OWNER - restrict postings to the user defined as 'owner' in the blog holder (default: false)
 
+In order to activate RSD you have to put $RSDLink in Page.ss, or BlogHolder.ss (if it is located in templates, and not Layout). After doing this, just point the blog service to the BlogHolder's url during that service's configuration.
 
 ## Comments and Spam Protection
 
