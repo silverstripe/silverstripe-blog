@@ -75,6 +75,8 @@ MetaWeblogController::$RESTRICT_POST_TO_OWNER - restrict postings to the user de
 
 In order to activate RSD you have to put $RSDLink in Page.ss, or BlogHolder.ss (if it is located in templates, and not Layout). After doing this, just point the blog service to the BlogHolder's url during that service's configuration.
 
+Another note: Please make sure that this module's main directory is named 'blog'. MetaWeblog won't work otherwise.
+
 ## Comments and Spam Protection
 
 See [:pagecomment](/pagecomment) for creating Askimet-protected comments for every page.
