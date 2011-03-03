@@ -19,6 +19,7 @@ The blog module allows you to post blogs on your SilverStripe. It includes the a
 *  Archive widget
 *  Blog management widget
 *  RSS widget (will likely move in future)
+*  MetaWeblog API support. (posting new blog entries using Posterous, and other blogging services that use this API).
 
 ## Configuration Options
 
@@ -37,6 +38,8 @@ We have chosen to go with the following page types to include with the blog modu
 *  BlogHolder: The BlogHolder shows BlogEntrys, and provides a way to search etc.It would also contain methods to post new blogs.
 
 *  BlogEntry: This is simply an entry/post for the blog.
+
+In order to activate RSD you have to put $RSDLink in Page.ss, or BlogHolder.ss (if it is located in templates, and not Layout). After doing this, just point the blog service to the BlogHolder's url during that service's configuration. 
 
 
 ## Simple form for adding a post
@@ -64,6 +67,14 @@ Blog archives can be viewed by year/month by appending the year, followed by a f
 for example: mysite/blog/2007/6 would show blog entries for June 2007
 
 or: mysite/blog/2007 would show blog entries for 2007
+
+
+## Setting up MetaWeblog and RSD (Really Simple Discovery)
+
+MetaWeblogController::$MODERATE_PUBLISHING - indicates whether blog entries posted via the API will need manual approvial via the CMS. (default: false)
+
+MetaWeblogController::$RESTRICT_POST_TO_OWNER - restrict postings to the user defined as 'owner' in the blog holder (default: false)
+
 
 ## Comments and Spam Protection
 

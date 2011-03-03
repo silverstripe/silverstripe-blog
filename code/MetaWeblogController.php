@@ -7,7 +7,11 @@ require_once(BASE_PATH . '/blog/thirdparty/xmlrpc/xmlrpc_wrappers.php');
 /**
  * MetaWeblogController provides the MetaWeblog API for SilverStripe blogs.
  */
-class MetaWeblogController extends Controller {	
+class MetaWeblogController extends Controller {
+
+        static $MODERATE_PUBLISHING = false;
+        static $RESTRICT_POST_TO_OWNER = false;
+        
 	function index($request) {
 		Debug::log(Debug::text($request));
 		
@@ -21,7 +25,10 @@ class MetaWeblogController extends Controller {
 			),
 			'metaWeblog.getCategories' => array(
 				'function' => array($this, 'getCategories')
-			)
+			),
+                        'metaWeblog.newPost' => array(
+                            'function' => array($this, 'newPost')
+                        )
 		), false);
 		
 		// Use nice php functions, and call the service
@@ -31,15 +38,49 @@ class MetaWeblogController extends Controller {
 		// Tell SilverStripe not to try render a template
 		return false;
 	}
+
+        /**
+         * Authenticate the user.
+         *
+         * If blogid is not null, make sure that the user is the author of the blog
+         *
+         * @param <string> $username
+         * @param <string> $password
+         * @param <int> $blogid
+         * @return <DataObject> $member
+         */
+        private function authenticate($username, $password, $blogid=null) {
+
+            $member = MemberAuthenticator::authenticate(array(
+                        'Email' => $username,
+                        'Password' => $password,
+                    ));
+
+            if (!$member){
+                Debug::log(Debug::text("Authentication Failed for " . $username));
+                return false;
+            }
+
+            Session::set("loggedInAs",$member->ID);
+
+            if ($blogid && self::$RESTRICT_POST_TO_OWNER) {
+                $blogHolder = DataObject::get_one("BlogHolder", "`BlogHolder`.`ID` = " . (int) $blogid);
+
+                if ($blogHolder->OwnerID == $member->ID){
+                    return $member;
+                }
+            }else {
+                return $member;
+            }
+
+            return false;
+        }
 	
 	/**
 	 * Get a list of BlogHolders the user has access to.
 	 */
 	function getUsersBlogs($appkey, $username, $password) {
-		$member = MemberAuthenticator::authenticate(array(
-				'Email' => $username, 
-				'Password' => $password,
-		));
+		$member = $this->authenticate($username, $password);
 		
 		// TODO Throw approriate error.
 		if(!$member) die();
@@ -66,10 +107,7 @@ class MetaWeblogController extends Controller {
 	 * Get the most recent posts on a blog.
 	 */
 	function getRecentPosts($blogid, $username, $password, $numberOfPosts) {
-		$member = MemberAuthenticator::authenticate(array(
-				'Email' => $username, 
-				'Password' => $password,
-		));
+		$member = $this->authenticate($username, $password);
 		
 		// TODO Throw approriate error.
 		if(!$member) die();
@@ -101,6 +139,37 @@ class MetaWeblogController extends Controller {
 		//TODO dummy function
 		return array();
 	}
+
+
+        /**
+         * Post a new Blog entry onto a Blog
+         *
+         * @param <int> $blogid
+         * @param <string> $username
+         * @param <string> $password
+         * @param <array> $struct
+         * @param <boolean> $publish
+         * @return Boolean
+         */
+        public function newPost($blogid, $username, $password, $struct, $publish) {
+            $member = $this->authenticate($username, $password, $blogid);
+
+            // TODO Throw approriate error.
+            if (!$member) die();
+
+            $blogEntry = new BlogEntry();
+            $blogEntry->setField("Title", $struct['title']);
+            $blogEntry->setField("Content", $struct['description']);
+            $blogEntry->setField("ParentID", $blogid);
+
+            $blogEntry->write();
+
+            if($publish && !self::$MODERATE_PUBLISHING){
+                $blogEntry->doPublish();
+            }
+
+            return true;
+        }
 }
 
 ?>

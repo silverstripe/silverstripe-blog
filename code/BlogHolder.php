@@ -157,6 +157,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		'tag',
 		'date',
 		'metaweblog',
+                'rsd',
 		'postblog' => 'BLOGMANAGEMENT',
 		'post' => 'BLOGMANAGEMENT',
 		'BlogEntryForm' => 'BLOGMANAGEMENT',
@@ -286,6 +287,36 @@ class BlogHolder_Controller extends BlogTree_Controller {
 
 		Director::redirect($this->Link());
 	}
+
+        public function RSDLink() {
+
+            $url = $this->BaseHref() . $this->URLSegment . '/rsd';
+
+            return '<link rel="EditURI" type="application/rsd+xml" title="RSD" href="' . $url . '" />';
+        }
+
+        public function RSD() {
+            $homepage = Director::absoluteBaseURL();
+            $controller = $homepage . "metaweblog";
+            return <<<RSD
+<?xml version="1.0" ?>
+<rsd version="1.0" xmlns="http://archipelago.phrasewise.com/rsd" >
+    <service>
+        <engineName>Silverstripe Blog</engineName>
+        <engineLink>http://silverstripe.org/blog-module/</engineLink>
+        <homePageLink>{$homepage}</homePageLink>
+        <apis>
+                <api name="MetaWeblog" preferred="true" apiLink="{$controller}" blogID="{$this->ID}" >
+                    <settings>
+                        <notes>This MetaWeblog implementation is currently limited. It is part of the Silverstripe Blog module</notes>
+                    </settings>
+                 </api>
+        </apis>
+    </service>
+</rsd>
+
+RSD;
+        }
 }
 
 
