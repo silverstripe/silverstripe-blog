@@ -44,7 +44,10 @@ class BlogTree extends Page {
 		
 		if (!$page) {
 			$controller = Controller::curr();
-			if($controller) $page = $controller->data();
+			if($controller) {
+				if (!isset($controller->data)) return false;
+				$page = $controller->data();
+			}
 		}
 		
 		// If we _are_ a BlogTree, use us
@@ -61,13 +64,14 @@ class BlogTree extends Page {
 		if($top) return $top;
 		
 		// Try to find any BlogTree that is not inside another BlogTree
-		foreach(DataObject::get('BlogTree') as $tree) {
+		if($blogTrees=DataObject::get('BlogTree')) foreach($blogTrees as $tree) {
 			if(!($tree->getParent() instanceof BlogTree)) return $tree;
 		}
 		
 		// This shouldn't be possible, but assuming the above fails, just return anything you can get
-		return DataObject::get_one('BlogTree');
+		return $blogTrees;
 	}
+	
 
 	/* ----------- ACCESSOR OVERRIDES -------------- */
 	
@@ -122,16 +126,14 @@ class BlogTree extends Page {
 	/* ----------- New accessors -------------- */
 	
 	public function loadDescendantBlogHolderIDListInto(&$idList) {
-		if ($children = $this->AllChildren()) {
-			foreach($children as $child) {
-				if(in_array($child->ID, $idList)) continue;
-				
-				if($child instanceof BlogHolder) {
-					$idList[] = $child->ID; 
-				} elseif($child instanceof BlogTree) {
-					$child->loadDescendantBlogHolderIDListInto($idList);
-				}                             
-			}
+		if ($children = $this->AllChildren()) foreach($children as $child) {
+			if(in_array($child->ID, $idList)) continue;
+			
+			if($child instanceof BlogHolder) {
+				$idList[] = $child->ID; 
+			} elseif($child instanceof BlogTree) {
+				$child->loadDescendantBlogHolderIDListInto($idList);
+			}                             
 		}
 	}
 	
@@ -210,7 +212,8 @@ class BlogTree_Controller extends Page_Controller {
 	static $allowed_actions = array(
 		'index',
 		'rss',
-		'tag'
+		'tag',
+		'date'
 	);
 	
 	function init() {
@@ -240,17 +243,19 @@ class BlogTree_Controller extends Page_Controller {
 			$id = Convert::raw2sql($_GET['authorID']);
 			
 			$filter .= " \"BlogEntry\".\"Author\" LIKE '". $author . "' OR \"BlogEntry\".\"AuthorID\" = '". $id ."'";
-		} else if(isset($_GET['author'])) {
+		}
+		else if(isset($_GET['author'])) {
 			$filter .=  " \"BlogEntry\".\"Author\" LIKE '". Convert::raw2sql($_GET['author']) . "'";
-		} else if(isset($_GET['authorID'])) {
+		}
+		else if(isset($_GET['authorID'])) {
 			$filter .=  " \"BlogEntry\".\"AuthorID\" = '". Convert::raw2sql($_GET['authorID']). "'";
 		}
 		
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
 		
-		$date = $this->SelectedDate();		
+		$date = $this->SelectedDate();
 		
-		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date->Format('Y-m') : '', null, $filter);
+		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date : '', null, $filter);
 	}
 
 	/**
@@ -272,7 +277,7 @@ class BlogTree_Controller extends Page_Controller {
 		$entries = $this->Entries(20);
 
 		if($entries) {
-			$rss = new RSSFeed($entries, $this->Link(), ($blogName ? $blogName : $altBlogName), "", "Title", "ParsedContent");
+			$rss = new RSSFeed($entries, $this->Link(), ($blogName ? $blogName : $altBlogName), "", "Title", "RSSContent");
 			$rss->outputToBrowser();
 		}
 	}
@@ -282,6 +287,7 @@ class BlogTree_Controller extends Page_Controller {
 	 */
 	function defaultAction($action) {
 		if(stristr($_SERVER['HTTP_USER_AGENT'], 'SimplePie')) return $this->rss();
+		
 		return parent::defaultAction($action);
 	}
 	
@@ -291,7 +297,7 @@ class BlogTree_Controller extends Page_Controller {
 	 * @return String
 	 */
 	function SelectedTag() {
-		return ($this->request->latestParam('Action') == 'tag') ? Convert::raw2xml($this->request->latestParam('ID')) : ''; 
+		return ($this->request->latestParam('Action') == 'tag') ? Convert::raw2xml($this->request->latestParam('ID')) : '';
 	}
 	
 	/**
@@ -305,13 +311,27 @@ class BlogTree_Controller extends Page_Controller {
 			$month = $this->request->latestParam('OtherID');
 	
 			if(is_numeric($year) && is_numeric($month) && $month < 13) {
-				$date = new Date();
-				$date->setValue($year .'-'. $month);
-				
+		
+				$date = $year .'-'. $month;
 				return $date;
+				
+			} else {
+				if(is_numeric($year)) return $year;
 			}
 		}
 			
 		return false;
+	}
+	
+	function SelectedNiceDate(){
+		$date = $this->SelectedDate();
+		
+		if(strpos($date, '-')) {
+			$date = explode("-",$date);
+			return date("F", mktime(0, 0, 0, $date[1], 1, date('Y'))). " " .date("Y", mktime(0, 0, 0, date('m'), 1, $date[0]));
+		
+		} else {
+			return date("Y", mktime(0, 0, 0, date('m'), 1, $date));
+		}
 	}
 }
