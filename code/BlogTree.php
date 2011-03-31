@@ -102,18 +102,18 @@ class BlogTree extends Page {
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Name", "Name of blog"));
 		$fields->addFieldToTab('Root.Content.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
  			"" => "All entries", 
-			"1 MONTH" => "Last month's entries", 
-			"2 MONTH" => "Last 2 months' entries", 
-			"3 MONTH" => "Last 3 months' entries", 
-			"4 MONTH" => "Last 4 months' entries", 
-			"5 MONTH" => "Last 5 months' entries", 
-			"6 MONTH" => "Last 6 months' entries", 
-			"7 MONTH" => "Last 7 months' entries", 
-			"8 MONTH" => "Last 8 months' entries", 
-			"9 MONTH" => "Last 9 months' entries", 
-			"10 MONTH" => "Last 10 months' entries", 
-			"11 MONTH" => "Last 11 months' entries", 
-			"12 MONTH" => "Last year's entries", 
+			"1" => "Last month's entries", 
+			"2" => "Last 2 months' entries", 
+			"3" => "Last 3 months' entries", 
+			"4" => "Last 4 months' entries", 
+			"5" => "Last 5 months' entries", 
+			"6" => "Last 6 months' entries", 
+			"7" => "Last 7 months' entries", 
+			"8" => "Last 8 months' entries", 
+			"9" => "Last 9 months' entries", 
+			"10" => "Last 10 months' entries", 
+			"11" => "Last 11 months' entries", 
+			"12" => "Last year's entries", 
 			"INHERIT" => "Take value from parent Blog Tree"
 		))); 
  	
@@ -232,13 +232,14 @@ class BlogTree_Controller extends Page_Controller {
 		// only use freshness if no action is present (might be displaying tags or rss)
 		if ($this->LandingPageFreshness && !$this->request->param('Action')) {
 			$d = new Zend_Date(SS_Datetime::now()->getValue());
-			$d->sub($this->LandingPageFreshness);
+			if(strlen($this->LandingPageFreshness)>2)$this->LandingPageFreshness=rtrim(substr($this->LandingPageFreshness, 0, 2)); //For backcompatibility
+			$d->sub($this->LandingPageFreshness,Zend_Date::MONTH);
 			$date = $d->toString('YYYY-MM-dd');
-			
 			$filter = "\"BlogEntry\".\"Date\" > '$date'";
 		} else {
 			$filter = '';
 		}
+		
 		// allow filtering by author field and some blogs have an authorID field which
 		// may allow filtering by id
 		if(isset($_GET['author']) && isset($_GET['authorID'])) {
