@@ -162,9 +162,17 @@ class BlogTree extends Page {
 		}
 
 		if($date) {
-			if(strpos($date, '-')) {
-				$year = (int) substr($date, 0, strpos($date, '-'));
-				$month = (int) substr($date, strpos($date, '-') + 1);
+			// Some systems still use the / seperator for date presentation
+			if( strpos($date, '-') ) $seperator = '-';
+			elseif( strpos($date, '/') ) $seperator = '/';
+			
+			if(isset($seperator) && !empty($seperator)) {
+				// The 2 in the explode argument will tell it to only create 2 elements
+				// i.e. in this instance the $year and $month fields respectively
+				list($year,$month) = explode( $seperator, $date, 2);
+				
+				$year = (int)$year;
+				$month = (int)$month;
 
 				if($year && $month) {
 					if(method_exists(DB::getConn(), 'formattedDatetimeClause')) {
