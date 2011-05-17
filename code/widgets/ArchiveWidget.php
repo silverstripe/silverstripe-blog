@@ -22,12 +22,12 @@ class ArchiveWidget extends Widget {
 		'DisplayMode' => 'month'
 	);
 	
-	static $title = 'Browse by Date';
+	static $title;
 
-	static $cmsTitle = 'Blog Archive';
+	static $cmsTitle;
 	
-	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
-	
+	static $description;
+		
 	function getCMSFields() {
 		$fields = parent::getCMSFields(); 
 		
@@ -107,4 +107,7 @@ class ArchiveWidget extends Widget {
 	}	
 }
 
+ArchiveWidget::$title = i18n::_t('ArchiveWidget.BrowseByDate', 'Browse by Date');
+ArchiveWidget::$cmsTitle = i18n::_t('ArchiveWidget.BlogArchive', 'Blog Archive');
+ArchiveWidget::$description = i18n::_t('ArchiveWidget.Description', 'Show a list of months or years in which there are blog posts, and provide links to them.');
 ?>

@@ -2,6 +2,9 @@
 
 global $lang;
 
+$lang['en_US']['ArchiveWidget']['BlogArchive'] = 'Blog Archive';
+$lang['en_US']['ArchiveWidget']['BrowseByDate'] = 'Browse by Date';
+$lang['en_US']['ArchiveWidget']['Description'] = 'Show a list of months or years in which there are blog posts, and provide links to them.';
 $lang['en_US']['ArchiveWidget']['DispBY'] = 'Display by';
 $lang['en_US']['ArchiveWidget']['MONTH'] = 'month';
 $lang['en_US']['ArchiveWidget']['PLURALNAME'] = array(
@@ -72,9 +75,12 @@ $lang['en_US']['BlogManagementWidget']['UNM1'] = 'You have 1 unmoderated comment
 $lang['en_US']['BlogManagementWidget']['UNMM'] = 'You have %i unmoderated comments';
 $lang['en_US']['BlogManagementWidget.ss']['LOGOUT'] = 'Logout';
 $lang['en_US']['BlogManagementWidget.ss']['POSTNEW'] = 'Post a new blog entry';
+$lang['en_US']['BlogSummary.ss']['COMMENTSTITLE'] = 'View Comments for this post.';
 $lang['en_US']['BlogSummary.ss']['COMMENTS'] = 'Comments';
 $lang['en_US']['BlogSummary.ss']['POSTEDBY'] = 'Posted by';
 $lang['en_US']['BlogSummary.ss']['POSTEDON'] = 'on';
+$lang['en_US']['BlogSummary.ss']['READFULLPOSTTITLE'] = 'Read Full Post';
+$lang['en_US']['BlogSummary.ss']['READFULLPOST'] = 'Read the full post';
 $lang['en_US']['BlogSummary.ss']['VIEWFULL'] = 'View full post titled -';
 $lang['en_US']['BlogTree']['PLURALNAME'] = array(
 	'Blog Tres',
@@ -111,6 +117,8 @@ $lang['en_US']['SubscribeRSSWidget']['SINGULARNAME'] = array(
 );
 $lang['en_US']['SubscribeRSSWidget.ss']['SUBSCRIBETEXT'] = 'Subscribe';
 $lang['en_US']['SubscribeRSSWidget.ss']['SUBSCRIBETITLE'] = 'Subscribe to this blog via RSS';
+$lang['en_US']['TagCloudWidget']['CMSTITLE'] = 'Tag Cloud';
+$lang['en_US']['TagCloudWidget']['DESCRIPTION'] = 'Shows a tag cloud of tags on your blog.';
 $lang['en_US']['TagCloudWidget']['LIMIT'] = 'Limit number of tags';
 $lang['en_US']['TagCloudWidget']['PLURALNAME'] = array(
 	'Tag Cloud Widgets',

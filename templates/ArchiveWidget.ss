@@ -2,8 +2,8 @@
 	<ul class="archiveMonths">
 		<% control Dates %>
 			<li>
-				<a href="$Link">
-					$Date.Format(F) $Date.Year
+				<a href="$Link">					
+					$Date.FormatI18N(%B) $Date.Year
 				</a>
 			</li>
 		<% end_control %>

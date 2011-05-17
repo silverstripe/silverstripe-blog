@@ -16,6 +16,9 @@ if(array_key_exists('de_DE', $lang) && is_array($lang['de_DE'])) {
 	$lang['de_DE'] = $lang['en_US'];
 }
 
+$lang['de_DE']['ArchiveWidget']['BlogArchive'] = 'Archiv';
+$lang['de_DE']['ArchiveWidget']['BrowseByDate'] = '√úbersicht';
+$lang['de_DE']['ArchiveWidget']['Description'] = 'Zeigt eine Liste von Monaten oder Jahren, welche Blog Eintr√§ge enthalten und erstellt Links';
 $lang['de_DE']['ArchiveWidget']['DispBY'] = 'Anzeige nach';
 $lang['de_DE']['ArchiveWidget']['MONTH'] = 'Monat';
 $lang['de_DE']['ArchiveWidget']['PLURALNAME'] = 'Archiv-Widgets';
@@ -56,8 +59,11 @@ $lang['de_DE']['BlogManagementWidget.ss']['POSTNEW'] = 'Neuen Eintrag schreiben'
 $lang['de_DE']['BlogManagementWidget']['UNM1'] = 'Sie haben 1 noch nicht moderierten Kommentar';
 $lang['de_DE']['BlogManagementWidget']['UNMM'] = 'Sie haben %i noch nicht moderierte Kommentare';
 $lang['de_DE']['BlogSummary.ss']['COMMENTS'] = 'Kommentare';
+$lang['de_DE']['BlogSummary.ss']['COMMENTSTITLE'] = 'Kommentare von diesem Eintrag anzeigen.';
 $lang['de_DE']['BlogSummary.ss']['POSTEDBY'] = 'Verfasst von';
 $lang['de_DE']['BlogSummary.ss']['POSTEDON'] = 'am';
+$lang['de_DE']['BlogSummary.ss']['READFULLPOSTTITLE'] = 'Den ganzen Eintrag lesen';
+$lang['de_DE']['BlogSummary.ss']['READFULLPOST'] = 'Weiterlesen';
 $lang['de_DE']['BlogSummary.ss']['VIEWFULL'] = 'Detaillierte Ansicht von dem Titel --';
 $lang['de_DE']['RSSWidget']['CT'] = 'Eigener Titel für den feed';
 $lang['de_DE']['RSSWidget']['NTS'] = 'Anzahl der angezeigten Items';
@@ -68,6 +74,8 @@ $lang['de_DE']['SubscribeRSSWidget']['PLURALNAME'] = 'RSS-Abonnier-Widgets';
 $lang['de_DE']['SubscribeRSSWidget']['SINGULARNAME'] = 'RSS-Abonnier-Widget';
 $lang['de_DE']['SubscribeRSSWidget.ss']['SUBSCRIBETEXT'] = 'Abonnieren';
 $lang['de_DE']['SubscribeRSSWidget.ss']['SUBSCRIBETITLE'] = 'Abonniere diesen Blog per RSS';
+$lang['de_DE']['TagCloudWidget']['CMSTITLE'] = 'Tags';
+$lang['de_DE']['TagCloudWidget']['DESCRIPTION'] = 'Zeigt die Liste der Tags des Blogs.';
 $lang['de_DE']['TagCloudWidget']['LIMIT'] = 'Anzahl der erlaubten Tags';
 $lang['de_DE']['TagCloudWidget']['PLURALNAME'] = 'Tag-Cloud-Widgets';
 $lang['de_DE']['TagCloudWidget']['SBAL'] = 'Alphabet';
