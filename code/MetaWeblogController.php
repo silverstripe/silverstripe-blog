@@ -9,7 +9,6 @@ require_once(BASE_PATH . '/blog/thirdparty/xmlrpc/xmlrpc_wrappers.php');
  */
 class MetaWeblogController extends Controller {	
 	function index($request) {
-		Debug::log(Debug::text($request));
 		
 		// Create an xmlrpc server, and set up the method calls
 		$service = new xmlrpc_server(array(
