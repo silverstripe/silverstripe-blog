@@ -22,11 +22,23 @@ class ArchiveWidget extends Widget {
 		'DisplayMode' => 'month'
 	);
 	
-	static $title;
-
-	static $cmsTitle;
+	static $title = 'Browse by Date';
 	
-	static $description;
+	static $cmsTitle = 'Blog Archive';
+	
+	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
+	
+	function Title() {
+		return i18n::_t('ArchiveWidget.BrowseByDate', ArchiveWidget::$title);
+	}
+	
+	function CMSTitle() {
+		return i18n::_t('ArchiveWidget.BlogArchive', ArchiveWidget::$cmsTitle);
+	}
+	
+	function Description() {
+		return i18n::_t('ArchiveWidget.Description', ArchiveWidget::$description);
+	}
 		
 	function getCMSFields() {
 		$fields = parent::getCMSFields(); 
@@ -107,7 +119,4 @@ class ArchiveWidget extends Widget {
 	}	
 }
 
-ArchiveWidget::$title = i18n::_t('ArchiveWidget.BrowseByDate', 'Browse by Date');
-ArchiveWidget::$cmsTitle = i18n::_t('ArchiveWidget.BlogArchive', 'Blog Archive');
-ArchiveWidget::$description = i18n::_t('ArchiveWidget.Description', 'Show a list of months or years in which there are blog posts, and provide links to them.');
 ?>

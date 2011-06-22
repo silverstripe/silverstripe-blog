@@ -17,8 +17,8 @@ if(array_key_exists('de_DE', $lang) && is_array($lang['de_DE'])) {
 }
 
 $lang['de_DE']['ArchiveWidget']['BlogArchive'] = 'Archiv';
-$lang['de_DE']['ArchiveWidget']['BrowseByDate'] = '√úbersicht';
-$lang['de_DE']['ArchiveWidget']['Description'] = 'Zeigt eine Liste von Monaten oder Jahren, welche Blog Eintr√§ge enthalten und erstellt Links';
+$lang['de_DE']['ArchiveWidget']['BrowseByDate'] = 'Archiv';
+$lang['de_DE']['ArchiveWidget']['Description'] = 'Zeigt eine Liste von Monaten oder Jahren, welche Blog Einträge enthalten und erstellt Links';
 $lang['de_DE']['ArchiveWidget']['DispBY'] = 'Anzeige nach';
 $lang['de_DE']['ArchiveWidget']['MONTH'] = 'Monat';
 $lang['de_DE']['ArchiveWidget']['PLURALNAME'] = 'Archiv-Widgets';
