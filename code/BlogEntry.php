@@ -270,7 +270,7 @@ class BlogEntry_Controller extends Page_Controller {
 	 */
 	function PageComments() {
 		if($this->hasMethod('CommentsForm')) return $this->CommentsForm();
-		else return parent::PageComments();
+		else if(method_exists('Page_Controller', 'PageComments')) return parent::PageComments();
 	}
 		
 }
