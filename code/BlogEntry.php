@@ -31,9 +31,7 @@ class BlogEntry extends Page {
 	);
 	
 	static $extensions = array(
-		'Hierarchy',
-		'TrackBackDecorator',
-		"Versioned('Stage', 'Live')"
+		'TrackBackDecorator'
 	);
 		
 	/**
