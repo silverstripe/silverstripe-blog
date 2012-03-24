@@ -99,7 +99,7 @@ class TypoImport extends Controller {
 				$Ccreated_at = $row2[8];
 			
 	  			// 	put the typo blog comment in the SS database
-				$newCEntry = new PageComment();
+				$newCEntry = new Comment();
 				$newCEntry->Name = $Cauthor;	
 				$newCEntry->Comment = $comment;
 				$newCEntry->Created = $created_at;
@@ -129,17 +129,17 @@ class TypoImport extends Controller {
 			pg_query($dbconn, "UPDATE SiteTree SET Content = REPLACE(Content, \"&#8482;\", \"&trade;\")");
 			pg_query($dbconn, "UPDATE SiteTree SET Content = REPLACE(Content, \"&#38;\", \"&amp;\")");
 			
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#215;\", \"x\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8217;\", \"&rsquo;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8216;\", \"&lsquo;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#151;\", \"&mdash;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8220;\", \"&ldquo;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8221;\", \"&rdquo;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8211;\", \"&ndash;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8212;\", \"&mdash;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8230;\", \"&hellip;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#8482;\", \"&trade;\")");
-			pg_query($dbconn, "UPDATE PageComment SET Comment = REPLACE(Comment, \"&#38;\", \"&amp;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#215;\", \"x\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8217;\", \"&rsquo;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8216;\", \"&lsquo;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#151;\", \"&mdash;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8220;\", \"&ldquo;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8221;\", \"&rdquo;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8211;\", \"&ndash;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8212;\", \"&mdash;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8230;\", \"&hellip;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#8482;\", \"&trade;\")");
+			pg_query($dbconn, "UPDATE Comment SET Comment = REPLACE(Comment, \"&#38;\", \"&amp;\")");
 			
 			
 		}
