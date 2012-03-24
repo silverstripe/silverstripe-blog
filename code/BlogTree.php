@@ -95,8 +95,8 @@ class BlogTree extends Page {
 	
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$fields->addFieldToTab("Root.Content.Main", new TextField("Name", "Name of blog"));
-		$fields->addFieldToTab('Root.Content.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
+		$fields->addFieldToTab("Root.Main", new TextField("Name", "Name of blog"));
+		$fields->addFieldToTab('Root.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
  			"" => "All entries", 
 			"1 MONTH" => "Last month's entries", 
 			"2 MONTH" => "Last 2 months' entries", 
@@ -113,8 +113,8 @@ class BlogTree extends Page {
 			"INHERIT" => "Take value from parent Blog Tree"
 		))); 
  	
-		$fields->addFieldToTab("Root.Content.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
-		$fields->addFieldToTab("Root.Content.Widgets", new WidgetAreaEditor("SideBar"));
+		$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
+		$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
 		
 		return $fields;
 	}
@@ -149,7 +149,7 @@ class BlogTree extends Page {
 	 * @param string date Only get blog entries on this date - either a year, or a year-month eg '2008' or '2008-02'
 	 * @param callback retrieveCallback A function to call with pagetype, filter and limit for custom blog sorting or filtering
 	 * @param string $where
-	 * @return DataObjectSet
+	 * @return DataList
 	 */
 	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
 		

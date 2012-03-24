@@ -52,7 +52,7 @@ class ArchiveWidget extends Widget {
 	function Dates() {
 		Requirements::themedCSS('archivewidget');
 		
-		$results = new DataObjectSet();
+		$results = new ArrayList();
 		$container = BlogTree::current();
 		$ids = $container->BlogHolderIDs();
 		

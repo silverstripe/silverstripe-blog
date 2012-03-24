@@ -56,7 +56,7 @@ class BlogHolderTest extends SapphireTest {
 	
 	function testBlogOwners() {
 		$mainblog = $this->objFromFixture('BlogHolder', 'mainblog');
-		$actualMembers = array_values($mainblog->blogOwners()->toDropDownMap('ID', 'Name')); 
+		$actualMembers = array_values($mainblog->blogOwners()->map('ID', 'Name')); 
 		$expectedMembers = array(
 			'ADMIN User', // test default admin
 			'Admin One',

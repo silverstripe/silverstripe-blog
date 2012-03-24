@@ -34,9 +34,9 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		$fields = parent::getCMSFields();
 		SiteTree::enableCMSFieldsExtensions();
 
-		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
-		$fields->addFieldToTab('Root.Content.Main', new DropdownField('OwnerID', 'Blog owner', $blogOwners->toDropDownMap('ID', 'Name', 'None')));
-		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'));
+		$fields->addFieldToTab('Root.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
+		$fields->addFieldToTab('Root.Main', new DropdownField('OwnerID', 'Blog owner', $blogOwners->map('ID', 'Name')));
+		$fields->addFieldToTab('Root.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'));
 
 		$this->extend('updateCMSFields', $fields);
 
@@ -50,8 +50,8 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		$adminMembers = Permission::get_members_by_permission('ADMIN'); 
 		$blogOwners = Permission::get_members_by_permission('BLOGMANAGEMENT');
 		
-		if(!$adminMembers) $adminMembers = new DataObjectSet(); 
-		if(!$blogOwners) $blogOwners = new DataObjectSet();
+		if(!$adminMembers) $adminMembers = new ArrayList(); 
+		if(!$blogOwners) $blogOwners = new ArrayList();
 		
 		$blogOwners->merge($adminMembers);
 		$blogOwners->sort($sort, $direction);

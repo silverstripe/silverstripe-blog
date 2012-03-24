@@ -105,7 +105,7 @@ class TagCloudWidget extends Widget {
 				}
 			}
 			
-			$output = new DataObjectSet();
+			$output = new ArrayList();
 			foreach($allTags as $tag => $fields) {
 				$output->push(new ArrayData($fields));
 			}
