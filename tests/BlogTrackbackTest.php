@@ -60,7 +60,7 @@ class BlogTrackbackTest extends SapphireTest {
 		$entry1 = $this->objFromFixture('BlogEntry', 'testpost');
 		$entry1->doPublish(); 
 		$this->assertEquals(2, $entry1->TrackBackURLs()->Count());
-		$this->assertEquals(array('testGoodTrackbackURL' => 1), $entry1->TrackBackURLs()->map('URL', 'Pung'));
+		$this->assertEquals(array('testGoodTrackbackURL' => 1), $entry1->TrackBackURLs()->map('URL', 'Pung')->toArray());
 		
 		$entry2 = $this->objFromFixture('BlogEntry', 'testpost2');
 		$entry2->doPublish(); 

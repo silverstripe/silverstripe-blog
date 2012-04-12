@@ -27,15 +27,15 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		'BlogEntry'
 	);
 
-	function getCMSFields() {
+	function getCMSFields($params = null) {
 		$blogOwners = $this->blogOwners(); 
 
 		SiteTree::disableCMSFieldsExtensions();
-		$fields = parent::getCMSFields();
+		$fields = parent::getCMSFields($params);
 		SiteTree::enableCMSFieldsExtensions();
 
 		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
-		$fields->addFieldToTab('Root.Content.Main', new DropdownField('OwnerID', 'Blog owner', $blogOwners->toDropDownMap('ID', 'Name', 'None')));
+		$fields->addFieldToTab('Root.Content.Main', new DropdownField('OwnerID', 'Blog owner', $blogOwners->map('ID', 'Name')));
 		$fields->addFieldToTab('Root.Content.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'));
 
 		$this->extend('updateCMSFields', $fields);
@@ -49,15 +49,15 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	function blogOwners($sort = 'Name', $direction = "ASC") {
 		$adminMembers = Permission::get_members_by_permission('ADMIN'); 
 		$blogOwners = Permission::get_members_by_permission('BLOGMANAGEMENT');
-		
-		if(!$adminMembers) $adminMembers = new DataObjectSet(); 
-		if(!$blogOwners) $blogOwners = new DataObjectSet();
-		
+
+		if(!$adminMembers) $adminMembers = new ArrayList();
+		if(!$blogOwners) $blogOwners = new ArrayList();
+
 		$blogOwners->merge($adminMembers);
 		$blogOwners->sort($sort, $direction);
-		
+
 		$this->extend('extendBlogOwners', $blogOwners);
-		
+
 		return $blogOwners;
 	}
 
@@ -204,7 +204,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		}
 
 		$codeparser = new BBCodeParser();
-		$membername = Member::currentMember() ? Member::currentMember()->getName() : "";
+		$membername = Member::currentUser() ? Member::currentUser()->getName() : "";
 
 		if(BlogEntry::$allow_wysiwyg_editing) {
 			$contentfield = new HtmlEditorField("BlogPost", _t("BlogEntry.CN"));
@@ -226,7 +226,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		if(!$this->AllowCustomAuthors && !Permission::check('ADMIN')) {
 			$field = 'ReadonlyField';
 		}
-		$fields = new FieldSet(
+		$fields = new FieldList(
 			new HiddenField("ID", "ID"),
 			new TextField("Title", _t('BlogHolder.SJ', "Subject")),
 			new $field("Author", _t('BlogEntry.AU'), $membername),
@@ -237,7 +237,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		);
 		
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
-		$actions = new FieldSet($submitAction);
+		$actions = new FieldList($submitAction);
 		$validator = new RequiredFields('Title','BlogPost');
 
 		$form = new Form($this, 'BlogEntryForm',$fields, $actions,$validator);
@@ -246,7 +246,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			$entry = DataObject::get_by_id('BlogEntry', $id);
 			if($entry->IsOwner()) {
 				$form->loadDataFrom($entry);
-				$form->datafieldByName('BlogPost')->setValue($entry->Content);
+				$form->Fields()->dataFieldByName('BlogPost')->setValue($entry->Content);
 			}
 		} else {
 			$form->loadDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
@@ -274,7 +274,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 
 		$form->saveInto($blogentry);
 		$blogentry->ParentID = $this->ID;
-		$blogentry->Content = str_replace("\r\n", "\n", $form->datafieldByName('BlogPost')->dataValue());
+		$blogentry->Content = str_replace("\r\n", "\n", $form->Fields()->dataFieldByName('BlogPost')->dataValue());
 
 		if(Object::has_extension($this->ClassName, 'Translatable')) {
 			$blogentry->Locale = $this->Locale; 
@@ -288,5 +288,3 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	}
 }
 
-
-?>

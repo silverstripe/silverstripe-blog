@@ -26,9 +26,9 @@ class TagCloudWidget extends Widget {
 
 	static $popularities = array( 'not-popular', 'not-very-popular', 'somewhat-popular', 'popular', 'very-popular', 'ultra-popular' );
 	
-	function getCMSFields() {
-		$fields = parent::getCMSFields(); 
-		
+	function getCMSFields($params = null) {
+		$fields = parent::getCMSFields($params);
+
 		$fields->merge(
 			new FieldSet(
 				new TextField("Title", _t("TagCloudWidget.TILE", "Title")),

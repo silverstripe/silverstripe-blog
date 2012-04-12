@@ -49,7 +49,7 @@ class BlogEntry extends Page {
 		$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
 	}
 	
-	function getCMSFields() {
+	function getCMSFields($params = null) {
 		Requirements::javascript('blog/javascript/bbcodehelp.js');
 		Requirements::themedCSS('bbcodehelp');
 		
@@ -57,7 +57,7 @@ class BlogEntry extends Page {
 		$codeparser = new BBCodeParser();
 		
 		SiteTree::disableCMSFieldsExtensions();
-		$fields = parent::getCMSFields();
+		$fields = parent::getCMSFields($params);
 		SiteTree::enableCMSFieldsExtensions();
 		
 		if(!self::$allow_wysiwyg_editing) {
@@ -87,8 +87,8 @@ class BlogEntry extends Page {
 	 * Returns the tags added to this blog entry
 	 */
 	function TagsCollection() {
-		$tags = split(" *, *", trim($this->Tags));
-		$output = new DataObjectSet();
+		$tags = preg_split('/ *, */', trim($this->Tags));
+		$output = new ArrayList();
 		
 		$link = $this->getParent() ? $this->getParent()->Link('tag') : '';
 		
@@ -270,7 +270,6 @@ class BlogEntry_Controller extends Page_Controller {
 	 */
 	function PageComments() {
 		if($this->hasMethod('CommentsForm')) return $this->CommentsForm();
-		else return parent::PageComments();
 	}
-		
+
 }

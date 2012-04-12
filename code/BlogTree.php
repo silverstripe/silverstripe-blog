@@ -93,8 +93,8 @@ class BlogTree extends Page {
 	
 	/* ----------- CMS CONTROL -------------- */
 	
-	function getCMSFields() {
-		$fields = parent::getCMSFields();
+	function getCMSFields($params = null) {
+		$fields = parent::getCMSFields($params);
 		$fields->addFieldToTab("Root.Content.Main", new TextField("Name", "Name of blog"));
 		$fields->addFieldToTab('Root.Content.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
  			"" => "All entries", 
