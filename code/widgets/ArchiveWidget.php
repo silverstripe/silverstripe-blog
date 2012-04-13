@@ -28,8 +28,8 @@ class ArchiveWidget extends Widget {
 	
 	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
 	
-	function getCMSFields($params = null) {
-		$fields = parent::getCMSFields($params);
+	function getCMSFields() {
+		$fields = parent::getCMSFields(); 
 		
 		$fields->merge( 
 			new FieldSet(

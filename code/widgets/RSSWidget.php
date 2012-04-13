@@ -39,8 +39,8 @@ class RSSWidget extends Widget {
 		}
 	}
 	
-	function getCMSFields($params = null) {
-		$fields = parent::getCMSFields($params); 
+	function getCMSFields() {
+		$fields = parent::getCMSFields(); 
 		
 		$fields->merge(
 			new FieldSet(

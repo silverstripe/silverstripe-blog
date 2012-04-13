@@ -2,11 +2,11 @@
 /**
  * Add trackback (receive and send) feature blog entry
  */ 
-class TrackBackDecorator extends DataExtension {
+class TrackBackDecorator extends DataObjectDecorator {
 	
 	static $trackback_server_class = 'TrackbackHTTPServer';
 	
-	function extraStatics($class = null, $extension = null) {
+	function extraStatics() {
 		return array(
 			'has_many' => array(
 				'TrackBackURLs' => 'TrackBackURL',
@@ -15,7 +15,7 @@ class TrackBackDecorator extends DataExtension {
 		);
 	}
 	
-	function updateCMSFields(FieldList $fields) {
+	function updateCMSFields($fields) {
 		// Trackback URL field 
 		if($this->owner->TrackBacksEnabled()) {
 			$trackbackURLTable = new ComplexTableField(
