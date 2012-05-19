@@ -2,40 +2,45 @@
 /**
  * Add trackback (receive and send) feature blog entry
  */ 
-class TrackBackDecorator extends DataObjectDecorator {
+class TrackBackDecorator extends DataExtension {
 	
 	static $trackback_server_class = 'TrackbackHTTPServer';
 	
-	function extraStatics() {
-		return array(
-			'has_many' => array(
-				'TrackBackURLs' => 'TrackBackURL',
-				'TrackBacks' => 'TrackBackPing'
-			)
-		);
-	}
+	// function extraStatics() {
+	// 	return array(
+	// 		'has_many' => array(
+	// 			'TrackBackURLs' => 'TrackBackURL',
+	// 			'TrackBacks' => 'TrackBackPing'
+	// 		)
+	// 	);
+	// }
+
+	static $has_many = array(
+		'TrackBackURLs' => 'TrackBackURL',
+		'TrackBacks' => 'TrackBackPing'
+	);
 	
-	function updateCMSFields($fields) {
-		// Trackback URL field 
-		if($this->owner->TrackBacksEnabled()) {
-			$trackbackURLTable = new ComplexTableField(
-				$this,
-				'TrackBackURLs',
-				'TrackBackURL',
-				array(
-					'URL' => 'URL',
-					'IsPung' => 'Pung?'
-				), 
-				'getCMSFields_forPopup',
-				'',
-				'ID'
-			);	
-			$fields->addFieldToTab("Root.Content.Main", $trackbackURLTable);
-		}
-		else {
-			$fields->addFieldToTab("Root.Content.Main", new ReadonlyField("TrackBackURLsReadOnly", _t("BlogEntry.TrackbackURLs", "Trackback URLs"), _t("BlogEntry.TrackbackURLs_DISABLED", "To use this feature, please check 'Enable TrackBacks' check box on the blog holder.")));
-		}
-	}
+	// function updateCMSFields($fields) {
+	// 	// Trackback URL field 
+	// 	if($this->owner->TrackBacksEnabled()) {
+	// 		$trackbackURLTable = new ComplexTableField(
+	// 			$this,
+	// 			'TrackBackURLs',
+	// 			'TrackBackURL',
+	// 			array(
+	// 				'URL' => 'URL',
+	// 				'IsPung' => 'Pung?'
+	// 			), 
+	// 			'getCMSFields_forPopup',
+	// 			'',
+	// 			'ID'
+	// 		);	
+	// 		$fields->addFieldToTab("Root.Content.Main", $trackbackURLTable);
+	// 	}
+	// 	else {
+	// 		$fields->addFieldToTab("Root.Content.Main", new ReadonlyField("TrackBackURLsReadOnly", _t("BlogEntry.TrackbackURLs", "Trackback URLs"), _t("BlogEntry.TrackbackURLs_DISABLED", "To use this feature, please check 'Enable TrackBacks' check box on the blog holder.")));
+	// 	}
+	// }
 	
 	function onBeforePublish() {
 		if(!$this->owner->TrackBacksEnabled() && !$this->owner->TrackBackURLs()) return; 

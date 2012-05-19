@@ -61,22 +61,22 @@ class BlogEntry extends Page {
 		SiteTree::enableCMSFieldsExtensions();
 		
 		if(!self::$allow_wysiwyg_editing) {
-			$fields->removeFieldFromTab("Root.Content.Main","Content");
-			$fields->addFieldToTab("Root.Content.Main", new TextareaField("Content", _t("BlogEntry.CN", "Content"), 20));
+			$fields->removeFieldFromTab("Root.Main","Content");
+			$fields->addFieldToTab("Root.Main", new TextareaField("Content", _t("BlogEntry.CN", "Content"), 20));
 		}
 		
-		$fields->addFieldToTab("Root.Content.Main", $dateField = new DatetimeField("Date", _t("BlogEntry.DT", "Date")),"Content");
+		$fields->addFieldToTab("Root.Main", $dateField = new DatetimeField("Date", _t("BlogEntry.DT", "Date")),"Content");
 		$dateField->getDateField()->setConfig('showcalendar', true);
 		$dateField->getTimeField()->setConfig('showdropdown', true);
-		$fields->addFieldToTab("Root.Content.Main", new TextField("Author", _t("BlogEntry.AU", "Author"), $firstName),"Content");
+		$fields->addFieldToTab("Root.Main", new TextField("Author", _t("BlogEntry.AU", "Author"), $firstName),"Content");
 		
 		if(!self::$allow_wysiwyg_editing) {
-			$fields->addFieldToTab("Root.Content.Main", new LiteralField("BBCodeHelper", "<div id='BBCode' class='field'>" .
+			$fields->addFieldToTab("Root.Main", new LiteralField("BBCodeHelper", "<div id='BBCode' class='field'>" .
 							"<a  id=\"BBCodeHint\" target='new'>" . _t("BlogEntry.BBH", "BBCode help") . "</a>" .
 							"<div id='BBTagsHolder' style='display:none;'>".$codeparser->useable_tagsHTML()."</div></div>"));
 		}
 				
-		$fields->addFieldToTab("Root.Content.Main", new TextField("Tags", _t("BlogEntry.TS", "Tags (comma sep.)")),"Content");
+		$fields->addFieldToTab("Root.Main", new TextField("Tags", _t("BlogEntry.TS", "Tags (comma sep.)")),"Content");
 		
 		$this->extend('updateCMSFields', $fields);
 		
@@ -87,8 +87,8 @@ class BlogEntry extends Page {
 	 * Returns the tags added to this blog entry
 	 */
 	function TagsCollection() {
-		$tags = split(" *, *", trim($this->Tags));
-		$output = new DataObjectSet();
+		$tags = preg_split(" *, *", trim($this->Tags));
+		$output = new ArrayList();
 		
 		$link = $this->getParent() ? $this->getParent()->Link('tag') : '';
 		
@@ -254,9 +254,6 @@ class BlogEntry_Controller extends Page_Controller {
 			$page = DataObject::get_by_id('SiteTree', $SQL_id);
 			$page->deleteFromStage('Live');
 			$page->flushCache();
-	
-			$page = DataObject::get_by_id('SiteTree', $SQL_id);
-			$page->Status = 'Unpublished';
 
 			Director::redirect($this->getParent()->Link());
 		}		
@@ -270,7 +267,7 @@ class BlogEntry_Controller extends Page_Controller {
 	 */
 	function PageComments() {
 		if($this->hasMethod('CommentsForm')) return $this->CommentsForm();
-		else return parent::PageComments();
+		else if(method_exists('Page_Controller', 'PageComments')) return parent::PageComments();
 	}
 		
 }
