@@ -14,7 +14,7 @@ class BlogTreeTest extends SapphireTest {
 		$this->assertEquals($node->Entries()->Count(), 2);
 		
 		$node = $this->objFromFixture('BlogTree', 'levelab');
-		$this->assertNull($node->Entries());
+		$this->assertEquals($node->Entries()->Count(), 0); // this is not null anymore, it returns a DataList with no elements
 		
 		$node = $this->objFromFixture('BlogTree', 'levelb');
 		$this->assertEquals($node->Entries()->Count(), 1);
@@ -22,7 +22,7 @@ class BlogTreeTest extends SapphireTest {
 		$node = $this->objFromFixture('BlogTree', 'levelba');
 		$this->assertEquals($node->Entries()->Count(), 1);
 		
-		$this->assertTrue($node->getCMSFields() instanceof FieldSet);
+		$this->assertTrue($node->getCMSFields() instanceof FieldList);
 	}
 	
 	function testEntriesByMonth() {

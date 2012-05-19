@@ -46,19 +46,14 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	/**
 	 * Get members who have BLOGMANAGEMENT and ADMIN permission
 	 */ 
-	function blogOwners($sort = 'Name', $direction = "ASC") {
-		$adminMembers = Permission::get_members_by_permission('ADMIN'); 
-		$blogOwners = Permission::get_members_by_permission('BLOGMANAGEMENT');
+	function blogOwners($sort = array('FirstName'=>'ASC','Surname'=>'ASC'), $direction = null) {
 		
-		if(!$adminMembers) $adminMembers = new DataObjectSet(); 
-		if(!$blogOwners) $blogOwners = new DataObjectSet();
+		$members = Permission::get_members_by_permission(array('ADMIN','BLOGMANAGEMENT')); 
+		$members->sort($sort);
 		
-		$blogOwners->merge($adminMembers);
-		$blogOwners->sort($sort, $direction);
+		$this->extend('extendBlogOwners', $members);
 		
-		$this->extend('extendBlogOwners', $blogOwners);
-		
-		return $blogOwners;
+		return $members;
 	}
 
 	public function BlogHolderIDs() {
@@ -204,7 +199,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		}
 
 		$codeparser = new BBCodeParser();
-		$membername = Member::currentMember() ? Member::currentMember()->getName() : "";
+		$membername = Member::currentUser() ? Member::currentUser()->getName() : "";
 
 		if(BlogEntry::$allow_wysiwyg_editing) {
 			$contentfield = new HtmlEditorField("BlogPost", _t("BlogEntry.CN"));
@@ -226,7 +221,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		if(!$this->AllowCustomAuthors && !Permission::check('ADMIN')) {
 			$field = 'ReadonlyField';
 		}
-		$fields = new FieldSet(
+		$fields = new FieldList(
 			new HiddenField("ID", "ID"),
 			new TextField("Title", _t('BlogHolder.SJ', "Subject")),
 			new $field("Author", _t('BlogEntry.AU'), $membername),
@@ -237,7 +232,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		);
 		
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
-		$actions = new FieldSet($submitAction);
+		$actions = new FieldList($submitAction);
 		$validator = new RequiredFields('Title','BlogPost');
 
 		$form = new Form($this, 'BlogEntryForm',$fields, $actions,$validator);
@@ -274,7 +269,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 
 		$form->saveInto($blogentry);
 		$blogentry->ParentID = $this->ID;
-		$blogentry->Content = str_replace("\r\n", "\n", $form->datafieldByName('BlogPost')->dataValue());
+
+		$blogentry->Content = str_replace("\r\n", "\n", $form->Fields()->fieldByName('BlogPost')->dataValue());
 
 		if(Object::has_extension($this->ClassName, 'Translatable')) {
 			$blogentry->Locale = $this->Locale; 

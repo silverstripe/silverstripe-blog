@@ -60,12 +60,13 @@ class BlogTrackbackTest extends SapphireTest {
 		$entry1 = $this->objFromFixture('BlogEntry', 'testpost');
 		$entry1->doPublish(); 
 		$this->assertEquals(2, $entry1->TrackBackURLs()->Count());
-		$this->assertEquals(array('testGoodTrackbackURL' => 1), $entry1->TrackBackURLs()->map('URL', 'Pung'));
+		
+		$this->assertEquals(array('testGoodTrackbackURL' => 1), $entry1->TrackBackURLs()->map('URL', 'Pung')->toArray());
 		
 		$entry2 = $this->objFromFixture('BlogEntry', 'testpost2');
 		$entry2->doPublish(); 
 		$this->assertEquals(4, $entry2->TrackBackURLs()->Count());
-		$this->assertEquals(array('testBadTrackbackURL' => 0, 'testGoodTrackbackURL2' => 1, 'noneExistingURL' => 0, 'testGoodTrackbackURL3' => 1), $entry2->TrackBackURLs()->map('URL', 'Pung'));
+		$this->assertEquals(array('testBadTrackbackURL' => 0, 'testGoodTrackbackURL2' => 1, 'noneExistingURL' => 0, 'testGoodTrackbackURL3' => 1), $entry2->TrackBackURLs()->map('URL', 'Pung')->toArray());
 
 		TrackBackDecorator::$trackback_server_class = $tmpServerClass;
 	}

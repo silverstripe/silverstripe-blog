@@ -30,7 +30,7 @@ class TagCloudWidget extends Widget {
 		$fields = parent::getCMSFields(); 
 		
 		$fields->merge(
-			new FieldSet(
+			new FieldList(
 				new TextField("Title", _t("TagCloudWidget.TILE", "Title")),
 				new TextField("Limit", _t("TagCloudWidget.LIMIT", "Limit number of tags")),
 				new OptionsetField("Sortby",_t("TagCloudWidget.SORTBY","Sort by"),array("alphabet"=>_t("TagCloudWidget.SBAL", "alphabet"),"frequency"=>_t("TagCloudWidget.SBFREQ", "frequency")))
@@ -57,7 +57,7 @@ class TagCloudWidget extends Widget {
 		
 		if($entries) {
 			foreach($entries as $entry) {
-				$theseTags = split(" *, *", mb_strtolower(trim($entry->Tags)));
+				$theseTags = preg_split(" *, *", mb_strtolower(trim($entry->Tags)));
 				foreach($theseTags as $tag) {
 					if($tag != "") {
 						$allTags[$tag] = isset($allTags[$tag]) ? $allTags[$tag] + 1 : 1; //getting the count into key => value map
@@ -105,7 +105,7 @@ class TagCloudWidget extends Widget {
 				}
 			}
 			
-			$output = new DataObjectSet();
+			$output = new ArrayList();
 			foreach($allTags as $tag => $fields) {
 				$output->push(new ArrayData($fields));
 			}

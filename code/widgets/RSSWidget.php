@@ -43,7 +43,7 @@ class RSSWidget extends Widget {
 		$fields = parent::getCMSFields(); 
 		
 		$fields->merge(
-			new FieldSet(
+			new FieldList(
 				new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
 				new TextField("RssUrl", _t('RSSWidget.URL', "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed.")),
 				new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
