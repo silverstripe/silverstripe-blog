@@ -1,6 +1,6 @@
 <?php
 
-require_once("core/model/DB.php");
+require_once("model/DB.php");
 
 class TypoImport extends Controller {
     /**
