@@ -5,7 +5,7 @@
  *
  * @version $Id: xmlrpc_wrappers.inc,v 1.13 2008/09/20 01:23:47 ggiunta Exp $
  * @author Gaetano Giunta
- * @copyright (C) 2006-2008 G. Giunta
+ * @copyright (C) 2006-2009 G. Giunta
  * @license code licensed under the BSD License: http://phpxmlrpc.sourceforge.net/license.txt
  *
  * @todo separate introspection from code generation for func-2-method wrapping
@@ -22,6 +22,7 @@
 	* accepted come from javadoc blocks), return corresponding phpxmlrpc type.
 	* NB: for php 'resource' types returns empty string, since resources cannot be serialized;
 	* for php class names returns 'struct', since php objects can be serialized as xmlrpc structs
+	* for php arrays always return array, even though arrays sometiles serialize as json structs
 	* @param string $phptype
 	* @return string
 	*/
@@ -157,6 +158,10 @@
 		}
 
         $exists = false;
+	    if (is_string($funcname) && strpos($funcname, '::') !== false)
+	    {
+	        $funcname = explode('::', $funcname);
+	    }
         if(is_array($funcname))
         {
             if(count($funcname) < 2 || (!is_string($funcname[0]) && !is_object($funcname[0])))
@@ -173,6 +178,11 @@
                 $plainfuncname = get_class($funcname[0]) . '->' . $funcname[1];
             }
             $exists = method_exists($funcname[0], $funcname[1]);
+            if (!$exists && version_compare(phpversion(), '5.1') < 0)
+            {
+               // workaround for php 5.0: static class methods are not seen by method_exists
+               $exists = is_callable( $funcname );
+            }
         }
         else
         {
@@ -214,7 +224,7 @@
 			// start to introspect PHP code
 			if(is_array($funcname))
 			{
-    			$func =& new ReflectionMethod($funcname[0], $funcname[1]);
+    			$func = new ReflectionMethod($funcname[0], $funcname[1]);
     			if($func->isPrivate())
     			{
     				error_log('XML-RPC: method to be wrapped is private: '.$plainfuncname);
@@ -230,7 +240,8 @@
     				error_log('XML-RPC: method to be wrapped is the constructor: '.$plainfuncname);
     				return false;
     			}
-    			if($func->isDestructor())
+			    // php 503 always says isdestructor = true...
+                if( version_compare(phpversion(), '5.0.3') != 0 && $func->isDestructor())
     			{
     				error_log('XML-RPC: method to be wrapped is the destructor: '.$plainfuncname);
     				return false;
@@ -244,7 +255,7 @@
             }
 			else
 			{
-    			$func =& new ReflectionFunction($funcname);
+    			$func = new ReflectionFunction($funcname);
             }
 			if($func->isInternal())
 			{
@@ -504,7 +515,7 @@
     		if ($methodfilter == '' || preg_match($methodfilter, $mname))
 			{
     			// echo $mlist."\n";
-    			$func =& new ReflectionMethod($classname, $mname);
+    			$func = new ReflectionMethod($classname, $mname);
     			if(!$func->isPrivate() && !$func->isProtected() && !$func->isConstructor() && !$func->isDestructor() && !$func->isAbstract())
     			{
         			if(($func->isStatic && ($methodtype == 'all' || $methodtype == 'static' || ($methodtype == 'auto' && is_string($classname)))) ||
@@ -600,7 +611,7 @@
 		$valclass = $prefix.'val';
 		$decodefunc = 'php_'.$prefix.'_decode';
 
-		$msg =& new $msgclass('system.methodSignature');
+		$msg = new $msgclass('system.methodSignature');
 		$msg->addparam(new $valclass($methodname));
 		$client->setDebug($debug);
 		$response =& $client->send($msg, $timeout, $protocol);
@@ -646,7 +657,7 @@
 				// in online mode, favour speed of operation
 				if(!$buildit)
 				{
-					$msg =& new $msgclass('system.methodHelp');
+					$msg = new $msgclass('system.methodHelp');
 					$msg->addparam(new $valclass($methodname));
 					$response =& $client->send($msg, $timeout, $protocol);
 					if (!$response->faultCode())
@@ -715,7 +726,7 @@
 		//$valclass = $prefix.'val';
 		$decodefunc = 'php_'.$prefix.'_decode';
 
-		$msg =& new $msgclass('system.listMethods');
+		$msg = new $msgclass('system.listMethods');
 		$response =& $client->send($msg, $timeout, $protocol);
 		if($response->faultCode())
 		{
@@ -835,7 +846,7 @@
 			$innercode = '';
 			$this_ = 'this->';
 		}
-		$innercode .= "\$msg =& new {$prefix}msg('$methodname');\n";
+		$innercode .= "\$msg = new {$prefix}msg('$methodname');\n";
 
 		if ($mdesc != '')
 		{
@@ -858,7 +869,7 @@
 				$ptype == 'string' || $ptype == 'dateTime.iso8601' || $ptype == 'base64' || $ptype == 'null')
 			{
 				// only build directly xmlrpcvals when type is known and scalar
-				$innercode .= "\$p$i =& new {$prefix}val(\$p$i, '$ptype');\n";
+				$innercode .= "\$p$i = new {$prefix}val(\$p$i, '$ptype');\n";
 			}
 			else
 			{
@@ -920,7 +931,7 @@
 	*/
 	function build_client_wrapper_code($client, $verbatim_client_copy, $prefix='xmlrpc')
 	{
-		$code = "\$client =& new {$prefix}_client('".str_replace("'", "\'", $client->path).
+		$code = "\$client = new {$prefix}_client('".str_replace("'", "\'", $client->path).
 			"', '" . str_replace("'", "\'", $client->server) . "', $client->port);\n";
 
 		// copy all client fields to the client that will be generated runtime
