@@ -254,9 +254,6 @@ class BlogEntry_Controller extends Page_Controller {
 			$page = DataObject::get_by_id('SiteTree', $SQL_id);
 			$page->deleteFromStage('Live');
 			$page->flushCache();
-	
-			$page = DataObject::get_by_id('SiteTree', $SQL_id);
-			$page->Status = 'Unpublished';
 
 			Director::redirect($this->getParent()->Link());
 		}		
