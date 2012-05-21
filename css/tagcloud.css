@@ -1,0 +1,6 @@
+.tagcloud .not-popular { font-size: .9em; }
+.tagcloud .not-very-popular { font-size: 1em; }
+.tagcloud .somewhat-popular { font-size: 1.3em; }
+.tagcloud .popular { font-size: 1.6em; }
+.tagcloud .very-popular { font-size: 1.9em; }
+.tagcloud .ultra-popular { font-size: 2.2em; }

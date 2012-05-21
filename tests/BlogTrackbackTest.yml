@@ -1,0 +1,38 @@
+TrackBackURL: 
+    goodTrackBackURL1:
+        URL: testGoodTrackbackURL
+    goodTrackBackURL2:
+        URL: testGoodTrackbackURL2
+    goodTrackBackURL3:
+        URL: testGoodTrackbackURL3
+    badTrackBackURL:
+        URL: testBadTrackbackURL
+    noneTrackBackURL:
+        URL: noneExistingURL
+    dupTrackBackURL:
+        URL: testGoodTrackbackURL
+
+BlogHolder:
+    mainblog:
+        Title: Main Blog
+
+BlogEntry:
+    testpost:
+        Title: Test Post
+        URLSegment: test-post
+        Date: 2007-02-17 18:45:00
+        Parent: =>BlogHolder.mainblog
+        Tags: tag1,tag2
+        TrackBackURLs: =>TrackBackURL.goodTrackBackURL1, =>TrackBackURL.dupTrackBackURL
+    testpost2:
+        Title: Test Post 2
+        URLSegment: test-post-2
+        Parent: =>BlogHolder.mainblog
+        TrackBackURLs: =>TrackBackURL.badTrackBackURL,=>TrackBackURL.goodTrackBackURL2,=>TrackBackURL.noneTrackBackURL,=>TrackBackURL.goodTrackBackURL3
+
+
+    
+    
+
+     
+

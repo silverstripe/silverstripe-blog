@@ -1,0 +1,61 @@
+BlogTree:
+   root:
+      Title: Root BlogTree
+      LandingPageFreshness: 7 DAYS
+   otherroot:
+      Title: Other root BlogTree
+   levela:
+      Title: Level A
+      Parent: =>BlogTree.root
+      LandingPageFreshness: 2 DAYS
+   levelb:
+      Title: Level B
+      Parent: =>BlogTree.root
+      LandingPageFreshness: INHERIT
+   levelaa:
+      Title: Level AA
+      Parent: =>BlogTree.levela
+   levelab:
+      Title: Level AB
+      Parent: =>BlogTree.levela
+   levelba:
+      Title: Level BA
+      Parent: =>BlogTree.levelb
+BlogHolder:
+   otherroot_holder:
+      Title: other root holder
+   levelaa_blog1:
+      Title: Level AA Blog 1
+      Parent: =>BlogTree.levelaa
+      LandingPageFreshness: 1 DAY
+   levelaa_blog2:
+      Title: Level AA Blog 2
+      Parent: =>BlogTree.levelaa
+   levelab_blog:
+      Title: Level AB Blog
+      Parent: =>BlogTree.levelab
+   levelba_blog:
+      Title: Level BA Blog
+      Parent: =>BlogTree.levelba
+BlogEntry:
+   testpost:
+      Title: Test Post
+      URLSegment: test-post
+      Date: 2007-02-17 18:45:00
+      Parent: =>BlogHolder.levelaa_blog1
+      Tags: tag1,tag2
+   testpost2:
+      Title: Test Post 2
+      URLSegment: test-post-2
+      Date: 2008-01-31 20:48:00
+      Parent: =>BlogHolder.levelaa_blog2
+      Tags: tag2,tag3
+   testpost3:
+      Title: Test Post 3
+      URLSegment: test-post-3
+      Date: 2008-01-17 18:45:00
+      Parent: =>BlogHolder.levelba_blog
+      Tags: tag1,tag2,tag3
+      
+
+
