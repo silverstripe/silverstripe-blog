@@ -1527,6 +1527,7 @@
 				curl_setopt($curl, CURLOPT_VERBOSE, 1);
 			}
 			curl_setopt($curl, CURLOPT_USERAGENT, $this->user_agent);
+
 			// required for XMLRPC: post the data
 			curl_setopt($curl, CURLOPT_POST, 1);
 			// the data

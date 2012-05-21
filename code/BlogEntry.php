@@ -87,11 +87,11 @@ class BlogEntry extends Page {
 	 * Returns the tags added to this blog entry
 	 */
 	function TagsCollection() {
+
 		$tags = preg_split(" *, *", trim($this->Tags));
 		$output = new ArrayList();
 		
 		$link = $this->getParent() ? $this->getParent()->Link('tag') : '';
-		
 		foreach($tags as $tag) {
 			$output->push(new ArrayData(array(
 				'Tag' => $tag,

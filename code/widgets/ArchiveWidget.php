@@ -32,6 +32,7 @@ class ArchiveWidget extends Widget {
 		$fields = parent::getCMSFields(); 
 		
 		$fields->merge( 
+
 			new FieldList(
 				new OptionsetField(
 					'DisplayMode',

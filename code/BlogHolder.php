@@ -46,6 +46,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	/**
 	 * Get members who have BLOGMANAGEMENT and ADMIN permission
 	 */ 
+
 	function blogOwners($sort = array('FirstName'=>'ASC','Surname'=>'ASC'), $direction = null) {
 		
 		$members = Permission::get_members_by_permission(array('ADMIN','BLOGMANAGEMENT')); 
@@ -232,6 +233,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		);
 		
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
+
 		$actions = new FieldList($submitAction);
 		$validator = new RequiredFields('Title','BlogPost');
 
@@ -242,6 +244,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			if($entry->IsOwner()) {
 				$form->loadDataFrom($entry);
 				$form->Fields()->fieldByName('BlogPost')->setValue($entry->Content);
+
 			}
 		} else {
 			$form->loadDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
