@@ -111,26 +111,32 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 			$blogholder->URLSegment = "blog";
 			$blogholder->Status = "Published";
 
-			$widgetarea = new WidgetArea();
-			$widgetarea->write();
+			if(class_exists('WidgetArea')) {
+				$widgetarea = new WidgetArea();
+				$widgetarea->write();
 
-			$blogholder->SideBarID = $widgetarea->ID;
-			$blogholder->write();
-			$blogholder->publish("Stage", "Live");
+				$blogholder->SideBarID = $widgetarea->ID;
+				$blogholder->write();
+				$blogholder->publish("Stage", "Live");
 
-			$managementwidget = new BlogManagementWidget();
-			$managementwidget->ParentID = $widgetarea->ID;
-			$managementwidget->write();
+				$managementwidget = new BlogManagementWidget();
+				$managementwidget->ParentID = $widgetarea->ID;
+				$managementwidget->write();
 
-			$tagcloudwidget = new TagCloudWidget();
-			$tagcloudwidget->ParentID = $widgetarea->ID;
-			$tagcloudwidget->write();
+				$tagcloudwidget = new TagCloudWidget();
+				$tagcloudwidget->ParentID = $widgetarea->ID;
+				$tagcloudwidget->write();
 
-			$archivewidget = new ArchiveWidget();
-			$archivewidget->ParentID = $widgetarea->ID;
-			$archivewidget->write();
+				$archivewidget = new ArchiveWidget();
+				$archivewidget->ParentID = $widgetarea->ID;
+				$archivewidget->write();
 
-			$widgetarea->write();
+				$widgetarea->write();
+			} else {
+				$blogholder->write();
+				$blogholder->publish("Stage", "Live");
+			}	
+			
 
 			$blog = new BlogEntry();
 			$blog->Title = _t('BlogHolder.SUCTITLE', "SilverStripe blog module successfully installed");
