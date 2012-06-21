@@ -175,7 +175,7 @@ class BlogEntry extends Page {
 		if($this->TrackBacksEnabled() && $this->hasExtension('TrackBackDecorator')) {
 			return $this->decoratedTrackbackping();
 		} else {
-			Director::redirect($this->Link());
+			Controller::curr()->redirect($this->Link());
 		}
 	}
 

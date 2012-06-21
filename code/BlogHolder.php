@@ -289,7 +289,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		$blogentry->writeToStage("Stage");
 		$blogentry->publish("Stage", "Live");
 
-		Director::redirect($this->Link());
+		$this->redirect($this->Link());
 	}
 }
 
