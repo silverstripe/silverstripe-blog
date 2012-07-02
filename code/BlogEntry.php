@@ -47,6 +47,9 @@ class BlogEntry extends Page {
 		parent::populateDefaults();
 		
 		$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
+                
+                if(Member::currentUser())
+                        $this->setField('Author',Member::currentUser()->FirstName);
 	}
 	
 	function getCMSFields() {
