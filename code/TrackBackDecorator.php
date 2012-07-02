@@ -2,7 +2,6 @@
 /**
  * Add trackback (receive and send) feature blog entry
  */ 
-
 class TrackBackDecorator extends DataExtension {
 	
 	static $trackback_server_class = 'TrackbackHTTPServer';
@@ -42,7 +41,6 @@ class TrackBackDecorator extends DataExtension {
 	// 		$fields->addFieldToTab("Root.Content.Main", new ReadonlyField("TrackBackURLsReadOnly", _t("BlogEntry.TrackbackURLs", "Trackback URLs"), _t("BlogEntry.TrackbackURLs_DISABLED", "To use this feature, please check 'Enable TrackBacks' check box on the blog holder.")));
 	// 	}
 	// }
-
 	
 	function onBeforePublish() {
 		if(!$this->owner->TrackBacksEnabled() && !$this->owner->TrackBackURLs()) return; 

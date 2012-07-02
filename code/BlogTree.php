@@ -95,7 +95,6 @@ class BlogTree extends Page {
 	
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
-
 		$fields->addFieldToTab("Root.Main", new TextField("Name", "Name of blog"));
 		$fields->addFieldToTab('Root.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
  			"" => "All entries", 
@@ -113,11 +112,9 @@ class BlogTree extends Page {
 			"12 MONTH" => "Last year's entries", 
 			"INHERIT" => "Take value from parent Blog Tree"
 		))); 
- 		if(class_exists('WidgetArea')) {
- 			$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
-			$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
- 		}
-		
+ 	
+		$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
+		$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
 		
 		return $fields;
 	}

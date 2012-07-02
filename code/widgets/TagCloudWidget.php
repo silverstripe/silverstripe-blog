@@ -30,7 +30,6 @@ class TagCloudWidget extends Widget {
 		$fields = parent::getCMSFields(); 
 		
 		$fields->merge(
-
 			new FieldList(
 				new TextField("Title", _t("TagCloudWidget.TILE", "Title")),
 				new TextField("Limit", _t("TagCloudWidget.LIMIT", "Limit number of tags")),
