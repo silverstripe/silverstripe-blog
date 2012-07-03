@@ -47,6 +47,9 @@ class BlogEntry extends Page {
 		parent::populateDefaults();
 		
 		$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
+                
+                if(Member::currentUser())
+                        $this->setField('Author',Member::currentUser()->FirstName);
 	}
 	
 	function getCMSFields() {
@@ -87,7 +90,6 @@ class BlogEntry extends Page {
 	 * Returns the tags added to this blog entry
 	 */
 	function TagsCollection() {
-
 		$tags = preg_split(" *, *", trim($this->Tags));
 		$output = new ArrayList();
 		

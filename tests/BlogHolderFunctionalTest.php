@@ -47,6 +47,5 @@ class BlogHolderFunctionalTest extends FunctionalTest {
 		$response = $this->post('blog/BlogEntryForm', $data);
 
 		$this->assertInstanceOf('BlogEntry', DataObject::get_one('BlogEntry', sprintf("\"Title\" = 'Allowed'")));
-
 	}
 }
