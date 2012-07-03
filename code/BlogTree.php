@@ -113,8 +113,8 @@ class BlogTree extends Page {
 			"INHERIT" => "Take value from parent Blog Tree"
 		))); 
  	
-		$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
-		$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
+		//$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
+		//$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
 		
 		return $fields;
 	}
@@ -151,7 +151,7 @@ class BlogTree extends Page {
 	 * @param string $where
 	 * @return DataObjectSet
 	 */
-	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
+	public function Entries($tag = '', $date = '', $retrieveCallback = null, $filter = '') {
 		
 		$tagCheck = '';
 		$dateCheck = '';
@@ -208,8 +208,12 @@ class BlogTree extends Page {
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
 		if($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $filter, $limit, $order);
-		
-		return DataObject::get('BlogEntry', $filter, $order, '', $limit);
+
+		$entries = BlogEntry::get()
+      ->where($filter)
+      ->sort($order);
+
+    return new PaginatedList($entries, Controller::curr()->request);
 	}
 }
 
@@ -264,7 +268,9 @@ class BlogTree_Controller extends Page_Controller {
 		
 		$date = $this->SelectedDate();
 		
-		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date : '', null, $filter);
+		$list = $this->Entries($this->SelectedTag(), ($date) ? $date : '', null, $filter);
+		$list->setPageLength($limit);
+		return $list;
 	}
 
 	/**
