@@ -113,8 +113,8 @@ class BlogTree extends Page {
 			"INHERIT" => "Take value from parent Blog Tree"
 		))); 
  	
-		//$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
-		//$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
+		$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
+		if (class_exists('WidgetAreaEditor')) $fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
 		
 		return $fields;
 	}
@@ -151,7 +151,7 @@ class BlogTree extends Page {
 	 * @param string $where
 	 * @return DataObjectSet
 	 */
-	public function Entries($tag = '', $date = '', $retrieveCallback = null, $filter = '') {
+	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
 		
 		$tagCheck = '';
 		$dateCheck = '';
@@ -213,7 +213,9 @@ class BlogTree extends Page {
       ->where($filter)
       ->sort($order);
 
-    return new PaginatedList($entries, Controller::curr()->request);
+    $list = new PaginatedList($entries, Controller::curr()->request);
+    $list->setPageLength($limit);
+    return $list;
 	}
 }
 
@@ -263,14 +265,10 @@ class BlogTree_Controller extends Page_Controller {
 		else if(isset($_GET['authorID'])) {
 			$filter .=  " \"BlogEntry\".\"AuthorID\" = '". Convert::raw2sql($_GET['authorID']). "'";
 		}
-		
-		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
-		
+
 		$date = $this->SelectedDate();
 		
-		$list = $this->Entries($this->SelectedTag(), ($date) ? $date : '', null, $filter);
-		$list->setPageLength($limit);
-		return $list;
+		return $this->Entries($limit, $this->SelectedTag(), ($date) ? $date : '', null, $filter);
 	}
 
 	/**
