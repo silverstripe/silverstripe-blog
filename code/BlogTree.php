@@ -211,8 +211,12 @@ class BlogTree extends Page {
 
 		// By specifying a callback, you can alter the SQL, or sort on something other than date.
 		if($retrieveCallback) return call_user_func($retrieveCallback, 'BlogEntry', $filter, $limit, $order);
-		
-		return DataObject::get('BlogEntry', $filter, $order, '', $limit);
+
+		$entries = BlogEntry::get()->where($filter)->sort($order);
+
+    	$list = new PaginatedList($entries, Controller::curr()->request);
+    	$list->setPageLength($limit);
+    	return $list;
 	}
 }
 
@@ -262,12 +266,10 @@ class BlogTree_Controller extends Page_Controller {
 		else if(isset($_GET['authorID'])) {
 			$filter .=  " \"BlogEntry\".\"AuthorID\" = '". Convert::raw2sql($_GET['authorID']). "'";
 		}
-		
-		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
-		
+
 		$date = $this->SelectedDate();
 		
-		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date : '', null, $filter);
+		return $this->Entries($limit, $this->SelectedTag(), ($date) ? $date : '', null, $filter);
 	}
 
 	/**

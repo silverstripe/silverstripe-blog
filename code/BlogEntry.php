@@ -255,7 +255,7 @@ class BlogEntry_Controller extends Page_Controller {
 			$page->deleteFromStage('Live');
 			$page->flushCache();
 
-			Director::redirect($this->getParent()->Link());
+			$this->redirect($this->getParent()->Link());
 		}		
 	}
 	
