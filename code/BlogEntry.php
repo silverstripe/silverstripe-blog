@@ -236,7 +236,7 @@ class BlogEntry_Controller extends Page_Controller {
 	function init() {
 		parent::init();
 		
-		Requirements::themedCSS('blog');
+		Requirements::themedCSS("blog","blog");
 	}
 	
 	/**
