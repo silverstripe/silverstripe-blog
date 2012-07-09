@@ -234,7 +234,7 @@ class BlogTree_Controller extends Page_Controller {
 		
 		$this->IncludeBlogRSS();
 		
-		Requirements::themedCSS("blog");
+		Requirements::themedCSS("blog","blog");
 	}
 
 	function BlogEntries($limit = null) {
