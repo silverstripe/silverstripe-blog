@@ -202,7 +202,7 @@ class BlogTree extends Page {
 		
 		// Otherwise, do the actual query
 		if($filter) $filter .= ' AND ';
-		$filter .= '"ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
+		$filter .= '"SiteTree"."ParentID" IN (' . implode(',', $holderIDs) . ") $tagCheck $dateCheck";
 
 		$order = '"BlogEntry"."Date" DESC';
 
