@@ -109,7 +109,10 @@ class BlogEntry extends Page {
 	 * Get the sidebar from the BlogHolder.
 	 */
 	function SideBar() {
-		return $this->getParent()->SideBar();
+		if(method_exists($this->Parent(), 'SideBar')) {
+			return $this->getParent()->SideBar();
+		}
+		
 	}
 	
 	function Content() {	
