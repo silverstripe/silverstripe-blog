@@ -1,6 +1,6 @@
 <?php
 
-Director::addRules(10, array(
+Director::addRules(100, array(
 	'metaweblog' => 'MetaWeblogController'
 ));
 
