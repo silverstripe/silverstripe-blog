@@ -1,0 +1,7 @@
+---
+Name: metaweblogroutes
+After: '*'
+---
+Director:
+  rules:
+    'metaweblog': 'MetaWeblogController'
