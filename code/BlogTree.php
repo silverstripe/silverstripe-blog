@@ -61,12 +61,12 @@ class BlogTree extends Page {
 		if($top) return $top;
 		
 		// Try to find any BlogTree that is not inside another BlogTree
-		foreach(DataObject::get('BlogTree') as $tree) {
+		if($blogTrees=DataObject::get('BlogTree')) foreach($blogTrees as $tree) {
 			if(!($tree->getParent() instanceof BlogTree)) return $tree;
 		}
 		
 		// This shouldn't be possible, but assuming the above fails, just return anything you can get
-		return DataObject::get_one('BlogTree');
+		return $blogTrees;
 	}
 
 	/* ----------- ACCESSOR OVERRIDES -------------- */
