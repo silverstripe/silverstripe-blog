@@ -66,7 +66,7 @@ class BlogTree extends Page {
 		}
 		
 		// This shouldn't be possible, but assuming the above fails, just return anything you can get
-		return $blogTrees;
+		return $blogTrees->first();
 	}
 
 	/* ----------- ACCESSOR OVERRIDES -------------- */
