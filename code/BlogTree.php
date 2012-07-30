@@ -45,7 +45,6 @@ class BlogTree extends Page {
 		if (!$page) {
 			$controller = Controller::curr();
 			if($controller) {
-				if (!isset($controller->data)) return false;
 				$page = $controller->data();
 			}
 		}
