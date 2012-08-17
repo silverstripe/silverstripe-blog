@@ -4,9 +4,9 @@
 	<% if TagsCollection %>
 		<p class="tags">
 			Tags:
-			<% control TagsCollection %>
-				<a href="$Link" title="View all posts tagged '$Tag'" rel="tag">$Tag</a><% if Last %><% else %>,<% end_if %>
-			<% end_control %>
+			<% loop TagsCollection %>
+				<a href="$Link" title="View all posts tagged '$Tag'" rel="tag">$Tag</a><% if not Last %>,<% end_if %>
+			<% end_loop %>
 		</p>
 	<% end_if %>
 	

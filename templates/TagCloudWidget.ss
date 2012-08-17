@@ -1,5 +1,5 @@
 <p class="tagcloud">
-	<% control TagsCollection %>
+	<% loop TagsCollection %>
 		<a href="$Link" class="$Class">$Tag</a> 
-	<% end_control %>
+	<% end_loop %>
 </p>
