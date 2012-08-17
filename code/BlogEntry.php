@@ -15,7 +15,7 @@ class BlogEntry extends Page {
 	
 	static $can_be_root = false;
 	
-	static $icon = "blog/images/blogpage";
+	static $icon = "blog/images/blogpage-file.png";
 		
 	static $has_one = array();
 	
