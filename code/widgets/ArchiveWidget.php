@@ -50,10 +50,10 @@ class ArchiveWidget extends Widget {
 		return $fields;
 	}
 	
-	function Dates() {
+	function getDates() {
 		Requirements::themedCSS('archivewidget');
 		
-		$results = new DataObjectSet();
+		$results = new ArrayList();
 		$container = BlogTree::current();
 		$ids = $container->BlogHolderIDs();
 		
@@ -86,7 +86,7 @@ class ArchiveWidget extends Widget {
 			$month = ($isMonthDisplay) ? $monthVal : 1;
 			$year = ($sqlResult['Year']) ? (int) $sqlResult['Year'] : date('Y');
 			
-			$date = DBField::create('Date', array(
+			$date = DBField::create_field('Date', array(
 				'Day' => 1,
 				'Month' => $month,
 				'Year' => $year
