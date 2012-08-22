@@ -19,15 +19,17 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 	static $title = "Blog Management";
 	static $cmsTitle = "Blog Management";
 	static $description = "Provide a number of links useful for administering a blog. Only shown if the user is an admin.";
-
+	
 	function CommentText() {
 
-		if(!class_exists('Comment')) return false;
-		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM \"PageComment\" WHERE \"NeedsModeration\"=1")->value();
+		if(!class_exists('Comment')) 
+			return false;
+		
+		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM \"Comment\" WHERE \"Moderated\"=0")->value();
 		if($unmoderatedcount == 1) {
 			return _t("BlogManagementWidget.UNM1", "You have 1 unmoderated comment");
 		} else if($unmoderatedcount > 1) {
-			return sprintf(_t("BlogManagementWidget.UNMM", "You have %i unmoderated comments"), $unmoderatedcount);
+			return sprintf(_t("BlogManagementWidget.UNMM", "You have %d unmoderated comments"), $unmoderatedcount);
 		} else {
 			return _t("BlogManagementWidget.COMADM", "Comment administration");
 		}
@@ -35,14 +37,10 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 
 	function CommentLink() {
 
-		if(!Permission::check('BLOGMANAGEMENT') || !class_exists('Comment')) return false;
-		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM \"PageComment\" WHERE \"NeedsModeration\"=1")->value();
-
-		if($unmoderatedcount > 0) {
-			return "admin/comments/unmoderated";
-		} else {
-			return "admin/comments";
-		}
+		if(!Permission::check('BLOGMANAGEMENT') || !class_exists('Comment'))
+			return false;
+		
+		return "admin/comments";
 	}
 
 	function providePermissions() {

@@ -69,7 +69,7 @@ $lang['en_US']['BlogManagementWidget']['SINGULARNAME'] = array(
 	'Singular name of the object, used in dropdowns and to generally identify a single object in the interface'
 );
 $lang['en_US']['BlogManagementWidget']['UNM1'] = 'You have 1 unmoderated comment';
-$lang['en_US']['BlogManagementWidget']['UNMM'] = 'You have %i unmoderated comments';
+$lang['en_US']['BlogManagementWidget']['UNMM'] = 'You have %d unmoderated comments';
 $lang['en_US']['BlogManagementWidget.ss']['LOGOUT'] = 'Logout';
 $lang['en_US']['BlogManagementWidget.ss']['POSTNEW'] = 'Post a new blog entry';
 $lang['en_US']['BlogSummary.ss']['COMMENTS'] = 'Comments';
