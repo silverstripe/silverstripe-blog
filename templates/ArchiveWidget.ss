@@ -1,21 +1,21 @@
 <% if DisplayMode == month %>
 	<ul class="archiveMonths">
-		<% control Dates %>
+		<% loop Dates %>
 			<li>
 				<a href="$Link">
 					$Date.Format(F) $Date.Year
 				</a>
 			</li>
-		<% end_control %>
+		<% end_loop %>
 	</ul>
 <% else %>
 	<ul class="archiveYears">
-		<% control Dates %>
+		<% loop Dates %>
 			<li>
 				<a href="$Link">
-					$Date.Year<% if Last %><% else %>,<% end_if %>
+					$Date.Year<% if not Last %>,<% end_if %>
 				</a>
 			</li>
-		<% end_control %>
+		<% end_loop %>
 	</ul>
 <% end_if %>

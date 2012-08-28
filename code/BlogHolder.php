@@ -12,7 +12,7 @@
  * BlogHolders have a form on them for easy posting, and an owner that can post to them, BlogTrees don't
  */
 class BlogHolder extends BlogTree implements PermissionProvider {
-	static $icon = "blog/images/blogholder";
+	static $icon = "blog/images/blogholder-file.png";
 
 	static $db = array(
 		'TrackBacksEnabled' => 'Boolean',
@@ -34,9 +34,9 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		$fields = parent::getCMSFields();
 		SiteTree::enableCMSFieldsExtensions();
 
-		$fields->addFieldToTab('Root.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'));
-		$fields->addFieldToTab('Root.Main', new DropdownField('OwnerID', 'Blog owner', array_merge(array('' => "(None)"), $blogOwners->map('ID', 'Name')->toArray())));
-		$fields->addFieldToTab('Root.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'));
+		$fields->addFieldToTab('Root.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'), "Content");
+		$fields->addFieldToTab('Root.Main', new DropdownField('OwnerID', 'Blog owner', array_merge(array('' => "(None)"), $blogOwners->map('ID', 'Name')->toArray())), "Content");
+		$fields->addFieldToTab('Root.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'), "Content");
 
 		$this->extend('updateCMSFields', $fields);
 

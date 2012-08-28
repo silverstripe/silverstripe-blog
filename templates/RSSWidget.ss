@@ -1,7 +1,7 @@
 <ul>
-	<% control FeedItems %>
+	<% loop FeedItems %>
 		<li>
 			<a href="$Link">$Title</a>
 		</li>
-	<% end_control %>
+	<% end_loop %>
 </ul>

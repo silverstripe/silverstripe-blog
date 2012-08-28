@@ -5,10 +5,13 @@
  */
 
 /**
- * Blog tree allows a tree of Blog Holders. Viewing branch nodes shows all blog entries from all blog holder children
+ * Blog tree is a way to group Blogs. It allows a tree of "Blog Holders". 
+ * Viewing branch nodes shows all blog entries from all blog holder children
  */
 
 class BlogTree extends Page {
+
+	static $icon = "blog/images/blogtree-file.png";
 	
 	// Default number of blog entries to show
 	static $default_entries_limit = 10;
@@ -30,6 +33,8 @@ class BlogTree extends Page {
 	static $allowed_children = array(
 		'BlogTree', 'BlogHolder'
 	);
+
+	
 
 	/*
 	 * Finds the BlogTree object most related to the current page.
@@ -96,7 +101,7 @@ class BlogTree extends Page {
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
 
-		$fields->addFieldToTab("Root.Main", new TextField("Name", "Name of blog"));
+		$fields->addFieldToTab("Root.Main", new TextField("Name", "Name of blog"), "Content");
 		$fields->addFieldToTab('Root.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
  			"" => "All entries", 
 			"1" => "Last month's entries", 
@@ -112,7 +117,7 @@ class BlogTree extends Page {
 			"11" => "Last 11 months' entries", 
 			"12" => "Last year's entries", 
 			"INHERIT" => "Take value from parent Blog Tree"
-		))); 
+		)), "Content"); 
  		if(class_exists('WidgetArea')) {
  			$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
 			$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));

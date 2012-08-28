@@ -12,10 +12,10 @@
 	
 	<% if BlogEntries %>
 		<% control BlogEntries %>
-				<% include BlogSummary %>
+			<% include BlogSummary %>
 		<% end_control %>
 	<% else %>
-		<h3><% _t('NOENTRIES', 'There are no blog entries') %></h3>
+		<h2><% _t('NOENTRIES', 'There are no blog entries') %></h2>
 	<% end_if %>
 	
 	<% include BlogPagination %>
