@@ -3,12 +3,12 @@
 	
 	<% if TrackBacks %>
 	<ul id="TrackBacks">
-		<% control TrackBacks %>
+		<% loop TrackBacks %>
 			<li>
 				<a href="$Url"><% if Title %>$Title<% else %>$Url<% end_if %></a> <span class="date">on $Created.Nice</span>
 				<% if Excerpt %><p class="excerpt">$Excerpt</p><% end_if %>
 			</li>
-		<% end_control %>
+		<% end_loop %>
 	</ul>
 	<% else %>
 		<p>No TrackBacks have been submitted for this page.</p>
