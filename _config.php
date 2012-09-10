@@ -1,5 +1,3 @@
 <?php
 
-if(class_exists('WidgetArea')) DataExtension::add_to_class('BlogTree','BlogTreeExtension');
-
-?>
+if(class_exists('WidgetArea')) Object::add_extension('BlogTree','BlogTreeExtension');
