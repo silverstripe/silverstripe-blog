@@ -58,7 +58,7 @@ class RSSWidget extends Widget {
 		return ($this->RSSTitle) ? $this->RSSTitle : 'RSS Feed';
 	}
 	
-	function FeedItems() {
+	function getFeedItems() {
 		$output = new DataObjectSet();
 
 		// Protection against infinite loops when an RSS widget pointing to this page is added to this page 

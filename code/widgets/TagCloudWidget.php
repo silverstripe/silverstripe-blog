@@ -47,7 +47,7 @@ class TagCloudWidget extends Widget {
 		return $this->Title ? $this->Title : 'Tag Cloud';
 	}
 	
-	function TagsCollection() {
+	function getTagsCollection() {
 		Requirements::themedCSS("tagcloud");
 		
 		$allTags = array();
