@@ -1,0 +1,22 @@
+{
+	"name": "silverstripe/blog",
+	"description": "The blog module allows you to post blogs on your SilverStripe.
+	It includes the ability to post blogs using a site front-end form. Blogs are
+	summarised on the blog holder page type, with more detail viewable when a specific blog is clicked.
+	",
+	"type": "silverstripe-module",
+	"keywords": ["silverstripe", "blog"],
+	"authors": [
+	{
+		"name": "Saophalkun Ponlu",
+	},
+	{
+		"name": "Carlos Barberis",
+	}
+	],
+
+	"require":
+	{
+		"silverstripe/framework": "3.*"
+	}
+}
