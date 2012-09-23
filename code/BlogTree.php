@@ -12,6 +12,8 @@
 class BlogTree extends Page {
 
 	static $icon = "blog/images/blogtree-file.png";
+
+	static $description = "A grouping of blogs";
 	
 	// Default number of blog entries to show
 	static $default_entries_limit = 10;
