@@ -5,10 +5,12 @@
 	"keywords": ["silverstripe", "blog"],
 	"authors": [
 	{
-		"name": "Saophalkun Ponlu"
+		"name": "Saophalkun Ponlu",
+		"email": "phalkunz@silverstripe.com"
 	},
 	{
-		"name": "Carlos Barberis"
+		"name": "Carlos Barberis",
+		"email": "carlos@silverstripe.com"
 	}
 	],
 
