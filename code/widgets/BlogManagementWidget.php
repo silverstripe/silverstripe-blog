@@ -23,7 +23,7 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 	function CommentText() {
 
 		if(!class_exists('Comment')) return false;
-		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM \"PageComment\" WHERE \"NeedsModeration\"=1")->value();
+		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM \"Comment\" WHERE \"Moderated\"=1")->value();
 		if($unmoderatedcount == 1) {
 			return _t("BlogManagementWidget.UNM1", "You have 1 unmoderated comment");
 		} else if($unmoderatedcount > 1) {
@@ -36,7 +36,7 @@ class BlogManagementWidget extends Widget implements PermissionProvider {
 	function CommentLink() {
 
 		if(!Permission::check('BLOGMANAGEMENT') || !class_exists('Comment')) return false;
-		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM \"PageComment\" WHERE \"NeedsModeration\"=1")->value();
+		$unmoderatedcount = DB::query("SELECT COUNT(*) FROM \"Comment\" WHERE \"Moderated\"=1")->value();
 
 		if($unmoderatedcount > 0) {
 			return "admin/comments/unmoderated";
