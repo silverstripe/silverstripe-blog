@@ -59,7 +59,7 @@ class RSSWidget extends Widget {
 	}
 	
 	function getFeedItems() {
-		$output = new DataObjectSet();
+		$output = new ArrayList();
 
 		// Protection against infinite loops when an RSS widget pointing to this page is added to this page 
 		if(stristr($_SERVER['HTTP_USER_AGENT'], 'SimplePie')) { 
