@@ -15,6 +15,10 @@ class BlogTree extends Page {
 
 	static $description = "A grouping of blogs";
 	
+	static $singular_name = 'Blog Tree Page';
+	
+	static $plural_name = 'Blog Tree Pages';
+	
 	// Default number of blog entries to show
 	static $default_entries_limit = 10;
 	

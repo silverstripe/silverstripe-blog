@@ -14,7 +14,11 @@
 class BlogHolder extends BlogTree implements PermissionProvider {
 	static $icon = "blog/images/blogholder-file.png";
 
-	static $description = "Displays Blog Entries";
+	static $description = "Displays listings of blog entries";
+	
+	static $singular_name = 'Blog Holder Page';
+	
+	static $plural_name = 'Blog Holder Pages';
 
 	static $db = array(
 		'TrackBacksEnabled' => 'Boolean',
