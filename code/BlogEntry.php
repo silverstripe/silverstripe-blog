@@ -18,6 +18,10 @@ class BlogEntry extends Page {
 	static $icon = "blog/images/blogpage-file.png";
 
 	static $description = "An individual blog entry";
+	
+	static $singular_name = 'Blog Entry Page';
+	
+	static $plural_name = 'Blog Entry Pages';
 		
 	static $has_one = array();
 	
