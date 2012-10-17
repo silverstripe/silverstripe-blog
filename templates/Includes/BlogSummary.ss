@@ -9,8 +9,12 @@
 			<% end_loop %>
 		</p>
 	<% end_if %>
-	
-	<p>$Content.FirstParagraph(html)</p>
+
+	<% if BlogHolder.ShowFullEntry %>
+		$Content
+	<% else %> 
+		<p>$Content.FirstParagraph(html)</p>
+	<% end_if %>
 	
 	<p class="blogVitals"><a href="$Link#PageComments_holder" class="comments" title="View Comments for this post">$Comments.Count comments</a> | <a href="$Link" class="readmore" title="Read Full Post">Read the full post</a></p>
 </div>

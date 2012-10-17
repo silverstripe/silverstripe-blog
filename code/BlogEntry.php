@@ -230,6 +230,20 @@ class BlogEntry extends Page {
 			'Date ASC'
 		);		
 	}
+
+	/**
+	 * Get the blog holder of this entry
+	 *
+	 * @return BlogHolder
+	 */
+	function getBlogHolder() {
+		$holder = null; 
+		if($this->ParentID && $this->Parent()->ClassName == 'BlogHolder') {
+			$holder = $this->Parent(); 
+		}
+
+		return $holder;
+	}
 }
 
 class BlogEntry_Controller extends Page_Controller {

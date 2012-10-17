@@ -23,6 +23,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	static $db = array(
 		'TrackBacksEnabled' => 'Boolean',
 		'AllowCustomAuthors' => 'Boolean',
+		'ShowFullEntry' => 'Boolean', 
 	);
 
 	static $has_one = array(
@@ -43,6 +44,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		$fields->addFieldToTab('Root.Main', new CheckboxField('TrackBacksEnabled', 'Enable TrackBacks'), "Content");
 		$fields->addFieldToTab('Root.Main', new DropdownField('OwnerID', 'Blog owner', array_merge(array('' => "(None)"), $blogOwners->map('ID', 'Name')->toArray())), "Content");
 		$fields->addFieldToTab('Root.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'), "Content");
+		$fields->addFieldToTab("Root.Main", new CheckboxField("ShowFullEntry", "Show Full Entry"), "Content");
 
 		$this->extend('updateCMSFields', $fields);
 
