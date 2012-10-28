@@ -303,7 +303,7 @@ class BlogTree_Controller extends Page_Controller {
 
 		if($entries) {
 			$rss = new RSSFeed($entries, $this->Link('rss'), ($blogName ? $blogName : $altBlogName), "", "Title", "RSSContent");
-			$rss->outputToBrowser();
+			return $rss->outputToBrowser();
 		}
 	}
 	
