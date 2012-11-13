@@ -248,7 +248,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			$contentfield,
 			$tagfield,
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
-												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
+												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label><br />")
 		);
 		
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));

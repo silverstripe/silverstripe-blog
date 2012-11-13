@@ -23,11 +23,23 @@ class ArchiveWidget extends Widget {
 	);
 	
 	static $title = 'Browse by Date';
-
+	
 	static $cmsTitle = 'Blog Archive';
 	
 	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
 	
+	function Title() {
+		return i18n::_t('ArchiveWidget.BrowseByDate', ArchiveWidget::$title);
+	}
+	
+	function CMSTitle() {
+		return i18n::_t('ArchiveWidget.BlogArchive', ArchiveWidget::$cmsTitle);
+	}
+	
+	function Description() {
+		return i18n::_t('ArchiveWidget.Description', ArchiveWidget::$description);
+	}
+		
 	function getCMSFields() {
 		$fields = parent::getCMSFields(); 
 		

@@ -15,6 +15,18 @@ class SubscribeRSSWidget extends Widget {
 	
 	static $description = 'Shows a link allowing a user to subscribe to this blog via RSS.';
 
+	function Title() {
+		return i18n::_t('SubscribeRSSWidget.ss.SUBSCRIBESHORTTITLE', SubscribeRSSWidget::$title);
+	}
+	
+	function CmsTitle() {
+		return i18n::_t('SubscribeRSSWidget.SINGULARNAME', SubscribeRSSWidget::$cmsTitle);
+	}
+	
+	function Description() {
+		return i18n::_t('SubscribeRSSWidget.ss.DESCRIPTION', SubscribeRSSWidget::$description);
+	}
+	
 	/**
 	 * Return an absolute URL based on the BlogHolder
 	 * that this widget is located on.

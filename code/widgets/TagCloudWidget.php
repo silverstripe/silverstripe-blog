@@ -21,8 +21,8 @@ class TagCloudWidget extends Widget {
 		"Sortby" => "alphabet"
 	);
 	
-	static $cmsTitle = "Tag Cloud";
-	static $description = "Shows a tag cloud of tags on your blog.";
+	static $cmsTitle;
+	static $description;
 
 	static $popularities = array( 'not-popular', 'not-very-popular', 'somewhat-popular', 'popular', 'very-popular', 'ultra-popular' );
 	
@@ -146,5 +146,6 @@ class TagCloudWidget extends Widget {
 	}
 }
 
-
+TagCloudWidget::$cmsTitle = i18n::_t('TagCloudWidget.TAGCLOUD', 'Tag Cloud');
+TagCloudWidget::$description = i18n::_t('TagCloudWidget.DESCRIPTION', 'Shows a tag cloud of tags on your blog.');
 ?>
