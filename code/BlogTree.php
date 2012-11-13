@@ -23,7 +23,7 @@ class BlogTree extends Page {
 	static $default_entries_limit = 10;
 	
 	static $db = array(
-		'Name' => 'Varchar',
+		'Name' => 'Varchar(255)',
 		'InheritSideBar' => 'Boolean',
 		'LandingPageFreshness' => 'Varchar',
 	);
