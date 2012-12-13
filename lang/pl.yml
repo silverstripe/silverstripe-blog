@@ -1,0 +1,62 @@
+pl:
+  ArchiveWidget:
+    DispBY: "Wyświetlaj według"
+    MONTH: "miesiąc"
+    YEAR: "rok"
+  BlogEntry:
+    AU: "Autor"
+    BBH: "Pomoc BBCode"
+    CN: "Zawartość"
+    DT: "Data"
+    PLURALNAME: "Wpisy bloga"
+    SINGULARNAME: "Wpis bloga"
+    TS: "Tagi (oddziel przecinkami)"
+  BlogEntry.ss:
+    COMMENTS: "Komentarze"
+    EDITTHIS: "Edytuj ten post"
+    POSTEDBY: "Dodane przez"
+    POSTEDON: "Opublikowano"
+    TAGS: "Tagi:"
+    UNPUBLISHTHIS: "Cofnij publikację tego postu"
+    VIEWALLPOSTTAGGED: "Zobacz wszystkie posty otagowane jako"
+  BlogHolder:
+    PLURALNAME: "Blog Listy"
+    POST: "Publikuj wpis"
+    RSSFEED: "Subskrybuj wpisy na tym blogu przez RSS"
+    SINGULARNAME: "Blog Lista"
+    SJ: "Temat"
+    SPUC: "Oddziel tagi używając przecinków."
+    SUCCONTENT: "Gratulacje, moduł bloga SilverStripe został poprawnie zainstalowany. Możesz spokojnie usunąć ten wpis. Możesz skonfigurować różne części swojego bloga (takie jak widgety, wyświetlane z boku) w [url=admin]CMSie[/url]."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "Blog SilverStripe został poprawnie zainstalowany."
+    TE: "Na przykład: sport, osobiste, science fiction"
+  BlogHolder.ss:
+    NOENTRIES: "Nie ma żadnych wpisów na blogu"
+    VIEWINGTAGGED: "Zobacz wpisy otagowane jako"
+  BlogManagementWidget:
+    COMADM: "Administracja komentarzami"
+    UNM1: "Masz 1 niesprawdzony komentarz"
+    UNMM: "Masz %i niesprawdzonych komentarzy"
+  BlogManagementWidget.ss:
+    LOGOUT: "Wyloguj"
+    POSTNEW: "Dodaj nowy wpis"
+  BlogSummary.ss:
+    COMMENTS: "Komentarze"
+    POSTEDBY: "Napisane przez"
+    POSTEDON: "Opublikowano"
+    VIEWFULL: "Zobacz pełny post zatytułowany - "
+  RSSWidget:
+    CT: "Tytuł dla kanału"
+    NTS: "Ilość pokazywanych wpisów"
+    PLURALNAME: "Widżety RSS"
+    SINGULARNAME: "Widżet RSS"
+    URL: "URL RSS"
+  SubscribeRSSWidget:
+    PLURALNAME: "Subksrybuj widżety RSS"
+    SINGULARNAME: "Subksrybuj widżet RSS"
+  TagCloudWidget:
+    LIMIT: "Limit tagów"
+    SBAL: "alfabetu"
+    SBFREQ: "częstości występowania"
+    SORTBY: "Sortuj według"
+    TILE: "Tytuł"

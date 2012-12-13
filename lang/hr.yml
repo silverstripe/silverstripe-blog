@@ -1,0 +1,46 @@
+hr:
+  ArchiveWidget:
+    MONTH: "mjesec"
+    YEAR: "godina"
+  BlogEntry:
+    AU: "Autor"
+    BBH: "Pomoć za BBCode"
+    CN: "Sadržaj"
+    DT: "Datum"
+    TS: "Tagovi (odvojeni zarezom)"
+  BlogEntry.ss:
+    COMMENTS: "Komentari"
+    POSTEDBY: "Objavio"
+    POSTEDON: "Objavljeno"
+    TAGS: "Tagovi:"
+    VIEWALLPOSTTAGGED: "Pogledaj sve blog zapise tagirane sa"
+  BlogHolder:
+    POST: "Objavi blog zapis"
+    RSSFEED: "RSS feed ovog bloga"
+    SJ: "Tema"
+    SPUC: "Molimo vas razdovojite tagove zarezima."
+    SUCCONTENT: "Čestitamo, SilverStripe blog modul je uspješno instaliran. Ovaj blog zapis se slobodno može obrisati. Postavke bloga je moguće konfigurirati (kao što su widgeti prikazani sa strane) u [url=admin]CMSu[/url]."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "SilverStripe blog modul uspješno je instaliran"
+    TE: "Na primjer: sport, osobno, znanstvena fantastika"
+  BlogHolder.ss:
+    NOENTRIES: "Nema blog zapisa"
+    VIEWINGTAGGED: "Pogledaj zapise tagirane sa"
+  BlogManagementWidget:
+    COMADM: "Administriranje komentara"
+  BlogManagementWidget.ss:
+    LOGOUT: "Odlogiraj se"
+    POSTNEW: "Objavi novi blog zapis"
+  BlogSummary.ss:
+    COMMENTS: "Komentari"
+    POSTEDON: "Objavljeno"
+    VIEWFULL: "Pogledaj potpuni blog zapis pod nazivom - "
+  RSSWidget:
+    NTS: "Broj orikazanih zapisa"
+    URL: "URL RSS feeda"
+  TagCloudWidget:
+    LIMIT: "Ograniči broj tagova"
+    SBAL: "abecedi"
+    SBFREQ: "učestalosti (frekvenciji)"
+    SORTBY: "Sortiraj prema"
+    TILE: "Naslov"

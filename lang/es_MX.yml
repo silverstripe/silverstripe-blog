@@ -1,0 +1,74 @@
+es_MX:
+  ArchiveWidget:
+    DispBY: "Mostrar por"
+    MONTH: "mes"
+    PLURALNAME: "Archivos de Widgets"
+    SINGULARNAME: "Archivo de Widget"
+    YEAR: "año"
+  BlogEntry:
+    AU: "Autor"
+    BBH: "Ayuda de BBCode"
+    CN: "Contenido"
+    DT: "Fecha"
+    PLURALNAME: "Entradas del Blog"
+    SINGULARNAME: "Entrada del BLog"
+    TS: "Etiquetas (separadas por coma)"
+  BlogEntry.ss:
+    COMMENTS: "Comentarios"
+    EDITTHIS: "Editar este mensaje"
+    POSTEDBY: "Enviado por"
+    POSTEDON: "en"
+    TAGS: "Etiquetas:"
+    UNPUBLISHTHIS: "Ocultar este mensaje"
+    VIEWALLPOSTTAGGED: "Ver todos los mensajes marcados con la etiqueta"
+  BlogHolder:
+    PLURALNAME: "Titulares del Blog"
+    POST: "Enviar entrada a la bitácora"
+    RSSFEED: "Alimentar al RSS con esta bitácora"
+    SINGULARNAME: "Titular del Blog"
+    SJ: "Asunto"
+    SPUC: "Por favor separa etiquetas utilizando comas."
+    SUCCONTENT: "Felicidades, el módulo bitácora de Silverstripe se ha instalado satisfactoriamente. Esta entrada de la bitácora se puede eliminar con seguridad. Puedes configurar aspectos de tu nueva bitácora (tal cómo reproductores mostrados en la barra lateral) en [url=admin] el CMS[/url]."
+    SUCTAGS: "bitácora, silverstripe"
+    SUCTITLE: "El Módulo bitácora Silverstripe se ha instalado satisfactoriamente."
+    TE: "Por ejemplo: deportes, personal. ciencia ficción"
+  BlogHolder.ss:
+    NOENTRIES: "Bitácora vacía"
+    VIEWINGTAGGED: "Ver entradas etiquetadas con"
+  BlogManagementWidget:
+    COMADM: "Administración de comentarios"
+    PLURALNAME: "Widget para la Gestión de Blogs"
+    SINGULARNAME: "Wisdget para la Gestion del Blog"
+    UNM1: "Tienes 1 comentario pendiente de moderación"
+    UNMM: "Tienes %i comentarios pendientes de moderación"
+  BlogManagementWidget.ss:
+    LOGOUT: "Salir"
+    POSTNEW: "Enviar nueva entrada a la bitácora"
+  BlogSummary.ss:
+    COMMENTS: "Comentarios"
+    POSTEDBY: "Enviado por"
+    POSTEDON: "en"
+    VIEWFULL: "Ver completo el mensaje titulado -"
+  RSSWidget:
+    CT: "Título personalizado para el alimentador"
+    NTS: "Número de elementos a mostrar:"
+    PLURALNAME: "Widgets R S S"
+    SINGULARNAME: "Widget R S S"
+    URL: "URL del RSS alimentado"
+  SubscribeRSSWidget:
+    PLURALNAME: "Widgets para Suscripción R S S"
+    SINGULARNAME: "Widget para Suscrición R S S"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Suscribe"
+    SUBSCRIBETITLE: "Suscribirme a este blog vía RSS"
+  TagCloudWidget:
+    LIMIT: "Limitar el número de etiquetas"
+    PLURALNAME: "Widgets de Nube de Etiquetas"
+    SBAL: "alfabeto"
+    SBFREQ: "frecuencia"
+    SINGULARNAME: "Widget Nube de Etiquetas"
+    SORTBY: "Ordenar por"
+    TILE: "Título"
+  TrackBackPing:
+    PLURALNAME: "Volver a la Pista de Pings"
+    SINGULARNAME: "Volver a la Pista de Pings"
