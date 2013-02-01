@@ -66,6 +66,8 @@ class BlogHolderTest extends SapphireTest {
 			'Blog Owner Three',
 			'Blog Owner Two',
 		);
+		sort($actualMembers);
+		sort($expectedMembers);
 		
 		$this->assertEquals($expectedMembers, $actualMembers);
 	}
