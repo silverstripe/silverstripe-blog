@@ -100,7 +100,7 @@ class BlogEntry extends Page {
 		$link = $this->getParent() ? $this->getParent()->Link('tag') : '';
 		foreach($tags as $tag) {
 			$output->push(new ArrayData(array(
-				'Tag' => $tag,
+				'Tag' => Convert::raw2xml($tag),
 				'Link' => $link . '/' . urlencode($tag),
 				'URLTag' => urlencode($tag)
 			)));
