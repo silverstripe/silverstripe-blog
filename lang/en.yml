@@ -1,0 +1,95 @@
+en:
+  ArchiveWidget:
+    DispBY: "Display by"
+    MONTH: "month"
+    # 50
+    PLURALNAME: "Archive Widgets"
+    # 50
+    SINGULARNAME: "Archive Widget"
+    YEAR: "year"
+  BlogEntry:
+    AU: "Author"
+    BBH: "BBCode help"
+    CN: "Content"
+    DT: "Date"
+    # 50
+    PLURALNAME: "Blog Entries"
+    # 50
+    SINGULARNAME: "Blog Entry"
+    TS: "Tags (comma sep.)"
+  BlogEntry.ss:
+    COMMENTS: "Comments"
+    EDITTHIS: "Edit this post"
+    POSTEDBY: "Posted by"
+    POSTEDON: "on"
+    TAGS: "Tags:"
+    UNPUBLISHTHIS: "Unpublish this post"
+    VIEWALLPOSTTAGGED: "View all posts tagged"
+  BlogHolder:
+    # 50
+    PLURALNAME: "Blog Holders"
+    POST: "Post blog entry"
+    RSSFEED: "RSS feed of these blogs"
+    # 50
+    SINGULARNAME: "Blog Holder"
+    SJ: "Subject"
+    SPUC: "Please separate tags using commas."
+    SUCCONTENT: "Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in [url=admin]the CMS[/url]."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "SilverStripe blog module successfully installed"
+    TE: "For example: sport, personal, science fiction"
+  BlogHolder.ss:
+    NOENTRIES: "There are no blog entries"
+    VIEWINGTAGGED: "Viewing entries tagged with"
+  BlogManagementWidget:
+    COMADM: "Comment administration"
+    # 50
+    PLURALNAME: "Blog Management Widgets"
+    # 50
+    SINGULARNAME: "Blog Management Widget"
+    UNM1: "You have 1 unmoderated comment"
+    UNMM: "You have %i unmoderated comments"
+  BlogManagementWidget.ss:
+    LOGOUT: "Logout"
+    POSTNEW: "Post a new blog entry"
+  BlogSummary.ss:
+    COMMENTS: "Comments"
+    POSTEDBY: "Posted by"
+    POSTEDON: "on"
+    VIEWFULL: "View full post titled -"
+  BlogTree:
+    # 50
+    PLURALNAME: "Blog Tres"
+    # 50
+    SINGULARNAME: "Blog Tree"
+  RSSWidget:
+    CT: "Custom title for the feed"
+    NTS: "Number of Items to show"
+    # 50
+    PLURALNAME: "R S S Widgets"
+    # 50
+    SINGULARNAME: "R S S Widget"
+    URL: "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed."
+  SubscribeRSSWidget:
+    # 50
+    PLURALNAME: "Subscribe R S S Widgets"
+    # 50
+    SINGULARNAME: "Subscribe R S S Widget"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Subscribe"
+    SUBSCRIBETITLE: "Subscribe to this blog via RSS"
+  TagCloudWidget:
+    LIMIT: "Limit number of tags"
+    # 50
+    PLURALNAME: "Tag Cloud Widgets"
+    SBAL: "alphabet"
+    SBFREQ: "frequency"
+    # 50
+    SINGULARNAME: "Tag Cloud Widget"
+    SORTBY: "Sort by"
+    TILE: "Title"
+  TrackBackPing:
+    # 50
+    PLURALNAME: "Track Back Pings"
+    # 50
+    SINGULARNAME: "Track Back Ping"

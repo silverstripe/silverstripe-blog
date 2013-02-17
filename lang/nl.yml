@@ -1,0 +1,74 @@
+nl:
+  ArchiveWidget:
+    DispBY: "Tonen door"
+    MONTH: "maand"
+    PLURALNAME: "Archief-widgets"
+    SINGULARNAME: "Archief-widget"
+    YEAR: "jaar"
+  BlogEntry:
+    AU: "Auteur"
+    BBH: "BBCode hulp"
+    CN: "Inhoud"
+    DT: "Datum"
+    PLURALNAME: "Blog Artikelen"
+    SINGULARNAME: "Blog Artikel"
+    TS: "Tags (Komma gescheiden)"
+  BlogEntry.ss:
+    COMMENTS: "Reacties"
+    EDITTHIS: "Bewerk deze post"
+    POSTEDBY: "Auteur"
+    POSTEDON: "Aan"
+    TAGS: "Tags:"
+    UNPUBLISHTHIS: "onpubliceer deze post"
+    VIEWALLPOSTTAGGED: "Bekijk alle posten getiteld"
+  BlogHolder:
+    PLURALNAME: "Blog Houders"
+    POST: "Blogartikel plaatsen"
+    RSSFEED: "RSS-feed van deze blog"
+    SINGULARNAME: "Blog Houder"
+    SJ: "Onderwerp"
+    SPUC: "Scheid de tags met behulp van komma's."
+    SUCCONTENT: "Gefeliciteerd, de SilverStripe blog module is met succes geïnstalleerd. Dit blogartikel kan veilig worden verwijderd. U kunt aspecten van uw blog (zoals de widgets weergegeven in de zijbalk) in [url=admin]het CMS[/url] veranderen."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "SilverStripe blog module met succes geïnstalleerd"
+    TE: "Bijvoorbeeld: sport, persoonlijke, science fiction"
+  BlogHolder.ss:
+    NOENTRIES: "Er zijn geen blog artikelen"
+    VIEWINGTAGGED: "U bekijkt artikelen getagged met"
+  BlogManagementWidget:
+    COMADM: "Opmerking administratie"
+    PLURALNAME: "Blog Management Widgets"
+    SINGULARNAME: "Blog Management Widgets"
+    UNM1: "U heeft 1 niet gecontroleerde opmerking"
+    UNMM: "U heeft %i niet gecontroleerde opmerkingen"
+  BlogManagementWidget.ss:
+    LOGOUT: "Afmelden"
+    POSTNEW: "Publiceer een nieuw blog entree"
+  BlogSummary.ss:
+    COMMENTS: "Reacties"
+    POSTEDBY: "Geplaatst door"
+    POSTEDON: "Aan"
+    VIEWFULL: "Bekijk het gehele post getitled"
+  RSSWidget:
+    CT: "Aangepaste titel voor de RSS-feed"
+    NTS: "Aantal objecten tonen"
+    PLURALNAME: "RSS-widget"
+    SINGULARNAME: "R S S Widget"
+    URL: "URL van de RSS-feed"
+  SubscribeRSSWidget:
+    PLURALNAME: "Abonneer R S S Widgets"
+    SINGULARNAME: "Abonneer R S S Widget"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Inschrijven"
+    SUBSCRIBETITLE: "Inschrijven om dit weblog via RSS te volgen"
+  TagCloudWidget:
+    LIMIT: "Beperk aantal tags"
+    PLURALNAME: "Tag Cloud Widgets"
+    SBAL: "alfabet"
+    SBFREQ: "frequentie"
+    SINGULARNAME: "Tag Cloud Widget"
+    SORTBY: "Sorteer bij"
+    TILE: "Titel"
+  TrackBackPing:
+    PLURALNAME: "Track Back Pings"
+    SINGULARNAME: "Track Back Ping"

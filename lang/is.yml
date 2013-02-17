@@ -1,0 +1,71 @@
+is:
+  ArchiveWidget:
+    DispBY: "Birta sem"
+    MONTH: "mánuður"
+    YEAR: "ár"
+  BlogEntry:
+    AU: "Höfundur"
+    BBH: "BBCode hjálp"
+    CN: "Efni"
+    DT: "Dags"
+    PLURALNAME: "Blogg færslur"
+    SINGULARNAME: "Blogg færsla"
+    TS: "Tög (komma til aðskilnaðar)"
+  BlogEntry.ss:
+    COMMENTS: "Athugasemdir"
+    EDITTHIS: "Breyta þessari færslu"
+    POSTEDBY: "Skrifað af"
+    POSTEDON: "á"
+    TAGS: "Tög:"
+    UNPUBLISHTHIS: "Hætta birtingu þessarar færslu"
+    VIEWALLPOSTTAGGED: "Birta allar taggaðar færslur"
+  BlogHolder:
+    PLURALNAME: "Blogg umhverfi"
+    POST: "Birta blogg færslu"
+    RSSFEED: "RSS þjónusta fyrir þetta blogg"
+    SINGULARNAME: "Blogg umhverfi"
+    SJ: "Málefni"
+    SPUC: "Vinsamlegast notaðu kommu til að aðskilja tögin"
+    SUCCONTENT: |
+                 Til hamingju, uppsetningin á SilverStripe blogg einingunni tókst. 
+                 Þessari blogg færslu er hægt að eyða á örugganhátt. Þú getur stillt útlit blogsins þíns (svo sem widgets) i  [url=admin] kefinu[/url].
+    SUCTAGS: "silverstripe, blogg"
+    SUCTITLE: "Uppsetning á SilverStripe blogg einingunni tókst"
+    TE: "Til dæmis: íþróttir, persónulegt, vísindasögur"
+  BlogHolder.ss:
+    NOENTRIES: "Það eru engar blogg færslur"
+    VIEWINGTAGGED: "Skoða færslur sem eru taggaðar með"
+  BlogManagementWidget:
+    COMADM: "Athugasemda stjórnun"
+    PLURALNAME: "Blogg stjórnunar aukahlutur"
+    SINGULARNAME: "Blogg stjórnunar aukahlutur"
+    UNM1: "Þú átt 1 óskoðaða athugasemd"
+    UNMM: "Þú átt %i óskoðaða athugasemd"
+  BlogManagementWidget.ss:
+    LOGOUT: "Útskrá"
+    POSTNEW: "Skrifa nýja færslu"
+  BlogSummary.ss:
+    COMMENTS: "Athugasemdir"
+    POSTEDBY: "Skráð af"
+    POSTEDON: "á"
+    VIEWFULL: "Skoða alla færslu -"
+  RSSWidget:
+    CT: "Titill fyrir þjónustuna"
+    NTS: "Fjöldi hluta til að sýna"
+    PLURALNAME: "RSS aukahlutur"
+    SINGULARNAME: "RSS aukahlutur"
+    URL: "Slóð á RSS þjónustuna"
+  SubscribeRSSWidget:
+    PLURALNAME: "Áskriftar RSS aukahlutur"
+    SINGULARNAME: "Áskriftar RSS aukahlutur"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Gerast áskrifandi"
+    SUBSCRIBETITLE: "Gerast áskrifandi að þessu bloggi í gegnum RSS"
+  TagCloudWidget:
+    LIMIT: "Takmarka fjölda tag"
+    PLURALNAME: "Tag ský aukahlutur"
+    SBAL: "stafróf"
+    SBFREQ: "tíðni"
+    SINGULARNAME: "Tag ský aukahlutur"
+    SORTBY: "Raða eftir"
+    TILE: "Titill"

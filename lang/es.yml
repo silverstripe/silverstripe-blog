@@ -1,0 +1,74 @@
+es:
+  ArchiveWidget:
+    DispBY: "Mostrar por"
+    MONTH: "mes"
+    PLURALNAME: "Archivar Widgets"
+    SINGULARNAME: "Archivar Widget"
+    YEAR: "año"
+  BlogEntry:
+    AU: "Autor"
+    BBH: "BBCode ayuda"
+    CN: "Contenido"
+    DT: "Fecha"
+    PLURALNAME: "Entradas del Blog"
+    SINGULARNAME: "Entrada del Blog"
+    TS: "Etiquetas (separados por comas)"
+  BlogEntry.ss:
+    COMMENTS: "Comentarios"
+    EDITTHIS: "Editar esta entrada"
+    POSTEDBY: "Publicado por"
+    POSTEDON: "en"
+    TAGS: "Etiquetas:"
+    UNPUBLISHTHIS: "Retirar esta entrada"
+    VIEWALLPOSTTAGGED: "Ver todas las publicaciones etiquetadas"
+  BlogHolder:
+    PLURALNAME: "Contenedores de Blog"
+    POST: "Entrada del blog"
+    RSSFEED: "RSS feed de este blog"
+    SINGULARNAME: "Contenedor de Blog"
+    SJ: "Asunto"
+    SPUC: "Por favor, separa las etiquetas mediante comas."
+    SUCCONTENT: "Felicitaciones, el módulo de blog de SilverStripe ha sido instalado correctamente. Esta entrada puede ser eliminada. Puedes configurar aspectos de tu blog (como los widgets mostrados en la barra lateral) en [url=admin]el CMS[/url]."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "El módulo de blog de SilverStripe ha sido instalado correctamente"
+    TE: "Por ejemplo: deporte, cine, tecnología"
+  BlogHolder.ss:
+    NOENTRIES: "No hay entradas"
+    VIEWINGTAGGED: "Ver entrada etiquetadas como"
+  BlogManagementWidget:
+    COMADM: "Administración de comentarios"
+    PLURALNAME: "Widgets de gestión del Blog"
+    SINGULARNAME: "Widget de gestión del Blog"
+    UNM1: "Tienes 1 comentario sin moderar"
+    UNMM: "Tienes %i comentarios sin moderar"
+  BlogManagementWidget.ss:
+    LOGOUT: "Salir"
+    POSTNEW: "Escribir una nueva entrada del blog"
+  BlogSummary.ss:
+    COMMENTS: "Comentarios"
+    POSTEDBY: "Publicado por"
+    POSTEDON: "en"
+    VIEWFULL: "Ver completo el post titulado -"
+  RSSWidget:
+    CT: "Título personalizado  para el feed"
+    NTS: "Número de registros para mostrar"
+    PLURALNAME: "Widgets RSS"
+    SINGULARNAME: "Widget RSS"
+    URL: "URL del RSS Feed"
+  SubscribeRSSWidget:
+    PLURALNAME: "Suscribir a Widgets RSS"
+    SINGULARNAME: "Suscribir a Widget RSS"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Suscribir"
+    SUBSCRIBETITLE: "Suscribirse a este blog vía RSS"
+  TagCloudWidget:
+    LIMIT: "Limitar el número de etiquetas"
+    PLURALNAME: "Nube de Etiquetas de Widgets"
+    SBAL: "alfabeto"
+    SBFREQ: "frecuencia"
+    SINGULARNAME: "Nube de Etiquetas de Widget"
+    SORTBY: "Ordenar por"
+    TILE: "Título"
+  TrackBackPing:
+    PLURALNAME: "Notificaciones de Trackback"
+    SINGULARNAME: "Notificación de Trackback"
