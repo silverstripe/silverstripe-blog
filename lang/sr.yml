@@ -1,0 +1,48 @@
+sr:
+  ArchiveWidget:
+    DispBY: "Прикажи по"
+    MONTH: "месецу"
+    YEAR: "години"
+  BlogEntry:
+    AU: "Аутор"
+    BBH: "Помоћ око ББкода"
+    CN: "Садржај"
+    DT: "Датум"
+    TS: "Ознаке (одвојене зарезом)"
+  BlogEntry.ss:
+    COMMENTS: "Коментари"
+    EDITTHIS: "Измени овај унос"
+    POSTEDBY: "Послао"
+    POSTEDON: " "
+    TAGS: "Тагови:"
+    VIEWALLPOSTTAGGED: "Погледајте све уносе означене са"
+  BlogHolder:
+    POST: "Пошаљи унос у блог"
+    RSSFEED: "RSS довод овог блога"
+    SJ: "Наслов"
+    SPUC: "Одвојите ознаке зарезима."
+    SUCTAGS: "silverstripe, блог"
+    SUCTITLE: "SilverStripe модул за блог је успешно инсталиран"
+    TE: "На пример: спорт, лично, научна фантастика"
+  BlogHolder.ss:
+    NOENTRIES: "Нема уноса у блог"
+    VIEWINGTAGGED: "Приказујем уносе означене са"
+  BlogManagementWidget:
+    COMADM: "Администрација коментара"
+  BlogManagementWidget.ss:
+    LOGOUT: "Одјави се"
+    POSTNEW: "Пошаљи нов унос у блог"
+  BlogSummary.ss:
+    COMMENTS: "Коментари"
+    POSTEDON: "у"
+    VIEWFULL: "Погледајте цео унос насловљен - "
+  RSSWidget:
+    CT: "Прилагођени наслов за овај довод"
+    NTS: "Број ставки за приказивање"
+    URL: "URL RSS довода"
+  TagCloudWidget:
+    LIMIT: "Ограничи број тагова"
+    SBAL: "азбучном реду"
+    SBFREQ: "фреквенцији"
+    SORTBY: "Сортирај по"
+    TILE: "Наслов"

@@ -1,0 +1,79 @@
+ar:
+  ArchiveWidget:
+    DispBY: "استعراض بواسطة"
+    MONTH: "شهر"
+    PLURALNAME: "مربعات الأرشيف"
+    SINGULARNAME: "مربع الأرشيف"
+    YEAR: "سنة"
+  BlogEntry:
+    AU: "الكاتب"
+    BBH: "مساعدة BBCode"
+    CN: "المحتوى"
+    DT: "تاريخ"
+    PLURALNAME: "تدوينات المدونة"
+    SINGULARNAME: "تدوينة المدونة"
+    TS: "وسوم (فاصلة,بين,الوسوم)"
+  BlogEntry.ss:
+    COMMENTS: "التعليقات"
+    EDITTHIS: "تحرير التدوينة"
+    POSTEDBY: "نشرت بواسطة"
+    POSTEDON: "في"
+    TAGS: "الوسوم:"
+    UNPUBLISHTHIS: "عدم نشر التدوينة"
+    VIEWALLPOSTTAGGED: "عرض جميع التدوينات"
+  BlogHolder:
+    PLURALNAME: "حاويات المدونة"
+    POST: "Post blog entry"
+    RSSFEED: "RSS لهذه المدونة"
+    SINGULARNAME: "حاوية المدونة"
+    SJ: "الموضوع"
+    SPUC: "فضلاً افصل بين الوسوم بفاصلة"
+    SUCCONTENT: "مبروك, تم تركيب Silverstripe blog بنجاح. هذه المدونة يمكن حذفها بأمان.يمكن تعديل المدونة عبر عبر رابط [url=admin]إدارة المحتوى[/url]"
+    SUCTAGS: "َsilverstripe , blog"
+    SUCTITLE: "تم تركيب SilverStripe Blog بنجاح"
+    TE: "مثال:رياضة,شخصية,علمية"
+  BlogHolder.ss:
+    NOENTRIES: "لا يوجد مدخلات"
+    VIEWINGTAGGED: "عرض المخلات الموسومة بـ"
+  BlogManagementWidget:
+    COMADM: "إدارة التعليقات"
+    PLURALNAME: "مربعات إدارة المدونة"
+    SINGULARNAME: "مربع إدارة المدونة"
+    UNM1: "يوجد تعليق واحد لا يحتاج إلى موافقة"
+    UNMM: "يوجد %i تعليقات لا تحتاج إلى موافقة"
+  BlogManagementWidget.ss:
+    LOGOUT: "خروج"
+    POSTNEW: "نشر تدوينة جديدة"
+  BlogSummary.ss:
+    COMMENTS: "التعليقات"
+    POSTEDBY: "بواسطة"
+    POSTEDON: "في"
+    VIEWFULL: "عرض كامل التدوينة"
+  BlogTree:
+    # 50
+    PLURALNAME: "Blog Tres"
+    # 50
+    SINGULARNAME: "Blog Tree"
+  RSSWidget:
+    CT: "العنوان المخصص للخلاصة"
+    NTS: "عدد العناصر لعرضها"
+    PLURALNAME: "مربعات الخلاصات RSS"
+    SINGULARNAME: "مربع الخلاصات RSS"
+    URL: "رابط الخلاصة"
+  SubscribeRSSWidget:
+    PLURALNAME: "مربعات الاشتراك في الخلاصات RSS"
+    SINGULARNAME: "مربع الاشتراك في الخلاصات RSS"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "اشتراك"
+    SUBSCRIBETITLE: "الاشتراك في المدونة عن طريق الخلاصات RSS"
+  TagCloudWidget:
+    LIMIT: "العدد المحدد للوسوم"
+    PLURALNAME: "مربعات الوسوم السحابية"
+    SBAL: "هجائي"
+    SBFREQ: "تكرار"
+    SINGULARNAME: "مربع الوسوم السحابيةَ"
+    SORTBY: "ترتيب"
+    TILE: "العنوان"
+  TrackBackPing:
+    PLURALNAME: "تنبيهات التعقيبات"
+    SINGULARNAME: "تنبيه التعقيبات"

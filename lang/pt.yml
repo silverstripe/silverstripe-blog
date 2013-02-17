@@ -1,0 +1,29 @@
+pt:
+  BlogEntry:
+    PLURALNAME: "Posts no Blog"
+  BlogEntry.ss:
+    COMMENTS: "Comentários"
+    EDITTHIS: "Editar este post"
+    POSTEDBY: "Inserido por"
+    POSTEDON: "em"
+    UNPUBLISHTHIS: "Não publicar este post"
+  BlogHolder:
+    RSSFEED: "Feed RSS para este blog"
+    SUCCONTENT: "Parabéns, o módulo do blog do SilverStripe foi instalado com sucesso. Este post pode ser apagado. Poderá configurar as preferências do blog (assim como os widgets presentes no menu) através [url=admin]do CMS[/url]."
+    SUCTITLE: "O módulo do blog do SilverStripe foi instalado com sucesso."
+  BlogManagementWidget:
+    COMADM: "Administração de comentários"
+    UNM1: "Existe 1 comentário por moderar"
+    UNMM: "Existem %i comentários por moderar"
+  BlogManagementWidget.ss:
+    LOGOUT: "Sair"
+  BlogSummary.ss:
+    COMMENTS: "Comentários"
+    POSTEDON: "em"
+  RSSWidget:
+    NTS: "Número de items para mostrar"
+    URL: "Endereço (URL) do RSS Feed"
+  TagCloudWidget:
+    SBAL: "alfabeto"
+    SORTBY: "Ordenar por"
+    TILE: "Título"

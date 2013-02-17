@@ -1,0 +1,74 @@
+tr:
+  ArchiveWidget:
+    DispBY: "Görüntüle"
+    MONTH: "ay"
+    PLURALNAME: "Arşiv Zımbırtıları"
+    SINGULARNAME: "Arşiv Zımbırtısı"
+    YEAR: "yıl"
+  BlogEntry:
+    AU: "Yazar"
+    BBH: "BBCode yardımı"
+    CN: "İçerik"
+    DT: "Tarih"
+    PLURALNAME: "Blog Girdileri"
+    SINGULARNAME: "Blog Girdisi"
+    TS: "Etiketler (virgülle ayrılmış)"
+  BlogEntry.ss:
+    COMMENTS: "Yorumlar"
+    EDITTHIS: "Bu girdiyi yeniden düzenle"
+    POSTEDBY: "Gönderen "
+    POSTEDON: "üzerinde"
+    TAGS: "Etiketler:"
+    UNPUBLISHTHIS: "Bu girdiyi yayından kaldır"
+    VIEWALLPOSTTAGGED: "Etiketlenen tüm girdileri görüntüle"
+  BlogHolder:
+    PLURALNAME: "Blog Sahipleri"
+    POST: "Blog girdisi gönderin"
+    RSSFEED: "Bu blog'un RSS beslemesi"
+    SINGULARNAME: "Blog Sahibi"
+    SJ: "Konu"
+    SPUC: "Lüfen etiketleri virgülle ayırın."
+    SUCCONTENT: "Tebrikler, SilverStripe blog modülü başarıyla kuruldu. Bu blog girdisini silebilirsiniz. Ayrıca, isterseniz [url=admin]CMS[/url] içerisinde blog'unuzun görünümünde degişiklikler yapabilirsiniz."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "SilverStripe blog modülü başarıyla kuruldu"
+    TE: "Örneğin: spor, kişisel, bilim kurgu"
+  BlogHolder.ss:
+    NOENTRIES: "Blog girdileri mevcut değil"
+    VIEWINGTAGGED: "Girdiler görüntüleniyor, etiket:"
+  BlogManagementWidget:
+    COMADM: "Yorum yönetimi"
+    PLURALNAME: "Blog Yönetim Zımbırtıları"
+    SINGULARNAME: "Blog Yönetim Zımbırtısı"
+    UNM1: "1 adet onay bekleyen yorumunuz var"
+    UNMM: "%i adet onay bekleyen yorumunuz var"
+  BlogManagementWidget.ss:
+    LOGOUT: "Oturumu kapat"
+    POSTNEW: "Yeni bir blog girdisi oluştur"
+  BlogSummary.ss:
+    COMMENTS: "Yorumlar"
+    POSTEDBY: "Gönderen: "
+    POSTEDON: "üzerinde"
+    VIEWFULL: "Postun tamamını görüntüle -"
+  RSSWidget:
+    CT: "Besleme için özel başlık"
+    NTS: "Görüntülenecek öğe adedi"
+    PLURALNAME: "R S S Zımbırtıları"
+    SINGULARNAME: "R S S Zımbırtısı"
+    URL: "RSS beslemesi'nin URL'i"
+  SubscribeRSSWidget:
+    PLURALNAME: "R S S Zımbırtılarına abone ol"
+    SINGULARNAME: "R S S Zımbırtısına abone ol"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Abone Ol"
+    SUBSCRIBETITLE: "Bu bloğa RSS ile abone ol"
+  TagCloudWidget:
+    LIMIT: "Etiket sayısini sınırla"
+    PLURALNAME: "Etiket Bulutu Zımbırtıları"
+    SBAL: "alfabe"
+    SBFREQ: "frekans"
+    SINGULARNAME: "Etiket Bulutu Zımbırtısı"
+    SORTBY: "Sıralama"
+    TILE: "Başlık"
+  TrackBackPing:
+    PLURALNAME: "Geri İz Yoklamaları"
+    SINGULARNAME: "Geri İz Yoklaması"

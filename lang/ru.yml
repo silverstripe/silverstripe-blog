@@ -1,0 +1,53 @@
+ru:
+  ArchiveWidget:
+    DispBY: "Группировать по"
+    MONTH: "месяцу"
+    YEAR: "году"
+  BlogEntry:
+    AU: "Автор"
+    BBH: "Подсказка по BBCode"
+    CN: "Содержимое"
+    DT: "Дата"
+    TS: "Метки (раздел. запят.)"
+  BlogEntry.ss:
+    COMMENTS: "Комментарии"
+    EDITTHIS: "Редакт. эту запись"
+    POSTEDBY: "Автор: "
+    POSTEDON: ":"
+    TAGS: "Метки:"
+    UNPUBLISHTHIS: "Убрать запись с опубликов. сайта"
+    VIEWALLPOSTTAGGED: "Смотреть все записи с метками"
+  BlogHolder:
+    POST: "Опубликовать запись в блоге"
+    RSSFEED: "RSS подписка на этот блог"
+    SJ: "Тема"
+    SPUC: "Разделяйте метки запятыми."
+    SUCCONTENT: "Поздравляем, модуль блога SilverStripe был успешно установлен. Эта запись в блоге может быть удалена. Вы можете настроить вид блога (например, отображение виджетов в боковой панели) в [url=admin]Системе Управления Содержимым[/url]."
+    SUCTAGS: "silverstripe, блог"
+    SUCTITLE: "Модуль блога SilverStripe успешно установлен"
+    TE: "Например - спорт, личное, фантастика"
+  BlogHolder.ss:
+    NOENTRIES: "В блоге нет записей"
+    VIEWINGTAGGED: "Просмотр записей с метками "
+  BlogManagementWidget:
+    COMADM: "Управление комментариями"
+    UNM1: "У вас 1 непроверенный комментарий"
+    UNMM: "У вас %i непроверенных комментариев"
+  BlogManagementWidget.ss:
+    LOGOUT: "Выход"
+    POSTNEW: "Опубликовать новую запись"
+  BlogSummary.ss:
+    COMMENTS: "Комментарии"
+    POSTEDBY: "Автор:"
+    POSTEDON: ":"
+    VIEWFULL: "См. полностью запись под названием: "
+  RSSWidget:
+    CT: "Собственное название ленты новостей"
+    NTS: "Показывать кол-во записей"
+    URL: "URL ленты RSS"
+  TagCloudWidget:
+    LIMIT: "Ограничить кол-во меток"
+    SBAL: "алфавиту"
+    SBFREQ: "частоте"
+    SORTBY: "Сортировать по"
+    TILE: "Название"

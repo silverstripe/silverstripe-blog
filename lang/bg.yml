@@ -1,0 +1,53 @@
+bg:
+  ArchiveWidget:
+    DispBY: "Покажи по"
+    MONTH: "месец"
+    YEAR: "година"
+  BlogEntry:
+    AU: "Автор"
+    BBH: "BBCode помощ"
+    CN: "Съдържание"
+    DT: "Дата"
+    TS: "Марки (разделени със запетайка)"
+  BlogEntry.ss:
+    COMMENTS: "Коментари"
+    EDITTHIS: "Промени тази статия"
+    POSTEDBY: "Публикувано от"
+    POSTEDON: "на"
+    TAGS: "Марки:"
+    UNPUBLISHTHIS: "Премахни от публикация тази статия"
+    VIEWALLPOSTTAGGED: "Прегледай всички маркирани статий"
+  BlogHolder:
+    POST: "Публикувай блог статия"
+    RSSFEED: "RSS емисия за този блог"
+    SJ: "Предмет"
+    SPUC: "Моля разделете марките използвайки запетайки."
+    SUCCONTENT: "Поздравления, SilverStripe blog модула беше инсталиран успешно. Тази блог статия може да бъде изтрита. Сега можете да конфигурирате аспектите на вашият блог (например кои widgets ще се показват) в [url=admin]CMS системата[/url]."
+    SUCTAGS: "silverstripe, блог"
+    SUCTITLE: "SilverStripe блог модул успешно инсталиран"
+    TE: "Например: спорт, наука, здраве"
+  BlogHolder.ss:
+    NOENTRIES: "Няма никакви блог статий"
+    VIEWINGTAGGED: "Разглеждане на статий маркирани с"
+  BlogManagementWidget:
+    COMADM: "Администрация за коментари"
+    UNM1: "Вие имате 1 непрегледан коментар"
+    UNMM: "Вие имате %i непрегледани коментара"
+  BlogManagementWidget.ss:
+    LOGOUT: "Излез"
+    POSTNEW: "Публикувайте нова блог статия"
+  BlogSummary.ss:
+    COMMENTS: "Коментари"
+    POSTEDBY: "Публикувано от"
+    POSTEDON: "на"
+    VIEWFULL: "Разгледай цялата статия"
+  RSSWidget:
+    CT: "Собствено заглавие за емисията"
+    NTS: "Брой на предмети за показване"
+    URL: "Адрес на RSS емисия"
+  TagCloudWidget:
+    LIMIT: "Ограничете броя на тагове"
+    SBAL: "азбука"
+    SBFREQ: "честота"
+    SORTBY: "Сортирай по"
+    TILE: "Заглавие"

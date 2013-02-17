@@ -1,0 +1,74 @@
+de:
+  ArchiveWidget:
+    DispBY: "Anzeige nach"
+    MONTH: "Monat"
+    PLURALNAME: "Archiv-Widgets"
+    SINGULARNAME: "Archiv-Widget"
+    YEAR: "Jahr"
+  BlogEntry:
+    AU: "Autor"
+    BBH: "BBCode Hilfe"
+    CN: "Inhalt"
+    DT: "Datum"
+    PLURALNAME: "Blog-Einträge"
+    SINGULARNAME: "Blog-Eintrag"
+    TS: "Tags (Komma getrennt)"
+  BlogEntry.ss:
+    COMMENTS: "Kommentare"
+    EDITTHIS: "Eintrag bearbeiten"
+    POSTEDBY: "Eintrag von"
+    POSTEDON: "am"
+    TAGS: "Tags:"
+    UNPUBLISHTHIS: "Eintrag zurückziehen"
+    VIEWALLPOSTTAGGED: "Alle Beiträge mit Tag"
+  BlogHolder:
+    PLURALNAME: "Blog-Besitzer"
+    POST: "Eintrag senden"
+    RSSFEED: "RSS Feed dieser Blogs"
+    SINGULARNAME: "Blog-Besitzer"
+    SJ: "Betreff"
+    SPUC: "Bitte Tags mit Kommata trennen."
+    SUCCONTENT: "Herzlichen Glückwunsch, das SilverStripe Blog Modul wurde erfolgreich installiert. Dieser Blog-Eintrag kann sicher gelöscht werden. Sie können die Blog-Einstellungen (z.B. die angezeigten Widgets in der Sidebar) im admin-Bereich verändern."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "SilverStripe Blog Module erfolgreich installiert"
+    TE: "Zum Beispiel: sport, musik, video"
+  BlogHolder.ss:
+    NOENTRIES: "Es gibt keine Blog Einträge"
+    VIEWINGTAGGED: "Anzeige der Einträge mit Tag"
+  BlogManagementWidget:
+    COMADM: "Kommentare bearbeiten"
+    PLURALNAME: "Blog-Verwaltungs-Widgets"
+    SINGULARNAME: "Blog-Verwaltungs-Widget"
+    UNM1: "Sie haben 1 noch nicht moderierten Kommentar"
+    UNMM: "Sie haben %i noch nicht moderierte Kommentare"
+  BlogManagementWidget.ss:
+    LOGOUT: "Logout"
+    POSTNEW: "Neuen Eintrag schreiben"
+  BlogSummary.ss:
+    COMMENTS: "Kommentare"
+    POSTEDBY: "Verfasst von"
+    POSTEDON: "am"
+    VIEWFULL: "Detaillierte Ansicht von dem Titel --"
+  RSSWidget:
+    CT: "Eigener Titel für den feed"
+    NTS: "Anzahl der angezeigten Items"
+    PLURALNAME: "RSS-Widgets"
+    SINGULARNAME: "RSS-Widget"
+    URL: "URL des RSS Feed der anderen Seite. Bitte vergewissern Sie sich, dass diese URL auf einen RSS Feed verweist."
+  SubscribeRSSWidget:
+    PLURALNAME: "RSS-Abonnier-Widgets"
+    SINGULARNAME: "RSS-Abonnier-Widget"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Abonnieren"
+    SUBSCRIBETITLE: "Abonniere diesen Blog per RSS"
+  TagCloudWidget:
+    LIMIT: "Anzahl der erlaubten Tags"
+    PLURALNAME: "Tag-Cloud-Widgets"
+    SBAL: "Alphabet"
+    SBFREQ: "Häufigkeit"
+    SINGULARNAME: "Tag-Cloud-Widget"
+    SORTBY: "Sortiert nach"
+    TILE: "Titel"
+  TrackBackPing:
+    PLURALNAME: "Ping-Verfolgung"
+    SINGULARNAME: "Ping-Verfolgung"

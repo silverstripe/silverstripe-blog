@@ -1,0 +1,74 @@
+et_EE:
+  ArchiveWidget:
+    DispBY: "Kuva"
+    MONTH: "kuu"
+    PLURALNAME: "Arhiveeri vidinad"
+    SINGULARNAME: "Arhiveeri vidin"
+    YEAR: "aasta"
+  BlogEntry:
+    AU: "Autor"
+    BBH: "BBCode spikker"
+    CN: "Sisu"
+    DT: "Kuupäev"
+    PLURALNAME: "Blogi sisu"
+    SINGULARNAME: "Blogi sisu"
+    TS: "Sildid (komaga eraldatud)"
+  BlogEntry.ss:
+    COMMENTS: "Kommentaarid"
+    EDITTHIS: "Muuda seda postitust"
+    POSTEDBY: "Autori"
+    POSTEDON: "poolt"
+    TAGS: "Sildid:"
+    UNPUBLISHTHIS: "Muuda see postitus avaldamatuks"
+    VIEWALLPOSTTAGGED: "Vaata kõiki postitusi siltidega"
+  BlogHolder:
+    PLURALNAME: "Blogi omanikud"
+    POST: "Postita blogi sissekanne"
+    RSSFEED: "Selle blogi RSS voog"
+    SINGULARNAME: "Blogi omanik"
+    SJ: "Teema"
+    SPUC: "Palun eralda sildid komadega."
+    SUCCONTENT: "Õnnitleme, SilverStripe blogimoodul on edukalt installeeritud. Selle blogi sissekande võib ohutult ära kustutada. Oma blogi ilmet (nagu küljeribal kuvatavaid vidinaid) saad seadistada [url=admin]sisuhaldussüsteemi kaudu[/url]."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "SilverStripe blogimoodul edukalt installeeritud"
+    TE: "Näiteks: sport, isiklik, teaduslik fantastika"
+  BlogHolder.ss:
+    NOENTRIES: "Blogi sissekanded puuduvad"
+    VIEWINGTAGGED: "Kuvatakse sissekandeid siltidega"
+  BlogManagementWidget:
+    COMADM: "Kommentaaride haldamine"
+    PLURALNAME: "Blogi Muudatuse vidinad"
+    SINGULARNAME: "Blogi muudatuste vidin"
+    UNM1: "Sul on 1 üle vaatamata kommentaar"
+    UNMM: "Sul on %i üle vaatamata kommentaari"
+  BlogManagementWidget.ss:
+    LOGOUT: "Logi välja"
+    POSTNEW: "Postita uus blogi sissekanne"
+  BlogSummary.ss:
+    COMMENTS: "Kommentaarid"
+    POSTEDBY: "Postitas"
+    POSTEDON: "-"
+    VIEWFULL: "Vaata tervet postitust pealkirjaga - "
+  RSSWidget:
+    CT: "Kohandatud pealkiri voole"
+    NTS: "Kuvatavate sissekannete arv"
+    PLURALNAME: "RSS vidinad"
+    SINGULARNAME: "RSS vidin"
+    URL: "URL või RSS voog"
+  SubscribeRSSWidget:
+    PLURALNAME: "Telli RSS Vidinad"
+    SINGULARNAME: "Telli RSS Vidin"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Telli"
+    SUBSCRIBETITLE: "Telli blogi RSS kaudu"
+  TagCloudWidget:
+    LIMIT: "Piira siltide arvu"
+    PLURALNAME: "Lipikute pilve vidinad"
+    SBAL: "tähestikuliselt"
+    SBFREQ: "sageduse järgi"
+    SINGULARNAME: "Lipikute pilve vidin"
+    SORTBY: "Sorteeri"
+    TILE: "Pealkiri"
+  TrackBackPing:
+    PLURALNAME: "Pingid"
+    SINGULARNAME: "Ping"

@@ -1,0 +1,77 @@
+it:
+  ArchiveWidget:
+    DispBY: "Visualizzato da"
+    MONTH: "mese"
+    PLURALNAME: "Widget Archiviazione"
+    SINGULARNAME: "Widget Archiviazione"
+    YEAR: "anno"
+  BlogEntry:
+    AU: "Autore"
+    BBH: "Aiuto BBCode"
+    CN: "Contenuto"
+    DT: "Data"
+    PLURALNAME: "Registrazioni blog"
+    SINGULARNAME: "Registrazione blog"
+    TS: "Etichette (separate da virgola)"
+  BlogEntry.ss:
+    COMMENTS: "Commenti"
+    EDITTHIS: "Modifica questo post"
+    POSTEDBY: "Inserito da"
+    POSTEDON: "su"
+    TAGS: "Etichette:"
+    UNPUBLISHTHIS: "Non pubblicare questo post"
+    VIEWALLPOSTTAGGED: "Visualizza tutti i post con etichetta"
+  BlogHolder:
+    PLURALNAME: "Proprietari blog"
+    POST: "Salva il post nel blog"
+    RSSFEED: "RSS feed di questo blog"
+    SINGULARNAME: "Proprietario blog"
+    SJ: "Soggetto"
+    SPUC: "Per favore separa le etichette usando virgole."
+    SUCCONTENT: "Congratulazioni, il blog SilverStripe è stato installato correttamente. Questo messaggio del blog può essere eliminato. Puoi configurare l'aspetto del tuo blog (come la visualizzazione dei widgets nella sidebar) in [url=admin] del CMS[/url]"
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "Modulo blog SilverStripe installato correttamente"
+    TE: "Ad esempio: sport, personale, fantascienza"
+  BlogHolder.ss:
+    NOENTRIES: "Non ci sono voci nel blog"
+    VIEWINGTAGGED: "Visualizza voci con etichetta"
+  BlogManagementWidget:
+    COMADM: "Amministrazione commenti"
+    PLURALNAME: "Widget di amministrazione blog"
+    SINGULARNAME: "Widget di amministrazione blog"
+    UNM1: "Hai 1 commento da moderare"
+    UNMM: "Hai %i commenti non approvati"
+  BlogManagementWidget.ss:
+    LOGOUT: "Esci"
+    POSTNEW: "Inserisci un nuovo post"
+  BlogSummary.ss:
+    COMMENTS: "Commenti"
+    POSTEDBY: "Inserito da"
+    POSTEDON: "su"
+    VIEWFULL: "Visualizza post intitolato - "
+  BlogTree:
+    PLURALNAME: "Alberi dei blog"
+    SINGULARNAME: "Albero del blog"
+  RSSWidget:
+    CT: "Titolo del feed"
+    NTS: "Numero di argomenti da visualizzare"
+    PLURALNAME: "Widget RSS"
+    SINGULARNAME: "Widget RSS"
+    URL: "URL per il Feed RSS"
+  SubscribeRSSWidget:
+    PLURALNAME: "Sottoscrivi Widget RSS"
+    SINGULARNAME: "Sottoscrivi Widget RSS"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Sottoscrivi"
+    SUBSCRIBETITLE: "Sottoscrivi questo blog via RSS"
+  TagCloudWidget:
+    LIMIT: "Limitare il numero dei tag a"
+    PLURALNAME: "Widget Nuvola di Tag"
+    SBAL: "alfabeto"
+    SBFREQ: "frequenza"
+    SINGULARNAME: "Widget Nuvola di Tag"
+    SORTBY: "Ordina per"
+    TILE: "Titolo"
+  TrackBackPing:
+    PLURALNAME: "Rileva Ping"
+    SINGULARNAME: "Rileva Ping"

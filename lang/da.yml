@@ -1,0 +1,51 @@
+da:
+  ArchiveWidget:
+    DispBY: "Vis efter"
+    MONTH: "måned"
+    YEAR: "år"
+  BlogEntry:
+    AU: "Forfatter"
+    BBH: "BBCode hjælp"
+    CN: "Indhold"
+    DT: "Dato"
+    TS: "Tags (kommasep.)"
+  BlogEntry.ss:
+    COMMENTS: "Kommentarer"
+    EDITTHIS: "Rediger dette indlæg"
+    POSTEDBY: "Indsendt af"
+    POSTEDON: "d. "
+    TAGS: "Tags:"
+    UNPUBLISHTHIS: "Upubliceret dette indlæg"
+    VIEWALLPOSTTAGGED: "Vis alle indlæg tagged "
+  BlogHolder:
+    POST: "Send blog indlæg"
+    RSSFEED: "RSS feed af denne blog"
+    SJ: "Emne"
+    SPUC: "Husk at seperere tags med komma"
+    SUCCONTENT: "Tillykke, SilverStripe blog modul er installeret succesfuldt. Dette blog indlæg kan du trygt slette. Du kan konfigurere bloggen som du har lyst (f.eks. widgets placeret i sidepanelet)"
+    SUCTAGS: "Silverstripe, blog"
+    SUCTITLE: "SilverStripe Blog modul installeret succesfuldt"
+    TE: "F.eks. sport, personligt, science fiction"
+  BlogHolder.ss:
+    NOENTRIES: "Der er ingen blog indlæg"
+    VIEWINGTAGGED: "Se indlæg tagged med"
+  BlogManagementWidget:
+    COMADM: "Kommentaradministration"
+    UNM1: "Du har 1 uvurderet kommentar"
+    UNMM: "Du har %i uvurderet kommentarer"
+  BlogManagementWidget.ss:
+    LOGOUT: "Log ud"
+    POSTNEW: "Send et nyt blog indlæg"
+  BlogSummary.ss:
+    COMMENTS: "Kommentarer"
+    POSTEDON: "d. "
+  RSSWidget:
+    CT: "Brugerdefineret title for dette feed"
+    NTS: "Antal af viste indlæg "
+    URL: "URL eller RSS Feed"
+  TagCloudWidget:
+    LIMIT: "Begrænsning af antalle af tags"
+    SBAL: "alfabet"
+    SBFREQ: "frekvens"
+    SORTBY: "Sorter efter"
+    TILE: "Titel"
