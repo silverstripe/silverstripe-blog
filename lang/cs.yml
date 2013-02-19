@@ -1,0 +1,98 @@
+cs:
+  ArchiveWidget:
+    DispBY: "Zobrazovat podle"
+    MONTH: "měsíců"
+    # 50
+    PLURALNAME: "Doplněk - Archiv"
+    # 50
+    SINGULARNAME: "Doplňky - Archiv"
+    YEAR: "roků"
+  BlogEntry:
+    AU: "Autor"
+    BBH: "Nápověda k BBCode"
+    CN: "Obsah"
+    DT: "Datum"
+    # 50
+    PLURALNAME: "Blog - Příspěvek"
+    # 50
+    SINGULARNAME: "Blog - Příspěvky"
+    TS: "Štítky (odděleno čárkou)"
+  BlogEntry.ss:
+    COMMENTS: "Komentáře"
+    EDITTHIS: "Upravit příspěvek"
+    POSTEDBY: "Napsal"
+    POSTEDON: "v"
+    TAGS: "Štítky:"
+    UNPUBLISHTHIS: "Zneveřejnit tento příspěvek"
+    VIEWALLPOSTTAGGED: "Zobrazit všehchny příspěvky se štítkem"
+  BlogHolder:
+    # 50
+    PLURALNAME: "Blog - Kategorie"
+    POST: "Vložit příspěvek"
+    RSSFEED: "RSS vlákno těchto blogů"
+    # 50
+    SINGULARNAME: "Blog - Kategorie"
+    SJ: "Předmět"
+    SPUC: "Prosím oddělujte jednotlivé štítky pomocí čárky."
+    SUCCONTENT: "Gratulujeme, modul SilverStripe blog byl úspěšně nainstalován. Tento příspěvek můžete bez obav smazat. Nastavení Vašeho blogu (Napříkad dopňky zobrazené v postranním menu) můžete upravit na adrese [url=admin]Administrace CMS[/url]."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "Modul blog pro CMS SilverStripe byl úspěšně nainstalován"
+    TE: "Například: sport, osobní, sci-fi"
+  BlogHolder.ss:
+    NOENTRIES: "Tento blog nemá žádné příspěvky."
+    VIEWINGTAGGED: "Zobrazeny příspěvky obsahující štítek"
+  BlogManagementWidget:
+    COMADM: "Správa obsahu"
+    # 50
+    PLURALNAME: "Doplňky - Správa blogu"
+    # 50
+    SINGULARNAME: "Doplňek - Správa blogu"
+    UNM1: "Máte 1 nemoderovaný komentář"
+    UNM2: "Máte 2 nemoderované komentáře"
+    UNM3: "Máte 3 nemoderované komentáře"
+    UNM4: "Máte 4 nemoderované komentáře"
+    UNMM: "Máte %i nemoderovaných komentářů"
+  BlogManagementWidget.ss:
+    LOGOUT: "Odhlásit"
+    POSTNEW: "Vložit nový příspěvek"
+  BlogSummary.ss:
+    COMMENTS: "Komentáře"
+    POSTEDBY: "Napsal"
+    POSTEDON: "v"
+    VIEWFULL: "Zobrazit celý příspěvek - "
+  BlogTree:
+    # 50
+    PLURALNAME: "Blog - Strom blogů"
+    # 50
+    SINGULARNAME: "Blog - Strom blogů"
+  RSSWidget:
+    CT: "Vlastní titulek pro RSS vlákno"
+    NTS: "Počet zobrazených položek"
+    # 50
+    PLURALNAME: "Doplněk - RSS"
+    # 50
+    SINGULARNAME: "Doplňky - RSS"
+    URL: "URL adresa cizího RSS vlákna. Prosím ujistěte se, že tato URL vede opravdu na RSS vlákno."
+  SubscribeRSSWidget:
+    # 50
+    PLURALNAME: "Doplněk - Přihlásit k odběru RSS"
+    # 50
+    SINGULARNAME: "Doplněk - Přihlásit k odběru RSS"
+  SubscribeRSSWidget.ss:
+    SUBSCRIBETEXT: "Odebírat"
+    SUBSCRIBETITLE: "Přihlásit k odběru tohoto blogu pomocí RSS"
+  TagCloudWidget:
+    LIMIT: "Limit počtu štítků"
+    # 50
+    PLURALNAME: "Doplňky - Mrak štítků"
+    SBAL: "abecedy"
+    SBFREQ: "frekvence"
+    # 50
+    SINGULARNAME: "Doplněk - Mrak štítků"
+    SORTBY: "Seřadit pdole"
+    TILE: "Název"
+  TrackBackPing:
+    # 50
+    PLURALNAME: "Track Back Pings"
+    # 50
+    SINGULARNAME: "Track Back Ping"
