@@ -1,12 +1,12 @@
-en:
+cs:
   ArchiveWidget:
     DispBY: "Zobrazovat podle"
-    MONTH: "měsíc"
+    MONTH: "měsíců"
     # 50
     PLURALNAME: "Doplněk - Archiv"
     # 50
     SINGULARNAME: "Doplňky - Archiv"
-    YEAR: "rok"
+    YEAR: "roků"
   BlogEntry:
     AU: "Autor"
     BBH: "Nápověda k BBCode"
@@ -34,7 +34,7 @@ en:
     SINGULARNAME: "Blog - Kategorie"
     SJ: "Předmět"
     SPUC: "Prosím oddělujte jednotlivé štítky pomocí čárky."
-    SUCCONTENT: "Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in [url=admin]the CMS[/url]."
+    SUCCONTENT: "Gratulujeme, modul SilverStripe blog byl úspěšně nainstalován. Tento příspěvek můžete bez obav smazat. Nastavení Vašeho blogu (Napříkad dopňky zobrazené v postranním menu) můžete upravit na adrese [url=admin]Administrace CMS[/url]."
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "Modul blog pro CMS SilverStripe byl úspěšně nainstalován"
     TE: "Například: sport, osobní, sci-fi"
@@ -44,9 +44,9 @@ en:
   BlogManagementWidget:
     COMADM: "Správa obsahu"
     # 50
-    PLURALNAME: "Widgets - Správa blogu"
+    PLURALNAME: "Doplňky - Správa blogu"
     # 50
-    SINGULARNAME: "Widgets - Správa blog
+    SINGULARNAME: "Doplňek - Správa blogu"
     UNM1: "Máte 1 nemoderovaný komentář"
     UNM2: "Máte 2 nemoderované komentáře"
     UNM3: "Máte 3 nemoderované komentáře"
@@ -72,7 +72,7 @@ en:
     PLURALNAME: "Doplněk - RSS"
     # 50
     SINGULARNAME: "Doplňky - RSS"
-    URL: "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed."
+    URL: "URL adresa cizího RSS vlákna. Prosím ujistěte se, že tato URL vede opravdu na RSS vlákno."
   SubscribeRSSWidget:
     # 50
     PLURALNAME: "Doplněk - Přihlásit k odběru RSS"
@@ -82,7 +82,7 @@ en:
     SUBSCRIBETEXT: "Odebírat"
     SUBSCRIBETITLE: "Přihlásit k odběru tohoto blogu pomocí RSS"
   TagCloudWidget:
-    LIMIT: "Limit number of tags"
+    LIMIT: "Limit počtu štítků"
     # 50
     PLURALNAME: "Doplňky - Mrak štítků"
     SBAL: "abecedy"
