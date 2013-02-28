@@ -16,7 +16,7 @@
 
 	"require":
 	{
-		"silverstripe/framework": "3.*",
-		"composer/installers": "*"
+		"silverstripe/cms": "3.*",
+		"silverstripe/widgets": "dev-master"
 	}
 }
