@@ -5,17 +5,11 @@
 	<% include BreadCrumbs %>
 	
 	<% if SelectedTag %>
-		<div class="selectedTag">
-			<em>
-			<% _t('VIEWINGTAGGED', 'Viewing entries tagged with') %> '$SelectedTag'
-			</em>
-		</div>
+		<h3><% _t('VIEWINGTAGGED', 'Viewing entries tagged with') %> '$SelectedTag'</h3>
 	<% else_if SelectedDate %>
-		<div class="selectedTag">
-			<em>
-			<% _t('VIEWINGPOSTEDIN', 'Viewing entries posted in') %> $SelectedNiceDate
-			</em>
-		</div>
+		<h3><% _t('VIEWINGPOSTEDIN', 'Viewing entries posted in') %> $SelectedNiceDate</h3>
+	<% else_if SelectedAuthor %>
+		<h3><% _t('VIEWINGPOSTEDBY', 'Viewing entries posted by') %> $SelectedAuthor</h3>
 	<% end_if %>
 	
 	<% if BlogEntries %>

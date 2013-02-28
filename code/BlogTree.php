@@ -348,6 +348,30 @@ class BlogTree_Controller extends Page_Controller {
 			
 		return false;
 	}
+
+	/**
+	 * @return String
+	 */
+	function SelectedAuthor() {
+		if($this->request->getVar('author')) {
+			$hasAuthor = BlogEntry::get()->filter('Author', $this->request->getVar('author'))->Count();
+			return $hasAuthor ? Convert::raw2xml($this->request->getVar('author')) : null;
+		} elseif($this->request->getVar('authorID')) {
+			$hasAuthor = BlogEntry::get()->filter('AuthorID', $this->request->getVar('authorID'))->Count();
+			if($hasAuthor) {
+				$member = Member::get()->byId($this->request->getVar('authorID'));
+				if($member) {
+					if($member->hasMethod('BlogAuthorTitle')) {
+						return Convert::raw2xml($member->BlogAuthorTitle);
+					} else {
+						return Convert::raw2xml($member->Title);
+					}
+				} else {
+					return null;
+				}
+			}
+		}
+	}
 	
 	function SelectedNiceDate(){
 		$date = $this->SelectedDate();
