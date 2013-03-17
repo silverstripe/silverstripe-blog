@@ -11,7 +11,7 @@ The blog module allows you to post blogs on your SilverStripe. It includes the a
 
  ## Requirements
 
- * Silverstripe 3.0
+ * Silverstripe 3.1
  * silverstripe-widgets module
 
 ## Feature Overview
