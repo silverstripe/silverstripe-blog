@@ -173,7 +173,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		'date',
 		'metaweblog',
 		'postblog' => 'BLOGMANAGEMENT',
-		'post' => 'BLOGMANAGEMENT',
+		'post',
 		'BlogEntryForm' => 'BLOGMANAGEMENT',
 	);
 	
@@ -299,7 +299,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		}
 
 		$blogentry->Status = "Published";
-		$blogentry->writeToStage("Stage");
+		$blogentry->writeToStage("Live");
 		$blogentry->publish("Stage", "Live");
 
 		$this->redirect($this->Link());
