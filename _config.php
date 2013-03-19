@@ -1,3 +1,3 @@
 <?php
 
-if(class_exists('WidgetArea')) Object::add_extension('BlogTree','BlogTreeExtension');
+if(class_exists('WidgetArea')) BlogTree::add_extension('BlogTreeExtension');
