@@ -13,9 +13,9 @@
 	<% end_if %>
 	
 	<% if BlogEntries %>
-		<% control BlogEntries %>
+		<% loop BlogEntries %>
 			<% include BlogSummary %>
-		<% end_control %>
+		<% end_loop %>
 	<% else %>
 		<h2><% _t('NOENTRIES', 'There are no blog entries') %></h2>
 	<% end_if %>

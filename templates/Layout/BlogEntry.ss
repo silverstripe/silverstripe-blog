@@ -8,9 +8,9 @@
 		<% if TagsCollection %>
 			<p class="tags">
 				 <% _t('TAGS', 'Tags:') %> 
-				<% control TagsCollection %>
+				<% loop TagsCollection %>
 					<a href="$Link" title="<% _t('VIEWALLPOSTTAGGED', 'View all posts tagged') %> '$Tag'" rel="tag">$Tag</a><% if not Last %>,<% end_if %>
-				<% end_control %>
+				<% end_loop %>
 			</p>
 		<% end_if %>		
 		$Content		
