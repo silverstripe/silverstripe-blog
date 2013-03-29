@@ -1,5 +1,7 @@
 # Blog Module
 
+[![Build Status](https://secure.travis-ci.org/silverstripe/silverstripe-blog.png?branch=master)](http://travis-ci.org/silverstripe/silverstripe-blog)
+
 ## Introduction
 
 The blog module allows you to post blogs on your SilverStripe. It includes the ability to post blogs using a site front-end form. Blogs are summarised on the blog holder page type, with more detail viewable when a specific blog is clicked.
