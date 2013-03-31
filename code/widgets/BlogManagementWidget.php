@@ -3,7 +3,7 @@
  * Blog Management Widget
  * @package blog
  */
-class BlogManagementWidget extends Widget implements PermissionProvider {
+class BlogManagementWidget extends Widget {
 	static $db = array();
 
 	static $has_one = array();
