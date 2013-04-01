@@ -149,4 +149,3 @@ class TypoImport extends Controller {
 	} // end function
 
 } // end class
-?>

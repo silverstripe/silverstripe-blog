@@ -1,28 +1,22 @@
 <?php
 
 class TagCloudWidget extends Widget {
-	static $db = array(
+	
+	private static $db = array(
 		"Title" => "Varchar",
 		"Limit" => "Int",
 		"Sortby" => "Varchar"
 	);
 	
-	static $has_one = array();
-	
-	static $has_many = array();
-	
-	static $many_many = array();
-	
-	static $belongs_many_many = array();
-	
-	static $defaults = array(
+	private static $defaults = array(
 		"Title" => "Tag Cloud",
 		"Limit" => "0",
 		"Sortby" => "alphabet"
 	);
 	
-	static $cmsTitle = "Tag Cloud";
-	static $description = "Shows a tag cloud of tags on your blog.";
+	private static $cmsTitle = "Tag Cloud";
+	
+	private static $description = "Shows a tag cloud of tags on your blog.";
 
 	static $popularities = array( 'not-popular', 'not-very-popular', 'somewhat-popular', 'popular', 'very-popular', 'ultra-popular' );
 	
@@ -145,6 +139,3 @@ class TagCloudWidget extends Widget {
 		return true;
 	}
 }
-
-
-?>

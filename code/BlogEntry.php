@@ -5,43 +5,33 @@
  * @package blog
  */
 class BlogEntry extends Page {
-	static $db = array(
+	private static $db = array(
 		"Date" => "SS_Datetime",
 		"Author" => "Text",
 		"Tags" => "Text"
 	);
 	
-	static $default_parent = 'BlogHolder';
+	private static $default_parent = 'BlogHolder';
 	
-	static $can_be_root = false;
+	private static $can_be_root = false;
 	
-	static $icon = "blog/images/blogpage-file.png";
+	private static $icon = "blog/images/blogpage-file.png";
 
-	static $description = "An individual blog entry";
+	private static $description = "An individual blog entry";
 	
-	static $singular_name = 'Blog Entry Page';
+	private static $singular_name = 'Blog Entry Page';
 	
-	static $plural_name = 'Blog Entry Pages';
-		
-	static $has_one = array();
+	private static $plural_name = 'Blog Entry Pages';
 	
-	static $has_many = array();
-	
-	static $many_many = array();
-	
-	static $belongs_many_many = array();
-	
-	static $defaults = array(
+	private static $defaults = array(
 		"ProvideComments" => true,
 		'ShowInMenus' => false
-	);
-	
-	static $extensions = array(
-		'TrackBackDecorator'
 	);
 		
 	/**
 	 * Is WYSIWYG editing allowed?
+	 * 
+	 * @todo Update to use SS3 Config
 	 * @var boolean
 	 */
 	static $allow_wysiwyg_editing = true;
@@ -248,7 +238,7 @@ class BlogEntry extends Page {
 
 class BlogEntry_Controller extends Page_Controller {
 	
-	static $allowed_actions = array(
+	private static $allowed_actions = array(
 		'index',
 		'trackbackping',
 		'unpublishPost',

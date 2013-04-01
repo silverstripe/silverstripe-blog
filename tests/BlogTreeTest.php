@@ -104,5 +104,3 @@ class BlogTreeTest extends SapphireTest {
 		
 	}
 }
-
-?>

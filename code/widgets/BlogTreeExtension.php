@@ -2,6 +2,6 @@
 
 class BlogTreeExtension extends DataExtension {
 
-	static $has_one = array("SideBar" => "WidgetArea");
+	private static $has_one = array("SideBar" => "WidgetArea");
 
 }
