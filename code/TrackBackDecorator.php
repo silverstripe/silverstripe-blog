@@ -1,10 +1,14 @@
 <?php
+
 /**
  * Add trackback (receive and send) feature blog entry
- */ 
-
+ */
 class TrackBackDecorator extends DataExtension {
 	
+	/**
+	 * @todo Update to use SS Config and/or Injector definition
+	 * @var string
+	 */
 	static $trackback_server_class = 'TrackbackHTTPServer';
 	
 	// function extraStatics() {
@@ -16,7 +20,7 @@ class TrackBackDecorator extends DataExtension {
 	// 	);
 	// }
 
-	static $has_many = array(
+	private static $has_many = array(
 		'TrackBackURLs' => 'TrackBackURL',
 		'TrackBacks' => 'TrackBackPing'
 	);
@@ -157,5 +161,3 @@ class TrackbackHTTPServer {
 		return new SS_HTTPResponse($response, $statusCode);
 	}
 }
-
-?>

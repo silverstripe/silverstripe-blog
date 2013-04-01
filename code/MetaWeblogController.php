@@ -101,5 +101,3 @@ class MetaWeblogController extends Controller {
 		return array();
 	}
 }
-
-?>

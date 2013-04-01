@@ -6,27 +6,19 @@
  * @package blog
  */
 class ArchiveWidget extends Widget {
-	static $db = array(
+	private static $db = array(
 		'DisplayMode' => 'Varchar'
 	);
 	
-	static $has_one = array();
-	
-	static $has_many = array();
-	
-	static $many_many = array();
-	
-	static $belongs_many_many = array();
-	
-	static $defaults = array(
+	private static $defaults = array(
 		'DisplayMode' => 'month'
 	);
 	
-	static $title = 'Browse by Date';
+	private static $title = 'Browse by Date';
 
-	static $cmsTitle = 'Blog Archive';
+	private static $cmsTitle = 'Blog Archive';
 	
-	static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
+	private static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
 	
 	function getCMSFields() {
 		$fields = parent::getCMSFields(); 
@@ -107,5 +99,3 @@ class ArchiveWidget extends Widget {
 		return $results;
 	}	
 }
-
-?>

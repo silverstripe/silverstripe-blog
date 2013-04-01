@@ -1,12 +1,13 @@
 <?php
+
 class TrackBackURL extends DataObject {
 	
-	static $db = array(
+	private static $db = array(
 		'URL' => 'Varchar(2048)',
 		'Pung' => 'Boolean(0)'
 	);
 	
-	static $has_one = array(
+	private static $has_one = array(
 		'BlogEntry' => 'BlogEntry'
 	);
 
