@@ -17,6 +17,6 @@
 	"require":
 	{
 		"silverstripe/cms": "3.0.*",
-		"silverstripe/widgets": "dev-master"
+		"silverstripe/widgets": "0.1.*"
 	}
 }
