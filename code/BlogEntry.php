@@ -248,7 +248,7 @@ class BlogEntry extends Page {
 
 class BlogEntry_Controller extends Page_Controller {
 	
-	static $allowed_actions = array(
+	private static $allowed_actions = array(
 		'index',
 		'trackbackping',
 		'unpublishPost',
