@@ -1,7 +1,7 @@
 <?php
 
 class TrackBackPing extends DataObject {
-	static $db = array(
+	private static $db = array(
 		'Title' => 'Varchar',
 		'Excerpt' => 'Text',
 		// 2083 is URL-length limit for IE, AFAIK.
@@ -10,15 +10,15 @@ class TrackBackPing extends DataObject {
 		'BlogName' => 'Varchar'
 	);
 	
-	static $has_one = array(
+	private static $has_one = array(
 		'Page' => 'Page'
 	);
 	
-	static $has_many = array();
+	private static $has_many = array();
 	
-	static $many_many = array();
+	private static $many_many = array();
 	
-	static $belongs_many_many = array();
+	private static $belongs_many_many = array();
 }
 
 ?>

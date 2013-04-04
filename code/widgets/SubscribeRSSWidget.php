@@ -9,11 +9,11 @@
  */
 class SubscribeRSSWidget extends Widget {
 	
-	static $title = 'Subscribe via RSS';
+	private static $title = 'Subscribe via RSS';
 	
-	static $cmsTitle = 'Subscribe via RSS widget';
+	private static $cmsTitle = 'Subscribe via RSS widget';
 	
-	static $description = 'Shows a link allowing a user to subscribe to this blog via RSS.';
+	private static $description = 'Shows a link allowing a user to subscribe to this blog via RSS.';
 
 	/**
 	 * Return an absolute URL based on the BlogHolder
