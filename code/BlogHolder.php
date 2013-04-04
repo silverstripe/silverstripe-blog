@@ -12,25 +12,26 @@
  * BlogHolders have a form on them for easy posting, and an owner that can post to them, BlogTrees don't
  */
 class BlogHolder extends BlogTree implements PermissionProvider {
-	static $icon = "blog/images/blogholder-file.png";
 
-	static $description = "Displays listings of blog entries";
-	
-	static $singular_name = 'Blog Holder Page';
-	
-	static $plural_name = 'Blog Holder Pages';
+	private static $icon = "blog/images/blogholder-file.png";
 
-	static $db = array(
+	private static $description = "Displays listings of blog entries";
+	
+	private static $singular_name = 'Blog Holder Page';
+	
+	private static $plural_name = 'Blog Holder Pages';
+
+	private static $db = array(
 		'TrackBacksEnabled' => 'Boolean',
 		'AllowCustomAuthors' => 'Boolean',
 		'ShowFullEntry' => 'Boolean', 
 	);
 
-	static $has_one = array(
+	private static $has_one = array(
 		'Owner' => 'Member',
 	);
 
-	static $allowed_children = array(
+	private static $allowed_children = array(
 		'BlogEntry'
 	);
 
