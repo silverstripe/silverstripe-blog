@@ -37,10 +37,6 @@ class BlogEntry extends Page {
 		'ShowInMenus' => false
 	);
 	
-	private static $extensions = array(
-		'TrackBackDecorator'
-	);
-		
 	/**
 	 * Is WYSIWYG editing allowed?
 	 * @var boolean
@@ -174,21 +170,6 @@ class BlogEntry extends Page {
 		return ($this->getParent()) ? $this->getParent()->Link('post') . '/' . $this->ID . '/' : false;
 	}
 	
-	/**
-	 * Check to see if trackbacks are enabled.
-	 */
-	function TrackBacksEnabled() {
-		return ($this->getParent()) ? $this->getParent()->TrackBacksEnabled : false;
-	}
-	
-	function trackbackping() {
-		if($this->TrackBacksEnabled() && $this->hasExtension('TrackBackDecorator')) {
-			return $this->decoratedTrackbackping();
-		} else {
-			Controller::curr()->redirect($this->Link());
-		}
-	}
-
 	function IsOwner() {
 		if(method_exists($this->Parent(), 'IsOwner')) {
 			return $this->Parent()->IsOwner();
@@ -251,7 +232,6 @@ class BlogEntry_Controller extends Page_Controller {
 	
 	private static $allowed_actions = array(
 		'index',
-		'trackbackping',
 		'unpublishPost',
 		'PageComments',
 		'SearchForm'
