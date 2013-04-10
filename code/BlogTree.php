@@ -23,7 +23,6 @@ class BlogTree extends Page {
 	static $default_entries_limit = 10;
 	
 	static $db = array(
-		'Name' => 'Varchar(255)',
 		'InheritSideBar' => 'Boolean',
 		'LandingPageFreshness' => 'Varchar',
 	);
@@ -107,7 +106,6 @@ class BlogTree extends Page {
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
 
-		$fields->addFieldToTab("Root.Main", new TextField("Name", "Name of blog"), "Content");
 		$fields->addFieldToTab('Root.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
  			"" => "All entries", 
 			"1" => "Last month's entries", 
@@ -296,7 +294,7 @@ class BlogTree_Controller extends Page_Controller {
 	function rss() {
 		global $project_name;
 
-		$blogName = $this->Name;
+		$blogName = $this->Title;
 		$altBlogName = $project_name . ' blog';
 		
 		$entries = $this->Entries(20);
