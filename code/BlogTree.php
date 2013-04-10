@@ -106,28 +106,41 @@ class BlogTree extends Page {
 	function getCMSFields() {
 		$fields = parent::getCMSFields();
 
-		$fields->addFieldToTab('Root.Main', new DropdownField('LandingPageFreshness', 'When you first open the blog, how many entries should I show', array( 
- 			"" => "All entries", 
-			"1" => "Last month's entries", 
-			"2" => "Last 2 months' entries", 
-			"3" => "Last 3 months' entries", 
-			"4" => "Last 4 months' entries", 
-			"5" => "Last 5 months' entries", 
-			"6" => "Last 6 months' entries", 
-			"7" => "Last 7 months' entries", 
-			"8" => "Last 8 months' entries", 
-			"9" => "Last 9 months' entries", 
-			"10" => "Last 10 months' entries", 
-			"11" => "Last 11 months' entries", 
-			"12" => "Last year's entries", 
-			"INHERIT" => "Take value from parent Blog Tree"
-		)), "Content"); 
  		if(class_exists('WidgetArea')) {
  			$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
 			$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
  		}
 		
-		
+		return $fields;
+	}
+
+	function getSettingsFields() {
+		$fields = parent::getSettingsFields();
+
+		$fields->addFieldToTab(
+			'Root.Settings', 
+			new DropdownField(
+				'LandingPageFreshness', 
+				'When you first open the blog, how many entries should I show', 
+				array( 
+		 			"" => "All entries", 
+					"1" => "Last month's entries", 
+					"2" => "Last 2 months' entries", 
+					"3" => "Last 3 months' entries", 
+					"4" => "Last 4 months' entries", 
+					"5" => "Last 5 months' entries", 
+					"6" => "Last 6 months' entries", 
+					"7" => "Last 7 months' entries", 
+					"8" => "Last 8 months' entries", 
+					"9" => "Last 9 months' entries", 
+					"10" => "Last 10 months' entries", 
+					"11" => "Last 11 months' entries", 
+					"12" => "Last year's entries", 
+					"INHERIT" => "Take value from parent Blog Tree"
+				)
+			)
+		); 
+
 		return $fields;
 	}
 		
