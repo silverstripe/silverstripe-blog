@@ -14,9 +14,10 @@
 	}
 	],
 
-	"require":
-	{
-		"silverstripe/cms": "3.0.*",
+	"require": {
+		"silverstripe/cms": "3.0.*"
+	},
+	"suggests": {
 		"silverstripe/widgets": "0.1.*"
 	}
 }

@@ -14,7 +14,7 @@ The blog module allows you to post blogs on your SilverStripe. It includes the a
  ## Requirements
 
  * Silverstripe 3.0
- * silverstripe-widgets module
+ * (Optional) silverstripe-widgets module
 
 ## Feature Overview
 
@@ -75,10 +75,6 @@ or: mysite/blog/2007 would show blog entries for 2007
 ## Comments and Spam Protection
 
 See [:pagecomment](/pagecomment) for creating Askimet-protected comments for every page.
-
-## Widgets
-
-See [widgets](/widgets)
 
 
 ## Working with the theme
