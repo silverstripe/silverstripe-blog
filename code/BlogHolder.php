@@ -296,7 +296,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 
 		$blogentry->Content = str_replace("\r\n", "\n", $form->Fields()->fieldByName('BlogPost')->dataValue());
 
-		if(Object::has_extension($this->ClassName, 'Translatable')) {
+        $className = $this->ClassName;
+		if($className::has_extension('Translatable')) {
 			$blogentry->Locale = $this->Locale; 
 		}
 
