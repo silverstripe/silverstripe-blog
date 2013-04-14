@@ -170,6 +170,10 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 			DB::alteration_message("Blog page created","created");
 		}
 	}
+
+	function providePermissions() {
+		return array("BLOGMANAGEMENT" => "Blog management");
+	}
 }
 
 class BlogHolder_Controller extends BlogTree_Controller {
@@ -193,10 +197,6 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 */
 	function BBTags() {
 		return BBCodeParser::usable_tags();
-	}
-
-	function providePermissions() {
-		return array("BLOGMANAGEMENT" => "Blog management");
 	}
 
 	/**
@@ -311,6 +311,3 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		$this->redirect($this->Link());
 	}
 }
-
-
-?>
