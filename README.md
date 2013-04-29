@@ -78,8 +78,20 @@ See [:pagecomment](/pagecomment) for creating Askimet-protected comments for eve
 
 ## Widgets
 
-See [widgets](/widgets)
+The module comes with a couple of default widgets, which rely on the "silverstripe/widgets"
+module being installed. Since widgets are based on database records and relations
+to pages, they need to be enabled through an `Extension` class in your `config.yml`:
 
+	:::yml
+	BlogTree:
+	  extensions:
+	    - WidgetPageExtension
+	BlogEntry:
+	  extensions:
+	    - WidgetPageExtension
+
+Alternatively, you can simply enable the extension on your `Page` records
+to have it available globally.
 
 ## Working with the theme
 

@@ -49,7 +49,12 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 			"Content"
 		);
 		$fields->addFieldToTab('Root.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'), "Content");
-		$fields->addFieldToTab("Root.Main", new CheckboxField("ShowFullEntry", "Show Full Entry"), "Content");
+		$fields->addFieldToTab(
+			"Root.Main", 
+			CheckboxField::create("ShowFullEntry", "Show Full Entry")
+				->setDescription('Show full content in overviews rather than summary'), 
+			"Content"
+		);
 
 		$this->extend('updateCMSFields', $fields);
 
@@ -123,39 +128,45 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 			$blogholder->Title = "Blog";
 			$blogholder->URLSegment = "blog";
 			$blogholder->Status = "Published";
+			$blogholder->write();
+			$blogholder->publish("Stage", "Live");
 
+			// Add default widgets to first found WidgetArea relationship
 			if(class_exists('WidgetArea')) {
-				$widgetarea = new WidgetArea();
-				$widgetarea->write();
+				foreach($this->has_one() as $name => $class) {
+					if(is_a($class, 'WidgetArea', true)) {
+						$relationName = "{$name}ID";
+						$widgetarea = new WidgetArea();
+						$widgetarea->write();
 
-				$blogholder->SideBarID = $widgetarea->ID;
-				$blogholder->write();
-				$blogholder->publish("Stage", "Live");
+						$blogholder->$relationName = $widgetarea->ID;
+						$blogholder->write();
+						$blogholder->publish("Stage", "Live");
 
-				$managementwidget = new BlogManagementWidget();
-				$managementwidget->ParentID = $widgetarea->ID;
-				$managementwidget->write();
+						$managementwidget = new BlogManagementWidget();
+						$managementwidget->ParentID = $widgetarea->ID;
+						$managementwidget->write();
 
-				$tagcloudwidget = new TagCloudWidget();
-				$tagcloudwidget->ParentID = $widgetarea->ID;
-				$tagcloudwidget->write();
+						$tagcloudwidget = new TagCloudWidget();
+						$tagcloudwidget->ParentID = $widgetarea->ID;
+						$tagcloudwidget->write();
 
-				$archivewidget = new ArchiveWidget();
-				$archivewidget->ParentID = $widgetarea->ID;
-				$archivewidget->write();
+						$archivewidget = new ArchiveWidget();
+						$archivewidget->ParentID = $widgetarea->ID;
+						$archivewidget->write();
 
-				$widgetarea->write();
-			} else {
-				$blogholder->write();
-				$blogholder->publish("Stage", "Live");
-			}	
-			
+						$widgetarea->write();	
+
+						break; // only apply to one
+					}
+				}
+			}
 
 			$blog = new BlogEntry();
 			$blog->Title = _t('BlogHolder.SUCTITLE', "SilverStripe blog module successfully installed");
 			$blog->URLSegment = 'sample-blog-entry';
 			$blog->Tags = _t('BlogHolder.SUCTAGS',"silverstripe, blog");
-			$blog->Content = _t('BlogHolder.SUCCONTENT',"<p>Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in <a href=\"admin\">the CMS</a>.</p>");
+			$blog->Content = _t('BlogHolder.SUCCONTENT',"<p>Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog in <a href=\"admin\">the CMS</a>.</p>");
 			$blog->Status = "Published";
 			$blog->ParentID = $blogholder->ID;
 			$blog->write();
@@ -163,6 +174,10 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 
 			DB::alteration_message("Blog page created","created");
 		}
+	}
+
+	function providePermissions() {
+		return array("BLOGMANAGEMENT" => "Blog management");
 	}
 }
 
@@ -188,10 +203,6 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 */
 	function BBTags() {
 		return BBCodeParser::usable_tags();
-	}
-
-	function providePermissions() {
-		return array("BLOGMANAGEMENT" => "Blog management");
 	}
 
 	/**
@@ -306,6 +317,3 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		$this->redirect($this->Link());
 	}
 }
-
-
-?>
