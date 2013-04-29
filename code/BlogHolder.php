@@ -235,6 +235,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 
 		if(BlogEntry::$allow_wysiwyg_editing) {
 			$contentfield = new HtmlEditorField("BlogPost", _t("BlogEntry.CN"));
+			// Force tinymce to init - otherwise Requirements::set_suffix_requirements() stops the init() call
+			Requirements::customScript("tinyMCE.init(ssTinyMceConfig);", "blog_post_tinyMCE_config");
 		} else {
 			$contentfield = new CompositeField(
 				new LiteralField("BBCodeHelper","<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
