@@ -23,23 +23,12 @@ class BlogTree extends Page {
 	static $default_entries_limit = 10;
 	
 	static $db = array(
-		'InheritSideBar' => 'Boolean',
 		'LandingPageFreshness' => 'Varchar',
 	);
-	
-	static $defaults = array(
-		'InheritSideBar' => True
-	);
-	
-	static $has_one = array();
-
-	static $has_many = array();
 	
 	static $allowed_children = array(
 		'BlogTree', 'BlogHolder'
 	);
-
-	
 
 	/*
 	 * Finds the BlogTree object most related to the current page.
@@ -90,30 +79,8 @@ class BlogTree extends Page {
 		return $freshness;
 	}
 	
-	function SideBar() {
-		if($this->InheritSideBar && $this->getParent()) {
-			if (method_exists($this->getParent(), 'SideBar')) return $this->getParent()->SideBar();
-		}
-		
-		if($this->SideBarID){
-			return DataObject::get_by_id('WidgetArea', $this->SideBarID);
-			// @todo: This segfaults - investigate why then fix: return $this->getComponent('SideBar');
-		}
-	}
-	
 	/* ----------- CMS CONTROL -------------- */
 	
-	function getCMSFields() {
-		$fields = parent::getCMSFields();
-
- 		if(class_exists('WidgetArea')) {
- 			$fields->addFieldToTab("Root.Widgets", new CheckboxField("InheritSideBar", 'Inherit Sidebar From Parent'));
-			$fields->addFieldToTab("Root.Widgets", new WidgetAreaEditor("SideBar"));
- 		}
-		
-		return $fields;
-	}
-
 	function getSettingsFields() {
 		$fields = parent::getSettingsFields();
 

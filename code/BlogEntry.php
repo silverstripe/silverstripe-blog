@@ -111,16 +111,6 @@ class BlogEntry extends Page {
 		}
 	}
 
-	/**
-	 * Get the sidebar from the BlogHolder.
-	 */
-	function SideBar() {
-		if(method_exists($this->Parent(), 'SideBar')) {
-			return $this->getParent()->SideBar();
-		}
-		
-	}
-	
 	function Content() {	
 		if(self::$allow_wysiwyg_editing) {
 			return $this->getField('Content');
