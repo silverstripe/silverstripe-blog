@@ -310,8 +310,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			$blogentry->Locale = $this->Locale; 
 		}
 
-		$blogentry->Status = "Published";
-		$blogentry->writeToStage("Live");
+		$blogentry->writeToStage("Stage");
 		$blogentry->publish("Stage", "Live");
 
 		$this->redirect($this->Link());
