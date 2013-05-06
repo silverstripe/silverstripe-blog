@@ -18,5 +18,9 @@
 	{
 		"silverstripe/cms": "~3.1",
 		"silverstripe/widgets": "dev-master"
+	},
+	"suggest": {
+		"silverstripe/comments": "*",
+		"silverstripe/widgets": "*"
 	}
 }
