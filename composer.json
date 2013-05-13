@@ -16,7 +16,11 @@
 
 	"require":
 	{
-		"silverstripe/cms": ">=3.1.x-dev,<4.0",
-		"silverstripe/widgets": "dev-master"
+		"silverstripe/cms": ">=3.1.x-dev,<4.0"
+	},
+	"suggests":
+	{
+		"silverstripe/widgets": "dev-master",
+		"silverstripe/comments": "dev-master"
 	}
 }
