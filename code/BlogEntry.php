@@ -70,7 +70,7 @@ class BlogEntry extends Page {
 		
 		$fields->addFieldToTab("Root.Main", $dateField = new DatetimeField("Date", _t("BlogEntry.DT", "Date")),"Content");
 		$dateField->getDateField()->setConfig('showcalendar', true);
-		$dateField->getTimeField()->setConfig('showdropdown', true);
+		$dateField->getTimeField()->setConfig('timeformat', 'H:m:s');
 		$fields->addFieldToTab("Root.Main", new TextField("Author", _t("BlogEntry.AU", "Author"), $firstName),"Content");
 		
 		if(!self::$allow_wysiwyg_editing) {
