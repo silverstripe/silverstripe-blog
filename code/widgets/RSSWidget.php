@@ -66,10 +66,17 @@ if(class_exists('Widget')) {
 				return $output;
 			}
 			
-			include_once(Director::getAbsFile(SAPPHIRE_DIR . '/thirdparty/simplepie/simplepie.inc'));
+			if(!class_exists('SimplePie')) {
+				throw new LogicException(
+					'Please install the "simplepie/simplepie" library by adding it to the "require" '
+					+ 'section of your composer.json'
+				);
+			}
 			
 			$t1 = microtime(true);
-			$feed = new SimplePie($this->AbsoluteRssUrl, TEMP_FOLDER);
+			$feed = new SimplePie();
+			$feed->set_feed_url($this->AbsoluteRssUrl);
+			$feed->set_cache_location(TEMP_FOLDER);
 			$feed->init();
 			if($items = $feed->get_items(0, $this->NumberToShow)) {
 				foreach($items as $item) {

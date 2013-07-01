@@ -18,9 +18,10 @@
 	{
 		"silverstripe/cms": ">=3.1.x-dev,<4.0"
 	},
-	"suggests":
+	"suggest":
 	{
-		"silverstripe/widgets": "dev-master",
-		"silverstripe/comments": "dev-master"
+		"silverstripe/widgets": "Additional 'sidebar features', e.g. a list of recent posts and a tagcloud",
+		"silverstripe/comments": "Enable user comments on any page type, including blog posts",
+		"simplepie/simplepie": "Parse RSS feeds, required for the RSS widget"
 	}
 }
