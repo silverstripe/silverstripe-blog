@@ -3,7 +3,7 @@
 	<p class="authorDate"><% _t('BlogSummary_ss.POSTEDBY', 'Posted by') %> $Author.XML <% _t('BlogSummary_ss.POSTEDON', 'on') %> $Date.Long | <a href="$Link#PageComments_holder" title="View Comments Posted">$Comments.Count <% _t('BlogEntry_ss.COMMENTS', 'Comments') %></a></p>
 	<% if TagsCollection %>
 		<p class="tags">
-			Tags:
+			<% _t('TAGS', 'Tags:') %>
 			<% loop TagsCollection %>
 				<a href="$Link" title="View all posts tagged '$Tag'" rel="tag">$Tag</a><% if not Last %>,<% end_if %>
 			<% end_loop %>
@@ -16,5 +16,5 @@
 		<p>$Content.FirstParagraph(html)</p>
 	<% end_if %>
 	
-	<p class="blogVitals"><a href="$Link#PageComments_holder" class="comments" title="View Comments for this post">$Comments.Count comments</a> | <a href="$Link" class="readmore" title="Read Full Post">Read the full post</a></p>
+	<p class="blogVitals"><a href="$Link#PageComments_holder" class="comments" title="View Comments for this post">$Comments.Count <% _t('SUMMARYCOMMENTS', 'comments') %></a> | <a href="$Link" class="readmore" title="Read Full Post"><% _t('READFULLPOST', 'Read the full post') %></a></p>
 </div>

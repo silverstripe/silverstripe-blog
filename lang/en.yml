@@ -56,6 +56,9 @@ en:
     COMMENTS: "Comments"
     POSTEDBY: "Posted by"
     POSTEDON: "on"
+    READFULLPOST: 'Read full post'
+    SUMMARYCOMMENTS: 'comment(s)'
+    TAGS: 'Tags:'
     VIEWFULL: "View full post titled -"
   BlogTree:
     # 50
