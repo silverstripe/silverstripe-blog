@@ -57,6 +57,9 @@ en:
     POSTEDBY: "Posted by"
     POSTEDON: "on"
     VIEWFULL: "View full post titled -"
+    READFULLPOST: 'Read full post'
+    SUMMARYCOMMENTS: 'comment(s)'
+    TAGS: 'Tags:'
   BlogTree:
     # 50
     PLURALNAME: "Blog Tres"

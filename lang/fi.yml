@@ -1,0 +1,98 @@
+fi:
+  ArchiveWidget:
+    DispBY: "Näytä »"
+    MONTH: "kuukausi"
+    # 50
+    PLURALNAME: "Arkistovimpaimet"
+    # 50
+    SINGULARNAME: "Arkistovimpain"
+    YEAR: "vuosi"
+  BlogEntry:
+    AU: "Kirjoittaja"
+    BBH: "BBCode apu"
+    CN: "Sisältö"
+    DT: "Pvm"
+    # 50
+    PLURALNAME: "Blogikirjoitukset"
+    # 50
+    SINGULARNAME: "Blogikirjoitus"
+    TS: "Avainsanat (erottimena pilkku)"
+  BlogEntry_ss:
+    COMMENTS: "Kommentit"
+    EDITTHIS: "Muokkaa tätä kirjoitusta"
+    POSTEDBY: "Lähettäjä"
+    POSTEDON: "»"
+    TAGS: "Avainsanat:"
+    UNPUBLISHTHIS: "Poista julkaisusta"
+    VIEWALLPOSTTAGGED: "Näytä kaikki tägätyt kirjoitukset"
+  BlogHolder:
+    # 50
+    PLURALNAME: "Blogin koontisivut"
+    POST: "Kirjoita blogi"
+    RSSFEED: "RSS-syöte näistä blogeista"
+    # 50
+    SINGULARNAME: "Blogin koontisivu"
+    SJ: "Aihe"
+    SPUC: "Erota avainsanat pilkulla."
+    SUCCONTENT: "Onnittelut, SilverStripe blogimoduuli on asennettu onnistuneesti. Voit poistaa tämän blogikirjoituksen turvallisesti. Voit säätää blogin toiminnaliisuuksia (kuten sivupalkin toiminnallisuuksia) ylläpidosta [url=admin]the CMS[/url]."
+    SUCTAGS: "silverstripe, blog"
+    SUCTITLE: "SilverStripe blogimoduuli asennettu onnistuneesti"
+    TE: "Esim. urheilu, henkilökohtainen, sci-fi"
+  BlogHolder_ss:
+    NOENTRIES: "Ei blogikirjoituksia"
+    VIEWINGTAGGED: "Näytä kirjoitukset tällä avainsanalla"
+  BlogManagementWidget:
+    COMADM: "Kommenttien moderointi"
+    # 50
+    PLURALNAME: "Blogin hallinnointivimpaimet"
+    # 50
+    SINGULARNAME: "Blogin hallinnointivimpain"
+    UNM1: "Sinulla on yksi moderoimaton kommentti"
+    UNMM: "Sinulla on %i moderoimatonta kommenttia"
+  BlogManagementWidget_ss:
+    LOGOUT: "Kirjaudu ulos"
+    POSTNEW: "Kirjoita uusi blogiteksti"
+  BlogSummary_ss:
+    COMMENTS: "Kommentit"
+    POSTEDBY: "Lähettänyt »"
+    POSTEDON: "pvm"
+    READFULLPOST: 'Lue koko kirjoitus'
+    SUMMARYCOMMENTS: 'kommentti(a)'
+    TAGS: 'Avainsanat:'
+    VIEWFULL: "Näytä koko kirjoitus otsikolla -"
+  BlogTree:
+    # 50
+    PLURALNAME: "Blogi hakemistopuut"
+    # 50
+    SINGULARNAME: "Blogihakemistopuu"
+  RSSWidget:
+    CT: "Oma otsikko syötteelle"
+    NTS: "Montako kohdetta näytetään"
+    # 50
+    PLURALNAME: "R S S vimpain"
+    # 50
+    SINGULARNAME: "R S S vimpain"
+    URL: "Toisen sivuston URL-osoite RSS syötteeseen.  Varmistathan, että osoite on RSS-syötteeseen."
+  SubscribeRSSWidget:
+    # 50
+    PLURALNAME: "Tilaa R S S vimpaimet"
+    # 50
+    SINGULARNAME: "Tilaa R S S vimpain"
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: "Tilaa"
+    SUBSCRIBETITLE: "Tilaa tämän blogin RSS"
+  TagCloudWidget:
+    LIMIT: "Rajoita avainsanojen määrää"
+    # 50
+    PLURALNAME: "Avainsanapilvi vimpaimet"
+    SBAL: "aakkoset"
+    SBFREQ: "toistuvuus"
+    # 50
+    SINGULARNAME: "Avainsanapilvi vimpain"
+    SORTBY: "Järjestä"
+    TILE: "Otsikko"
+  TrackBackPing:
+    # 50
+    PLURALNAME: "Track Back Pings"
+    # 50
+    SINGULARNAME: "Track Back Ping"
