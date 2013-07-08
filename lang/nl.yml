@@ -13,7 +13,7 @@ nl:
     PLURALNAME: "Blog Artikelen"
     SINGULARNAME: "Blog Artikel"
     TS: "Tags (Komma gescheiden)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Reacties"
     EDITTHIS: "Bewerk deze post"
     POSTEDBY: "Auteur"
@@ -32,7 +32,7 @@ nl:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "SilverStripe blog module met succes geïnstalleerd"
     TE: "Bijvoorbeeld: sport, persoonlijke, science fiction"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Er zijn geen blog artikelen"
     VIEWINGTAGGED: "U bekijkt artikelen getagged met"
   BlogManagementWidget:
@@ -41,10 +41,10 @@ nl:
     SINGULARNAME: "Blog Management Widgets"
     UNM1: "U heeft 1 niet gecontroleerde opmerking"
     UNMM: "U heeft %i niet gecontroleerde opmerkingen"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Afmelden"
     POSTNEW: "Publiceer een nieuw blog entree"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Reacties"
     POSTEDBY: "Geplaatst door"
     POSTEDON: "Aan"
@@ -58,7 +58,7 @@ nl:
   SubscribeRSSWidget:
     PLURALNAME: "Abonneer R S S Widgets"
     SINGULARNAME: "Abonneer R S S Widget"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Inschrijven"
     SUBSCRIBETITLE: "Inschrijven om dit weblog via RSS te volgen"
   TagCloudWidget:

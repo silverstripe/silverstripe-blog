@@ -1,7 +1,7 @@
 pt:
   BlogEntry:
     PLURALNAME: "Posts no Blog"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Comentários"
     EDITTHIS: "Editar este post"
     POSTEDBY: "Inserido por"
@@ -15,9 +15,9 @@ pt:
     COMADM: "Administração de comentários"
     UNM1: "Existe 1 comentário por moderar"
     UNMM: "Existem %i comentários por moderar"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Sair"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Comentários"
     POSTEDON: "em"
   RSSWidget:

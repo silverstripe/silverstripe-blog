@@ -9,7 +9,7 @@ ru:
     CN: "Содержимое"
     DT: "Дата"
     TS: "Метки (раздел. запят.)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Комментарии"
     EDITTHIS: "Редакт. эту запись"
     POSTEDBY: "Автор: "
@@ -26,17 +26,17 @@ ru:
     SUCTAGS: "silverstripe, блог"
     SUCTITLE: "Модуль блога SilverStripe успешно установлен"
     TE: "Например - спорт, личное, фантастика"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "В блоге нет записей"
     VIEWINGTAGGED: "Просмотр записей с метками "
   BlogManagementWidget:
     COMADM: "Управление комментариями"
     UNM1: "У вас 1 непроверенный комментарий"
     UNMM: "У вас %i непроверенных комментариев"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Выход"
     POSTNEW: "Опубликовать новую запись"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Комментарии"
     POSTEDBY: "Автор:"
     POSTEDON: ":"

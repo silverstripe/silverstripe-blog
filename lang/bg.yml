@@ -9,7 +9,7 @@ bg:
     CN: "Съдържание"
     DT: "Дата"
     TS: "Марки (разделени със запетайка)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Коментари"
     EDITTHIS: "Промени тази статия"
     POSTEDBY: "Публикувано от"
@@ -26,17 +26,17 @@ bg:
     SUCTAGS: "silverstripe, блог"
     SUCTITLE: "SilverStripe блог модул успешно инсталиран"
     TE: "Например: спорт, наука, здраве"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Няма никакви блог статий"
     VIEWINGTAGGED: "Разглеждане на статий маркирани с"
   BlogManagementWidget:
     COMADM: "Администрация за коментари"
     UNM1: "Вие имате 1 непрегледан коментар"
     UNMM: "Вие имате %i непрегледани коментара"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Излез"
     POSTNEW: "Публикувайте нова блог статия"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Коментари"
     POSTEDBY: "Публикувано от"
     POSTEDON: "на"

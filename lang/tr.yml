@@ -13,7 +13,7 @@ tr:
     PLURALNAME: "Blog Girdileri"
     SINGULARNAME: "Blog Girdisi"
     TS: "Etiketler (virgülle ayrılmış)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Yorumlar"
     EDITTHIS: "Bu girdiyi yeniden düzenle"
     POSTEDBY: "Gönderen "
@@ -32,7 +32,7 @@ tr:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "SilverStripe blog modülü başarıyla kuruldu"
     TE: "Örneğin: spor, kişisel, bilim kurgu"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Blog girdileri mevcut değil"
     VIEWINGTAGGED: "Girdiler görüntüleniyor, etiket:"
   BlogManagementWidget:
@@ -41,10 +41,10 @@ tr:
     SINGULARNAME: "Blog Yönetim Zımbırtısı"
     UNM1: "1 adet onay bekleyen yorumunuz var"
     UNMM: "%i adet onay bekleyen yorumunuz var"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Oturumu kapat"
     POSTNEW: "Yeni bir blog girdisi oluştur"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Yorumlar"
     POSTEDBY: "Gönderen: "
     POSTEDON: "üzerinde"
@@ -58,7 +58,7 @@ tr:
   SubscribeRSSWidget:
     PLURALNAME: "R S S Zımbırtılarına abone ol"
     SINGULARNAME: "R S S Zımbırtısına abone ol"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Abone Ol"
     SUBSCRIBETITLE: "Bu bloğa RSS ile abone ol"
   TagCloudWidget:

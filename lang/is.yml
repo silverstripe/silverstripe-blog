@@ -11,7 +11,7 @@ is:
     PLURALNAME: "Blogg færslur"
     SINGULARNAME: "Blogg færsla"
     TS: "Tög (komma til aðskilnaðar)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Athugasemdir"
     EDITTHIS: "Breyta þessari færslu"
     POSTEDBY: "Skrifað af"
@@ -32,7 +32,7 @@ is:
     SUCTAGS: "silverstripe, blogg"
     SUCTITLE: "Uppsetning á SilverStripe blogg einingunni tókst"
     TE: "Til dæmis: íþróttir, persónulegt, vísindasögur"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Það eru engar blogg færslur"
     VIEWINGTAGGED: "Skoða færslur sem eru taggaðar með"
   BlogManagementWidget:
@@ -41,10 +41,10 @@ is:
     SINGULARNAME: "Blogg stjórnunar aukahlutur"
     UNM1: "Þú átt 1 óskoðaða athugasemd"
     UNMM: "Þú átt %i óskoðaða athugasemd"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Útskrá"
     POSTNEW: "Skrifa nýja færslu"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Athugasemdir"
     POSTEDBY: "Skráð af"
     POSTEDON: "á"
@@ -58,7 +58,7 @@ is:
   SubscribeRSSWidget:
     PLURALNAME: "Áskriftar RSS aukahlutur"
     SINGULARNAME: "Áskriftar RSS aukahlutur"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Gerast áskrifandi"
     SUBSCRIBETITLE: "Gerast áskrifandi að þessu bloggi í gegnum RSS"
   TagCloudWidget:

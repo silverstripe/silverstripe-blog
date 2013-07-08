@@ -13,7 +13,7 @@ it:
     PLURALNAME: "Registrazioni blog"
     SINGULARNAME: "Registrazione blog"
     TS: "Etichette (separate da virgola)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Commenti"
     EDITTHIS: "Modifica questo post"
     POSTEDBY: "Inserito da"
@@ -32,7 +32,7 @@ it:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "Modulo blog SilverStripe installato correttamente"
     TE: "Ad esempio: sport, personale, fantascienza"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Non ci sono voci nel blog"
     VIEWINGTAGGED: "Visualizza voci con etichetta"
   BlogManagementWidget:
@@ -41,10 +41,10 @@ it:
     SINGULARNAME: "Widget di amministrazione blog"
     UNM1: "Hai 1 commento da moderare"
     UNMM: "Hai %i commenti non approvati"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Esci"
     POSTNEW: "Inserisci un nuovo post"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Commenti"
     POSTEDBY: "Inserito da"
     POSTEDON: "su"
@@ -61,7 +61,7 @@ it:
   SubscribeRSSWidget:
     PLURALNAME: "Sottoscrivi Widget RSS"
     SINGULARNAME: "Sottoscrivi Widget RSS"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Sottoscrivi"
     SUBSCRIBETITLE: "Sottoscrivi questo blog via RSS"
   TagCloudWidget:

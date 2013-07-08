@@ -11,7 +11,7 @@ pl:
     PLURALNAME: "Wpisy bloga"
     SINGULARNAME: "Wpis bloga"
     TS: "Tagi (oddziel przecinkami)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Komentarze"
     EDITTHIS: "Edytuj ten post"
     POSTEDBY: "Dodane przez"
@@ -30,17 +30,17 @@ pl:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "Blog SilverStripe został poprawnie zainstalowany."
     TE: "Na przykład: sport, osobiste, science fiction"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Nie ma żadnych wpisów na blogu"
     VIEWINGTAGGED: "Zobacz wpisy otagowane jako"
   BlogManagementWidget:
     COMADM: "Administracja komentarzami"
     UNM1: "Masz 1 niesprawdzony komentarz"
     UNMM: "Masz %i niesprawdzonych komentarzy"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Wyloguj"
     POSTNEW: "Dodaj nowy wpis"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Komentarze"
     POSTEDBY: "Napisane przez"
     POSTEDON: "Opublikowano"

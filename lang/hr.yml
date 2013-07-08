@@ -8,7 +8,7 @@ hr:
     CN: "Sadržaj"
     DT: "Datum"
     TS: "Tagovi (odvojeni zarezom)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Komentari"
     POSTEDBY: "Objavio"
     POSTEDON: "Objavljeno"
@@ -23,15 +23,15 @@ hr:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "SilverStripe blog modul uspješno je instaliran"
     TE: "Na primjer: sport, osobno, znanstvena fantastika"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Nema blog zapisa"
     VIEWINGTAGGED: "Pogledaj zapise tagirane sa"
   BlogManagementWidget:
     COMADM: "Administriranje komentara"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Odlogiraj se"
     POSTNEW: "Objavi novi blog zapis"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Komentari"
     POSTEDON: "Objavljeno"
     VIEWFULL: "Pogledaj potpuni blog zapis pod nazivom - "

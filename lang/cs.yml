@@ -17,7 +17,7 @@ cs:
     # 50
     SINGULARNAME: "Blog - Příspěvky"
     TS: "Štítky (odděleno čárkou)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Komentáře"
     EDITTHIS: "Upravit příspěvek"
     POSTEDBY: "Napsal"
@@ -38,7 +38,7 @@ cs:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "Modul blog pro CMS SilverStripe byl úspěšně nainstalován"
     TE: "Například: sport, osobní, sci-fi"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Tento blog nemá žádné příspěvky."
     VIEWINGTAGGED: "Zobrazeny příspěvky obsahující štítek"
   BlogManagementWidget:
@@ -52,10 +52,10 @@ cs:
     UNM3: "Máte 3 nemoderované komentáře"
     UNM4: "Máte 4 nemoderované komentáře"
     UNMM: "Máte %i nemoderovaných komentářů"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Odhlásit"
     POSTNEW: "Vložit nový příspěvek"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Komentáře"
     POSTEDBY: "Napsal"
     POSTEDON: "v"
@@ -78,7 +78,7 @@ cs:
     PLURALNAME: "Doplněk - Přihlásit k odběru RSS"
     # 50
     SINGULARNAME: "Doplněk - Přihlásit k odběru RSS"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Odebírat"
     SUBSCRIBETITLE: "Přihlásit k odběru tohoto blogu pomocí RSS"
   TagCloudWidget:

@@ -13,7 +13,7 @@ en_GB:
     PLURALNAME: "Blog Entries"
     SINGULARNAME: "Blog Entry"
     TS: "Tags (comma sep.)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Comments"
     EDITTHIS: "Edit this post"
     POSTEDBY: "Posted by"
@@ -32,7 +32,7 @@ en_GB:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "SilverStripe blog module successfully installed"
     TE: "For example: sport, personal, science fiction"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "There are no blog entries"
     VIEWINGTAGGED: "Viewing entries tagged with"
   BlogManagementWidget:
@@ -41,10 +41,10 @@ en_GB:
     SINGULARNAME: "Blog Management Widget"
     UNM1: "You have 1 unmoderated comment"
     UNMM: "You have %i unmoderated comments"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Logout"
     POSTNEW: "Post a new blog entry"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Comments"
     POSTEDBY: "Posted by"
     POSTEDON: "on"
@@ -58,7 +58,7 @@ en_GB:
   SubscribeRSSWidget:
     PLURALNAME: "Subscript to RSS Widgets"
     SINGULARNAME: "Subscript to an RSS Widget"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Subscribe"
     SUBSCRIBETITLE: "Subscribe to this blog via RSS"
   TagCloudWidget:

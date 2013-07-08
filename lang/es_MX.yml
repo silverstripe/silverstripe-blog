@@ -13,7 +13,7 @@ es_MX:
     PLURALNAME: "Entradas del Blog"
     SINGULARNAME: "Entrada del BLog"
     TS: "Etiquetas (separadas por coma)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Comentarios"
     EDITTHIS: "Editar este mensaje"
     POSTEDBY: "Enviado por"
@@ -32,7 +32,7 @@ es_MX:
     SUCTAGS: "bitácora, silverstripe"
     SUCTITLE: "El Módulo bitácora Silverstripe se ha instalado satisfactoriamente."
     TE: "Por ejemplo: deportes, personal. ciencia ficción"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Bitácora vacía"
     VIEWINGTAGGED: "Ver entradas etiquetadas con"
   BlogManagementWidget:
@@ -41,10 +41,10 @@ es_MX:
     SINGULARNAME: "Wisdget para la Gestion del Blog"
     UNM1: "Tienes 1 comentario pendiente de moderación"
     UNMM: "Tienes %i comentarios pendientes de moderación"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Salir"
     POSTNEW: "Enviar nueva entrada a la bitácora"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Comentarios"
     POSTEDBY: "Enviado por"
     POSTEDON: "en"
@@ -58,7 +58,7 @@ es_MX:
   SubscribeRSSWidget:
     PLURALNAME: "Widgets para Suscripción R S S"
     SINGULARNAME: "Widget para Suscrición R S S"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Suscribe"
     SUBSCRIBETITLE: "Suscribirme a este blog vía RSS"
   TagCloudWidget:

@@ -9,7 +9,7 @@ da:
     CN: "Indhold"
     DT: "Dato"
     TS: "Tags (kommasep.)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Kommentarer"
     EDITTHIS: "Rediger dette indlæg"
     POSTEDBY: "Indsendt af"
@@ -26,17 +26,17 @@ da:
     SUCTAGS: "Silverstripe, blog"
     SUCTITLE: "SilverStripe Blog modul installeret succesfuldt"
     TE: "F.eks. sport, personligt, science fiction"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Der er ingen blog indlæg"
     VIEWINGTAGGED: "Se indlæg tagged med"
   BlogManagementWidget:
     COMADM: "Kommentaradministration"
     UNM1: "Du har 1 uvurderet kommentar"
     UNMM: "Du har %i uvurderet kommentarer"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Log ud"
     POSTNEW: "Send et nyt blog indlæg"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Kommentarer"
     POSTEDON: "d. "
   RSSWidget:

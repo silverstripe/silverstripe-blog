@@ -13,7 +13,7 @@ et_EE:
     PLURALNAME: "Blogi sisu"
     SINGULARNAME: "Blogi sisu"
     TS: "Sildid (komaga eraldatud)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Kommentaarid"
     EDITTHIS: "Muuda seda postitust"
     POSTEDBY: "Autori"
@@ -32,7 +32,7 @@ et_EE:
     SUCTAGS: "silverstripe, blog"
     SUCTITLE: "SilverStripe blogimoodul edukalt installeeritud"
     TE: "Näiteks: sport, isiklik, teaduslik fantastika"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Blogi sissekanded puuduvad"
     VIEWINGTAGGED: "Kuvatakse sissekandeid siltidega"
   BlogManagementWidget:
@@ -41,10 +41,10 @@ et_EE:
     SINGULARNAME: "Blogi muudatuste vidin"
     UNM1: "Sul on 1 üle vaatamata kommentaar"
     UNMM: "Sul on %i üle vaatamata kommentaari"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Logi välja"
     POSTNEW: "Postita uus blogi sissekanne"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Kommentaarid"
     POSTEDBY: "Postitas"
     POSTEDON: "-"
@@ -58,7 +58,7 @@ et_EE:
   SubscribeRSSWidget:
     PLURALNAME: "Telli RSS Vidinad"
     SINGULARNAME: "Telli RSS Vidin"
-  SubscribeRSSWidget.ss:
+  SubscribeRSSWidget_ss:
     SUBSCRIBETEXT: "Telli"
     SUBSCRIBETITLE: "Telli blogi RSS kaudu"
   TagCloudWidget:

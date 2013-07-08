@@ -9,7 +9,7 @@ sr:
     CN: "Садржај"
     DT: "Датум"
     TS: "Ознаке (одвојене зарезом)"
-  BlogEntry.ss:
+  BlogEntry_ss:
     COMMENTS: "Коментари"
     EDITTHIS: "Измени овај унос"
     POSTEDBY: "Послао"
@@ -24,15 +24,15 @@ sr:
     SUCTAGS: "silverstripe, блог"
     SUCTITLE: "SilverStripe модул за блог је успешно инсталиран"
     TE: "На пример: спорт, лично, научна фантастика"
-  BlogHolder.ss:
+  BlogHolder_ss:
     NOENTRIES: "Нема уноса у блог"
     VIEWINGTAGGED: "Приказујем уносе означене са"
   BlogManagementWidget:
     COMADM: "Администрација коментара"
-  BlogManagementWidget.ss:
+  BlogManagementWidget_ss:
     LOGOUT: "Одјави се"
     POSTNEW: "Пошаљи нов унос у блог"
-  BlogSummary.ss:
+  BlogSummary_ss:
     COMMENTS: "Коментари"
     POSTEDON: "у"
     VIEWFULL: "Погледајте цео унос насловљен - "
