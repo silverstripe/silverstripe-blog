@@ -1,5 +1,5 @@
 <?php
-
+if(class_exists('Widget')) {
 class TagCloudWidget extends Widget {
 	static $db = array(
 		"Title" => "Varchar",
@@ -145,6 +145,4 @@ class TagCloudWidget extends Widget {
 		return true;
 	}
 }
-
-
-?>
+}
