@@ -1,0 +1,6 @@
+---
+Name: silverstripe-blog
+---
+Blog:
+  extensions:
+    - 'BlogPostFilter'
