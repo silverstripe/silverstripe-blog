@@ -87,7 +87,7 @@ if(class_exists('Widget')) {
 
 					// Cast the Title
 					$title = new Text('Title');
-					$title->setValue($item->get_title());
+					$title->setValue(html_entity_decode($item->get_title()));
 
 					$output->push(new ArrayData(array(
 						'Title' => $title,
