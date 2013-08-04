@@ -73,7 +73,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 
 				$id = $gridField->getList()->add($obj);
 				if(!$id) {
-					$gridField->setError(_t("GridFieldAddByDBField.ADDFAIL", "Unable to save " . $obj->Title . " to the database."));
+					$gridField->setError(_t("GridFieldAddByDBField.ADDFAIL", "Unable to save " . $obj->Title . " to the database."), "error");
 				}
 			} else {
 				throw new UnexpectedValueException("Invalid field (" . $dbField . ") on  " . $obj->ClassName . ".");

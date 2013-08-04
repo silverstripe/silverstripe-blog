@@ -1,0 +1,4 @@
+.ssh/*
+.bash*
+.profile
+vendor/*

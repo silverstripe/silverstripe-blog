@@ -1,6 +1,7 @@
 ---
-Name: silverstripe-blog
+Only:
+  moduleexists: 'widgets'
 ---
-Blog:
-  extensions:
-    - 'BlogPostFilter'
+BlogPost:
+  defaults:
+    'InheritSideBar': true

@@ -18,8 +18,33 @@ class BlogCategory extends DataObject {
 		"Blog" => "Blog",
 	);
 
-	private static $many_many = array(
+	private static $belongs_many_many = array(
 		"BlogPosts" => "BlogPost",
 	);
+
+	private static $extensions = array(
+		"URLSegmentExtension",
+	);
+
+
+
+	public function getCMSFields() {
+		$fields = new FieldList(
+			TextField::create("Title", _t("BlogTag.FieldLabels.TITLE", "Title"))
+		);
+		$this->extend("updateCMSFields", $fields);
+		return $fields;
+	}
+
+
+
+	/**
+	 * Returns a relative link to this category.
+	 *
+	 * @return string URL
+	**/
+	public function getLink() {
+		return Controller::join_links($this->Blog()->Link(), "category", $this->URLSegment);
+	}
 
 }

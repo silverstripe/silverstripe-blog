@@ -1,65 +1,18 @@
 <?php
 
-/**
- * Base extension of BlogPost.
- *
- * @package silverstripe
- * @subpackage blog
- *
- * @author Michael Strong <micmania@hotmail.co.uk>
- *
- **/
-class BlogPostFilter extends Hierarchy {
+class BlogPostFilter extends DataExtension {
 
 	/**
-	 * Augments (@link Hierarchy::stageChildren()}
-	 *
-	 * @param $staged DataList
-	 * @param $showAll boolean
+	 * Augment queries so that we don't fetch unpublished articles.
 	**/
-	public function stageChildren($showAll = false) {
-		$staged = parent::stageChildren($showAll);
+	public function augmentSQL(SQLQuery &$query) {
 
-		$controller = Controller::curr();
-		if($controller->class == "CMSPagesController" && in_array($controller->getAction(), array("treeview", "listview", "getsubtree"))) {
-			return $staged->exclude("ClassName", $this->owner->getExcludedSiteTreeClassNames());
-		} else if(in_array($this->owner->ClassName, ClassInfo::subClassesFor("Blog")) && !Permission::check("VIEW_DRAFT_CONTENT")) {
+		$stage = Versioned::current_stage();
+		if($stage == "Stage") $stage = "";
+		else $stage = "_" . Convert::raw2sql($stage);
 
-			// Get the current stage.
-			$stage = Versioned::current_stage();
-			if($stage == "Stage") $stage = "";
-			else $stage = "_" . Convert::raw2sql($stage);
+		$query->addWhere("PublishDate < NOW()");
 
-			$dataQuery = $staged->dataQuery()
-				->innerJoin("BlogPost", "BlogPost" . $stage . ".ID = SiteTree" . $stage . ".ID")
-				->where("PublishDate < NOW()");
-			$staged = $staged->setDataQuery($dataQuery);
-
-		}
-		return $staged;
-	}
-
-
-
-	/**
-	 * Augments (@link Hierarchy::liveChildren()}
-	 *
-	 * @param $staged DataList
-	 * @param $showAll boolean
-	**/
-	public function liveChildren($showAll = false, $onlyDeletedFromStage = false) {
-		$staged = parent::liveChildren($showAll, $onlyDeletedFromStage);
-
-		$controller = Controller::curr();
-		if($controller->class == "CMSPagesController" && in_array($controller->getAction(), array("treeview", "listview", "getsubtree"))) {
-			return $staged->exclude("ClassName", $this->owner->getExcludedSiteTreeClassNames());
-		} else if(in_array($this->owner->ClassName, ClassInfo::subClassesFor("Blog")) && !Permission::check("VIEW_DRAFT_CONTENT")) {
-			$dataQuery = $staged->dataQuery()
-				->innerJoin("BlogPost", "BlogPost_Live.ID = SiteTree_Live.ID")
-				->where("PublishDate < NOW()");
-			$staged = $staged->setDataQuery($dataQuery);
-		}
-		return $staged;
 	}
 
 }
