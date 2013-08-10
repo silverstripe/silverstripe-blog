@@ -1,0 +1,37 @@
+en:
+  GridFieldAddByDBField:
+    AddFail: 'Unable to save {class} to the database.'
+    Add: 'Add {name}'
+  GridFieldSiteTreeAddNewButton:
+    Add: 'Add {name}'
+  GridFieldBlogPostState:
+    StateTitle: 'State'
+    Draft: '<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft'
+    Published: '<i class="btn-icon blog-icon btn-icon-accept"></i> Published on {date}'
+    Timer: '<i class="blog-icon blog-icon-timer"></i> Publish at {date}'
+  BlogPost:
+    PublishDate: 'Publish Date'
+    Categories: 'Categories'
+    Tags: 'Tags'
+    FeaturedImage: 'Featured Image'
+  Blog:
+    BlogPosts: 'Blog Posts'
+    Categories: 'Categories'
+    Tags: 'Tags'
+    PostsPerPage: 'Posts Per Page'
+  BlogTag:
+    Title: 'Title'
+  BlogCategory:
+    Title: 'Title'
+  BlogRecentPostsWidget:
+    Blog: 'Blog'
+    NumberOfPosts: 'Number of Posts'
+  BlogCategoriesWidget:
+    Blog: 'Blog'
+  BlogArchiveWidget:
+    Blog: 'Blog'
+    Monthly: 'Monthly'
+    Yearly: 'Yearly'
+    NumberToDisplay: 'Number to Display'
+  BlogTagsWidget:
+    Blog: 'Blog'

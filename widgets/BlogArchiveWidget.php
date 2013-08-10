@@ -26,12 +26,12 @@ class BlogArchiveWidget extends Widget {
 
 		$type = $this->dbObject("Type")->enumValues();
 		foreach($type as $k => $v) {
-			$type[$k] = _t("BlogArchiveWidget." . strtoupper($v), $v);
+			$type[$k] = _t("BlogArchiveWidget." . ucfirst(strtolower($v)), $v);
 		}
 
-		$fields->push(DropdownField::create("BlogID", _t("BlogArchiveWidget.FieldLabels.BLOG", "Blog"), Blog::get()->map()));
-		$fields->push(DropdownField::create("Type", _t("BlogArchiveWidget.FieldLabels.TYPE", "Type"), $type));
-		$fields->push(NumericField::create("NumberToDisplay", _t("BlogArchiveWidget.LabelFields.NUMBERTODISPLAY", "No. to Display")));
+		$fields->push(DropdownField::create("BlogID", _t("BlogArchiveWidget.Blog", "Blog"), Blog::get()->map()));
+		$fields->push(DropdownField::create("Type", _t("BlogArchiveWidget.Type", "Type"), $type));
+		$fields->push(NumericField::create("NumberToDisplay", _t("BlogArchiveWidget.NumberToDisplay", "No. to Display")));
 		return $fields;
 	}
 

@@ -27,43 +27,28 @@ class BlogPost extends Page {
 	);
 
 	private static $defaults = array(
-		"ShowInMenus" => 0,
+		"ShowInMenus" => false,
+		"InheritSideBar" => true, // Support for widgets
+		"ProvideComments" => true, // Support for comments
 	);
 
-
-	/**
-	 * @var array
-	**/
 	private static $allowed_children = array();
-	
 
-
-	/**
-	 * Set the default sort to publish date
-	 *
-	 * @var string
-	**/
-	private static $default_sort = "PublishDate DESC";
-
-
-
-	/**
-	 * Add blog post filter to BlogPost
-	 *
-	 * @var array
-	**/
 	private static $extensions = array(
 		"BlogPostFilter",
 	);
 
+	private static $searchable_fields = array(
+		"Title"
+	);
 
+	private static $summary_fields = array(
+		"Title",
+	);
 
-	/**
-	 * @var boolean
-	**/
+	private static $default_sort = "PublishDate DESC";
+
 	public static $can_be_root = false;
-
-
 
 	/**
 	 * This will display or hide the current class from the SiteTree. This
@@ -71,7 +56,7 @@ class BlogPost extends Page {
 	 *
 	 * @var boolean
 	**/
-	private static $show_in_site_tree = false;
+	private static $show_in_sitetree = false;
 
 
 
@@ -80,25 +65,25 @@ class BlogPost extends Page {
 
 		// Add Publish date fields
 		$fields->insertAfter(
-			$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.FieldLabels.PUBLISHDATE", "Publish Date")), 
+			$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")), 
 			"Content"
 		);
 		$publishDate->getDateField()->setConfig("showcalendar", true);
 
 		// Add Categories & Tags fields
 		$categories = $this->Parent()->Categories()->map()->toArray();
-		$categoriesField = ListboxField::create("Categories", _t("BlogPost.FieldLabels.CATEGORIES", "Categories"), $categories)
+		$categoriesField = ListboxField::create("Categories", _t("BlogPost.Categories", "Categories"), $categories)
 			->setMultiple(true);
 		$fields->insertAfter($categoriesField, "PublishDate");
 
 		$tags = $this->Parent()->Tags()->map()->toArray();
-		$tagsField = ListboxField::create("Tags", _t("BlogPost.FieldLabels.TAGS", "Tags"), $tags)
+		$tagsField = ListboxField::create("Tags", _t("BlogPost.Tags", "Tags"), $tags)
 			->setMultiple(true);
 		$fields->insertAfter($tagsField, "Categories");
 
 		// Add featured image
 		$fields->insertBefore(
-			$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FieldLabels.FEATUREDIMAGE", "Featured Image")),
+			$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FeaturedImage", "Featured Image")),
 			"Content"
 		);
         $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
@@ -155,11 +140,20 @@ class BlogPost extends Page {
 	/**
 	 * Returns a monthly archive link for the current blog post.
 	 *
+	 * @param $type string day|month|year
+	 *
 	 * @return string URL
 	**/
-	public function getMonthlyArchiveLink() {
+	public function getMonthlyArchiveLink($type = "day") {
 		$date = $this->dbObject("PublishDate");
-		return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"), $date->format("m"));
+		$year = $date->format("Y");
+		if($type != "year") {
+			if($type == "day") {
+				return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"), $date->format("m"), $date->format("d"));
+			}
+			return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"), $date->format("m"));
+		}
+		return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"));
 	}
 
 

@@ -16,7 +16,7 @@ class BlogTagsWidget extends Widget {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$fields->push(DropdownField::create("BlogID", _t("BlogCategoriesWidget.FieldLabels.BLOG", "Blog"), Blog::get()->map()));
+		$fields->push(DropdownField::create("BlogID", _t("BlogTagsWidget.Blog", "Blog"), Blog::get()->map()));
 		return $fields;
 	}
 

@@ -9,7 +9,7 @@
  * @package framework
  * @subpackage fields-gridfield
  */
-class GridFieldSiteTreeAddNewButton extends GridFieldAddNewButton 
+class GridFieldBlogPostAddNewButton extends GridFieldAddNewButton 
 	implements GridField_ActionProvider {
 
 	public function getHTMLFragments($gridField) {
@@ -24,15 +24,19 @@ class GridFieldSiteTreeAddNewButton extends GridFieldAddNewButton
 		if(!$this->buttonName) {
 			// provide a default button name, can be changed by calling {@link setButtonName()} on this component
 			$objectName = $singleton->i18n_singular_name();
-			$this->buttonName = _t('GridField.Add', 'Add {name}', array('name' => $objectName));
+			$this->buttonName = _t('GridFieldSiteTreeAddNewButton.Add', 'Add {name}', "Add button text", array('name' => $singleton->i18n_singular_name()));
 		}
 
 		$state = $gridField->State->GridFieldSiteTreeAddNewButton;
 		$state->currentPageID = $parent->ID;
 		$state->pageType = $parent->defaultChild();
 
-		$addAction = new GridField_FormAction($gridField, 'add',
-			sprintf(_t('GridField.ADD', "Add %s"), $singleton->i18n_singular_name()), 'add', 'add');
+		$addAction = new GridField_FormAction($gridField, 
+			'add',
+			$this->buttonName, 
+			'add', 
+			'add'
+		);
 		$addAction->setAttribute('data-icon', 'add')->addExtraClass("no-ajax");
 
 		$allowedChildren = $parent->allowedChildren();

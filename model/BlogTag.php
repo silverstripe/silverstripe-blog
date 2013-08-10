@@ -28,7 +28,7 @@ class BlogTag extends DataObject {
 
 	public function getCMSFields() {
 		$fields = new FieldList(
-			TextField::create("Title", _t("BlogTag.FieldLabels.TITLE", "Title"))
+			TextField::create("Title", _t("BlogTag.Title", "Title"))
 		);
 		$this->extend("updateCMSFields", $fields);
 		return $fields;

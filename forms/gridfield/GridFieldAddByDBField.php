@@ -73,7 +73,15 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 
 				$id = $gridField->getList()->add($obj);
 				if(!$id) {
-					$gridField->setError(_t("GridFieldAddByDBField.ADDFAIL", "Unable to save " . $obj->Title . " to the database."), "error");
+					$gridField->setError(_t(
+						"GridFieldAddByDBField.AddFail", 
+						"Unable to save {class} to the database.", 
+						"Unable to add the DataObject.",
+						array(
+							"class" => $obj->class
+						)), 
+						"error"
+					);
 				}
 			} else {
 				throw new UnexpectedValueException("Invalid field (" . $dbField . ") on  " . $obj->ClassName . ".");
@@ -99,8 +107,12 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 			->setAttribute("placeholder", $obj->fieldLabel($dbField))
 			->addExtraClass("no-change-track");
 
-		$addAction = new GridField_FormAction($gridField, 'add',
-			sprintf(_t('GridField.ADD', "Add %s"), $obj->i18n_singular_name()), 'add', 'add');
+		$addAction = new GridField_FormAction($gridField, 
+			'add',
+			_t('GridFieldAddByDBField.Add', "Add {name}", "Add button text", array("name" => $obj->i18n_singular_name())), 
+			'add', 
+			'add'
+		);
 		$addAction->setAttribute('data-icon', 'add');
 
 		// Start thinking about rending this back to the GF

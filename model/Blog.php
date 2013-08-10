@@ -27,24 +27,19 @@ class Blog extends Page {
 		"BlogFilter",
 	);
 
-	/**
-	 * Whether or not to show BlogPost's in a GridField. Usually this will be
-	 * the case when they're hidden from the SiteTree.
-	 *
-	 * @var boolean
-	**/
-	private static $show_posts_in_gridfield = true;
-
+	private static $defaults = array(
+		"ProvideComments" => false,
+	);
 
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
-		if($this->config()->get("show_posts_in_gridfield")) {
+		if(!Config::inst()->get("BlogPost", "show_in_sitetree")) {
 			$gridField = new GridField(
 				"BlogPost",
-				_t("Blog.FieldLabels.BlogPosts", "Blog Posts"), 
-				$this->AllChildrenIncludingDeleted(),
-				GridFieldConfig_SiteTree::create()
+				_t("Blog.BlogPosts", "Blog Posts"), 
+				$this->getBlogPosts(),
+				GridFieldConfig_BlogPost::create()
 			);
 			$fields->addFieldToTab("Root.BlogPosts", $gridField);
 		}
@@ -56,14 +51,14 @@ class Blog extends Page {
 
 		$categories = GridField::create(
 			"Categories",
-			_t("Blog.FieldLabels.Categories", "Categories"),
+			_t("Blog.Categories", "Categories"),
 			$this->Categories(),
 			$config
 		);
 
 		$tags = GridField::create(
 			"Tags",
-			_t("Blog.FieldLabels.Tags", "Tags"),
+			_t("Blog.Tags", "Tags"),
 			$this->Tags(),
 			$config
 		);
@@ -79,7 +74,7 @@ class Blog extends Page {
 
 	public function getSettingsFields() {
 		$fields = parent::getSettingsFields();
-		$fields->addFieldToTab("Root.Settings", NumericField::create("PostsPerPage", _t("Blog.FieldLabels.POSTSPERPAGE", "Posts Per Page")));
+		$fields->addFieldToTab("Root.Settings", NumericField::create("PostsPerPage", _t("Blog.PostsPerPage", "Posts Per Page")));
 		return $fields;
 	}
 
@@ -94,8 +89,8 @@ class Blog extends Page {
 	public function getExcludedSiteTreeClassNames() {
 		$classes = array();
 		$tmpClasses = ClassInfo::subClassesFor("BlogPost");
-		foreach($tmpClasses as $class) {
-			if(!Config::inst()->get($class, "show_in_site_tree")) {
+		if(!Config::inst()->get("BlogPost", "show_in_sitetree")) {
+			foreach($tmpClasses as $class) {
 				$classes[$class] = $class;
 			}
 		}
@@ -131,12 +126,13 @@ class Blog_Controller extends Page_Controller {
 		'archive',
 		'tag',
 		'category',
+		'rss',
 	);
 
 	private static $url_handlers = array(
 		'tag/$Tag!' => 'tag',
 		'category/$Category!' => 'category',
-		'archive/$Year!/$Month' => 'archive',
+		'archive/$Year!/$Month/$Day' => 'archive',
 	);
 
 
@@ -164,38 +160,32 @@ class Blog_Controller extends Page_Controller {
 	public function archive() {
 		$year = $this->getArchiveYear();
 		$month = $this->getArchiveMonth();
+		$day = $this->getArchiveDay();
 
 		// If an invalid month has been passed, we can return a 404.
 		if($this->request->param("Month") && !$month) {
 			return $this->httpError(404, "Not Found");
+
+			// Check for valid day
+			if($this->request->param("Day") && !$day) {
+				return $this->httpError(404, "Not Found");
+			}
 		}
 
 		if($year) {
-			if($month) {
-				$startDate = $year . '-' . $month . '-01 00:00:00';
-				if($month == 12) {
-					$endDate = ($year+1) . '-01-01 00:00:00';
-				} else {
-					$endDate = $year . '-' . ($month + 1) . '-' . '01 00:00:00';
-				}
-			} else {
-				$startDate = $year . '-01-01 00:00:00';
-				$endDate = ($year+1) . '12-31 23:59:59';
-			}
-
-			// Ensure that we never fetch back unpublished future posts.
-			if(strtotime($endDate) > time()) {
-				$endDate = date('Y-m-d H:i:s');
-			}
-
 			$query = $this->getBlogPosts()->dataQuery();
 
 			$stage = $query->getQueryParam("Versioned.stage");
 			if($stage) $stage = '_' . Convert::raw2sql($stage);
 
 			$query->innerJoin("BlogPost", "`SiteTree" . $stage . "`.`ID` = `BlogPost" . $stage . "`.`ID`");
-			$query->where("`PublishDate` >= '" . Convert::raw2sql($startDate) . "'
-				AND `PublishDate` < '" . Convert::raw2sql($endDate) . "'");
+			$query->where("YEAR(PublishDate) = '" . Convert::raw2sql($year) . "'");
+			if($month) {
+				$query->where("MONTH(PublishDate) = '" . Convert::raw2sql($month) . "'");
+				if($day) {
+					$query->where("DAY(PublishDate) = '" . Convert::raw2sql($day) . "'");
+				}
+			}
 
 			$this->blogPosts = $this->getBlogPosts()->setDataQuery($query);
 			return $this->render();
@@ -233,6 +223,18 @@ class Blog_Controller extends Page_Controller {
 			return $this->render();
 		}
 		return $this->httpError(404, "Not Found");
+	}
+
+
+
+	/**
+	 * Displays an RSS feed of blog posts
+	 *
+	 * @return string HTML
+	**/
+	public function rss() {
+	    $rss = new RSSFeed($this->getBlogPosts(), $this->Link(), $this->MetaDescription, $this->MetaTitle);
+	    return $rss->outputToBrowser();
 	}
 
 
@@ -299,7 +301,7 @@ class Blog_Controller extends Page_Controller {
 	public function getArchiveYear() {
 		$year = $this->request->param("Year");
 		if(preg_match("/^[0-9]{4}$/", $year)) {
-			return $year;
+			return (int) $year;
 		}
 		return null;
 	}
@@ -314,28 +316,69 @@ class Blog_Controller extends Page_Controller {
 	public function getArchiveMonth() {
 		$month = $this->request->param("Month");
 		if(preg_match("/^[0-9]{1,2}$/", $month)) {
-			if($month > 0 && $month < 13)
-				return $month;
+			if($month > 0 && $month < 13) {
+				// Check that we have a valid date.
+				if(checkdate($month, 01, $this->getArchiveYear())) {
+					return (int) $month;
+				}
+			}
 		}
 		return null;
 	}
 
 
 
+	/**
+	 * Fetches the archive day from the url
+	 *
+	 * @return int|null
+	**/
+	public function getArchiveDay() {
+		$day = $this->request->param("Day");
+		if(preg_match("/^[0-9]{1,2}$/", $day)) {
+
+			// Check that we have a valid date
+			if(checkdate($this->getArchiveMonth(), $day, $this->getArchiveYear())) {
+				return (int) $day;
+			}
+		}
+		return null;
+	}
+
+
+
+	/**
+	 * Returns the current archive date.
+	 *
+	 * @return Date
+	**/
 	public function getArchiveDate() {
 		$year = $this->getArchiveYear();
 		$month = $this->getArchiveMonth();
+		$day = $this->getArchiveDay();
 
 		if($year) {
 			if($month) {
-				$startDate = $year . '-' . $month . '-01 00:00:00';
+				$date = $year . '-' . $month . '-01';
+				if($day) {
+					$date = $year . '-' . $month . '-' . $day;
+				}
 			} else {
-				$startDate = $year . '-01-01 00:00:00';
+				$date = $year . '-01-01';
 			}
-			$date = new Date("ArchiveDate");
-			$date->setValue($startDate);
-			return $date;
+			return DBField::create_field("Date", $date);
 		}
+	}
+
+
+
+	/**
+	 * Returns a link to the RSS feed.
+	 *
+	 * @return string URL
+	**/
+	public function getRSSLink() {
+		return $this->Link("rss");
 	}
 
 }

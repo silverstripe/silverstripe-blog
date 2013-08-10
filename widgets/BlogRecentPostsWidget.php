@@ -18,8 +18,8 @@ class BlogRecentPostsWidget extends Widget {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
-		$fields->push(DropdownField::create("BlogID", _t("BlogCategoriesWidget.FieldLabels.BLOG", "Blog"), Blog::get()->map()));
-		$fields->push(NumericField::create("NumberOfPosts", _t("BlogRecentPostsWidget.FieldLabels.NUMBEROFPOSTS", "Number of Posts")));
+		$fields->push(DropdownField::create("BlogID", _t("BlogRecentPostsWidget.Blog", "Blog"), Blog::get()->map()));
+		$fields->push(NumericField::create("NumberOfPosts", _t("BlogRecentPostsWidget.NumberOfPosts", "Number of Posts")));
 		return $fields;
 	}
 

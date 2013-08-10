@@ -7,11 +7,13 @@ class BlogPostFilter extends DataExtension {
 	**/
 	public function augmentSQL(SQLQuery &$query) {
 
-		$stage = Versioned::current_stage();
-		if($stage == "Stage") $stage = "";
-		else $stage = "_" . Convert::raw2sql($stage);
+		if(!Permission::check("VIEW_DRAFT_CONTENT")) {
+			$stage = Versioned::current_stage();
+			if($stage == "Stage") $stage = "";
+			else $stage = "_" . Convert::raw2sql($stage);
 
-		$query->addWhere("PublishDate < NOW()");
+			$query->addWhere("PublishDate < NOW()");
+		}
 
 	}
 
