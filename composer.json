@@ -8,6 +8,9 @@
         "silverstripe/framework": "3.1.*",
         "silverstripe/cms": "3.1.*"
     },
+    "require-dev": {
+	"micmania1/simple_blog": "*"
+    },
     "license": "BSD-2-Clause",
     "authors": [
         {
