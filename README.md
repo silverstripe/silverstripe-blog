@@ -4,6 +4,7 @@ Silverstripe Blogger
 A fresh take on blogging in Silverstripe set out to tackle the issue of a cluttered Site Tree.
 
 **Notice**
+
 This is not the official silverstripe blog module. You can find this at https://github.com/silverstripe/silverstripe-blog
 
 ## Requirements
@@ -59,4 +60,4 @@ Doing this will remove the GridField & result in a normal behaving SiteTree.
 
 
 ## Theme
-You can download a blog sub-theme of  the Silverstripe's default 'Simple' theme: https://github.com/micmania1/simple_blog
+You can download a blog sub-theme of Silverstripe's default 'Simple' theme: https://github.com/micmania1/simple_blog
