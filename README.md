@@ -58,3 +58,5 @@ Config::inst()->update("BlogPost", "show_in_sitetree", true);
 Doing this will remove the GridField & result in a normal behaving SiteTree.
 
 
+## Theme
+You can download a blog sub-theme of  the Silverstripe's default 'Simple' theme: https://github.com/micmania1/simple_blog
