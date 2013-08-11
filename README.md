@@ -9,7 +9,7 @@ This is not the official silverstripe blog module. You can find this at https://
 
 ## Requirements
 ```
-silverstripe/cms: >=3.1.*
+silverstripe/cms: >=3.1.x-dev
 ```
 
 ## Suggested Modules
