@@ -135,7 +135,7 @@ class BlogPost extends Page {
 	 *
 	 * @return string 
 	**/
-	public function getExcerpt($wordCount = 30) {
+	public function Excerpt($wordCount = 30) {
 		return $this->dbObject("Content")->LimitWordCount($wordCount);
 	}
 
