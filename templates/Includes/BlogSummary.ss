@@ -9,8 +9,8 @@
 			<% end_loop %>
 		</p>
 	<% end_if %>
-
-	<% if BlogHolder.ShowFullEntry %>
+	
+	<% if BlogHolder.ShowFullEntry_Lazy %>
 		$Content
 	<% else %> 
 		<p>$Content.FirstParagraph(html)</p>
