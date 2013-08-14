@@ -1,27 +1,29 @@
 <?php
-if(class_exists('Widget')) {
+
+if (class_exists('Widget')) {
+	
+	/**
+	 * Presents a list of items from an RSS feed url
+	 * 
+	 * @package blog
+	 */
 	class RSSWidget extends Widget {
-	private static $db = array(
+
+		private static $db = array(
 			"RSSTitle" => "Text",
 			"RssUrl" => "Text",
 			"NumberToShow" => "Int"
 		);
-		
-	private static $has_one = array();
-		
-	private static $has_many = array();
-		
-	private static $many_many = array();
-		
-	private static $belongs_many_many = array();
-		
-	private static $defaults = array(
+
+		private static $defaults = array(
 			"NumberToShow" => 10,
 			"RSSTitle" => 'RSS Feed'
 		);
-	private static $cmsTitle = "RSS Feed";
-	private static $description = "Downloads another page's RSS feed and displays items in a list.";
-		
+
+		private static $cmsTitle = "RSS Feed";
+
+		private static $description = "Downloads another page's RSS feed and displays items in a list.";
+
 		/**
 		 * If the RssUrl is relative, convert it to absolute with the
 		 * current baseURL to avoid confusing simplepie.
@@ -45,7 +47,10 @@ if(class_exists('Widget')) {
 			$fields->merge(
 				new FieldList(
 					new TextField("RSSTitle", _t('RSSWidget.CT', "Custom title for the feed")),
-					new TextField("RssUrl", _t('RSSWidget.URL', "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed.")),
+					new TextField("RssUrl", _t(
+						'RSSWidget.URL',
+						"URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed."
+					)),
 					new NumericField("NumberToShow", _t('RSSWidget.NTS', "Number of Items to show"))
 				)
 			);
@@ -54,8 +59,9 @@ if(class_exists('Widget')) {
 			
 			return $fields;
 		}
+		
 		function Title() {
-			return ($this->RSSTitle) ? $this->RSSTitle : 'RSS Feed';
+			return ($this->RSSTitle) ? $this->RSSTitle : _t('RSSWidget.DEFAULTTITLE', 'RSS Feed');
 		}
 		
 		function getFeedItems() {
