@@ -1,5 +1,7 @@
 <?php
+
 if(class_exists('Widget')) {
+	
 	/**
 	 * Shows a widget with viewing blog entries
 	 * by months or years.
@@ -7,27 +9,21 @@ if(class_exists('Widget')) {
 	 * @package blog
 	 */
 	class ArchiveWidget extends Widget {
-	private static $db = array(
+		
+		private static $db = array(
 			'DisplayMode' => 'Varchar'
 		);
 		
-	private static $has_one = array();
-		
-	private static $has_many = array();
-		
-	private static $many_many = array();
-		
-	private static $belongs_many_many = array();
-		
-	private static $defaults = array(
+		private static $defaults = array(
 			'DisplayMode' => 'month'
 		);
 		
-	private static $title = 'Browse by Date';
-
-	private static $cmsTitle = 'Blog Archive';
+		private static $title = 'Browse by Date';
 		
-	private static $description = 'Show a list of months or years in which there are blog posts, and provide links to them.';
+		private static $cmsTitle = 'Blog Archive';
+		
+		private static $description =
+			'Show a list of months or years in which there are blog posts, and provide links to them.';
 		
 		function getCMSFields() {
 			$fields = parent::getCMSFields(); 
@@ -61,20 +57,29 @@ if(class_exists('Widget')) {
 			$stage = Versioned::current_stage();
 			$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
 
-			$monthclause = method_exists(DB::getConn(), 'formattedDatetimeClause') ? DB::getConn()->formattedDatetimeClause('"Date"', '%m') : 'MONTH("Date")';
-			$yearclause  = method_exists(DB::getConn(), 'formattedDatetimeClause') ? DB::getConn()->formattedDatetimeClause('"Date"', '%Y') : 'YEAR("Date")';
+			if(method_exists(DB::getConn(), 'formattedDatetimeClause')) {
+				$monthclause = DB::getConn()->formattedDatetimeClause('"Date"', '%m');
+				$yearclause  = DB::getConn()->formattedDatetimeClause('"Date"', '%Y');
+			} else {
+				$monthclause = 'MONTH("Date")';
+				$yearclause  = 'YEAR("Date")';
+			}
 			
 			if($this->DisplayMode == 'month') {
 				$sqlResults = DB::query("
-					SELECT DISTINCT CAST($monthclause AS " . DB::getConn()->dbDataType('unsigned integer') . ") AS \"Month\", $yearclause AS \"Year\"
-					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
+					SELECT DISTINCT CAST($monthclause AS " . DB::getConn()->dbDataType('unsigned integer') . ")
+						AS \"Month\",
+						$yearclause AS \"Year\"
+					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\"
+						ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
 					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
 					ORDER BY \"Year\" DESC, \"Month\" DESC;"
 				);
 			} else {
 				$sqlResults = DB::query("
 					SELECT DISTINCT $yearclause AS \"Year\" 
-					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\" ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
+					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\"
+						ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
 					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
 					ORDER BY \"Year\" DESC"
 				);
