@@ -1,98 +1,95 @@
 en:
   ArchiveWidget:
-    DispBY: "Display by"
-    MONTH: "month"
-    # 50
-    PLURALNAME: "Archive Widgets"
-    # 50
-    SINGULARNAME: "Archive Widget"
-    YEAR: "year"
+    DispBY: 'Display by'
+    MONTH: month
+    PLURALNAME: 'Archive Widgets'
+    SINGULARNAME: 'Archive Widget'
+    YEAR: year
   BlogEntry:
-    AU: "Author"
-    BBH: "BBCode help"
-    CN: "Content"
-    DT: "Date"
-    # 50
-    PLURALNAME: "Blog Entries"
-    # 50
-    SINGULARNAME: "Blog Entry"
-    TS: "Tags (comma sep.)"
+    AU: Author
+    BBH: 'BBCode help'
+    CN: Content
+    DT: Date
+    PLURALNAME: 'Blog Entry Pages'
+    SINGULARNAME: 'Blog Entry Page'
+    TS: 'Tags (comma sep.)'
+    DESCRIPTION: 'An individual blog entry'
   BlogEntry_ss:
-    COMMENTS: "Comments"
-    EDITTHIS: "Edit this post"
-    POSTEDBY: "Posted by"
-    POSTEDON: "on"
-    TAGS: "Tags:"
-    UNPUBLISHTHIS: "Unpublish this post"
-    VIEWALLPOSTTAGGED: "View all posts tagged"
-  BlogHolder:
-    # 50
-    PLURALNAME: "Blog Holders"
-    POST: "Post blog entry"
-    RSSFEED: "RSS feed of these blogs"
-    # 50
-    SINGULARNAME: "Blog Holder"
-    SJ: "Subject"
-    SPUC: "Please separate tags using commas."
-    SUCCONTENT: "Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog (such as the widgets displayed in the sidebar) in [url=admin]the CMS[/url]."
-    SUCTAGS: "silverstripe, blog"
-    SUCTITLE: "SilverStripe blog module successfully installed"
-    TE: "For example: sport, personal, science fiction"
-  BlogHolder_ss:
-    NOENTRIES: "There are no blog entries"
-    VIEWINGTAGGED: "Viewing entries tagged with"
-  BlogManagementWidget:
-    COMADM: "Comment administration"
-    # 50
-    PLURALNAME: "Blog Management Widgets"
-    # 50
-    SINGULARNAME: "Blog Management Widget"
-    UNM1: "You have 1 unmoderated comment"
-    UNMM: "You have %i unmoderated comments"
-  BlogManagementWidget_ss:
-    LOGOUT: "Logout"
-    POSTNEW: "Post a new blog entry"
-  BlogSummary_ss:
-    COMMENTS: "Comments"
-    POSTEDBY: "Posted by"
-    POSTEDON: "on"
-    VIEWFULL: "View full post titled -"
-    READFULLPOST: 'Read full post'
-    SUMMARYCOMMENTS: 'comment(s)'
+    COMMENTS: Comments
+    EDITTHIS: 'Edit this post'
+    POSTEDBY: 'Posted by'
+    POSTEDON: on
     TAGS: 'Tags:'
+    UNPUBLISHTHIS: 'Unpublish this post'
+    VIEWALLPOSTTAGGED: 'View all posts tagged'
+  BlogHolder:
+    PLURALNAME: 'Blog Holder Pages'
+    POST: 'Post blog entry'
+    RSSFEED: 'RSS feed of these blogs'
+    SINGULARNAME: 'Blog Holder Page'
+    SJ: Subject
+    SPUC: 'Please separate tags using commas.'
+    SUCCONTENT: '<p>Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog in <a href="admin">the CMS</a>.</p>'
+    SUCTAGS: 'silverstripe, blog'
+    SUCTITLE: 'SilverStripe blog module successfully installed'
+    TE: 'For example: sport, personal, science fiction'
+    DESCRIPTION: 'Displays listings of blog entries'
+  BlogHolder_ss:
+    NOENTRIES: 'There are no blog entries'
+    VIEWINGTAGGED: 'Viewing entries tagged with'
+    VIEWINGPOSTEDBY: 'Viewing entries posted by'
+    VIEWINGPOSTEDIN: 'Viewing entries posted in'
+  BlogManagementWidget:
+    COMADM: 'Comment administration'
+    PLURALNAME: 'Blog Management Widgets'
+    SINGULARNAME: 'Blog Management Widget'
+    UNM1: 'You have 1 unmoderated comment'
+    UNMM: 'You have %i unmoderated comments'
+  BlogManagementWidget_ss:
+    LOGOUT: Logout
+    POSTNEW: 'Post a new blog entry'
+  BlogSummary_ss:
+    COMMENTS: Comments
+    POSTEDBY: 'Posted by'
+    POSTEDON: on
+    VIEWFULL: 'View full post titled -'
+    READFULLPOST: 'Read the full post'
+    SUMMARYCOMMENTS: comment(s)
+    TAGS: Tags
   BlogTree:
-    # 50
-    PLURALNAME: "Blog Tres"
-    # 50
-    SINGULARNAME: "Blog Tree"
+    PLURALNAME: 'Blog Tree Pages'
+    SINGULARNAME: 'Blog Tree Page'
+    DESCRIPTION: 'A grouping of blogs'
   RSSWidget:
-    CT: "Custom title for the feed"
-    NTS: "Number of Items to show"
-    # 50
-    PLURALNAME: "R S S Widgets"
-    # 50
-    SINGULARNAME: "R S S Widget"
-    URL: "URL of the other page's RSS feed.  Please make sure this URL points to an RSS feed."
+    CT: 'Custom title for the feed'
+    NTS: 'Number of Items to show'
+    PLURALNAME: 'R S S Widgets'
+    SINGULARNAME: 'R S S Widget'
+    URL: 'URL of the other page''s RSS feed.  Please make sure this URL points to an RSS feed.'
+    DEFAULTTITLE: 'RSS Feed'
   SubscribeRSSWidget:
-    # 50
-    PLURALNAME: "Subscribe R S S Widgets"
-    # 50
-    SINGULARNAME: "Subscribe R S S Widget"
+    PLURALNAME: 'Subscribe R S S Widgets'
+    SINGULARNAME: 'Subscribe R S S Widget'
   SubscribeRSSWidget_ss:
-    SUBSCRIBETEXT: "Subscribe"
-    SUBSCRIBETITLE: "Subscribe to this blog via RSS"
+    SUBSCRIBETEXT: Subscribe
+    SUBSCRIBETITLE: 'Subscribe to this blog via RSS'
   TagCloudWidget:
-    LIMIT: "Limit number of tags"
-    # 50
-    PLURALNAME: "Tag Cloud Widgets"
-    SBAL: "alphabet"
-    SBFREQ: "frequency"
-    # 50
-    SINGULARNAME: "Tag Cloud Widget"
-    SORTBY: "Sort by"
-    TILE: "Title"
+    LIMIT: 'Limit number of tags'
+    PLURALNAME: 'Tag Cloud Widgets'
+    SBAL: alphabet
+    SBFREQ: frequency
+    SINGULARNAME: 'Tag Cloud Widget'
+    SORTBY: 'Sort by'
+    TILE: Title
+    DEFAULTTITLE: 'Tag Cloud'
   TrackBackPing:
-    # 50
-    PLURALNAME: "Track Back Pings"
-    # 50
-    SINGULARNAME: "Track Back Ping"
+    PLURALNAME: 'Track Back Pings'
+    SINGULARNAME: 'Track Back Ping'
+  BlogTree_ss:
+    NOENTRIES: 'There are no blog entries'
+    VIEWINGPOSTEDBY: 'Viewing entries posted by'
+    VIEWINGPOSTEDIN: 'Viewing entries posted in'
+    VIEWINGTAGGED: 'Viewing entries tagged with'
+  SiteTree:
+    PLURALNAME: Pages
+    SINGULARNAME: Page
