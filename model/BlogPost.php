@@ -61,8 +61,12 @@ class BlogPost extends Page {
 
 
 	public function getCMSFields() {
-		$fields = parent::getCMSFields();
 
+	  // Assign to variable & pass for PHP <= 5.4 closure compatibility
+	  $data['TagsMap'] = $this->Parent()->Tags()->map()->toArray();
+	  $data['CategoryMap'] = $this->Parent()->Categories()->map()->toArray();
+
+	  $this->beforeUpdateCMSFields(function($fields) use ($data) {
 		// Add Publish date fields
 		$fields->insertAfter(
 			$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")), 
@@ -71,13 +75,11 @@ class BlogPost extends Page {
 		$publishDate->getDateField()->setConfig("showcalendar", true);
 
 		// Add Categories & Tags fields
-		$categories = $this->Parent()->Categories()->map()->toArray();
-		$categoriesField = ListboxField::create("Categories", _t("BlogPost.Categories", "Categories"), $categories)
+	      $categoriesField = ListboxField::create("Categories", _t("BlogPost.Categories", "Categories"), $data['CategoryMap'])
 			->setMultiple(true);
 		$fields->insertAfter($categoriesField, "PublishDate");
 
-		$tags = $this->Parent()->Tags()->map()->toArray();
-		$tagsField = ListboxField::create("Tags", _t("BlogPost.Tags", "Tags"), $tags)
+	      $tagsField = ListboxField::create("Tags", _t("BlogPost.Tags", "Tags"), $data['TagsMap'])
 			->setMultiple(true);
 		$fields->insertAfter($tagsField, "Categories");
 
@@ -87,7 +89,9 @@ class BlogPost extends Page {
 			"Content"
 		);
         $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
+	    });
 
+	  $fields = parent::getCMSFields();
 		return $fields;
 	}
 
