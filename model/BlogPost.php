@@ -62,36 +62,36 @@ class BlogPost extends Page {
 
 	public function getCMSFields() {
 
-	  // Assign to variable & pass for PHP <= 5.4 closure compatibility
-	  $data['TagsMap'] = $this->Parent()->Tags()->map()->toArray();
-	  $data['CategoryMap'] = $this->Parent()->Categories()->map()->toArray();
+	  	// Assign to variable & pass for PHP <= 5.4 closure compatibility
+	  	$data['TagsMap'] = $this->Parent()->Tags()->map()->toArray();
+	  	$data['CategoryMap'] = $this->Parent()->Categories()->map()->toArray();
 
-	  $this->beforeUpdateCMSFields(function($fields) use ($data) {
-		// Add Publish date fields
-		$fields->insertAfter(
-			$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")), 
-			"Content"
-		);
-		$publishDate->getDateField()->setConfig("showcalendar", true);
+	  	$this->beforeUpdateCMSFields(function($fields) use ($data) {
+			// Add Publish date fields
+			$fields->insertAfter(
+				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")), 
+				"Content"
+			);
+			$publishDate->getDateField()->setConfig("showcalendar", true);
 
-		// Add Categories & Tags fields
-	      $categoriesField = ListboxField::create("Categories", _t("BlogPost.Categories", "Categories"), $data['CategoryMap'])
-			->setMultiple(true);
-		$fields->insertAfter($categoriesField, "PublishDate");
+			// Add Categories & Tags fields
+	     	$categoriesField = ListboxField::create("Categories", 
+	     		_t("BlogPost.Categories", "Categories"), $data['CategoryMap'])->setMultiple(true);
+			$fields->insertAfter($categoriesField, "PublishDate");
 
-	      $tagsField = ListboxField::create("Tags", _t("BlogPost.Tags", "Tags"), $data['TagsMap'])
-			->setMultiple(true);
-		$fields->insertAfter($tagsField, "Categories");
+	      	$tagsField = ListboxField::create("Tags", _t("BlogPost.Tags", "Tags"), $data['TagsMap'])
+				->setMultiple(true);
+			$fields->insertAfter($tagsField, "Categories");
 
-		// Add featured image
-		$fields->insertBefore(
-			$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FeaturedImage", "Featured Image")),
-			"Content"
-		);
-        $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
+			// Add featured image
+			$fields->insertBefore(
+				$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FeaturedImage", "Featured Image")),
+				"Content"
+			);
+        	$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 	    });
 
-	  $fields = parent::getCMSFields();
+	  	$fields = parent::getCMSFields();
 		return $fields;
 	}
 
