@@ -24,13 +24,10 @@ class BlogTree extends Page {
 	
 	private static $db = array(
 		'Name' => 'Varchar(255)',
-		'InheritSideBar' => 'Boolean',
 		'LandingPageFreshness' => 'Varchar',
 	);
 	
-	private static $defaults = array(
-		'InheritSideBar' => True
-	);
+	private static $defaults = array();
 	
 	private static $has_one = array();
 
