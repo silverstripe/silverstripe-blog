@@ -295,6 +295,24 @@ class BlogTree_Controller extends Page_Controller {
 		}
 	}
 	
+	/*
+	 * Function to Allow RSS feeds of specific tag using BlogURL/tag/$tagname/rss/
+	 */
+	
+	function tag() {
+		if ($this->request->param('Action') == 'tag' && $this->request->param('OtherID') == "rss") {
+			$entries = $this->Entries(20, Convert::raw2xml($this->request->latestParam('ID')));
+			
+			if($entries) {
+				$rss = new RSSFeed($entries, $this->owner->Link('rss'), ($blogName ? $blogName : $altBlogName), "", "Title", "RSSContent");
+				return $rss->outputToBrowser();
+				
+			}
+			
+		} else {
+			return $this;
+		}
+	}
 	/**
 	 * Protection against infinite loops when an RSS widget pointing to this page is added to this page
 	 */
