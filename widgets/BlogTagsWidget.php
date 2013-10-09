@@ -1,35 +1,39 @@
 <?php
 
-class BlogTagsWidget extends Widget {
-	
-	private static $title = "Tags";
+if(class_exists("Widget")) {
 
-	private static $cmsTitle = "Blog Tags";
+	class BlogTagsWidget extends Widget {
+		
+		private static $title = "Tags";
 
-	private static $description = "Displays a list of blog tags.";
+		private static $cmsTitle = "Blog Tags";
 
-	private static $db = array();
+		private static $description = "Displays a list of blog tags.";
 
-	private static $has_one = array(
-		"Blog" => "Blog",
-	);
+		private static $db = array();
 
-	public function getCMSFields() {
-		$fields = parent::getCMSFields();
-		$fields->push(DropdownField::create("BlogID", _t("BlogTagsWidget.Blog", "Blog"), Blog::get()->map()));
-		return $fields;
-	}
+		private static $has_one = array(
+			"Blog" => "Blog",
+		);
 
-	public function getTags() {
-		$blog = $this->Blog();
-		if($blog) {
-			return $blog->Tags();
+		public function getCMSFields() {
+			$fields = parent::getCMSFields();
+			$fields->push(DropdownField::create("BlogID", _t("BlogTagsWidget.Blog", "Blog"), Blog::get()->map()));
+			return $fields;
 		}
-		return array();
+
+		public function getTags() {
+			$blog = $this->Blog();
+			if($blog) {
+				return $blog->Tags();
+			}
+			return array();
+		}
+
 	}
 
-}
+	class BlogTagsWidget_Controller extends Widget_Controller {
+		
+	}
 
-class BlogTagsWidget_Controller extends Widget_Controller {
-	
 }

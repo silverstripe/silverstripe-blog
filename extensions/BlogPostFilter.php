@@ -12,8 +12,8 @@ class BlogPostFilter extends DataExtension {
 			if($stage == "Stage") $stage = "";
 			else $stage = "_" . Convert::raw2sql($stage);
 
-			$query->addWhere("PublishDate < NOW()");
-		}
+			$query->addWhere("PublishDate < '" . Convert::raw2sql(SS_Datetime::now()) . "'");
+		} 
 
 	}
 

@@ -74,7 +74,8 @@ class Blog extends Page {
 
 	public function getSettingsFields() {
 		$fields = parent::getSettingsFields();
-		$fields->addFieldToTab("Root.Settings", NumericField::create("PostsPerPage", _t("Blog.PostsPerPage", "Posts Per Page")));
+		$fields->addFieldToTab("Root.Settings", 
+			NumericField::create("PostsPerPage", _t("Blog.PostsPerPage", "Posts Per Page")));
 		return $fields;
 	}
 
@@ -109,6 +110,35 @@ class Blog extends Page {
 		//Allow decorators to manipulate list
 		$this->extend('updateGetBlogPosts', $blogPosts);
 		return $blogPosts;
+	}
+
+
+
+	/**
+	 * Returns blogs posts for a given date period.
+	 *
+	 * @param $year int
+	 * @param $month int
+	 * @param $dat int
+	 *
+	 * @return DataList
+	**/
+	public function getArchivedBlogPosts($year, $month = null, $day = null) {
+		$query = $this->getBlogPosts()->dataQuery();
+
+		$stage = $query->getQueryParam("Versioned.stage");
+		if($stage) $stage = '_' . Convert::raw2sql($stage);
+
+		$query->innerJoin("BlogPost", "`SiteTree" . $stage . "`.`ID` = `BlogPost" . $stage . "`.`ID`");
+		$query->where("YEAR(PublishDate) = '" . Convert::raw2sql($year) . "'");
+		if($month) {
+			$query->where("MONTH(PublishDate) = '" . Convert::raw2sql($month) . "'");
+			if($day) {
+				$query->where("DAY(PublishDate) = '" . Convert::raw2sql($day) . "'");
+			}
+		}
+
+		return $this->getBlogPosts()->setDataQuery($query);
 	}
 
 }
@@ -176,21 +206,7 @@ class Blog_Controller extends Page_Controller {
 		}
 
 		if($year) {
-			$query = $this->getBlogPosts()->dataQuery();
-
-			$stage = $query->getQueryParam("Versioned.stage");
-			if($stage) $stage = '_' . Convert::raw2sql($stage);
-
-			$query->innerJoin("BlogPost", "`SiteTree" . $stage . "`.`ID` = `BlogPost" . $stage . "`.`ID`");
-			$query->where("YEAR(PublishDate) = '" . Convert::raw2sql($year) . "'");
-			if($month) {
-				$query->where("MONTH(PublishDate) = '" . Convert::raw2sql($month) . "'");
-				if($day) {
-					$query->where("DAY(PublishDate) = '" . Convert::raw2sql($day) . "'");
-				}
-			}
-
-			$this->blogPosts = $this->getBlogPosts()->setDataQuery($query);
+			$this->blogPosts = $this->getArchivedBlogPosts($year, $month, $day);
 			return $this->render();
 		}
 		return $this->httpError(404, "Not Found");

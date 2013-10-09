@@ -1,0 +1,47 @@
+#####################################################
+# Mock date is set to 2013-10-01 20:00:00
+#####################################################
+
+Blog:
+  firstblog:
+    Title: 'First Blog'
+
+BlogTag:
+  firsttag:
+    Title: 'First Tag'
+    URLSegment: 'first-tag';
+    Blog: =>Blog.firstblog
+
+BlogCategory:
+  firstcategory:
+    Title: 'First Category'
+    URLSegment: 'first-category'
+    Blog: =>Blog.firstblog
+
+BlogPost:
+  blogpost1:
+    Title: 'First post'
+    URLSegment: first-post
+    PublishDate: '2013-10-01 15:00:00'
+    Parent: =>Blog.firstblog
+    Tags: =>BlogTag.firsttag
+  blogpost2:
+    Title: 'Second post'
+    URLSegment: second-post
+    PublishDate: '2013-09-01 15:00:00'
+    Parent: =>Blog.firstblog
+  blogpost3:
+    Title: 'Old post'
+    URLSegment: old-post
+    PublishDate: '2012-01-09 15:00:00'
+    Parent: =>Blog.firstblog
+  futurepost:
+    Title: 'Future Post'
+    URLSegment: future-post
+    PublishDate: '2015-01-01 00:00:00'
+    Tags: =>BlogTag.firsttag
+  futurepost2:
+    Title: 'Future Post 2'
+    URLSegment: future-post-2
+    PublishDate: '2013-11-01 00:00:00'
+    Tags: =>BlogTag.firsttag

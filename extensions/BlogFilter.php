@@ -32,7 +32,7 @@ class BlogFilter extends Hierarchy {
 
 			$dataQuery = $staged->dataQuery()
 				->innerJoin("BlogPost", "BlogPost" . $stage . ".ID = SiteTree" . $stage . ".ID")
-				->where("PublishDate < NOW()");
+				->where("PublishDate < '" . Convert::raw2sql(SS_Datetime::now()) . "'");
 			$staged = $staged->setDataQuery($dataQuery);
 
 		}
@@ -56,7 +56,7 @@ class BlogFilter extends Hierarchy {
 		} else if(in_array($this->owner->ClassName, ClassInfo::subClassesFor("Blog")) && !Permission::check("VIEW_DRAFT_CONTENT")) {
 			$dataQuery = $staged->dataQuery()
 				->innerJoin("BlogPost", "BlogPost_Live.ID = SiteTree_Live.ID")
-				->where("PublishDate < NOW()");
+				->where("PublishDate < '" . Convert::raw2sql(SS_Datetime::now()) . "'");
 			$staged = $staged->setDataQuery($dataQuery);
 		}
 		return $staged;

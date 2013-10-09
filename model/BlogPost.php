@@ -63,8 +63,10 @@ class BlogPost extends Page {
 	public function getCMSFields() {
 
 	  	// Assign to variable & pass for PHP <= 5.4 closure compatibility
-	  	$data['TagsMap'] = $this->Parent()->Tags()->map()->toArray();
-	  	$data['CategoryMap'] = $this->Parent()->Categories()->map()->toArray();
+	  	$data = array(
+	  		"TagsMap" => $this->Parent()->Tags()->map()->toArray(),
+	  		"CategoryMap" => $this->Parent()->Categories()->map()->toArray()
+  		);
 
 	  	$this->beforeUpdateCMSFields(function($fields) use ($data) {
 			// Add Publish date fields
@@ -108,7 +110,7 @@ class BlogPost extends Page {
 
 
 	/**
-	 * Checks the publish date to see if the blog post as actually been published.
+	 * Checks the publish date to see if the blog post has actually been published.
 	 *
 	 * @param $member Member|null
 	 *
