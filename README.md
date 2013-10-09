@@ -1,7 +1,7 @@
 Silverstripe Blogger
 ====================
 
-[![Build Status](https://travis-ci.org/micmania1/silverstripe-blogger.png?branch=1.0)](https://travis-ci.org/micmania1/silverstripe-blogger)
+[![Build Status](https://travis-ci.org/micmania1/silverstripe-blogger.png?branch=master)](https://travis-ci.org/micmania1/silverstripe-blogger)
 
 A fresh take on blogging in Silverstripe set out to tackle the issue of a cluttered Site Tree.
 
