@@ -4,9 +4,7 @@ php:
   - 5.3
 
 env:
-matrix:
   - DB=MYSQL CORE_RELEASE=3.1
-  - DB=MYSQL CORE_RELEASE=master
 
 matrix:
   include:
