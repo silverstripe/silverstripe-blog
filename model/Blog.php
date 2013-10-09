@@ -105,7 +105,10 @@ class Blog extends Page {
 	 * @return DataList of BlogPost objects
 	**/
 	public function getBlogPosts() {
-		return BlogPost::get()->filter("ParentID", $this->ID);
+		$blogPosts = BlogPost::get()->filter("ParentID", $this->ID);
+		//Allow decorators to manipulate list
+		$this->extend('updateGetBlogPosts', $blogPosts);
+		return $blogPosts;
 	}
 
 }
