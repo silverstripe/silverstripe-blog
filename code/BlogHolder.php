@@ -134,7 +134,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 			// Add default widgets to first found WidgetArea relationship
 			if(class_exists('WidgetArea')) {
 				foreach($this->has_one() as $name => $class) {
-					if(is_a($class, 'WidgetArea', true)) {
+					if($class == 'WidgetArea' || is_subclass_of($class, 'WidgetArea')) {
 						$relationName = "{$name}ID";
 						$widgetarea = new WidgetArea();
 						$widgetarea->write();
