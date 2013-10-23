@@ -15,6 +15,7 @@ en_GB:
     TS: "Tags (comma sep.)"
   BlogEntry_ss:
     COMMENTS: "Comments"
+    COMMENT: "Comment"
     EDITTHIS: "Edit this post"
     POSTEDBY: "Posted by"
     POSTEDON: "on"
