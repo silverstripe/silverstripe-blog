@@ -1,6 +1,6 @@
 <div class="blogSummary">
 	<h2 class="postTitle"><a href="$Link" title="<% _t('BlogSummary_ss.VIEWFULL', 'View full post titled -') %> '$Title'">$MenuTitle</a></h2>
-	<p class="authorDate"><% _t('BlogSummary_ss.POSTEDBY', 'Posted by') %> $Author.XML <% _t('BlogSummary_ss.POSTEDON', 'on') %> $Date.Long | <a href="$Link#PageComments_holder" title="View Comments Posted">$Comments.Count <% _t('BlogEntry_ss.COMMENTS', 'Comments') %></a></p>
+	<p class="authorDate"><% _t('BlogSummary_ss.POSTEDBY', 'Posted by') %> $Author.XML <% _t('BlogSummary_ss.POSTEDON', 'on') %> $Date.Long | <a href="$Link#PageComments_holder" title="View Comments Posted">$ApprovedComments.Count <% if ApprovedComments.Count = 1 %><% _t('BlogEntry_ss.COMMENT', 'Comment') %><% else %><% _t('BlogEntry_ss.COMMENTS', 'Comments') %><% end_if %></a></p>
 	<% if TagsCollection %>
 		<p class="tags">
 			<% _t('BlogSummary_ss.TAGS','Tags') %>:
