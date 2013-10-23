@@ -216,6 +216,13 @@ class BlogEntry extends Page {
 
 		return $holder;
 	}
+	
+	/**
+	 * Get count of moderated comments only
+	 */
+	public function getApprovedComments(){ 
+		return $this->Comments('Comment.Moderated = 1'); 
+	}
 }
 
 class BlogEntry_Controller extends Page_Controller {
