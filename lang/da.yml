@@ -1,51 +1,93 @@
 da:
   ArchiveWidget:
-    DispBY: "Vis efter"
-    MONTH: "måned"
-    YEAR: "år"
+    DispBY: 'Vis efter'
+    MONTH: måned
+    PLURALNAME: 'Arkiv-widgets'
+    SINGULARNAME: 'Arkiv-widget'
+    YEAR: år
   BlogEntry:
-    AU: "Forfatter"
-    BBH: "BBCode hjælp"
-    CN: "Indhold"
-    DT: "Dato"
-    TS: "Tags (kommasep.)"
+    AU: Forfatter
+    BBH: 'BBCode hjælp'
+    CN: Indhold
+    DT: Dato
+    PLURALNAME: 'Blogindlæg Sider'
+    SINGULARNAME: 'Blogindlæg Side'
+    TS: 'Tags (kommasep.)'
+    DESCRIPTION: 'Et enkelt blog-indlæg'
   BlogEntry_ss:
-    COMMENTS: "Kommentarer"
-    EDITTHIS: "Rediger dette indlæg"
-    POSTEDBY: "Indsendt af"
-    POSTEDON: "d. "
-    TAGS: "Tags:"
-    UNPUBLISHTHIS: "Upubliceret dette indlæg"
-    VIEWALLPOSTTAGGED: "Vis alle indlæg tagged "
+    COMMENTS: kommentarer
+    EDITTHIS: 'Rediger dette indlæg'
+    POSTEDBY: 'Indsendt af'
+    TAGS: 'Tags:'
+    UNPUBLISHTHIS: 'Upublicér dette indlæg'
+    VIEWALLPOSTTAGGED: 'Vis alle indlæg tagged '
   BlogHolder:
-    POST: "Send blog indlæg"
-    RSSFEED: "RSS feed af denne blog"
-    SJ: "Emne"
-    SPUC: "Husk at seperere tags med komma"
-    SUCCONTENT: "Tillykke, SilverStripe blog modul er installeret succesfuldt. Dette blog indlæg kan du trygt slette. Du kan konfigurere bloggen som du har lyst (f.eks. widgets placeret i sidepanelet)"
-    SUCTAGS: "Silverstripe, blog"
-    SUCTITLE: "SilverStripe Blog modul installeret succesfuldt"
-    TE: "F.eks. sport, personligt, science fiction"
+    PLURALNAME: 'Blogholder Sider'
+    POST: 'Send blog indlæg'
+    RSSFEED: 'RSS feed af denne blog'
+    SINGULARNAME: 'Blogholder Side'
+    SJ: Emne
+    SPUC: 'Husk at seperere tags med komma'
+    SUCCONTENT: 'Tillykke, SilverStripe blog modul er installeret succesfuldt. Dette blog indlæg kan du trygt slette. Du kan konfigurere bloggen som du har lyst (f.eks. widgets placeret i sidepanelet)'
+    SUCTAGS: 'Silverstripe, blog'
+    SUCTITLE: 'SilverStripe Blog modul installeret succesfuldt'
+    TE: 'F.eks. sport, personligt, science fiction'
+    DESCRIPTION: 'Viser en liste af blogindlæg'
   BlogHolder_ss:
-    NOENTRIES: "Der er ingen blog indlæg"
-    VIEWINGTAGGED: "Se indlæg tagged med"
+    NOENTRIES: 'Der er ingen blog indlæg'
+    VIEWINGTAGGED: 'Se indlæg tagged med'
+    VIEWINGPOSTEDBY: 'Viser indlæg indsendt af'
+    VIEWINGPOSTEDIN: 'Viser indlæg sendt ind af'
   BlogManagementWidget:
-    COMADM: "Kommentaradministration"
-    UNM1: "Du har 1 uvurderet kommentar"
-    UNMM: "Du har %i uvurderet kommentarer"
+    COMADM: 'Kommentaradministration'
+    PLURALNAME: 'Blog-administrations-widgets'
+    SINGULARNAME: 'Blog-administrations-widget'
+    UNM1: 'Du har 1 uvurderet kommentar'
+    UNMM: 'Du har %i uvurderede kommentarer'
   BlogManagementWidget_ss:
-    LOGOUT: "Log ud"
-    POSTNEW: "Send et nyt blog indlæg"
+    LOGOUT: Log ud
+    POSTNEW: 'Send et nyt blog indlæg'
   BlogSummary_ss:
-    COMMENTS: "Kommentarer"
-    POSTEDON: "d. "
+    COMMENTS: kommentarer
+    POSTEDBY: 'Indsendt af'
+    VIEWFULL: 'Se hele indlægget med titlen -'
+    READFULLPOST: 'Læs hele indlægget'
+    SUMMARYCOMMENTS: kommentar(er)
+    TAGS: Tags
+  BlogTree:
+    PLURALNAME: 'Blogtræ Sider'
+    SINGULARNAME: 'Blogtræ Side'
+    DESCRIPTION: 'En gruppe af blogs'
   RSSWidget:
-    CT: "Brugerdefineret title for dette feed"
-    NTS: "Antal af viste indlæg "
-    URL: "URL eller RSS Feed"
+    CT: 'Brugerdefineret title for dette feed'
+    NTS: 'Antal af viste indlæg '
+    PLURALNAME: 'RSS-widgets'
+    SINGULARNAME: 'RSS-widget'
+    URL: 'URL eller RSS Feed'
+    DEFAULTTITLE: 'RSS Feed'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Abonnér på RSS-widgets'
+    SINGULARNAME: 'Abonnér på RSS-widget'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Abonnér
+    SUBSCRIBETITLE: 'Abonnér på denne blog via RSS'
   TagCloudWidget:
-    LIMIT: "Begrænsning af antalle af tags"
-    SBAL: "alfabet"
-    SBFREQ: "frekvens"
-    SORTBY: "Sorter efter"
-    TILE: "Titel"
+    LIMIT: 'Begrænsning af antalle af tags'
+    PLURALNAME: 'Tagcloud-widgets'
+    SBAL: alfabet
+    SBFREQ: frekvens
+    SINGULARNAME: 'Tagcloud-widget'
+    SORTBY: 'Sorter efter'
+    TILE: Titel
+    DEFAULTTITLE: 'Tagcloud'
+  TrackBackPing:
+    PLURALNAME: 'Track Back Ping'
+    SINGULARNAME: 'Track Back Ping'
+  BlogTree_ss:
+    NOENTRIES: 'Der er ingen blog indlæg'
+    VIEWINGPOSTEDBY: 'Viser indlæg indsendt af'
+    VIEWINGPOSTEDIN: 'Viser indlæg indsendt af'
+    VIEWINGTAGGED: 'Se indlæg tagged med'
+  SiteTree:
+    PLURALNAME: Sider
+    SINGULARNAME: Side
