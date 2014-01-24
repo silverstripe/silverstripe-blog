@@ -4,7 +4,7 @@
 	
 	<div class="blogEntry">
 		<h2 class="postTitle">$Title</h2>
-		<p class="authorDate"><% _t('BlogEntry_ss.POSTEDBY', 'Posted by') %> $Author.XML <% _t('BlogEntry_ss.POSTEDON', 'on') %> $Date.Long | $Comments.Count <% _t('BlogEntry_ss.COMMENTS', 'Comments') %></p>
+		<p class="authorDate"><% _t('BlogEntry_ss.POSTEDBY', 'Posted by') %> $Author.XML <% _t('BlogEntry_ss.POSTEDON', 'on') %> $Date.Long | ApprovedComments.Count <% if ApprovedComments.Count = 1 %><% _t('BlogEntry_ss.COMMENT', 'Comment') %><% else %><% _t('BlogEntry_ss.COMMENTS', 'Comments') %><% end_if %></p>
 		<% if TagsCollection %>
 			<p class="tags">
 				 <% _t('BlogEntry_ss.TAGS', 'Tags:') %> 
