@@ -57,6 +57,9 @@ class BlogTree extends Page {
 		// If we _are_ a BlogTree, use us
 		if ($page instanceof BlogTree) return $page;
 		
+		// If page is a virtual page use that
+		if($page instanceof VirtualPage && $page->CopyContentFrom() instanceof BlogTree) return $page;
+		
 		// Or, if we a a BlogEntry underneath a BlogTree, use our parent
 		if($page->is_a("BlogEntry")) {
 			$parent = $page->getParent();
