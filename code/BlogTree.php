@@ -50,21 +50,25 @@ class BlogTree extends Page {
 	 */
 	static function current($page = null) {
 		
-		if (!$page) {
+		if (!$page && Controller::has_curr()) {
 			$controller = Controller::curr();
-			if($controller) $page = $controller->data();
+			if ($controller->hasMethod('data')) {
+				$page = $controller->data();
+			}
 		}
 		
-		// If we _are_ a BlogTree, use us
-		if ($page instanceof BlogTree) return $page;
-		
-		// If page is a virtual page use that
-		if($page instanceof VirtualPage && $page->CopyContentFrom() instanceof BlogTree) return $page;
-		
-		// Or, if we a a BlogEntry underneath a BlogTree, use our parent
-		if($page->is_a("BlogEntry")) {
-			$parent = $page->getParent();
-			if($parent instanceof BlogTree) return $parent;
+		if ($page) {
+			// If we _are_ a BlogTree, use us
+			if ($page instanceof BlogTree) return $page;
+			
+			// If page is a virtual page use that
+			if($page instanceof VirtualPage && $page->CopyContentFrom() instanceof BlogTree) return $page;
+			
+			// Or, if we a a BlogEntry underneath a BlogTree, use our parent
+			if($page->is_a("BlogEntry")) {
+				$parent = $page->getParent();
+				if($parent instanceof BlogTree) return $parent;
+			}
 		}
 		
 		// Try to find a top-level BlogTree
