@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This component provides a button for opening the add new form provided by 
  * {@link GridFieldDetailForm}.
@@ -8,6 +9,8 @@
  *
  * @package framework
  * @subpackage fields-gridfield
+ *
+ * @author Michael Strong <github@michaelstrong.co.uk>
  */
 class GridFieldBlogPostAddNewButton extends GridFieldAddNewButton 
 	implements GridField_ActionProvider {

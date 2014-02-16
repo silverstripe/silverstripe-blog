@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael Strong <micmania@hotmail.co.uk>
+ * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class BlogTag extends DataObject {
 	
@@ -25,6 +25,7 @@ class BlogTag extends DataObject {
 	private static $extensions = array(
 		"URLSegmentExtension",
 	);
+
 
 	public function getCMSFields() {
 		$fields = new FieldList(

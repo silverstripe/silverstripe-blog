@@ -10,12 +10,11 @@
     "authors": [
         {
             "name": "Michael Strong",
-            "email": "micmania@hotmail.co.uk"
+            "email": "github@michaelstrong.co.uk"
         }
     ],
     "suggest": {
         "silverstripe/widgets": "Some widgets come with the blog which are compatible with the widgets module.",
         "silverstripe/comments": "This module adds comments to your blog."
-    },
-    "prefer-stable": true
+    }
 }

@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael String <micmania@hotmail.co.uk>
+ * @author Michael String <github@michaelstrong.co.uk>
 **/
 class Blog extends Page {
 
@@ -34,7 +34,7 @@ class Blog extends Page {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
-		if(!Config::inst()->get("BlogPost", "show_in_sitetree")) {
+		if(!Config::inst()->get(get_class($this), "show_in_sitetree")) {
 			$gridField = new GridField(
 				"BlogPost",
 				_t("Blog.BlogPosts", "Blog Posts"), 
@@ -75,7 +75,8 @@ class Blog extends Page {
 	public function getSettingsFields() {
 		$fields = parent::getSettingsFields();
 		$fields->addFieldToTab("Root.Settings", 
-			NumericField::create("PostsPerPage", _t("Blog.PostsPerPage", "Posts Per Page")));
+			NumericField::create("PostsPerPage", _t("Blog.PostsPerPage", "Posts Per Page"))
+		);
 		return $fields;
 	}
 
@@ -90,7 +91,7 @@ class Blog extends Page {
 	public function getExcludedSiteTreeClassNames() {
 		$classes = array();
 		$tmpClasses = ClassInfo::subClassesFor("BlogPost");
-		if(!Config::inst()->get("BlogPost", "show_in_sitetree")) {
+		if(!Config::inst()->get(get_class($this), "show_in_sitetree")) {
 			foreach($tmpClasses as $class) {
 				$classes[$class] = $class;
 			}
@@ -151,7 +152,7 @@ class Blog extends Page {
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael String <micmania@hotmail.co.uk>
+ * @author Michael String <github@michaelstrong.co.uk>
 **/
 class Blog_Controller extends Page_Controller {
 

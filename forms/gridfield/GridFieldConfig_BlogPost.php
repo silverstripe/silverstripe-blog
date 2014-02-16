@@ -1,12 +1,12 @@
 <?php
 
 /**
- * GirdField config necessary for managing a SiteTree object.
+ * GridField config necessary for managing a SiteTree object.
  *
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael String <micmania@hotmail.co.uk>
+ * @author Michael String <github@michaelstrong.co.uk>
 **/
 class GridFieldConfig_BlogPost extends GridFieldConfig {
 	

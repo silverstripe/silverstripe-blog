@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael String <micmania@hotmail.co.uk>
+ * @author Michael String <github@michaelstrong.co.uk>
 **/
 class GridFieldSiteTreeEditButton extends GridFieldEditButton {
 	
@@ -18,7 +18,7 @@ class GridFieldSiteTreeEditButton extends GridFieldEditButton {
 	 * @return string - the HTML for the column 
 	 */
 	public function getColumnContent($gridField, $record, $columnName) {
-		// No permission checks, handled through GridFieldDetailForm,
+		// No permission checks - handled through GridFieldDetailForm
 		// which can make the form readonly if no edit permissions are available.
 
 		$data = new ArrayData(array(

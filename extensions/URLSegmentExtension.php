@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael Strong <micmania@hotmail.co.uk>
+ * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class URLSegmentExtension extends DataExtension {
 
