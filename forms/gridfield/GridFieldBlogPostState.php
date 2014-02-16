@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Provides a component to the {@link GridField} which tells the user whether or not a 
+ * blog post has been published and when.
+ *
+ * @package silverstripe
+ * @subpackage blog
+ *
+ * @author Michael Strong <github@michaelstrong.co.uk>
+**/
 class GridFieldBlogPostState implements GridField_ColumnProvider {
 
 	public function augmentColumns($gridField, &$columns) {
@@ -22,7 +31,8 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 			if($record->hasMethod("isPublished")) {
 				$published = $record->isPublished();
 				if(!$published) {
-					return _t("GridFieldBlogPostState.Draft", '<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft');
+					return _t("GridFieldBlogPostState.Draft", 
+						'<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft');
 				} else if (strtotime($record->PublishDate) > time()) {
 					return _t(
 						"GridFieldBlogPostState.Timer", 

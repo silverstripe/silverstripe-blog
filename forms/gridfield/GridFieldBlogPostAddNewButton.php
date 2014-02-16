@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This component provides a button for opening the add new form provided by 
  * {@link GridFieldDetailForm}.
@@ -8,6 +9,8 @@
  *
  * @package framework
  * @subpackage fields-gridfield
+ *
+ * @author Michael Strong <github@michaelstrong.co.uk>
  */
 class GridFieldBlogPostAddNewButton extends GridFieldAddNewButton 
 	implements GridField_ActionProvider {
@@ -42,7 +45,9 @@ class GridFieldBlogPostAddNewButton extends GridFieldAddNewButton
 		$allowedChildren = $parent->allowedChildren();
 		$children = array();
 		foreach($allowedChildren as $class) {
-			$children[$class] = singleton($class)->i18n_singular_name();
+			if(!Config::inst()->get($class, "show_in_sitetree")) {
+				$children[$class] = singleton($class)->i18n_singular_name();
+			}
 		}
 
 		$pageTypes = DropdownField::create(

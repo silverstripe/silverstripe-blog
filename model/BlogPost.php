@@ -6,13 +6,10 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael Strong <micmania@hotmail.co.uk>
+ * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class BlogPost extends Page {
 
-	/**
-	 * @var array
-	**/
 	private static $db = array(
 		"PublishDate" => "SS_Datetime",
 	);
@@ -32,8 +29,6 @@ class BlogPost extends Page {
 		"ProvideComments" => true, // Support for comments
 	);
 
-	private static $allowed_children = array();
-
 	private static $extensions = array(
 		"BlogPostFilter",
 	);
@@ -46,9 +41,11 @@ class BlogPost extends Page {
 		"Title",
 	);
 
+	private static $allowed_children = array();
+
 	private static $default_sort = "PublishDate DESC";
 
-	public static $can_be_root = false;
+	private static $can_be_root = false;
 
 	/**
 	 * This will display or hide the current class from the SiteTree. This
@@ -155,7 +152,12 @@ class BlogPost extends Page {
 		$year = $date->format("Y");
 		if($type != "year") {
 			if($type == "day") {
-				return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"), $date->format("m"), $date->format("d"));
+				return Controller::join_links(
+					$this->Parent()->Link("archive"), 
+					$date->format("Y"), 
+					$date->format("m"), 
+					$date->format("d")
+				);
 			}
 			return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"), $date->format("m"));
 		}
@@ -183,7 +185,7 @@ class BlogPost extends Page {
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael Strong <micmania@hotmail.co.uk>
+ * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class BlogPost_Controller extends Page_Controller {
 	

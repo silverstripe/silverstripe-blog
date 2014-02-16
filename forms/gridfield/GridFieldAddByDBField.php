@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael Strong <micmania@hotmail.co.uk>
+ * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLProvider {
 
@@ -103,13 +103,17 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 		$obj = singleton($dataClass);
 		$dbField = $this->getDataObjectField();
 
-		$textField = TextField::create("gridfieldaddbydbfield[" . $obj->ClassName . "][" . Convert::raw2htmlatt($dbField) . "]")
-			->setAttribute("placeholder", $obj->fieldLabel($dbField))
+		$textField = TextField::create(
+			"gridfieldaddbydbfield[" . $obj->ClassName . "][" . Convert::raw2htmlatt($dbField) . "]"
+			)->setAttribute("placeholder", $obj->fieldLabel($dbField))
 			->addExtraClass("no-change-track");
 
 		$addAction = new GridField_FormAction($gridField, 
 			'add',
-			_t('GridFieldAddByDBField.Add', "Add {name}", "Add button text", array("name" => $obj->i18n_singular_name())), 
+			_t('GridFieldAddByDBField.Add', 
+				"Add {name}", "Add button text", 
+				array("name" => $obj->i18n_singular_name())
+			), 
 			'add', 
 			'add'
 		);
