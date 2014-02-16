@@ -34,7 +34,7 @@ class Blog extends Page {
 
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
-
+		
 		$posts = $this->getBlogPosts();
 		$excluded = $this->getExcludedSiteTreeClassNames();
 		if(!empty($excluded)) {
@@ -94,9 +94,15 @@ class Blog extends Page {
 	**/
 	public function getExcludedSiteTreeClassNames() {
 		$classes = array();
+<<<<<<< HEAD
 		$tmpClasses = $this->allowedChildren();
 		foreach($tmpClasses as $class) {
 			if(!Config::inst()->get($class, "show_in_sitetree")) {
+=======
+		$tmpClasses = ClassInfo::subClassesFor("BlogPost");
+		if(!Config::inst()->get(get_class($this), "show_in_sitetree")) {
+			foreach($tmpClasses as $class) {
+>>>>>>> 7d178790f605ae8740a99f1804801e6d985ca755
 				$classes[$class] = $class;
 			}
 		}
