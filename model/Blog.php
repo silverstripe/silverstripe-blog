@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael String <github@michaelstrong.co.uk>
+ * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class Blog extends Page {
 
