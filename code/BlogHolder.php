@@ -120,7 +120,10 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	 */
 	function requireDefaultRecords() {
 		parent::requireDefaultRecords();
-
+		
+		// Skip creation of default records
+		if(!self::config()->create_default_pages) return;
+		
 		$blogHolder = DataObject::get_one('BlogHolder');
 		//TODO: This does not check for whether this blogholder is an orphan or not
 		if(!$blogHolder) {
