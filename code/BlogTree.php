@@ -46,6 +46,7 @@ class BlogTree extends Page {
 	 *
 	 * @param $page allows you to force a specific page, otherwise,
 	 * 				uses current
+	 * @return BlogTree
 	 */
 	static function current($page = null) {
 		
@@ -147,12 +148,14 @@ class BlogTree extends Page {
 		
 	/**
 	 * Get entries in this blog.
-	 * @param string limit A clause to insert into the limit clause.
-	 * @param string tag Only get blog entries with this tag
-	 * @param string date Only get blog entries on this date - either a year, or a year-month eg '2008' or '2008-02'
-	 * @param callback retrieveCallback A function to call with pagetype, filter and limit for custom blog sorting or filtering
-	 * @param string $where
-	 * @return DataObjectSet
+	 * 
+	 * @param string $limit A clause to insert into the limit clause.
+	 * @param string $tag Only get blog entries with this tag
+	 * @param string $date Only get blog entries on this date - either a year, or a year-month eg '2008' or '2008-02'
+	 * @param callable $retrieveCallback A function to call with pagetype, filter and limit for custom blog
+	 * sorting or filtering
+	 * @param string $filter Filter condition
+	 * @return PaginatedList The list of entries in a paginated list
 	 */
 	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
 		
@@ -229,6 +232,11 @@ class BlogTree_Controller extends Page_Controller {
 		'date'
 	);
 	
+	private static $casting = array(
+		'SelectedTag' => 'Text',
+		'SelectedAuthor' => 'Text'
+	);
+	
 	function init() {
 		parent::init();
 		
@@ -237,7 +245,13 @@ class BlogTree_Controller extends Page_Controller {
 		Requirements::themedCSS("blog","blog");
 	}
 
-	function BlogEntries($limit = null) {
+	/**
+	 * Determine selected BlogEntry items to show on this page
+	 * 
+	 * @param int $limit
+	 * @return PaginatedList
+	 */
+	public function BlogEntries($limit = null) {
 		require_once('Zend/Date.php');
 		
 		if($limit === null) $limit = BlogTree::$default_entries_limit;
@@ -275,14 +289,14 @@ class BlogTree_Controller extends Page_Controller {
 	/**
 	 * This will create a <link> tag point to the RSS feed
 	 */
-	function IncludeBlogRSS() {
+	public function IncludeBlogRSS() {
 		RSSFeed::linkToFeed($this->Link('rss'), _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
 	}
 	
 	/**
 	 * Get the rss feed for this blog holder's entries
 	 */
-	function rss() {
+	public function rss() {
 		global $project_name;
 
 		$blogName = $this->Title;
@@ -299,7 +313,7 @@ class BlogTree_Controller extends Page_Controller {
 	/**
 	 * Protection against infinite loops when an RSS widget pointing to this page is added to this page
 	 */
-	function defaultAction($action) {
+	public function defaultAction($action) {
 		if(stristr($_SERVER['HTTP_USER_AGENT'], 'SimplePie')) return $this->rss();
 		
 		return parent::defaultAction($action);
@@ -308,23 +322,22 @@ class BlogTree_Controller extends Page_Controller {
 	/**
 	 * Return the currently viewing tag used in the template as $Tag 
 	 *
-	 * @return String
+	 * @return string
 	 */
-	function SelectedTag() {
+	public function SelectedTag() {
 		if ($this->request->latestParam('Action') == 'tag') {
 			$tag = $this->request->latestParam('ID');
-			$tag = urldecode($tag);
-			return Convert::raw2xml($tag);
-	}
+			return urldecode($tag);
+		}
 		return '';
 	}
 	
 	/**
 	 * Return the selected date from the blog tree
 	 *
-	 * @return Date
+	 * @return string
 	 */
-	function SelectedDate() {
+	public function SelectedDate() {
 		if($this->request->latestParam('Action') == 'date') {
 			$year = $this->request->latestParam('ID');
 			$month = $this->request->latestParam('OtherID');
@@ -344,21 +357,23 @@ class BlogTree_Controller extends Page_Controller {
 	}
 
 	/**
-	 * @return String
+	 * @return string
 	 */
-	function SelectedAuthor() {
+	public function SelectedAuthor() {
 		if($this->request->getVar('author')) {
 			$hasAuthor = BlogEntry::get()->filter('Author', $this->request->getVar('author'))->Count();
-			return $hasAuthor ? Convert::raw2xml($this->request->getVar('author')) : null;
+			return $hasAuthor
+				? $this->request->getVar('author')
+				: null;
 		} elseif($this->request->getVar('authorID')) {
 			$hasAuthor = BlogEntry::get()->filter('AuthorID', $this->request->getVar('authorID'))->Count();
 			if($hasAuthor) {
 				$member = Member::get()->byId($this->request->getVar('authorID'));
 				if($member) {
 					if($member->hasMethod('BlogAuthorTitle')) {
-						return Convert::raw2xml($member->BlogAuthorTitle);
+						return $member->BlogAuthorTitle;
 					} else {
-						return Convert::raw2xml($member->Title);
+						return $member->Title;
 					}
 				} else {
 					return null;
@@ -367,7 +382,11 @@ class BlogTree_Controller extends Page_Controller {
 		}
 	}
 	
-	function SelectedNiceDate(){
+	/**
+	 * 
+	 * @return string
+	 */
+	public function SelectedNiceDate(){
 		$date = $this->SelectedDate();
 		
 		if(strpos($date, '-')) {

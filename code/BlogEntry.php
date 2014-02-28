@@ -87,25 +87,40 @@ class BlogEntry extends Page {
 	}
 	
 	/**
-	 * Returns the tags added to this blog entry
+	 * Safely split and parse all distinct tags assigned to this BlogEntry
+	 * 
+	 * @return array Associative array of lowercase tag to native case tags
 	 */
-	function TagsCollection() {
+	public function TagNames() {
+		$tags = preg_split("/\s*,\s*/", trim($this->Tags));
+		$results = array();
+		foreach($tags as $tag) {
+			if($tag) $results[mb_strtolower($tag)] = $tag;
+		}
+		return $results;
+	}
+	
+	/**
+	 * Returns the tags added to this blog entry
+	 * 
+	 * @return ArrayList List of ArrayData with Tag, Link, and URLTag keys
+	 */
+	public function TagsCollection() {
 
-		$tags = preg_split(" *, *", trim($this->Tags));
+		$tags = $this->TagNames();
 		$output = new ArrayList();
 		
-		$link = $this->getParent() ? $this->getParent()->Link('tag') : '';
-		foreach($tags as $tag) {
+		$link = ($parent = $this->getParent()) ? $parent->Link('tag') : '';
+		foreach($tags as $tag => $tagLabel) {
+			$urlKey = urlencode($tag);
 			$output->push(new ArrayData(array(
-				'Tag' => Convert::raw2xml($tag),
-				'Link' => $link . '/' . urlencode($tag),
-				'URLTag' => urlencode($tag)
+				'Tag' => $tagLabel,
+				'Link' => Controller::join_links($link, $urlKey),
+				'URLTag' => $urlKey
 			)));
 		}
 		
-		if($this->Tags) {
-			return $output;
-		}
+		return $output;
 	}
 
 	function Content() {	
