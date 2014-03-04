@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @package blog
  * @subpackage tests
@@ -6,7 +7,10 @@
 class BlogEntryTest extends SapphireTest {
 	static $fixture_file = 'blog/tests/BlogTest.yml';
 	
-	function testBBCodeContent() {
+	/**
+	 * Tests BBCode functionality
+	 */
+	public function testBBCodeContent() {
 		$tmpFlag = BlogEntry::$allow_wysiwyg_editing; 
 		BlogEntry::$allow_wysiwyg_editing = false; 
 		
@@ -16,8 +20,11 @@ class BlogEntryTest extends SapphireTest {
 		$this->assertEquals('<p><a href="admin">the CMS</a></p>', $entry->Content()->value);
 		BlogEntry::$allow_wysiwyg_editing = $tmpFlag; 
 	}
-	
-	function testContent() {
+
+	/**
+	 * Tests BlogEntry::Content method
+	 */
+	public function testContent() {
 		$tmpFlag = BlogEntry::$allow_wysiwyg_editing; 
 		BlogEntry::$allow_wysiwyg_editing = true; 
 		
@@ -26,6 +33,26 @@ class BlogEntryTest extends SapphireTest {
 
 		$this->assertEquals('<a href="admin">the CMS</a>', $entry->Content());
 		BlogEntry::$allow_wysiwyg_editing = $tmpFlag; 
+	}
+	
+	/**
+	 * Tests TagCollection parsing of tags
+	 */
+	public function testTagging() {
+		$entry = new BlogEntry();
+		$entry->Tags = 'damian,Bob, andrew , multiple words, thing,tag,item , Andrew';
+		$tags = $entry->TagNames();
+		ksort($tags);
+		
+		$this->assertEquals(array(
+			'andrew' => 'Andrew',
+			'bob' => 'Bob',
+			'damian' => 'damian',
+			'item' => 'item',
+			'multiple words' => 'multiple words',
+			'tag' => 'tag',
+			'thing' => 'thing'
+		), $tags);
 	}
 	
 }
