@@ -134,7 +134,7 @@ if(class_exists('Widget')) {
 				
 				// Find position of $count in the selected range, adjusted for bucket range used
 				if($maxCount == $minCount) {
-					$popularities = $offset;
+					$popularity = $offset;
 				} else {
 					$popularity = round(
 						($count-$minCount) / ($maxCount-$minCount) * ($numsizes-1)
