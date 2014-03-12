@@ -23,5 +23,6 @@
 		"silverstripe/widgets": "Additional 'sidebar features', e.g. a list of recent posts and a tagcloud",
 		"silverstripe/comments": "Enable user comments on any page type, including blog posts",
 		"simplepie/simplepie": "Parse RSS feeds, required for the RSS widget"
-	}
+	},
+	"minimum-stability": "dev"
 }
