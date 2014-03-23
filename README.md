@@ -37,6 +37,13 @@ composer require micmania1/silverstripe-blog:1.0.*
 * RSS Feed of the blog
 
 
+## Screenshots
+*Easily manage and add new blog posts through a GridField.*
+![](screenshots/blog-post-management.png)
+
+*Quickly add new tags and categories.*
+![](screenshots/blogpost-add-tags-categories.png)
+
 
 ## Usage
 Because the blog is part of the SiteTree the usage is the same as any other page.
