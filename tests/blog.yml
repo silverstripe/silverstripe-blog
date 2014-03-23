@@ -25,6 +25,7 @@ BlogPost:
     PublishDate: '2013-10-01 15:00:00'
     Parent: =>Blog.firstblog
     Tags: =>BlogTag.firsttag
+    Categories: =>BlogCategory.firstcategory
   blogpost2:
     Title: 'Second post'
     URLSegment: second-post
@@ -40,8 +41,10 @@ BlogPost:
     URLSegment: future-post
     PublishDate: '2015-01-01 00:00:00'
     Tags: =>BlogTag.firsttag
+    Categories: =>BlogCategory.firstcategory
   futurepost2:
     Title: 'Future Post 2'
     URLSegment: future-post-2
     PublishDate: '2013-11-01 00:00:00'
     Tags: =>BlogTag.firsttag
+    Categories: =>BlogCategory.firstcategory

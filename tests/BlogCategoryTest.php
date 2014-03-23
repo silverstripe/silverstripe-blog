@@ -1,6 +1,6 @@
 <?php
 
-class BlogTagTest extends SapphireTest {
+class BlogCategoryTest extends SapphireTest {
 	
 	static $fixture_file = "blog.yml";
 
@@ -9,8 +9,9 @@ class BlogTagTest extends SapphireTest {
 		parent::setUp();
 	}
 
+
 	/**
-	 * Tests that any blog posts returned from $tag->BlogPosts() many_many are published,
+	 * Tests that any blog posts returned from $category->BlogPosts() many_many are published,
 	 * both by normal 'save & publish' functionality and by publish date.
 	**/
 	public function testBlogPosts() {
@@ -19,8 +20,8 @@ class BlogTagTest extends SapphireTest {
 		if($member) $member->logout();
 
 		$post = $this->objFromFixture("BlogPost", "blogpost1");
-		$tag = $this->objFromFixture("BlogTag", "firsttag");
-		$this->assertEquals(1, $tag->BlogPosts()->count(), "Tag blog post count");
+		$category = $this->objFromFixture("BlogCategory", "firstcategory");
+		$this->assertEquals(1, $category->BlogPosts()->count(), "Category blog post count");
 	}
 
 }

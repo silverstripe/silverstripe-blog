@@ -406,3 +406,9 @@ class Blog_Controller extends Page_Controller {
 	}
 
 }
+
+class ExtendedBlogPost extends BlogPost implements TestOnly {
+
+	private static $show_in_sitetree = true;
+
+}
