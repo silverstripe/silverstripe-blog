@@ -156,7 +156,7 @@ class Blog extends Page {
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael String <github@michaelstrong.co.uk>
+ * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class Blog_Controller extends Page_Controller {
 
@@ -404,11 +404,5 @@ class Blog_Controller extends Page_Controller {
 	public function getRSSLink() {
 		return $this->Link("rss");
 	}
-
-}
-
-class ExtendedBlogPost extends BlogPost implements TestOnly {
-
-	private static $show_in_sitetree = true;
 
 }
