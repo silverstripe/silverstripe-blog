@@ -203,11 +203,11 @@ class Blog_Controller extends Page_Controller {
 		// If an invalid month has been passed, we can return a 404.
 		if($this->request->param("Month") && !$month) {
 			return $this->httpError(404, "Not Found");
+		}
 
-			// Check for valid day
-			if($this->request->param("Day") && !$day) {
-				return $this->httpError(404, "Not Found");
-			}
+		// Check for valid day
+		if($month && $this->request->param("Day") && !$day) {
+			return $this->httpError(404, "Not Found");
 		}
 
 		if($year) {
