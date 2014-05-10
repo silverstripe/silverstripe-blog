@@ -31,9 +31,12 @@ if(class_exists("Widget")) {
 				$type[$k] = _t("BlogArchiveWidget." . ucfirst(strtolower($v)), $v);
 			}
 
-			$fields->push(DropdownField::create("BlogID", _t("BlogArchiveWidget.Blog", "Blog"), Blog::get()->map()));
-			$fields->push(DropdownField::create("Type", _t("BlogArchiveWidget.Type", "Type"), $type));
-			$fields->push(NumericField::create("NumberToDisplay", _t("BlogArchiveWidget.NumberToDisplay", "No. to Display")));
+			$fields->merge(array(
+				DropdownField::create("BlogID", _t("BlogArchiveWidget.Blog", "Blog"), Blog::get()->map()),
+				DropdownField::create("Type", _t("BlogArchiveWidget.Type", "Type"), $type),
+				NumericField::create("NumberToDisplay", _t("BlogArchiveWidget.NumberToDisplay", "No. to Display"))
+			));
+			$this->extend("updateCMSFields", $fields);
 			return $fields;
 		}
 
