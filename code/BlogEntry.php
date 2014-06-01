@@ -44,19 +44,19 @@ class BlogEntry extends Page {
 	static $allow_wysiwyg_editing = true;
 	
 	/**
-	 * Overload so that the default date is today.
+	 * Overload so that the default date is today and the default author is the logged in Member.
 	 */
 	public function populateDefaults(){
 		parent::populateDefaults();
 		
 		$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
+		$this->setField('Author', Member::currentUser() ? Member::currentUser()->getName() : '');
 	}
 	
 	function getCMSFields() {
 		Requirements::javascript('blog/javascript/bbcodehelp.js');
 		Requirements::themedCSS('bbcodehelp');
 		
-		$firstName = Member::currentUser() ? Member::currentUser()->FirstName : '';
 		$codeparser = new BBCodeParser();
 		
 		SiteTree::disableCMSFieldsExtensions();
@@ -71,7 +71,7 @@ class BlogEntry extends Page {
 		$fields->addFieldToTab("Root.Main", $dateField = new DatetimeField("Date", _t("BlogEntry.DT", "Date")),"Content");
 		$dateField->getDateField()->setConfig('showcalendar', true);
 		$dateField->getTimeField()->setConfig('timeformat', 'H:m:s');
-		$fields->addFieldToTab("Root.Main", new TextField("Author", _t("BlogEntry.AU", "Author"), $firstName),"Content");
+		$fields->addFieldToTab("Root.Main", new TextField("Author", _t("BlogEntry.AU", "Author")),"Content");
 		
 		if(!self::$allow_wysiwyg_editing) {
 			$fields->addFieldToTab("Root.Main", new LiteralField("BBCodeHelper", "<div id='BBCode' class='field'>" .
