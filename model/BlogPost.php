@@ -176,6 +176,19 @@ class BlogPost extends Page {
 		return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"));
 	}
 
+
+
+	/**
+	 * Sets the label for BlogPost.Title to 'Post Title' (Rather than 'Page name')
+	 *
+	 * @return array
+	**/
+	public function fieldLabels($includerelations = true) {   
+		$labels = parent::fieldLabels($includerelations);
+		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");      
+		return $labels;
+	}
+
 }
 
 
