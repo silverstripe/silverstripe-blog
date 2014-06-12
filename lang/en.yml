@@ -9,6 +9,7 @@ en:
     Draft: '<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft'
     Published: '<i class="btn-icon blog-icon btn-icon-accept"></i> Published on {date}'
     Timer: '<i class="blog-icon blog-icon-timer"></i> Publish at {date}'
+    Modified: 'Modified'
   BlogPost:
     PublishDate: 'Publish Date'
     Categories: 'Categories'
