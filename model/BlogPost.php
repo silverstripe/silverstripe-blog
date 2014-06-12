@@ -107,6 +107,18 @@ class BlogPost extends Page {
 
 
 	/**
+	 * Update the PublishDate to now, if being published for the first time, and the date hasn't been set to the future.
+	**/
+	public function onBeforePublish() {
+		if ($this->owner->obj('PublishDate')->InPast() && !$this->owner->isPublished()) {
+			$this->owner->setCastedField("PublishDate", time());
+			$this->owner->write();
+		}
+	}
+
+
+
+	/**
 	 * Checks the publish date to see if the blog post has actually been published.
 	 *
 	 * @param $member Member|null
