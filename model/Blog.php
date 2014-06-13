@@ -33,45 +33,48 @@ class Blog extends Page {
 
 
 	public function getCMSFields() {
-		$fields = parent::getCMSFields();
+		$this->beforeUpdateCMSFields(function($fields) {
 		
-		$posts = $this->getBlogPosts();
-		$excluded = $this->getExcludedSiteTreeClassNames();
-		if(!empty($excluded)) {
-			$posts = $posts->filter("ClassName", $excluded);
-			$gridField = new GridField(
-				"BlogPost",
-				_t("Blog.BlogPosts", "Blog Posts"), 
-				$posts,
-				GridFieldConfig_BlogPost::create()
+			$posts = $this->getBlogPosts();
+			$excluded = $this->getExcludedSiteTreeClassNames();
+			if(!empty($excluded)) {
+				$posts = $posts->filter("ClassName", $excluded);
+				$gridField = new GridField(
+					"BlogPost",
+					_t("Blog.BlogPosts", "Blog Posts"), 
+					$posts,
+					GridFieldConfig_BlogPost::create()
+				);
+				$fields->addFieldToTab("Root.BlogPosts", $gridField);
+			}
+
+			// Create categories and tag config
+			$config = GridFieldConfig_RecordEditor::create();
+			$config->removeComponentsByType("GridFieldAddNewButton");
+			$config->addComponent(new GridFieldAddByDBField("buttons-before-left"));
+
+			$categories = GridField::create(
+				"Categories",
+				_t("Blog.Categories", "Categories"),
+				$this->Categories(),
+				$config
 			);
-			$fields->addFieldToTab("Root.BlogPosts", $gridField);
-		}
 
-		// Create categories and tag config
-		$config = GridFieldConfig_RecordEditor::create();
-		$config->removeComponentsByType("GridFieldAddNewButton");
-		$config->addComponent(new GridFieldAddByDBField("buttons-before-left"));
+			$tags = GridField::create(
+				"Tags",
+				_t("Blog.Tags", "Tags"),
+				$this->Tags(),
+				$config
+			);
 
-		$categories = GridField::create(
-			"Categories",
-			_t("Blog.Categories", "Categories"),
-			$this->Categories(),
-			$config
-		);
+			$fields->addFieldsToTab("Root.BlogOptions", array(
+				$categories,
+				$tags
+			));
 
-		$tags = GridField::create(
-			"Tags",
-			_t("Blog.Tags", "Tags"),
-			$this->Tags(),
-			$config
-		);
-
-		$fields->addFieldsToTab("Root.BlogOptions", array(
-			$categories,
-			$tags
-		));
-
+		});
+		
+		$fields = parent::getCMSFields();
 		return $fields;
 	}
 
