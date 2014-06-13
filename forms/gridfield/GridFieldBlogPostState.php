@@ -36,13 +36,20 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 
 				$published = $record->isPublished();
 				if(!$published) {
-					return _t("GridFieldBlogPostState.Draft", 
-						'<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft');
+					return _t(
+						"GridFieldBlogPostState.Draft", 
+						'<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft on {date}',
+						"State for when a post is saved.", 
+						array(
+							"date" => $record->dbObject("LastEdited")->Nice()
+						)
+					);
 				} else if (strtotime($record->PublishDate) > time()) {
 					return _t(
 						"GridFieldBlogPostState.Timer", 
 						'<i class="blog-icon blog-icon-timer"></i> Publish at {date}', 
-						"State for when a post is published.", array(
+						"State for when a post is published.", 
+						array(
 							"date" => $record->dbObject("PublishDate")->Nice()
 						)
 					) . $modifiedLabel;
