@@ -29,6 +29,11 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 	public function getColumnContent($gridField, $record, $columnName) {
 		if($columnName == "State") {
 			if($record->hasMethod("isPublished")) {
+				$modifiedLabel = "";
+				if($record->isModified()) {
+					$modifiedLabel = "<span class='modified'>" . _t("GridFieldBlogPostState.Modified") . "</span>";
+				} 
+
 				$published = $record->isPublished();
 				if(!$published) {
 					return _t("GridFieldBlogPostState.Draft", 
@@ -40,7 +45,7 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 						"State for when a post is published.", array(
 							"date" => $record->dbObject("PublishDate")->Nice()
 						)
-					);
+					) . $modifiedLabel;
 				} else {
 					return _t(
 						"GridFieldBlogPostState.Published", 
@@ -49,7 +54,7 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 						array(
 							"date" => $record->dbObject("PublishDate")->Nice()
 						)
-					);
+					) . $modifiedLabel;
 				}
 			}
 		}
