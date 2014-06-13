@@ -31,7 +31,7 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 			if($record->hasMethod("isPublished")) {
 				$modifiedLabel = "";
 				if($record->isModified()) {
-					$modifiedLabel = "<span class='modified'>"._t("GridFieldBlogPostState.Modified")."</span>";
+					$modifiedLabel = "<span class='modified'>" . _t("GridFieldBlogPostState.Modified") . "</span>";
 				} 
 
 				$published = $record->isPublished();
@@ -45,7 +45,7 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 						"State for when a post is published.", array(
 							"date" => $record->dbObject("PublishDate")->Nice()
 						)
-					);
+					) . $modifiedLabel;
 				} else {
 					return _t(
 						"GridFieldBlogPostState.Published", 
@@ -54,7 +54,7 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 						array(
 							"date" => $record->dbObject("PublishDate")->Nice()
 						)
-					).$modifiedLabel;
+					) . $modifiedLabel;
 				}
 			}
 		}
