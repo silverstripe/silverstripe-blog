@@ -30,7 +30,7 @@ class GridFieldBlogPostState implements GridField_ColumnProvider {
 		if($columnName == "State") {
 			if($record->hasMethod("isPublished")) {
 				$modifiedLabel = "";
-				if($record->isModified()) {
+				if($record->isModifiedOnStage) {
 					$modifiedLabel = "<span class='modified'>" . _t("GridFieldBlogPostState.Modified") . "</span>";
 				} 
 
