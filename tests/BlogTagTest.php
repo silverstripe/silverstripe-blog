@@ -1,6 +1,6 @@
 <?php
 
-class BlogTagTest extends SapphireTest {
+class BlogTagTest extends FunctionalTest {
 	
 	static $fixture_file = "blog.yml";
 
@@ -21,6 +21,90 @@ class BlogTagTest extends SapphireTest {
 		$post = $this->objFromFixture("BlogPost", "blogpost1");
 		$tag = $this->objFromFixture("BlogTag", "firsttag");
 		$this->assertEquals(1, $tag->BlogPosts()->count(), "Tag blog post count");
+	}
+
+
+
+	public function testCanView() {
+		$this->useDraftSite();
+
+		$admin = $this->objFromFixture("Member", "admin");
+		$editor = $this->objFromFixture('Member', 'editor');
+
+		// The first blog can bew viewed by anybody
+		$tag = $this->objFromFixture("BlogTag", "firsttag");
+		$this->assertTrue($tag->canView($admin), "Admin should be able to view tag.");
+		$this->assertTrue($tag->canView($editor), "Editor should be able to view tag.");
+
+		$tag = $this->objFromFixture("BlogTag", "secondtag");
+		$this->assertTrue($tag->canView($admin), "Admin should be able to view tag.");
+		$this->assertFalse($tag->canView($editor), "Editor should not be able to view tag.");
+	}
+
+
+
+	public function testCanEdit() {
+		$this->useDraftSite();
+
+		$admin = $this->objFromFixture("Member", "admin");
+		$editor = $this->objFromFixture('Member', 'editor');
+
+		// The first blog can bew viewed by anybody
+		$tag = $this->objFromFixture("BlogTag", "firsttag");
+		$this->assertTrue($tag->canEdit($admin), "Admin should be able to edit tag.");
+		$this->assertTrue($tag->canEdit($editor), "Editor should be able to edit tag.");
+
+		$tag = $this->objFromFixture("BlogTag", "secondtag");
+		$this->assertTrue($tag->canEdit($admin), "Admin should be able to edit tag.");
+		$this->assertFalse($tag->canEdit($editor), "Editor should not be able to edit tag.");
+
+		$tag = $this->objFromFixture("BlogTag", "thirdtag");
+		$this->assertTrue($tag->canEdit($admin), "Admin should always be able to edit tags.");
+		$this->assertTrue($tag->canEdit($editor), "Editor should be able to edit tag.");
+	}
+
+
+
+	public function testCanCreate() {
+		$this->useDraftSite();
+
+		$admin = $this->objFromFixture("Member", "admin");
+		$editor = $this->objFromFixture('Member', 'editor');
+
+		// The first blog can bew viewed by anybody
+		$tag = $this->objFromFixture("BlogTag", "firsttag");
+		$this->assertTrue($tag->canCreate($admin), "Admin should be able to create tag.");
+		$this->assertTrue($tag->canCreate($editor), "Editor should be able to create tag.");
+
+		$tag = $this->objFromFixture("BlogTag", "secondtag");
+		$this->assertTrue($tag->canCreate($admin), "Admin should be able to create tag.");
+		$this->assertFalse($tag->canCreate($editor), "Editor should not be able to create tag.");
+
+		$tag = $this->objFromFixture("BlogTag", "thirdtag");
+		$this->assertTrue($tag->canCreate($admin), "Admin should always be able to create tags.");
+		$this->assertTrue($tag->canCreate($editor), "Editor should be able to create tag.");
+	}
+
+
+
+	public function testCanDelete() {
+		$this->useDraftSite();
+
+		$admin = $this->objFromFixture("Member", "admin");
+		$editor = $this->objFromFixture('Member', 'editor');
+
+		// The first blog can bew viewed by anybody
+		$tag = $this->objFromFixture("BlogTag", "firsttag");
+		$this->assertTrue($tag->canDelete($admin), "Admin should be able to delete tag.");
+		$this->assertTrue($tag->canDelete($editor), "Editor should be able to delete tag.");
+
+		$tag = $this->objFromFixture("BlogTag", "secondtag");
+		$this->assertTrue($tag->canDelete($admin), "Admin should be able to delete tag.");
+		$this->assertFalse($tag->canDelete($editor), "Editor should not be able to delete tag.");
+
+		$tag = $this->objFromFixture("BlogTag", "thirdtag");
+		$this->assertTrue($tag->canDelete($admin), "Admin should always be able to delete tags.");
+		$this->assertTrue($tag->canDelete($editor), "Editor should be able to delete tag.");
 	}
 
 }

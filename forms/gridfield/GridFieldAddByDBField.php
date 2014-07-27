@@ -71,16 +71,30 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 			if($obj->hasField($dbField)) {
 				$obj->setCastedField($dbField, $data['gridfieldaddbydbfield'][$obj->ClassName][$dbField]);
 
-				$id = $gridField->getList()->add($obj);
-				if(!$id) {
-					$gridField->setError(_t(
-						"GridFieldAddByDBField.AddFail", 
-						"Unable to save {class} to the database.", 
-						"Unable to add the DataObject.",
-						array(
-							"class" => $obj->class
-						)), 
-						"error"
+				if($obj->canCreate()) {
+					$id = $gridField->getList()->add($obj);
+					if(!$id) {
+						$gridField->setError(_t(
+							"GridFieldAddByDBField.AddFail", 
+							"Unable to save {class} to the database.", 
+							"Unable to add the DataObject.",
+							array(
+								"class" => get_class($obj)
+							)), 
+							"error"
+						);
+					}
+				} else {
+					return Security::permissionFailure(
+						Controller::curr(),
+						_t(
+							"GridFieldAddByDBField.PermissionFail",
+							"You don't have permission to create a {class}.",
+							"Unable to add the DataObject.",
+							array(
+								"class" => get_class($obj)
+							)
+						)
 					);
 				}
 			} else {
@@ -101,6 +115,8 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 	public function getHTMLFragments($gridField) {
 		$dataClass = $gridField->getList()->dataClass();
 		$obj = singleton($dataClass);
+		if(!$obj->canCreate()) return "";
+
 		$dbField = $this->getDataObjectField();
 
 		$textField = TextField::create(

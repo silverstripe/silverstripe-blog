@@ -1,6 +1,7 @@
 en:
   GridFieldAddByDBField:
     AddFail: 'Unable to save {class} to the database.'
+    PermissionFail: 'You don''t have permission to create a {class}.'
     Add: 'Add {name}'
   GridFieldSiteTreeAddNewButton:
     Add: 'Add {name}'
