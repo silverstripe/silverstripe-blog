@@ -1,22 +1,71 @@
 #####################################################
 # Mock date is set to 2013-10-01 20:00:00
 #####################################################
+Group:
+  admins:
+    Title: Administrators
+  editors:
+    Title: Editors
+
+Permission:
+  admins:
+    Code: ADMIN
+    Group: =>Group.admins
+  editors:
+    Code: CMS_ACCESS_CMSMain
+    Group: =>Group.editors
+
+Member:
+  admin:
+    FirstName: Test
+    Surname: Administrator
+    Groups: =>Group.admins
+  editor:
+    FirstName: Test
+    Surname: Editor
+    Groups: =>Group.editors
 
 Blog:
   firstblog:
     Title: 'First Blog'
+  secondblog:
+    Title: 'Second Blog'
+    CanViewType: 'OnlyTheseUsers'
+    CanEditType: 'OnlyTheseUsers'
+    ViewerGroups: =>Group.admins
+    EditorGroups: =>Group.admins
+  thirdblog:
+    Title: 'Third Blog'
+    CanEditType: 'OnlyTheseUsers'
+    EditorGroups: =>Group.editors
 
 BlogTag:
   firsttag:
     Title: 'First Tag'
-    URLSegment: 'first-tag';
+    URLSegment: 'first-tag'
     Blog: =>Blog.firstblog
+  secondtag:
+    Title: 'Second Tag'
+    URLSegment: 'second-tag'
+    Blog: =>Blog.secondblog
+  thirdtag:
+    Title: 'Third Tag'
+    URLSegment: 'third-tag'
+    Blog: =>Blog.thirdblog
 
 BlogCategory:
   firstcategory:
     Title: 'First Category'
     URLSegment: 'first-category'
     Blog: =>Blog.firstblog
+  secondcategory:
+    Title: 'Second Category'
+    URLSegment: 'second-category'
+    Blog: =>Blog.secondblog
+  thirdcategory:
+    Title: 'Third Category'
+    URLSegment: 'third-category'
+    Blog: =>Blog.thirdblog
 
 BlogPost:
   blogpost1:

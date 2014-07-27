@@ -14,22 +14,31 @@ class Blog extends Page {
 		"PostsPerPage" => "Int",
 	);
 
+
+
 	private static $has_many = array(
 		"Tags" => "BlogTag",
 		"Categories" => "BlogCategory",
 	);
+
+
 	
 	private static $allowed_children = array(
 		"BlogPost",
 	);
 
+
+
 	private static $extensions = array(
 		"BlogFilter",
 	);
 
+
+
 	private static $defaults = array(
 		"ProvideComments" => false,
 	);
+
 
 
 	public function getCMSFields() {
@@ -78,6 +87,7 @@ class Blog extends Page {
 		$fields = parent::getCMSFields();
 		return $fields;
 	}
+
 
 
 	public function getSettingsFields() {
