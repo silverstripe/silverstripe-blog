@@ -33,10 +33,11 @@ class Blog extends Page {
 
 
 	public function getCMSFields() {
-		$this->beforeUpdateCMSFields(function($fields) {
+		$self =& $this;
+		$this->beforeUpdateCMSFields(function($fields) use ($self) {
 		
-			$posts = $this->getBlogPosts();
-			$excluded = $this->getExcludedSiteTreeClassNames();
+			$posts = $self->getBlogPosts();
+			$excluded = $self->getExcludedSiteTreeClassNames();
 			if(!empty($excluded)) {
 				$posts = $posts->filter("ClassName", $excluded);
 				$gridField = new GridField(
@@ -56,14 +57,14 @@ class Blog extends Page {
 			$categories = GridField::create(
 				"Categories",
 				_t("Blog.Categories", "Categories"),
-				$this->Categories(),
+				$self->Categories(),
 				$config
 			);
 
 			$tags = GridField::create(
 				"Tags",
 				_t("Blog.Tags", "Tags"),
-				$this->Tags(),
+				$self->Tags(),
 				$config
 			);
 
@@ -260,8 +261,8 @@ class Blog_Controller extends Page_Controller {
 	 * @return string HTML
 	**/
 	public function rss() {
-	    $rss = new RSSFeed($this->getBlogPosts(), $this->Link(), $this->MetaDescription, $this->MetaTitle);
-	    return $rss->outputToBrowser();
+		$rss = new RSSFeed($this->getBlogPosts(), $this->Link(), $this->MetaDescription, $this->MetaTitle);
+		return $rss->outputToBrowser();
 	}
 
 
