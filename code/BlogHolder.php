@@ -283,6 +283,8 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		} else {
 			$form->loadDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
 		}
+        
+        $this->extend("updateBlogEntryForm", $form);
 
 		return $form;
 	}
@@ -312,12 +314,16 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		if(Object::has_extension($this->ClassName, 'Translatable')) {
 			$blogentry->Locale = $this->Locale; 
 		}
+        
+        $this->extend("onBeforePostBlog", $blogentry);
 
 		$oldMode = Versioned::get_reading_mode();
 		Versioned::reading_stage('Stage');
 		$blogentry->write();
 		$blogentry->publish("Stage", "Live");
 		Versioned::set_reading_mode($oldMode);
+        
+        $this->extend("onAfterPostBlog", $blogentry);
 
 		$this->redirect($this->Link());
 	}
