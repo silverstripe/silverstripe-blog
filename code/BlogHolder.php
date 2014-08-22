@@ -34,40 +34,37 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		'BlogEntry'
 	);
 
-	function getCMSFields() {
+	public function getCMSFields() {
 		$blogOwners = $this->blogOwners(); 
 
-		SiteTree::disableCMSFieldsExtensions();
-		$fields = parent::getCMSFields();
-		SiteTree::enableCMSFieldsExtensions();
+		// Add holder fields prior to extensions being called
+		$this->beforeUpdateCMSFields(function($fields) use ($blogOwners) {
+			$fields->addFieldsToTab(
+				'Root.Main',
+				array(
+					DropdownField::create('OwnerID', 'Blog owner', $blogOwners->map('ID', 'Name')->toArray())
+						->setEmptyString('(None)')
+						->setHasEmptyDefault(true),
+					CheckboxField::create('AllowCustomAuthors', 'Allow non-admins to have a custom author field'),
+					CheckboxField::create("ShowFullEntry", "Show Full Entry")
+						->setDescription('Show full content in overviews rather than summary')
+				),
+				"Content"
+			);
+		});
 		
-		$fields->addFieldToTab(
-			'Root.Main', 
-			DropdownField::create('OwnerID', 'Blog owner', $blogOwners->map('ID', 'Name')->toArray())
-				->setEmptyString('(None)')
-				->setHasEmptyDefault(true),
-			"Content"
-		);
-		$fields->addFieldToTab('Root.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'), "Content");
-		$fields->addFieldToTab(
-			"Root.Main", 
-			CheckboxField::create("ShowFullEntry", "Show Full Entry")
-				->setDescription('Show full content in overviews rather than summary'), 
-			"Content"
-		);
-
-		$this->extend('updateCMSFields', $fields);
-
-		return $fields;
+		return parent::getCMSFields();
 	}
 	
 	/**
 	 * Get members who have BLOGMANAGEMENT and ADMIN permission
-	 */ 
-
-	function blogOwners($sort = array('FirstName'=>'ASC','Surname'=>'ASC'), $direction = null) {
-		
-		$members = Permission::get_members_by_permission(array('ADMIN','BLOGMANAGEMENT')); 
+	 *
+	 * @param array $sort
+	 * @param string $direction
+	 * @return SS_List
+	 */
+	public function blogOwners($sort = array('FirstName'=>'ASC','Surname'=>'ASC'), $direction = null) {
+		$members = Permission::get_members_by_permission(array('ADMIN', 'BLOGMANAGEMENT'));
 		$members->sort($sort);
 		
 		$this->extend('extendBlogOwners', $members);
@@ -86,7 +83,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	/**
 	 * Only display the blog entries that have the specified tag
 	 */
-	function ShowTag() {
+	public function ShowTag() {
 		if($this->request->latestParam('Action') == 'tag') {
 			return Convert::raw2xml(Director::urlParam('ID'));
 		}
@@ -95,30 +92,30 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	/**
 	 * Check if url has "/post"
 	 */
-	function isPost() {
+	public function isPost() {
 		return $this->request->latestParam('Action') == 'post';
 	}
 
 	/**
 	 * Link for creating a new blog entry
 	 */
-	function postURL(){
+	public function postURL() {
 		return $this->Link('post');
 	}
 
 	/**
 	 * Returns true if the current user is an admin, or is the owner of this blog
 	 *
-	 * @return Boolean
+	 * @return bool
 	 */
-	function IsOwner() {
+	public function IsOwner() {
 		return (Permission::check('BLOGMANAGEMENT') || Permission::check('ADMIN'));
 	}
 
 	/**
 	 * Create default blog setup
 	 */
-	function requireDefaultRecords() {
+	public function requireDefaultRecords() {
 		parent::requireDefaultRecords();
 		
 		// Skip creation of default records
@@ -179,7 +176,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		}
 	}
 
-	function providePermissions() {
+	public function providePermissions() {
 		return array("BLOGMANAGEMENT" => "Blog management");
 	}
 }
@@ -196,7 +193,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		'BlogEntryForm' => 'BLOGMANAGEMENT',
 	);
 	
-	function init() {
+	public function init() {
 		parent::init();
 		Requirements::themedCSS("bbcodehelp");
 	}
@@ -204,14 +201,14 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	/**
 	 * Return list of usable tags for help
 	 */
-	function BBTags() {
+	public function BBTags() {
 		return BBCodeParser::usable_tags();
 	}
 
 	/**
 	 * Post a new blog entry
 	 */
-	function post(){
+	public function post(){
 		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
 		$page = $this->customise(array(
 			'Content' => false,
@@ -223,62 +220,74 @@ class BlogHolder_Controller extends BlogTree_Controller {
 
 	/**
 	 * A simple form for creating blog entries
+	 *
+	 * @return Form
 	 */
-	function BlogEntryForm() {	
+	public function BlogEntryForm() {
 		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
 		
 
-		$id = 0;
-		if($this->request->latestParam('ID')) {
-			$id = (int) $this->request->latestParam('ID');
-		}
-
-		$codeparser = new BBCodeParser();
+		$codeparser = BBCodeParser::create();
 		$membername = Member::currentUser() ? Member::currentUser()->getName() : "";
 
 		if(BlogEntry::$allow_wysiwyg_editing) {
-			$contentfield = new HtmlEditorField("BlogPost", _t("BlogEntry.CN"));
+			$contentfield = HtmlEditorField::create("BlogPost", _t("BlogEntry.CN"));
 		} else {
-			$contentfield = new CompositeField(
-				new LiteralField("BBCodeHelper","<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>" ),
-				new TextareaField("BlogPost", _t("BlogEntry.CN"),20), // This is called BlogPost as the id #Content is generally used already
-				new LiteralField("BBCodeTags","<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>")
+			$contentfield = CompositeField::create(
+				LiteralField::create(
+					"BBCodeHelper",
+					"<a id=\"BBCodeHint\" target='new'>"._t("BlogEntry.BBH")."</a><div class='clear'><!-- --></div>"
+				),
+				TextareaField::create(
+					"BlogPost",
+					_t("BlogEntry.CN"),
+					20
+				), // This is called BlogPost as the id #Content is generally used already
+				LiteralField::create(
+					"BBCodeTags",
+					"<div id=\"BBTagsHolder\">".$codeparser->useable_tagsHTML()."</div>"
+				)
 			);
 		}
+
+		// Support for https://github.com/chillu/silverstripe-tagfield
 		if(class_exists('TagField')) {
-			$tagfield = new TagField('Tags', null, null, 'BlogEntry');
+			$tagfield =  TagField::create('Tags', null, null, 'BlogEntry');
 			$tagfield->setSeparator(', ');
 		} else {
-			$tagfield = new TextField('Tags');
+			$tagfield = TextField::create('Tags');
 		}
 		
 		$field = 'TextField';
 		if(!$this->AllowCustomAuthors && !Permission::check('ADMIN')) {
 			$field = 'ReadonlyField';
 		}
-		$fields = new FieldList(
-			new HiddenField("ID", "ID"),
-			new TextField("Title", _t('BlogHolder.SJ', "Subject")),
-			new $field("Author", _t('BlogEntry.AU'), $membername),
+		$fields = FieldList::create(
+			HiddenField::create("ID", "ID"),
+			TextField::create("Title", _t('BlogHolder.SJ', "Subject")),
+			$field::create("Author", _t('BlogEntry.AU'), $membername),
 			$contentfield,
 			$tagfield,
-			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
-												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
+			LiteralField::create(
+				"Tagsnote",
+				" <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
+				_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>"
+			)
 		);
 		
-		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
+		$submitAction = FormAction::create('postblog', _t('BlogHolder.POST', 'Post blog entry'));
 
-		$actions = new FieldList($submitAction);
-		$validator = new RequiredFields('Title','BlogPost');
+		$actions = FieldList::create($submitAction);
+		$validator = RequiredFields::create('Title','BlogPost');
 
-		$form = new Form($this, 'BlogEntryForm',$fields, $actions,$validator);
+		$form = Form::create($this, 'BlogEntryForm', $fields, $actions, $validator);
 
-		if($id != 0) {
-			$entry = DataObject::get_by_id('BlogEntry', $id);
+		$id = (int) $this->request->latestParam('ID');
+		if($id) {
+			$entry = BlogEntry::get()->byID($id);
 			if($entry->IsOwner()) {
 				$form->loadDataFrom($entry);
 				$form->Fields()->fieldByName('BlogPost')->setValue($entry->Content);
-
 			}
 		} else {
 			$form->loadDataFrom(array("Author" => Cookie::get("BlogHolder_Name")));
@@ -287,22 +296,18 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		return $form;
 	}
 
-	function postblog($data, $form) {
+	public function postblog($data, $form) {
 		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
 
 		Cookie::set("BlogHolder_Name", $data['Author']);
 		$blogentry = false;
 
-		if(isset($data['ID']) && $data['ID']) {
-			$blogentry = DataObject::get_by_id("BlogEntry", $data['ID']);
-			if(!$blogentry->IsOwner()) {
-				unset($blogentry);
-			}
+		if(!empty($data['ID'])) {
+			$candidate = BlogEntry::get()->byID($data['ID']);
+			if($candidate->IsOwner()) $blogentry = $candidate;
 		}
 
-		if(!$blogentry) {
-			$blogentry = new BlogEntry();
-		}
+		if(!$blogentry) $blogentry = BlogEntry::create();
 
 		$form->saveInto($blogentry);
 		$blogentry->ParentID = $this->ID;
@@ -313,8 +318,11 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			$blogentry->Locale = $this->Locale; 
 		}
 
-		$blogentry->writeToStage("Stage");
+		$oldMode = Versioned::get_reading_mode();
+		Versioned::reading_stage('Stage');
+		$blogentry->write();
 		$blogentry->publish("Stage", "Live");
+		Versioned::set_reading_mode($oldMode);
 
 		$this->redirect($this->Link());
 	}

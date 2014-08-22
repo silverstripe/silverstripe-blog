@@ -72,11 +72,12 @@ class BlogTreeTest extends SapphireTest {
 	
 	function testLandingPageFreshness() {
 		$node = $this->objFromFixture('BlogTree', 'root');
-		$this->assertEquals($node->LandingPageFreshness, '7 DAYS');	
+		$this->assertEquals('7', $node->LandingPageFreshness);
 		$node = $this->objFromFixture('BlogTree', 'levela');
-		$this->assertEquals($node->LandingPageFreshness, '2 DAYS');	
+		$this->assertEquals('2', $node->LandingPageFreshness);
 		$node = $this->objFromFixture('BlogTree', 'levelb');
-		$this->assertEquals($node->LandingPageFreshness, '7 DAYS');
+		$this->assertEquals('INHERIT', $node->LandingPageFreshness);
+		$this->assertEquals('7', $node->getLandingPageFreshnessMonths());
 	}
 	
 	function testGettingAssociatedBlogTree() {

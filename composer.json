@@ -4,22 +4,22 @@
 	"type": "silverstripe-module",
 	"keywords": ["silverstripe", "blog"],
 	"authors": [
-	{
-		"name": "Saophalkun Ponlu",
-		"email": "phalkunz@silverstripe.com"
-	},
-	{
-		"name": "Carlos Barberis",
-		"email": "carlos@silverstripe.com"
-	}
+		{
+			"name": "Saophalkun Ponlu",
+			"email": "phalkunz@silverstripe.com"
+		},
+		{
+			"name": "Carlos Barberis",
+			"email": "carlos@silverstripe.com"
+		}
 	],
-
-	"require":
-	{
-		"silverstripe/cms": "~3.1"
+	"require": {
+		"silverstripe/cms": "~3.2"
 	},
-	"suggest":
-	{
+	"require-dev": {
+		"phpunit/PHPUnit": "~3.7@stable"
+	},
+	"suggest": {
 		"silverstripe/widgets": "Additional 'sidebar features', e.g. a list of recent posts and a tagcloud",
 		"silverstripe/comments": "Enable user comments on any page type, including blog posts",
 		"simplepie/simplepie": "Parse RSS feeds, required for the RSS widget"
