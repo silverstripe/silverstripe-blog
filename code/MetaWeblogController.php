@@ -7,8 +7,9 @@ require_once(BASE_PATH . '/blog/thirdparty/xmlrpc/xmlrpc_wrappers.php');
 /**
  * MetaWeblogController provides the MetaWeblog API for SilverStripe blogs.
  */
-class MetaWeblogController extends Controller {	
-	function index($request) {
+class MetaWeblogController extends Controller {
+	
+	public function index($request) {
 		
 		// Create an xmlrpc server, and set up the method calls
 		$service = new xmlrpc_server(array(
@@ -34,16 +35,16 @@ class MetaWeblogController extends Controller {
 	/**
 	 * Get a list of BlogHolders the user has access to.
 	 */
-	function getUsersBlogs($appkey, $username, $password) {
+	public function getUsersBlogs($appkey, $username, $password) {
 		$member = MemberAuthenticator::authenticate(array(
-				'Email' => $username, 
-				'Password' => $password,
+			'Email' => $username,
+			'Password' => $password,
 		));
 		
 		// TODO Throw approriate error.
 		if(!$member) die();
 	
-		$blogholders = DataObject::get('BlogHolder');
+		$blogholders = SearchForm::get();
 		
 		$response = array();
 		
@@ -64,7 +65,7 @@ class MetaWeblogController extends Controller {
 	/**
 	 * Get the most recent posts on a blog.
 	 */
-	function getRecentPosts($blogid, $username, $password, $numberOfPosts) {
+	public function getRecentPosts($blogid, $username, $password, $numberOfPosts) {
 		$member = MemberAuthenticator::authenticate(array(
 				'Email' => $username, 
 				'Password' => $password,
@@ -96,10 +97,8 @@ class MetaWeblogController extends Controller {
 		return $res;
 	}
 	
-	function getCategories() {
+	public function getCategories() {
 		//TODO dummy function
 		return array();
 	}
 }
-
-?>
