@@ -313,8 +313,11 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			$blogentry->Locale = $this->Locale; 
 		}
 
-		$blogentry->writeToStage("Stage");
+		$oldMode = Versioned::get_reading_mode();
+		Versioned::reading_stage('Stage');
+		$blogentry->write();
 		$blogentry->publish("Stage", "Live");
+		Versioned::set_reading_mode($oldMode);
 
 		$this->redirect($this->Link());
 	}
