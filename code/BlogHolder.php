@@ -14,16 +14,16 @@
 class BlogHolder extends BlogTree implements PermissionProvider {
 
 	private static $icon = "blog/images/blogholder-file.png";
-	
+
 	private static $description = "Displays listings of blog entries";
-	
+
 	private static $singular_name = 'Blog Holder Page';
 
 	private static $plural_name = 'Blog Holder Pages';
 
 	private static $db = array(
 		'AllowCustomAuthors' => 'Boolean',
-		'ShowFullEntry' => 'Boolean', 
+		'ShowFullEntry' => 'Boolean',
 	);
 
 	private static $has_one = array(
@@ -35,14 +35,14 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	);
 
 	function getCMSFields() {
-		$blogOwners = $this->blogOwners(); 
+		$blogOwners = $this->blogOwners();
 
 		SiteTree::disableCMSFieldsExtensions();
 		$fields = parent::getCMSFields();
 		SiteTree::enableCMSFieldsExtensions();
-		
+
 		$fields->addFieldToTab(
-			'Root.Main', 
+			'Root.Main',
 			DropdownField::create('OwnerID', 'Blog owner', $blogOwners->map('ID', 'Name')->toArray())
 				->setEmptyString('(None)')
 				->setHasEmptyDefault(true),
@@ -50,9 +50,9 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		);
 		$fields->addFieldToTab('Root.Main', new CheckboxField('AllowCustomAuthors', 'Allow non-admins to have a custom author field'), "Content");
 		$fields->addFieldToTab(
-			"Root.Main", 
+			"Root.Main",
 			CheckboxField::create("ShowFullEntry", "Show Full Entry")
-				->setDescription('Show full content in overviews rather than summary'), 
+				->setDescription('Show full content in overviews rather than summary'),
 			"Content"
 		);
 
@@ -60,18 +60,18 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 
 		return $fields;
 	}
-	
+
 	/**
 	 * Get members who have BLOGMANAGEMENT and ADMIN permission
-	 */ 
+	 */
 
 	function blogOwners($sort = array('FirstName'=>'ASC','Surname'=>'ASC'), $direction = null) {
-		
-		$members = Permission::get_members_by_permission(array('ADMIN','BLOGMANAGEMENT')); 
+
+		$members = Permission::get_members_by_permission(array('ADMIN','BLOGMANAGEMENT'));
 		$members->sort($sort);
-		
+
 		$this->extend('extendBlogOwners', $members);
-		
+
 		return $members;
 	}
 
@@ -120,13 +120,11 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	 */
 	function requireDefaultRecords() {
 		parent::requireDefaultRecords();
-		
+
 		// Skip creation of default records
 		if(!self::config()->create_default_pages) return;
-		
-		$blogHolder = DataObject::get_one('BlogHolder');
-		//TODO: This does not check for whether this blogholder is an orphan or not
-		if(!$blogHolder) {
+
+		if(!BlogHolder::get()->exists()) {
 			$blogholder = new BlogHolder();
 			$blogholder->Title = "Blog";
 			$blogholder->URLSegment = "blog";
@@ -158,13 +156,14 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 						$archivewidget->ParentID = $widgetarea->ID;
 						$archivewidget->write();
 
-						$widgetarea->write();	
+						$widgetarea->write();
 
 						break; // only apply to one
 					}
 				}
 			}
-
+		}
+		if(!BlogEntry::get()->exists()) {
 			$blog = new BlogEntry();
 			$blog->Title = _t('BlogHolder.SUCTITLE', "SilverStripe blog module successfully installed");
 			$blog->URLSegment = 'sample-blog-entry';
@@ -195,7 +194,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		'post',
 		'BlogEntryForm' => 'BLOGMANAGEMENT',
 	);
-	
+
 	function init() {
 		parent::init();
 		Requirements::themedCSS("bbcodehelp");
@@ -224,9 +223,9 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	/**
 	 * A simple form for creating blog entries
 	 */
-	function BlogEntryForm() {	
+	function BlogEntryForm() {
 		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
-		
+
 
 		$id = 0;
 		if($this->request->latestParam('ID')) {
@@ -251,7 +250,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		} else {
 			$tagfield = new TextField('Tags');
 		}
-		
+
 		$field = 'TextField';
 		if(!$this->AllowCustomAuthors && !Permission::check('ADMIN')) {
 			$field = 'ReadonlyField';
@@ -265,7 +264,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
 												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
 		);
-		
+
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
 
 		$actions = new FieldList($submitAction);
@@ -310,7 +309,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		$blogentry->Content = str_replace("\r\n", "\n", $form->Fields()->fieldByName('BlogPost')->dataValue());
 
 		if(Object::has_extension($this->ClassName, 'Translatable')) {
-			$blogentry->Locale = $this->Locale; 
+			$blogentry->Locale = $this->Locale;
 		}
 
 		$oldMode = Versioned::get_reading_mode();
