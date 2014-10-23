@@ -49,7 +49,7 @@ class BlogEntry extends Page {
 	public function populateDefaults(){
 		parent::populateDefaults();
 		
-		$requestedDevBuild = (stripos($this->request->getURL(), 'dev/build') === 0);
+		$requestedDevBuild = (stripos(Controller::curr()->request->getURL(), 'dev/build') === 0);
 		if(!$requestedDevBuild){
 			$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
 			$this->setField('Author', Member::currentUser() ? Member::currentUser()->getName() : '');
