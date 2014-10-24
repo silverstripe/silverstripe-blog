@@ -49,8 +49,11 @@ class BlogEntry extends Page {
 	public function populateDefaults(){
 		parent::populateDefaults();
 		
-		$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
-		$this->setField('Author', Member::currentUser() ? Member::currentUser()->getName() : '');
+		$requestedDevBuild = (stripos(Controller::curr()->request->getURL(), 'dev/build') === 0);
+		if(!$requestedDevBuild){
+			$this->setField('Date', SS_Datetime::now()-> Rfc2822());
+			$this->setField('Author', Member::currentUser() ? Member::currentUser()->getName() : '');
+		}
 	}
 	
 	function getCMSFields() {
