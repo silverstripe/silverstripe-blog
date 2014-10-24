@@ -124,9 +124,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 		// Skip creation of default records
 		if(!self::config()->create_default_pages) return;
 		
-		$blogHolder = DataObject::get_one('BlogHolder');
-		//TODO: This does not check for whether this blogholder is an orphan or not
-		if(!$blogHolder) {
+		if(!BlogHolder::get()->exists()) {
 			$blogholder = new BlogHolder();
 			$blogholder->Title = "Blog";
 			$blogholder->URLSegment = "blog";
@@ -165,17 +163,20 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 				}
 			}
 
+			DB::alteration_message("Blog holder created","created");
+		}
+		if(!BlogEntry::get()->exists()) {
 			$blog = new BlogEntry();
 			$blog->Title = _t('BlogHolder.SUCTITLE', "SilverStripe blog module successfully installed");
 			$blog->URLSegment = 'sample-blog-entry';
 			$blog->Tags = _t('BlogHolder.SUCTAGS',"silverstripe, blog");
 			$blog->Content = _t('BlogHolder.SUCCONTENT',"<p>Congratulations, the SilverStripe blog module has been successfully installed. This blog entry can be safely deleted. You can configure aspects of your blog in <a href=\"admin\">the CMS</a>.</p>");
 			$blog->Status = "Published";
-			$blog->ParentID = $blogholder->ID;
+			$blog->ParentID = BlogHolder::get()->first()->ID;
 			$blog->write();
 			$blog->publish("Stage", "Live");
 
-			DB::alteration_message("Blog page created","created");
+			DB::alteration_message("Blog entry created","created");
 		}
 	}
 
