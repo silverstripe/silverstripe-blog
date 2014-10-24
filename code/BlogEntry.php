@@ -51,7 +51,7 @@ class BlogEntry extends Page {
 		
 		$requestedDevBuild = (stripos(Controller::curr()->request->getURL(), 'dev/build') === 0);
 		if(!$requestedDevBuild){
-			$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
+			$this->setField('Date', SS_Datetime::now()-> Rfc2822());
 			$this->setField('Author', Member::currentUser() ? Member::currentUser()->getName() : '');
 		}
 	}
