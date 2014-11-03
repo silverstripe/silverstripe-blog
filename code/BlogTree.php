@@ -238,7 +238,7 @@ class BlogTree_Controller extends Page_Controller {
 		// only use freshness if no action is present (might be displaying tags or rss)
 		if ($this->LandingPageFreshness && !$this->request->param('Action')) {
 			$d = new Zend_Date(SS_Datetime::now()->getValue());
-			$d->sub($this->LandingPageFreshness);
+			$d->sub(intval($this->LandingPageFreshness), Zend_Date::MONTH);
 			$date = $d->toString('YYYY-MM-dd');
 			
 			$filter = "\"BlogEntry\".\"Date\" > '$date'";
