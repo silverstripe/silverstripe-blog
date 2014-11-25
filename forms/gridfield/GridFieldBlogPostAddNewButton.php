@@ -57,7 +57,7 @@ class GridFieldBlogPostAddNewButton extends GridFieldAddNewButton
 			$singleton->defaultChild()
 		);
 		$pageTypes->setFieldHolderTemplate("BlogDropdownField_holder")
-			->addExtraClass("gridfield-dropdown");
+			->addExtraClass("gridfield-dropdown no-change-track");
 
 		$forTemplate = new ArrayData(array());
 		$forTemplate->Fields = new ArrayList();
