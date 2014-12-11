@@ -1,21 +1,32 @@
-language: php 
-
-php: 
-  - 5.3
+language: php
 
 env:
-  - DB=MYSQL CORE_RELEASE=3.1
+  global:
+    - DB=MYSQL CORE_RELEASE=3.1
 
 matrix:
   include:
+    - php: 5.6
+      env: DB=MYSQL
+    - php: 5.5
+      env: DB=MYSQL
     - php: 5.4
-      env: DB=MYSQL CORE_RELEASE=3.1
+      env: DB=MYSQL
+    - php: 5.3
+      env: DB=MYSQL
+    - php: hhvm-nightly
+      env: DB=MYSQL
+      before_install:
+        - sudo apt-get update -qq
+        - sudo apt-get install -y tidy
+
 
 before_script:
   - phpenv rehash
+  - composer self-update
   - git clone git://github.com/silverstripe-labs/silverstripe-travis-support.git ~/travis-support
   - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
   - cd ~/builds/ss
 
-script: 
+script:
   - phpunit silverstripe-blog/tests/

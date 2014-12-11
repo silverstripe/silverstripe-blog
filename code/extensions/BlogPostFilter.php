@@ -29,10 +29,8 @@ class BlogPostFilter extends DataExtension {
 	 * @see https://github.com/silverstripe/silverstripe-framework/issues/1682
 	**/
 	public function augmentLoadLazyFields(SQLQuery &$query, &$dataQuery, $parent) {
-
 		// Ensures that we're joining the BlogPost table which holds required db fields.
 		$dataQuery->innerJoin("BlogPost", "`SiteTree`.`ID` = `BlogPost`.`ID`");
-
 	}
 
 }

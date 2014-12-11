@@ -10,7 +10,7 @@
  * @author Michael Strong <github@michaelstrong.co.uk>
  *
  **/
-class BlogFilter extends Hierarchy {
+class BlogFilter extends Lumberjack {
 
 	/**
 	 * Augments (@link Hierarchy::stageChildren()}
@@ -21,14 +21,8 @@ class BlogFilter extends Hierarchy {
 	public function stageChildren($showAll = false) {
 		$staged = parent::stageChildren($showAll);
 
-		$controller = Controller::curr();
-		if($controller->class == "CMSPagesController" 
-			&& in_array($controller->getAction(), array("treeview", "listview", "getsubtree"))
-		) {
-			// Filter the SiteTree
-			return $staged->exclude("ClassName", $this->owner->getExcludedSiteTreeClassNames());
-
-		} else if(in_array($this->owner->ClassName, ClassInfo::subClassesFor("Blog")) 
+		if(!$this->shouldFilter()
+			&& in_array(get_class($this->owner), ClassInfo::subClassesFor("Blog"))
 			&& !Permission::check("VIEW_DRAFT_CONTENT")
 		) {
 
@@ -39,10 +33,9 @@ class BlogFilter extends Hierarchy {
 
 			// Filter published posts
 			$dataQuery = $staged->dataQuery()
-				->innerJoin("BlogPost", "BlogPost" . $stage . ".ID = SiteTree" . $stage . ".ID")
-				->where("PublishDate < '" . Convert::raw2sql(SS_Datetime::now()) . "'");
+				->innerJoin("BlogPost", '"BlogPost' . $stage . '"."ID" = "SiteTree' . $stage . '"."ID"')
+				->where('"PublishDate" < \'' . Convert::raw2sql(SS_Datetime::now()) . '\'');
 			$staged = $staged->setDataQuery($dataQuery);
-
 		}
 		return $staged;
 	}
@@ -58,20 +51,14 @@ class BlogFilter extends Hierarchy {
 	public function liveChildren($showAll = false, $onlyDeletedFromStage = false) {
 		$staged = parent::liveChildren($showAll, $onlyDeletedFromStage);
 
-		$controller = Controller::curr();
-		if($controller->class == "CMSPagesController" 
-			&& in_array($controller->getAction(), array("treeview", "listview", "getsubtree"))
-		) {
-			// Filter the SiteTree
-			return $staged->exclude("ClassName", $this->owner->getExcludedSiteTreeClassNames());
-
-		} else if(in_array($this->owner->ClassName, ClassInfo::subClassesFor("Blog")) 
+		if(!$this->shouldFilter()
+			&& in_array(get_class($this->owner), ClassInfo::subClassesFor("Blog"))
 			&& !Permission::check("VIEW_DRAFT_CONTENT")
 		) {
 			// Filter publish posts
 			$dataQuery = $staged->dataQuery()
-				->innerJoin("BlogPost", "BlogPost_Live.ID = SiteTree_Live.ID")
-				->where("PublishDate < '" . Convert::raw2sql(SS_Datetime::now()) . "'");
+				->innerJoin("BlogPost", '"BlogPost_Live"."ID" = "SiteTree"_"Live"."ID"')
+				->where('"PublishDate" < \'' . Convert::raw2sql(SS_Datetime::now()) . '\'');
 			$staged = $staged->setDataQuery($dataQuery);
 		}
 		return $staged;

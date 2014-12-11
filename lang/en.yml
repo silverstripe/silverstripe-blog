@@ -3,8 +3,6 @@ en:
     AddFail: 'Unable to save {class} to the database.'
     PermissionFail: 'You don''t have permission to create a {class}.'
     Add: 'Add {name}'
-  GridFieldSiteTreeAddNewButton:
-    Add: 'Add {name}'
   GridFieldBlogPostState:
     StateTitle: 'State'
     Draft: '<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft on {date}'

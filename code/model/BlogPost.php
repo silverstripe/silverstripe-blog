@@ -58,30 +58,25 @@ class BlogPost extends Page {
 
 
 	public function getCMSFields() {
+		Requirements::css(BLOGGER_DIR . '/css/cms.css');
 
 		$self =& $this;
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
-			// Add Publish date fields
-			$fields->insertAfter(
-				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")), 
-				"Content"
-			);
+			$fields->addFieldsToTab('Root.Main', array(
+				HeaderField::create('Post Options', 3),
+				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")),
+				ListboxField::create(
+					"Categories",
+					_t("BlogPost.Categories", "Categories"),
+					$self->Parent()->Categories()->map()->toArray()
+				)->setMultiple(true),
+				ListboxField::create(
+					"Tags",
+					_t("BlogPost.Tags", "Tags"),
+					$self->Parent()->Tags()->map()->toArray()
+				)->setMultiple(true)
+			));
 			$publishDate->getDateField()->setConfig("showcalendar", true);
-
-			// Add Categories & Tags fields
-			$categoriesField = ListboxField::create(
-				"Categories", 
-				_t("BlogPost.Categories", "Categories"), 
-				$self->Parent()->Categories()->map()->toArray()
-			)->setMultiple(true);
-			$fields->insertAfter($categoriesField, "PublishDate");
-
-			$tagsField = ListboxField::create(
-				"Tags", 
-				_t("BlogPost.Tags", "Tags"), 
-				$self->Parent()->Tags()->map()->toArray()
-			)->setMultiple(true);
-			$fields->insertAfter($tagsField, "Categories");
 
 			// Add featured image
 			$fields->insertBefore(
@@ -92,6 +87,28 @@ class BlogPost extends Page {
 		});
 
 		$fields = parent::getCMSFields();
+
+		// We're going to make an SEO tab and move all the usual crap there
+		$menuTitle = $fields->dataFieldByName('MenuTitle');
+		$urlSegment = $fields->dataFieldByName('URLSegment');
+		$fields->addFieldsToTab('Root.SEO', array(
+			$menuTitle,
+			$urlSegment,
+		));
+
+		$metaField = $fields->fieldByName('Root.Main.Metadata');
+		if($metaField) {
+			$metaFields = $metaField->getChildren();
+			if($metaFields->count() > 0) {
+				$tab = $fields->findOrMakeTab('Root.SEO');
+				$tab->push(HeaderField::create('Meta', 3));
+				foreach($metaFields as $field) {
+					$tab->push($field);
+				}
+			}
+			$fields->removeByName('Metadata');
+		}
+
 		return $fields;
 	}
 

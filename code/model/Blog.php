@@ -15,12 +15,10 @@ class Blog extends Page {
 	);
 
 
-
 	private static $has_many = array(
 		"Tags" => "BlogTag",
 		"Categories" => "BlogCategory",
 	);
-
 
 	
 	private static $allowed_children = array(
@@ -28,35 +26,21 @@ class Blog extends Page {
 	);
 
 
-
 	private static $extensions = array(
 		"BlogFilter",
 	);
-
 
 
 	private static $defaults = array(
 		"ProvideComments" => false,
 	);
 
+	private static $description = 'Adds a blog to your website.';
 
 
 	public function getCMSFields() {
 		$self =& $this;
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
-		
-			$posts = $self->getBlogPosts();
-			$excluded = $self->getExcludedSiteTreeClassNames();
-			if(!empty($excluded)) {
-				$posts = $posts->filter("ClassName", $excluded);
-				$gridField = new GridField(
-					"BlogPost",
-					_t("Blog.BlogPosts", "Blog Posts"), 
-					$posts,
-					GridFieldConfig_BlogPost::create()
-				);
-				$fields->addFieldToTab("Root.BlogPosts", $gridField);
-			}
 
 			// Create categories and tag config
 			$config = GridFieldConfig_RecordEditor::create();
@@ -85,6 +69,11 @@ class Blog extends Page {
 		});
 		
 		$fields = parent::getCMSFields();
+
+		// Ensure we're using the BlogPost GridField config and not Lumberjack's
+		$gridField = $fields->dataFieldByName('ChildPages');
+		$gridField->setConfig(GridFieldConfig_BlogPost::create());
+
 		return $fields;
 	}
 
@@ -101,26 +90,7 @@ class Blog extends Page {
 
 
 	/**
-	 * Loops through subclasses of BlogPost and checks whether they have been configured
-	 * to be hidden. If so, then they will be excluded from the SiteTree.
-	 *
-	 * @return array
-	**/
-	public function getExcludedSiteTreeClassNames() {
-		$classes = array();
-		$tmpClasses = $this->allowedChildren();
-		foreach($tmpClasses as $class) {
-			if(!Config::inst()->get($class, "show_in_sitetree")) {
-				$classes[$class] = $class;
-			}
-		}
-		return $classes;
-	}
-
-
-
-	/**
-	 * Return blogs posts
+	 * Return blog posts
 	 *
 	 * @return DataList of BlogPost objects
 	**/
@@ -158,6 +128,16 @@ class Blog extends Page {
 		}
 
 		return $this->getBlogPosts()->setDataQuery($query);
+	}
+
+
+	/**
+	 * This sets the title for our gridfield
+	 *
+	 * @return string
+	 */
+	public function getLumberjackTitle() {
+		return _t('Blog.LumberjackTitle', 'Blog Posts');
 	}
 
 }
