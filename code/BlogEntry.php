@@ -50,7 +50,10 @@ class BlogEntry extends Page {
 		parent::populateDefaults();
 		
 		$this->setField('Date', date('Y-m-d H:i:s', strtotime('now')));
-		$this->setField('Author', Member::currentUser() ? Member::currentUser()->getName() : '');
+
+		if(Security::database_is_ready() && ($member = Member::currentUser())) {
+			$this->setField('Author', $member->getName());
+		}
 	}
 	
 	function getCMSFields() {
