@@ -62,8 +62,24 @@ class BlogPost extends Page {
 
 		$self =& $this;
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
-			$fields->addFieldsToTab('Root.Main', array(
-				HeaderField::create('Post Options', 3),
+
+			// Add featured image
+			$fields->insertBefore(
+				$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FeaturedImage", "Featured Image")),
+				"Content"
+			);
+			$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
+
+			// Now we're going to create the blog options panel.
+			$menuTitle = $fields->dataFieldByName('MenuTitle');
+			$urlSegment = $fields->dataFieldByName('URLSegment');
+			$fields->removeFieldsFromTab('Root.Main', array(
+				'MenuTitle',
+				'URLSegment',
+			));
+			$options = BlogAdminSidebar::create(
+				$menuTitle,
+				$urlSegment,
 				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")),
 				ListboxField::create(
 					"Categories",
@@ -75,39 +91,12 @@ class BlogPost extends Page {
 					_t("BlogPost.Tags", "Tags"),
 					$self->Parent()->Tags()->map()->toArray()
 				)->setMultiple(true)
-			));
+			)->setTitle('Post Options');
+			$fields->insertBefore($options, 'Root');
 			$publishDate->getDateField()->setConfig("showcalendar", true);
-
-			// Add featured image
-			$fields->insertBefore(
-				$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FeaturedImage", "Featured Image")),
-				"Content"
-			);
-			$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 		});
 
 		$fields = parent::getCMSFields();
-
-		// We're going to make an SEO tab and move all the usual crap there
-		$menuTitle = $fields->dataFieldByName('MenuTitle');
-		$urlSegment = $fields->dataFieldByName('URLSegment');
-		$fields->addFieldsToTab('Root.SEO', array(
-			$menuTitle,
-			$urlSegment,
-		));
-
-		$metaField = $fields->fieldByName('Root.Main.Metadata');
-		if($metaField) {
-			$metaFields = $metaField->getChildren();
-			if($metaFields->count() > 0) {
-				$tab = $fields->findOrMakeTab('Root.SEO');
-				$tab->push(HeaderField::create('Meta', 3));
-				foreach($metaFields as $field) {
-					$tab->push($field);
-				}
-			}
-			$fields->removeByName('Metadata');
-		}
 
 		return $fields;
 	}

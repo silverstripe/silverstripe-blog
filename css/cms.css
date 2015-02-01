@@ -21,3 +21,22 @@
   clear: none;
   float: left;
 }
+
+/* line 23, ../scss/cms.scss */
+.blog-admin-sidebar {
+  width: 280px !important;
+  border-right: none;
+  border-left: 1px solid #C0C0C2;
+  height: 547px;
+  position: fixed;
+  right: 0;
+}
+/* line 31, ../scss/cms.scss */
+.blog-admin-sidebar ~ .ss-tabset {
+  width: 866px;
+  float: left;
+}
+/* line 37, ../scss/cms.scss */
+.blog-admin-sidebar.cms-content-tools .cms-panel-content {
+  width: auto;
+}
