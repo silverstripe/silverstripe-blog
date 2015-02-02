@@ -21,16 +21,86 @@
 }
 
 .blog-admin-sidebar {
-	width: 280px !important;
+	width: 280px;
 	border-right: none;
 	border-left: 1px solid #C0C0C2;
-	height: 547px;
-	position: fixed;
-	right: 0;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	height: 100%;
 
-	~ .ss-tabset {
-		width: 866px;
-		float:left;
+	.cms-panel-toggle a {
+		text-align: left;
+	}
+
+	~ .blog-admin-outer {
+		width: 100%;
+		padding-right: 280px;
+		position: absolute;
+		height: 100%;
+		overflow-y: hidden;
+		overflow-x: hidden;
+		box-sizing: border-box;
+
+		> .ss-tabset {
+			position: relative;
+			overflow: auto;
+			height: 100%;
+			width: 100%;
+
+			#Title {
+				label {
+					float: none;
+				}
+				.middleColumn, input {
+					width: 100%;
+					max-width:100%;
+					margin-left: 0;
+				}
+			}
+		}
+	}
+
+	.cms-content-view {
+		> .field {
+			+ .field {
+				margin-top: 10px;
+			}
+
+			&.urlsegment {
+				.preview {
+					padding-top: 0;
+					line-height: 25px;
+				}
+
+				.edit {
+					float: right;
+				}
+			}
+
+			&.datetime {
+				> .middleColumn {
+					> .date {
+						width: 60%;
+					}
+
+					> .time {
+						width: 36%;
+						float:right;
+					}
+
+					.middleColumn, input {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+
+	&.collapsed {
+		~ .blog-admin-outer {
+			padding-right: 41px;
+		}
 	}
 
 	&.cms-content-tools {

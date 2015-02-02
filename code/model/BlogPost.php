@@ -64,23 +64,29 @@ class BlogPost extends Page {
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
 
 			// Add featured image
-			$fields->insertBefore(
+			$fields->insertAfter(
 				$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FeaturedImage", "Featured Image")),
 				"Content"
 			);
 			$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 
-			// Now we're going to create the blog options panel.
-			$menuTitle = $fields->dataFieldByName('MenuTitle');
+			// We're going to hide MenuTitle - Its not needed in blog posts.
+			$fields->push(HiddenField::create('MenuTitle'));
+
+			// We're going to add the url segment to sidebar so we're making it a little lighter
 			$urlSegment = $fields->dataFieldByName('URLSegment');
+			$urlSegment->setURLPrefix('/' . Director::makeRelative($this->Parent()->Link()));
+
+			// Remove the MenuTitle and URLSegment from the main tab
 			$fields->removeFieldsFromTab('Root.Main', array(
 				'MenuTitle',
 				'URLSegment',
 			));
+
+			// Build up our sidebar
 			$options = BlogAdminSidebar::create(
-				$menuTitle,
-				$urlSegment,
 				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")),
+				$urlSegment,
 				ListboxField::create(
 					"Categories",
 					_t("BlogPost.Categories", "Categories"),
@@ -92,11 +98,16 @@ class BlogPost extends Page {
 					$self->Parent()->Tags()->map()->toArray()
 				)->setMultiple(true)
 			)->setTitle('Post Options');
-			$fields->insertBefore($options, 'Root');
 			$publishDate->getDateField()->setConfig("showcalendar", true);
+
+			// Insert it before the TabSet
+			$fields->insertBefore($options, 'Root');
 		});
 
 		$fields = parent::getCMSFields();
+
+		// We need to render an outer template to deal with our custom layout
+		$fields->fieldByName('Root')->setTemplate('TabSet_holder');
 
 		return $fields;
 	}

@@ -24,19 +24,76 @@
 
 /* line 23, ../scss/cms.scss */
 .blog-admin-sidebar {
-  width: 280px !important;
+  width: 280px;
   border-right: none;
   border-left: 1px solid #C0C0C2;
-  height: 547px;
-  position: fixed;
-  right: 0;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  height: 100%;
 }
-/* line 31, ../scss/cms.scss */
-.blog-admin-sidebar ~ .ss-tabset {
-  width: 866px;
-  float: left;
+/* line 32, ../scss/cms.scss */
+.blog-admin-sidebar .cms-panel-toggle a {
+  text-align: left;
 }
-/* line 37, ../scss/cms.scss */
+/* line 36, ../scss/cms.scss */
+.blog-admin-sidebar ~ .blog-admin-outer {
+  width: 100%;
+  padding-right: 280px;
+  position: absolute;
+  height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+/* line 45, ../scss/cms.scss */
+.blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset {
+  position: relative;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+}
+/* line 52, ../scss/cms.scss */
+.blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset #Title label {
+  float: none;
+}
+/* line 55, ../scss/cms.scss */
+.blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset #Title .middleColumn, .blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset #Title input {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+}
+/* line 66, ../scss/cms.scss */
+.blog-admin-sidebar .cms-content-view > .field + .field {
+  margin-top: 10px;
+}
+/* line 71, ../scss/cms.scss */
+.blog-admin-sidebar .cms-content-view > .field.urlsegment .preview {
+  padding-top: 0;
+  line-height: 25px;
+}
+/* line 76, ../scss/cms.scss */
+.blog-admin-sidebar .cms-content-view > .field.urlsegment .edit {
+  float: right;
+}
+/* line 83, ../scss/cms.scss */
+.blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn > .date {
+  width: 60%;
+}
+/* line 87, ../scss/cms.scss */
+.blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn > .time {
+  width: 36%;
+  float: right;
+}
+/* line 92, ../scss/cms.scss */
+.blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn .middleColumn, .blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn input {
+  width: 100%;
+}
+/* line 101, ../scss/cms.scss */
+.blog-admin-sidebar.collapsed ~ .blog-admin-outer {
+  padding-right: 41px;
+}
+/* line 107, ../scss/cms.scss */
 .blog-admin-sidebar.cms-content-tools .cms-panel-content {
   width: auto;
 }

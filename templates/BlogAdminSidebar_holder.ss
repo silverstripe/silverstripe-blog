@@ -1,4 +1,7 @@
-<div class="cms-content-tools west cms-panel cms-panel-layout blog-admin-sidebar" data-expandOnClick="true" data-layout-type="border" id="blog-admin-sidebar">
+<div class="cms-content-tools east cms-panel cms-panel-layout blog-admin-sidebar<% if $isOpen %> open<% end_if %>"
+     data-expandOnClick="true"
+     data-layout-type="border"
+     id="blog-admin-sidebar">
     <div class="cms-panel-content center">
         <div class="cms-content-view cms-tree-view-sidebar" id="blog-admin-content">
             <h3 class="cms-panel-header">$Title</h3>
