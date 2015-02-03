@@ -6,7 +6,7 @@
  * @package silverstripe
  * @subpackage blog
  *
- * @author Michael Strong <github@michaelstrong.co.uk>
+ * @author Michael Strong <mstrong@silverstripe.org>
 **/
 class GridFieldConfig_BlogPost extends GridFieldConfig_Lumberjack {
 	
@@ -15,4 +15,5 @@ class GridFieldConfig_BlogPost extends GridFieldConfig_Lumberjack {
 		$this->removeComponentsByType('SiteTreeEditButton');
 		$this->addComponent(new GridFieldSiteTreeEditButton());
 	}
+
 }
