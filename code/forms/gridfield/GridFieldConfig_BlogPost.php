@@ -8,21 +8,11 @@
  *
  * @author Michael Strong <github@michaelstrong.co.uk>
 **/
-class GridFieldConfig_BlogPost extends GridFieldConfig {
+class GridFieldConfig_BlogPost extends GridFieldConfig_Lumberjack {
 	
 	public function __construct($itemsPerPage = null) {
 		parent::__construct($itemsPerPage);
-		$this->addComponent(new GridFieldButtonRow('before'));
-		$this->addComponent(new GridFieldSiteTreeAddNewButton('buttons-before-left'));
-		$this->addComponent(new GridFieldToolbarHeader());
-		$this->addComponent(new GridFieldSortableHeader());
-		$this->addComponent(new GridFieldFilterHeader());
-		$this->addComponent(new GridFieldDataColumns());
+		$this->removeComponentsByType('SiteTreeEditButton');
 		$this->addComponent(new GridFieldSiteTreeEditButton());
-		$this->addComponent(new GridFieldPageCount('toolbar-header-right'));
-		$this->addComponent($pagination = new GridFieldPaginator($itemsPerPage));
-		$this->addComponent(new GridFieldBlogPostState());
-
-		$pagination->setThrowExceptionOnBadDataType(true);
 	}
 }
