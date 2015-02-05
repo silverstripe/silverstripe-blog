@@ -1,11 +1,11 @@
 {
-    "name": "micmania1/silverstripe-blog",
+    "name": "silverstripe/blog",
     "description": "A fresh take on blogging in Silverstripe set out to tackle the issue of a cluttered Site Tree.",
     "keywords": ["silverstripe", "blog", "news"],
     "type": "silverstripe-module",
     "require": {
         "silverstripe/cms": "^3.1.0",
-	    "micmania1/silverstripe-lumberjack": "^1.0.0"
+	    "silverstripe/lumberjack": "^1.0.0"
     },
     "license": "BSD-2-Clause",
     "authors": [
