@@ -5,7 +5,7 @@
     "type": "silverstripe-module",
     "require": {
         "silverstripe/cms": "^3.1.0",
-	    "micmania1/silverstripe-lumberjack": "^1.0.0"
+	    "micmania1/silverstripe-lumberjack": "~1.1"
     },
     "license": "BSD-2-Clause",
     "authors": [

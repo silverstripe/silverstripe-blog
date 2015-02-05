@@ -12,8 +12,8 @@ class GridFieldConfig_BlogPost extends GridFieldConfig_Lumberjack {
 	
 	public function __construct($itemsPerPage = null) {
 		parent::__construct($itemsPerPage);
-		$this->removeComponentsByType('SiteTreeEditButton');
-		$this->addComponent(new GridFieldSiteTreeEditButton());
+		$this->removeComponentsByType('GridFieldSiteTreeState');
+		$this->addComponent(new GridFieldBlogPostState());
 	}
 
 }
