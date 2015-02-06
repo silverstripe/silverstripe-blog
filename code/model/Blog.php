@@ -144,7 +144,7 @@ class Blog extends Page {
 	 * @return GridFieldConfig
 	 */
 	public function getLumberjackGridFieldConfig() {
-		return GridFieldConfig_Blog::create();
+		return GridFieldConfig_BlogPost::create();
 	}
 
 }
