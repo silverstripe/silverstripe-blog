@@ -5,6 +5,8 @@ env:
     - DB=MYSQL CORE_RELEASE=3.1
 
 matrix:
+  allow_failures:
+    - php: hhvm-nightly
   include:
     - php: 5.6
       env: DB=MYSQL
@@ -29,4 +31,4 @@ before_script:
   - cd ~/builds/ss
 
 script:
-  - phpunit silverstripe-blog/tests/
+  - vendor/bin/phpunit blog/tests/

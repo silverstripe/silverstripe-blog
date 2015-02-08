@@ -7,6 +7,9 @@
         "silverstripe/cms": "^3.1.0",
 	    "silverstripe/lumberjack": "~1.1"
     },
+	"require-dev": {
+		"phpunit/PHPUnit": "~3.7@stable"
+	},
     "license": "BSD-2-Clause",
     "authors": [
         {

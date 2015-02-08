@@ -9,6 +9,11 @@ class BlogTagTest extends FunctionalTest {
 		parent::setUp();
 	}
 
+	public function tearDown() {
+		SS_Datetime::clear_mock_now();
+		parent::tearDown();
+	}
+
 	/**
 	 * Tests that any blog posts returned from $tag->BlogPosts() many_many are published,
 	 * both by normal 'save & publish' functionality and by publish date.
