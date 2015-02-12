@@ -1,0 +1,43 @@
+.blog-sidebar {
+	margin-top: 12px;
+}
+
+.blog-sidebar .secondary {
+	margin-bottom: 35px;
+}
+
+#Form_CommentsForm + h4 {
+	clear: both;
+	padding-top: 35px;
+	display: block;
+}
+
+.typography ul.comments-list {
+	margin: 0;
+}
+
+.typography ul.comments-list > li {
+	list-style: none;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 10px 0;
+}
+
+.typography ul.comments-list > li .action-links {
+	margin: 0;
+}
+
+.typography ul.comments-list > li .action-links li {
+	list-style: none;
+	margin-right: 10px;
+}
+
+.commenting-rss-feed {
+	clear: both;
+}
+
+@media only screen and (max-width: 640px) { 
+	.blog-sidebar {
+	    width: 100%; /* sidenav is now shown above the page content */
+	    margin-bottom: 30px;
+	}
+}

@@ -75,7 +75,7 @@ class BlogPost extends Page {
 
 			// We're going to add the url segment to sidebar so we're making it a little lighter
 			$urlSegment = $fields->dataFieldByName('URLSegment');
-			$urlSegment->setURLPrefix('/' . Director::makeRelative($self->Parent()->Link()));
+			$urlSegment->setURLPrefix($self->Parent()->RelativeLink());
 
 			// Remove the MenuTitle and URLSegment from the main tab
 			$fields->removeFieldsFromTab('Root.Main', array(
