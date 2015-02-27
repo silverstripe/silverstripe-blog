@@ -1,17 +1,25 @@
-<p>
-	This entry was
-	<% if Categories %>
-		posted in
+<p class="blog-post-meta">
+    <% if $Categories.exists %>
+        <%t Blog.PostedIn "Posted in" %>
 		<% loop Categories %>
-			<a href="$Link" title="$Title">$Title</a><% if not Last %>, <% else_if Up.Tags %>, <% else %> and<% end_if %>
+			<a href="$Link" title="$Title">$Title</a><% if not Last %>, <% else %>;<% end_if %>
 		<% end_loop %>
 	<% end_if %>
-	<% if Tags %>
-		tagged
+	
+    <% if $Tags.exists %>
+        <%t Blog.Tagged "Tagged" %>
 		<% loop Tags %>
-			<a href="$Link" title="$Title">$Title</a><% if not Last %>, <% end_if %>
+			<a href="$Link" title="$Title">$Title</a><% if not Last %>, <% else %>;<% end_if %>
 		<% end_loop %>
-		and
 	<% end_if %>
-	posted on <a href="$MonthlyArchiveLink">$PublishDate.format("F j, Y")</a>
+    
+    <% if $Comments.exists %>
+        <a href="{$Link}#comments-holder">
+            <%t Blog.Comments "Comments" %>
+            $Comments.count
+        </a>;
+	<% end_if %>
+    
+	<%t Blog.Posted "Posted" %>
+    <a href="$MonthlyArchiveLink">$PublishDate.ago</a>
 </p>

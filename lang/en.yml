@@ -1,38 +1,65 @@
 en:
+  Blog:
+    Archive: Archive
+    Categories: Categories
+    Category: Category
+    Comments: Comments
+    DESCRIPTION: 'Adds a blog to your website.'
+    LumberjackTitle: 'Blog Posts'
+    NoPosts: 'There are no posts'
+    PLURALNAME: Blogs
+    Posted: Posted
+    PostedIn: 'Posted in'
+    PostsPerPage: 'Posts Per Page'
+    ReadMoreAbout: 'Read more about ''{title}''...'
+    SINGULARNAME: Blog
+    Tag: Tag
+    Tagged: Tagged
+    Tags: Tags
+  BlogArchiveWidget:
+    Blog: Blog
+    NumberToDisplay: 'No. to Display'
+    PLURALNAME: 'Blog Archive Widgets'
+    SINGULARNAME: 'Blog Archive Widget'
+    Type: Type
+  BlogCategoriesWidget:
+    Blog: Blog
+    PLURALNAME: 'Blog Categories Widgets'
+    SINGULARNAME: 'Blog Categories Widget'
+  BlogCategory:
+    PLURALNAME: 'Blog Categories'
+    SINGULARNAME: 'Blog Category'
+    Title: Title
+  BlogPost:
+    Categories: Categories
+    DESCRIPTION: 'Generic content page'
+    FeaturedImage: 'Featured Image'
+    PLURALNAME: 'Blog Posts'
+    PageTitleLabel: 'Post Title'
+    PublishDate: 'Publish Date'
+    SINGULARNAME: 'Blog Post'
+    Tags: Tags
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Number of Posts'
+    PLURALNAME: 'Blog Recent Posts Widgets'
+    SINGULARNAME: 'Blog Recent Posts Widget'
+  BlogTag:
+    PLURALNAME: 'Blog Tags'
+    SINGULARNAME: 'Blog Tag'
+    Title: Title
+  BlogTagsWidget:
+    Blog: Blog
+    PLURALNAME: 'Blog Tags Widgets'
+    SINGULARNAME: 'Blog Tags Widget'
   GridFieldAddByDBField:
+    Add: 'Add {name}'
     AddFail: 'Unable to save {class} to the database.'
     PermissionFail: 'You don''t have permission to create a {class}.'
-    Add: 'Add {name}'
   GridFieldBlogPostState:
-    StateTitle: 'State'
-    Draft: '<i class="btn-icon blog-icon btn-icon-pencil"></i> Saved as Draft on {date}'
-    Published: '<i class="btn-icon blog-icon btn-icon-accept"></i> Published on {date}'
-    Timer: '<i class="blog-icon blog-icon-timer"></i> Publish at {date}'
-    Modified: 'Modified'
-  BlogPost:
-    PublishDate: 'Publish Date'
-    Categories: 'Categories'
-    Tags: 'Tags'
-    FeaturedImage: 'Featured Image'
-    PageTitleLabel: 'Post Title'
-  Blog:
-    BlogPosts: 'Blog Posts'
-    Categories: 'Categories'
-    Tags: 'Tags'
-    PostsPerPage: 'Posts Per Page'
-  BlogTag:
-    Title: 'Title'
-  BlogCategory:
-    Title: 'Title'
-  BlogRecentPostsWidget:
-    Blog: 'Blog'
-    NumberOfPosts: 'Number of Posts'
-  BlogCategoriesWidget:
-    Blog: 'Blog'
-  BlogArchiveWidget:
-    Blog: 'Blog'
-    Monthly: 'Monthly'
-    Yearly: 'Yearly'
-    NumberToDisplay: 'Number to Display'
-  BlogTagsWidget:
-    Blog: 'Blog'
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}'
+  SiteTree:
+    PLURALNAME: Pages
+    SINGULARNAME: Page

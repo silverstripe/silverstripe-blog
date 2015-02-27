@@ -1,17 +1,20 @@
-<% require css(themes/simple_blog/css/blog.css) %>
+<% require css(blog/css/blog.css) %>
 
-<% include BlogSideBar %>
-<div class="unit size3of4 lastUnit">
+<div class="blog-entry content-container <% if $SideBarView %>unit size3of4<% end_if %>">
 	<article>
 		<h1>$Title</h1>
-
-        <% if FeaturedImage %>
-            <img src="$FeaturedImage.URL" alt="$FeaturedImage.Title" class="center" />
-        <% end_if %>
-
+        
+        <% if $FeaturedImage %>
+			<p class="post-image">$FeaturedImage.setWidth(795)</p>
+		<% end_if %>
+        
 		<div class="content">$Content</div>
 
 		<% include EntryMeta %>
 	</article>
+    
+    $Form
 	$PageComments
 </div>
+
+<% include BlogSideBar %>

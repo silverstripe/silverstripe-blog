@@ -1,10 +1,17 @@
-.blog-sidebar {
-	margin-top: 12px;
+.no-sidebar .content-container.size3of4 {
+    width: 75%;
 }
 
-.blog-sidebar .secondary {
-	margin-bottom: 35px;
+.blog-entry .post-image img {
+    width: 98.75%;
 }
+
+.blog-sidebar .WidgetHolder ul {
+    margin-left: 0;
+}
+    .blog-sidebar .WidgetHolder ul li {
+        list-style-type: none;
+    }
 
 #Form_CommentsForm + h4 {
 	clear: both;
@@ -33,11 +40,4 @@
 
 .commenting-rss-feed {
 	clear: both;
-}
-
-@media only screen and (max-width: 640px) { 
-	.blog-sidebar {
-	    width: 100%; /* sidenav is now shown above the page content */
-	    margin-bottom: 30px;
-	}
 }
