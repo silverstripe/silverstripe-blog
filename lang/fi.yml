@@ -25,14 +25,14 @@ fi:
   BlogCategory:
     Title: 'Otsikko'
   BlogRecentPostsWidget:
-    Blog: 'Blog'
+    Blog: 'Blogi'
     NumberOfPosts: 'Kirjoituksien määrä'
   BlogCategoriesWidget:
-    Blog: 'Blog'
+    Blog: 'Blogi'
   BlogArchiveWidget:
-    Blog: 'Blog'
+    Blog: 'Blogi'
     Monthly: 'Kuukausittain'
     Yearly: 'Vuosittain'
     NumberToDisplay: 'Näytetään'
   BlogTagsWidget:
-    Blog: 'Blog'
+    Blog: 'Blogi'
