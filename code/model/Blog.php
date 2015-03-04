@@ -266,21 +266,21 @@ class Blog_Controller extends Page_Controller {
 
 
 	/**
-	 * Returns a list of paginated blog posts based on the blogPost dataList
+	 * If pagination is enabled, this returns a list of paginated blog posts
+	 * based on the blogPost dataList. Otherwise a simple list will be returned.
 	 *
-	 * @return PaginatedList
+	 * @return SS_List
 	**/
 	public function PaginatedList() {
-		$posts = new PaginatedList($this->blogPosts);
-
-		// If pagination is set to '0' then no pagination will be shown.
-		if($this->PostsPerPage > 0) $posts->setPageLength($this->PostsPerPage);
-		else $posts->setPageLength($this->getBlogPosts()->count());
-
-		$start = $this->request->getVar($posts->getPaginationGetVar());
-		$posts->setPageStart($start);
-
-		return $posts;
+		// Set page size
+		if($this->PostsPerPage > 0) {
+			$posts = new PaginatedList($this->blogPosts, $this->request);
+			$posts->setPageLength($this->PostsPerPage);
+			return $posts;
+		} else {
+			// If there is no pagination, return the unpaginated list
+			return $this->blogPosts;
+		}
 	}
 
 
