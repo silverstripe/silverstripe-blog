@@ -274,8 +274,12 @@ class Blog_Controller extends Page_Controller {
 		$posts = new PaginatedList($this->blogPosts);
 
 		// If pagination is set to '0' then no pagination will be shown.
-		if($this->PostsPerPage > 0) $posts->setPageLength($this->PostsPerPage);
-		else $posts->setPageLength($this->getBlogPosts()->count());
+		if($this->PostsPerPage > 0) {
+			$posts->setPageLength($this->PostsPerPage);
+		} else {
+			$pageSize = $this->getBlogPosts()->count() ?: 99999;
+			$posts->setPageLength($pageSize);
+		}
 
 		$start = $this->request->getVar($posts->getPaginationGetVar());
 		$posts->setPageStart($start);
