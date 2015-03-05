@@ -321,6 +321,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		$oldMode = Versioned::get_reading_mode();
 		Versioned::reading_stage('Stage');
 		$blogentry->write();
+		$blogentry->writeToStage("Stage");
 		$blogentry->publish("Stage", "Live");
 		Versioned::set_reading_mode($oldMode);
 
