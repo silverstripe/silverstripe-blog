@@ -12,7 +12,7 @@ if(class_exists("Widget")) {
 
 		private static $db = array(
 			"NumberToDisplay" => "Int",
-			"Type" => "Enum('Monthly, Yearly', 'Monthly')"
+			"ArchiveType" => "Enum('Monthly,Yearly', 'Monthly')"
 		);
 
 		private static $defaults = array(
@@ -24,20 +24,20 @@ if(class_exists("Widget")) {
 		);
 
 		public function getCMSFields() {
-			$fields = parent::getCMSFields();
+			$self = $this;
+			$this->beforeUpdateCMSFields(function($fields) use ($self) {
+				$type = $self->dbObject("ArchiveType")->enumValues();
+				foreach($type as $k => $v) {
+					$type[$k] = _t("BlogArchiveWidget." . ucfirst(strtolower($v)), $v);
+				}
 
-			$type = $this->dbObject("Type")->enumValues();
-			foreach($type as $k => $v) {
-				$type[$k] = _t("BlogArchiveWidget." . ucfirst(strtolower($v)), $v);
-			}
-
-			$fields->merge(array(
-				DropdownField::create("BlogID", _t("BlogArchiveWidget.Blog", "Blog"), Blog::get()->map()),
-				DropdownField::create("Type", _t("BlogArchiveWidget.Type", "Type"), $type),
-				NumericField::create("NumberToDisplay", _t("BlogArchiveWidget.NumberToDisplay", "No. to Display"))
-			));
-			$this->extend("updateCMSFields", $fields);
-			return $fields;
+				$fields->merge(array(
+					DropdownField::create("BlogID", _t("BlogArchiveWidget.Blog", "Blog"), Blog::get()->map()),
+					DropdownField::create("ArchiveType", _t("BlogArchiveWidget.ArchiveType", "ArchiveType"), $type),
+					NumericField::create("NumberToDisplay", _t("BlogArchiveWidget.NumberToDisplay", "No. to Display"))
+				));
+			});
+			return parent::getCMSFields();
 		}
 
 
@@ -49,7 +49,7 @@ if(class_exists("Widget")) {
 		public function getArchive() {
 			$query = $this->Blog()->getBlogPosts()->dataQuery();
 
-			if($this->Type == "Yearly") {
+			if($this->ArchiveType == "Yearly") {
 				$query->groupBy("DATE_FORMAT(PublishDate, '%Y')");
 			} else {
 				$query->groupBy("DATE_FORMAT(PublishDate, '%Y-%M')");
@@ -61,7 +61,7 @@ if(class_exists("Widget")) {
 			$archive = new ArrayList();
 			if($articles->count() > 0) {
 				foreach($articles as $article) {
-					if($this->Type == "Yearly") {
+					if($this->ArchiveType == "Yearly") {
 						$year = date('Y', strtotime($article->PublishDate));
 						$month = null;
 						$title = $year;

@@ -21,7 +21,7 @@ en:
     NumberToDisplay: 'No. to Display'
     PLURALNAME: 'Blog Archive Widgets'
     SINGULARNAME: 'Blog Archive Widget'
-    Type: Type
+    ArchiveType: Type
   BlogCategoriesWidget:
     Blog: Blog
     PLURALNAME: 'Blog Categories Widgets'
