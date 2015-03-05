@@ -3,7 +3,7 @@
 if(class_exists("Widget")) {
 
 	class BlogArchiveWidget extends Widget {
-		
+
 		private static $title = "Archive";
 
 		private static $cmsTitle = "Archive";
@@ -11,6 +11,7 @@ if(class_exists("Widget")) {
 		private static $description = "Displays an archive list of posts.";
 
 		private static $db = array(
+			"Title" => "Varchar(255)",
 			"NumberToDisplay" => "Int",
 			"Type" => "Enum('Monthly, Yearly', 'Monthly')"
 		);
@@ -23,15 +24,24 @@ if(class_exists("Widget")) {
 			"Blog" => "Blog",
 		);
 
-		public function getCMSFields() {
-			$fields = parent::getCMSFields();
+		public function Title() {
+			return $this->getField('Title') ?: parent::Title();
+		}
 
+		public function populateDefaults() {
+			parent::populateDefaults();
+			$this->setField('Title', parent::Title());
+		}
+
+		public function getCMSFields() {
 			$type = $this->dbObject("Type")->enumValues();
 			foreach($type as $k => $v) {
 				$type[$k] = _t("BlogArchiveWidget." . ucfirst(strtolower($v)), $v);
 			}
 
+			$fields = FieldList::create();
 			$fields->merge(array(
+				TextField::create('Title', 'Title', null, 255),
 				DropdownField::create("BlogID", _t("BlogArchiveWidget.Blog", "Blog"), Blog::get()->map()),
 				DropdownField::create("Type", _t("BlogArchiveWidget.Type", "Type"), $type),
 				NumericField::create("NumberToDisplay", _t("BlogArchiveWidget.NumberToDisplay", "No. to Display"))
@@ -57,7 +67,7 @@ if(class_exists("Widget")) {
 
 			$articles = $this->Blog()->getBlogPosts()->setDataQuery($query);
 			if($this->NumberToDisplay > 0) $articles = $articles->limit($this->NumberToDisplay);
-			
+
 			$archive = new ArrayList();
 			if($articles->count() > 0) {
 				foreach($articles as $article) {
@@ -82,7 +92,6 @@ if(class_exists("Widget")) {
 	}
 
 	class BlogArchiveWidget_Controller extends Widget_Controller {
-		
-	}
 
+	}
 }
