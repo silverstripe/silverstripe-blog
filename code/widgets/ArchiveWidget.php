@@ -65,6 +65,8 @@ if(class_exists('Widget')) {
 				$yearclause  = 'YEAR("Date")';
 			}
 			
+			// Changed the WHERE clause from where ParentID to WHERE SiteTree$suffix.ParentID as it was ambiguous.
+			
 			if($this->DisplayMode == 'month') {
 				$sqlResults = DB::query("
 					SELECT DISTINCT CAST($monthclause AS " . DB::getConn()->dbDataType('unsigned integer') . ")
@@ -72,7 +74,7 @@ if(class_exists('Widget')) {
 						$yearclause AS \"Year\"
 					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\"
 						ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
-					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
+					WHERE \"SiteTree$suffix\".\"ParentID\" IN (" . implode(', ', $ids) . ")
 					ORDER BY \"Year\" DESC, \"Month\" DESC;"
 				);
 			} else {
@@ -80,11 +82,10 @@ if(class_exists('Widget')) {
 					SELECT DISTINCT $yearclause AS \"Year\" 
 					FROM \"SiteTree$suffix\" INNER JOIN \"BlogEntry$suffix\"
 						ON \"SiteTree$suffix\".\"ID\" = \"BlogEntry$suffix\".\"ID\"
-					WHERE \"ParentID\" IN (" . implode(', ', $ids) . ")
+					WHERE \"SiteTree$suffix\".\"ParentID\" IN (" . implode(', ', $ids) . ")
 					ORDER BY \"Year\" DESC"
 				);
 			}
-			
 			if($sqlResults) foreach($sqlResults as $sqlResult) {
 				$isMonthDisplay = $this->DisplayMode == 'month';
 				
