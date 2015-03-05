@@ -117,7 +117,7 @@ class BlogPost extends Page {
 	/**
 	 * If no publish date is set, set the date to now.
 	**/
-	public function onBeforeWrite() {
+	protected function onBeforeWrite() {
 		parent::onBeforeWrite();
 		if(!$this->PublishDate) $this->setCastedField("PublishDate", time());
 	}

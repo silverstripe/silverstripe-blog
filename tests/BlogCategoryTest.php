@@ -9,6 +9,10 @@ class BlogCategoryTest extends FunctionalTest {
 		parent::setUp();
 	}
 
+	public function tearDown() {
+		SS_Datetime::clear_mock_now();
+		parent::tearDown();
+	}
 
 	/**
 	 * Tests that any blog posts returned from $category->BlogPosts() many_many are published,

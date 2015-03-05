@@ -5,10 +5,16 @@ class BlogTest extends SapphireTest {
 	static $fixture_file = "blog.yml";
 
 	public function setUp() {
-		SS_Datetime::set_mock_now("2013-10-10 20:00:00");
 		parent::setUp();
-
+		Config::nest();
+		SS_Datetime::set_mock_now("2013-10-10 20:00:00");
 		$this->objFromFixture("Blog", "firstblog")->publish("Stage", "Live");
+	}
+
+	public function tearDown() {
+		SS_Datetime::clear_mock_now();
+		Config::unnest();
+		parent::tearDown();
 	}
 	
 	public function testGetExcludedSiteTreeClassNames() {
@@ -19,11 +25,11 @@ class BlogTest extends SapphireTest {
 
 		Config::inst()->update("BlogPost", "show_in_sitetree", true);
 		$classes = $blog->getExcludedSiteTreeClassNames();
-		$this->assertEquals(0, count($classes), "No classes should be hidden.");
+		$this->assertNotContains('BlogPost', $classes, "BlogPost class should be hidden.");
 
 		Config::inst()->update("BlogPost", "show_in_sitetree", false);
 		$classes = $blog->getExcludedSiteTreeClassNames();
-		$this->assertEquals(1, count($classes), "BlogPost class should be hidden.");
+		$this->assertContains('BlogPost', $classes, "BlogPost class should be hidden.");
 	}
 
 

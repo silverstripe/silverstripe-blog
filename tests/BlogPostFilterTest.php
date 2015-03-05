@@ -9,6 +9,11 @@ class BlogPostFilterTest extends SapphireTest {
 		parent::setUp();
 	}
 
+	public function tearDown() {
+		SS_Datetime::clear_mock_now();
+		parent::tearDown();
+	}
+
 	public function testFilter() {
 		$member = Member::currentUser();
 		if($member) $member->logout();
