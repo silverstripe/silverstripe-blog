@@ -270,19 +270,29 @@ class BlogTree_Controller extends Page_Controller {
 		} else {
 			$filter = '';
 		}
+
+		// AuthorID has been removed from BlogEntry check for it incase it is an upgrade
+		$hasAuthorID = BlogEntry::get()->first()->hasDatabaseField('AuthorID');
+
 		// allow filtering by author field and some blogs have an authorID field which
 		// may allow filtering by id
-		if(isset($_GET['author']) && isset($_GET['authorID'])) {
+		if($hasAuthorID == true && isset($_GET['author']) && isset($_GET['authorID'])) {
 			$author = Convert::raw2sql($_GET['author']);
 			$id = Convert::raw2sql($_GET['authorID']);
 			
-			$filter .= " \"BlogEntry\".\"Author\" LIKE '". $author . "' OR \"BlogEntry\".\"AuthorID\" = '". $id ."'";
+			$filter .=  (empty($filter)) ?
+				" \"BlogEntry\".\"Author\" LIKE '". $author . "' OR \"BlogEntry\".\"AuthorID\" = '". $id ."'"
+				: " AND \"BlogEntry\".\"Author\" LIKE '". $author . "' OR \"BlogEntry\".\"AuthorID\" = '". $id ."'";
 		}
 		else if(isset($_GET['author'])) {
-			$filter .=  " \"BlogEntry\".\"Author\" LIKE '". Convert::raw2sql($_GET['author']) . "'";
+			$filter .=  (empty($filter)) ?
+				" \"BlogEntry\".\"Author\" LIKE '". Convert::raw2sql($_GET['author']) . "'"
+				: " AND \"BlogEntry\".\"Author\" LIKE '". Convert::raw2sql($_GET['author']) . "'";
 		}
-		else if(isset($_GET['authorID'])) {
-			$filter .=  " \"BlogEntry\".\"AuthorID\" = '". Convert::raw2sql($_GET['authorID']). "'";
+		else if($hasAuthorID == true && isset($_GET['authorID'])) {
+			$filter .=  (empty($filter)) ?
+				" \"BlogEntry\".\"AuthorID\" = '%". Convert::raw2sql($_GET['authorID']). "%'"
+				: " AND \"BlogEntry\".\"AuthorID\" = '". Convert::raw2sql($_GET['authorID']). "'";
 		}
 
 		$date = $this->SelectedDate();
@@ -369,7 +379,7 @@ class BlogTree_Controller extends Page_Controller {
 			return $hasAuthor
 				? $this->request->getVar('author')
 				: null;
-		} elseif($this->request->getVar('authorID')) {
+		} elseif($this->request->getVar('authorID') && BlogEntry::get()->first()->hasDatabaseField('AuthorID')) {
 			$hasAuthor = BlogEntry::get()->filter('AuthorID', $this->request->getVar('authorID'))->Count();
 			if($hasAuthor) {
 				$member = Member::get()->byId($this->request->getVar('authorID'));
