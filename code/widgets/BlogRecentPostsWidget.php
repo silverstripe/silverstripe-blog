@@ -19,13 +19,13 @@ if(class_exists("Widget")) {
 		);
 
 		public function getCMSFields() {
-			$fields = FieldList::create();
-			$fields->merge(array(
-				DropdownField::create("BlogID", _t("BlogRecentPostsWidget.Blog", "Blog"), Blog::get()->map()),
-				NumericField::create("NumberOfPosts", _t("BlogRecentPostsWidget.NumberOfPosts", "Number of Posts"))
-			));
-			$this->extend("updateCMSFields", $fields);
-			return $fields;
+			$this->beforeUpdateCMSFields(function($fields) {
+				$fields->merge(array(
+					DropdownField::create("BlogID", _t("BlogRecentPostsWidget.Blog", "Blog"), Blog::get()->map()),
+					NumericField::create("NumberOfPosts", _t("BlogRecentPostsWidget.NumberOfPosts", "Number of Posts"))
+				));
+			});
+			return parent::getCMSFields();
 		}
 
 		public function getPosts() {

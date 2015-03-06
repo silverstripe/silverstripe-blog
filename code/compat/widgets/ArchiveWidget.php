@@ -20,7 +20,7 @@ class ArchiveWidget extends BlogArchiveWidget implements MigratableObject {
 	
 	public function up() {
 		if($this->DisplayMode) {
-			$this->Type = ($this->DisplayMode === 'year') ? 'Yearly' : 'Monthly';
+			$this->ArchiveType = ($this->DisplayMode === 'year') ? 'Yearly' : 'Monthly';
 		}
 		$this->ClassName = 'BlogArchiveWidget';
 		$this->write();

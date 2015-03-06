@@ -17,12 +17,12 @@ if(class_exists("Widget")) {
 		);
 
 		public function getCMSFields() {
-			$fields = FieldList::create();
-			$fields->push(
-				DropdownField::create("BlogID", _t("BlogCategoriesWidget.Blog", "Blog"), Blog::get()->map())
-			);
-			$this->extend("updateCMSFields", $fields);
-			return $fields;
+			$this->beforeUpdateCMSFields(function($fields) {
+				$fields->push(
+					DropdownField::create("BlogID", _t("BlogCategoriesWidget.Blog", "Blog"), Blog::get()->map())
+				);
+			});
+			return parent::getCMSFields();
 		}
 
 		public function getCategories() {
