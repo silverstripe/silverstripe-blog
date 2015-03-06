@@ -98,4 +98,65 @@ class BlogTest extends SapphireTest {
 
 	}
 
+	public function testRoles() {
+		$blog = $this->objFromFixture('Blog', 'fourthblog');
+		$blog2 = $this->objFromFixture('Blog', 'firstblog');
+		$postA = $this->objFromFixture('BlogPost', 'post-a');
+		$postB = $this->objFromFixture('BlogPost', 'post-b');
+		$postC = $this->objFromFixture('BlogPost', 'post-c');
+		$editor = $this->objFromFixture('Member', 'blogeditor');
+		$writer = $this->objFromFixture('Member', 'writer');
+		$contributor = $this->objFromFixture('Member', 'contributor');
+		$visitor = $this->objFromFixture('Member', 'visitor');
+
+		// Check that editors have all permissions on their own blog
+		$this->assertTrue($blog->canEdit($editor));
+		Debug::dump($blog2->Editors()->count());
+		$this->assertFalse($blog2->canEdit($editor));
+		$this->assertTrue($blog->canAddChildren($editor));
+		$this->assertFalse($blog2->canAddChildren($editor));
+		$this->assertTrue($postA->canEdit($editor));
+		$this->assertTrue($postB->canEdit($editor));
+		$this->assertTrue($postC->canEdit($editor));
+		$this->assertTrue($postA->canPublish($editor));
+		$this->assertTrue($postB->canPublish($editor));
+		$this->assertTrue($postC->canPublish($editor));
+
+		// check rights of writers
+		$this->assertFalse($blog->canEdit($writer));
+		$this->assertFalse($blog2->canEdit($writer));
+		$this->assertTrue($blog->canAddChildren($writer));
+		$this->assertFalse($blog2->canAddChildren($writer));
+		$this->assertTrue($postA->canEdit($writer));
+		$this->assertFalse($postB->canEdit($writer));
+		$this->assertTrue($postC->canEdit($writer));
+		$this->assertTrue($postA->canPublish($writer));
+		$this->assertFalse($postB->canPublish($writer));
+		$this->assertTrue($postC->canPublish($writer));
+
+		// Check rights of contributors
+		$this->assertFalse($blog->canEdit($contributor));
+		$this->assertFalse($blog2->canEdit($contributor));
+		$this->assertTrue($blog->canAddChildren($contributor));
+		$this->assertFalse($blog2->canAddChildren($contributor));
+		$this->assertTrue($postA->canEdit($contributor));
+		$this->assertFalse($postB->canEdit($contributor));
+		$this->assertTrue($postC->canEdit($contributor));
+		$this->assertFalse($postA->canPublish($contributor));
+		$this->assertFalse($postB->canPublish($contributor));
+		$this->assertFalse($postC->canPublish($contributor));
+
+		// Check rights of non-cms user
+		$this->assertFalse($blog->canEdit($visitor));
+		$this->assertFalse($blog2->canEdit($visitor));
+		$this->assertFalse($blog->canAddChildren($visitor));
+		$this->assertFalse($blog2->canAddChildren($visitor));
+		$this->assertFalse($postA->canEdit($visitor));
+		$this->assertFalse($postB->canEdit($visitor));
+		$this->assertFalse($postC->canEdit($visitor));
+		$this->assertFalse($postA->canPublish($visitor));
+		$this->assertFalse($postB->canPublish($visitor));
+		$this->assertFalse($postC->canPublish($visitor));
+	}
+
 }

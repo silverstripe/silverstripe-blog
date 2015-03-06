@@ -18,11 +18,13 @@ class BlogPostFilterTest extends SapphireTest {
 		$member = Member::currentUser();
 		if($member) $member->logout();
 
-		$count = BlogPost::get()->count();
+		$blog = $this->objFromFixture('Blog', 'firstblog');
+
+		$count = $blog->AllChildren()->Count();
 		$this->assertEquals(3, $count, "Filtered blog posts");
 
 		SS_Datetime::set_mock_now("2020-01-01 00:00:00");
-		$count = BlogPost::get()->count();
+		$count = $blog->AllChildren()->Count();
 		$this->assertEquals(5, $count, "Unfiltered blog posts");
 	}
 
