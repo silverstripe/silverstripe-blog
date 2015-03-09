@@ -54,8 +54,11 @@ class BlogMigrationTask extends MigrationTask {
 	 * @param type $stage
 	 */
 	protected function upClass($class, $stage = null) {
+		if(!class_exists($class)) return;
+
 		// Migrate all records
 		$items = $class::get();
+
 		if($count = $items->count()) {
 			$stageMessage = " in stage {$stage}";
 			$this->message("Migrating {$count} legacy {$class} records{$stageMessage}.");
