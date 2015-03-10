@@ -24,6 +24,8 @@ class BlogMigrationTask extends MigrationTask {
 	}
 
 	public function up() {
+		SS_ClassLoader::instance()->getManifest()->regenerate(false);
+
 		$classes = ClassInfo::implementorsOf('MigratableObject');
 		$this->message('Migrating legacy blog records');
 
