@@ -17,7 +17,7 @@ nl:
     COMMENTS: "Reacties"
     EDITTHIS: "Bewerk deze post"
     POSTEDBY: "Auteur"
-    POSTEDON: "op"
+    POSTEDON: "Op"
     TAGS: "Tags:"
     UNPUBLISHTHIS: "onpubliceer deze post"
     VIEWALLPOSTTAGGED: "Bekijk alle posten getiteld"
@@ -47,7 +47,7 @@ nl:
   BlogSummary_ss:
     COMMENTS: "Reacties"
     POSTEDBY: "Geplaatst door"
-    POSTEDON: "op"
+    POSTEDON: "Op"
     VIEWFULL: "Bekijk de gehele blog met de titel"
     READFULLPOST: "Lees de hele blog"
     SUMMARYCOMMENTS: "Reacties"
