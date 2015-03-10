@@ -97,3 +97,15 @@
 .blog-admin-sidebar.cms-content-tools .cms-panel-content {
   width: auto;
 }
+
+.new-author-label {
+  width: 249px !important;
+}
+
+.new-author-first-name {
+  margin-right: 5px !important;
+}
+
+.new-author-first-name, .new-author-last-name {
+  width: 115px !important;
+}

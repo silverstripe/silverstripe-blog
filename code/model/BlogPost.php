@@ -21,6 +21,7 @@ class BlogPost extends Page {
 	private static $many_many = array(
 		"Categories" => "BlogCategory",
 		"Tags" => "BlogTag",
+		"Authors" => "Member",
 	);
 
 	private static $defaults = array(
@@ -100,7 +101,27 @@ class BlogPost extends Page {
 					"Tags",
 					_t("BlogPost.Tags", "Tags"),
 					$self->Parent()->Tags()->map()->toArray()
-				)->setMultiple(true)
+				)->setMultiple(true),
+				ListboxField::create(
+					"Authors",
+					_t("BlogPost.Authors", "Authors"),
+					Member::get()->map()->toArray()
+				)->setMultiple(true),
+				FieldGroup::create(
+					LabelField::create(null, 'Add New Author')->addExtraClass("new-author-label left"),
+					TextField::create(
+						'AuthorFirstName',
+						''
+					)
+						->setAttribute('placeholder', 'First name')
+						->addExtraClass("new-author-first-name"),
+					TextField::create(
+						'AuthorLastName',
+						''
+					)
+						->setAttribute('placeholder', 'Last name')
+						->addExtraClass("new-author-first-name")
+				)->addExtraClass("field")
 			)->setTitle('Post Options');
 			$publishDate->getDateField()->setConfig("showcalendar", true);
 
@@ -123,6 +144,18 @@ class BlogPost extends Page {
 	**/
 	protected function onBeforeWrite() {
 		parent::onBeforeWrite();
+
+		if(isset($this->AuthorFirstName) or isset($this->AuthorLastName)) {
+			$author = new Member();
+
+			if(isset($this->AuthorFirstName)) $author->FirstName = $this->AuthorFirstName;
+			if(isset($this->AuthorLastName)) $author->LastName = $this->AuthorLastName;
+
+			$author->write();
+
+			$this->Authors()->add($author);
+		}
+
 		if(!$this->PublishDate) $this->setCastedField("PublishDate", time());
 	}
 
@@ -166,7 +199,7 @@ class BlogPost extends Page {
 	 *
 	 * @param $wordCount int - number of words to display
 	 *
-	 * @return string 
+	 * @return string
 	**/
 	public function Excerpt($wordCount = 30) {
 		return $this->dbObject("Content")->LimitWordCount($wordCount);
@@ -187,9 +220,9 @@ class BlogPost extends Page {
 		if($type != "year") {
 			if($type == "day") {
 				return Controller::join_links(
-					$this->Parent()->Link("archive"), 
-					$date->format("Y"), 
-					$date->format("m"), 
+					$this->Parent()->Link("archive"),
+					$date->format("Y"),
+					$date->format("m"),
 					$date->format("d")
 				);
 			}
@@ -217,9 +250,9 @@ class BlogPost extends Page {
 	 *
 	 * @return array
 	**/
-	public function fieldLabels($includerelations = true) {   
+	public function fieldLabels($includerelations = true) {
 		$labels = parent::fieldLabels($includerelations);
-		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");      
+		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");
 		return $labels;
 	}
 
@@ -235,5 +268,5 @@ class BlogPost extends Page {
  * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class BlogPost_Controller extends Page_Controller {
-	
+
 }
