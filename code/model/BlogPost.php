@@ -6,12 +6,17 @@
  * @package silverstripe
  * @subpackage blog
  *
+ * @method ManyManyList Categories()
+ * @method ManyManyList Tags()
+ * @method ManyManyList Authors()
+ *
  * @author Michael Strong <github@michaelstrong.co.uk>
 **/
 class BlogPost extends Page {
 
 	private static $db = array(
 		"PublishDate" => "SS_Datetime",
+		"AuthorNames" => "Varchar(1024)"
 	);
 
 	private static $has_one = array(
@@ -21,6 +26,7 @@ class BlogPost extends Page {
 	private static $many_many = array(
 		"Categories" => "BlogCategory",
 		"Tags" => "BlogTag",
+		"Authors" => "Member",
 	);
 
 	private static $defaults = array(
@@ -60,6 +66,23 @@ class BlogPost extends Page {
 	private static $show_in_sitetree = false;
 
 
+	/**
+	 * Determine if the given member is an author of this post
+	 *
+	 * @param Member $member
+	 * @return boolean
+	 */
+	protected function isAuthor($member) {
+		if(!$member || !$member->exists()) return false;
+
+		$list = $this->Authors();
+		if($list instanceof UnsavedRelationList) {
+			return in_array($member->ID, $list->getIDList());
+		}
+
+		return $list->byID($member->ID) !== null;
+	}
+
 
 	public function getCMSFields() {
 		Requirements::css(BLOGGER_DIR . '/css/cms.css');
@@ -87,6 +110,24 @@ class BlogPost extends Page {
 				'URLSegment',
 			));
 
+			// Author field
+			$authorField = ListboxField::create(
+				"Authors",
+				_t("BlogPost.Authors", "Authors"),
+				Member::get()->map()->toArray()
+			)->setMultiple(true);
+
+			$authorNames = TextField::create(
+				"AuthorNames",
+				_t("BlogPost.AdditionalCredits", "Additional Credits"),
+				null,
+				1024
+			)->setDescription('Comma separated list of names');
+			if(!$this->canEditAuthors()) {
+				$authorField = $authorField->performDisabledTransformation();
+				$authorNames = $authorNames->performDisabledTransformation();
+			}
+
 			// Build up our sidebar
 			$options = BlogAdminSidebar::create(
 				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")),
@@ -100,7 +141,9 @@ class BlogPost extends Page {
 					"Tags",
 					_t("BlogPost.Tags", "Tags"),
 					$self->Parent()->Tags()->map()->toArray()
-				)->setMultiple(true)
+				)->setMultiple(true),
+				$authorField,
+				$authorNames
 			)->setTitle('Post Options');
 			$publishDate->getDateField()->setConfig("showcalendar", true);
 
@@ -116,14 +159,17 @@ class BlogPost extends Page {
 		return $fields;
 	}
 
-
-
-	/**
-	 * If no publish date is set, set the date to now.
-	**/
 	protected function onBeforeWrite() {
 		parent::onBeforeWrite();
-		if(!$this->PublishDate) $this->setCastedField("PublishDate", time());
+
+		// If no publish date is set, set the date to now.
+		if(!$this->PublishDate) $this->PublishDate = SS_Datetime::now()->getValue();
+
+		// If creating a new entry, assign the current member as an author
+		// This allows writers and contributors to then edit their new post
+		if(!$this->exists() && ($member = Member::currentUser())) {
+			$this->Authors()->add($member);
+		}
 	}
 
 
@@ -133,7 +179,7 @@ class BlogPost extends Page {
 	**/
 	public function onBeforePublish() {
 		if ($this->dbObject('PublishDate')->InPast() && !$this->isPublished()) {
-			$this->setCastedField("PublishDate", time());
+			$this->PublishDate = SS_Datetime::now()->getValue();
 			$this->write();
 		}
 	}
@@ -159,6 +205,81 @@ class BlogPost extends Page {
 		return true;
 	}
 
+	public function canEdit($member = null) {
+		$member = $member ?: Member::currentUser();
+		if(is_numeric($member)) $member = Member::get()->byID($member);
+
+		// Inherit permission
+		if(parent::canEdit($member)) return true;
+
+		// Check if assigned to a blog
+		$parent = $this->Parent();
+		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) return false;
+
+		// Editors have full control
+		if($parent->isEditor($member)) return true;
+
+		// Only writers or contributors can edit
+		if(!$parent->isWriter($member) && !$parent->isContributor($member)) return false;
+
+		// And only if they are also authors
+		return $this->isAuthor($member);
+	}
+
+	/**
+	 * Determine if this user can edit the authors list
+	 *
+	 * @param Member $member
+	 * @return boolean
+	 */
+	public function canEditAuthors($member = null) {
+		$member = $member ?: Member::currentUser();
+		if(is_numeric($member)) $member = Member::get()->byID($member);
+
+		$extended = $this->extendedCan('canEditAuthors', $member);
+		if($extended !== null) return $extended;
+
+		// Check blog roles
+		$parent = $this->Parent();
+		if($parent instanceof Blog && $parent->exists()) {
+			// Editors can do anything
+			if($parent->isEditor($member)) return true;
+
+			// Writers who are also authors can edit authors
+			if($parent->isWriter($member) && $this->isAuthor($member)) return true;
+		}
+
+		// Check permission
+		return Permission::checkMember($member, Blog::MANAGE_USERS);
+	}
+
+	public function canPublish($member = null) {
+		$member = $member ?: Member::currentUser();
+		if(is_numeric($member)) $member = Member::get()->byID($member);
+
+		if(Permission::checkMember($member, "ADMIN")) return true;
+
+		// Standard mechanism for accepting permission changes from extensions
+		$extended = $this->extendedCan('canPublish', $member);
+		if($extended !== null) return $extended;
+
+		// Check blog roles
+		$parent = $this->Parent();
+		if($parent instanceof Blog && $parent->exists()) {
+			// Editors can do anything
+			if($parent->isEditor($member)) return true;
+
+			// Writers who are also authors can edit authors
+			if($parent->isWriter($member) && $this->isAuthor($member)) return true;
+
+			// Contributors can ONLY publish this page if they somehow have global publish permissions
+			// In this case defer to old canEdit implementation
+			if($parent->isContributor($member)) return parent::canEdit($member);
+		}
+
+		// Normal case - fail over to canEdit()
+		return $this->canEdit($member);
+	}
 
 
 	/**
@@ -183,7 +304,6 @@ class BlogPost extends Page {
 	**/
 	public function getMonthlyArchiveLink($type = "day") {
 		$date = $this->dbObject("PublishDate");
-		$year = $date->format("Y");
 		if($type != "year") {
 			if($type == "day") {
 				return Controller::join_links(

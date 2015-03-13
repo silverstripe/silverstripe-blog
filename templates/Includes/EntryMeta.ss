@@ -22,4 +22,14 @@
     
 	<%t Blog.Posted "Posted" %>
     <a href="$MonthlyArchiveLink">$PublishDate.ago</a>
+	
+	<% if $Authors || $AuthorNames %>
+		<%t Blog.By "by" %>
+		<% if $Authors %><% loop $Authors %>
+			$Name.XML<% if not $Last || $Up.AuthorNames %>,<% end_if %>
+		<% end_loop %><% end_if %>
+		<% if $AuthorNames %>
+			$AuthorNames
+		<% end_if %>
+	<% end_if %>
 </p>

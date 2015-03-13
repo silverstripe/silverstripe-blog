@@ -6,6 +6,9 @@ Group:
     Title: Administrators
   editors:
     Title: Editors
+  blog-users:
+    Title: Blog Users
+    Code: blog-users
 
 Permission:
   admins:
@@ -14,6 +17,17 @@ Permission:
   editors:
     Code: CMS_ACCESS_CMSMain
     Group: =>Group.editors
+  blog-users:
+    Code: CMS_ACCESS_CMSMain
+    Group: =>Group.blog-users
+    
+    
+SiteConfig:
+  default:
+    CanEditType: 'OnlyTheseUsers'
+    CanCreateTopLevelType: 'OnlyTheseUsers'
+    EditorGroups: =>Group.admins,=>Group.editors
+    CreateTopLevelGroups: =>Group.admins,=>Group.editors
 
 Member:
   admin:
@@ -24,6 +38,21 @@ Member:
     FirstName: Test
     Surname: Editor
     Groups: =>Group.editors
+  blogeditor:
+    FirstName: Blog
+    Surname: Editor
+    Groups: =>Group.blog-users
+  writer:
+    FirstName: Blog
+    Surname: Writer
+    Groups: =>Group.blog-users
+  contributor:
+    FirstName: Blog
+    Surname: Contributor
+    Groups: =>Group.blog-users
+  visitor:
+    FirstName: Blog
+    Surname: Visitor
 
 Blog:
   firstblog:
@@ -38,6 +67,11 @@ Blog:
     Title: 'Third Blog'
     CanEditType: 'OnlyTheseUsers'
     EditorGroups: =>Group.editors
+  fourthblog:
+    Title: 'Fourth Blog'
+    Editors: =>Member.blogeditor
+    Writers: =>Member.writer
+    Contributors: =>Member.contributor
 
 BlogTag:
   firsttag:
@@ -91,9 +125,26 @@ BlogPost:
     PublishDate: '2015-01-01 00:00:00'
     Tags: =>BlogTag.firsttag
     Categories: =>BlogCategory.firstcategory
+    Parent: =>Blog.firstblog
   futurepost2:
     Title: 'Future Post 2'
     URLSegment: future-post-2
     PublishDate: '2013-11-01 00:00:00'
     Tags: =>BlogTag.firsttag
     Categories: =>BlogCategory.firstcategory
+    Parent: =>Blog.firstblog
+  post-a:
+    Title: 'One Post'
+    PublishDate: '2012-01-09 15:00:00'
+    Parent: =>Blog.fourthblog
+    Authors: =>Member.writer,=>Member.contributor
+  post-b:
+    Title: 'Second Post'
+    PublishDate: '2012-01-09 15:00:00'
+    Parent: =>Blog.fourthblog
+    Authors: =>Member.blogeditor
+  post-c:
+    Title: 'Third Post'
+    PublishDate: '2012-01-09 15:00:00'
+    Parent: =>Blog.fourthblog
+    Authors: =>Member.blogeditor,=>Member.writer,=>Member.contributor
