@@ -123,7 +123,7 @@ class BlogPost extends Page {
 				null,
 				1024
 			)->setDescription('Comma separated list of names');
-			if(!$this->canEditAuthors()) {
+			if(!$self->canEditAuthors()) {
 				$authorField = $authorField->performDisabledTransformation();
 				$authorNames = $authorNames->performDisabledTransformation();
 			}
