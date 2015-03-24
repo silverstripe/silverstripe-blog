@@ -330,6 +330,16 @@ class Blog extends Page implements PermissionProvider {
 	}
 
 
+	/**
+	 * Get a link to a Member profile.
+	 * 
+	 * @param urlSegment
+	 * @return String
+	 */
+	public function ProfileLink($urlSegment) {
+		return Controller::join_links($this->Link(), 'profile', $urlSegment);
+	}
+
 
 	/**
 	 * This sets the title for our gridfield
@@ -450,12 +460,14 @@ class Blog_Controller extends Page_Controller {
 		'tag',
 		'category',
 		'rss',
+		'profile'
 	);
 
 	private static $url_handlers = array(
 		'tag/$Tag!' => 'tag',
 		'category/$Category!' => 'category',
 		'archive/$Year!/$Month/$Day' => 'archive',
+		'profile/$URLSegment!' => 'profile'
 	);
 
 
@@ -473,7 +485,54 @@ class Blog_Controller extends Page_Controller {
 		return $this->render();
 	}
 
+	/**
+	 * Renders a Blog Member's profile.
+	 *
+	 * @return SS_HTTPResponse
+	**/
+	public function profile() {
+		$profile = $this->getCurrentProfile();
 
+		if(!$profile) {
+			return $this->httpError(404, 'Not Found');
+		}
+
+		$this->blogPosts = $this->getCurrentProfilePosts();
+
+		return $this->render();
+	}
+
+	/**
+	 * Get the Member associated with the current URL segment.
+	 * 
+	 * @return Member|null
+	**/
+	public function getCurrentProfile() {
+		$urlSegment = $this->request->param('URLSegment');
+
+		if($urlSegment) {
+			return Member::get()
+				->filter('URLSegment', $urlSegment)
+				->first();
+		}
+
+		return null;
+	}
+
+	/**
+	 * Get posts related to the current Member profile
+	 * 
+	 * @return DataList|null
+	**/
+	public function getCurrentProfilePosts() {
+		$profile = $this->getCurrentProfile();
+
+		if($profile) {
+			return $profile->AuthoredPosts()->filter('ParentID', $this->ID);
+		}
+
+		return null;
+	}
 
 	/**
 	 * Renders an archive for a specificed date. This can be by year or year/month
