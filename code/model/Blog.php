@@ -82,6 +82,9 @@ class Blog extends Page implements PermissionProvider {
 		$self =& $this;
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
 
+			// Don't show this tab if edit is not allowed
+			if(!$self->canEdit()) return;
+
 			// Create categories and tag config
 			$config = GridFieldConfig_RecordEditor::create();
 			$config->removeComponentsByType("GridFieldAddNewButton");

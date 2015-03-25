@@ -76,7 +76,10 @@ class BlogTag extends DataObject {
 		if($extended !== null) {
 			return $extended;
 		}
-		return $this->Blog()->canEdit($member);
+		
+		// Since there is no parent yet, need to make a best guess
+		$permission = Blog::config()->grant_user_permission;
+		return Permission::checkMember($member, $permission);
 	}
 
 

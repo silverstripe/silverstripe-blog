@@ -77,16 +77,8 @@ class BlogCategoryTest extends FunctionalTest {
 		$editor = $this->objFromFixture('Member', 'editor');
 
 		// The first blog can bew viewed by anybody
-		$category = $this->objFromFixture("BlogCategory", "firstcategory");
+		$category = singleton('BlogCategory');
 		$this->assertTrue($category->canCreate($admin), "Admin should be able to create category.");
-		$this->assertTrue($category->canCreate($editor), "Editor should be able to create category.");
-
-		$category = $this->objFromFixture("BlogCategory", "secondcategory");
-		$this->assertTrue($category->canCreate($admin), "Admin should be able to create category.");
-		$this->assertFalse($category->canCreate($editor), "Editor should not be able to create category.");
-
-		$category = $this->objFromFixture("BlogCategory", "thirdcategory");
-		$this->assertTrue($category->canCreate($admin), "Admin should always be able to create category.");
 		$this->assertTrue($category->canCreate($editor), "Editor should be able to create category.");
 	}
 
