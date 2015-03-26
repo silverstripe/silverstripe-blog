@@ -77,16 +77,8 @@ class BlogTagTest extends FunctionalTest {
 		$editor = $this->objFromFixture('Member', 'editor');
 
 		// The first blog can bew viewed by anybody
-		$tag = $this->objFromFixture("BlogTag", "firsttag");
+		$tag = singleton("BlogTag");
 		$this->assertTrue($tag->canCreate($admin), "Admin should be able to create tag.");
-		$this->assertTrue($tag->canCreate($editor), "Editor should be able to create tag.");
-
-		$tag = $this->objFromFixture("BlogTag", "secondtag");
-		$this->assertTrue($tag->canCreate($admin), "Admin should be able to create tag.");
-		$this->assertFalse($tag->canCreate($editor), "Editor should not be able to create tag.");
-
-		$tag = $this->objFromFixture("BlogTag", "thirdtag");
-		$this->assertTrue($tag->canCreate($admin), "Admin should always be able to create tags.");
 		$this->assertTrue($tag->canCreate($editor), "Editor should be able to create tag.");
 	}
 

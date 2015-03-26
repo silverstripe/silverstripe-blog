@@ -111,7 +111,6 @@ class BlogTest extends SapphireTest {
 
 		// Check that editors have all permissions on their own blog
 		$this->assertTrue($blog->canEdit($editor));
-		Debug::dump($blog2->Editors()->count());
 		$this->assertFalse($blog2->canEdit($editor));
 		$this->assertTrue($blog->canAddChildren($editor));
 		$this->assertFalse($blog2->canAddChildren($editor));
