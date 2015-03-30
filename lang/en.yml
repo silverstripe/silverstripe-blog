@@ -27,8 +27,8 @@ en:
     PLURALNAME: 'Blog Categories Widgets'
     SINGULARNAME: 'Blog Categories Widget'
   BlogCategory:
-    PLURALNAME: 'Blog Categories'
-    SINGULARNAME: 'Blog Category'
+    PLURALNAME: 'Categories'
+    SINGULARNAME: 'Category'
     Title: Title
   BlogPost:
     Categories: Categories
@@ -45,8 +45,8 @@ en:
     PLURALNAME: 'Blog Recent Posts Widgets'
     SINGULARNAME: 'Blog Recent Posts Widget'
   BlogTag:
-    PLURALNAME: 'Blog Tags'
-    SINGULARNAME: 'Blog Tag'
+    PLURALNAME: 'Tags'
+    SINGULARNAME: 'Tag'
     Title: Title
   BlogTagsWidget:
     Blog: Blog
