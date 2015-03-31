@@ -51,7 +51,9 @@ class BlogMemberExtension extends DataExtension {
 		$urlSegment = $filter->filter($name);
 
 		// Fallback to generic profile name if path is empty (= no valid, convertable characters)
-		if(!$urlSegment || $urlSegment == '-' || $urlSegment == '-1') $urlSegment = "profile-$this->ID";
+		if(!$urlSegment || $urlSegment == '-' || $urlSegment == '-1') {
+			$urlSegment = "profile-".$this->owner->ID;
+		}
 
 		return $urlSegment;
 	}
