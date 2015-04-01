@@ -23,18 +23,8 @@
 	<%t Blog.Posted "Posted" %>
 	<a href="$MonthlyArchiveLink">$PublishDate.ago</a>
 
-	<% if $Authors || $AuthorNames %>
+	<% if $Credits %>
 		<%t Blog.By "by" %>
-		<% if $Authors %><% loop $Authors %>
-			<% if $URLSegment %>
-				<a href="{$Up.Parent.ProfileLink($URLSegment)}">$Name.XML</a>
-			<% else %>
-				$Name.XML
-			<% end_if %>
-			<% if not $Last || $Up.AuthorNames %>,<% end_if %>
-		<% end_loop %><% end_if %>
-		<% if $AuthorNames %>
-			$AuthorNames
-		<% end_if %>
+		<% loop $Credits %><% if $URL %>$Join<a href="$URL">$Name.XML</a><% else %>$Join$Name.XML<% end_if %><% end_loop %>
 	<% end_if %>
 </p>

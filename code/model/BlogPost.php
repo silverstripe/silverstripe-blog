@@ -3,15 +3,15 @@
 /**
  * An indivisual blog post.
  *
- * @package silverstripe
+ * @package    silverstripe
  * @subpackage blog
  *
  * @method ManyManyList Categories()
  * @method ManyManyList Tags()
  * @method ManyManyList Authors()
  *
- * @author Michael Strong <github@michaelstrong.co.uk>
-**/
+ * @author     Michael Strong <github@michaelstrong.co.uk>
+ **/
 class BlogPost extends Page {
 
 	private static $db = array(
@@ -62,7 +62,7 @@ class BlogPost extends Page {
 	 * variable can be configured using YAML.
 	 *
 	 * @var boolean
-	**/
+	 **/
 	private static $show_in_sitetree = false;
 
 
@@ -70,6 +70,7 @@ class BlogPost extends Page {
 	 * Determine if the given member is an author of this post
 	 *
 	 * @param Member $member
+	 *
 	 * @return boolean
 	 */
 	protected function isAuthor($member) {
@@ -88,7 +89,7 @@ class BlogPost extends Page {
 		Requirements::css(BLOGGER_DIR . '/css/cms.css');
 
 		$self =& $this;
-		$this->beforeUpdateCMSFields(function($fields) use ($self) {
+		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
 
 			// Add featured image
 			$fields->insertAfter(
@@ -173,17 +174,16 @@ class BlogPost extends Page {
 	}
 
 
-
 	/**
-	 * Update the PublishDate to now, if being published for the first time, and the date hasn't been set to the future.
-	**/
+	 * Update the PublishDate to now, if being published for the first time, and the date hasn't
+	 * been set to the future.
+	 **/
 	public function onBeforePublish() {
-		if ($this->dbObject('PublishDate')->InPast() && !$this->isPublished()) {
+		if($this->dbObject('PublishDate')->InPast() && !$this->isPublished()) {
 			$this->PublishDate = SS_Datetime::now()->getValue();
 			$this->write();
 		}
 	}
-
 
 
 	/**
@@ -192,7 +192,7 @@ class BlogPost extends Page {
 	 * @param $member Member|null
 	 *
 	 * @return boolean
-	**/
+	 **/
 	public function canView($member = null) {
 		if(!parent::canView($member)) return false;
 
@@ -230,6 +230,7 @@ class BlogPost extends Page {
 	 * Determine if this user can edit the authors list
 	 *
 	 * @param Member $member
+	 *
 	 * @return boolean
 	 */
 	public function canEditAuthors($member = null) {
@@ -287,12 +288,11 @@ class BlogPost extends Page {
 	 *
 	 * @param $wordCount int - number of words to display
 	 *
-	 * @return string 
-	**/
+	 * @return string
+	 **/
 	public function Excerpt($wordCount = 30) {
 		return $this->dbObject("Content")->LimitWordCount($wordCount);
 	}
-
 
 
 	/**
@@ -301,15 +301,15 @@ class BlogPost extends Page {
 	 * @param $type string day|month|year
 	 *
 	 * @return string URL
-	**/
+	 **/
 	public function getMonthlyArchiveLink($type = "day") {
 		$date = $this->dbObject("PublishDate");
 		if($type != "year") {
 			if($type == "day") {
 				return Controller::join_links(
-					$this->Parent()->Link("archive"), 
-					$date->format("Y"), 
-					$date->format("m"), 
+					$this->Parent()->Link("archive"),
+					$date->format("Y"),
+					$date->format("m"),
 					$date->format("d")
 				);
 			}
@@ -319,41 +319,134 @@ class BlogPost extends Page {
 	}
 
 
-
 	/**
 	 * Returns a yearly archive link for the current blog post.
 	 *
 	 * @return string URL
-	**/
+	 **/
 	public function getYearlyArchiveLink() {
 		$date = $this->dbObject("PublishDate");
 		return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"));
 	}
 
 
-
 	/**
 	 * Sets the label for BlogPost.Title to 'Post Title' (Rather than 'Page name')
 	 *
 	 * @return array
-	**/
-	public function fieldLabels($includerelations = true) {   
+	 **/
+	public function fieldLabels($includerelations = true) {
 		$labels = parent::fieldLabels($includerelations);
-		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");      
+		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");
 		return $labels;
 	}
 
+	/**
+	 * Resolves dynamic and static authors with appropriate join data.
+	 *
+	 * @return ArrayList
+	 */
+	public function getCredits() {
+		$dynamic = $this->getDynamicAuthors();
+
+		$static = $this->getStaticAuthors();
+
+		return new ArrayList(
+			$this->itemsWithJoins(
+				array_merge($dynamic, $static)
+			)
+		);
+	}
+
+	/**
+	 * Resolves all dynamic authors linked to this post.
+	 *
+	 * @return array
+	 */
+	protected function getDynamicAuthors() {
+		$items = [];
+
+		$authors = $this->Authors()->toArray();
+
+		foreach($authors as $author) {
+			$item = new ArrayData(array(
+				'Name' => $author->Name,
+				'Join' => '',
+				'URL' => '',
+			));
+
+			if($author->URLSegment) {
+				$item->URL = $this->Parent->ProfileLink($author->URLSegment);
+			}
+
+			$items[] = $item;
+		}
+
+		return $items;
+	}
+
+	/**
+	 * Resolves all static authors linked to this post.
+	 *
+	 * @return array
+	 */
+	protected function getStaticAuthors() {
+		$items = [];
+
+		$authors = array_filter(explode(',', $this->AuthorNames));
+
+		foreach($authors as $author) {
+			$item = new ArrayData(array(
+				'Name' => $author,
+				'Join' => '',
+				'URL' => ''
+			));
+
+			$items[] = $item;
+		}
+
+		return $items;
+	}
+
+	/**
+	 * Returns a new array with the appropriate join data.
+	 *
+	 * @param array $items
+	 *
+	 * @return array
+	 */
+	protected function itemsWithJoins(array $items) {
+		$count = count($items);
+
+		for($i = 0; $i < $count; $i++) {
+			if($count === 2 && $i > 0) {
+				$items[$i]->Join = ' and ';
+			}
+
+			if($count > 2) {
+				if($i > 0) {
+					$items[$i]->Join = ', ';
+				}
+
+				if($i + 1 === $count) {
+					$items[$i]->Join = ' and ';
+				}
+			}
+		}
+
+		return $items;
+	}
 }
 
 
 /**
  * Blog Post controller
  *
- * @package silverstripe
+ * @package    silverstripe
  * @subpackage blog
  *
- * @author Michael Strong <github@michaelstrong.co.uk>
-**/
+ * @author     Michael Strong <github@michaelstrong.co.uk>
+ **/
 class BlogPost_Controller extends Page_Controller {
-	
+
 }
