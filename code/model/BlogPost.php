@@ -371,7 +371,8 @@ class BlogPost extends Page {
 		foreach($authors as $author) {
 			$item = new ArrayData(array(
 				'Name' => $author->Name,
-				'Join' => '',
+				'IsAndJoin' => false,
+				'IsCommaJoin' => false,
 				'URL' => '',
 			));
 
@@ -398,7 +399,8 @@ class BlogPost extends Page {
 		foreach($authors as $author) {
 			$item = new ArrayData(array(
 				'Name' => $author,
-				'Join' => '',
+				'IsAndJoin' => false,
+				'IsCommaJoin' => false,
 				'URL' => ''
 			));
 
@@ -419,17 +421,18 @@ class BlogPost extends Page {
 		$count = count($items);
 
 		for($i = 0; $i < $count; $i++) {
-			if($count === 2 && $i > 0) {
-				$items[$i]->Join = ' and ';
+			if($count === 2 && $i === 1) {
+				$items[$i]->IsAndJoin = true;
 			}
 
 			if($count > 2) {
 				if($i > 0) {
-					$items[$i]->Join = ', ';
+					$items[$i]->IsCommaJoin = true;
 				}
 
 				if($i + 1 === $count) {
-					$items[$i]->Join = ' and ';
+					$items[$i]->IsCommaJoin = false;
+					$items[$i]->IsAndJoin = true;
 				}
 			}
 		}

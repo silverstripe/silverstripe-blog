@@ -25,6 +25,6 @@
 
 	<% if $Credits %>
 		<%t Blog.By "by" %>
-		<% loop $Credits %><% if $URL %>$Join<a href="$URL">$Name.XML</a><% else %>$Join$Name.XML<% end_if %><% end_loop %>
+		<% loop $Credits %><% if $URL %><% if $IsAndJoin %><%t Blog.Join.And " and " %><% end_if %><% if $IsCommaJoin %><%t Blog.Join.Comma ", " %><% end_if %><a href="$URL">$Name.XML</a><% else %><% if $IsAndJoin %><%t Blog.Join.And " and " %><% end_if %><% if $IsCommaJoin %><%t Blog.Join.Comma ", " %><% end_if %>$Name.XML<% end_if %><% end_loop %>
 	<% end_if %>
 </p>
