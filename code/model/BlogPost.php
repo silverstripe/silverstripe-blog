@@ -330,7 +330,62 @@ class BlogPost extends Page {
 		return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"));
 	}
 
+	/**
+	 * Resolves static and dynamic authors linked to this post.
+	 *
+	 * @return ArrayList
+	 */
+	public function getCredits()
+	{
+		$list = new ArrayList();
 
+		$list->merge($this->getDynamicCredits());
+		$list->merge($this->getStaticCredits());
+
+		return $list->sort('Name');
+	}
+
+	/**
+	 * Resolves dynamic authors linked to this post.
+	 *
+	 * @return ArrayList
+	 */
+	protected function getDynamicCredits()
+	{
+		$items = new ArrayList();
+
+		foreach($this->Authors() as $author) {
+			$items->push(
+				$author->customise(array(
+					'URL' => $this->Parent->ProfileLink($author->URLSegment),
+				))
+			);
+		}
+
+		return $items;
+	}
+
+	/**
+	 * Resolves static authors linked to this post.
+	 *
+	 * @return ArrayList
+	 */
+	protected function getStaticCredits()
+	{
+		$items = new ArrayList();
+
+		$authors = array_filter(preg_split('/\s*,\s*/', $this->AuthorNames));
+
+		foreach ($authors as $author) {
+			$item = new ArrayData(array(
+				'Name' => $author,
+			));
+
+			$items->push($item);
+		}
+
+		return $items;
+	}
 
 	/**
 	 * Sets the label for BlogPost.Title to 'Post Title' (Rather than 'Page name')
