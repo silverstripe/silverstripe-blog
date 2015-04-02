@@ -122,7 +122,7 @@ class BlogPost extends Page {
 				_t("BlogPost.AdditionalCredits", "Additional Credits"),
 				null,
 				1024
-			)->setDescription('Comma separated list of names');
+			)->setDescription('If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.');
 			if(!$self->canEditAuthors()) {
 				$authorField = $authorField->performDisabledTransformation();
 				$authorNames = $authorNames->performDisabledTransformation();
