@@ -72,7 +72,7 @@ class BlogPost extends Page {
 	 * @param Member $member
 	 * @return boolean
 	 */
-	protected function isAuthor($member) {
+	public function isAuthor($member) {
 		if(!$member || !$member->exists()) return false;
 
 		$list = $this->Authors();
