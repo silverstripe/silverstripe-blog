@@ -132,16 +132,18 @@ class BlogPost extends Page {
 			$options = BlogAdminSidebar::create(
 				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")),
 				$urlSegment,
-				ListboxField::create(
-					"Categories",
-					_t("BlogPost.Categories", "Categories"),
-					$self->Parent()->Categories()->map()->toArray()
-				)->setMultiple(true),
-				ListboxField::create(
-					"Tags",
-					_t("BlogPost.Tags", "Tags"),
-					$self->Parent()->Tags()->map()->toArray()
-				)->setMultiple(true),
+				TagField::create(
+					'Categories',
+					_t('BlogPost.Categories', 'Categories'),
+					BlogCategory::get()->map(),
+					$self->Parent()->Categories()->map()
+				),
+				TagField::create(
+					'Tags',
+					_t('BlogPost.Tags', 'Tags'),
+					BlogTag::get()->map(),
+					$self->Parent()->Tags()->map()
+				),
 				$authorField,
 				$authorNames
 			)->setTitle('Post Options');
@@ -184,7 +186,25 @@ class BlogPost extends Page {
 		}
 	}
 
+	/**
+	 * Sets blog relationship on all categories and tags assigned to this post.
+	 *
+	 * @throws ValidationException
+	 */
+	public function onAfterWrite()
+	{
+		parent::onAfterWrite();
 
+		foreach ($this->Categories() as $category) {
+			$category->BlogID = $this->ParentID;
+			$category->write();
+		}
+
+		foreach ($this->Tags() as $tag) {
+			$tag->BlogID = $this->ParentID;
+			$tag->write();
+		}
+	}
 
 	/**
 	 * Checks the publish date to see if the blog post has actually been published.
