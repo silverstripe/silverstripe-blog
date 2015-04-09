@@ -1,13 +1,15 @@
 /**
  * CMS Styles
-**/
+ */
 
 /**
- * Include Compass framework */
+ * Include Compass framework
+ */
 @import "compass";
 
 /*
- * Sprite maps & Icons */
+ * Sprite maps & Icons
+ */
 @import "compass/utilities/sprites/base";
 @import "blog-icon/*.png";
 
@@ -108,4 +110,29 @@
 			width: auto;
 		}
 	}
+}
+
+.toggle-description {
+	text-indent: -1000000px;
+	display: inline-block;
+	background: url("../images/information.png") no-repeat center center;
+	width: 20px;
+	height: 20px;
+	margin-left: 4px;
+}
+
+.toggle-description-correct-middle {
+	margin-left: 0 !important;
+	float: left !important;
+	width: 416px !important;
+}
+
+.toggle-description-correct-right {
+	display: inline-block !important;
+	margin-left: 0 !important;
+	clear: none !important;
+}
+
+.toggle-description-correct-description {
+	width: 416px !important;
 }
