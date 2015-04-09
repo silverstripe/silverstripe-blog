@@ -79,6 +79,10 @@ class Blog extends Page implements PermissionProvider {
 	private static $description = 'Adds a blog to your website.';
 
 	public function getCMSFields() {
+		Requirements::css(BLOGGER_DIR . '/css/cms.css');
+		
+		Requirements::javascript(BLOGGER_DIR . '/js/expandable-help-text.js');
+
 		$self =& $this;
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
 
@@ -260,7 +264,19 @@ class Blog extends Page implements PermissionProvider {
 		// Editors
 		$editorField = ListboxField::create('Editors', 'Editors', $members)
 			->setMultiple(true)
-			->setDescription('Editors are able to manage this blog and its posts');
+			->setRightTitle('<a class="toggle-description">help</a>')
+			->setDescription('
+				An editor has control over specific Blogs, and all posts included within it. Short of being able to assign other editors to a blog, they are able to handle most changes assigned to their section.<br />
+				<br />
+				Editors have these permissions:<br />
+				<br />
+				Update or publish any BlogPost in their Blog<br />
+				Update or publish their Blog<br />
+				Assign/unassign writers to their Blog<br />
+				Assign/unassign contributors to their Blog<br />
+				Assign/unassign any member as an author of a particular BlogPost
+			');
+
 		if(!$this->canEditEditors()) {
 			$editorField = $editorField->performDisabledTransformation();
 		}
@@ -268,7 +284,17 @@ class Blog extends Page implements PermissionProvider {
 		// Writers
 		$writerField = ListboxField::create('Writers', 'Writers', $members)
 			->setMultiple(true)
-			->setDescription('Writers are able to write and publish posts');
+			->setRightTitle('<a class="toggle-description">help</a>')
+			->setDescription('
+				A writer has control over specific BlogPosts. They are able to handle many changes to the BlogPost they are assigned to.<br />
+				<br />
+				Writers have these permissions:<br />
+				<br />
+				Update or publish any BlogPost to which they are assigned<br />
+				Assign/unassign contributors to their Blog<br />
+				Assign/unassign any member as an author of a particular BlogPost
+			');
+
 		if(!$this->canEditWriters()) {
 			$writerField = $writerField->performDisabledTransformation();
 		}
@@ -276,7 +302,16 @@ class Blog extends Page implements PermissionProvider {
 		// Contributors
 		$contributorField = ListboxField::create('Contributors', 'Contributors', $members)
 			->setMultiple(true)
-			->setDescription('Contributors are able to write, but not publish, posts');
+			->setRightTitle('<a class="toggle-description">help</a>')
+			->setDescription('
+				A contributor has control over specific BlogPosts. They are able to contribute but not publish or remove BlogPosts.<br />
+				<br />
+				Contributors have these permissions:<br />
+				<br />
+				Update any BlogPost to which they are assigned<br />
+				Assign/unassign any member as an author of a particular BlogPost
+			');
+		
 		if(!$this->canEditContributors()) {
 			$contributorField = $contributorField->performDisabledTransformation();
 		}
