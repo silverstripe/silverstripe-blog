@@ -1,0 +1,8 @@
+---
+Name: blogcommentsconfig
+Only:
+  moduleexists: comments
+---
+Comment:
+  extensions:
+    - BlogCommentExtension
