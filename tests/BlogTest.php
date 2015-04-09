@@ -109,6 +109,16 @@ class BlogTest extends SapphireTest {
 		$contributor = $this->objFromFixture('Member', 'contributor');
 		$visitor = $this->objFromFixture('Member', 'visitor');
 
+		// Check roleof
+		$this->assertEquals('Editor', $blog->RoleOf($editor));
+		$this->assertEquals('Contributor', $blog->RoleOf($contributor));
+		$this->assertEquals('Writer', $blog->RoleOf($writer));
+		$this->assertEmpty($blog->RoleOf($visitor));
+		$this->assertEquals('Author', $postA->RoleOf($writer));
+		$this->assertEquals('Author', $postA->RoleOf($contributor));
+		$this->assertEquals('Editor', $postA->RoleOf($editor));
+		$this->assertEmpty($postA->RoleOf($visitor));
+
 		// Check that editors have all permissions on their own blog
 		$this->assertTrue($blog->canEdit($editor));
 		$this->assertFalse($blog2->canEdit($editor));

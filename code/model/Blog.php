@@ -155,6 +155,25 @@ class Blog extends Page implements PermissionProvider {
 	}
 
 	/**
+	 * Determine the role of the given member
+	 * Call be called via template to determine the current user
+	 *
+	 * E.g. `Hello $RoleOf($CurrentMember.ID)`
+	 *
+	 * @param Member|integer $member
+	 * @return string|null Author, Editor, Writer, Contributor, or null if no role
+	 */
+	public function RoleOf($member) {
+		if(is_numeric($member)) $member = DataObject::get_by_id('Member', $member);
+		if(!$member) return null;
+
+		// Check each role
+		if($this->isEditor($member)) return _t('Blog.EDITOR', 'Editor');
+		if($this->isWriter($member)) return _t('Blog.WRITER', 'Writer');
+		if($this->isContributor($member)) return _t('Blog.CONTRIBUTOR', 'Contributor');
+	}
+
+	/**
 	 * Determine if the given member belongs to the given subrelation
 	 *
 	 * @param Member $member

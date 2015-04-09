@@ -83,6 +83,27 @@ class BlogPost extends Page {
 		return $list->byID($member->ID) !== null;
 	}
 
+	/**
+	 * Determine the role of the given member
+	 * Call be called via template to determine the current user
+	 *
+	 * E.g. `Hello $RoleOf($CurrentMember.ID)`
+	 *
+	 * @param Member|integer $member
+	 * @return string|null Author, Editor, Writer, Contributor, or null if no role
+	 */
+	public function RoleOf($member) {
+		if(is_numeric($member)) $member = DataObject::get_by_id('Member', $member);
+		if(!$member) return null;
+
+		// Check if this member is an author
+		if($this->isAuthor($member)) return _t("BlogPost.AUTHOR", "Author");
+
+		// Check parent role
+		$parent = $this->Parent();
+		if($parent instanceof Blog) return $parent->RoleOf($member);
+	}
+
 
 	public function getCMSFields() {
 		Requirements::css(BLOGGER_DIR . '/css/cms.css');
