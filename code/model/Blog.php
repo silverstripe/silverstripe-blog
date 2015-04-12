@@ -285,7 +285,7 @@ class Blog extends Page implements PermissionProvider {
 			->setMultiple(true)
 			->setRightTitle('<a class="toggle-description">help</a>')
 			->setDescription('
-				An editor has control over specific Blogs, and all posts included within it. Short of being able to assign other editors to a blog, they are able to handle most changes assigned to their section.<br />
+				An editor has control over specific Blogs, and all posts included within it. Short of being able to assign other editors to a blog, they are able to handle most changes to their assigned blog.<br />
 				<br />
 				Editors have these permissions:<br />
 				<br />
@@ -305,13 +305,12 @@ class Blog extends Page implements PermissionProvider {
 			->setMultiple(true)
 			->setRightTitle('<a class="toggle-description">help</a>')
 			->setDescription('
-				A writer has control over specific BlogPosts. They are able to handle many changes to the BlogPost they are assigned to.<br />
+				A writer has full control over creating, editing and publishing BlogPosts they have authored or have been assigned to. Writers are unable to edit BlogPosts to which they are not assigned.<br />
 				<br />
 				Writers have these permissions:<br />
 				<br />
-				Update or publish any BlogPost to which they are assigned<br />
-				Assign/unassign contributors to their Blog<br />
-				Assign/unassign any member as an author of a particular BlogPost
+				Update or publish any BlogPost they have authored or have been assigned to<br />
+				Assign/unassign any member as an author of a particular BlogPost they have authored or have been assigned to
 			');
 
 		if(!$this->canEditWriters()) {
@@ -323,12 +322,11 @@ class Blog extends Page implements PermissionProvider {
 			->setMultiple(true)
 			->setRightTitle('<a class="toggle-description">help</a>')
 			->setDescription('
-				A contributor has control over specific BlogPosts. They are able to contribute but not publish or remove BlogPosts.<br />
+				Contributors have the ability to create or edit BlogPosts, but are unable to publish without authorisation of an editor. They are also unable to assign other contributing authors to any of their BlogPosts.<br />
 				<br />
 				Contributors have these permissions:<br />
 				<br />
-				Update any BlogPost to which they are assigned<br />
-				Assign/unassign any member as an author of a particular BlogPost
+				Update any BlogPost they have authored or have been assigned to
 			');
 		
 		if(!$this->canEditContributors()) {
