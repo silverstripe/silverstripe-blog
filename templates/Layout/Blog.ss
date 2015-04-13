@@ -34,7 +34,7 @@
     </article>
     
     $Form
-    $PageComments
+    $CommentsForm
         
     <% with $PaginatedList %>
 		<% include Pagination %>

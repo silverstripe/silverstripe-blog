@@ -14,7 +14,7 @@
 	</article>
     
     $Form
-	$PageComments
+	$CommentsForm
 </div>
 
 <% include BlogSideBar %>
