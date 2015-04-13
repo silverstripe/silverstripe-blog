@@ -11,19 +11,17 @@
             $FeaturedImage.setWidth(795)
         </a>
     </p>
-    
-    <% if $Excerpt %>
-        <p>
-            $Excerpt
-            <a href="$Link">
-                <%t Blog.ReadMoreAbout "Read more about '{title}'..." title=$Title %>
-            </a>
-        </p>
-    <% else %>
-        <p><a href="$Link">
-            <%t Blog.ReadMoreAbout "Read more about '{title}'..." title=$Title %>
-        </a></p>
-    <% end_if %>
-    
+	
+	<% if $Summary %>
+		$Summary
+		<p>
+	<% else %>
+		<p>$Excerpt
+	<% end_if %>
+			<a href="$Link">
+				<%t Blog.ReadMoreAbout "Read more about '{title}'..." title=$Title %>
+			</a>
+		</p>
+	
     <% include EntryMeta %>
 </div>

@@ -16,7 +16,8 @@ class BlogPost extends Page {
 
 	private static $db = array(
 		"PublishDate" => "SS_Datetime",
-		"AuthorNames" => "Varchar(1024)"
+		"AuthorNames" => "Varchar(1024)",
+		"Summary" => "HTMLText",
 	);
 
 	private static $has_one = array(
@@ -40,7 +41,7 @@ class BlogPost extends Page {
 	);
 
 	private static $searchable_fields = array(
-		"Title"
+		"Title",
 	);
 
 	private static $summary_fields = array(
@@ -110,6 +111,20 @@ class BlogPost extends Page {
 
 		$self =& $this;
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
+
+			// Add blog summary
+			$summaryHolder = ToggleCompositeField::create(
+				'CustomSummary',
+				_t('BlogPost.CUSTOMSUMMARY', 'Add A Custom Summary'),
+				array(
+					$summary = HtmlEditorField::create("Summary")
+				)
+			)->setHeadingLevel(4);
+			$summary->setDescription(_t(
+				'BlogPost.SUMMARY_DESCRIPTION',
+				"If no summary is specified the first 30 words will be used."
+			));
+			$fields->insertBefore($summaryHolder, 'Content');
 
 			// Add featured image
 			$fields->insertAfter(
@@ -308,7 +323,7 @@ class BlogPost extends Page {
 	 *
 	 * @param $wordCount int - number of words to display
 	 *
-	 * @return string 
+	 * @return string
 	**/
 	public function Excerpt($wordCount = 30) {
 		return $this->dbObject("Content")->LimitWordCount($wordCount);
