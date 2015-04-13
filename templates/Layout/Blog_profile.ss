@@ -12,7 +12,7 @@
     <% end_if %>
     
     $Form
-    $PageComments
+    $CommentsForm
 
     <% with $PaginatedList %>
         <% include Pagination %>
