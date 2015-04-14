@@ -117,9 +117,10 @@ class BlogPost extends Page {
 				'CustomSummary',
 				_t('BlogPost.CUSTOMSUMMARY', 'Add A Custom Summary'),
 				array(
-					$summary = HtmlEditorField::create("Summary")
+					$summary = HtmlEditorField::create("Summary", false)
 				)
 			)->setHeadingLevel(4);
+			$summary->setRows(5);
 			$summary->setDescription(_t(
 				'BlogPost.SUMMARY_DESCRIPTION',
 				"If no summary is specified the first 30 words will be used."
