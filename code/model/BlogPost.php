@@ -168,16 +168,20 @@ class BlogPost extends Page {
 			$options = BlogAdminSidebar::create(
 				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")),
 				$urlSegment,
-				ListboxField::create(
-					"Categories",
-					_t("BlogPost.Categories", "Categories"),
-					$self->Parent()->Categories()->map()->toArray()
-				)->setMultiple(true),
-				ListboxField::create(
-					"Tags",
-					_t("BlogPost.Tags", "Tags"),
-					$self->Parent()->Tags()->map()->toArray()
-				)->setMultiple(true),
+				TagField::create(
+					'Categories',
+					_t('BlogPost.Categories', 'Categories'),
+					$self->Parent()->Categories()->map(),
+					$self->Categories()->map(),
+					!$this->canCreateCategories()
+				),
+				TagField::create(
+					'Tags',
+					_t('BlogPost.Tags', 'Tags'),
+					$self->Parent()->Tags()->map(),
+					$self->Tags()->map(),
+					!$this->canCreateTags()
+				),
 				$authorField,
 				$authorNames
 			)->setTitle('Post Options');
@@ -193,6 +197,48 @@ class BlogPost extends Page {
 		$fields->fieldByName('Root')->setTemplate('TabSet_holder');
 
 		return $fields;
+	}
+
+	/**
+	 * Determine whether user can create new categories.
+	 *
+	 * @param int|Member|null $member
+	 *
+	 * @return bool
+	 */
+	public function canCreateCategories($member = null) {
+		$member = $member ?: Member::currentUser();
+		if(is_numeric($member)) $member = Member::get()->byID($member);
+
+		$parent = $this->Parent();
+
+		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) return false;
+
+		if($parent->isEditor($member)) return true;
+
+		return Permission::checkMember($member, 'ADMIN');
+	}
+
+	/**
+	 * Determine whether user can create new tags.
+	 *
+	 * @param int|Member|null $member
+	 *
+	 * @return bool
+	 */
+	public function canCreateTags($member = null) {
+		$member = $member ?: Member::currentUser();
+		if(is_numeric($member)) $member = Member::get()->byID($member);
+
+		$parent = $this->Parent();
+
+		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) return false;
+
+		if($parent->isEditor($member)) return true;
+
+		if($parent->isWriter($member)) return true;
+
+		return Permission::checkMember($member, 'ADMIN');
 	}
 
 	protected function onBeforeWrite() {
@@ -220,7 +266,25 @@ class BlogPost extends Page {
 		}
 	}
 
+	/**
+	 * Sets blog relationship on all categories and tags assigned to this post.
+	 *
+	 * @throws ValidationException
+	 */
+	public function onAfterWrite()
+	{
+		parent::onAfterWrite();
 
+		foreach ($this->Categories() as $category) {
+			$category->BlogID = $this->ParentID;
+			$category->write();
+		}
+
+		foreach ($this->Tags() as $tag) {
+			$tag->BlogID = $this->ParentID;
+			$tag->write();
+		}
+	}
 
 	/**
 	 * Checks the publish date to see if the blog post has actually been published.
