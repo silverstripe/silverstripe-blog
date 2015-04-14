@@ -33,5 +33,7 @@
 	},
 	"replace": {
 		"micmania1/silverstripe-blog": "*"
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
