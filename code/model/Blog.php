@@ -525,6 +525,11 @@ class Blog_Controller extends Page_Controller {
 		'profile/$URLSegment!' => 'profile'
 	);
 
+	private static $casting = array(
+		'MetaTitle' => 'Text',
+		'FilterDescription' => 'Text'
+	);
+
 
 	/** 
 	 * The current Blog Post DataList query.
@@ -648,6 +653,98 @@ class Blog_Controller extends Page_Controller {
 		return $this->httpError(404, "Not Found");
 	}
 
+	/**
+	 * Get the meta title for the current action
+	 *
+	 * @return string
+	 */
+	public function getMetaTitle() {
+		$title = $this->data()->getTitle();
+		$filter = $this->getFilterDescription();
+		if($filter) {
+			$title = "{$title} - {$filter}";
+		}
+		
+		$this->extend('updateMetaTitle', $title);
+		return $title;
+	}
+
+	/**
+	 * Returns a description of the current filter
+	 *
+	 * @return string
+	 */
+	public function getFilterDescription() {
+		$items = array();
+
+		// Check current page
+		$list = $this->PaginatedList();
+		$currentPage = $list->CurrentPage();
+
+		// Build title
+		if($currentPage > 1) {
+			$items[] = _t(
+				'Blog.FILTERDESCRIPTION_PAGE',
+				"Page {page}",
+				null,
+				array('page' => $currentPage)
+			);
+		}
+
+		// Check author
+		if($author = $this->getCurrentProfile()) {
+			$items[] = _t(
+				'Blog.FILTERDESCRIPTION_AUTHOR',
+				"By {author}",
+				null,
+				array('author' => $author->Title)
+			);
+		}
+
+		// Check tag
+		if($tag = $this->getCurrentTag()) {
+			$items[] = _t(
+				'Blog.FILTERDESCRIPTION_TAG',
+				"Tagged with {tag}",
+				null,
+				array('tag' => $tag->Title)
+			);
+		}
+
+		// Check category
+		if($category = $this->getCurrentCategory()) {
+			$items[] = _t(
+				'Blog.FILTERDESCRIPTION_CATEGORY',
+				"In category {category}",
+				null,
+				array('category' => $category->Title)
+			);
+		}
+
+		// Check archive
+		if($this->owner->getArchiveYear()) {
+			if($this->owner->getArchiveDay()) {
+				$date = $this->owner->getArchiveDate()->Nice();
+			} elseif($this->owner->getArchiveMonth ()) {
+				$date = $this->owner->getArchiveDate()->format("F, Y");
+			} else {
+				$date = $this->owner->getArchiveDate()->format("Y");
+			}
+			$items[] = _t(
+				'Blog.FILTERDESCRIPTION_DATE',
+				"In {date}",
+				null,
+				array('date' => $date)
+			);
+		}
+
+		$result = '';
+		if($items) $result = implode(', ', $items);
+
+		// Allow extension
+		$this->extend('updateFilterDescription', $result);
+		return $result;
+	}
 
 
 	/**
