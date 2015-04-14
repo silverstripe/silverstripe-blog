@@ -174,14 +174,14 @@ class BlogPost extends Page {
 					_t('BlogPost.Categories', 'Categories'),
 					$self->Parent()->Categories()->map(),
 					$self->Categories()->map(),
-					!$this->canCreateCategories()
+					!$self->canCreateCategories()
 				),
 				TagField::create(
 					'Tags',
 					_t('BlogPost.Tags', 'Tags'),
 					$self->Parent()->Tags()->map(),
 					$self->Tags()->map(),
-					!$this->canCreateTags()
+					!$self->canCreateTags()
 				),
 				$authorField,
 				$authorNames
