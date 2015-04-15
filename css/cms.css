@@ -13,7 +13,7 @@
   background-repeat: no-repeat;
 }
 
-/* line 84, ../../../../../../../usr/local/lib/ruby/gems/2.2.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
+/* line 84, ../../../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .gridfield-icon .blog-icon-timer {
   background-position: 0 0;
 }
@@ -111,20 +111,22 @@
 }
 
 /* line 124, ../scss/cms.scss */
-.toggle-description-correct-middle {
-  margin-left: 0 !important;
-  float: left !important;
-  width: 416px !important;
+.middleColumn.toggle-description-correct-middle {
+  margin-left: 0;
+  float: left;
+  width: 416px;
 }
 
 /* line 130, ../scss/cms.scss */
-.toggle-description-correct-right {
-  display: inline-block !important;
-  margin-left: 0 !important;
-  clear: none !important;
+label.right.toggle-description-correct-right {
+  display: inline-block;
+  margin-left: 0;
+  clear: none;
+  float: left;
 }
 
-/* line 136, ../scss/cms.scss */
-.toggle-description-correct-description {
-  width: 416px !important;
+/* line 137, ../scss/cms.scss */
+.description.toggle-description-correct-description {
+  width: 416px;
+  padding: 12px 0;
 }
