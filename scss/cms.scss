@@ -121,18 +121,20 @@
 	margin-left: 4px;
 }
 
-.toggle-description-correct-middle {
-	margin-left: 0 !important;
-	float: left !important;
-	width: 416px !important;
+.middleColumn.toggle-description-correct-middle {
+	margin-left: 0;
+	float: left;
+	width: 416px;
 }
 
-.toggle-description-correct-right {
-	display: inline-block !important;
-	margin-left: 0 !important;
-	clear: none !important;
+label.right.toggle-description-correct-right {
+	display: inline-block;
+	margin-left: 0;
+	clear: none;
+	float: left;
 }
 
-.toggle-description-correct-description {
-	width: 416px !important;
+.description.toggle-description-correct-description {
+	width: 416px;
+	padding: 12px 0;
 }
