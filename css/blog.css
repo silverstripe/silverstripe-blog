@@ -1,43 +1,14 @@
 .no-sidebar .content-container.size3of4 {
-    width: 75%;
+  width: 75%;
 }
 
 .blog-entry .post-image img {
-    width: 98.75%;
+  width: 98.75%;
 }
 
 .blog-sidebar .WidgetHolder ul {
-    margin-left: 0;
+  margin-left: 0;
 }
-    .blog-sidebar .WidgetHolder ul li {
-        list-style-type: none;
-    }
-
-#Form_CommentsForm + h4 {
-	clear: both;
-	padding-top: 35px;
-	display: block;
-}
-
-.typography ul.comments-list {
-	margin: 0;
-}
-
-.typography ul.comments-list > li {
-	list-style: none;
-	border-bottom: 1px solid #e5e5e5;
-	padding: 10px 0;
-}
-
-.typography ul.comments-list > li .action-links {
-	margin: 0;
-}
-
-.typography ul.comments-list > li .action-links li {
-	list-style: none;
-	margin-right: 10px;
-}
-
-.commenting-rss-feed {
-	clear: both;
+.blog-sidebar .WidgetHolder ul li {
+  list-style-type: none;
 }
