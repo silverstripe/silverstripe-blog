@@ -7,24 +7,20 @@
 /*
  * Sprite maps & Icons
  */
-/* line 48, blog-icon/*.png */
 .blog-icon-sprite, .gridfield-icon .blog-icon-timer {
   background-image: url('../images/blog-icon-s0a5ab5f851.png');
   background-repeat: no-repeat;
 }
 
-/* line 84, ../../../../../Library/Ruby/Gems/2.0.0/gems/compass-core-1.0.3/stylesheets/compass/utilities/sprites/_base.scss */
 .gridfield-icon .blog-icon-timer {
   background-position: 0 0;
 }
 
-/* line 20, ../scss/cms.scss */
 #FeaturedImage .middleColumn {
   clear: none;
   float: left;
 }
 
-/* line 25, ../scss/cms.scss */
 .blog-admin-sidebar {
   width: 280px;
   border-right: none;
@@ -34,11 +30,9 @@
   bottom: 0px;
   height: 100%;
 }
-/* line 34, ../scss/cms.scss */
 .blog-admin-sidebar .cms-panel-toggle a {
   text-align: left;
 }
-/* line 38, ../scss/cms.scss */
 .blog-admin-sidebar ~ .blog-admin-outer {
   width: 100%;
   padding-right: 280px;
@@ -48,59 +42,47 @@
   overflow-x: hidden;
   box-sizing: border-box;
 }
-/* line 47, ../scss/cms.scss */
 .blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset {
   position: relative;
   overflow: auto;
   height: 100%;
   width: 100%;
 }
-/* line 54, ../scss/cms.scss */
 .blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset #Title label {
   float: none;
 }
-/* line 57, ../scss/cms.scss */
 .blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset #Title .middleColumn, .blog-admin-sidebar ~ .blog-admin-outer > .ss-tabset #Title input {
   width: 100%;
   max-width: 100%;
   margin-left: 0;
 }
-/* line 68, ../scss/cms.scss */
 .blog-admin-sidebar .cms-content-view > .field + .field {
   margin-top: 10px;
 }
-/* line 73, ../scss/cms.scss */
 .blog-admin-sidebar .cms-content-view > .field.urlsegment .preview {
   padding-top: 0;
   line-height: 25px;
 }
-/* line 78, ../scss/cms.scss */
 .blog-admin-sidebar .cms-content-view > .field.urlsegment .edit {
   float: right;
 }
-/* line 85, ../scss/cms.scss */
 .blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn > .date {
   width: 60%;
 }
-/* line 89, ../scss/cms.scss */
 .blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn > .time {
   width: 36%;
   float: right;
 }
-/* line 94, ../scss/cms.scss */
 .blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn .middleColumn, .blog-admin-sidebar .cms-content-view > .field.datetime > .middleColumn input {
   width: 100%;
 }
-/* line 103, ../scss/cms.scss */
 .blog-admin-sidebar.collapsed ~ .blog-admin-outer {
   padding-right: 41px;
 }
-/* line 109, ../scss/cms.scss */
 .blog-admin-sidebar.cms-content-tools .cms-panel-content {
   width: auto;
 }
 
-/* line 115, ../scss/cms.scss */
 .toggle-description {
   text-indent: -1000000px;
   display: inline-block;
@@ -110,14 +92,12 @@
   margin-left: 4px;
 }
 
-/* line 124, ../scss/cms.scss */
 .middleColumn.toggle-description-correct-middle {
   margin-left: 0;
   float: left;
   width: 416px;
 }
 
-/* line 130, ../scss/cms.scss */
 label.right.toggle-description-correct-right {
   display: inline-block;
   margin-left: 0;
@@ -125,22 +105,26 @@ label.right.toggle-description-correct-right {
   float: left;
 }
 
-/* line 137, ../scss/cms.scss */
 .description.toggle-description-correct-description {
   width: 416px;
   padding: 12px 0;
 }
 
-/* line 144, ../scss/cms.scss */
 .custom-summary .ui-accordion-content .field {
   margin: 0;
 }
-/* line 148, ../scss/cms.scss */
 .custom-summary .ui-accordion-content,
 .custom-summary .ui-accordion-content .field {
   padding: 0;
 }
-/* line 153, ../scss/cms.scss */
 .custom-summary .ui-icon-triangle-1-e {
   background-position: -16px -128px;
+}
+
+.cms table.ss-gridfield-table tr td.MergeAction {
+  width: 150px;
+}
+
+.cms table.ss-gridfield-table tr td.MergeAction select {
+  width: 75px;
 }

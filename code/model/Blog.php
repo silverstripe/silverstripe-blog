@@ -5,7 +5,7 @@
  *
  * @package silverstripe
  * @subpackage blog
- * 
+ *
  * @method HasManyList Tags() List of tags in this blog
  * @method HasManyList Categories() List of categories in this blog
  * @method ManyManyList Editors() List of editors
@@ -13,7 +13,7 @@
  * @method ManyManyList Contributors() List of contributors
  *
  * @author Michael Strong <github@michaelstrong.co.uk>
-**/
+ **/
 class Blog extends Page implements PermissionProvider {
 
 	/**
@@ -63,7 +63,7 @@ class Blog extends Page implements PermissionProvider {
 		'Writers' => 'Member',
 		'Contributors' => 'Member',
 	);
-	
+
 	private static $allowed_children = array(
 		"BlogPost",
 	);
@@ -80,41 +80,38 @@ class Blog extends Page implements PermissionProvider {
 
 	public function getCMSFields() {
 		Requirements::css(BLOGGER_DIR . '/css/cms.css');
-		
 		Requirements::javascript(BLOGGER_DIR . '/js/expandable-help-text.js');
+		Requirements::javascript(BLOGGER_DIR . '/js/merge-action.js');
 
 		$self =& $this;
-		$this->beforeUpdateCMSFields(function($fields) use ($self) {
 
-			// Don't show this tab if edit is not allowed
-			if(!$self->canEdit()) return;
-
-			// Create categories and tag config
-			$config = GridFieldConfig_RecordEditor::create();
-			$config->removeComponentsByType("GridFieldAddNewButton");
-			$config->addComponent(new GridFieldAddByDBField("buttons-before-left"));
+		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
+			if(!$self->canEdit()) {
+				return;
+			}
 
 			$categories = GridField::create(
 				"Categories",
 				_t("Blog.Categories", "Categories"),
 				$self->Categories(),
-				$config
+				GridFieldCategorisationConfig::create(15, $self->Categories(), 'BlogCategory', 'Categories', 'BlogPosts')
 			);
 
 			$tags = GridField::create(
 				"Tags",
 				_t("Blog.Tags", "Tags"),
 				$self->Tags(),
-				$config
+				GridFieldCategorisationConfig::create(15, $self->Categories(), 'BlogTag', 'Tags', 'BlogPosts')
 			);
 
-			$fields->addFieldsToTab("Root.BlogOptions", array(
+			$fields->addFieldsToTab("Root.Categorisation", array(
 				$categories,
 				$tags
 			));
 		});
-		
+
 		$fields = parent::getCMSFields();
+
 		return $fields;
 	}
 
@@ -122,6 +119,7 @@ class Blog extends Page implements PermissionProvider {
 	 * Check if this member is an editor of the blog
 	 *
 	 * @param Member $member
+	 *
 	 * @return boolean
 	 */
 	public function isEditor($member) {
@@ -134,6 +132,7 @@ class Blog extends Page implements PermissionProvider {
 	 * Check if this member is a writer of the blog
 	 *
 	 * @param Member $member
+	 *
 	 * @return boolean
 	 */
 	public function isWriter($member) {
@@ -146,6 +145,7 @@ class Blog extends Page implements PermissionProvider {
 	 * Check if this member is a contributor of the blog
 	 *
 	 * @param Member $member
+	 *
 	 * @return boolean
 	 */
 	public function isContributor($member) {
@@ -161,6 +161,7 @@ class Blog extends Page implements PermissionProvider {
 	 * E.g. `Hello $RoleOf($CurrentMember.ID)`
 	 *
 	 * @param Member|integer $member
+	 *
 	 * @return string|null Author, Editor, Writer, Contributor, or null if no role
 	 */
 	public function RoleOf($member) {
@@ -178,6 +179,7 @@ class Blog extends Page implements PermissionProvider {
 	 *
 	 * @param Member $member
 	 * @param DataList $list Relation to check
+	 *
 	 * @return boolean
 	 */
 	protected function isMemberOf($member, $list) {
@@ -191,11 +193,10 @@ class Blog extends Page implements PermissionProvider {
 	}
 
 
-
 	public function canEdit($member = null) {
 		$member = $member ?: Member::currentUser();
 		if(is_numeric($member)) $member = Member::get()->byID($member);
-		
+
 		// Allow editors to edit this page
 		if($this->isEditor($member)) return true;
 
@@ -206,6 +207,7 @@ class Blog extends Page implements PermissionProvider {
 	 * Determine if this user can edit the editors list
 	 *
 	 * @param Member $member
+	 *
 	 * @return boolean
 	 */
 	public function canEditEditors($member = null) {
@@ -222,6 +224,7 @@ class Blog extends Page implements PermissionProvider {
 	 * Determine if this user can edit writers list
 	 *
 	 * @param Member $member
+	 *
 	 * @return boolean
 	 */
 	public function canEditWriters($member = null) {
@@ -242,12 +245,13 @@ class Blog extends Page implements PermissionProvider {
 	 * Determines if this user can edit the contributors list
 	 *
 	 * @param type $member
+	 *
 	 * @return boolean
 	 */
 	public function canEditContributors($member = null) {
 		$member = $member ?: Member::currentUser();
 		if(is_numeric($member)) $member = Member::get()->byID($member);
-		
+
 		$extended = $this->extendedCan('canEditContributors', $member);
 		if($extended !== null) return $extended;
 
@@ -273,7 +277,7 @@ class Blog extends Page implements PermissionProvider {
 
 	public function getSettingsFields() {
 		$fields = parent::getSettingsFields();
-		$fields->addFieldToTab("Root.Settings", 
+		$fields->addFieldToTab("Root.Settings",
 			NumericField::create("PostsPerPage", _t("Blog.PostsPerPage", "Posts Per Page"))
 		);
 
@@ -328,11 +332,11 @@ class Blog extends Page implements PermissionProvider {
 				<br />
 				Update any BlogPost they have authored or have been assigned to
 			');
-		
+
 		if(!$this->canEditContributors()) {
 			$contributorField = $contributorField->performDisabledTransformation();
 		}
-		
+
 		$fields->addFieldsToTab('Root.Users', array(
 			$editorField,
 			$writerField,
@@ -347,14 +351,13 @@ class Blog extends Page implements PermissionProvider {
 	 * Return blog posts
 	 *
 	 * @return DataList of BlogPost objects
-	**/
+	 **/
 	public function getBlogPosts() {
 		$blogPosts = BlogPost::get()->filter("ParentID", $this->ID);
 		//Allow decorators to manipulate list
 		$this->extend('updateGetBlogPosts', $blogPosts);
 		return $blogPosts;
 	}
-
 
 
 	/**
@@ -365,7 +368,7 @@ class Blog extends Page implements PermissionProvider {
 	 * @param $day int
 	 *
 	 * @return DataList
-	**/
+	 **/
 	public function getArchivedBlogPosts($year, $month = null, $day = null) {
 		$query = $this->getBlogPosts()->dataQuery();
 
@@ -387,8 +390,9 @@ class Blog extends Page implements PermissionProvider {
 
 	/**
 	 * Get a link to a Member profile.
-	 * 
+	 *
 	 * @param urlSegment
+	 *
 	 * @return String
 	 */
 	public function ProfileLink($urlSegment) {
@@ -404,7 +408,6 @@ class Blog extends Page implements PermissionProvider {
 	public function getLumberjackTitle() {
 		return _t('Blog.LumberjackTitle', 'Blog Posts');
 	}
-
 
 
 	/**
@@ -499,7 +502,6 @@ class Blog extends Page implements PermissionProvider {
 }
 
 
-
 /**
  * Blog Controller
  *
@@ -507,7 +509,7 @@ class Blog extends Page implements PermissionProvider {
  * @subpackage blog
  *
  * @author Michael Strong <github@michaelstrong.co.uk>
-**/
+ **/
 class Blog_Controller extends Page_Controller {
 
 	private static $allowed_actions = array(
@@ -531,13 +533,12 @@ class Blog_Controller extends Page_Controller {
 	);
 
 
-	/** 
+	/**
 	 * The current Blog Post DataList query.
 	 *
 	 * @var DataList
-	**/
+	 **/
 	protected $blogPosts;
-
 
 
 	public function index() {
@@ -549,7 +550,7 @@ class Blog_Controller extends Page_Controller {
 	 * Renders a Blog Member's profile.
 	 *
 	 * @return SS_HTTPResponse
-	**/
+	 **/
 	public function profile() {
 		$profile = $this->getCurrentProfile();
 
@@ -564,9 +565,9 @@ class Blog_Controller extends Page_Controller {
 
 	/**
 	 * Get the Member associated with the current URL segment.
-	 * 
+	 *
 	 * @return Member|null
-	**/
+	 **/
 	public function getCurrentProfile() {
 		$urlSegment = $this->request->param('URLSegment');
 
@@ -581,9 +582,9 @@ class Blog_Controller extends Page_Controller {
 
 	/**
 	 * Get posts related to the current Member profile
-	 * 
+	 *
 	 * @return DataList|null
-	**/
+	 **/
 	public function getCurrentProfilePosts() {
 		$profile = $this->getCurrentProfile();
 
@@ -598,7 +599,7 @@ class Blog_Controller extends Page_Controller {
 	 * Renders an archive for a specificed date. This can be by year or year/month
 	 *
 	 * @return SS_HTTPResponse
-	**/
+	 **/
 	public function archive() {
 		$year = $this->getArchiveYear();
 		$month = $this->getArchiveMonth();
@@ -622,12 +623,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Renders the blog posts for a given tag.
 	 *
 	 * @return SS_HTTPResponse
-	**/
+	 **/
 	public function tag() {
 		$tag = $this->getCurrentTag();
 		if($tag) {
@@ -638,12 +638,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Renders the blog posts for a given category
 	 *
 	 * @return SS_HTTPResponse
-	**/
+	 **/
 	public function category() {
 		$category = $this->getCurrentCategory();
 		if($category) {
@@ -664,7 +663,7 @@ class Blog_Controller extends Page_Controller {
 		if($filter) {
 			$title = "{$title} - {$filter}";
 		}
-		
+
 		$this->extend('updateMetaTitle', $title);
 		return $title;
 	}
@@ -725,7 +724,7 @@ class Blog_Controller extends Page_Controller {
 		if($this->owner->getArchiveYear()) {
 			if($this->owner->getArchiveDay()) {
 				$date = $this->owner->getArchiveDate()->Nice();
-			} elseif($this->owner->getArchiveMonth ()) {
+			} elseif($this->owner->getArchiveMonth()) {
 				$date = $this->owner->getArchiveDate()->format("F, Y");
 			} else {
 				$date = $this->owner->getArchiveDate()->format("Y");
@@ -751,7 +750,7 @@ class Blog_Controller extends Page_Controller {
 	 * Displays an RSS feed of blog posts
 	 *
 	 * @return string HTML
-	**/
+	 **/
 	public function rss() {
 		$rss = new RSSFeed($this->getBlogPosts(), $this->Link(), $this->MetaTitle, $this->MetaDescription);
 		$this->extend('updateRss', $rss);
@@ -759,12 +758,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Returns a list of paginated blog posts based on the blogPost dataList
 	 *
 	 * @return PaginatedList
-	**/
+	 **/
 	public function PaginatedList() {
 		$posts = new PaginatedList($this->blogPosts);
 
@@ -783,12 +781,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Tag Getter for use in templates.
 	 *
 	 * @return BlogTag|null
-	**/
+	 **/
 	public function getCurrentTag() {
 		$tag = $this->request->param("Tag");
 		if($tag) {
@@ -800,12 +797,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Category Getter for use in templates.
 	 *
 	 * @return BlogCategory|null
-	**/
+	 **/
 	public function getCurrentCategory() {
 		$category = $this->request->param("Category");
 		if($category) {
@@ -817,12 +813,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Fetches the archive year from the url
 	 *
 	 * @return int|null
-	**/
+	 **/
 	public function getArchiveYear() {
 		$year = $this->request->param("Year");
 		if(preg_match("/^[0-9]{4}$/", $year)) {
@@ -832,12 +827,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Fetches the archive money from the url.
 	 *
 	 * @return int|null
-	**/
+	 **/
 	public function getArchiveMonth() {
 		$month = $this->request->param("Month");
 		if(preg_match("/^[0-9]{1,2}$/", $month)) {
@@ -852,12 +846,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Fetches the archive day from the url
 	 *
 	 * @return int|null
-	**/
+	 **/
 	public function getArchiveDay() {
 		$day = $this->request->param("Day");
 		if(preg_match("/^[0-9]{1,2}$/", $day)) {
@@ -871,12 +864,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Returns the current archive date.
 	 *
 	 * @return Date
-	**/
+	 **/
 	public function getArchiveDate() {
 		$year = $this->getArchiveYear();
 		$month = $this->getArchiveMonth();
@@ -896,12 +888,11 @@ class Blog_Controller extends Page_Controller {
 	}
 
 
-
 	/**
 	 * Returns a link to the RSS feed.
 	 *
 	 * @return string URL
-	**/
+	 **/
 	public function getRSSLink() {
 		return $this->Link("rss");
 	}

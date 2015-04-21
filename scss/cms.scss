@@ -1,12 +1,10 @@
 /**
  * CMS Styles
  */
-
 /**
  * Include Compass framework
  */
 @import "compass";
-
 /*
  * Sprite maps & Icons
  */
@@ -56,7 +54,7 @@
 				}
 				.middleColumn, input {
 					width: 100%;
-					max-width:100%;
+					max-width: 100%;
 					margin-left: 0;
 				}
 			}
@@ -88,7 +86,7 @@
 
 					> .time {
 						width: 36%;
-						float:right;
+						float: right;
 					}
 
 					.middleColumn, input {
@@ -140,7 +138,6 @@ label.right.toggle-description-correct-right {
 }
 
 .custom-summary {
-
 	.ui-accordion-content .field {
 		margin: 0;
 	}
@@ -153,5 +150,12 @@ label.right.toggle-description-correct-right {
 	.ui-icon-triangle-1-e {
 		background-position: -16px -128px;
 	}
+}
 
+.cms table.ss-gridfield-table tr td.MergeAction {
+	width: 150px;
+}
+
+.cms table.ss-gridfield-table tr td.MergeAction select {
+	width: 75px;
 }
