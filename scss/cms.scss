@@ -138,3 +138,20 @@ label.right.toggle-description-correct-right {
 	width: 416px;
 	padding: 12px 0;
 }
+
+.custom-summary {
+
+	.ui-accordion-content .field {
+		margin: 0;
+	}
+
+	.ui-accordion-content,
+	.ui-accordion-content .field {
+		padding: 0;
+	}
+
+	.ui-icon-triangle-1-e {
+		background-position: -16px -128px;
+	}
+
+}
