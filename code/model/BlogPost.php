@@ -119,7 +119,9 @@ class BlogPost extends Page {
 				array(
 					$summary = HtmlEditorField::create("Summary", false)
 				)
-			)->setHeadingLevel(4);
+			)
+				->setHeadingLevel(4)
+				->addExtraClass('custom-summary');
 			$summary->setRows(5);
 			$summary->setDescription(_t(
 				'BlogPost.SUMMARY_DESCRIPTION',
