@@ -101,7 +101,7 @@ class Blog extends Page implements PermissionProvider {
 				"Tags",
 				_t("Blog.Tags", "Tags"),
 				$self->Tags(),
-				GridFieldCategorisationConfig::create(15, $self->Categories(), 'BlogTag', 'Tags', 'BlogPosts')
+				GridFieldCategorisationConfig::create(15, $self->Tags(), 'BlogTag', 'Tags', 'BlogPosts')
 			);
 
 			$fields->addFieldsToTab("Root.Categorisation", array(
