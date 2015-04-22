@@ -128,3 +128,8 @@ label.right.toggle-description-correct-right {
 .cms table.ss-gridfield-table tr td.MergeAction select {
   width: 75px;
 }
+
+.cms-content-actions,
+.cms-preview-controls {
+  z-index: 999;
+}
