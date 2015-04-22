@@ -1,38 +1,33 @@
 fi:
+  Blog:
+    Categories: Kategoriat
+    PostsPerPage: 'Postausta per sivu'
+    Tags: Avainsanat
+  BlogArchiveWidget:
+    Blog: Blogi
+    NumberToDisplay: 'Näytetään'
+  BlogCategoriesWidget:
+    Blog: Blogi
+  BlogCategory:
+    Title: Otsikko
+  BlogPost:
+    Categories: Kategoriat
+    FeaturedImage: 'Pääkuvitus'
+    PageTitleLabel: 'Otsikko'
+    PublishDate: 'Julkaisupäivä'
+    Tags: Avainsanat
+  BlogRecentPostsWidget:
+    Blog: Blogi
+    NumberOfPosts: 'Kirjoituksien määrä'
+  BlogTag:
+    Title: Otsikko
+  BlogTagsWidget:
+    Blog: Blogi
   GridFieldAddByDBField:
+    Add: 'Lisää {name}'
     AddFail: '{class} ei voida tallentaa tietokantaan.'
     PermissionFail: 'Sinulla ei ole oikeuksia luoda {class}.'
-    Add: 'Lisää {name}'
   GridFieldBlogPostState:
-    StateTitle: 'Tila'
     Draft: '<i class="btn-icon blog-icon btn-icon-pencil"></i> Versio tallennettu {date}'
     Published: '<i class="btn-icon blog-icon btn-icon-accept"></i> Julkaistu {date}'
     Timer: '<i class="blog-icon blog-icon-timer"></i> Julkaistaan {date}'
-    Modified: 'Muokattu'
-  BlogPost:
-    PublishDate: 'Julkaisupäivä'
-    Categories: 'Kategoriat'
-    Tags: 'Avainsanat'
-    FeaturedImage: 'Pääkuvitus'
-    PageTitleLabel: 'Otsikko'
-  Blog:
-    BlogPosts: 'Blogikirjoitus'
-    Categories: 'Kategoriat'
-    Tags: 'Avainsanat'
-    PostsPerPage: 'Postausta per sivu'
-  BlogTag:
-    Title: 'Otsikko'
-  BlogCategory:
-    Title: 'Otsikko'
-  BlogRecentPostsWidget:
-    Blog: 'Blogi'
-    NumberOfPosts: 'Kirjoituksien määrä'
-  BlogCategoriesWidget:
-    Blog: 'Blogi'
-  BlogArchiveWidget:
-    Blog: 'Blogi'
-    Monthly: 'Kuukausittain'
-    Yearly: 'Vuosittain'
-    NumberToDisplay: 'Näytetään'
-  BlogTagsWidget:
-    Blog: 'Blogi'

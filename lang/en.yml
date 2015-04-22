@@ -16,6 +16,18 @@ en:
     Tag: Tag
     Tagged: Tagged
     Tags: Tags
+    By: by
+    CONTRIBUTOR: Contributor
+    EDITOR: Editor
+    FILTERDESCRIPTION_AUTHOR: 'By {author}'
+    FILTERDESCRIPTION_CATEGORY: 'In category {category}'
+    FILTERDESCRIPTION_DATE: 'In {date}'
+    FILTERDESCRIPTION_PAGE: 'Page {page}'
+    FILTERDESCRIPTION_TAG: 'Tagged with {tag}'
+    PERMISSIONS_CATEGORY: 'Blog permissions'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Manage users for individual blogs'
+    PERMISSION_MANAGE_USERS_HELP: 'Allow assignment of Editors, Writers, or Contributors to blogs'
+    WRITER: Writer
   BlogArchiveWidget:
     Blog: Blog
     NumberToDisplay: 'No. to Display'
@@ -39,6 +51,11 @@ en:
     PublishDate: 'Publish Date'
     SINGULARNAME: 'Blog Post'
     Tags: Tags
+    AUTHOR: Author
+    AdditionalCredits: 'Additional Credits'
+    Authors: Authors
+    CUSTOMSUMMARY: 'Add A Custom Summary'
+    SUMMARY_DESCRIPTION: 'If no summary is specified the first 30 words will be used.'
   BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Number of Posts'
