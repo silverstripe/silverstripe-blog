@@ -64,9 +64,9 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
 	 * {@inheritdoc}
 	 */
 	public function getColumnContent($gridField, $record, $columnName) {
-		if($columnName === 'MergeAction') {
-			$dropdown = new DropdownField('Target', 'Target', $this->records->map());
-
+		if($columnName === 'MergeAction' && $record->{$this->childMethod}()->Count() > 0) {
+			$dropdown = new DropdownField('Target', 'Target', $this->records->exclude('ID', $record->ID)->map());
+			
 			$prefix = strtolower($this->parentMethod . '-' . $this->childMethod);
 
 			$action = GridFieldFormAction::create(
@@ -84,7 +84,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
 				'data-target' => $prefix . '-target-record-' . $record->ID
 			));
 
-			return $dropdown->Field() . $action->Field() . '<a class="MergeActionReveal">move posts to</a>';
+			return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
 		}
 
 		return null;
