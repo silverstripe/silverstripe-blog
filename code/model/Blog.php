@@ -80,8 +80,7 @@ class Blog extends Page implements PermissionProvider {
 
 	public function getCMSFields() {
 		Requirements::css(BLOGGER_DIR . '/css/cms.css');
-		Requirements::javascript(BLOGGER_DIR . '/js/expandable-help-text.js');
-		Requirements::javascript(BLOGGER_DIR . '/js/merge-action.js');
+		Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
 
 		$self =& $this;
 
