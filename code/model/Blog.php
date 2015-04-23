@@ -90,23 +90,25 @@ class Blog extends Page implements PermissionProvider {
 			}
 
 			$categories = GridField::create(
-				"Categories",
-				_t("Blog.Categories", "Categories"),
+				'Categories',
+				_t('Blog.Categories', 'Categories'),
 				$self->Categories(),
 				GridFieldCategorisationConfig::create(15, $self->Categories(), 'BlogCategory', 'Categories', 'BlogPosts')
 			);
 
 			$tags = GridField::create(
-				"Tags",
-				_t("Blog.Tags", "Tags"),
+				'Tags',
+				_t('Blog.Tags', 'Tags'),
 				$self->Tags(),
 				GridFieldCategorisationConfig::create(15, $self->Tags(), 'BlogTag', 'Tags', 'BlogPosts')
 			);
 
-			$fields->addFieldsToTab("Root.Categorisation", array(
+			$fields->addFieldsToTab('Root.Categorisation', array(
 				$categories,
 				$tags
 			));
+
+			$fields->findOrMakeTab('Root.Categorisation')->addExtraClass('blog-cms-categorisation');
 		});
 
 		$fields = parent::getCMSFields();
