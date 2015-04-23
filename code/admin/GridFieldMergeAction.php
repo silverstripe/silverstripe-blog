@@ -84,7 +84,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
 				'data-target' => $prefix . '-target-record-' . $record->ID
 			));
 
-			return $dropdown->Field() . $action->Field() . '<a class="MergeActionReveal">move posts to</a>';
+			return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
 		}
 
 		return null;
@@ -101,7 +101,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
 	 * {@inheritdoc}
 	 */
 	public function getColumnMetadata($gridField, $columnName) {
-		return array('title' => 'Move Posts To');
+		return array('title' => 'Move posts to');
 	}
 
 	/**
