@@ -133,3 +133,12 @@ label.right.toggle-description-correct-right {
 .cms-preview-controls {
   z-index: 999;
 }
+
+#Form_EditForm_Categories .MergeActionReveal:after,
+#Form_EditForm_Tags .MergeActionReveal:after {
+  content: '';
+  background: url("../images/move-icon.png");
+  display: block;
+  height: 16px;
+  width: 16px;
+}

@@ -10,6 +10,7 @@
  */
 @import "compass/utilities/sprites/base";
 @import "blog-icon/*.png";
+// buttons
 
 .gridfield-icon {
 	@include all-blog-icon-sprites;
@@ -163,4 +164,19 @@ label.right.toggle-description-correct-right {
 .cms-content-actions,
 .cms-preview-controls {
 	z-index: 999;
+}
+
+// categories tags (to be moved to a seperate file)
+
+#Form_EditForm_Categories,
+#Form_EditForm_Tags {
+	// ID to be changed for a .class once a developer adds one one to the parent of both IDs
+
+	.MergeActionReveal:after {
+		content: '';
+		background: url('../images/move-icon.png');
+		display: block;
+		height: 16px;
+		width: 16px;
+	}
 }
