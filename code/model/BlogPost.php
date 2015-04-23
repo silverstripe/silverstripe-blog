@@ -108,6 +108,7 @@ class BlogPost extends Page {
 
 	public function getCMSFields() {
 		Requirements::css(BLOGGER_DIR . '/css/cms.css');
+		Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
 
 		$self =& $this;
 		$this->beforeUpdateCMSFields(function($fields) use ($self) {
