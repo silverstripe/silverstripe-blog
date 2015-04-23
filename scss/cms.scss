@@ -172,11 +172,16 @@ label.right.toggle-description-correct-right {
 #Form_EditForm_Tags {
 	// ID to be changed for a .class once a developer adds one one to the parent of both IDs
 
+	.MergeActionReveal {
+		margin-left: 10px;
+	}
+
 	.MergeActionReveal:after {
 		content: '';
 		background: url('../images/move-icon.png');
-		display: block;
+		display: inline-block;
 		height: 16px;
 		width: 16px;
+		margin-left: 4px;
 	}
 }

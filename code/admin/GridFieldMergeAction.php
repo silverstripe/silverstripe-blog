@@ -101,7 +101,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
 	 * {@inheritdoc}
 	 */
 	public function getColumnMetadata($gridField, $columnName) {
-		return array('title' => 'Move Posts To');
+		return array('title' => 'Move posts to');
 	}
 
 	/**

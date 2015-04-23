@@ -134,11 +134,16 @@ label.right.toggle-description-correct-right {
   z-index: 999;
 }
 
+#Form_EditForm_Categories .MergeActionReveal,
+#Form_EditForm_Tags .MergeActionReveal {
+  margin-left: 10px;
+}
 #Form_EditForm_Categories .MergeActionReveal:after,
 #Form_EditForm_Tags .MergeActionReveal:after {
   content: '';
   background: url("../images/move-icon.png");
-  display: block;
+  display: inline-block;
   height: 16px;
   width: 16px;
+  margin-left: 4px;
 }
