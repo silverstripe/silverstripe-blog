@@ -64,9 +64,9 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
 	 * {@inheritdoc}
 	 */
 	public function getColumnContent($gridField, $record, $columnName) {
-		if($columnName === 'MergeAction') {
+		if($columnName === 'MergeAction' && $record->{$this->childMethod}()->Count() > 0) {
 			$dropdown = new DropdownField('Target', 'Target', $this->records->exclude('ID', $record->ID)->map());
-
+			
 			$prefix = strtolower($this->parentMethod . '-' . $this->childMethod);
 
 			$action = GridFieldFormAction::create(
