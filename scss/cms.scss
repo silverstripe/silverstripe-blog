@@ -152,12 +152,20 @@ label.right.toggle-description-correct-right {
 	}
 }
 
-.cms table.ss-gridfield-table tr td.MergeAction {
-	width: 150px;
-}
+.cms table.ss-gridfield-table {
+	tr td.MergeAction {
+		width: 225px;
 
-.cms table.ss-gridfield-table tr td.MergeAction select {
-	width: 75px;
+		a {
+			display: block;
+			height: 100%;
+			width: 100%;
+		}
+
+		select {
+			width: 150px;
+		}
+	}
 }
 
 .cms-content-actions,
