@@ -30,5 +30,8 @@
 	"suggest": {
 		"silverstripe/widgets": "Some widgets come with the blog which are compatible with the widgets module.",
 		"silverstripe/comments": "This module adds comments to your blog."
+	},
+	"replace": {
+		"micmania1/silverstripe-blog": "*"
 	}
 }
