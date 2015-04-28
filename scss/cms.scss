@@ -174,11 +174,7 @@ label.right.toggle-description-correct-right {
 	z-index: 999;
 }
 
-// categories tags (to be moved to a seperate file)
-
-#Form_EditForm_Categories,
-#Form_EditForm_Tags {
-	// ID to be changed for a .class once a developer adds one one to the parent of both IDs
+.blog-cms-categorisation {
 
 	.MergeActionReveal {
 		margin-left: 10px;
