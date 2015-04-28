@@ -3,7 +3,7 @@
 /**
  * @deprecated since version 2.0
  */
-class BlogTree extends Blog implements MigratableObject {
+class BlogTree extends Page implements MigratableObject {
 
 	private static $hide_ancestor = 'BlogTree';
 
@@ -19,7 +19,7 @@ class BlogTree extends Blog implements MigratableObject {
 
 	public function up() {
 		if($this->ClassName === 'BlogTree') {
-			$this->ClassName = 'Blog';
+			$this->ClassName = 'Page';
 			$this->write();
 		}
 	}
@@ -28,5 +28,5 @@ class BlogTree extends Blog implements MigratableObject {
 /**
  * @deprecated since version 2.0
  */
-class BlogTree_Controller extends Blog_Controller {
+class BlogTree_Controller extends Page_Controller {
 }
