@@ -107,6 +107,7 @@ class Blog extends Page implements PermissionProvider {
 				$categories,
 				$tags
 			));
+			$fields->findOrMakeTab("Root.Categorisation")->addExtraClass('blog-cms-categorisation');
 		});
 
 		$fields = parent::getCMSFields();
