@@ -10,7 +10,7 @@
 class BlogMemberExtension extends DataExtension {
 
 	private static $db = array(
-		'URLSegment' => 'Varchar',
+		'URLSegment' => 'Varchar(50)',
 		'BlogProfileSummary' => 'Text'
 	);
 
@@ -47,8 +47,7 @@ class BlogMemberExtension extends DataExtension {
 	 */
 	public function generateURLSegment() {
 		$filter = URLSegmentFilter::create();
-		$name = $this->owner->FirstName . ' ' . $this->owner->Surname;
-		$urlSegment = $filter->filter($name);
+		$urlSegment = $filter->filter($this->owner->getName());
 
 		// Fallback to generic profile name if path is empty (= no valid, convertable characters)
 		if(!$urlSegment || $urlSegment == '-' || $urlSegment == '-1') {
@@ -72,7 +71,7 @@ class BlogMemberExtension extends DataExtension {
 			$conflict = $conflict->exclude('ID', $this->owner->ID);
 		}
 
-		return $conflict->count() == 0;
+		return !$conflict->exists();
 	}
 
 }
