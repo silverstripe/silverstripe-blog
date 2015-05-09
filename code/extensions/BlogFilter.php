@@ -71,7 +71,7 @@ class BlogFilter extends Lumberjack {
 			);
 
 			$tab = new Tab('ChildPages', $this->getLumberjackTitle(), $gridField);
-			$fields->insertAfter($tab, 'Main');
+			$fields->insertBefore($tab, 'Main');
 		}
 	}
 
