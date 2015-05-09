@@ -1,150 +1,148 @@
-#####################################################
 # Mock date is set to 2013-10-01 20:00:00
-#####################################################
+
 Group:
-  admins:
+  Administrators:
     Title: Administrators
-  editors:
+  Editors:
     Title: Editors
-  blog-users:
+  BlogUsers:
     Title: Blog Users
-    Code: blog-users
+    Code: BlogUsers
 
 Permission:
-  admins:
+  Administrators:
     Code: ADMIN
-    Group: =>Group.admins
-  editors:
+    Group: =>Group.Administrators
+  Editors:
     Code: CMS_ACCESS_CMSMain
-    Group: =>Group.editors
-  blog-users:
+    Group: =>Group.Editors
+  BlogUsers:
     Code: CMS_ACCESS_CMSMain
-    Group: =>Group.blog-users
-    
-    
+    Group: =>Group.BlogUsers
+
 SiteConfig:
-  default:
+  Default:
     CanEditType: 'OnlyTheseUsers'
     CanCreateTopLevelType: 'OnlyTheseUsers'
-    EditorGroups: =>Group.admins,=>Group.editors
-    CreateTopLevelGroups: =>Group.admins,=>Group.editors
+    EditorGroups: =>Group.Administrators,=>Group.Editors
+    CreateTopLevelGroups: =>Group.Administrators,=>Group.Editors
 
 Member:
-  admin:
+  Admin:
     FirstName: Test
     Surname: Administrator
-    Groups: =>Group.admins
-  editor:
+    Groups: =>Group.Administrators
+  Editor:
     FirstName: Test
     Surname: Editor
-    Groups: =>Group.editors
-  blogeditor:
+    Groups: =>Group.Editors
+  BlogEditor:
     FirstName: Blog
     Surname: Editor
-    Groups: =>Group.blog-users
-  writer:
+    Groups: =>Group.BlogUsers
+  Writer:
     FirstName: Blog
     Surname: Writer
-    Groups: =>Group.blog-users
-  contributor:
+    Groups: =>Group.BlogUsers
+  Contributor:
     FirstName: Blog
     Surname: Contributor
-    Groups: =>Group.blog-users
-  visitor:
+    Groups: =>Group.BlogUsers
+  Visitor:
     FirstName: Blog
     Surname: Visitor
 
 Blog:
-  firstblog:
+  FirstBlog:
     Title: 'First Blog'
-  secondblog:
+  SecondBlog:
     Title: 'Second Blog'
     CanViewType: 'OnlyTheseUsers'
     CanEditType: 'OnlyTheseUsers'
-    ViewerGroups: =>Group.admins
-    EditorGroups: =>Group.admins
-  thirdblog:
+    ViewerGroups: =>Group.Administrators
+    EditorGroups: =>Group.Administrators
+  ThirdBlog:
     Title: 'Third Blog'
     CanEditType: 'OnlyTheseUsers'
-    EditorGroups: =>Group.editors
-  fourthblog:
+    EditorGroups: =>Group.Editors
+  FourthBlog:
     Title: 'Fourth Blog'
-    Editors: =>Member.blogeditor
-    Writers: =>Member.writer
-    Contributors: =>Member.contributor
+    Editors: =>Member.BlogEditor
+    Writers: =>Member.Writer
+    Contributors: =>Member.Contributor
 
 BlogTag:
-  firsttag:
+  FirstTag:
     Title: 'First Tag'
     URLSegment: 'first-tag'
-    Blog: =>Blog.firstblog
-  secondtag:
+    Blog: =>Blog.FirstBlog
+  SecondTag:
     Title: 'Second Tag'
     URLSegment: 'second-tag'
-    Blog: =>Blog.secondblog
-  thirdtag:
+    Blog: =>Blog.SecondBlog
+  ThirdTag:
     Title: 'Third Tag'
     URLSegment: 'third-tag'
-    Blog: =>Blog.thirdblog
+    Blog: =>Blog.ThirdBlog
 
 BlogCategory:
-  firstcategory:
+  FirstCategory:
     Title: 'First Category'
     URLSegment: 'first-category'
-    Blog: =>Blog.firstblog
-  secondcategory:
+    Blog: =>Blog.FirstBlog
+  SecondCategory:
     Title: 'Second Category'
     URLSegment: 'second-category'
-    Blog: =>Blog.secondblog
-  thirdcategory:
+    Blog: =>Blog.SecondBlog
+  ThirdCategory:
     Title: 'Third Category'
     URLSegment: 'third-category'
-    Blog: =>Blog.thirdblog
+    Blog: =>Blog.ThirdBlog
 
 BlogPost:
-  blogpost1:
-    Title: 'First post'
+  FirstBlogPost:
+    Title: 'First Post'
     URLSegment: first-post
     PublishDate: '2013-10-01 15:00:00'
-    Parent: =>Blog.firstblog
-    Tags: =>BlogTag.firsttag
-    Categories: =>BlogCategory.firstcategory
-  blogpost2:
-    Title: 'Second post'
+    Parent: =>Blog.FirstBlog
+    Tags: =>BlogTag.FirstTag
+    Categories: =>BlogCategory.FirstCategory
+  SecondBlogPost:
+    Title: 'Second Post'
     URLSegment: second-post
     PublishDate: '2013-09-01 15:00:00'
-    Parent: =>Blog.firstblog
-  blogpost3:
-    Title: 'Old post'
+    Parent: =>Blog.FirstBlog
+  ThirdBlogPost:
+    Title: 'Old Post'
     URLSegment: old-post
     PublishDate: '2012-01-09 15:00:00'
-    Parent: =>Blog.firstblog
-  futurepost:
+    Parent: =>Blog.FirstBlog
+  FirstFutureBlogPost:
     Title: 'Future Post'
     URLSegment: future-post
     PublishDate: '2015-01-01 00:00:00'
-    Tags: =>BlogTag.firsttag
-    Categories: =>BlogCategory.firstcategory
-    Parent: =>Blog.firstblog
-  futurepost2:
+    Tags: =>BlogTag.FirstTag
+    Categories: =>BlogCategory.FirstCategory
+    Parent: =>Blog.FirstBlog
+  SecondFutureBlogPost:
     Title: 'Future Post 2'
     URLSegment: future-post-2
     PublishDate: '2013-11-01 00:00:00'
-    Tags: =>BlogTag.firsttag
-    Categories: =>BlogCategory.firstcategory
-    Parent: =>Blog.firstblog
-  post-a:
+    Tags: =>BlogTag.FirstTag
+    Categories: =>BlogCategory.FirstCategory
+    Parent: =>Blog.FirstBlog
+  PostA:
     Title: 'One Post'
     PublishDate: '2012-01-09 15:00:00'
-    Parent: =>Blog.fourthblog
-    Authors: =>Member.writer,=>Member.contributor
-  post-b:
+    Parent: =>Blog.FourthBlog
+    Authors: =>Member.Writer,=>Member.Contributor
+  PostB:
     Title: 'Second Post'
     PublishDate: '2012-01-09 15:00:00'
-    Parent: =>Blog.fourthblog
-    Authors: =>Member.blogeditor
-  post-c:
+    Parent: =>Blog.FourthBlog
+    Authors: =>Member.BlogEditor
+  PostC:
     Title: 'Third Post'
     PublishDate: '2012-01-09 15:00:00'
-    Parent: =>Blog.fourthblog
-    Authors: =>Member.blogeditor,=>Member.writer,=>Member.contributor
+    Parent: =>Blog.FourthBlog
+    Authors: =>Member.BlogEditor,=>Member.Writer,=>Member.Contributor

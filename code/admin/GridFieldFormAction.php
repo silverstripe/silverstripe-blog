@@ -16,8 +16,7 @@ class GridFieldFormAction extends GridField_FormAction {
 	/**
 	 * @return array
 	 */
-	public function getAttributes()
-	{
+	public function getAttributes() {
 		$attributes = parent::getAttributes();
 
 		return array_merge(

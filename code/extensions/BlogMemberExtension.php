@@ -5,25 +5,34 @@
  *
  * @package silverstripe
  * @subpackage blog
- *
- **/
+ */
 class BlogMemberExtension extends DataExtension {
-
+	/**
+	 * @var array
+	 */
 	private static $db = array(
 		'URLSegment' => 'Varchar',
-		'BlogProfileSummary' => 'Text'
+		'BlogProfileSummary' => 'Text',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $has_one = array(
-		'BlogProfileImage' => 'Image'
+		'BlogProfileImage' => 'Image',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $belongs_many_many = array(
-		'AuthoredPosts' => 'BlogPost'
+		'AuthoredPosts' => 'BlogPost',
 	);
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function onBeforeWrite() {
-		// Generate a unique URL segment for the Member.
 		$count = 1;
 
 		$this->owner->URLSegment = $this->generateURLSegment();
@@ -34,45 +43,45 @@ class BlogMemberExtension extends DataExtension {
 		}
 	}
 
-	public function updateCMSFields(FieldList $fields) {
-		$fields->removeByName('URLSegment');
-
-		return $fields;
-	}
-
 	/**
 	 * Generate a unique URL segment based on the Member's name.
-	 * 
-	 * @return string Generated URL segment.
+	 *
+	 * @return string
 	 */
 	public function generateURLSegment() {
 		$filter = URLSegmentFilter::create();
 		$name = $this->owner->FirstName . ' ' . $this->owner->Surname;
 		$urlSegment = $filter->filter($name);
 
-		// Fallback to generic profile name if path is empty (= no valid, convertable characters)
 		if(!$urlSegment || $urlSegment == '-' || $urlSegment == '-1') {
-			$urlSegment = "profile-".$this->owner->ID;
+			$urlSegment = 'profile-' . $this->owner->ID;
 		}
 
 		return $urlSegment;
 	}
 
 	/**
-	 * Returns TRUE if this object has a URL segment value that does not conflict with any other objects.
-	 * 
+	 * Returns TRUE if this object has a URL segment value that does not conflict with any other
+	 * objects.
+	 *
 	 * @return bool
 	 */
-	public function validURLSegment() { 
+	public function validURLSegment() {
 		$conflict = Member::get()->filter('URLSegment', $this->owner->URLSegment);
 
-		// If the Member we're checking against is saved, exclude them from the check.
-		// i.e. don't conflict against yourself.
-		if ($this->owner->ID) {
+		if($this->owner->ID) {
 			$conflict = $conflict->exclude('ID', $this->owner->ID);
 		}
 
 		return $conflict->count() == 0;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	public function updateCMSFields(FieldList $fields) {
+		$fields->removeByName('URLSegment');
+
+		return $fields;
+	}
 }

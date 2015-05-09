@@ -11,20 +11,23 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor {
 	public function __construct($itemsPerPage = 15, $mergeRecords, $parentType, $parentMethod, $childMethod) {
 		parent::__construct($itemsPerPage);
 
-		$this->removeComponentsByType("GridFieldAddNewButton");
+		$this->removeComponentsByType('GridFieldAddNewButton');
 
 		$this->addComponent(
-			new GridFieldAddByDBField("buttons-before-left")
+			new GridFieldAddByDBField('buttons-before-left')
 		);
 
 		$this->addComponent(
 			new GridFieldMergeAction($mergeRecords, $parentType, $parentMethod, $childMethod)
 		);
 
+		/**
+		 * @var GridFieldDataColumns $columns
+		 */
 		$columns = $this->getComponentByType('GridFieldDataColumns');
 
 		$columns->setFieldFormatting(array(
-			'BlogPostsCount' => function($value, &$item) {
+			'BlogPostsCount' => function ($value, CategorisationObject $item) {
 				return $item->BlogPosts()->Count();
 			}
 		));
