@@ -1,7 +1,7 @@
 <?php
 
 /**
- * An indivisual blog post.
+ * An individual blog post.
  *
  * @package silverstripe
  * @subpackage blog
@@ -9,74 +9,145 @@
  * @method ManyManyList Categories()
  * @method ManyManyList Tags()
  * @method ManyManyList Authors()
+ * @method Blog Parent()
  *
- * @author Michael Strong <github@michaelstrong.co.uk>
-**/
+ * @property string $PublishDate
+ * @property string $AuthorNames
+ * @property int $ParentID
+ */
 class BlogPost extends Page {
-
+	/**
+	 * @var array
+	 */
 	private static $db = array(
-		"PublishDate" => "SS_Datetime",
-		"AuthorNames" => "Varchar(1024)",
-		"Summary" => "HTMLText",
+		'PublishDate' => 'SS_Datetime',
+		'AuthorNames' => 'Varchar(1024)',
+		'Summary' => 'HTMLText',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $has_one = array(
-		"FeaturedImage" => "Image",
+		'FeaturedImage' => 'Image',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $many_many = array(
-		"Categories" => "BlogCategory",
-		"Tags" => "BlogTag",
-		"Authors" => "Member",
+		'Categories' => 'BlogCategory',
+		'Tags' => 'BlogTag',
+		'Authors' => 'Member',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $defaults = array(
-		"ShowInMenus" => false,
-		"InheritSideBar" => true, // Support for widgets
-		"ProvideComments" => true, // Support for comments
+		'ShowInMenus' => false,
+		'InheritSideBar' => true,
+		'ProvideComments' => true,
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $extensions = array(
-		"BlogPostFilter",
+		'BlogPostFilter',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $searchable_fields = array(
-		"Title",
+		'Title',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $summary_fields = array(
-		"Title",
+		'Title',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $casting = array(
-		'Excerpt' => 'Text'
+		'Excerpt' => 'Text',
 	);
 
+	/**
+	 * @var array
+	 */
 	private static $allowed_children = array();
 
-	private static $default_sort = "PublishDate DESC";
+	/**
+	 * @var string
+	 */
+	private static $default_sort = 'PublishDate DESC';
 
+	/**
+	 * @var bool
+	 */
 	private static $can_be_root = false;
 
 	/**
-	 * This will display or hide the current class from the SiteTree. This
-	 * variable can be configured using YAML.
+	 * This will display or hide the current class from the SiteTree. This variable can be
+	 * configured using YAML.
 	 *
-	 * @var boolean
-	**/
+	 * @var bool
+	 */
 	private static $show_in_sitetree = false;
 
+	/**
+	 * Determine the role of the given member.
+	 *
+	 * Call be called via template to determine the current user.
+	 *
+	 * @example "Hello $RoleOf($CurrentMember.ID)"
+	 *
+	 * @param null|int|Member $member
+	 *
+	 * @return null|string
+	 */
+	public function RoleOf($member = null) {
+		if(is_int($member)) {
+			$member = DataObject::get_by_id('Member', $member);
+		}
+
+		if(!$member) {
+			return null;
+		}
+
+		if($this->isAuthor($member)) {
+			return _t('BlogPost.AUTHOR', 'Author');
+		}
+
+		$parent = $this->Parent();
+
+		if($parent instanceof Blog) {
+			return $parent->RoleOf($member);
+		}
+
+		return null;
+	}
 
 	/**
-	 * Determine if the given member is an author of this post
+	 * Determine if the given member is an author of this post.
 	 *
-	 * @param Member $member
-	 * @return boolean
+	 * @param null|Member $member
+	 *
+	 * @return bool
 	 */
-	public function isAuthor($member) {
-		if(!$member || !$member->exists()) return false;
+	public function isAuthor($member = null) {
+		if(!$member || !$member->exists()) {
+			return false;
+		}
 
 		$list = $this->Authors();
+
 		if($list instanceof UnsavedRelationList) {
 			return in_array($member->ID, $list->getIDList());
 		}
@@ -85,92 +156,80 @@ class BlogPost extends Page {
 	}
 
 	/**
-	 * Determine the role of the given member
-	 * Call be called via template to determine the current user
-	 *
-	 * E.g. `Hello $RoleOf($CurrentMember.ID)`
-	 *
-	 * @param Member|integer $member
-	 * @return string|null Author, Editor, Writer, Contributor, or null if no role
+	 * {@inheritdoc}
 	 */
-	public function RoleOf($member) {
-		if(is_numeric($member)) $member = DataObject::get_by_id('Member', $member);
-		if(!$member) return null;
-
-		// Check if this member is an author
-		if($this->isAuthor($member)) return _t("BlogPost.AUTHOR", "Author");
-
-		// Check parent role
-		$parent = $this->Parent();
-		if($parent instanceof Blog) return $parent->RoleOf($member);
-	}
-
-
 	public function getCMSFields() {
 		Requirements::css(BLOGGER_DIR . '/css/cms.css');
 		Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
 
 		$self =& $this;
-		$this->beforeUpdateCMSFields(function($fields) use ($self) {
 
-			// Add blog summary
+		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
+			/**
+			 * @var FieldList $fields
+			 */
+
+			$summary = HtmlEditorField::create('Summary', false);
+			$summary->setRows(5);
+			$summary->setDescription(_t(
+				'BlogPost.SUMMARY_DESCRIPTION',
+				'If no summary is specified the first 30 words will be used.'
+			));
+
 			$summaryHolder = ToggleCompositeField::create(
 				'CustomSummary',
 				_t('BlogPost.CUSTOMSUMMARY', 'Add A Custom Summary'),
 				array(
-					$summary = HtmlEditorField::create("Summary", false)
+					$summary,
 				)
-			)
-				->setHeadingLevel(4)
-				->addExtraClass('custom-summary');
-			$summary->setRows(5);
-			$summary->setDescription(_t(
-				'BlogPost.SUMMARY_DESCRIPTION',
-				"If no summary is specified the first 30 words will be used."
-			));
+			);
+			$summaryHolder->setHeadingLevel(4);
+			$summaryHolder->addExtraClass('custom-summary');
+
 			$fields->insertBefore($summaryHolder, 'Content');
 
-			// Add featured image
-			$fields->insertAfter(
-				$uploadField = UploadField::create("FeaturedImage", _t("BlogPost.FeaturedImage", "Featured Image")),
-				"Content"
-			);
+			$uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
 			$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 
-			// We're going to hide MenuTitle - Its not needed in blog posts.
+			$fields->insertAfter(
+				$uploadField,
+				'Content'
+			);
+
 			$fields->push(HiddenField::create('MenuTitle'));
 
-			// We're going to add the url segment to sidebar so we're making it a little lighter
 			$urlSegment = $fields->dataFieldByName('URLSegment');
 			$urlSegment->setURLPrefix($self->Parent()->RelativeLink());
 
-			// Remove the MenuTitle and URLSegment from the main tab
 			$fields->removeFieldsFromTab('Root.Main', array(
 				'MenuTitle',
 				'URLSegment',
 			));
 
-			// Author field
 			$authorField = ListboxField::create(
-				"Authors",
-				_t("BlogPost.Authors", "Authors"),
+				'Authors',
+				_t('BlogPost.Authors', 'Authors'),
 				Member::get()->map()->toArray()
 			)->setMultiple(true);
 
 			$authorNames = TextField::create(
-				"AuthorNames",
-				_t("BlogPost.AdditionalCredits", "Additional Credits"),
+				'AuthorNames',
+				_t('BlogPost.AdditionalCredits', 'Additional Credits'),
 				null,
 				1024
-			)->setDescription('If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.');
+			);
+			$authorNames->setDescription('If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.');
+
 			if(!$self->canEditAuthors()) {
 				$authorField = $authorField->performDisabledTransformation();
 				$authorNames = $authorNames->performDisabledTransformation();
 			}
 
-			// Build up our sidebar
+			$publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
+			$publishDate->getDateField()->setConfig('showcalendar', true);
+
 			$options = BlogAdminSidebar::create(
-				$publishDate = DatetimeField::create("PublishDate", _t("BlogPost.PublishDate", "Publish Date")),
+				$publishDate,
 				$urlSegment,
 				TagField::create(
 					'Categories',
@@ -189,36 +248,84 @@ class BlogPost extends Page {
 				$authorField,
 				$authorNames
 			)->setTitle('Post Options');
-			$publishDate->getDateField()->setConfig("showcalendar", true);
 
-			// Insert it before the TabSet
 			$fields->insertBefore($options, 'Root');
 		});
 
 		$fields = parent::getCMSFields();
 
-		// We need to render an outer template to deal with our custom layout
 		$fields->fieldByName('Root')->setTemplate('TabSet_holder');
 
 		return $fields;
 	}
 
 	/**
+	 * Determine if this user can edit the authors list.
+	 *
+	 * @param null|int|Member $member
+	 *
+	 * @return bool
+	 */
+	public function canEditAuthors($member = null) {
+		$member = $this->getMember($member);
+
+		$extended = $this->extendedCan('canEditAuthors', $member);
+
+		if($extended !== null) {
+			return $extended;
+		}
+
+		$parent = $this->Parent();
+
+		if($parent instanceof Blog && $parent->exists()) {
+			if($parent->isEditor($member)) {
+				return true;
+			}
+
+			if($parent->isWriter($member) && $this->isAuthor($member)) {
+				return true;
+			}
+		}
+
+		return Permission::checkMember($member, Blog::MANAGE_USERS);
+	}
+
+	/**
+	 * @param null|int|Member $member
+	 *
+	 * @return null|Member
+	 */
+	protected function getMember($member = null) {
+		if(!$member) {
+			$member = Member::currentUser();
+		}
+
+		if(is_int($member)) {
+			$member = Member::get()->byID($member);
+		}
+
+		return $member;
+	}
+
+	/**
 	 * Determine whether user can create new categories.
 	 *
-	 * @param int|Member|null $member
+	 * @param null|int|Member $member
 	 *
 	 * @return bool
 	 */
 	public function canCreateCategories($member = null) {
-		$member = $member ?: Member::currentUser();
-		if(is_numeric($member)) $member = Member::get()->byID($member);
+		$member = $member = $this->getMember($member);
 
 		$parent = $this->Parent();
 
-		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) return false;
+		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) {
+			return false;
+		}
 
-		if($parent->isEditor($member)) return true;
+		if($parent->isEditor($member)) {
+			return true;
+		}
 
 		return Permission::checkMember($member, 'ADMIN');
 	}
@@ -226,212 +333,214 @@ class BlogPost extends Page {
 	/**
 	 * Determine whether user can create new tags.
 	 *
-	 * @param int|Member|null $member
+	 * @param null|int|Member $member
 	 *
 	 * @return bool
 	 */
 	public function canCreateTags($member = null) {
-		$member = $member ?: Member::currentUser();
-		if(is_numeric($member)) $member = Member::get()->byID($member);
+		$member = $member = $this->getMember($member);
 
 		$parent = $this->Parent();
 
-		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) return false;
+		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) {
+			return false;
+		}
 
-		if($parent->isEditor($member)) return true;
+		if($parent->isEditor($member)) {
+			return true;
+		}
 
-		if($parent->isWriter($member)) return true;
+		if($parent->isWriter($member)) {
+			return true;
+		}
 
 		return Permission::checkMember($member, 'ADMIN');
 	}
 
-	protected function onBeforeWrite() {
-		parent::onBeforeWrite();
-
-		// If no publish date is set, set the date to now.
-		if(!$this->PublishDate) $this->PublishDate = SS_Datetime::now()->getValue();
-
-		// If creating a new entry, assign the current member as an author
-		// This allows writers and contributors to then edit their new post
-		if(!$this->exists() && ($member = Member::currentUser())) {
-			$this->Authors()->add($member);
-		}
-	}
-
-
-
 	/**
-	 * Update the PublishDate to now, if being published for the first time, and the date hasn't been set to the future.
-	**/
+	 * {@inheritdoc}
+	 *
+	 * Update the PublishDate to now, if being published for the first time, and the date hasn't
+	 * been set to the future.
+	 */
 	public function onBeforePublish() {
-		if ($this->dbObject('PublishDate')->InPast() && !$this->isPublished()) {
+		/**
+		 * @var SS_Datetime $publishDate
+		 */
+		$publishDate = $this->dbObject('PublishDate');
+
+		if($publishDate->InPast() && !$this->isPublished()) {
 			$this->PublishDate = SS_Datetime::now()->getValue();
 			$this->write();
 		}
 	}
 
 	/**
-	 * Sets blog relationship on all categories and tags assigned to this post.
+	 * {@inheritdoc}
 	 *
-	 * @throws ValidationException
+	 * Sets blog relationship on all categories and tags assigned to this post.
 	 */
-	public function onAfterWrite()
-	{
+	public function onAfterWrite() {
 		parent::onAfterWrite();
 
-		foreach ($this->Categories() as $category) {
+		foreach($this->Categories() as $category) {
+			/**
+			 * @var BlogCategory $category
+			 */
 			$category->BlogID = $this->ParentID;
 			$category->write();
 		}
 
-		foreach ($this->Tags() as $tag) {
+		foreach($this->Tags() as $tag) {
+			/**
+			 * @var BlogTag $tag
+			 */
 			$tag->BlogID = $this->ParentID;
 			$tag->write();
 		}
 	}
 
 	/**
-	 * Checks the publish date to see if the blog post has actually been published.
-	 *
-	 * @param $member Member|null
-	 *
-	 * @return boolean
-	**/
+	 * {@inheritdoc}
+	 */
 	public function canView($member = null) {
-		if(!parent::canView($member)) return false;
+		if(!parent::canView($member)) {
+			return false;
+		}
 
 		if($this->PublishDate) {
-			$publishDate = $this->dbObject("PublishDate");
-			if($publishDate->InFuture() && !Permission::checkMember($member, "VIEW_DRAFT_CONTENT")) {
+			/**
+			 * @var SS_Datetime $publishDate
+			 */
+			$publishDate = $this->dbObject('PublishDate');
+
+			if($publishDate->InFuture() && !Permission::checkMember($member, 'VIEW_DRAFT_CONTENT')) {
 				return false;
 			}
 		}
+
 		return true;
 	}
 
-	public function canEdit($member = null) {
-		$member = $member ?: Member::currentUser();
-		if(is_numeric($member)) $member = Member::get()->byID($member);
+	/**
+	 * {@inheritdoc}
+	 */
+	public function canPublish($member = null) {
+		$member = $this->getMember($member);
 
-		// Inherit permission
-		if(parent::canEdit($member)) return true;
+		if(Permission::checkMember($member, 'ADMIN')) {
+			return true;
+		}
 
-		// Check if assigned to a blog
+		$extended = $this->extendedCan('canPublish', $member);
+
+		if($extended !== null) {
+			return $extended;
+		}
+
 		$parent = $this->Parent();
-		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) return false;
 
-		// Editors have full control
-		if($parent->isEditor($member)) return true;
+		if($parent instanceof Blog && $parent->exists()) {
+			if($parent->isEditor($member)) {
+				return true;
+			}
 
-		// Only writers or contributors can edit
-		if(!$parent->isWriter($member) && !$parent->isContributor($member)) return false;
+			if($parent->isWriter($member) && $this->isAuthor($member)) {
+				return true;
+			}
 
-		// And only if they are also authors
+			if($parent->isContributor($member)) {
+				return parent::canEdit($member);
+			}
+		}
+
+		return $this->canEdit($member);
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function canEdit($member = null) {
+		$member = $this->getMember($member);
+
+		if(parent::canEdit($member)) {
+			return true;
+		}
+
+		$parent = $this->Parent();
+
+		if(!$parent || !$parent->exists() || !($parent instanceof Blog)) {
+			return false;
+		}
+
+		if($parent->isEditor($member)) {
+			return true;
+		}
+
+		if(!$parent->isWriter($member) && !$parent->isContributor($member)) {
+			return false;
+		}
+
 		return $this->isAuthor($member);
 	}
 
 	/**
-	 * Determine if this user can edit the authors list
-	 *
-	 * @param Member $member
-	 * @return boolean
-	 */
-	public function canEditAuthors($member = null) {
-		$member = $member ?: Member::currentUser();
-		if(is_numeric($member)) $member = Member::get()->byID($member);
-
-		$extended = $this->extendedCan('canEditAuthors', $member);
-		if($extended !== null) return $extended;
-
-		// Check blog roles
-		$parent = $this->Parent();
-		if($parent instanceof Blog && $parent->exists()) {
-			// Editors can do anything
-			if($parent->isEditor($member)) return true;
-
-			// Writers who are also authors can edit authors
-			if($parent->isWriter($member) && $this->isAuthor($member)) return true;
-		}
-
-		// Check permission
-		return Permission::checkMember($member, Blog::MANAGE_USERS);
-	}
-
-	public function canPublish($member = null) {
-		$member = $member ?: Member::currentUser();
-		if(is_numeric($member)) $member = Member::get()->byID($member);
-
-		if(Permission::checkMember($member, "ADMIN")) return true;
-
-		// Standard mechanism for accepting permission changes from extensions
-		$extended = $this->extendedCan('canPublish', $member);
-		if($extended !== null) return $extended;
-
-		// Check blog roles
-		$parent = $this->Parent();
-		if($parent instanceof Blog && $parent->exists()) {
-			// Editors can do anything
-			if($parent->isEditor($member)) return true;
-
-			// Writers who are also authors can edit authors
-			if($parent->isWriter($member) && $this->isAuthor($member)) return true;
-
-			// Contributors can ONLY publish this page if they somehow have global publish permissions
-			// In this case defer to old canEdit implementation
-			if($parent->isContributor($member)) return parent::canEdit($member);
-		}
-
-		// Normal case - fail over to canEdit()
-		return $this->canEdit($member);
-	}
-
-
-	/**
 	 * Returns the post excerpt.
 	 *
-	 * @param $wordCount int - number of words to display
+	 * @param int $wordsToDisplay
 	 *
 	 * @return string
-	**/
-	public function Excerpt($wordCount = 30) {
-		return $this->dbObject("Content")->LimitWordCount($wordCount);
+	 */
+	public function Excerpt($wordsToDisplay = 30) {
+		/**
+		 * @var Text $content
+		 */
+		$content = $this->dbObject('Content');
+
+		return $content->LimitWordCount($wordsToDisplay);
 	}
-
-
 
 	/**
 	 * Returns a monthly archive link for the current blog post.
 	 *
-	 * @param $type string day|month|year
+	 * @param string $type
 	 *
-	 * @return string URL
-	**/
-	public function getMonthlyArchiveLink($type = "day") {
-		$date = $this->dbObject("PublishDate");
-		if($type != "year") {
-			if($type == "day") {
+	 * @return string
+	 */
+	public function getMonthlyArchiveLink($type = 'day') {
+		/**
+		 * @var SS_Datetime $date
+		 */
+		$date = $this->dbObject('PublishDate');
+
+		if($type != 'year') {
+			if($type == 'day') {
 				return Controller::join_links(
-					$this->Parent()->Link("archive"), 
-					$date->format("Y"), 
-					$date->format("m"), 
-					$date->format("d")
+					$this->Parent()->Link('archive'),
+					$date->format('Y'),
+					$date->format('m'),
+					$date->format('d')
 				);
 			}
-			return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"), $date->format("m"));
+
+			return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'), $date->format('m'));
 		}
-		return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"));
+
+		return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'));
 	}
-
-
 
 	/**
 	 * Returns a yearly archive link for the current blog post.
 	 *
-	 * @return string URL
-	**/
+	 * @return string
+	 */
 	public function getYearlyArchiveLink() {
-		$date = $this->dbObject("PublishDate");
-		return Controller::join_links($this->Parent()->Link("archive"), $date->format("Y"));
+		/**
+		 * @var SS_Datetime $date
+		 */
+		$date = $this->dbObject('PublishDate');
+
+		return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'));
 	}
 
 	/**
@@ -439,8 +548,7 @@ class BlogPost extends Page {
 	 *
 	 * @return ArrayList
 	 */
-	public function getCredits()
-	{
+	public function getCredits() {
 		$list = new ArrayList();
 
 		$list->merge($this->getDynamicCredits());
@@ -454,8 +562,7 @@ class BlogPost extends Page {
 	 *
 	 * @return ArrayList
 	 */
-	protected function getDynamicCredits()
-	{
+	protected function getDynamicCredits() {
 		$items = new ArrayList();
 
 		foreach($this->Authors() as $author) {
@@ -474,13 +581,12 @@ class BlogPost extends Page {
 	 *
 	 * @return ArrayList
 	 */
-	protected function getStaticCredits()
-	{
+	protected function getStaticCredits() {
 		$items = new ArrayList();
 
 		$authors = array_filter(preg_split('/\s*,\s*/', $this->AuthorNames));
 
-		foreach ($authors as $author) {
+		foreach($authors as $author) {
 			$item = new ArrayData(array(
 				'Name' => $author,
 			));
@@ -492,27 +598,40 @@ class BlogPost extends Page {
 	}
 
 	/**
-	 * Sets the label for BlogPost.Title to 'Post Title' (Rather than 'Page name')
+	 * Sets the label for BlogPost.Title to 'Post Title' (Rather than 'Page name').
+	 *
+	 * @param bool $includeRelations
 	 *
 	 * @return array
-	**/
-	public function fieldLabels($includerelations = true) {   
-		$labels = parent::fieldLabels($includerelations);
-		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");      
+	 */
+	public function fieldLabels($includeRelations = true) {
+		$labels = parent::fieldLabels($includeRelations);
+
+		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");
+
 		return $labels;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
+	protected function onBeforeWrite() {
+		parent::onBeforeWrite();
+
+		if(!$this->PublishDate) {
+			$this->PublishDate = SS_Datetime::now()->getValue();
+		}
+
+		if(!$this->exists() && ($member = Member::currentUser())) {
+			$this->Authors()->add($member);
+		}
+	}
 }
 
-
 /**
- * Blog Post controller
- *
  * @package silverstripe
  * @subpackage blog
- *
- * @author Michael Strong <github@michaelstrong.co.uk>
-**/
+ */
 class BlogPost_Controller extends Page_Controller {
-	
+
 }

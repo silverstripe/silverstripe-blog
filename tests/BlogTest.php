@@ -1,129 +1,198 @@
 <?php
 
+/**
+ * @mixin PHPUnit_Framework_TestCase
+ */
 class BlogTest extends SapphireTest {
+	/**
+	 * @var string
+	 */
+	static $fixture_file = 'blog.yml';
 
-	static $fixture_file = "blog.yml";
-
+	/**
+	 * {@inheritdoc}
+	 */
 	public function setUp() {
 		parent::setUp();
+
 		Config::nest();
-		SS_Datetime::set_mock_now("2013-10-10 20:00:00");
-		$this->objFromFixture("Blog", "firstblog")->publish("Stage", "Live");
+		SS_Datetime::set_mock_now('2013-10-10 20:00:00');
+
+		/**
+		 * @var Blog $blog
+		 */
+		$blog = $this->objFromFixture('Blog', 'FirstBlog');
+
+		$blog->publish('Stage', 'Live');
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function tearDown() {
 		SS_Datetime::clear_mock_now();
 		Config::unnest();
+
 		parent::tearDown();
 	}
-	
+
 	public function testGetExcludedSiteTreeClassNames() {
 		$member = Member::currentUser();
-		if($member) $member->logout();
 
-		$blog = $this->objFromFixture("Blog", 'firstblog');
+		if($member) {
+			$member->logout();
+		}
 
-		Config::inst()->update("BlogPost", "show_in_sitetree", true);
+		/**
+		 * @var Blog $blog
+		 */
+		$blog = $this->objFromFixture('Blog', 'FirstBlog');
+
+		Config::inst()->update('BlogPost', 'show_in_sitetree', true);
 		$classes = $blog->getExcludedSiteTreeClassNames();
-		$this->assertNotContains('BlogPost', $classes, "BlogPost class should be hidden.");
 
-		Config::inst()->update("BlogPost", "show_in_sitetree", false);
+		$this->assertNotContains('BlogPost', $classes, 'BlogPost class should be hidden.');
+
+		Config::inst()->update('BlogPost', 'show_in_sitetree', false);
 		$classes = $blog->getExcludedSiteTreeClassNames();
-		$this->assertContains('BlogPost', $classes, "BlogPost class should be hidden.");
+
+		$this->assertContains('BlogPost', $classes, 'BlogPost class should be hidden.');
 	}
-
-
 
 	public function testGetArchivedBlogPosts() {
 		$member = Member::currentUser();
-		if($member) $member->logout();
 
-		$blog = $this->objFromFixture("Blog", "firstblog");
+		if($member) {
+			$member->logout();
+		}
 
-		// Test yearly
+		/**
+		 * @var Blog $blog
+		 */
+		$blog = $this->objFromFixture('Blog', 'FirstBlog');
+
 		$archive = $blog->getArchivedBlogPosts(2013);
-		$this->assertEquals(2, $archive->count(), "Incorrect Yearly Archive count for 2013");
-		$this->assertEquals("First post", $archive->first()->Title, "Incorrect First Blog post");
-		$this->assertEquals("Second post", $archive->last()->Title, "Incorrect Last Blog post");
 
-		// Test monthly
+		$this->assertEquals(2, $archive->count(), 'Incorrect Yearly Archive count for 2013');
+		$this->assertEquals('First Post', $archive->first()->Title, 'Incorrect First Blog post');
+		$this->assertEquals('Second Post', $archive->last()->Title, 'Incorrect Last Blog post');
+
 		$archive = $blog->getArchivedBlogPosts(2013, 10);
-		$this->assertEquals(1, $archive->count(), "Incorrect monthly acrhive count.");
 
-		// Test daily
+		$this->assertEquals(1, $archive->count(), 'Incorrect monthly archive count.');
+
 		$archive = $blog->getArchivedBlogPosts(2013, 10, 01);
-		$this->assertEquals(1, $archive->count(), "Incorrect daily archive count.");
+
+		$this->assertEquals(1, $archive->count(), 'Incorrect daily archive count.');
 	}
 
-
 	public function testArchiveLinks() {
-		$blog = $this->objFromFixture("Blog", "firstblog");
+		/**
+		 * @var Blog $blog
+		 */
+		$blog = $this->objFromFixture('Blog', 'FirstBlog');
 
-		// Test valid links
-		$archiveLink = Controller::join_links($blog->Link("archive"), 2013, 10, 01);
-		$response = Director::test($archiveLink);
-		$this->assertEquals(200, $response->getStatusCode(), "HTTP Status should be 200");
+		$link = Controller::join_links($blog->Link('archive'), '2013', '10', '01');
 
-		 $archiveLink = Controller::join_links($blog->Link("archive"), 2013, 10);
-		 $response = Director::test($archiveLink);
-		 $this->assertEquals(200, $response->getStatusCode(), "HTTP Status should be 200");
+		$this->assertEquals(200, $this->getStatusOf($link), 'HTTP Status should be 200');
 
-		 $archiveLink = Controller::join_links($blog->Link("archive"), 2013);
-		 $response = Director::test($archiveLink);
-		 $this->assertEquals(200, $response->getStatusCode(), "HTTP Status should be 200");
+		$link = Controller::join_links($blog->Link('archive'), '2013', '10');
 
-		 $archiveLink = Controller::join_links($blog->Link("archive"), 2011, 10, 01);
-		 $response = Director::test($archiveLink); // No posts on this date, but a valid entry.
-		 $this->assertEquals(200, $response->getStatusCode(), "HTTP Status should be 200");
+		$this->assertEquals(200, $this->getStatusOf($link), 'HTTP Status should be 200');
 
+		$link = Controller::join_links($blog->Link('archive'), '2013');
 
-		 // Test invalid links & dates
-		 $response = Director::test($blog->Link("archive")); // 404 when no date is set
-		 $this->assertEquals(404, $response->getStatusCode(), "HTTP Status should be 404");
+		$this->assertEquals(200, $this->getStatusOf($link), 'HTTP Status should be 200');
 
-		 // Invalid year
-		 $archiveLink = Controller::join_links($blog->Link("archive"), "invalid-year");
-		 $response = Director::test($archiveLink); // 404 when an invalid yer is set
-		 $this->assertEquals(404, $response->getStatusCode(), "HTTP Status should be 404");
+		$link = Controller::join_links($blog->Link('archive'), '2011', '10', '01');
 
-		 // Invalid month
-		 $archiveLink = Controller::join_links($blog->Link("archive"), "2013", "99");
-		 $response = Director::test($archiveLink); // 404 when an invalid month is set
-		 $this->assertEquals(404, $response->getStatusCode(), "HTTP Status should be 404");
+		$this->assertEquals(200, $this->getStatusOf($link), 'HTTP Status should be 200');
 
-		 // Invalid day
-		 $archiveLink = Controller::join_links($blog->Link("archive"), "2013", "10", "99");
-		 $response = Director::test($archiveLink); // 404 when an invalid day is set
-		 $this->assertEquals(404, $response->getStatusCode(), "HTTP Status should be 404");
+		$link = Controller::join_links($blog->Link('archive'));
 
+		$this->assertEquals(404, $this->getStatusOf($link), 'HTTP Status should be 404');
+
+		$link = Controller::join_links($blog->Link('archive'), 'invalid-year');
+
+		$this->assertEquals(404, $this->getStatusOf($link), 'HTTP Status should be 404');
+
+		$link = Controller::join_links($blog->Link('archive'), '2013', '99');
+
+		$this->assertEquals(404, $this->getStatusOf($link), 'HTTP Status should be 404');
+
+		$link = Controller::join_links($blog->Link('archive'), '2013', '10', '99');
+
+		$this->assertEquals(404, $this->getStatusOf($link), 'HTTP Status should be 404');
+	}
+
+	/**
+	 * @param string $link
+	 *
+	 * @return int
+	 */
+	protected function getStatusOf($link) {
+		return Director::test($link)->getStatusCode();
 	}
 
 	public function testRoles() {
-		$blog = $this->objFromFixture('Blog', 'fourthblog');
-		$blog2 = $this->objFromFixture('Blog', 'firstblog');
-		$postA = $this->objFromFixture('BlogPost', 'post-a');
-		$postB = $this->objFromFixture('BlogPost', 'post-b');
-		$postC = $this->objFromFixture('BlogPost', 'post-c');
-		$editor = $this->objFromFixture('Member', 'blogeditor');
-		$writer = $this->objFromFixture('Member', 'writer');
-		$contributor = $this->objFromFixture('Member', 'contributor');
-		$visitor = $this->objFromFixture('Member', 'visitor');
+		/**
+		 * @var Blog $firstBlog
+		 */
+		$firstBlog = $this->objFromFixture('Blog', 'FirstBlog');
 
-		// Check roleof
-		$this->assertEquals('Editor', $blog->RoleOf($editor));
-		$this->assertEquals('Contributor', $blog->RoleOf($contributor));
-		$this->assertEquals('Writer', $blog->RoleOf($writer));
-		$this->assertEmpty($blog->RoleOf($visitor));
+		/**
+		 * @var Blog $fourthBlog
+		 */
+		$fourthBlog = $this->objFromFixture('Blog', 'FourthBlog');
+
+		/**
+		 * @var BlogPost $postA
+		 */
+		$postA = $this->objFromFixture('BlogPost', 'PostA');
+
+		/**
+		 * @var BlogPost $postB
+		 */
+		$postB = $this->objFromFixture('BlogPost', 'PostB');
+
+		/**
+		 * @var BlogPost $postC
+		 */
+		$postC = $this->objFromFixture('BlogPost', 'PostC');
+
+		/**
+		 * @var Member $editor
+		 */
+		$editor = $this->objFromFixture('Member', 'BlogEditor');
+
+		/**
+		 * @var Member $writer
+		 */
+		$writer = $this->objFromFixture('Member', 'Writer');
+
+		/**
+		 * @var Member $contributor
+		 */
+		$contributor = $this->objFromFixture('Member', 'Contributor');
+
+		/**
+		 * @var Member $visitor
+		 */
+		$visitor = $this->objFromFixture('Member', 'Visitor');
+
+		$this->assertEquals('Editor', $fourthBlog->RoleOf($editor));
+		$this->assertEquals('Contributor', $fourthBlog->RoleOf($contributor));
+		$this->assertEquals('Writer', $fourthBlog->RoleOf($writer));
+		$this->assertEmpty($fourthBlog->RoleOf($visitor));
 		$this->assertEquals('Author', $postA->RoleOf($writer));
 		$this->assertEquals('Author', $postA->RoleOf($contributor));
 		$this->assertEquals('Editor', $postA->RoleOf($editor));
 		$this->assertEmpty($postA->RoleOf($visitor));
 
-		// Check that editors have all permissions on their own blog
-		$this->assertTrue($blog->canEdit($editor));
-		$this->assertFalse($blog2->canEdit($editor));
-		$this->assertTrue($blog->canAddChildren($editor));
-		$this->assertFalse($blog2->canAddChildren($editor));
+		$this->assertTrue($fourthBlog->canEdit($editor));
+		$this->assertFalse($firstBlog->canEdit($editor));
+		$this->assertTrue($fourthBlog->canAddChildren($editor));
+		$this->assertFalse($firstBlog->canAddChildren($editor));
 		$this->assertTrue($postA->canEdit($editor));
 		$this->assertTrue($postB->canEdit($editor));
 		$this->assertTrue($postC->canEdit($editor));
@@ -131,11 +200,10 @@ class BlogTest extends SapphireTest {
 		$this->assertTrue($postB->canPublish($editor));
 		$this->assertTrue($postC->canPublish($editor));
 
-		// check rights of writers
-		$this->assertFalse($blog->canEdit($writer));
-		$this->assertFalse($blog2->canEdit($writer));
-		$this->assertTrue($blog->canAddChildren($writer));
-		$this->assertFalse($blog2->canAddChildren($writer));
+		$this->assertFalse($fourthBlog->canEdit($writer));
+		$this->assertFalse($firstBlog->canEdit($writer));
+		$this->assertTrue($fourthBlog->canAddChildren($writer));
+		$this->assertFalse($firstBlog->canAddChildren($writer));
 		$this->assertTrue($postA->canEdit($writer));
 		$this->assertFalse($postB->canEdit($writer));
 		$this->assertTrue($postC->canEdit($writer));
@@ -143,11 +211,10 @@ class BlogTest extends SapphireTest {
 		$this->assertFalse($postB->canPublish($writer));
 		$this->assertTrue($postC->canPublish($writer));
 
-		// Check rights of contributors
-		$this->assertFalse($blog->canEdit($contributor));
-		$this->assertFalse($blog2->canEdit($contributor));
-		$this->assertTrue($blog->canAddChildren($contributor));
-		$this->assertFalse($blog2->canAddChildren($contributor));
+		$this->assertFalse($fourthBlog->canEdit($contributor));
+		$this->assertFalse($firstBlog->canEdit($contributor));
+		$this->assertTrue($fourthBlog->canAddChildren($contributor));
+		$this->assertFalse($firstBlog->canAddChildren($contributor));
 		$this->assertTrue($postA->canEdit($contributor));
 		$this->assertFalse($postB->canEdit($contributor));
 		$this->assertTrue($postC->canEdit($contributor));
@@ -155,11 +222,10 @@ class BlogTest extends SapphireTest {
 		$this->assertFalse($postB->canPublish($contributor));
 		$this->assertFalse($postC->canPublish($contributor));
 
-		// Check rights of non-cms user
-		$this->assertFalse($blog->canEdit($visitor));
-		$this->assertFalse($blog2->canEdit($visitor));
-		$this->assertFalse($blog->canAddChildren($visitor));
-		$this->assertFalse($blog2->canAddChildren($visitor));
+		$this->assertFalse($fourthBlog->canEdit($visitor));
+		$this->assertFalse($firstBlog->canEdit($visitor));
+		$this->assertFalse($fourthBlog->canAddChildren($visitor));
+		$this->assertFalse($firstBlog->canAddChildren($visitor));
 		$this->assertFalse($postA->canEdit($visitor));
 		$this->assertFalse($postB->canEdit($visitor));
 		$this->assertFalse($postC->canEdit($visitor));
@@ -167,5 +233,4 @@ class BlogTest extends SapphireTest {
 		$this->assertFalse($postB->canPublish($visitor));
 		$this->assertFalse($postC->canPublish($visitor));
 	}
-
 }

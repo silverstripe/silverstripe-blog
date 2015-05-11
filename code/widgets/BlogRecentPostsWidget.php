@@ -1,47 +1,74 @@
 <?php
 
-if(class_exists("Widget")) {
+if(!class_exists("Widget")) {
+	return;
+}
 
-	class BlogRecentPostsWidget extends Widget {
-		
-		private static $title = "Recent Posts";
+/**
+ * @method Blog Blog()
+ *
+ * @property int $NumberOfPosts
+ */
+class BlogRecentPostsWidget extends Widget {
+	/**
+	 * @var string
+	 */
+	private static $title = 'Recent Posts';
 
-		private static $cmsTitle = "Recent Posts";
+	/**
+	 * @var string
+	 */
+	private static $cmsTitle = 'Recent Posts';
 
-		private static $description = "Displays a list of recent blog posts.";
+	/**
+	 * @var string
+	 */
+	private static $description = 'Displays a list of recent blog posts.';
 
-		private static $db = array(
-			"NumberOfPosts" => "Int",
-		);
+	/**
+	 * @var array
+	 */
+	private static $db = array(
+		'NumberOfPosts' => 'Int',
+	);
 
-		private static $has_one = array(
-			"Blog" => "Blog",
-		);
+	/**
+	 * @var array
+	 */
+	private static $has_one = array(
+		'Blog' => 'Blog',
+	);
 
-		public function getCMSFields() {
-			$this->beforeUpdateCMSFields(function($fields) {
-				$fields->merge(array(
-					DropdownField::create("BlogID", _t("BlogRecentPostsWidget.Blog", "Blog"), Blog::get()->map()),
-					NumericField::create("NumberOfPosts", _t("BlogRecentPostsWidget.NumberOfPosts", "Number of Posts"))
-				));
-			});
-			return parent::getCMSFields();
-		}
+	/**
+	 * {@inheritdoc}
+	 */
+	public function getCMSFields() {
+		$this->beforeUpdateCMSFields(function ($fields) {
+			$fields->merge(array(
+				DropdownField::create('BlogID', _t('BlogRecentPostsWidget.Blog', 'Blog'), Blog::get()->map()),
+				NumericField::create('NumberOfPosts', _t('BlogRecentPostsWidget.NumberOfPosts', 'Number of Posts'))
+			));
+		});
 
-		public function getPosts() {
-			$blog = $this->Blog();
-			if($blog) {
-				return $blog->getBlogPosts()
-					->sort("PublishDate DESC")
-					->limit($this->NumberOfPosts);
-			}
-			return array();
-		}
-
+		return parent::getCMSFields();
 	}
 
-	class BlogRecentPostsWidget_Controller extends Widget_Controller {
-		
+	/**
+	 * @return array
+	 */
+	public function getPosts() {
+		$blog = $this->Blog();
+
+		if($blog) {
+			return $blog->getBlogPosts()
+				->sort('PublishDate DESC')
+				->limit($this->NumberOfPosts);
+		}
+
+		return array();
 	}
+}
+
+class BlogRecentPostsWidget_Controller extends Widget_Controller {
 
 }
