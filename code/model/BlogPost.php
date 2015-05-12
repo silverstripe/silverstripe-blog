@@ -165,6 +165,14 @@ class BlogPost extends Page {
 		$self =& $this;
 
 		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
+			$uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
+			$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
+
+			/**
+			 * @var FieldList $fields
+			 */
+			$fields->insertAfter($uploadField,'Content');
+
 			$summary = HtmlEditorField::create('Summary', false);
 			$summary->setRows(5);
 			$summary->setDescription(_t(
@@ -182,18 +190,7 @@ class BlogPost extends Page {
 			$summaryHolder->setHeadingLevel(4);
 			$summaryHolder->addExtraClass('custom-summary');
 
-			/**
-			 * @var FieldList $fields
-			 */
-			$fields->insertBefore($summaryHolder, 'Content');
-
-			$uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
-			$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
-
-			$fields->insertAfter(
-				$uploadField,
-				'Content'
-			);
+			$fields->insertAfter($summaryHolder, 'FeaturedImage');
 
 			$fields->push(HiddenField::create('MenuTitle'));
 
