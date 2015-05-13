@@ -44,10 +44,6 @@ class BlogRecentPostsWidget extends Widget {
 	 */
 	public function getCMSFields() {
 		$this->beforeUpdateCMSFields(function ($fields) {
-			if (!$fields) {
-				return;
-			}
-
 			/**
 			 * @var FieldList $fields
 			 */
@@ -68,7 +64,7 @@ class BlogRecentPostsWidget extends Widget {
 
 		if($blog) {
 			return $blog->getBlogPosts()
-				->sort('PublishDate DESC')
+				->sort('"PublishDate" DESC')
 				->limit($this->NumberOfPosts);
 		}
 

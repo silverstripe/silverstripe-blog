@@ -114,10 +114,6 @@ class Blog extends Page implements PermissionProvider {
 				return;
 			}
 
-			if(!$fields) {
-				return null;
-			}
-
 			$categories = GridField::create(
 				'Categories',
 				_t('Blog.Categories', 'Categories'),
@@ -455,15 +451,15 @@ class Blog extends Page implements PermissionProvider {
 			$stage = '_' . $stage;
 		}
 
-		$query->innerJoin('BlogPost', sprintf('SiteTree%s.ID = BlogPost%s.ID', $stage, $stage));
+		$query->innerJoin('BlogPost', sprintf('"SiteTree%s"."ID" = "BlogPost%s"."ID"', $stage, $stage));
 
-		$query->where(sprintf('YEAR(PublishDate) = \'%s\'', Convert::raw2sql($year)));
+		$query->where(sprintf('YEAR("PublishDate") = \'%s\'', Convert::raw2sql($year)));
 
 		if($month) {
-			$query->where(sprintf('MONTH(PublishDate) = \'%s\'', Convert::raw2sql($month)));
+			$query->where(sprintf('MONTH("PublishDate") = \'%s\'', Convert::raw2sql($month)));
 
 			if($day) {
-				$query->where(sprintf('DAY(PublishDate) = \'%s\'', Convert::raw2sql($day)));
+				$query->where(sprintf('DAY("PublishDate") = \'%s\'', Convert::raw2sql($day)));
 			}
 		}
 

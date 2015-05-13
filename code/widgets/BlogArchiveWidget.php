@@ -55,10 +55,6 @@ class BlogArchiveWidget extends Widget {
 		$self =& $this;
 
 		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
-			if (!$fields) {
-				return;
-			}
-
 			/**
 			 * @var Enum $archiveType
 			 */
@@ -92,9 +88,9 @@ class BlogArchiveWidget extends Widget {
 		$query = $this->Blog()->getBlogPosts()->dataQuery();
 
 		if($this->ArchiveType == 'Yearly') {
-			$query->groupBy('DATE_FORMAT(PublishDate, \'%Y\')');
+			$query->groupBy('DATE_FORMAT("PublishDate", \'%Y\')');
 		} else {
-			$query->groupBy('DATE_FORMAT(PublishDate, \'%Y-%M\')');
+			$query->groupBy('DATE_FORMAT("PublishDate", \'%Y-%M\')');
 		}
 
 		$posts = $this->Blog()->getBlogPosts()->setDataQuery($query);
