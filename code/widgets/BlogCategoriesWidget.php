@@ -40,6 +40,13 @@ class BlogCategoriesWidget extends Widget {
 	 */
 	public function getCMSFields() {
 		$this->beforeUpdateCMSFields(function ($fields) {
+			if (!$fields) {
+				return;
+			}
+
+			/**
+			 * @var FieldList $fields
+			 */
 			$fields->push(
 				DropdownField::create('BlogID', _t('BlogCategoriesWidget.Blog', 'Blog'), Blog::get()->map())
 			);

@@ -44,6 +44,13 @@ class BlogRecentPostsWidget extends Widget {
 	 */
 	public function getCMSFields() {
 		$this->beforeUpdateCMSFields(function ($fields) {
+			if (!$fields) {
+				return;
+			}
+
+			/**
+			 * @var FieldList $fields
+			 */
 			$fields->merge(array(
 				DropdownField::create('BlogID', _t('BlogRecentPostsWidget.Blog', 'Blog'), Blog::get()->map()),
 				NumericField::create('NumberOfPosts', _t('BlogRecentPostsWidget.NumberOfPosts', 'Number of Posts'))

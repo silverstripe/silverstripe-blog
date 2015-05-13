@@ -114,6 +114,10 @@ class Blog extends Page implements PermissionProvider {
 				return;
 			}
 
+			if(!$fields) {
+				return null;
+			}
+
 			$categories = GridField::create(
 				'Categories',
 				_t('Blog.Categories', 'Categories'),
@@ -128,6 +132,9 @@ class Blog extends Page implements PermissionProvider {
 				GridFieldCategorisationConfig::create(15, $self->Tags(), 'BlogTag', 'Tags', 'BlogPosts')
 			);
 
+			/**
+			 * @var FieldList $fields
+			 */
 			$fields->addFieldsToTab('Root.Categorisation', array(
 				$categories,
 				$tags
@@ -444,7 +451,7 @@ class Blog extends Page implements PermissionProvider {
 
 		$stage = $query->getQueryParam('Versioned.stage');
 
-		if ($stage) {
+		if($stage) {
 			$stage = '_' . $stage;
 		}
 
@@ -627,7 +634,12 @@ class Blog_Controller extends Page_Controller {
 	 * @return string
 	 */
 	public function index() {
-		$this->blogPosts = $this->getBlogPosts();
+		/**
+		 * @var Blog $dataRecord
+		 */
+		$dataRecord = $this->dataRecord;
+
+		$this->blogPosts = $dataRecord->getBlogPosts();
 
 		return $this->render();
 	}
@@ -684,28 +696,35 @@ class Blog_Controller extends Page_Controller {
 	/**
 	 * Renders an archive for a specified date. This can be by year or year/month.
 	 *
-	 * @return SS_HTTPResponse
+	 * @return null|SS_HTTPResponse
 	 */
 	public function archive() {
+		/**
+		 * @var Blog $dataRecord
+		 */
+		$dataRecord = $this->dataRecord;
+
 		$year = $this->getArchiveYear();
 		$month = $this->getArchiveMonth();
 		$day = $this->getArchiveDay();
 
 		if($this->request->param('Month') && !$month) {
-			return $this->httpError(404, 'Not Found');
+			$this->httpError(404, 'Not Found');
 		}
 
 		if($month && $this->request->param('Day') && !$day) {
-			return $this->httpError(404, 'Not Found');
+			$this->httpError(404, 'Not Found');
 		}
 
 		if($year) {
-			$this->blogPosts = $this->getArchivedBlogPosts($year, $month, $day);
+			$this->blogPosts = $dataRecord->getArchivedBlogPosts($year, $month, $day);
 
 			return $this->render();
 		}
 
-		return $this->httpError(404, 'Not Found');
+		$this->httpError(404, 'Not Found');
+
+		return null;
 	}
 
 	/**
@@ -762,7 +781,7 @@ class Blog_Controller extends Page_Controller {
 	/**
 	 * Renders the blog posts for a given tag.
 	 *
-	 * @return SS_HTTPResponse
+	 * @return null|SS_HTTPResponse
 	 */
 	public function tag() {
 		$tag = $this->getCurrentTag();
@@ -772,7 +791,9 @@ class Blog_Controller extends Page_Controller {
 			return $this->render();
 		}
 
-		return $this->httpError(404, 'Not Found');
+		$this->httpError(404, 'Not Found');
+
+		return null;
 	}
 
 	/**
@@ -781,10 +802,15 @@ class Blog_Controller extends Page_Controller {
 	 * @return null|BlogTag
 	 */
 	public function getCurrentTag() {
+		/**
+		 * @var Blog $dataRecord
+		 */
+		$dataRecord = $this->dataRecord;
+
 		$tag = $this->request->param('Tag');
 
 		if($tag) {
-			return $this->dataRecord->Tags()
+			return $dataRecord->Tags()
 				->filter('URLSegment', $tag)
 				->first();
 		}
@@ -795,17 +821,20 @@ class Blog_Controller extends Page_Controller {
 	/**
 	 * Renders the blog posts for a given category.
 	 *
-	 * @return SS_HTTPResponse
+	 * @return null|SS_HTTPResponse
 	 */
 	public function category() {
 		$category = $this->getCurrentCategory();
 
 		if($category) {
 			$this->blogPosts = $category->BlogPosts();
+
 			return $this->render();
 		}
 
-		return $this->httpError(404, 'Not Found');
+		$this->httpError(404, 'Not Found');
+
+		return null;
 	}
 
 	/**
@@ -814,10 +843,15 @@ class Blog_Controller extends Page_Controller {
 	 * @return null|BlogCategory
 	 */
 	public function getCurrentCategory() {
+		/**
+		 * @var Blog $dataRecord
+		 */
+		$dataRecord = $this->dataRecord;
+
 		$category = $this->request->param('Category');
 
 		if($category) {
-			return $this->dataRecord->Categories()
+			return $dataRecord->Categories()
 				->filter('URLSegment', $category)
 				->first();
 		}
@@ -835,7 +869,7 @@ class Blog_Controller extends Page_Controller {
 		$filter = $this->getFilterDescription();
 
 		if($filter) {
-			$title = sprintf('%s - $s', $title, $filter);
+			$title = sprintf('%s - %s', $title, $filter);
 		}
 
 		$this->extend('updateMetaTitle', $title);
@@ -934,6 +968,11 @@ class Blog_Controller extends Page_Controller {
 	 * @return PaginatedList
 	 */
 	public function PaginatedList() {
+		/**
+		 * @var Blog $dataRecord
+		 */
+		$dataRecord = $this->dataRecord;
+
 		$posts = new PaginatedList($this->blogPosts);
 
 		if($this->PostsPerPage > 0) {
@@ -941,7 +980,7 @@ class Blog_Controller extends Page_Controller {
 		} else {
 			$pageSize = 99999;
 
-			if($count = $this->getBlogPosts()->count()) {
+			if($count = $dataRecord->getBlogPosts()->count()) {
 				$pageSize = $count;
 			}
 
@@ -961,7 +1000,12 @@ class Blog_Controller extends Page_Controller {
 	 * @return string
 	 */
 	public function rss() {
-		$rss = new RSSFeed($this->getBlogPosts(), $this->Link(), $this->MetaTitle, $this->MetaDescription);
+		/**
+		 * @var Blog $dataRecord
+		 */
+		$dataRecord = $this->dataRecord;
+
+		$rss = new RSSFeed($dataRecord->getBlogPosts(), $this->Link(), $this->MetaTitle, $this->MetaDescription);
 
 		$this->extend('updateRss', $rss);
 
