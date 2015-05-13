@@ -92,6 +92,7 @@ class Blog extends Page implements PermissionProvider {
 	 */
 	private static $defaults = array(
 		'ProvideComments' => false,
+		'PostsPerPage' => 10,
 	);
 
 	/**

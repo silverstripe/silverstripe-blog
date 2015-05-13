@@ -9,6 +9,7 @@
 * Publish Date - Set a blog post to publish in the future.
 * Custom GridField components for quickly adding new objects.
 * RSS Feed of the blog
+* Custom pagination via the Blog's "Settings" tab.
 
 
 ## Screenshots
