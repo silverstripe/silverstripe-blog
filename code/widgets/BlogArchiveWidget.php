@@ -31,7 +31,7 @@ class BlogArchiveWidget extends Widget {
 	 */
 	private static $db = array(
 		'NumberToDisplay' => 'Int',
-		'ArchiveType' => 'Enum("Monthly,Yearly", "Monthly")',
+		'ArchiveType' => 'Enum(\'Monthly,Yearly\', \'Monthly\')',
 	);
 
 	/**
@@ -52,15 +52,27 @@ class BlogArchiveWidget extends Widget {
 	 * {@inheritdoc}
 	 */
 	public function getCMSFields() {
-		$self = &$this;
+		$self =& $this;
 
 		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
-			$type = $self->dbObject('ArchiveType')->enumValues();
+			if (!$fields) {
+				return;
+			}
+
+			/**
+			 * @var Enum $archiveType
+			 */
+			$archiveType = $self->dbObject('ArchiveType');
+
+			$type = $archiveType->enumValues();
 
 			foreach($type as $k => $v) {
 				$type[$k] = _t('BlogArchiveWidget.' . ucfirst(strtolower($v)), $v);
 			}
 
+			/**
+			 * @var FieldList $fields
+			 */
 			$fields->merge(array(
 				DropdownField::create('BlogID', _t('BlogArchiveWidget.Blog', 'Blog'), Blog::get()->map()),
 				DropdownField::create('ArchiveType', _t('BlogArchiveWidget.ArchiveType', 'ArchiveType'), $type),
@@ -80,9 +92,9 @@ class BlogArchiveWidget extends Widget {
 		$query = $this->Blog()->getBlogPosts()->dataQuery();
 
 		if($this->ArchiveType == 'Yearly') {
-			$query->groupBy('DATE_FORMAT(PublishDate, "%Y")');
+			$query->groupBy('DATE_FORMAT(PublishDate, \'%Y\')');
 		} else {
-			$query->groupBy('DATE_FORMAT(PublishDate, "%Y-%M")');
+			$query->groupBy('DATE_FORMAT(PublishDate, \'%Y-%M\')');
 		}
 
 		$posts = $this->Blog()->getBlogPosts()->setDataQuery($query);

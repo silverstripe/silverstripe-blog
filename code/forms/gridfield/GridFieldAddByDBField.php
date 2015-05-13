@@ -100,7 +100,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 			} else {
 				throw new UnexpectedValueException(
 					sprintf(
-						'Invalid field (%s) on  %s.',
+						'Invalid field (%s) on %s.',
 						$dbField,
 						$obj->ClassName
 					)

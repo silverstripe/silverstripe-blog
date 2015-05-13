@@ -40,7 +40,16 @@ class BlogTagsWidget extends Widget {
 	 */
 	public function getCMSFields() {
 		$this->beforeUpdateCMSFields(function ($fields) {
-			$fields->push(DropdownField::create('BlogID', _t('BlogTagsWidget.Blog', 'Blog'), Blog::get()->map()));
+			if (!$fields) {
+				return;
+			}
+
+			/**
+			 * @var FieldList $fields
+			 */
+			$fields->push(
+				DropdownField::create('BlogID', _t('BlogTagsWidget.Blog', 'Blog'), Blog::get()->map())
+			);
 		});
 
 		return parent::getCMSFields();
