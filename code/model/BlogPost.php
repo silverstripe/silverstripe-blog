@@ -165,10 +165,6 @@ class BlogPost extends Page {
 		$self =& $this;
 
 		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
-			/**
-			 * @var FieldList $fields
-			 */
-
 			$summary = HtmlEditorField::create('Summary', false);
 			$summary->setRows(5);
 			$summary->setDescription(_t(
@@ -186,6 +182,9 @@ class BlogPost extends Page {
 			$summaryHolder->setHeadingLevel(4);
 			$summaryHolder->addExtraClass('custom-summary');
 
+			/**
+			 * @var FieldList $fields
+			 */
 			$fields->insertBefore($summaryHolder, 'Content');
 
 			$uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));

@@ -64,6 +64,9 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 
 			$objClass = $gridField->getModelClass();
 
+			/**
+			 * @var DataObject $obj
+			 */
 			$obj = new $objClass();
 
 			if($obj->hasField($dbField)) {
@@ -137,7 +140,12 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
 	 * @return string
 	 */
 	public function getHTMLFragments($gridField) {
-		$dataClass = $gridField->getList()->dataClass();
+		/**
+		 * @var DataList $dataList
+		 */
+		$dataList = $gridField->getList();
+
+		$dataClass = $dataList->dataClass();
 
 		$obj = singleton($dataClass);
 

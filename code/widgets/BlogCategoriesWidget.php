@@ -40,10 +40,6 @@ class BlogCategoriesWidget extends Widget {
 	 */
 	public function getCMSFields() {
 		$this->beforeUpdateCMSFields(function ($fields) {
-			if (!$fields) {
-				return;
-			}
-
 			/**
 			 * @var FieldList $fields
 			 */
@@ -59,9 +55,7 @@ class BlogCategoriesWidget extends Widget {
 	 * @return array
 	 */
 	public function getCategories() {
-		$blog = $this->Blog();
-
-		if($blog) {
+		if($blog = $this->Blog()) {
 			return $blog->Categories();
 		}
 

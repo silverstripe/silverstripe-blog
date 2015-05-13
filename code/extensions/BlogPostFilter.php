@@ -17,7 +17,7 @@ class BlogPostFilter extends DataExtension {
 		$stage = Versioned::current_stage();
 
 		if($stage == 'Live' || !Permission::check('VIEW_DRAFT_CONTENT')) {
-			$query->addWhere(sprintf('PublishDate < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
+			$query->addWhere(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
 		}
 	}
 
@@ -33,6 +33,6 @@ class BlogPostFilter extends DataExtension {
 	 * @param mixed $parent
 	 */
 	public function augmentLoadLazyFields(SQLQuery &$query, &$dataQuery, $parent) {
-		$dataQuery->innerJoin('BlogPost', 'SiteTree.ID = BlogPost.ID');
+		$dataQuery->innerJoin('BlogPost', '"SiteTree"."ID" = "BlogPost"."ID"');
 	}
 }

@@ -14,8 +14,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState {
 	public function getColumnContent($gridField, $record, $columnName) {
 		if($columnName == 'State') {
 			Requirements::css(BLOGGER_DIR . '/css/cms.css');
-
-			if($record->hasMethod('isPublished')) {
+			if($record instanceof BlogPost) {
 				$modifiedLabel = '';
 
 				if($record->isModifiedOnStage) {
@@ -23,15 +22,25 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState {
 				}
 
 				if(!$record->isPublished()) {
+					/**
+					 * @var SS_Datetime $lastEdited
+					 */
+					$lastEdited = $record->dbObject('LastEdited');
+
 					return _t(
 						'GridFieldBlogPostState.Draft',
 						'<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}',
 						'State for when a post is saved.',
 						array(
-							'date' => $record->dbObject('LastEdited')->Nice(),
+							'date' => $lastEdited->Nice(),
 						)
 					);
 				}
+
+				/**
+				 * @var SS_Datetime $publishDate
+				 */
+				$publishDate = $record->dbObject('PublishDate');
 
 				if(strtotime($record->PublishDate) > time()) {
 					return _t(
@@ -39,7 +48,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState {
 						'<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}',
 						'State for when a post is published.',
 						array(
-							'date' => $record->dbObject('PublishDate')->Nice(),
+							'date' => $publishDate->Nice(),
 						)
 					) . $modifiedLabel;
 				}
@@ -49,7 +58,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState {
 					'<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}',
 					'State for when a post is published.',
 					array(
-						'date' => $record->dbObject('PublishDate')->Nice(),
+						'date' => $publishDate->Nice(),
 					)
 				) . $modifiedLabel;
 			}
@@ -63,7 +72,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState {
 	 */
 	public function getColumnAttributes($gridField, $record, $columnName) {
 		if($columnName == 'State') {
-			if($record->hasMethod('isPublished')) {
+			if($record instanceof BlogPost) {
 				$published = $record->isPublished();
 
 				if(!$published) {

@@ -24,8 +24,8 @@ class BlogFilter extends Lumberjack {
 			}
 
 			$dataQuery = $staged->dataQuery()
-				->innerJoin('BlogPost', sprintf('BlogPost%s.ID = SiteTree%s.ID', $stage, $stage))
-				->where(sprintf('PublishDate < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
+				->innerJoin('BlogPost', sprintf('"BlogPost%s"."ID" = "SiteTree%s"."ID"', $stage, $stage))
+				->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
 
 			$staged = $staged->setDataQuery($dataQuery);
 		}
@@ -48,8 +48,8 @@ class BlogFilter extends Lumberjack {
 
 		if(!$this->shouldFilter() && $this->isBlog() && !Permission::check('VIEW_DRAFT_CONTENT')) {
 			$dataQuery = $staged->dataQuery()
-				->innerJoin('BlogPost', 'BlogPost_Live.ID = SiteTree_Live.ID')
-				->where(sprintf('PublishDate < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
+				->innerJoin('BlogPost', '"BlogPost_Live"."ID" = "SiteTree_Live"."ID"')
+				->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
 
 			$staged = $staged->setDataQuery($dataQuery);
 		}
@@ -74,7 +74,7 @@ class BlogFilter extends Lumberjack {
 			$pages = SiteTree::get()->filter(array(
 				'ParentID' => $this->owner->ID,
 				'ClassName' => $excluded
-			))->sort('SiteTree.Created DESC');
+			))->sort('"SiteTree"."Created" DESC');
 
 			$gridField = new BlogFilter_GridField(
 				'ChildPages',
