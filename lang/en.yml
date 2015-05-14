@@ -9,20 +9,21 @@ en:
     AU: Author
     BBH: 'BBCode help'
     CN: Content
+    DESCRIPTION: 'An individual blog entry'
     DT: Date
     PLURALNAME: 'Blog Entry Pages'
     SINGULARNAME: 'Blog Entry Page'
     TS: 'Tags (comma sep.)'
-    DESCRIPTION: 'An individual blog entry'
   BlogEntry_ss:
     COMMENTS: Comments
     EDITTHIS: 'Edit this post'
     POSTEDBY: 'Posted by'
-    POSTEDON: on
+    POSTEDON: 'on'
     TAGS: 'Tags:'
     UNPUBLISHTHIS: 'Unpublish this post'
     VIEWALLPOSTTAGGED: 'View all posts tagged'
   BlogHolder:
+    DESCRIPTION: 'Displays listings of blog entries'
     PLURALNAME: 'Blog Holder Pages'
     POST: 'Post blog entry'
     RSSFEED: 'RSS feed of these blogs'
@@ -33,12 +34,11 @@ en:
     SUCTAGS: 'silverstripe, blog'
     SUCTITLE: 'SilverStripe blog module successfully installed'
     TE: 'For example: sport, personal, science fiction'
-    DESCRIPTION: 'Displays listings of blog entries'
   BlogHolder_ss:
     NOENTRIES: 'There are no blog entries'
-    VIEWINGTAGGED: 'Viewing entries tagged with'
     VIEWINGPOSTEDBY: 'Viewing entries posted by'
     VIEWINGPOSTEDIN: 'Viewing entries posted in'
+    VIEWINGTAGGED: 'Viewing entries tagged with'
   BlogManagementWidget:
     COMADM: 'Comment administration'
     PLURALNAME: 'Blog Management Widgets'
@@ -48,25 +48,33 @@ en:
   BlogManagementWidget_ss:
     LOGOUT: Logout
     POSTNEW: 'Post a new blog entry'
+  BlogPostMeta_ss:
+    AND: and
+    By: by
+    'ON': 'on'
+    POSTED: posted
   BlogSummary_ss:
-    COMMENTS: Comments
     POSTEDBY: 'Posted by'
-    POSTEDON: on
-    VIEWFULL: 'View full post titled -'
+    POSTEDON: 'on'
     READFULLPOST: 'Read the full post'
-    SUMMARYCOMMENTS: comment(s)
     TAGS: Tags
+    VIEWFULL: 'View full post titled -'
   BlogTree:
+    DESCRIPTION: 'A grouping of blogs'
     PLURALNAME: 'Blog Tree Pages'
     SINGULARNAME: 'Blog Tree Page'
-    DESCRIPTION: 'A grouping of blogs'
+  BlogTree_ss:
+    NOENTRIES: 'There are no blog entries'
+    VIEWINGPOSTEDBY: 'Viewing entries posted by'
+    VIEWINGPOSTEDIN: 'Viewing entries posted in'
+    VIEWINGTAGGED: 'Viewing entries tagged with'
   RSSWidget:
     CT: 'Custom title for the feed'
+    DEFAULTTITLE: 'RSS Feed'
     NTS: 'Number of Items to show'
     PLURALNAME: 'R S S Widgets'
     SINGULARNAME: 'R S S Widget'
     URL: 'URL of the other page''s RSS feed.  Please make sure this URL points to an RSS feed.'
-    DEFAULTTITLE: 'RSS Feed'
   SubscribeRSSWidget:
     PLURALNAME: 'Subscribe R S S Widgets'
     SINGULARNAME: 'Subscribe R S S Widget'
@@ -74,6 +82,7 @@ en:
     SUBSCRIBETEXT: Subscribe
     SUBSCRIBETITLE: 'Subscribe to this blog via RSS'
   TagCloudWidget:
+    DEFAULTTITLE: 'Tag Cloud'
     LIMIT: 'Limit number of tags'
     PLURALNAME: 'Tag Cloud Widgets'
     SBAL: alphabet
@@ -81,15 +90,3 @@ en:
     SINGULARNAME: 'Tag Cloud Widget'
     SORTBY: 'Sort by'
     TILE: Title
-    DEFAULTTITLE: 'Tag Cloud'
-  TrackBackPing:
-    PLURALNAME: 'Track Back Pings'
-    SINGULARNAME: 'Track Back Ping'
-  BlogTree_ss:
-    NOENTRIES: 'There are no blog entries'
-    VIEWINGPOSTEDBY: 'Viewing entries posted by'
-    VIEWINGPOSTEDIN: 'Viewing entries posted in'
-    VIEWINGTAGGED: 'Viewing entries tagged with'
-  SiteTree:
-    PLURALNAME: Pages
-    SINGULARNAME: Page
