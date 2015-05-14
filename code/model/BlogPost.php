@@ -496,7 +496,7 @@ class BlogPost extends Page {
 		 */
 		$content = $this->dbObject('Content');
 
-		return $content->LimitWordCount($wordsToDisplay);
+		return $content->Summary($wordsToDisplay);
 	}
 
 	/**
