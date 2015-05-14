@@ -13,8 +13,7 @@
     </p>
 	
 	<% if $Summary %>
-		$Summary
-		<p>
+		<p>$Summary
 	<% else %>
 		<p>$Excerpt
 	<% end_if %>
