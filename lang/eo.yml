@@ -1,0 +1,85 @@
+eo:
+  ArchiveWidget:
+    DispBY: 'Vidigi laŭ'
+    MONTH: monato
+    PLURALNAME: 'Enarĥivi fenestraĵojn'
+    SINGULARNAME: 'Enarĥivi fenestraĵon'
+    YEAR: jaro
+  BlogEntry:
+    AU: Aŭtoro
+    BBH: 'BBCode-helpo'
+    CN: Enhavo
+    DESCRIPTION: 'Unuopa blogaĵo'
+    DT: Dato
+    PLURALNAME: 'Blogaĵaj paĝoj'
+    SINGULARNAME: 'Blogaĵa paĝo'
+    TS: 'Etikedoj (diskomaj)'
+  BlogEntry_ss:
+    COMMENTS: Komentoj
+    EDITTHIS: 'Redakti la afiŝon'
+    POSTEDBY: 'Afiŝita de'
+    TAGS: 'Etikedoj:'
+    UNPUBLISHTHIS: 'Malpublikigi la afiŝon'
+    VIEWALLPOSTTAGGED: 'Vidigi ĉiujn markitajn afiŝojn'
+  BlogHolder:
+    DESCRIPTION: 'Vidigas listojn de blogaĵoj'
+    PLURALNAME: 'Blogenhavaj paĝoj'
+    POST: 'Afiŝi blogaĵon'
+    RSSFEED: 'RSS-fluo de ĉi tiuj blogoj'
+    SINGULARNAME: 'Blogenhava paĝo'
+    SJ: Temo
+    SPUC: 'Bonvole disigu etikedojn per komoj.'
+    SUCCONTENT: '<p>Gratulojn, la SilverStripe-blogmodulo estas sukcese instalita. Estas sendanĝere nun forigi ĉi tiun blogaĵon. Vi povas agordi vian blogon en <a href="admin">la CMS</a>.</p>'
+    SUCTAGS: 'silverstripe, blogo'
+    SUCTITLE: 'SilverStripe-blogmodulo sukcese instaliĝis.'
+    TE: 'Ekzemple: sporto, persona, sciencfikcio'
+  BlogHolder_ss:
+    NOENTRIES: 'Mankas blogaĵoj'
+    VIEWINGPOSTEDBY: 'Vidigas elementojn afiŝitajn de'
+    VIEWINGPOSTEDIN: 'Vidigas elementojn afiŝitajn en'
+    VIEWINGTAGGED: 'Vidigas elementojn markitajn per'
+  BlogManagementWidget:
+    COMADM: 'Administri komentojn'
+    PLURALNAME: 'Blogadministraj fenestraĵoj'
+    SINGULARNAME: 'Blogadministra fenestraĵo'
+    UNM1: 'Vi havas 1 nekontrolitan komenton'
+    UNMM: 'Vi havas %i nekontrolitajn komentojn'
+  BlogManagementWidget_ss:
+    LOGOUT: Adiaŭi
+    POSTNEW: 'Afiŝi novan blogaĵon'
+  BlogSummary_ss:
+    POSTEDBY: 'Afiŝita de'
+    READFULLPOST: 'Legi la tutan afiŝon'
+    TAGS: Etikedoj
+    VIEWFULL: 'Vidigi tutan afiŝon kun la titolo -'
+  BlogTree:
+    DESCRIPTION: 'Grupo de blogoj'
+    PLURALNAME: 'Blogarbaj paĝoj'
+    SINGULARNAME: 'Blogarba paĝo'
+  BlogTree_ss:
+    NOENTRIES: 'Mankas blogaĵoj'
+    VIEWINGPOSTEDBY: 'Vidigas erojn afiŝitajn de'
+    VIEWINGPOSTEDIN: 'Vidigas erojn afiŝitajn en'
+    VIEWINGTAGGED: 'Vidigas erojn markitajn per'
+  RSSWidget:
+    CT: 'Propra titolo por la fluo'
+    DEFAULTTITLE: 'RSS-fluo'
+    NTS: 'Nombro da elementoj vidigotaj'
+    PLURALNAME: 'RSS-fenestraĵoj'
+    SINGULARNAME: 'RSS-fenestraĵo'
+    URL: 'URL de la RSS-fluo de la alia paĝo. Bonvole certigu ke la URL direktas al RSS-fluo.'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Aboni al RSS-fenestraĵoj'
+    SINGULARNAME: 'Aboni al RSS-fenestraĵo'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Aboni
+    SUBSCRIBETITLE: 'Aboni al ĉi tiu blogo per RSS'
+  TagCloudWidget:
+    DEFAULTTITLE: 'Etikednubo'
+    LIMIT: 'Limigi nombron da etikedoj'
+    PLURALNAME: 'Etikednubaj fenestraĵoj'
+    SBAL: alfabeto
+    SBFREQ: ofteco
+    SINGULARNAME: 'Etikednuba fenestraĵo'
+    SORTBY: 'Ordigi laŭ'
+    TILE: Titolo

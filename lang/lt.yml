@@ -1,0 +1,85 @@
+lt:
+  ArchiveWidget:
+    DispBY: 'Rodyti pagal'
+    MONTH: mėn.
+    PLURALNAME: 'Archyvo valdikliai'
+    SINGULARNAME: 'Archyvo valdiklis'
+    YEAR: m.
+  BlogEntry:
+    AU: Autorius
+    BBH: 'BBCode pagalba'
+    CN: Turinys
+    DESCRIPTION: 'Atskiras blogo įrašas'
+    DT: Data
+    PLURALNAME: 'Blogo įrašų puslapiai'
+    SINGULARNAME: 'Blogo įrašo puslapis'
+    TS: 'Žymos (atskirtos kableliu)'
+  BlogEntry_ss:
+    COMMENTS: Komentarai
+    EDITTHIS: 'Redaguoti šį įrašą'
+    POSTEDBY: 'Paskelbė'
+    TAGS: 'Žymos:'
+    UNPUBLISHTHIS: 'Nebepublikuoti šį įrašą'
+    VIEWALLPOSTTAGGED: 'Rodyti visus įrašus su žyma'
+  BlogHolder:
+    DESCRIPTION: 'Rodo blogo įrašų sąrašą'
+    PLURALNAME: 'Blogo įrašų sąrašai'
+    POST: 'Blogo įrašas'
+    RSSFEED: 'Šių blogų RSS srautas'
+    SINGULARNAME: 'Blogo įrašų sąrašas'
+    SJ: Tema
+    SPUC: 'Atskirkite žymas kableliais.'
+    SUCCONTENT: '<p>Sveikiname, SilverStripe blogo modulis sėkmingai įdiegtas. Šį blogo įrašą galite ištrinti. Įvairius blogo aspektus galite konfigūruoti <a href="admin">TVS</a>.</p>'
+    SUCTAGS: 'silverstripe, blogas'
+    SUCTITLE: 'SilverStripe blogo modulis sėkmingai įdiegtas'
+    TE: 'Pavyzdžiui: sportas, asmeninis, mokslinė fantastika'
+  BlogHolder_ss:
+    NOENTRIES: 'Nėra jokių blogo įrašų'
+    VIEWINGPOSTEDBY: 'Rodomi įrašai, kuriuos paskelbė'
+    VIEWINGPOSTEDIN: 'Rodomi įrašai, paskelbti'
+    VIEWINGTAGGED: 'Rodomi įrašai su žymomis'
+  BlogManagementWidget:
+    COMADM: 'Komentarų valdymas'
+    PLURALNAME: 'Blogo valdymo valdikliai'
+    SINGULARNAME: 'Blogo valdymo valdiklis'
+    UNM1: 'Yra 1 nepatvirtintas komentaras'
+    UNMM: 'Yra %i nepatvirt. koment.'
+  BlogManagementWidget_ss:
+    LOGOUT: Atsijungti
+    POSTNEW: 'Parašyti naują blogo įrašą'
+  BlogSummary_ss:
+    POSTEDBY: 'Parašė'
+    READFULLPOST: 'Skaityti visą įrašą'
+    TAGS: Žymos
+    VIEWFULL: 'Rodyti visą įrašą pavadinimu - '
+  BlogTree:
+    DESCRIPTION: 'Blogų grupė'
+    PLURALNAME: 'Blogų grupės puslapiai'
+    SINGULARNAME: 'Blogų grupės puslapis'
+  BlogTree_ss:
+    NOENTRIES: 'Nėra jokių blogo įrašų'
+    VIEWINGPOSTEDBY: 'Rodomi įrašai, kuriuos paskelbė'
+    VIEWINGPOSTEDIN: 'Rodomi įrašai, paskelbti'
+    VIEWINGTAGGED: 'Rodomi įrašai su žymomis'
+  RSSWidget:
+    CT: 'Norimas srauto pavadinimas'
+    DEFAULTTITLE: 'RSS srautas'
+    NTS: 'Norimų rodyti įrašų skaičius'
+    PLURALNAME: 'RSS valdikliai'
+    SINGULARNAME: 'RSS valdiklis'
+    URL: 'Kito puslapio RSS srauto URL adresas. Prašome įsitikinti, kad šis URL adresas tikrai veda į RSS srautą.'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Prenumeruoti RSS valdiklius'
+    SINGULARNAME: 'Prenumeruoti RSS valdiklį'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Prenumeruoti
+    SUBSCRIBETITLE: 'Prenumeruoti šio blogo RSS srautą'
+  TagCloudWidget:
+    DEFAULTTITLE: 'Žymos'
+    LIMIT: 'Apriboti žymų skaičių'
+    PLURALNAME: 'Žymų valdikliai'
+    SBAL: žodynas
+    SBFREQ: dažnis
+    SINGULARNAME: 'Žymų valdiklis'
+    SORTBY: 'Rikiuoti pagal'
+    TILE: Pavadinimas

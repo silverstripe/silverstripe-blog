@@ -1,48 +1,65 @@
 sr:
   ArchiveWidget:
-    DispBY: "Прикажи по"
-    MONTH: "месецу"
-    YEAR: "години"
+    DispBY: 'Прикажи по'
+    MONTH: месецу
+    YEAR: години
   BlogEntry:
-    AU: "Аутор"
-    BBH: "Помоћ око ББкода"
-    CN: "Садржај"
-    DT: "Датум"
-    TS: "Ознаке (одвојене зарезом)"
+    AU: Аутор
+    BBH: 'Помоћ око ББкода'
+    CN: Садржај
+    DESCRIPTION: 'Појединачни унос у блог'
+    DT: Датум
+    PLURALNAME: 'Странице уноса у блог'
+    SINGULARNAME: 'Страница уноса у блог'
+    TS: 'Ознаке (одвојене зарезом)'
   BlogEntry_ss:
-    COMMENTS: "Коментари"
-    EDITTHIS: "Измени овај унос"
-    POSTEDBY: "Послао"
-    POSTEDON: " "
-    TAGS: "Тагови:"
-    VIEWALLPOSTTAGGED: "Погледајте све уносе означене са"
+    COMMENTS: Коментари
+    EDITTHIS: 'Измени овај унос'
+    POSTEDBY: 'Послао'
+    TAGS: 'Ознаке:'
+    UNPUBLISHTHIS: 'Поништи објаву овог уноса'
+    VIEWALLPOSTTAGGED: 'Погледајте све уносе означене са'
   BlogHolder:
-    POST: "Пошаљи унос у блог"
-    RSSFEED: "RSS довод овог блога"
-    SJ: "Наслов"
-    SPUC: "Одвојите ознаке зарезима."
-    SUCTAGS: "silverstripe, блог"
-    SUCTITLE: "SilverStripe модул за блог је успешно инсталиран"
-    TE: "На пример: спорт, лично, научна фантастика"
+    DESCRIPTION: 'Приказује листе уноса у блог'
+    POST: 'Пошаљи унос у блог'
+    RSSFEED: 'RSS довод овог блога'
+    SJ: Наслов
+    SPUC: 'Одвојите ознаке зарезима.'
+    SUCCONTENT: '<p>Честитамо, блог модул за SilverStripe је успешно инсталиран. Овај унос у блог може бити безбедно обрисан. Можете подесити аспекте Вашег блога у <a href="admin">CMS-у</a>.</p>'
+    SUCTAGS: 'silverstripe, блог'
+    SUCTITLE: 'SilverStripe модул за блог је успешно инсталиран'
+    TE: 'На пример: спорт, лично, научна фантастика'
   BlogHolder_ss:
-    NOENTRIES: "Нема уноса у блог"
-    VIEWINGTAGGED: "Приказујем уносе означене са"
+    NOENTRIES: 'Нема уноса у блог'
+    VIEWINGPOSTEDBY: 'Приказ уноса послатих од'
+    VIEWINGPOSTEDIN: 'Приказ уноса послатих у'
+    VIEWINGTAGGED: 'Приказујем уносе означене са'
   BlogManagementWidget:
-    COMADM: "Администрација коментара"
+    COMADM: 'Администрација коментара'
+    UNM1: 'Имате 1 немодерисан кометар'
+    UNMM: 'Имате %i немодерисаних коментара'
   BlogManagementWidget_ss:
-    LOGOUT: "Одјави се"
-    POSTNEW: "Пошаљи нов унос у блог"
+    LOGOUT: Одјави се
+    POSTNEW: 'Пошаљи нов унос у блог'
   BlogSummary_ss:
-    COMMENTS: "Коментари"
-    POSTEDON: "у"
-    VIEWFULL: "Погледајте цео унос насловљен - "
+    POSTEDBY: 'Послао'
+    READFULLPOST: 'Прочитај цео унос'
+    TAGS: Ознаке
+    VIEWFULL: 'Погледајте цео унос насловљен - '
+  BlogTree_ss:
+    NOENTRIES: 'Нема уноса у блог'
+    VIEWINGPOSTEDBY: 'Приказ уноса послатих од'
+    VIEWINGPOSTEDIN: 'Приказ уноса послатих у'
+    VIEWINGTAGGED: 'Приказ уноса означених са'
   RSSWidget:
-    CT: "Прилагођени наслов за овај довод"
-    NTS: "Број ставки за приказивање"
-    URL: "URL RSS довода"
+    CT: 'Прилагођени наслов за овај довод'
+    NTS: 'Број ставки за приказивање'
+    URL: 'URL RSS довода'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Претплати се
   TagCloudWidget:
-    LIMIT: "Ограничи број тагова"
-    SBAL: "азбучном реду"
-    SBFREQ: "фреквенцији"
-    SORTBY: "Сортирај по"
-    TILE: "Наслов"
+    LIMIT: 'Ограничи број тагова'
+    SBAL: азбучном реду
+    SBFREQ: фреквенцији
+    SORTBY: 'Сортирај по'
+    TILE: Наслов

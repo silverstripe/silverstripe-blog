@@ -1,22 +1,16 @@
 ms:
   ArchiveWidget:
-    PLURALNAME: "Arkiv Widgets"
-    SINGULARNAME: "Arkiv Widget"
-  BlogEntry:
-    PLURALNAME: "Blog Poster"
-    SINGULARNAME: "Blog Post"
-  BlogHolder:
-    PLURALNAME: "Blog holdere"
-    SINGULARNAME: "Blog holder"
+    PLURALNAME: 'Arkiv Widgets'
+    SINGULARNAME: 'Arkiv Widget'
   BlogManagementWidget:
-    PLURALNAME: "Blog Admin Widgets"
-    SINGULARNAME: "Blog Admin Widgets"
+    PLURALNAME: 'Blog Admin Widgets'
+    SINGULARNAME: 'Blog Admin Widgets'
   RSSWidget:
-    PLURALNAME: "R S S Widgets"
-    SINGULARNAME: "R S S Widget"
+    PLURALNAME: 'R S S Widgets'
+    SINGULARNAME: 'R S S Widget'
   SubscribeRSSWidget:
-    PLURALNAME: "Abonner på R S S Widgets"
-    SINGULARNAME: "Abonner på R S S Widgets"
+    PLURALNAME: 'Abonner på R S S Widgets'
+    SINGULARNAME: 'Abonner på R S S Widgets'
   TagCloudWidget:
-    PLURALNAME: "Tag Cloud Widgets"
-    SINGULARNAME: "Tag Cloud Widget"
+    PLURALNAME: 'Tag Cloud Widgets'
+    SINGULARNAME: 'Tag Cloud Widget'

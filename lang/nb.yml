@@ -1,0 +1,85 @@
+nb:
+  ArchiveWidget:
+    DispBY: 'Vis for'
+    MONTH: Måned
+    PLURALNAME: 'Arkiv Widgets'
+    SINGULARNAME: 'Arkiv Widget'
+    YEAR: år
+  BlogEntry:
+    AU: Skribent
+    BBH: 'BBCode hjelp'
+    CN: Innhold
+    DESCRIPTION: 'Individuell blogginnlegg'
+    DT: Dato
+    PLURALNAME: 'Blogginnlegg Sider'
+    SINGULARNAME: 'Blogginnlegg Side'
+    TS: 'Tags (komma sep.)'
+  BlogEntry_ss:
+    COMMENTS: Kommentarer
+    EDITTHIS: 'Rediger dette innlegget'
+    POSTEDBY: 'Publisert av'
+    TAGS: 'Tags:'
+    UNPUBLISHTHIS: 'Avpubliser dette innlegget'
+    VIEWALLPOSTTAGGED: 'Se alle innlegg tagget med'
+  BlogHolder:
+    DESCRIPTION: 'Vis en liste med blogginnlegg'
+    PLURALNAME: 'Bloggholder Sider'
+    POST: 'Skriv blogginnlegg'
+    RSSFEED: 'RSS-strøm for denne bloggen'
+    SINGULARNAME: 'Bloggholder Side'
+    SJ: Emne
+    SPUC: 'Separer tagger med komma.'
+    SUCCONTENT: '<p>Gratulerer, Silverstripe blogmodulen har blitt installert. Dette blogginnlegget kan slettes. Du kan konfigurere bloggen din i <a href="admin">CMS-et</a>.</p>'
+    SUCTAGS: 'silverstripe, blog'
+    SUCTITLE: 'SilverStripe bloggmodulen er installert'
+    TE: 'For eksempel: sport, båt, bil.'
+  BlogHolder_ss:
+    NOENTRIES: 'Det eksisterer ikke noen blogginnlegg'
+    VIEWINGPOSTEDBY: 'Se innlegg publisert av'
+    VIEWINGPOSTEDIN: 'Se innlegg publisert i'
+    VIEWINGTAGGED: 'Se innlegg tagget med'
+  BlogManagementWidget:
+    COMADM: 'Administrer kommentarer'
+    PLURALNAME: 'Bloggadministrasjon Widgets'
+    SINGULARNAME: 'Bloggadministrasjon Widget'
+    UNM1: 'Du har 1 umoderert kommentar'
+    UNMM: 'Du har %i umodererte kommentarer'
+  BlogManagementWidget_ss:
+    LOGOUT: Logg av
+    POSTNEW: 'Publiser et nytt blogginnlegg'
+  BlogSummary_ss:
+    POSTEDBY: 'Publisert av'
+    READFULLPOST: 'Les hele innlegget'
+    TAGS: Tags
+    VIEWFULL: 'Se hele innlegget titulert -'
+  BlogTree:
+    DESCRIPTION: 'En gruppering av blogger'
+    PLURALNAME: 'Bloggtresider'
+    SINGULARNAME: 'Bloggtreside'
+  BlogTree_ss:
+    NOENTRIES: 'Det eksisterer ingen blogginnlegg'
+    VIEWINGPOSTEDBY: 'Se innlegg publisert av'
+    VIEWINGPOSTEDIN: 'Se innlegg publisert i'
+    VIEWINGTAGGED: 'Se innlegg tagget med'
+  RSSWidget:
+    CT: 'Egendefinert tittel for strøm'
+    DEFAULTTITLE: 'RSS-strøm'
+    NTS: 'Antall punkter som skal vises'
+    PLURALNAME: 'R S S Widgets'
+    SINGULARNAME: 'R S S Widget'
+    URL: 'URL til den andre siden''s RSS-strøm. Vennligst førg for at denne URL-en peker til en RSS-strøm.'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Abonner R S S Widgets'
+    SINGULARNAME: 'Abonner R S S Widget'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Abonner
+    SUBSCRIBETITLE: 'Abonneder på denne bloggen via RSS'
+  TagCloudWidget:
+    DEFAULTTITLE: 'Tag Cloud'
+    LIMIT: 'Begrens antall tagger'
+    PLURALNAME: 'Tag Cloud Widgets'
+    SBAL: alfabetisk
+    SBFREQ: frekvens
+    SINGULARNAME: 'Tag Cloud Widget'
+    SORTBY: 'Sorter etter'
+    TILE: Tittel

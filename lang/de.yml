@@ -1,74 +1,85 @@
 de:
   ArchiveWidget:
-    DispBY: "Anzeige nach"
-    MONTH: "Monat"
-    PLURALNAME: "Archiv-Widgets"
-    SINGULARNAME: "Archiv-Widget"
-    YEAR: "Jahr"
+    DispBY: 'Anzeige nach'
+    MONTH: Monat
+    PLURALNAME: 'Archiv-Widgets'
+    SINGULARNAME: 'Archiv-Widget'
+    YEAR: Jahr
   BlogEntry:
-    AU: "Autor"
-    BBH: "BBCode Hilfe"
-    CN: "Inhalt"
-    DT: "Datum"
-    PLURALNAME: "Blog-Einträge"
-    SINGULARNAME: "Blog-Eintrag"
-    TS: "Tags (Komma getrennt)"
+    AU: Autor
+    BBH: 'BBCode Hilfe'
+    CN: Inhalt
+    DESCRIPTION: 'Ein einzelner Blog-Beitrag'
+    DT: Datum
+    PLURALNAME: 'Blog-Eintrag Seite'
+    SINGULARNAME: 'Blog-Eintrag Seite'
+    TS: 'Tags (mit Komma getrennt)'
   BlogEntry_ss:
-    COMMENTS: "Kommentare"
-    EDITTHIS: "Eintrag bearbeiten"
-    POSTEDBY: "Eintrag von"
-    POSTEDON: "am"
-    TAGS: "Tags:"
-    UNPUBLISHTHIS: "Eintrag zurückziehen"
-    VIEWALLPOSTTAGGED: "Alle Beiträge mit Tag"
+    COMMENTS: Kommentare
+    EDITTHIS: 'Eintrag bearbeiten'
+    POSTEDBY: 'Eintrag von'
+    TAGS: 'Tags:'
+    UNPUBLISHTHIS: 'Eintrag zurückziehen'
+    VIEWALLPOSTTAGGED: 'Alle Beiträge mit dem Tag'
   BlogHolder:
-    PLURALNAME: "Blog-Besitzer"
-    POST: "Eintrag senden"
-    RSSFEED: "RSS Feed dieser Blogs"
-    SINGULARNAME: "Blog-Besitzer"
-    SJ: "Betreff"
-    SPUC: "Bitte Tags mit Kommata trennen."
-    SUCCONTENT: "Herzlichen Glückwunsch, das SilverStripe Blog Modul wurde erfolgreich installiert. Dieser Blog-Eintrag kann sicher gelöscht werden. Sie können die Blog-Einstellungen (z.B. die angezeigten Widgets in der Sidebar) im admin-Bereich verändern."
-    SUCTAGS: "silverstripe, blog"
-    SUCTITLE: "SilverStripe Blog Module erfolgreich installiert"
-    TE: "Zum Beispiel: sport, musik, video"
+    DESCRIPTION: 'Zeige Listen der Blog-Einträge'
+    PLURALNAME: 'Blog-Besitzer Seite'
+    POST: 'Eintrag senden'
+    RSSFEED: 'RSS Feed dieser Blogs'
+    SINGULARNAME: 'Blog-Besitzer Seite'
+    SJ: Betreff
+    SPUC: 'Bitte Tags mit Kommata trennen.'
+    SUCCONTENT: '<p>Herzlichen Glückwunsch, das SilverStripe Blog Modul wurde erfolgreich installiert. Dieser Blog-Eintrag kann sicher gelöscht werden. Sie können die Blog-Einstellungen im <a href="admin">im CMS<a> verändern.</p>'
+    SUCTAGS: 'silverstripe, blog'
+    SUCTITLE: 'SilverStripe Blog Module erfolgreich installiert'
+    TE: 'Zum Beispiel: sport, musik, video'
   BlogHolder_ss:
-    NOENTRIES: "Es gibt keine Blog Einträge"
-    VIEWINGTAGGED: "Anzeige der Einträge mit Tag"
+    NOENTRIES: 'Es gibt keine Blog Einträge'
+    VIEWINGPOSTEDBY: 'Anzeige der Einträge geschrieben von'
+    VIEWINGPOSTEDIN: 'Anzeige der Einträge geschrieben in'
+    VIEWINGTAGGED: 'Anzeige der Einträge mit dem Tag'
   BlogManagementWidget:
-    COMADM: "Kommentare bearbeiten"
-    PLURALNAME: "Blog-Verwaltungs-Widgets"
-    SINGULARNAME: "Blog-Verwaltungs-Widget"
-    UNM1: "Sie haben 1 noch nicht moderierten Kommentar"
-    UNMM: "Sie haben %i noch nicht moderierte Kommentare"
+    COMADM: 'Kommentare bearbeiten'
+    PLURALNAME: 'Blog-Verwaltungs-Widgets'
+    SINGULARNAME: 'Blog-Verwaltungs-Widget'
+    UNM1: 'Sie haben 1 noch nicht moderierten Kommentar'
+    UNMM: 'Sie haben %i noch nicht moderierte Kommentare'
   BlogManagementWidget_ss:
-    LOGOUT: "Logout"
-    POSTNEW: "Neuen Eintrag schreiben"
+    LOGOUT: Logout
+    POSTNEW: 'Neuen Eintrag schreiben'
   BlogSummary_ss:
-    COMMENTS: "Kommentare"
-    POSTEDBY: "Verfasst von"
-    POSTEDON: "am"
-    VIEWFULL: "Detaillierte Ansicht von dem Titel --"
+    POSTEDBY: 'Verfasst von'
+    READFULLPOST: 'Lese den kompletten Beitrag'
+    TAGS: Tags
+    VIEWFULL: 'Detaillierte Ansicht von dem Titel --'
+  BlogTree:
+    DESCRIPTION: 'Eine Gruppe von Beiträgen'
+    PLURALNAME: 'Blog Baum-Ansichten'
+    SINGULARNAME: 'Blog Baum-Ansicht'
+  BlogTree_ss:
+    NOENTRIES: 'Keine Blog-Einträge vorhanden'
+    VIEWINGPOSTEDBY: 'Zeige Einträge geschrieben von'
+    VIEWINGPOSTEDIN: 'Zeige Einträge geschrieben in'
+    VIEWINGTAGGED: 'Zeige Einträge mit den Stichwörtern'
   RSSWidget:
-    CT: "Eigener Titel für den feed"
-    NTS: "Anzahl der angezeigten Items"
-    PLURALNAME: "RSS-Widgets"
-    SINGULARNAME: "RSS-Widget"
-    URL: "URL des RSS Feed der anderen Seite. Bitte vergewissern Sie sich, dass diese URL auf einen RSS Feed verweist."
+    CT: 'Eigener Titel für den feed'
+    DEFAULTTITLE: 'RSS Feed'
+    NTS: 'Anzahl der angezeigten Items'
+    PLURALNAME: 'RSS-Widgets'
+    SINGULARNAME: 'RSS-Widget'
+    URL: 'URL des RSS Feed der anderen Seite. Bitte vergewissern Sie sich, dass diese URL auf einen RSS Feed verweist.'
   SubscribeRSSWidget:
-    PLURALNAME: "RSS-Abonnier-Widgets"
-    SINGULARNAME: "RSS-Abonnier-Widget"
+    PLURALNAME: 'RSS-Abonnier-Widgets'
+    SINGULARNAME: 'RSS-Abonnier-Widget'
   SubscribeRSSWidget_ss:
-    SUBSCRIBETEXT: "Abonnieren"
-    SUBSCRIBETITLE: "Abonniere diesen Blog per RSS"
+    SUBSCRIBETEXT: Abonnieren
+    SUBSCRIBETITLE: 'Abonniere diesen Blog per RSS'
   TagCloudWidget:
-    LIMIT: "Anzahl der erlaubten Tags"
-    PLURALNAME: "Tag-Cloud-Widgets"
-    SBAL: "Alphabet"
-    SBFREQ: "Häufigkeit"
-    SINGULARNAME: "Tag-Cloud-Widget"
-    SORTBY: "Sortiert nach"
-    TILE: "Titel"
-  TrackBackPing:
-    PLURALNAME: "Ping-Verfolgung"
-    SINGULARNAME: "Ping-Verfolgung"
+    DEFAULTTITLE: 'Tag Cloud'
+    LIMIT: 'Anzahl der erlaubten Tags'
+    PLURALNAME: 'Tag-Cloud-Widgets'
+    SBAL: Alphabet
+    SBFREQ: Häufigkeit
+    SINGULARNAME: 'Tag-Cloud-Widget'
+    SORTBY: 'Sortiert nach'
+    TILE: Titel

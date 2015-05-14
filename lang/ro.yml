@@ -1,0 +1,85 @@
+ro:
+  ArchiveWidget:
+    DispBY: 'Afişare'
+    MONTH: lună
+    PLURALNAME: 'Arhivă widget-uri'
+    SINGULARNAME: 'Arhivă widget'
+    YEAR: an
+  BlogEntry:
+    AU: Autor
+    BBH: 'Help pentru BBCode'
+    CN: Conţinut
+    DESCRIPTION: 'O înregistrare Blog'
+    DT: Dată
+    PLURALNAME: 'Pagini blog'
+    SINGULARNAME: 'Pagină blog'
+    TS: 'Etichete (separate prin virgulă)'
+  BlogEntry_ss:
+    COMMENTS: comentarii
+    EDITTHIS: 'Editaţi acest articol'
+    POSTEDBY: 'Publicat de'
+    TAGS: 'Etichete:'
+    UNPUBLISHTHIS: 'Anulați acest articol'
+    VIEWALLPOSTTAGGED: 'Vezualizaţi toate articolele marcate'
+  BlogHolder:
+    DESCRIPTION: 'Afișare listă cu articole blog'
+    PLURALNAME: 'Pagini Blog Holder'
+    POST: 'Publicare articol blog'
+    RSSFEED: 'Activare feed RSS'
+    SINGULARNAME: 'Pagină Blog Holder'
+    SJ: Subiect
+    SPUC: 'Vă rugăm separaţi etichetele folosind virgule.'
+    SUCCONTENT: 'Felicitări, modulul blog SilverStripe a fost instalat cu succes. Aceast articol din blog poate fi șters fără probleme. Puteți configura aspectele legate de blog-ul dvs. în <a href="admin">CMS</a>.</p>'
+    SUCTAGS: 'silverstripe, blog'
+    SUCTITLE: 'Modulul blog SilverStripe a fost instalat cu succes'
+    TE: 'De exemplu: sport, personal, science fiction'
+  BlogHolder_ss:
+    NOENTRIES: 'Nu există aticole în blog'
+    VIEWINGPOSTEDBY: 'Afișați articole publicate de'
+    VIEWINGPOSTEDIN: 'Afișați articole din'
+    VIEWINGTAGGED: 'Vizualizare erticole etichetate cu'
+  BlogManagementWidget:
+    COMADM: 'Administrare comentarii'
+    PLURALNAME: 'Management Widget-uri Blog'
+    SINGULARNAME: 'Management Widget Blog'
+    UNM1: 'Aveţi 1 comentariu nemoderat'
+    UNMM: 'Aveţi %i comentarii nemoderate'
+  BlogManagementWidget_ss:
+    LOGOUT: Deconectare
+    POSTNEW: 'Publicaţi un nou articol pe blog'
+  BlogSummary_ss:
+    POSTEDBY: 'Publicat de'
+    READFULLPOST: 'Citiţi articolul întreg'
+    TAGS: Etichete
+    VIEWFULL: 'Vizualizaţi întreg articolul intitulat -'
+  BlogTree:
+    DESCRIPTION: 'O grupare de blog-uri'
+    PLURALNAME: 'Pagini din structura Blog'
+    SINGULARNAME: 'Pagină din structura Blog'
+  BlogTree_ss:
+    NOENTRIES: 'Nu există aticole în blog'
+    VIEWINGPOSTEDBY: 'Vizualizați articole publicate de'
+    VIEWINGPOSTEDIN: 'Vizualizați articole publicate în'
+    VIEWINGTAGGED: 'Vizualizați articole etichetate cu'
+  RSSWidget:
+    CT: 'Titlul personalizat pentru RSS'
+    DEFAULTTITLE: 'RSS Feed'
+    NTS: 'Numărul de elemente de afişat'
+    PLURALNAME: 'Widget-uri R S S'
+    SINGULARNAME: 'Widget R S S'
+    URL: '??? URL-ul celorlate pagini RSS. Asigurați-vă că această adresă URL indică către un feed RSS.'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Abonare R S S Widget-uri'
+    SINGULARNAME: 'Abonare R S S Widget'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Abonare
+    SUBSCRIBETITLE: 'Abonare la acest blog prin RSS'
+  TagCloudWidget:
+    DEFAULTTITLE: 'Tag Cloud'
+    LIMIT: 'Limitare număr de etichete'
+    PLURALNAME: 'Tag Cloud Widgets'
+    SBAL: alfabet
+    SBFREQ: frecvenţă
+    SINGULARNAME: 'Tag Cloud Widget'
+    SORTBY: 'Sortare după'
+    TILE: Titlu

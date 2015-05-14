@@ -1,0 +1,28 @@
+sk_SK:
+  ArchiveWidget:
+    DispBY: 'Zobraziť podľa'
+    MONTH: mesiaca
+    YEAR: roku
+  BlogEntry:
+    AU: Autor
+    DT: Dátum
+  BlogEntry_ss:
+    COMMENTS: Komentáre
+    POSTEDBY: 'Zverejnil'
+    TAGS: 'Štítky'
+  BlogHolder:
+    SJ: Predmet
+  BlogManagementWidget_ss:
+    LOGOUT: Odhlásiť sa
+    POSTNEW: 'Pridať nový článok'
+  BlogSummary_ss:
+    POSTEDBY: 'Zverejnil'
+    READFULLPOST: 'Čítať celý článok'
+    TAGS: Štítky
+    VIEWFULL: 'Zobraziť celý článok s názvom - '
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Prihlásiť sa
+  TagCloudWidget:
+    SBAL: abecedy
+    SBFREQ: frekvencie
+    TILE: Nadpis

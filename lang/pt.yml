@@ -1,29 +1,76 @@
 pt:
+  ArchiveWidget:
+    DispBY: 'Disponibilizar por'
+    MONTH: mês
+    PLURALNAME: 'Arquivar Widgets'
+    SINGULARNAME: 'Arquivar Widget'
+    YEAR: ano
   BlogEntry:
-    PLURALNAME: "Posts no Blog"
+    AU: Autor
+    BBH: 'Ajuda BBCode'
+    CN: Conteúdo
+    DESCRIPTION: 'Entrada individual do Blog'
+    DT: Data
+    PLURALNAME: 'Posts no Blog'
+    SINGULARNAME: 'Post no Blog'
+    TS: 'Marcas (separar por vírgula)'
   BlogEntry_ss:
-    COMMENTS: "Comentários"
-    EDITTHIS: "Editar este post"
-    POSTEDBY: "Inserido por"
-    POSTEDON: "em"
-    UNPUBLISHTHIS: "Não publicar este post"
+    COMMENTS: Comentários
+    EDITTHIS: 'Editar este post'
+    POSTEDBY: 'Inserido por'
+    TAGS: 'Marcas:'
+    UNPUBLISHTHIS: 'Não publicar este post'
+    VIEWALLPOSTTAGGED: 'Ver todos as postagens marcadas'
   BlogHolder:
-    RSSFEED: "Feed RSS para este blog"
-    SUCCONTENT: "Parabéns, o módulo do blog do SilverStripe foi instalado com sucesso. Este post pode ser apagado. Poderá configurar as preferências do blog (assim como os widgets presentes no menu) através [url=admin]do CMS[/url]."
-    SUCTITLE: "O módulo do blog do SilverStripe foi instalado com sucesso."
+    DESCRIPTION: 'Disponibilizar lista de postagens'
+    RSSFEED: 'Feed RSS para este blog'
+    SJ: Assunto
+    SPUC: 'Por favor, separe as marcas usando vírgulas.'
+    SUCCONTENT: '<p>Parabéns, o módulo do blog do SilverStripe foi instalado com sucesso. Este post pode ser apagado. Você pode configurar as preferências do seu blog através do <a href="admin">CMS</a>.</p>'
+    SUCTAGS: 'silverstripe, blog'
+    SUCTITLE: 'O módulo do blog do SilverStripe foi instalado com sucesso.'
+    TE: 'Por exemplo: esporte, pessoal, ficção científica'
+  BlogHolder_ss:
+    NOENTRIES: 'Não há postagens'
+    VIEWINGPOSTEDBY: 'Ver posts escritos por'
+    VIEWINGPOSTEDIN: 'Ver posts criados em'
+    VIEWINGTAGGED: 'Ver posts marcados como'
   BlogManagementWidget:
-    COMADM: "Administração de comentários"
-    UNM1: "Existe 1 comentário por moderar"
-    UNMM: "Existem %i comentários por moderar"
+    COMADM: 'Administração de comentários'
+    PLURALNAME: 'Widgets de gerenciamento do blog'
+    SINGULARNAME: 'Widget de gerenciamento do blog'
+    UNM1: 'Existe 1 comentário por moderar'
+    UNMM: 'Existem %i comentários por moderar'
   BlogManagementWidget_ss:
-    LOGOUT: "Sair"
+    LOGOUT: Sair
+    POSTNEW: 'Criar nova postagem'
   BlogSummary_ss:
-    COMMENTS: "Comentários"
-    POSTEDON: "em"
+    POSTEDBY: 'Postado por'
+    READFULLPOST: 'Ler a postagem completa'
+    TAGS: Marcas
+    VIEWFULL: 'Ver post com título completo'
+  BlogTree_ss:
+    NOENTRIES: 'Não há postagens'
+    VIEWINGPOSTEDBY: 'Ver postagens escritas por'
+    VIEWINGPOSTEDIN: 'Ver postagens escritas em'
+    VIEWINGTAGGED: 'Ver postagens marcadas como'
   RSSWidget:
-    NTS: "Número de items para mostrar"
-    URL: "Endereço (URL) do RSS Feed"
+    CT: 'Título personalizado para o feed'
+    DEFAULTTITLE: 'RSS Feed'
+    NTS: 'Número de items para mostrar'
+    PLURALNAME: 'RSS Widgets'
+    SINGULARNAME: 'RSS Widget'
+    URL: 'Endereço (URL) do RSS Feed'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Subscrever RSS Widgets'
+    SINGULARNAME: 'Subscrever RSS Widget'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Subscrever
+    SUBSCRIBETITLE: 'Subscrever para esse blog via RSS'
   TagCloudWidget:
-    SBAL: "alfabeto"
-    SORTBY: "Ordenar por"
-    TILE: "Título"
+    DEFAULTTITLE: 'Nuvem de marcas'
+    LIMIT: 'Limitar números de marcas'
+    SBAL: alfabeto
+    SBFREQ: frequência
+    SORTBY: 'Ordenar por'
+    TILE: Título

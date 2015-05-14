@@ -1,74 +1,85 @@
 nl:
   ArchiveWidget:
-    DispBY: "Tonen door"
-    MONTH: "maand"
-    PLURALNAME: "Archief-widgets"
-    SINGULARNAME: "Archief-widget"
-    YEAR: "jaar"
+    DispBY: 'Tonen per'
+    MONTH: maand
+    PLURALNAME: 'Archief-widgets'
+    SINGULARNAME: 'Archief-widget'
+    YEAR: jaar
   BlogEntry:
-    AU: "Auteur"
-    BBH: "BBCode hulp"
-    CN: "Inhoud"
-    DT: "Datum"
-    PLURALNAME: "Blog Artikelen"
-    SINGULARNAME: "Blog Artikel"
-    TS: "Tags (Komma gescheiden)"
+    AU: Auteur
+    BBH: 'BBCode hulp'
+    CN: Inhoud
+    DESCRIPTION: 'Een individueel blogartikel'
+    DT: Datum
+    PLURALNAME: 'Blogartikel pagina''s'
+    SINGULARNAME: 'Blogartikel pagina'
+    TS: 'Tags (scheiden met komma''s)'
   BlogEntry_ss:
-    COMMENTS: "Reacties"
-    EDITTHIS: "Bewerk deze post"
-    POSTEDBY: "Auteur"
-    POSTEDON: "Aan"
-    TAGS: "Tags:"
-    UNPUBLISHTHIS: "onpubliceer deze post"
-    VIEWALLPOSTTAGGED: "Bekijk alle posten getiteld"
+    COMMENTS: Reacties
+    EDITTHIS: 'Bewerk deze post'
+    POSTEDBY: 'Geplaatst door'
+    TAGS: 'Tags:'
+    UNPUBLISHTHIS: 'Onpubliceer deze post'
+    VIEWALLPOSTTAGGED: 'Bekijk alle posts met de tag:'
   BlogHolder:
-    PLURALNAME: "Blog Houders"
-    POST: "Blogartikel plaatsen"
-    RSSFEED: "RSS-feed van deze blog"
-    SINGULARNAME: "Blog Houder"
-    SJ: "Onderwerp"
-    SPUC: "Scheid de tags met behulp van komma's."
-    SUCCONTENT: "Gefeliciteerd, de SilverStripe blog module is met succes geïnstalleerd. Dit blogartikel kan veilig worden verwijderd. U kunt aspecten van uw blog (zoals de widgets weergegeven in de zijbalk) in [url=admin]het CMS[/url] veranderen."
-    SUCTAGS: "silverstripe, blog"
-    SUCTITLE: "SilverStripe blog module met succes geïnstalleerd"
-    TE: "Bijvoorbeeld: sport, persoonlijke, science fiction"
+    DESCRIPTION: 'Toont lijsten van blogartikels'
+    PLURALNAME: 'Blog pagina''s'
+    POST: 'Blogartikel plaatsen'
+    RSSFEED: 'RSS-feed van deze blog'
+    SINGULARNAME: 'Blog pagina'
+    SJ: Onderwerp
+    SPUC: 'Scheid de tags met behulp van komma''s.'
+    SUCCONTENT: '<p>Gefeliciteerd, de SilverStripe blog module is met succes geïnstalleerd! Dit blogartikel mag gerust verwijderd worden. U kan instellingen maken voor uw blog in <a href="admin">het CMS</a>.</p>'
+    SUCTAGS: 'silverstripe, blog'
+    SUCTITLE: 'SilverStripe blog module met succes geïnstalleerd'
+    TE: 'Bijvoorbeeld: sport, persoonlijke, science fiction'
   BlogHolder_ss:
-    NOENTRIES: "Er zijn geen blog artikelen"
-    VIEWINGTAGGED: "U bekijkt artikelen getagged met"
+    NOENTRIES: 'Er zijn geen blogartikels'
+    VIEWINGPOSTEDBY: 'U bekijkt artikels geplaatst door'
+    VIEWINGPOSTEDIN: 'U bekijkt artikels geplaatst in'
+    VIEWINGTAGGED: 'U bekijkt artikels getagged met'
   BlogManagementWidget:
-    COMADM: "Opmerking administratie"
-    PLURALNAME: "Blog Management Widgets"
-    SINGULARNAME: "Blog Management Widgets"
-    UNM1: "U heeft 1 niet gecontroleerde opmerking"
-    UNMM: "U heeft %i niet gecontroleerde opmerkingen"
+    COMADM: 'Beheer van reacties'
+    PLURALNAME: 'Blog Management Widgets'
+    SINGULARNAME: 'Blog Management Widgets'
+    UNM1: 'U heeft 1 niet-gecontroleerde reactie'
+    UNMM: 'U heeft %i niet-gecontroleerde reacties'
   BlogManagementWidget_ss:
-    LOGOUT: "Afmelden"
-    POSTNEW: "Publiceer een nieuw blog entree"
+    LOGOUT: Afmelden
+    POSTNEW: 'Publiceer een nieuw blogartikel'
   BlogSummary_ss:
-    COMMENTS: "Reacties"
-    POSTEDBY: "Geplaatst door"
-    POSTEDON: "Aan"
-    VIEWFULL: "Bekijk het gehele post getitled"
+    POSTEDBY: 'Geplaatst door'
+    READFULLPOST: 'Lees het gehele artikel'
+    TAGS: Tags
+    VIEWFULL: 'Bekijk het gehele artikel getiteld:'
+  BlogTree:
+    DESCRIPTION: 'Een groepering van blogs'
+    PLURALNAME: 'Blogcollectie pagina''s'
+    SINGULARNAME: 'Blogcollectie pagina'
+  BlogTree_ss:
+    NOENTRIES: 'Er zijn geen blogartikels'
+    VIEWINGPOSTEDBY: 'U bekijkt artikels geplaatst door'
+    VIEWINGPOSTEDIN: 'U bekijkt artikels geplaatst in'
+    VIEWINGTAGGED: 'U bekijkt artikels getagged met'
   RSSWidget:
-    CT: "Aangepaste titel voor de RSS-feed"
-    NTS: "Aantal objecten tonen"
-    PLURALNAME: "RSS-widget"
-    SINGULARNAME: "R S S Widget"
-    URL: "URL van de RSS-feed"
+    CT: 'Aangepaste titel voor de RSS-feed'
+    DEFAULTTITLE: 'RSS feed'
+    NTS: 'Te tonen aantal'
+    PLURALNAME: 'RSS widgets'
+    SINGULARNAME: 'RSS widget'
+    URL: 'URL van de RSS-feed'
   SubscribeRSSWidget:
-    PLURALNAME: "Abonneer R S S Widgets"
-    SINGULARNAME: "Abonneer R S S Widget"
+    PLURALNAME: 'RSS abonneren widgets'
+    SINGULARNAME: 'RSS abonneren widget'
   SubscribeRSSWidget_ss:
-    SUBSCRIBETEXT: "Inschrijven"
-    SUBSCRIBETITLE: "Inschrijven om dit weblog via RSS te volgen"
+    SUBSCRIBETEXT: Inschrijven
+    SUBSCRIBETITLE: 'Inschrijven om dit weblog via RSS te volgen'
   TagCloudWidget:
-    LIMIT: "Beperk aantal tags"
-    PLURALNAME: "Tag Cloud Widgets"
-    SBAL: "alfabet"
-    SBFREQ: "frequentie"
-    SINGULARNAME: "Tag Cloud Widget"
-    SORTBY: "Sorteer bij"
-    TILE: "Titel"
-  TrackBackPing:
-    PLURALNAME: "Track Back Pings"
-    SINGULARNAME: "Track Back Ping"
+    DEFAULTTITLE: 'Tag cloud'
+    LIMIT: 'Beperk aantal tags'
+    PLURALNAME: 'Tag Cloud Widgets'
+    SBAL: alfabet
+    SBFREQ: frequentie
+    SINGULARNAME: 'Tag Cloud Widget'
+    SORTBY: 'Sorteer per'
+    TILE: Titel

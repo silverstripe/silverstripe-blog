@@ -1,0 +1,85 @@
+sv:
+  ArchiveWidget:
+    DispBY: 'Visa efter'
+    MONTH: månad
+    PLURALNAME: 'Arkiv-Widgets'
+    SINGULARNAME: 'Arkiv-Widget'
+    YEAR: år
+  BlogEntry:
+    AU: Författare
+    BBH: 'BBCode hjälp'
+    CN: Innehåll
+    DESCRIPTION: 'Ett individuellt blogginlägg'
+    DT: Datum
+    PLURALNAME: 'Blogginägg'
+    SINGULARNAME: 'Blogginägg'
+    TS: 'Taggar (kommasep.)'
+  BlogEntry_ss:
+    COMMENTS: Kommentarer
+    EDITTHIS: 'Redigera detta inlägg'
+    POSTEDBY: 'Postat av'
+    TAGS: 'Taggar:'
+    UNPUBLISHTHIS: 'Avpublicera detta inlägg'
+    VIEWALLPOSTTAGGED: 'Visa alla inlägg taggade med'
+  BlogHolder:
+    DESCRIPTION: 'Visar listningar av blogginlägg'
+    PLURALNAME: 'Bloggar'
+    POST: 'Skapa inlägg'
+    RSSFEED: 'RSS-flöde från dessa bloggar'
+    SINGULARNAME: 'Blogg'
+    SJ: Ämne
+    SPUC: 'Separera taggar med kommatecken'
+    SUCCONTENT: '<p>Bloggmodulen har installerats. Du kan radera detta inlägg samt göra inställningar för din blogg och skapa nya inlägg inne i <a href="admin">administrationen</a>.</p>'
+    SUCTAGS: 'silverstripe, blogg'
+    SUCTITLE: 'Bloggmodulen har installerats'
+    TE: 'Till exempel: sport, personligt, science fiction'
+  BlogHolder_ss:
+    NOENTRIES: 'Det finns inga inlägg'
+    VIEWINGPOSTEDBY: 'Visar inlägg efter'
+    VIEWINGPOSTEDIN: 'Visar inlägg i'
+    VIEWINGTAGGED: 'Visar inlägg taggade med'
+  BlogManagementWidget:
+    COMADM: 'Kommentarsadministration'
+    PLURALNAME: 'Widgets för hantering av bloggar'
+    SINGULARNAME: 'Widget för hantering av bloggar'
+    UNM1: 'Det finns 1 ny kommentar att moderera'
+    UNMM: 'Det finns %i nya kommentarer att moderera'
+  BlogManagementWidget_ss:
+    LOGOUT: Logga ut
+    POSTNEW: 'Skapa nytt inlägg'
+  BlogSummary_ss:
+    POSTEDBY: 'Postat av'
+    READFULLPOST: 'Läs hela inlägget'
+    TAGS: Taggar
+    VIEWFULL: 'Visa hela inlägget med titeln -'
+  BlogTree:
+    DESCRIPTION: 'En grupp bloggar'
+    PLURALNAME: 'Blggträd'
+    SINGULARNAME: 'Bloggträd'
+  BlogTree_ss:
+    NOENTRIES: 'Det finns inga inlägg'
+    VIEWINGPOSTEDBY: 'Visar inlägg efter'
+    VIEWINGPOSTEDIN: 'Visar inlägg i'
+    VIEWINGTAGGED: 'Visar inlägg taggade med'
+  RSSWidget:
+    CT: 'Egen titel för flödet'
+    DEFAULTTITLE: 'RSS-flöde'
+    NTS: 'Antal inlägg att visa'
+    PLURALNAME: 'R S S Widgets'
+    SINGULARNAME: 'R S S Widget'
+    URL: 'URL till den andra sidans RSS-flöde.  Vänligen säkerställ att denna URL pekar till en ett RSS-flöde.'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Widgets för prenumeration på R S S -flöde'
+    SINGULARNAME: 'Widget för prenumeration på R S S -flöde'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Prenumerera
+    SUBSCRIBETITLE: 'Prenumerera på denna blogg via RSS'
+  TagCloudWidget:
+    DEFAULTTITLE: 'Taggmoln'
+    LIMIT: 'Begränsa antal taggar'
+    PLURALNAME: 'Widgets för taggmoln'
+    SBAL: Alfabetiskt
+    SBFREQ: Frekvens
+    SINGULARNAME: 'Widget för taggmoln'
+    SORTBY: 'Sortera efter'
+    TILE: Titel

@@ -1,0 +1,85 @@
+id:
+  ArchiveWidget:
+    DispBY: 'Tampilkan menurut'
+    MONTH: bulan
+    PLURALNAME: 'Arsip Widget'
+    SINGULARNAME: 'Arsip Widget'
+    YEAR: tahun
+  BlogEntry:
+    AU: Penulis
+    BBH: 'Bantuan BBCode'
+    CN: Konten
+    DESCRIPTION: 'Entri blog individual'
+    DT: Tanggal
+    PLURALNAME: 'Halaman Entri Blog'
+    SINGULARNAME: 'Halaman Entri Blog'
+    TS: 'Penanda (tanda koma sebagai pemisah)'
+  BlogEntry_ss:
+    COMMENTS: Komentar
+    EDITTHIS: 'Ubah pos ini'
+    POSTEDBY: 'Oleh'
+    TAGS: 'Penanda:'
+    UNPUBLISHTHIS: 'Sembunyikan pos ini'
+    VIEWALLPOSTTAGGED: 'Tampilkan semua pos dengan penanda'
+  BlogHolder:
+    DESCRIPTION: 'Tampilkan daftar entri-entri blog'
+    PLURALNAME: 'Laman Blog Holder'
+    POST: 'Buat entri blog'
+    RSSFEED: 'Sindikasi RSS blog ini'
+    SINGULARNAME: 'Laman Blog Holder'
+    SJ: Subyek
+    SPUC: 'Mohon pisahkan penanda dengan tanda koma.'
+    SUCCONTENT: '<p>Selamat, modul blog SilverStripe telah berhasil terpasang. Entri blog ini dapat dihapus dengan aman. Anda dapat mengatur berbagai hal pada blog Anda di <a href="admin">the CMS</a>.</p>'
+    SUCTAGS: 'silverstripe, blog'
+    SUCTITLE: 'Modul blog Silverstripe telah terpasang'
+    TE: 'Contohnya: olahraga, pribadi, fiksi ilmiah'
+  BlogHolder_ss:
+    NOENTRIES: 'Tidak ada entri blog'
+    VIEWINGPOSTEDBY: 'Tampilkan entri-entri dari'
+    VIEWINGPOSTEDIN: 'Tampilkan entri-entri di'
+    VIEWINGTAGGED: 'Tampilkan entri-entri berdasarkan'
+  BlogManagementWidget:
+    COMADM: 'Pengelolaan komentar'
+    PLURALNAME: 'Widget Pengelolaan Blog'
+    SINGULARNAME: 'Widget Pengelolaan Blog'
+    UNM1: 'Ada 1 komentar non-moderasi'
+    UNMM: 'Ada %i komentar non-moderasi'
+  BlogManagementWidget_ss:
+    LOGOUT: Keluar
+    POSTNEW: 'Buat entri blog baru'
+  BlogSummary_ss:
+    POSTEDBY: 'Oleh'
+    READFULLPOST: 'Baca'
+    TAGS: Penanda
+    VIEWFULL: 'Tampilkan sepenuhnya -'
+  BlogTree:
+    DESCRIPTION: 'Kumpulan blog'
+    PLURALNAME: 'Halaman Struktur Blog'
+    SINGULARNAME: 'Halaman Struktur Blog'
+  BlogTree_ss:
+    NOENTRIES: 'Tidak ada entri blog'
+    VIEWINGPOSTEDBY: 'Menampilkan entri dari'
+    VIEWINGPOSTEDIN: 'Menampilkan entri di'
+    VIEWINGTAGGED: 'Menampilkan entri dengan penanda'
+  RSSWidget:
+    CT: 'Judul baru sindikasi RSS'
+    DEFAULTTITLE: 'Sindikasi RSS'
+    NTS: 'Jumlah yang ditampilkan'
+    PLURALNAME: 'Widget R S S'
+    SINGULARNAME: 'Widget R S S'
+    URL: 'URL dari sindikasi RSS lain. Mohon pastikan URL sudah benar.'
+  SubscribeRSSWidget:
+    PLURALNAME: 'Widget Langganan R S S'
+    SINGULARNAME: 'Widget Langganan R S S'
+  SubscribeRSSWidget_ss:
+    SUBSCRIBETEXT: Langganan
+    SUBSCRIBETITLE: 'Langganan blog via RSS'
+  TagCloudWidget:
+    DEFAULTTITLE: 'Awan Penanda'
+    LIMIT: 'Batasi jumlah penanda'
+    PLURALNAME: 'Widget Awan Penanda'
+    SBAL: alfabet
+    SBFREQ: frekuensi
+    SINGULARNAME: 'Widget Awan Penanda'
+    SORTBY: 'Urutkan menurut'
+    TILE: Judul
