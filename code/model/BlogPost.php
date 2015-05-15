@@ -230,17 +230,19 @@ class BlogPost extends Page {
 				TagField::create(
 					'Categories',
 					_t('BlogPost.Categories', 'Categories'),
-					$self->Parent()->Categories()->map(),
-					$self->Categories()->map(),
-					!$self->canCreateCategories()
-				),
+					$self->Parent()->Categories(),
+					$self->Categories()
+				)
+					->setCanCreate($self->canCreateCategories())
+					->setShouldLazyLoad(true),
 				TagField::create(
 					'Tags',
 					_t('BlogPost.Tags', 'Tags'),
-					$self->Parent()->Tags()->map(),
-					$self->Tags()->map(),
-					!$self->canCreateTags()
-				),
+					$self->Parent()->Tags(),
+					$self->Tags()
+				)
+					->setCanCreate($self->canCreateTags())
+					->setShouldLazyLoad(true),
 				$authorField,
 				$authorNames
 			)->setTitle('Post Options');
