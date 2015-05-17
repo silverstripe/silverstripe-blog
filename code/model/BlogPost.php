@@ -171,7 +171,7 @@ class BlogPost extends Page {
 			/**
 			 * @var FieldList $fields
 			 */
-			$fields->insertAfter($uploadField,'Content');
+			$fields->insertAfter($uploadField, 'Content');
 
 			$summary = HtmlEditorField::create('Summary', false);
 			$summary->setRows(5);
