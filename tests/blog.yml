@@ -85,6 +85,24 @@ BlogTag:
     URLSegment: 'third-tag'
     Blog: =>Blog.ThirdBlog
 
+  #Tags for Tag Cloud widget
+  PopularTag:
+    Title: 'Popular'
+    URLSegment: 'popular-tag'
+    Blog: =>Blog.FourthBlog
+  CoolTag:
+    Title: 'Cool'
+    URLSegment: 'cool-tag'
+    Blog: =>Blog.FourthBlog
+  CatTag:
+    Title: 'Cat'
+    URLSegment: 'cat-tag'
+    Blog: =>Blog.FourthBlog
+  KiwiTag:
+    Title: 'Kiwi'
+    URLSegment: 'kiwi-tag'
+    Blog: =>Blog.FourthBlog
+
 BlogCategory:
   FirstCategory:
     Title: 'First Category'
@@ -146,3 +164,33 @@ BlogPost:
     PublishDate: '2012-01-09 15:00:00'
     Parent: =>Blog.FourthBlog
     Authors: =>Member.BlogEditor,=>Member.Writer,=>Member.Contributor
+
+  #Posts for the tag cloud widget test
+  TaggedPost1:
+    Title: 'Tagged Post 1'
+    URLSegment: tagged-post-1
+    PublishDate: '2012-01-09 15:00:00'
+    Tags: =>BlogTag.PopularTag,=>BlogTag.CoolTag
+    Categories: =>BlogCategory.FirstCategory
+    Parent: =>Blog.FourthBlog
+  TaggedPost2:
+    Title: 'Tagged Post 2'
+    URLSegment: tagged-post-2
+    PublishDate: '2012-01-09 15:00:00'
+    Tags: =>BlogTag.PopularTag,=>BlogTag.CoolTag,=>BlogTag.CatTag
+    Categories: =>BlogCategory.FirstCategory
+    Parent: =>Blog.FourthBlog
+  TaggedPost3:
+    Title: 'Tagged Post 3'
+    URLSegment: tagged-post-3
+    PublishDate: '2012-01-09 17:20:00'
+    Tags: =>BlogTag.PopularTag,=>BlogTag.CoolTag,=>BlogTag.CatTag,=>BlogTag.KiwiTag
+    Categories: =>BlogCategory.FirstCategory
+    Parent: =>Blog.FourthBlog
+  TaggedPost4:
+    Title: 'Tagged Post 4'
+    URLSegment: tagged-post-4
+    PublishDate: '2012-04-09 15:00:00'
+    Tags: =>BlogTag.PopularTag
+    Categories: =>BlogCategory.FirstCategory
+    Parent: =>Blog.FourthBlog
