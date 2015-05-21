@@ -582,7 +582,6 @@ class Blog extends Page implements PermissionProvider {
 
 		return $group;
 	}
-
 }
 
 /**
@@ -683,7 +682,7 @@ class Blog_Controller extends Page_Controller {
 		$profile = $this->getCurrentProfile();
 
 		if($profile) {
-			return $profile->AuthoredPosts()->filter('ParentID', $this->ID);
+			return $profile->BlogPosts()->filter('ParentID', $this->ID);
 		}
 
 		return null;

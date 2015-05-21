@@ -26,7 +26,7 @@ class BlogMemberExtension extends DataExtension {
 	 * @var array
 	 */
 	private static $belongs_many_many = array(
-		'AuthoredPosts' => 'BlogPost',
+		'BlogPosts' => 'BlogPost',
 	);
 
 	/**
@@ -76,11 +76,34 @@ class BlogMemberExtension extends DataExtension {
 		return $conflict->count() == 0;
 	}
 
+
 	/**
 	 * {@inheritdoc}
 	 */
 	public function updateCMSFields(FieldList $fields) {
 		$fields->removeByName('URLSegment');
+
+		// Remove the automatically-generated posts tab.
+
+		$fields->removeFieldFromTab('Root', 'BlogPosts');
+
+		// Construct a better posts tab.
+
+		Requirements::css(BLOGGER_DIR . '/css/cms.css');
+		Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
+
+		$tab = new Tab('BlogPosts', 'Blog Posts');
+
+		$gridField = new GridField(
+			'BlogPosts',
+			'Blog Posts',
+			$this->owner->BlogPosts(),
+			new GridFieldConfig_BlogPost()
+		);
+
+		$tab->Fields()->add($gridField);
+
+		$fields->addFieldToTab('Root', $tab);
 
 		return $fields;
 	}
