@@ -10,6 +10,7 @@
 * Custom GridField components for quickly adding new objects.
 * RSS Feed of the blog
 * [Custom pagination](pagination.md).
+* [Widgets](widgets.md) (optional)
 
 
 ## Screenshots
