@@ -52,8 +52,9 @@ class BlogEntry extends BlogPost implements MigratableObject {
 
 		if($this->ClassName === 'BlogEntry') {
 			$this->ClassName = 'BlogPost';
-			$this->write();
 		}
+		
+		$this->write();
 	}
 
 	/**
