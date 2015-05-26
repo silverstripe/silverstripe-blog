@@ -50,10 +50,9 @@ class BlogEntry extends BlogPost implements MigratableObject {
 
 		$this->PublishDate = $this->Date;
 
-		if($this->ClassName === 'BlogEntry') {
-			$this->ClassName = 'BlogPost';
-		}
-		
+		$this->ClassName = 'BlogPost';
+		$this->RecordClassName = 'BlogPost';
+
 		$this->write();
 	}
 
