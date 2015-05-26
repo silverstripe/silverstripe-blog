@@ -50,8 +50,10 @@ class BlogEntry extends BlogPost implements MigratableObject {
 
 		$this->PublishDate = $this->Date;
 
+		// If a user has subclassed BlogEntry, it should not be turned into a BlogPost.
 		if($this->ClassName === 'BlogEntry') {
 			$this->ClassName = 'BlogPost';
+			$this->RecordClassName = 'BlogPost';
 		}
 		
 		$this->write();
