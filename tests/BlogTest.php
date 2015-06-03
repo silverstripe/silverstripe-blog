@@ -189,6 +189,26 @@ class BlogTest extends SapphireTest {
 		$this->assertEquals('Editor', $postA->RoleOf($editor));
 		$this->assertEmpty($postA->RoleOf($visitor));
 
+		// Test RoleOf with string values given
+		$this->assertEquals('Editor', $fourthBlog->RoleOf((string)(int)$editor->ID));
+		$this->assertEquals('Contributor', $fourthBlog->RoleOf((string)(int)$contributor->ID));
+		$this->assertEquals('Writer', $fourthBlog->RoleOf((string)(int)$writer->ID));
+		$this->assertEmpty($fourthBlog->RoleOf((string)(int)$visitor->ID));
+		$this->assertEquals('Author', $postA->RoleOf((string)(int)$writer->ID));
+		$this->assertEquals('Author', $postA->RoleOf((string)(int)$contributor->ID));
+		$this->assertEquals('Editor', $postA->RoleOf((string)(int)$editor->ID));
+		$this->assertEmpty($postA->RoleOf((string)(int)$visitor->ID));
+
+		// Test RoleOf with int values given
+		$this->assertEquals('Editor', $fourthBlog->RoleOf((int)$editor->ID));
+		$this->assertEquals('Contributor', $fourthBlog->RoleOf((int)$contributor->ID));
+		$this->assertEquals('Writer', $fourthBlog->RoleOf((int)$writer->ID));
+		$this->assertEmpty($fourthBlog->RoleOf((int)$visitor->ID));
+		$this->assertEquals('Author', $postA->RoleOf((int)$writer->ID));
+		$this->assertEquals('Author', $postA->RoleOf((int)$contributor->ID));
+		$this->assertEquals('Editor', $postA->RoleOf((int)$editor->ID));
+		$this->assertEmpty($postA->RoleOf((int)$visitor->ID));
+
 		$this->assertTrue($fourthBlog->canEdit($editor));
 		$this->assertFalse($firstBlog->canEdit($editor));
 		$this->assertTrue($fourthBlog->canAddChildren($editor));
