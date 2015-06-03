@@ -802,9 +802,14 @@ class Blog_Controller extends Page_Controller {
 		 */
 		$dataRecord = $this->dataRecord;
 
-		$tag = $this->request->param('Tag');
+		// get the tag value and generate a URL Segment for it
+		// use the URL segment for searching
+		$tagvalue = $this->request->param('Tag');
+		if($tagvalue) {
+			$tempTag = new BlogTag();
+	                $tempTag->Title = $tagvalue;
+	                $tag = $tempTag->generateURLSegment();
 
-		if($tag) {
 			return $dataRecord->Tags()
 				->filter('URLSegment', $tag)
 				->first();
@@ -843,9 +848,12 @@ class Blog_Controller extends Page_Controller {
 		 */
 		$dataRecord = $this->dataRecord;
 
-		$category = $this->request->param('Category');
+		$categoryValue = $this->request->param('Category');
 
-		if($category) {
+		if($categoryValue) {
+			$tempCategory = new BlogCategory();
+			$tempCategory->Title = $categoryValue;
+			$category = $tempCategory->generateURLSegment();
 			return $dataRecord->Categories()
 				->filter('URLSegment', $category)
 				->first();
