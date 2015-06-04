@@ -222,13 +222,22 @@ class BlogPost extends Page {
 			$publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
 			$publishDate->getDateField()->setConfig('showcalendar', true);
 
+			// Get categories and tags
+			$parent = $self->Parent();
+			$categories = $parent instanceof Blog
+				? $parent->Categories()
+				: BlogCategory::get();
+			$tags = $parent instanceof Blog
+				? $parent->Tags()
+				: BlogTag::get();
+
 			$options = BlogAdminSidebar::create(
 				$publishDate,
 				$urlSegment,
 				TagField::create(
 					'Categories',
 					_t('BlogPost.Categories', 'Categories'),
-					$self->Parent()->Categories(),
+					$categories,
 					$self->Categories()
 				)
 					->setCanCreate($self->canCreateCategories())
@@ -236,7 +245,7 @@ class BlogPost extends Page {
 				TagField::create(
 					'Tags',
 					_t('BlogPost.Tags', 'Tags'),
-					$self->Parent()->Tags(),
+					$tags,
 					$self->Tags()
 				)
 					->setCanCreate($self->canCreateTags())
