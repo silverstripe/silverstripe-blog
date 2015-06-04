@@ -165,7 +165,7 @@ class Blog extends Page implements PermissionProvider {
 			$member = Member::currentUser();
 		}
 
-		if(is_int($member)) {
+		if(is_numeric($member)) {
 			$member = Member::get()->byID($member);
 		}
 
