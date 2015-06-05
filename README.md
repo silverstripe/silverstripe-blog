@@ -1,6 +1,6 @@
 # SilverStripe Blog Module
 
-[![Build Status](https://travis-ci.org/micmania1/silverstripe-blogger.png?branch=1.0)](https://travis-ci.org/micmania1/silverstripe-blogger) [![Latest Stable Version](https://poser.pugx.org/micmania1/silverstripe-blog/v/stable.svg)](https://packagist.org/packages/micmania1/silverstripe-blog) [![Total Downloads](https://poser.pugx.org/micmania1/silverstripe-blog/downloads.svg)](https://packagist.org/packages/micmania1/silverstripe-blog) [![Latest Unstable Version](https://poser.pugx.org/micmania1/silverstripe-blog/v/unstable.svg)](https://packagist.org/packages/micmania1/silverstripe-blog) [![License](https://poser.pugx.org/micmania1/silverstripe-blog/license.svg)](https://packagist.org/packages/micmania1/silverstripe-blog)
+[![Build Status](https://travis-ci.org/silverstripe/silverstripe-blog.png?branch=master)](https://travis-ci.org/silverstripe/silverstripe-blog) [![Latest Stable Version](https://poser.pugx.org/silverstripe/blog/v/stable.svg)](https://packagist.org/packages/silverstripe/blog) [![Total Downloads](https://poser.pugx.org/silverstripe/blog/downloads.svg)](https://packagist.org/packages/silverstripe/blog) [![Latest Unstable Version](https://poser.pugx.org/silverstripe/blog/v/unstable.svg)](https://packagist.org/silverstripe/silverstripe/blog) [![License](https://poser.pugx.org/silverstripe/blog/license.svg)](https://packagist.org/packages/silverstripe/blog)
 
 ## Features
 
