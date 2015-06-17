@@ -118,14 +118,14 @@ class Blog extends Page implements PermissionProvider {
 				'Categories',
 				_t('Blog.Categories', 'Categories'),
 				$self->Categories(),
-				GridFieldCategorisationConfig::create(15, $self->Categories(), 'BlogCategory', 'Categories', 'BlogPosts')
+				GridFieldCategorisationConfig::create(15, $self->Categories()->sort('Title'), 'BlogCategory', 'Categories', 'BlogPosts')
 			);
 
 			$tags = GridField::create(
 				'Tags',
 				_t('Blog.Tags', 'Tags'),
 				$self->Tags(),
-				GridFieldCategorisationConfig::create(15, $self->Tags(), 'BlogTag', 'Tags', 'BlogPosts')
+				GridFieldCategorisationConfig::create(15, $self->Tags()->sort('Title'), 'BlogTag', 'Tags', 'BlogPosts')
 			);
 
 			/**
