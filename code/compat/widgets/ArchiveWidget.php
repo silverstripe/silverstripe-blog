@@ -46,5 +46,7 @@ class ArchiveWidget extends BlogArchiveWidget implements MigratableObject {
 
 		$this->ClassName = 'BlogArchiveWidget';
 		$this->write();
+		return "Migrated " . $this->ArchiveType . " archive widget";
+
 	}
 }

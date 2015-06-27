@@ -39,5 +39,6 @@ class TagCloudWidget extends BlogTagsWidget implements MigratableObject {
 	public function up() {
 		$this->ClassName = 'BlogTagsWidget';
 		$this->write();
+		return "Migrated " . $this->Title . " widget";
 	}
 }
