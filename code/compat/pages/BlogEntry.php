@@ -34,30 +34,53 @@ class BlogEntry extends BlogPost implements MigratableObject {
 	 * {@inheritdoc}
 	 */
 	public function up() {
+		
+		//Migrate comma separated tags into BlogTag objects.
 		foreach($this->TagNames() as $tag) {
-			if($this->Tags()->filter('Title', $tag)->count()) {
-				continue;
+			
+			$existingTag = BlogTag::get()->filter('Title', $tag);
+			if($existingTag->count()) {
+				//if tag already exists we will simply add it to this post.
+				$tagObject = $existingTag->First();
+			
+			} else {
+
+				//if the tag is now we create it and add it to this post.
+				$tagObject = new BlogTag();
+				$tagObject->Title = $tag;
+				$tagObject->BlogID = $this->ParentID;
+				$tagObject->write();
+
+				
 			}
 
-			$tagObject = new BlogTag();
-			$tagObject->Title = $tag;
-			$tagObject->BlogID = $this->ParentID;
-
-			$tagObject->write();
-
-			$this->Tags()->add($tagObject);
+			if($tagObject){
+				$this->Tags()->add($tagObject);
+			}
 		}
 
-		$this->PublishDate = $this->Date;
-		$this->AuthorNames = $this->Author;
-
+		//Store if the original entity was published or not (draft)
+		$published = $this->IsPublished();
 		// If a user has subclassed BlogEntry, it should not be turned into a BlogPost.
 		if($this->ClassName === 'BlogEntry') {
 			$this->ClassName = 'BlogPost';
 			$this->RecordClassName = 'BlogPost';
 		}
+		//Migrate these key data attributes
+		$this->PublishDate = $this->Date;
+		$this->AuthorNames = $this->Author;
+		$this->InheritSideBar = true;
 		
+		//Write and additionally publish the item if it was published before.
 		$this->write();
+		if($published){
+			$this->publish('Stage','Live');
+			$message = "PUBLISHED: ";
+		} else {
+			$message = "DRAFT: ";
+		}
+		
+		return $message . $this->Title;
 	}
 
 	/**
@@ -79,17 +102,6 @@ class BlogEntry extends BlogPost implements MigratableObject {
 		return $results;
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function requireDefaultRecords() {
-		parent::requireDefaultRecords();
-
-		if(BlogMigrationTask::config()->run_during_dev_build) {
-			$task = new BlogMigrationTask();
-			$task->up();
-		}
-	}
 }
 
 /**

@@ -19,17 +19,10 @@ class BlogMigrationTask extends MigrationTask {
 		$this->message('Migrating legacy blog records');
 
 		foreach($classes as $class) {
-			if(is_subclass_of($class, 'SiteTree')) {
-				foreach(array('Stage', 'Live') as $stage) {
-					$oldMode = Versioned::get_reading_mode();
-					Versioned::reading_stage($stage);
-					$this->upClass($class, $stage);
-					Versioned::set_reading_mode($oldMode);
-				}
-			} else {
+				
 				$this->upClass($class);
 			}
-		}
+		
 	}
 
 	/**
@@ -39,7 +32,7 @@ class BlogMigrationTask extends MigrationTask {
 		if(Controller::curr() instanceof DatabaseAdmin) {
 			DB::alteration_message($text, 'obsolete');
 		} else {
-			Debug::message($text);
+			echo $text . "<br/>";
 		}
 	}
 
@@ -49,20 +42,23 @@ class BlogMigrationTask extends MigrationTask {
 	 * @param string $class
 	 * @param null|string $stage
 	 */
-	protected function upClass($class, $stage = null) {
+	protected function upClass($class) {
 		if(!class_exists($class)) {
 			return;
 		}
 
-		$items = $class::get();
+		if(is_subclass_of($class, 'SiteTree')) {
+			$items = SiteTree::get()->filter('ClassName', $class);
+		} else {
+			$items = $class::get();
+		}
 
 		if($count = $items->count()) {
 			$this->message(
 				sprintf(
-					'Migrating %s legacy %s records in stage %s.',
+					'Migrating %s legacy %s records.',
 					$count,
-					$class,
-					$stage
+					$class
 				)
 			);
 
@@ -76,7 +72,8 @@ class BlogMigrationTask extends MigrationTask {
 				/**
 				 * @var MigratableObject $item
 				 */
-				$item->up();
+				$result = $item->up();
+				$this->message($result);
 
 				$item->extend('onAfterUp');
 			}

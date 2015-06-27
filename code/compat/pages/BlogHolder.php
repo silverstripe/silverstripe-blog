@@ -31,14 +31,36 @@ class BlogHolder extends BlogTree implements MigratableObject {
 		return false;
 	}
 
+
+	//Overload these to stop the Uncaught Exception: Object->__call(): the method 'parent' does not exist on 'BlogHolder' error.
+	public function validURLSegment() {
+		return true;
+	}
+	public function syncLinkTracking() {
+		return null;
+	}
+
 	/**
 	 * {@inheritdoc}
 	 */
 	public function up() {
+
+		$published = $this->IsPublished();
+
 		if($this->ClassName === 'BlogHolder') {
 			$this->ClassName = 'Blog';
+			$this->RecordClassName = 'Blog';
 			$this->write();
 		}
+
+		if($published){
+			$this->publish('Stage','Live');
+			$message = "PUBLISHED: ";
+		} else {
+			$message = "DRAFT: ";
+		}
+		
+		return $message . $this->Title;
 	}
 }
 
