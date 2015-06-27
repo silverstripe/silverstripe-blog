@@ -23,6 +23,7 @@ class BlogFilter extends Lumberjack {
 				$stage = '_' . $stage;
 			}
 
+			$stage = Convert::raw2sql($stage);
 			$dataQuery = $staged->dataQuery()
 				->innerJoin('BlogPost', sprintf('"BlogPost%s"."ID" = "SiteTree%s"."ID"', $stage, $stage))
 				->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
