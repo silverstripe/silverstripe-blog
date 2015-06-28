@@ -31,9 +31,9 @@ silverstripe/comments: *
 composer require silverstripe/blog 2.0.x-dev
 ```
 
-## Upgrading
+## Upgrading legacy blog to 2.0
 
-If you're upgrading from an earlier version to 2.0, running a `dev/build` will migrate your legacy blog to the new version.
+If you're upgrading from blog version 1.0 to 2.0 you will need to run the `BlogMigrationTask`. Run the task using `dev/tasks/BlogMigrationTask` either via the browser or sake CLI to migrate your legacy blog to the new version data structure.
 
 ## Usage
 
