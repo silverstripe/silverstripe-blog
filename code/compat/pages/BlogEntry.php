@@ -38,7 +38,7 @@ class BlogEntry extends BlogPost implements MigratableObject {
 		//Migrate comma separated tags into BlogTag objects.
 		foreach($this->TagNames() as $tag) {
 			
-			$existingTag = BlogTag::get()->filter('Title', $tag);
+			$existingTag = BlogTag::get()->filter(array('Title' => $tag, 'BlogID' => $this->ParentID));
 			if($existingTag->count()) {
 				//if tag already exists we will simply add it to this post.
 				$tagObject = $existingTag->First();
