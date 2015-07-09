@@ -409,22 +409,24 @@ class BlogPost extends Page {
 	 * {@inheritdoc}
 	 */
 	public function canView($member = null) {
+		$member = $this->getMember($member);
+
 		if(!parent::canView($member)) {
 			return false;
 		}
+		
+		/**
+		 * @var SS_Datetime $publishDate
+		 */
+		$publishDate = $this->dbObject('PublishDate');
 
-		if($this->PublishDate) {
-			/**
-			 * @var SS_Datetime $publishDate
-			 */
-			$publishDate = $this->dbObject('PublishDate');
-
-			if($publishDate->InFuture() && !Permission::checkMember($member, 'VIEW_DRAFT_CONTENT')) {
-				return false;
-			}
+		// Show past posts
+		if(!$publishDate->exists() || !$publishDate->InFuture()) {
+			return true;
 		}
 
-		return true;
+		// Anyone that can edit this page can view it
+		return $this->canEdit($member);
 	}
 
 	/**
