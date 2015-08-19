@@ -1,0 +1,54 @@
+de:
+  Blog:
+    Archive: Archiv
+    Categories: Kategorien
+    Category: Kategorie
+    Comments: Kommentare
+    DESCRIPTION: 'Fügt einen Blog zu Ihrer Webseite hinzu'
+    LumberjackTitle: 'Blog-Einträge'
+    NoPosts: 'Keine Blog-Einträge vorhanden'
+    PLURALNAME: Blogs
+    PostsPerPage: 'Einträge pro Seite'
+    ReadMoreAbout: 'Lesen Sie mehr über ''{title}'''
+    SINGULARNAME: Blog
+    Tag: Schlagwort
+    Tagged: Verschlagwortet
+    Tags: Schlagworte
+    By: von
+    EDITOR: Verfasser
+    FILTERDESCRIPTION_AUTHOR: 'Von {author}'
+    FILTERDESCRIPTION_CATEGORY: 'In Kategorie {category}'
+    FILTERDESCRIPTION_DATE: 'Am {date}'
+    FILTERDESCRIPTION_PAGE: 'Seite {page}'
+    PERMISSIONS_CATEGORY: 'Blog Berechtigungen'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Benutzer für einzelne Blog-Einträge verwalten'
+  BlogArchiveWidget:
+    Blog: Blog
+    ArchiveType: Typ
+  BlogCategoriesWidget:
+    Blog: Blog
+  BlogCategory:
+    PLURALNAME: 'Kategorien'
+    SINGULARNAME: 'Kategorie'
+    Title: Titel
+  BlogPost:
+    Categories: Kategorien
+    DESCRIPTION: 'Allgemeine Inhaltsseite'
+    PLURALNAME: 'Blog-Einträge'
+    PageTitleLabel: 'Titel'
+    PublishDate: 'Datum der Veröffentlichung'
+    SINGULARNAME: 'Blog-Eintrag'
+    Tags: Schlagworte
+    AUTHOR: Autor
+    Authors: Autoren
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Anzahl der Einträge'
+  BlogTag:
+    PLURALNAME: 'Schlagworte'
+    SINGULARNAME: 'Schlagwort'
+    Title: Titel
+  BlogTagsWidget:
+    Blog: Blog
+  GridFieldAddByDBField:
+    Add: '{name} hinzufügen'

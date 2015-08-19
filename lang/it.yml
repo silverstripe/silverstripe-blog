@@ -1,0 +1,79 @@
+it:
+  Blog:
+    Archive: Archivia
+    Categories: Categorie
+    Category: Categoria
+    Comments: Commenti
+    DESCRIPTION: 'Aggiungi un blog al tuo sito.'
+    LumberjackTitle: 'Articoli del Blog'
+    NoPosts: 'Non ci sono articoli'
+    PLURALNAME: Blog
+    Posted: Inserito
+    PostedIn: 'Inserito il'
+    PostsPerPage: 'Articoli Per Pagina'
+    ReadMoreAbout: 'Leggi di più su ''{title}''...'
+    SINGULARNAME: Blog
+    Tag: Etichetta
+    Tagged: Etichettato
+    Tags: Etichette
+    By: di
+    CONTRIBUTOR: Collaboratore
+    EDITOR: Editore
+    FILTERDESCRIPTION_AUTHOR: 'Di {author}'
+    FILTERDESCRIPTION_CATEGORY: 'Nella categoria {category}'
+    FILTERDESCRIPTION_DATE: 'Il {date}'
+    FILTERDESCRIPTION_PAGE: 'Pagina {page}'
+    FILTERDESCRIPTION_TAG: 'Etichettato con {tag}'
+    PERMISSIONS_CATEGORY: 'Permessi del blog'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gestire utenti per i singoli blog'
+    PERMISSION_MANAGE_USERS_HELP: 'Consenti l''assegnazione di Editori, Scrittori o Collaboratori ai blog'
+    WRITER: Scrittore
+  BlogArchiveWidget:
+    Blog: Blog
+    NumberToDisplay: 'N. da Visualizzare'
+    PLURALNAME: 'Widget Archiviazione Blog'
+    SINGULARNAME: 'Widget Archiviazione Blog'
+    ArchiveType: Tipo
+  BlogCategoriesWidget:
+    Blog: Blog
+    PLURALNAME: 'Widget Categorie Blog'
+    SINGULARNAME: 'Widget Categorie Blog'
+  BlogCategory:
+    PLURALNAME: 'Categorie'
+    SINGULARNAME: 'Categoria'
+    Title: Titolo
+  BlogPost:
+    Categories: Categorie
+    DESCRIPTION: 'Pagina di contenuto generico'
+    FeaturedImage: 'Immagine in primo piano'
+    PLURALNAME: 'Articoli del Blog'
+    PageTitleLabel: 'Titolo Articolo'
+    PublishDate: 'Data Pubblicazione'
+    SINGULARNAME: 'Articolo del Blog'
+    Tags: Etichette
+    AUTHOR: Autore
+    AdditionalCredits: 'Riconoscimenti Aggiuntivi'
+    Authors: Autori
+    CUSTOMSUMMARY: 'Aggiungi una Sintesi Personalizzata'
+    SUMMARY_DESCRIPTION: 'Se non è specificata una sintesi saranno usate le prime 30 parole.'
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Numero di Articoli'
+    PLURALNAME: 'Widget Articoli Blog Recenti'
+    SINGULARNAME: 'Widget Articoli Blog Recenti'
+  BlogTag:
+    PLURALNAME: 'Etichette'
+    SINGULARNAME: 'Etichetta'
+    Title: Titolo
+  BlogTagsWidget:
+    Blog: Blog
+    PLURALNAME: 'Widget Etichette Blog'
+    SINGULARNAME: 'Widget Etichette Blog'
+  GridFieldAddByDBField:
+    Add: 'Aggiungi {name}'
+    AddFail: 'Impossibile salvare {class} nel database.'
+    PermissionFail: 'Non hai i permessi per creare un {class}.'
+  GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Salvato come bozza il {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Pubblicato il {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Pubblicare al {date}'

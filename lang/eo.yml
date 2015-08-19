@@ -1,0 +1,79 @@
+eo:
+  Blog:
+    Archive: Arkivo
+    Categories: Kategorioj
+    Category: Kategorio
+    Comments: Komentoj
+    DESCRIPTION: 'Aldonas blogon al via retejo.'
+    LumberjackTitle: 'Blogaj afiŝoj'
+    NoPosts: 'Mankas afiŝoj'
+    PLURALNAME: Blogaĵoj
+    Posted: Afiŝita
+    PostedIn: 'Afiŝita en'
+    PostsPerPage: 'Afiŝoj en ĉiu paĝo'
+    ReadMoreAbout: 'Legi plu pri ''{title}''...'
+    SINGULARNAME: Blogo
+    Tag: Etikedo
+    Tagged: Havas etikedon
+    Tags: Etikedoj
+    By: de
+    CONTRIBUTOR: Kontribuinto
+    EDITOR: Redaktinto
+    FILTERDESCRIPTION_AUTHOR: 'De {aŭtoro}'
+    FILTERDESCRIPTION_CATEGORY: 'En kategorio {kategorio}'
+    FILTERDESCRIPTION_DATE: 'En {dato}'
+    FILTERDESCRIPTION_PAGE: 'Paĝo {paĝo}'
+    FILTERDESCRIPTION_TAG: 'Etikedo {etikedo}'
+    PERMISSIONS_CATEGORY: 'Blogaj permesoj'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administri uzantojn por specifaj blogaĵoj'
+    PERMISSION_MANAGE_USERS_HELP: 'Permesi agordi redaktantojn, verkantojn, aŭ kontribuantojn al blogoj'
+    WRITER: Verkanto
+  BlogArchiveWidget:
+    Blog: Blogo
+    NumberToDisplay: 'Nombro vidigotaj'
+    PLURALNAME: 'Fenestraĵoj por bloga arkivo'
+    SINGULARNAME: 'Fenestraĵo por bloga arkivo'
+    ArchiveType: Tipo
+  BlogCategoriesWidget:
+    Blog: Blogo
+    PLURALNAME: 'Fenestraĵoj por blogaj kategorioj'
+    SINGULARNAME: 'Fenestraĵo por blogaj kategorioj'
+  BlogCategory:
+    PLURALNAME: 'Kategorioj'
+    SINGULARNAME: 'Kategorio'
+    Title: Titolo
+  BlogPost:
+    Categories: Kategorioj
+    DESCRIPTION: 'Komuna enhavpaĝo'
+    FeaturedImage: 'Prezentita bildo'
+    PLURALNAME: 'Blogaj afiŝoj'
+    PageTitleLabel: 'Titolo de afiŝo'
+    PublishDate: 'Dato de publikigo'
+    SINGULARNAME: 'Blogaĵo'
+    Tags: Etikedoj
+    AUTHOR: Aŭtoro
+    AdditionalCredits: 'Kromaj agnoskoj'
+    Authors: Aŭtoroj
+    CUSTOMSUMMARY: 'Aldoni propran resumon'
+    SUMMARY_DESCRIPTION: 'Se resumo ne estas agordita, la unuaj 30 vortoj uziĝos.'
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Nombro da afiŝoj'
+    PLURALNAME: 'Fenestraĵoj de lastaj blogaĵoj'
+    SINGULARNAME: 'Fenestraĵo de lastaj blogaĵoj'
+  BlogTag:
+    PLURALNAME: 'Etikedoj'
+    SINGULARNAME: 'Etikedo'
+    Title: Titolo
+  BlogTagsWidget:
+    Blog: Blog
+    PLURALNAME: 'Fenestraĵoj por blogaj etikedoj'
+    SINGULARNAME: 'Fenestraĵo por blogaj etikedoj'
+  GridFieldAddByDBField:
+    Add: 'Aldoni {name}'
+    AddFail: '{klaso} ne estas konservebla al la datumbazo.'
+    PermissionFail: 'Vi ne havas permeson krei je {klaso}.'
+  GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Konservita kiel malneto je {dato}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publikigita je {dato}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publikigi je {dato}'

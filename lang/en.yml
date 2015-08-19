@@ -1,13 +1,27 @@
 en:
+  ArchiveWidget:
+    PLURALNAME: 'Archive Widgets'
+    SINGULARNAME: 'Archive Widget'
   Blog:
     Archive: Archive
+    By: by
+    CONTRIBUTOR: Contributor
     Categories: Categories
     Category: Category
     Comments: Comments
     DESCRIPTION: 'Adds a blog to your website.'
+    EDITOR: Editor
+    FILTERDESCRIPTION_AUTHOR: 'By {author}'
+    FILTERDESCRIPTION_CATEGORY: 'In category {category}'
+    FILTERDESCRIPTION_DATE: 'In {date}'
+    FILTERDESCRIPTION_PAGE: 'Page {page}'
+    FILTERDESCRIPTION_TAG: 'Tagged with {tag}'
     LumberjackTitle: 'Blog Posts'
     NoPosts: 'There are no posts'
-    PLURALNAME: Blogs
+    PERMISSIONS_CATEGORY: 'Blog permissions'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Manage users for individual blogs'
+    PERMISSION_MANAGE_USERS_HELP: 'Allow assignment of Editors, Writers, or Contributors to blogs'
+    PLURALNAME: 'Base Pages'
     Posted: Posted
     PostedIn: 'Posted in'
     PostsPerPage: 'Posts Per Page'
@@ -16,59 +30,78 @@ en:
     Tag: Tag
     Tagged: Tagged
     Tags: Tags
-    By: by
-    CONTRIBUTOR: Contributor
-    EDITOR: Editor
-    FILTERDESCRIPTION_AUTHOR: 'By {author}'
-    FILTERDESCRIPTION_CATEGORY: 'In category {category}'
-    FILTERDESCRIPTION_DATE: 'In {date}'
-    FILTERDESCRIPTION_PAGE: 'Page {page}'
-    FILTERDESCRIPTION_TAG: 'Tagged with {tag}'
-    PERMISSIONS_CATEGORY: 'Blog permissions'
-    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Manage users for individual blogs'
-    PERMISSION_MANAGE_USERS_HELP: 'Allow assignment of Editors, Writers, or Contributors to blogs'
     WRITER: Writer
   BlogArchiveWidget:
+    ArchiveType: ArchiveType
     Blog: Blog
     NumberToDisplay: 'No. to Display'
     PLURALNAME: 'Blog Archive Widgets'
     SINGULARNAME: 'Blog Archive Widget'
-    ArchiveType: Type
   BlogCategoriesWidget:
     Blog: Blog
+    Direction:
+      Description: 'Change the direction of ordering of categories shown by this widget.'
+      Label: Direction
+    Limit:
+      Description: 'Limit the number of categories shown by this widget (set to 0 to show all categories).'
+      Label: Limit
     PLURALNAME: 'Blog Categories Widgets'
     SINGULARNAME: 'Blog Categories Widget'
+    Sort:
+      Description: 'Change the order of categories shown by this widget.'
+      Label: Sort
   BlogCategory:
-    PLURALNAME: 'Categories'
-    SINGULARNAME: 'Category'
+    PLURALNAME: 'Blog Categories'
+    SINGULARNAME: 'Blog Category'
     Title: Title
-  BlogPost:
-    Categories: Categories
+  BlogEntry:
     DESCRIPTION: 'Generic content page'
-    FeaturedImage: 'Featured Image'
-    PLURALNAME: 'Blog Posts'
-    PageTitleLabel: 'Post Title'
-    PublishDate: 'Publish Date'
-    SINGULARNAME: 'Blog Post'
-    Tags: Tags
+    PLURALNAME: 'Base Pages'
+    SINGULARNAME: 'Blog Entry'
+  BlogHolder:
+    DESCRIPTION: 'Generic content page'
+    PLURALNAME: 'Base Pages'
+    SINGULARNAME: 'Blog Holder'
+  BlogPost:
     AUTHOR: Author
     AdditionalCredits: 'Additional Credits'
     Authors: Authors
     CUSTOMSUMMARY: 'Add A Custom Summary'
+    Categories: Categories
+    DESCRIPTION: 'Generic content page'
+    FeaturedImage: 'Featured Image'
+    PLURALNAME: 'Base Pages'
+    PageTitleLabel: 'Post Title'
+    PublishDate: 'Publish Date'
+    SINGULARNAME: 'Blog Post'
     SUMMARY_DESCRIPTION: 'If no summary is specified the first 30 words will be used.'
+    Tags: Tags
   BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Number of Posts'
     PLURALNAME: 'Blog Recent Posts Widgets'
     SINGULARNAME: 'Blog Recent Posts Widget'
   BlogTag:
-    PLURALNAME: 'Tags'
-    SINGULARNAME: 'Tag'
+    PLURALNAME: 'Blog Tags'
+    SINGULARNAME: 'Blog Tag'
     Title: Title
   BlogTagsWidget:
     Blog: Blog
+    Direction:
+      Description: 'Change the direction of ordering of tags shown by this widget.'
+      Label: Direction
+    Limit:
+      Description: 'Limit the number of tags shown by this widget (set to 0 to show all tags).'
+      Label: Limit
     PLURALNAME: 'Blog Tags Widgets'
     SINGULARNAME: 'Blog Tags Widget'
+    Sort:
+      Description: 'Change the order of tags shown by this widget.'
+      Label: Sort
+  BlogTree:
+    DESCRIPTION: 'Generic content page'
+    PLURALNAME: 'Base Pages'
+    SINGULARNAME: 'Blog Tree'
   GridFieldAddByDBField:
     Add: 'Add {name}'
     AddFail: 'Unable to save {class} to the database.'
@@ -77,3 +110,6 @@ en:
     Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}'
     Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}'
     Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}'
+  TagCloudWidget:
+    PLURALNAME: 'Tag Cloud Widgets'
+    SINGULARNAME: 'Tag Cloud Widget'
