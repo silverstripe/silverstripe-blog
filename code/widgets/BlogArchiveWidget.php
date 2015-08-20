@@ -106,15 +106,17 @@ class BlogArchiveWidget extends Widget {
 				/**
 				 * @var BlogPost $post
 				 */
+				$date = new Date();
+				$date->setValue($post->PublishDate);
 
 				if($this->ArchiveType == 'Yearly') {
-					$year = date('Y', strtotime($post->PublishDate));
+					$year = $date->FormatI18N("%Y");
 					$month = null;
 					$title = $year;
 				} else {
-					$year = date('Y', strtotime($post->PublishDate));
-					$month = date('m', strtotime($post->PublishDate));
-					$title = date('F Y', strtotime($post->PublishDate));
+					$year = $date->FormatI18N("%Y");
+					$month = $date->FormatI18N("%m");
+					$title = $date->FormatI18N("%B %Y");
 				}
 
 				$archive->push(new ArrayData(array(
