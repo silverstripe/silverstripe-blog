@@ -84,9 +84,11 @@ class BlogPost extends Page {
 	private static $allowed_children = array();
 
 	/**
+	 * The default sorting lists BlogPosts with an empty PublishDate at the top.
+	 * 
 	 * @var string
 	 */
-	private static $default_sort = 'PublishDate DESC';
+	private static $default_sort = '"PublishDate" IS NULL DESC, "PublishDate" DESC';
 
 	/**
 	 * @var bool
@@ -211,8 +213,10 @@ class BlogPost extends Page {
 				_t('BlogPost.AdditionalCredits', 'Additional Credits'),
 				null,
 				1024
+			)->setDescription(_t(
+					'BlogPost.PublishDate_Description',
+					'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.')
 			);
-			$authorNames->setDescription('If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.');
 
 			if(!$self->canEditAuthors()) {
 				$authorField = $authorField->performDisabledTransformation();
@@ -221,6 +225,12 @@ class BlogPost extends Page {
 
 			$publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
 			$publishDate->getDateField()->setConfig('showcalendar', true);
+			if(!$self->PublishDate) {
+				$publishDate->setDescription(_t(
+						'BlogPost.PublishDate_Description',
+						'Will be set to "now" if published without a value.')
+				);
+			}
 
 			// Get categories and tags
 			$parent = $self->Parent();
@@ -365,8 +375,7 @@ class BlogPost extends Page {
 	/**
 	 * {@inheritdoc}
 	 *
-	 * Update the PublishDate to now, if being published for the first time, and the date hasn't
-	 * been set to the future.
+	 * Update the PublishDate to now if the BlogPost would otherwise be published without a date.
 	 */
 	public function onBeforePublish() {
 		/**
@@ -374,7 +383,7 @@ class BlogPost extends Page {
 		 */
 		$publishDate = $this->dbObject('PublishDate');
 
-		if($publishDate->InPast() && !$this->isPublished()) {
+		if(!$publishDate->getValue()) {
 			$this->PublishDate = SS_Datetime::now()->getValue();
 			$this->write();
 		}
@@ -414,7 +423,7 @@ class BlogPost extends Page {
 		if(!parent::canView($member)) {
 			return false;
 		}
-		
+
 		/**
 		 * @var SS_Datetime $publishDate
 		 */
@@ -624,10 +633,6 @@ class BlogPost extends Page {
 	 */
 	protected function onBeforeWrite() {
 		parent::onBeforeWrite();
-
-		if(!$this->PublishDate) {
-			$this->PublishDate = SS_Datetime::now()->getValue();
-		}
 
 		if(!$this->exists() && ($member = Member::currentUser())) {
 			$this->Authors()->add($member);
