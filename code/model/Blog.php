@@ -546,10 +546,13 @@ class Blog extends Page implements PermissionProvider {
 
 		$group = $this->getUserGroup();
 
-		foreach(array($this->Editors(), $this->Writers(), $this->Contributors()) as $levels) {
-			foreach($levels as $user) {
-				if(!$user->inGroup($group)) {
-					$user->Groups()->add($group);
+		// Must check if the method exists or else an error occurs when changing page type
+		if ($this->hasMethod('Editors')) {
+			foreach(array($this->Editors(), $this->Writers(), $this->Contributors()) as $levels) {
+				foreach($levels as $user) {
+					if(!$user->inGroup($group)) {
+						$user->Groups()->add($group);
+					}
 				}
 			}
 		}
