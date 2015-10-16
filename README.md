@@ -16,6 +16,8 @@
 
 ```
 silverstripe/cms: ~3.1
+silverstripe/lumberjack: ~1.1
+silverstripe/tagfield: ^1.0
 ```
 
 ### Suggested Modules
