@@ -962,7 +962,7 @@ class Blog_Controller extends Page_Controller {
 		 */
 		$dataRecord = $this->dataRecord;
 
-		$posts = new PaginatedList($this->blogPosts);
+		$posts = new PaginatedList($this->getBlogPosts());
 
 		if($this->PostsPerPage > 0) {
 			$posts->setPageLength($this->PostsPerPage);
