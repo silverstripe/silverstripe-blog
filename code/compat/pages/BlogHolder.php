@@ -50,6 +50,7 @@ class BlogHolder extends BlogTree implements MigratableObject {
 		if($this->ClassName === 'BlogHolder') {
 			$this->ClassName = 'Blog';
 			$this->RecordClassName = 'Blog';
+			$this->PostsPerPage = 10;
 			$this->write();
 		}
 
