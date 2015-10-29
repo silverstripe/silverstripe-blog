@@ -360,11 +360,11 @@ class Blog extends Page implements PermissionProvider {
 	 */
 	protected function getCandidateUsers() {
 		if($this->config()->grant_user_access) {
-			return Member::get();
-		} else {
 			return Permission::get_members_by_permission(
 				$this->config()->grant_user_permission
 			);
+		} else {
+			return Member::get();
 		}
 	}
 
