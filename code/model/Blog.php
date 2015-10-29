@@ -360,7 +360,9 @@ class Blog extends Page implements PermissionProvider {
 	 */
 	protected function getCandidateUsers() {
 		if($this->config()->grant_user_access) {
-			return Member::get();
+			$list = Member::get();
+			$this->extend('updateCandidateUsers', $list);
+   			return $list;
 		} else {
 			return Permission::get_members_by_permission(
 				$this->config()->grant_user_permission
