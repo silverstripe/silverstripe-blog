@@ -8,6 +8,12 @@
  * @subpackage blog
  */
 class BlogFilter extends Lumberjack {
+	public static function get_extra_config($class, $extension, $args) {
+		return array(
+			'has_one' => array('Parent' => 'SiteTree')
+		);
+	}
+	
 	/**
 	 * {@inheritdoc}
 	 */
