@@ -16,6 +16,14 @@
  * @property int $ParentID
  */
 class BlogPost extends Page {
+
+	/**
+	 * Same as above, but for list of users that can be
+	 * given credit in the author field for blog posts
+	 * @var string|bool false or group code
+	 */
+	private static $restrict_authors_to_group = false;
+
 	/**
 	 * @var array
 	 */
@@ -205,7 +213,7 @@ class BlogPost extends Page {
 			$authorField = ListboxField::create(
 				'Authors',
 				_t('BlogPost.Authors', 'Authors'),
-				Member::get()->map()->toArray()
+				$this->getCandidateAuthors()->map()->toArray()
 			)->setMultiple(true);
 
 			$authorNames = TextField::create(
@@ -272,6 +280,21 @@ class BlogPost extends Page {
 		$fields->fieldByName('Root')->setTemplate('TabSet_holder');
 
 		return $fields;
+	}
+
+	/**
+	 * Gets the list of author candidates to be assigned as authors of this blog post.
+	 *
+	 * @return SS_List
+	 */
+	public function getCandidateAuthors() {
+		if($this->config()->restrict_authors_to_group) {
+			return Group::get()->filter('Code', $this->config()->restrict_authors_to_group)->first()->Members();
+		} else {
+			$list = Member::get();
+			$this->extend('updateCandidateAuthors', $list);
+			return $list;
+		}
 	}
 
 	/**

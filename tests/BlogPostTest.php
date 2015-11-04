@@ -63,4 +63,17 @@ class BlogPostTest extends SapphireTest {
 			array($somePastDate, 'Writer', 'FirstBlogPost', false),
 		);
 	}
+
+	public function testCandidateAuthors() {
+		$blogpost = $this->objFromFixture('BlogPost', 'PostC');
+
+		$this->assertEquals(7, $blogpost->getCandidateAuthors()->count());
+
+		//Set the group to draw Members from
+		Config::inst()->update('BlogPost', 'restrict_authors_to_group','BlogUsers');
+
+		$this->assertEquals(3, $blogpost->getCandidateAuthors()->count());
+
+
+	}
 }
