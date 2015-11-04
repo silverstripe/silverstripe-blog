@@ -602,14 +602,26 @@ class BlogPost extends Page {
 	 * @return ArrayList
 	 */
 	protected function getDynamicCredits() {
-		$items = new ArrayList();
+		// Find best page to host user profiles
+		$parent = $this->Parent();
+		if(! ($parent instanceof Blog) ) {
+			$parent = Blog::get()->first();
+		}
 
+		// If there is no parent blog, return list undecorated
+		if(!$parent) {
+			$items = $this->Authors()->toArray();
+			return new ArrayList($items);
+		}
+
+		// Update all authors
+		$items = new ArrayList();
 		foreach($this->Authors() as $author) {
-			$items->push(
-				$author->customise(array(
-					'URL' => $this->Parent->ProfileLink($author->URLSegment),
-				))
-			);
+			// Add link for each author
+			$author = $author->customise(array(
+				'URL' => $parent->ProfileLink($author->URLSegment),
+			));
+			$items->push($author);
 		}
 
 		return $items;
