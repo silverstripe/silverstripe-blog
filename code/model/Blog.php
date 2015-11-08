@@ -727,13 +727,17 @@ class Blog_Controller extends Page_Controller {
 	/**
 	 * Fetches the archive year from the url.
 	 *
-	 * @return null|int
+	 * @return int
 	 */
 	public function getArchiveYear() {
-		$year = $this->request->param('Year');
 
-		if(preg_match('/^[0-9]{4}$/', $year)) {
-			return (int) $year;
+		if($this->request->param('Year')){
+
+			if(preg_match('/^[0-9]{4}$/', $year = $this->request->param('Year'))) {
+				return (int) $year;
+			}
+		} else {
+			return SS_Datetime::now()->Year();
 		}
 
 		return null;
