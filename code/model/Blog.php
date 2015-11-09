@@ -736,7 +736,7 @@ class Blog_Controller extends Page_Controller {
 			if(preg_match('/^[0-9]{4}$/', $year = $this->request->param('Year'))) {
 				return (int) $year;
 			}
-		} else {
+		} elseif($this->request->param('Action') == 'archive') {
 			return SS_Datetime::now()->Year();
 		}
 
