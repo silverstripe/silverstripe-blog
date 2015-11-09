@@ -110,7 +110,6 @@ class BlogTest extends SapphireTest {
 
 		$link = Controller::join_links($blog->Link('archive'));
 		$this->assertEquals(200, $this->getStatusOf($link), 'HTTP Status should be 200');
-		$this->assertEquals('2013', ModelAsController::controller_for($blog)->getArchiveYear(), 'Defaults to current year');
 
 		$link = Controller::join_links($blog->Link('archive'), 'invalid-year');
 
@@ -124,6 +123,16 @@ class BlogTest extends SapphireTest {
 
 		$this->assertEquals(404, $this->getStatusOf($link), 'HTTP Status should be 404');
 
+	}
+
+	/*
+	 * Test archive year
+	 */
+	public function testArchiveYear(){
+		$blog = $this->objFromFixture('Blog', 'FirstBlog');
+		$controller = new Blog_Controller($blog);
+		$this->requestURL($controller, 'first-post/archive/');
+		$this->assertEquals(2013, $controller->getArchiveYear(), 'getArchiveYear should return 2013');
 	}
 
 	/**
