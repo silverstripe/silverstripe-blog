@@ -254,4 +254,72 @@ class BlogTest extends SapphireTest {
 		$this->assertFalse($postB->canPublish($visitor));
 		$this->assertFalse($postC->canPublish($visitor));
 	}
+
+	public function testFilteredCategories() {
+		$blog = $this->objFromFixture('Blog', 'FirstBlog');
+		$controller = new Blog_Controller($blog);
+		
+		// Root url
+		$this->requestURL($controller, 'first-post');
+		$this->assertIDsEquals(
+			$blog->AllChildren()->column('ID'),
+			$controller->PaginatedList()->column('ID')
+		);
+
+
+		// RSS
+		$this->requestURL($controller, 'first-post/rss');
+		$this->assertIDsEquals(
+			$blog->AllChildren()->column('ID'),
+			$controller->PaginatedList()->column('ID')
+		);
+
+		// Posts
+		$firstPostID = $this->idFromFixture('BlogPost', 'FirstBlogPost');
+		$secondPostID = $this->idFromFixture('BlogPost', 'SecondBlogPost');
+		$firstFuturePostID = $this->idFromFixture('BlogPost', 'FirstFutureBlogPost');
+		$secondFuturePostID = $this->idFromFixture('BlogPost', 'SecondFutureBlogPost');
+
+		// Request first tag
+		$this->requestURL($controller, 'first-post/tag/first-tag');
+		$this->assertIDsEquals(
+			array($firstPostID, $firstFuturePostID, $secondFuturePostID),
+			$controller->PaginatedList()
+		);
+
+		// Request 2013 posts
+		$this->requestURL($controller, 'first-post/archive/2013');
+		$this->assertIDsEquals(
+			array($firstPostID, $secondPostID, $secondFuturePostID),
+			$controller->PaginatedList()
+		);
+	}
+
+	/**
+	 * Mock a request against a given controller
+	 *
+	 * @param ContentController $controller
+	 * @param string $url
+	 */
+	protected function requestURL(ContentController $controller, $url) {
+		$request = new SS_HTTPRequest('get', $url);
+		$request->match('$URLSegment//$Action/$ID/$OtherID');
+		$request->shift();
+		$controller->init();
+		$controller->handleRequest($request, new DataModel());
+	}
+
+	/**
+	 * Assert these id lists match
+	 *
+	 * @param array|SS_List $left
+	 * @param array|SS_List $right
+	 */
+	protected function assertIDsEquals($left, $right) {
+		if($left instanceof SS_List) $left = $left->column('ID');
+		if($right instanceof SS_List) $right = $right->column('ID');
+		asort($left);
+		asort($right);
+		$this->assertEquals(array_values($left), array_values($right));
+	}
 }

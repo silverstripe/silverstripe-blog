@@ -963,27 +963,21 @@ class Blog_Controller extends Page_Controller {
 	 * @return PaginatedList
 	 */
 	public function PaginatedList() {
-		/**
-		 * @var Blog $dataRecord
-		 */
-		$dataRecord = $this->dataRecord;
+		$allPosts = $this->blogPosts ?: new ArrayList();
+		$posts = new PaginatedList($allPosts);
 
-		$posts = new PaginatedList($this->getBlogPosts());
-
+		// Set appropriate page size
 		if($this->PostsPerPage > 0) {
-			$posts->setPageLength($this->PostsPerPage);
+			$pageSize = $this->PostsPerPage;
+		} elseif($count = $allPosts->count()) {
+			$pageSize = $count;
 		} else {
 			$pageSize = 99999;
-
-			if($count = $dataRecord->getBlogPosts()->count()) {
-				$pageSize = $count;
-			}
-
-			$posts->setPageLength($pageSize);
 		}
+		$posts->setPageLength($pageSize);
 
+		// Set current page
 		$start = $this->request->getVar($posts->getPaginationGetVar());
-
 		$posts->setPageStart($start);
 
 		return $posts;
@@ -1000,7 +994,9 @@ class Blog_Controller extends Page_Controller {
 		 */
 		$dataRecord = $this->dataRecord;
 
-		$rss = new RSSFeed($dataRecord->getBlogPosts(), $this->Link(), $this->MetaTitle, $this->MetaDescription);
+		$this->blogPosts = $dataRecord->getBlogPosts();
+
+		$rss = new RSSFeed($this->blogPosts, $this->Link(), $this->MetaTitle, $this->MetaDescription);
 
 		$this->extend('updateRss', $rss);
 
