@@ -110,7 +110,7 @@ class BlogTest extends SapphireTest {
 
 		$link = Controller::join_links($blog->Link('archive'));
 		$this->assertEquals(200, $this->getStatusOf($link), 'HTTP Status should be 200');
-		$this->assertEquals(SS_Datetime::now()->Year(), ModelAsController::controller_for($blog)->getArchiveYear(), 'Defaults to current year');
+		$this->assertEquals('2013', ModelAsController::controller_for($blog)->getArchiveYear(), 'Defaults to current year');
 
 		$link = Controller::join_links($blog->Link('archive'), 'invalid-year');
 
