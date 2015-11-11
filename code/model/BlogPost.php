@@ -173,7 +173,7 @@ class BlogPost extends Page {
 		$self =& $this;
 
 		$this->beforeUpdateCMSFields(function ($fields) use ($self) {
-			$uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
+			$uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Banner Image'));
 			$uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 
 			/**
@@ -271,6 +271,8 @@ class BlogPost extends Page {
 				$authorField,
 				$authorNames
 			)->setTitle('Post Options');
+
+			$options->setName('blog-admin-sidebar');
 
 			$fields->insertBefore($options, 'Root');
 		});
@@ -658,7 +660,7 @@ class BlogPost extends Page {
 	public function fieldLabels($includeRelations = true) {
 		$labels = parent::fieldLabels($includeRelations);
 
-		$labels['Title'] = _t('BlogPost.PageTitleLabel', "Post Title");
+		$labels['Title'] = _t('BlogPost.PageTitleLabel', 'Post Title');
 
 		return $labels;
 	}

@@ -362,7 +362,7 @@ class Blog extends Page implements PermissionProvider {
 		if($this->config()->grant_user_access) {
 			$list = Member::get();
 			$this->extend('updateCandidateUsers', $list);
-   			return $list;
+			return $list;
 		} else {
 			return Permission::get_members_by_permission(
 				$this->config()->grant_user_permission
@@ -471,12 +471,14 @@ class Blog extends Page implements PermissionProvider {
 	/**
 	 * Return blog posts.
 	 *
+	 * @param null|string $context Context for these blog posts (e.g 'rss')
+	 *
 	 * @return DataList of BlogPost objects
 	 */
-	public function getBlogPosts() {
+	public function getBlogPosts($context = null) {
 		$blogPosts = BlogPost::get()->filter('ParentID', $this->ID);
 
-		$this->extend('updateGetBlogPosts', $blogPosts);
+		$this->extend('updateGetBlogPosts', $blogPosts, $context);
 
 		return $blogPosts;
 	}
@@ -964,6 +966,7 @@ class Blog_Controller extends Page_Controller {
 	 */
 	public function PaginatedList() {
 		$allPosts = $this->blogPosts ?: new ArrayList();
+
 		$posts = new PaginatedList($allPosts);
 
 		// Set appropriate page size
@@ -994,7 +997,7 @@ class Blog_Controller extends Page_Controller {
 		 */
 		$dataRecord = $this->dataRecord;
 
-		$this->blogPosts = $dataRecord->getBlogPosts();
+		$this->blogPosts = $dataRecord->getBlogPosts('rss');
 
 		$rss = new RSSFeed($this->blogPosts, $this->Link(), $this->MetaTitle, $this->MetaDescription);
 
