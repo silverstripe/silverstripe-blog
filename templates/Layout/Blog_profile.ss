@@ -2,21 +2,21 @@
 
 <div class="blog-entry content-container <% if $SideBarView %>unit size3of4<% end_if %>">
 
-    <% include MemberDetails %>
+	<% include MemberDetails %>
 
-    <% if $PaginatedList.Exists %>
-        <h2>Posts by $CurrentProfile.FirstName $CurrentProfile.Surname for $Title:</h2>
-        <% loop $PaginatedList %>
-            <% include PostSummary %>
-        <% end_loop %>
-    <% end_if %>
-    
-    $Form
-    $CommentsForm
+	<% if $PaginatedList.Exists %>
+		<h2>Posts by $CurrentProfile.FirstName $CurrentProfile.Surname for $Title:</h2>
+		<% loop $PaginatedList %>
+			<% include PostSummary %>
+		<% end_loop %>
+	<% end_if %>
 
-    <% with $PaginatedList %>
-        <% include Pagination %>
-    <% end_with %>
+	$Form
+	$CommentsForm
+
+	<% with $PaginatedList %>
+		<% include Pagination %>
+	<% end_with %>
 
 </div>
 
