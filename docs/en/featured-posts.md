@@ -1,19 +1,7 @@
 # Featured posts
 
-You can enable featured posts with the following config:
-
-```yaml
----
-Name: featured-posts-blog-config
----
-Blog:
-  extensions:
-    - BlogFeatureExtension
-
-BlogPost:
-  extensions:
-    - BlogPostFeatureExtension
-```
+Featured posts can be enabled on a per-blog basis via the 'Settings' tab of each blog
+in the CMS.
 
 This will enable a checkbox in the CMS, with which you can feature blog posts:
 
@@ -33,6 +21,6 @@ template to show more, and by changing the following config setting:
 ```
 
 ```yaml
-BlogFeatureExtension:
-  excluded_feature_posts: 10
+Blog:
+  excluded_featured_posts: 10
 ```
