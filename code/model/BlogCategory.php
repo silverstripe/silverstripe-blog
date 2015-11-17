@@ -40,6 +40,17 @@ class BlogCategory extends DataObject implements CategorisationObject {
 	private static $extensions = array(
 		'URLSegmentExtension',
 	);
+	
+	/**
+	 * @return DataList
+	 */
+	public function BlogPosts() {
+		$blogPosts = parent::BlogPosts();
+	
+		$this->extend("updateGetBlogPosts", $blogPosts);
+	
+		return $blogPosts;
+	}
 
 	/**
 	 * {@inheritdoc}
