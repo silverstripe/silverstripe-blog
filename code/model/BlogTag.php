@@ -43,6 +43,17 @@ class BlogTag extends DataObject implements CategorisationObject {
 	);
 
 	/**
+	 * @return DataList
+	 */
+	public function BlogPosts() {
+		$blogPosts = parent::BlogPosts();
+
+		$this->extend("updateGetBlogPosts", $blogPosts);
+
+		return $blogPosts;
+	}
+
+	/**
 	 * {@inheritdoc}
 	 */
 	public function getCMSFields() {
