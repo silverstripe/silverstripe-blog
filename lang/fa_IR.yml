@@ -1,0 +1,71 @@
+fa_IR:
+  ArchiveWidget:
+    PLURALNAME: 'ویجت‌های بایگانی'
+    SINGULARNAME: 'ویجت بایگانی'
+  Blog:
+    Archive: بایگانی
+    By: توسط
+    CONTRIBUTOR: مولف
+    Categories: مجموعه‌ها
+    Category: مجموعه
+    Comments: دیدگاه‌ها
+    DESCRIPTION: 'یک وبلاگ به سایت شما می‌افزاید.'
+    EDITOR: ویرایشگر
+    FILTERDESCRIPTION_AUTHOR: 'توسط {author}'
+    FILTERDESCRIPTION_CATEGORY: 'در مجموعه‌ی {category}'
+    FILTERDESCRIPTION_DATE: 'در {date}'
+    FILTERDESCRIPTION_PAGE: 'صفحه‌ی {page}'
+    FILTERDESCRIPTION_TAG: 'تگ‌شده با {tag}'
+    LumberjackTitle: 'ارسال‌های وبلاگ'
+    NoPosts: 'هیچ ارسال وبلاگ وجود ندارد'
+    PERMISSIONS_CATEGORY: 'دسترسی‌های وبلاگ'
+    Posted: ارسال شده
+    PostedIn: 'ارسال شده در'
+    PostsPerPage: 'تعداد نوشته در صفحه'
+    ReadMoreAbout: 'درباره ''{title}'' بیشتر بخوانید...'
+    SINGULARNAME: وبلاگ
+    Tag: تگ
+    Tagged: تگ‌شده
+    Tags: تگ‌ها
+    WRITER: نویسنده
+  BlogArchiveWidget:
+    ArchiveType: نوع بایگانی
+    Blog: وبلاگ
+  BlogCategoriesWidget:
+    Blog: وبلاگ
+    Sort:
+      Label: مرتب‌سازی
+  BlogCategory:
+    PLURALNAME: 'مجموعه‌های وبلاگ'
+    SINGULARNAME: 'مجموعه وبلاگ'
+    Title: عنوان
+  BlogPost:
+    AUTHOR: نگارنده
+    Authors: نگارندگان
+    Categories: مجموعه‌ها
+    PageTitleLabel: 'عنوان نوشته'
+    Tags: تگ‌ها
+  BlogRecentPostsWidget:
+    Blog: وبلاگ
+  BlogTag:
+    PLURALNAME: 'تگ‌های وبلاگ'
+    SINGULARNAME: 'تگ وبلاگ'
+    Title: عنوان
+  BlogTagsWidget:
+    Blog: وبلاگ
+    Direction:
+      Label: جهت
+    Limit:
+      Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
+      Label: محدود کردن
+    PLURALNAME: 'ویجت‌های تگ‌های وبلاگ'
+    SINGULARNAME: 'ویجت تگ‌های وبلاگ'
+    Sort:
+      Label: مرتب‌سازی
+  BlogTree:
+    SINGULARNAME: 'نمایش درختی وبلاگ'
+  GridFieldAddByDBField:
+    Add: 'افزودن {name}'
+  TagCloudWidget:
+    PLURALNAME: 'ویجت‌های ابر تگ'
+    SINGULARNAME: 'ویجت ابر تگ'

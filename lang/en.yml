@@ -18,6 +18,7 @@ en:
     FILTERDESCRIPTION_TAG: 'Tagged with {tag}'
     LumberjackTitle: 'Blog Posts'
     NoPosts: 'There are no posts'
+    NoUnfeaturedPosts: 'There are no non-featured posts'
     PERMISSIONS_CATEGORY: 'Blog permissions'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Manage users for individual blogs'
     PERMISSION_MANAGE_USERS_HELP: 'Allow assignment of Editors, Writers, or Contributors to blogs'
@@ -73,6 +74,7 @@ en:
     PLURALNAME: 'Base Pages'
     PageTitleLabel: 'Post Title'
     PublishDate: 'Publish Date'
+    PublishDate_Description: 'Will be set to "now" if published without a value.'
     SINGULARNAME: 'Blog Post'
     SUMMARY_DESCRIPTION: 'If no summary is specified the first 30 words will be used.'
     Tags: Tags

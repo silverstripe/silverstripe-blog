@@ -1,35 +1,32 @@
 ru:
   Blog:
     Archive: Архив
+    By: 'автор:'
     Categories: Категории
     Category: Категория
     Comments: Комментарии
     DESCRIPTION: 'Добавляет к сайту блог.'
-    PLURALNAME: Блоги
-    Posted: Отправлено
-    SINGULARNAME: Блог
-    Tag: Метка
-    Tagged: Метки
-    Tags: Метки
-    By: 'автор:'
     EDITOR: Редактор
     FILTERDESCRIPTION_AUTHOR: 'Автор: {author}'
     FILTERDESCRIPTION_CATEGORY: 'В категории: {category}'
     FILTERDESCRIPTION_DATE: 'Дата: {date}'
     FILTERDESCRIPTION_PAGE: 'Страница {page}'
     FILTERDESCRIPTION_TAG: 'С метками {tag}'
-  BlogPost:
-    SINGULARNAME: 'Запись в блоге'
+    Posted: Отправлено
+    SINGULARNAME: Блог
+    Tag: Метка
+    Tagged: Метки
     Tags: Метки
+  BlogPost:
     AUTHOR: Автор
     AdditionalCredits: 'Дополнительные сведения'
     Authors: Авторы
+    SINGULARNAME: 'Запись в блоге'
+    Tags: Метки
   BlogRecentPostsWidget:
     Blog: Блог
     NumberOfPosts: 'Количество записей'
   BlogTag:
-    PLURALNAME: 'Метки'
-    SINGULARNAME: 'Метка'
     Title: Заголовок
   BlogTagsWidget:
     Blog: Блог

@@ -1,0 +1,20 @@
+nl:
+  ArchiveWidget:
+    PLURALNAME: 'Archief-widgets'
+    SINGULARNAME: 'Archief-widget'
+  Blog:
+    Archive: Archief
+    By: door
+    CONTRIBUTOR: Mede auteur
+    Categories: Categorieën
+    Category: Categorie
+    Comments: Reacties
+    DESCRIPTION: 'Voegt een blog toe aan je site.'
+    FILTERDESCRIPTION_AUTHOR: 'Door {author}'
+    FILTERDESCRIPTION_CATEGORY: 'In categorie {category}'
+    FILTERDESCRIPTION_TAG: 'Tagged met {tag}'
+    LumberjackTitle: 'Blog Artikelen'
+    NoPosts: 'Er zijn geen blog artikelen'
+    PERMISSIONS_CATEGORY: 'Blog rechten'
+  BlogPost:
+    Categories: Categorieën

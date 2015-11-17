@@ -1,13 +1,23 @@
 fi:
   Blog:
     Archive: Arkisto
+    By: kirjoittanut
+    CONTRIBUTOR: Avustaja
     Categories: Kategoriat
     Category: Kategoria
     Comments: Kommentit
     DESCRIPTION: 'Lisää blogin nettisivuillesi.'
+    EDITOR: Toimittaja
+    FILTERDESCRIPTION_AUTHOR: 'Kirjoittanut {author}'
+    FILTERDESCRIPTION_CATEGORY: 'Kategoriassa: {category}'
+    FILTERDESCRIPTION_DATE: 'Pvm: {date}'
+    FILTERDESCRIPTION_PAGE: 'Sivu {page}'
+    FILTERDESCRIPTION_TAG: 'Avainsanat: {tag}'
     LumberjackTitle: 'Blogikirjoitukset'
     NoPosts: 'Ei kirjoituksia'
-    PLURALNAME: Blogit
+    PERMISSIONS_CATEGORY: 'Blogin oikeudet'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hallinnoi käyttäjiä yksittäisissä blogeissa'
+    PERMISSION_MANAGE_USERS_HELP: 'Salli toimittajien, kirjoittajien tai avustajien kiinnittäminen blogeihin'
     Posted: Kirjoitettu
     PostedIn: 'Kirjoitettu:'
     PostsPerPage: 'Kirjoitusta per sivu'
@@ -16,54 +26,37 @@ fi:
     Tag: Avainsana
     Tagged: Merkitty
     Tags: Avainsanat
-    By: kirjoittanut
-    CONTRIBUTOR: Avustaja
-    EDITOR: Toimittaja
-    FILTERDESCRIPTION_AUTHOR: 'Kirjoittanut {author}'
-    FILTERDESCRIPTION_CATEGORY: 'Kategoriassa: {category}'
-    FILTERDESCRIPTION_DATE: 'Pvm: {date}'
-    FILTERDESCRIPTION_PAGE: 'Sivu {page}'
-    FILTERDESCRIPTION_TAG: 'Avainsanat: {tag}'
-    PERMISSIONS_CATEGORY: 'Blogin oikeudet'
-    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hallinnoi käyttäjiä yksittäisissä blogeissa'
-    PERMISSION_MANAGE_USERS_HELP: 'Salli toimittajien, kirjoittajien tai avustajien kiinnittäminen blogeihin'
     WRITER: Kirjoittaja
   BlogArchiveWidget:
     Blog: Blogi
     NumberToDisplay: 'Näytetään'
     PLURALNAME: 'Blogiarkisto-vimpaimet'
     SINGULARNAME: 'Blogiarkisto-vimpain'
-    ArchiveType: Tyyppi
   BlogCategoriesWidget:
     Blog: Blogi
     PLURALNAME: 'Blogikategoriat-vimpaimet'
     SINGULARNAME: 'Blogikategoriat-vimpain'
   BlogCategory:
-    PLURALNAME: 'Kategoriat'
-    SINGULARNAME: 'Kategoria'
     Title: Otsikko
   BlogPost:
-    Categories: Kategoriat
-    DESCRIPTION: 'Yleinen sisältösivu'
-    FeaturedImage: 'Pääkuvitus'
-    PLURALNAME: 'Blogikirjoitukset'
-    PageTitleLabel: 'Otsikko'
-    PublishDate: 'Julkaisupäivä'
-    SINGULARNAME: 'Blogikirjoitus'
-    Tags: Avainsanat
     AUTHOR: Kirjoittaja
     AdditionalCredits: 'Lisäkiitokset'
     Authors: Kirjoittajat
     CUSTOMSUMMARY: 'Lisää tiivistelmä'
+    Categories: Kategoriat
+    DESCRIPTION: 'Yleinen sisältösivu'
+    FeaturedImage: 'Pääkuvitus'
+    PageTitleLabel: 'Otsikko'
+    PublishDate: 'Julkaisupäivä'
+    SINGULARNAME: 'Blogikirjoitus'
     SUMMARY_DESCRIPTION: 'Mikäli tiivistelmää ei ole kirjoitettu, käytetään 30 ensimmäistä sanaa kirjoituksesta.'
+    Tags: Avainsanat
   BlogRecentPostsWidget:
     Blog: Blogi
     NumberOfPosts: 'Kirjoituksien määrä'
     PLURALNAME: 'Viimeisimmät blogikirjoitukset -vimpaimet'
     SINGULARNAME: 'Viimeisimmät blogikirjoitukset -vimpain'
   BlogTag:
-    PLURALNAME: 'Avainsanat'
-    SINGULARNAME: 'Avainsana'
     Title: Otsikko
   BlogTagsWidget:
     Blog: Blogi

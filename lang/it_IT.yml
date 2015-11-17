@@ -1,0 +1,22 @@
+it_IT:
+  Blog:
+    Categories: Categorie
+    Category: Categoria
+    Comments: Commenti
+    DESCRIPTION: 'Aggiunti un blog al tuo website'
+    EDITOR: Editor
+    FILTERDESCRIPTION_AUTHOR: 'Di {author}'
+    FILTERDESCRIPTION_CATEGORY: 'In categoria {category}'
+    FILTERDESCRIPTION_DATE: 'Il {date}'
+    FILTERDESCRIPTION_PAGE: 'Pagina {page}'
+    FILTERDESCRIPTION_TAG: 'Taggato con {tag}'
+    LumberjackTitle: 'Blog Posts'
+    NoPosts: 'Non ci sono post'
+    PERMISSIONS_CATEGORY: 'Permessi Blog'
+    Tagged: Taggato
+  BlogPost:
+    Categories: Categorie
+  GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i>Salva come Bozza in {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i>Pubblicato in {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Pubblica il {date}'
