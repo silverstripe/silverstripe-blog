@@ -31,6 +31,7 @@ class BlogPost extends Page {
 		'PublishDate' => 'SS_Datetime',
 		'AuthorNames' => 'Varchar(1024)',
 		'Summary' => 'HTMLText',
+		'IsFeatured' => 'Boolean',
 	);
 
 	/**
@@ -271,6 +272,13 @@ class BlogPost extends Page {
 				$authorField,
 				$authorNames
 			)->setTitle('Post Options');
+
+			// Add featured checkbox to admin sidepanel is enabled on this blog
+			if($this->Parent() instanceof Blog && $this->Parent()->isFeaturedPostsEnabled()) {
+				$options->insertBefore('PublishDate', 
+					CheckboxField::create('IsFeatured', 'Mark as featured post')
+				);
+			}
 
 			$options->setName('blog-admin-sidebar');
 

@@ -50,10 +50,18 @@ class Blog extends Page implements PermissionProvider {
 	private static $grant_user_group = 'blog-users';
 
 	/**
+	 * @config
+	 *
+	 * @var int
+	 */
+	private static $exclude_featured_posts = 1;
+
+	/**
 	 * @var array
 	 */
 	private static $db = array(
 		'PostsPerPage' => 'Int',
+		'EnableFeaturedPosts' => 'Boolean',
 	);
 
 	/**
@@ -288,9 +296,10 @@ class Blog extends Page implements PermissionProvider {
 	public function getSettingsFields() {
 		$fields = parent::getSettingsFields();
 
-		$fields->addFieldToTab('Root.Settings',
-			NumericField::create('PostsPerPage', _t('Blog.PostsPerPage', 'Posts Per Page'))
-		);
+		$fields->addFieldsToTab('Root.Settings', array(
+			NumericField::create('PostsPerPage', _t('Blog.PostsPerPage', 'Posts Per Page')),
+			CheckboxField::create('EnableFeaturedPosts', 'Enable featured posts?'),
+		));
 
 		$members = $this->getCandidateUsers()->map()->toArray();
 
@@ -471,14 +480,22 @@ class Blog extends Page implements PermissionProvider {
 	/**
 	 * Return blog posts.
 	 *
-	 * @param null|string $context Context for these blog posts (e.g 'rss')
-	 *
 	 * @return DataList of BlogPost objects
 	 */
-	public function getBlogPosts($context = null) {
+	public function getBlogPosts($excludeFeaturedPosts = true) {
 		$blogPosts = BlogPost::get()->filter('ParentID', $this->ID);
 
-		$this->extend('updateGetBlogPosts', $blogPosts, $context);
+		if($excludeFeaturedPosts 
+			&& $this->isFeaturedPostsEnabled() 
+			&& $this->config()->exclude_featured_posts > 0
+		) {
+			$excluded = $this->getFeaturedBlogPosts()
+				->limit((int) $this->config()->exclude_featured_posts)
+				->getIDList();
+			$blogPosts = $blogPosts->exclude(array('ID' => $excluded));
+		}
+
+		$this->extend('updateGetBlogPosts', $blogPosts);
 
 		return $blogPosts;
 	}
@@ -586,6 +603,28 @@ class Blog extends Page implements PermissionProvider {
 
 		return $group;
 	}
+
+	/**
+	 * @return SS_List
+	 */
+	public function getFeaturedBlogPosts() {
+		if($this->isFeaturedPostsEnabled()) {
+			return BlogPost::get()
+				->filter('ParentID', $this->owner->ID)
+				->filter('IsFeatured', true);
+		}
+		return new ArrayList();
+	}
+
+	/**
+	 * Featured posts can be enabled per blog in the CMS settings page.
+	 *
+	 * @return bool
+	 */
+	public function isFeaturedPostsEnabled() {
+		return $this->EnableFeaturedPosts;
+	}
+
 }
 
 /**
@@ -997,7 +1036,7 @@ class Blog_Controller extends Page_Controller {
 		 */
 		$dataRecord = $this->dataRecord;
 
-		$this->blogPosts = $dataRecord->getBlogPosts('rss');
+		$this->blogPosts = $dataRecord->getBlogPosts(false);
 
 		$rss = new RSSFeed($this->blogPosts, $this->Link(), $this->MetaTitle, $this->MetaDescription);
 
