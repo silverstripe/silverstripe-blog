@@ -7,7 +7,6 @@
  * @subpackage blog
  *
  * @method Blog Blog()
- * @method ManyManyList BlogPosts
  *
  * @property string $Title
  * @property string $URLSegment
