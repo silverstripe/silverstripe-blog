@@ -471,14 +471,12 @@ class Blog extends Page implements PermissionProvider {
 	/**
 	 * Return blog posts.
 	 *
-	 * @param null|string $context Context for these blog posts (e.g 'rss')
-	 *
 	 * @return DataList of BlogPost objects
 	 */
-	public function getBlogPosts($context = null) {
+	public function getBlogPosts() {
 		$blogPosts = BlogPost::get()->filter('ParentID', $this->ID);
 
-		$this->extend('updateGetBlogPosts', $blogPosts, $context);
+		$this->extend('updateGetBlogPosts', $blogPosts);
 
 		return $blogPosts;
 	}
@@ -997,7 +995,7 @@ class Blog_Controller extends Page_Controller {
 		 */
 		$dataRecord = $this->dataRecord;
 
-		$this->blogPosts = $dataRecord->getBlogPosts('rss');
+		$this->blogPosts = $dataRecord->getBlogPosts();
 
 		$rss = new RSSFeed($this->blogPosts, $this->Link(), $this->MetaTitle, $this->MetaDescription);
 

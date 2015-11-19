@@ -24,21 +24,12 @@
 
 		<div class="content">$Content</div>
 
-		<% if $FeaturedBlogPosts.Exists && $FeaturedBlogPosts.First %>
-			<% with $FeaturedBlogPosts.First %>
-				<% include FeaturedPostSummary %>
-			<% end_with %>
-		<% end_if %>
 		<% if $PaginatedList.Exists %>
 			<% loop $PaginatedList %>
 				<% include PostSummary %>
 			<% end_loop %>
 		<% else %>
-			<% if $FeaturedBlogPosts.Exists %>
-				<p><%t Blog.NoUnfeaturedPosts 'There are no non-featured posts' %></p>
-			<% else %>
-				<p><%t Blog.NoPosts 'There are no posts' %></p>
-			<% end_if %>
+			<p><%t Blog.NoPosts 'There are no posts' %></p>
 		<% end_if %>
 	</article>
 
