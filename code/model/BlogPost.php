@@ -222,7 +222,7 @@ class BlogPost extends Page {
 				null,
 				1024
 			)->setDescription(_t(
-					'BlogPost.PublishDate_Description',
+					'BlogPost.AdditionalCredits_Description',
 					'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.')
 			);
 
