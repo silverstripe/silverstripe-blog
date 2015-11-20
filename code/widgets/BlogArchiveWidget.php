@@ -106,7 +106,7 @@ class BlogArchiveWidget extends Widget {
 				/**
 				 * @var BlogPost $post
 				 */
-				$date = new Date();
+				$date = Date::create();
 				$date->setValue($post->PublishDate);
 
 				if($this->ArchiveType == 'Yearly') {
