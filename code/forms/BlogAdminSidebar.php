@@ -1,16 +1,18 @@
 <?php
 
-class BlogAdminSidebar extends FieldGroup {
-	/**
-	 * @return bool
-	 */
-	public function isOpen() {
-		$sidebar = Cookie::get('blog-admin-sidebar');
+class BlogAdminSidebar extends FieldGroup
+{
+    /**
+     * @return bool
+     */
+    public function isOpen()
+    {
+        $sidebar = Cookie::get('blog-admin-sidebar');
 
-		if($sidebar == 1 || is_null($sidebar)) {
-			return true;
-		}
+        if ($sidebar == 1 || is_null($sidebar)) {
+            return true;
+        }
 
-		return false;
-	}
+        return false;
+    }
 }

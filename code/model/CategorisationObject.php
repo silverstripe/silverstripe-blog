@@ -3,6 +3,6 @@
 /**
  * @method ManyManyList BlogPosts
  */
-interface CategorisationObject {
-
+interface CategorisationObject
+{
 }
