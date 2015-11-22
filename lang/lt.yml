@@ -1,0 +1,15 @@
+lt:
+  Blog:
+    Comments: Komentarai
+  BlogCategory:
+    Title: Pavadinimas
+  BlogEntry:
+    DESCRIPTION: 'Standartinio turinio puslapis'
+  BlogHolder:
+    DESCRIPTION: 'Standartinio turinio puslapis'
+  BlogPost:
+    DESCRIPTION: 'Standartinio turinio puslapis'
+  BlogTag:
+    Title: Pavadinimas
+  BlogTree:
+    DESCRIPTION: 'Standartinio turinio puslapis'

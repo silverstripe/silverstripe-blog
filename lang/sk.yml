@@ -1,0 +1,9 @@
+sk:
+  BlogEntry:
+    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
+  BlogHolder:
+    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
+  BlogPost:
+    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
+  BlogTree:
+    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'

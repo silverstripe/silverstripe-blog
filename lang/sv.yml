@@ -1,0 +1,11 @@
+sv:
+  Blog:
+    Archive: Arkiv
+    By: av
+    Categories: Kategorier
+    Category: Kategori
+    Comments: Kommentarer
+    DESCRIPTION: 'Lägger till en blog på din hemsida.'
+    FILTERDESCRIPTION_AUTHOR: 'Av {author}'
+    LumberjackTitle: 'Bloginlägg'
+    NoPosts: 'Det finns inga bloginlägg'

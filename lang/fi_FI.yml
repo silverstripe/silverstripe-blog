@@ -1,0 +1,16 @@
+fi_FI:
+  Blog:
+    FILTERDESCRIPTION_PAGE: 'Sivu {page}'
+    PLURALNAME: 'Pohjasivut'
+  BlogCategory:
+    Title: Otsikko
+  BlogEntry:
+    PLURALNAME: 'Pohjasivut'
+  BlogHolder:
+    PLURALNAME: 'Pohjasivut'
+  BlogPost:
+    PLURALNAME: 'Pohjasivut'
+  BlogTag:
+    Title: Otsikko
+  BlogTree:
+    PLURALNAME: 'Pohjasivut'
