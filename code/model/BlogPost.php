@@ -216,7 +216,7 @@ class BlogPost extends Page
             $authorField = ListboxField::create(
                 'Authors',
                 _t('BlogPost.Authors', 'Authors'),
-                $this->getCandidateAuthors()->map()->toArray()
+                $self->getCandidateAuthors()->map()->toArray()
             )->setMultiple(true);
 
             $authorNames = TextField::create(
