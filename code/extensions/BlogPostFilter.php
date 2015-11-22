@@ -7,36 +7,39 @@
  * @package silverstripe
  * @subpackage blog
  */
-class BlogPostFilter extends DataExtension {
-	/**
-	 * Augment queries so that we don't fetch unpublished articles.
-	 *
-	 * @param SQLQuery $query
-	 */
-	public function augmentSQL(SQLQuery &$query) {
-		$stage = Versioned::current_stage();
+class BlogPostFilter extends DataExtension
+{
+    /**
+     * Augment queries so that we don't fetch unpublished articles.
+     *
+     * @param SQLQuery $query
+     */
+    public function augmentSQL(SQLQuery &$query)
+    {
+        $stage = Versioned::current_stage();
 
-		if (Controller::curr() instanceof LeftAndMain) {
-			return;
-		}
+        if (Controller::curr() instanceof LeftAndMain) {
+            return;
+        }
 
-		if($stage == 'Live' || !Permission::check('VIEW_DRAFT_CONTENT')) {
-			$query->addWhere(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
-		}
-	}
+        if ($stage == 'Live' || !Permission::check('VIEW_DRAFT_CONTENT')) {
+            $query->addWhere(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
+        }
+    }
 
-	/**
-	 * This is a fix so that when we try to fetch subclasses of BlogPost, lazy loading includes the
-	 * BlogPost table in its query. Leaving this table out means the default sort order column
-	 * PublishDate causes an error.
-	 *
-	 * @see https://github.com/silverstripe/silverstripe-framework/issues/1682
-	 *
-	 * @param SQLQuery $query
-	 * @param mixed $dataQuery
-	 * @param mixed $parent
-	 */
-	public function augmentLoadLazyFields(SQLQuery &$query, &$dataQuery, $parent) {
-		$dataQuery->innerJoin('BlogPost', '"SiteTree"."ID" = "BlogPost"."ID"');
-	}
+    /**
+     * This is a fix so that when we try to fetch subclasses of BlogPost, lazy loading includes the
+     * BlogPost table in its query. Leaving this table out means the default sort order column
+     * PublishDate causes an error.
+     *
+     * @see https://github.com/silverstripe/silverstripe-framework/issues/1682
+     *
+     * @param SQLQuery $query
+     * @param mixed $dataQuery
+     * @param mixed $parent
+     */
+    public function augmentLoadLazyFields(SQLQuery &$query, &$dataQuery, $parent)
+    {
+        $dataQuery->innerJoin('BlogPost', '"SiteTree"."ID" = "BlogPost"."ID"');
+    }
 }
