@@ -1,0 +1,117 @@
+fr:
+  ArchiveWidget:
+    PLURALNAME: 'Widget archive'
+    SINGULARNAME: 'Widget archive'
+  Blog:
+    Archive: Archive
+    By: par
+    CONTRIBUTOR: Contributeur
+    Categories: Catégories
+    Category: Catégorie
+    Comments: Commentaires
+    DESCRIPTION: 'Ajouter un blog à votre site web.'
+    EDITOR: Editeur
+    FILTERDESCRIPTION_AUTHOR: 'Par {author}'
+    FILTERDESCRIPTION_CATEGORY: 'Dans la catégorie {category}'
+    FILTERDESCRIPTION_DATE: 'A {date}'
+    FILTERDESCRIPTION_PAGE: 'Page {page}'
+    FILTERDESCRIPTION_TAG: 'Taggé avec {tag}'
+    LumberjackTitle: 'Billets du blog'
+    NoPosts: 'Il n''y a pas de billets'
+    NoUnfeaturedPosts: 'Il n''y a pas de billets non choisis'
+    PERMISSIONS_CATEGORY: 'Permissions du blog'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gérer les utilisateurs pour un blog'
+    PERMISSION_MANAGE_USERS_HELP: 'Autoriser l''assignation d''éditeurs, auteurs ou contributeurs au blog'
+    PLURALNAME: 'Blogs'
+    Posted: Publié
+    PostedIn: 'Publié dans'
+    PostsPerPage: 'Billets par page'
+    ReadMoreAbout: 'Lire plus à propos de ''{title}''...'
+    SINGULARNAME: Blog
+    Tag: Tag
+    Tagged: Taggé
+    Tags: Tags
+    WRITER: Auteur
+  BlogArchiveWidget:
+    ArchiveType: ArchiveType
+    Blog: Blog
+    NumberToDisplay: 'Num. à afficher'
+    PLURALNAME: 'Widgets archive du blog'
+    SINGULARNAME: 'Widget archive du blog'
+  BlogCategoriesWidget:
+    Blog: Blog
+    Direction:
+      Description: 'Changer la direction du tri de ce widget.'
+      Label: Direction
+    Limit:
+      Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
+      Label: Limite
+    PLURALNAME: 'Widgets catégories du blog'
+    SINGULARNAME: 'Widget catégories du blog'
+    Sort:
+      Description: 'Changer l''ordre de tri pour ce widget.'
+      Label: Tri
+  BlogCategory:
+    PLURALNAME: 'Catégories du blog'
+    SINGULARNAME: 'Catégorie du blog'
+    Title: Title
+  BlogEntry:
+    DESCRIPTION: 'Generic content page'
+    PLURALNAME: 'Base Pages'
+    SINGULARNAME: 'Blog Entry'
+  BlogHolder:
+    DESCRIPTION: 'Generic content page'
+    PLURALNAME: 'Base Pages'
+    SINGULARNAME: 'Blog Holder'
+  BlogPost:
+    AUTHOR: Auteur
+    AdditionalCredits: 'Mentions additionnelles'
+    Authors: Auteurs
+    CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
+    Categories: Catégories
+    DESCRIPTION: 'Un billet du blog'
+    FeaturedImage: 'Image choisie'
+    PLURALNAME: 'Billets'
+    PageTitleLabel: 'Titre du billet'
+    PublishDate: 'Date de publication'
+    PublishDate_Description: 'Sera mis à "maintenant" si publié sans valeur.'
+    SINGULARNAME: 'Billet'
+    SUMMARY_DESCRIPTION: 'Si aucun sommaire, les 30 premiers mots seront utilisés.'
+    Tags: Tags
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Nombre de billets'
+    PLURALNAME: 'Widgets billets récents'
+    SINGULARNAME: 'Widget billet récent'
+  BlogTag:
+    PLURALNAME: 'Tags du blog'
+    SINGULARNAME: 'Tag du blog'
+    Title: Titre
+  BlogTagsWidget:
+    Blog: Blog
+    Direction:
+      Description: 'Changer la direction du tri de ce widget.'
+      Label: Direction
+    Limit:
+      Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
+      Label: Limite
+    PLURALNAME: 'Widgets tags du blog'
+    SINGULARNAME: 'Widget tag du blog'
+    Sort:
+      Description: 'Changer l''ordre de tri pour ce widget.'
+      Label: Tri
+  BlogTree:
+    DESCRIPTION: 'Generic content page'
+    PLURALNAME: 'Base Pages'
+    SINGULARNAME: 'Blog Tree'
+  GridFieldAddByDBField:
+    Add: 'Ajouter {name}'
+    AddFail: 'Impossible de sauvegarder {class} dans la base de données.'
+    PermissionFail: 'Vous n''avez pas la permission de créer {class}.'
+  GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Enregistré comme brouillon à {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publié le {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publier le {date}'
+  TagCloudWidget:
+    PLURALNAME: 'Widgets nuage de tags'
+    SINGULARNAME: 'Widget nuage de tag'
