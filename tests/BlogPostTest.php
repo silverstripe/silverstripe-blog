@@ -78,5 +78,9 @@ class BlogPostTest extends SapphireTest
         Config::inst()->update('BlogPost', 'restrict_authors_to_group', 'BlogUsers');
 
         $this->assertEquals(3, $blogpost->getCandidateAuthors()->count());
+
+        // Test cms field is generated
+        $fields = $blogpost->getCMSFields();
+        $this->assertNotEmpty($fields->dataFieldByName('Authors'));
     }
 }
