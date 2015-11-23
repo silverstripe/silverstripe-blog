@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.0]
+
+* Allow injection on date
+* Added standard code of conduct
+* Converted to PSR-2
+* Update translations
+* BUG Fix regression in [#312](https://github.com/silverstripe/silverstripe-blog/pull/312) in PHP 5.3
+
 ## [2.2.0]
 
 * Changelog added.
