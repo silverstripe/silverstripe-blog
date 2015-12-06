@@ -176,7 +176,7 @@ class BlogPost extends Page
         $self =& $this;
 
         $this->beforeUpdateCMSFields(function ($fields) use ($self) {
-            $uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Banner Image'));
+            $uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
             $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 
             /**
