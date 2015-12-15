@@ -6,7 +6,7 @@
 			<a class="prev" href="{$PrevLink}">&larr;</a>
 		<% end_if %>
 
-		<% loop $Pages %>
+		<% loop $PaginationSummary(4) %>
 			<% if $CurrentBool %>
 				<span>$PageNum</span>
 			<% else %>
