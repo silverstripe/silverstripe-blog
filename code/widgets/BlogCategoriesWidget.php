@@ -57,7 +57,7 @@ class BlogCategoriesWidget extends Widget
                 ->setMaxLength(3);
 
             $fields[] = DropdownField::create(
-                'Order', _t('BlogCategoriesWidget.Sort.Label', 'Sort'), array('Title' => 'Title', 'Created' => 'Created', 'LastUpdated' => 'Updated')
+                'Order', _t('BlogCategoriesWidget.Sort.Label', 'Sort'), array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
             )
                 ->setDescription(_t('BlogCategoriesWidget.Sort.Description', 'Change the order of categories shown by this widget.'));
 

@@ -57,7 +57,7 @@ class BlogTagsWidget extends Widget
                 ->setMaxLength(3);
 
             $fields[] = DropdownField::create(
-                'Order', _t('BlogTagsWidget.Sort.Label', 'Sort'), array('Title' => 'Title', 'Created' => 'Created', 'LastUpdated' => 'Updated')
+                'Order', _t('BlogTagsWidget.Sort.Label', 'Sort'), array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
             )
                 ->setDescription(_t('BlogTagsWidget.Sort.Description', 'Change the order of tags shown by this widget.'));
 
