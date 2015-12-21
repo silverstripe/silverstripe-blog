@@ -94,7 +94,7 @@
 				this.updateLayout();
 				
 				// If this panel is open and the left hand column is smaller than the minimum, contract it instead
-				if(!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.getminInnerWidth())) {
+				if(!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.minInnerWidth) {
 					this.collapsePanel();
 				}
 			},
