@@ -101,6 +101,8 @@ class Blog extends Page implements PermissionProvider
      */
     private static $description = 'Adds a blog to your website.';
 
+    private static $icon = 'blog/images/site-tree-icon.png';
+
     /**
      * {@inheritdoc}
      */
