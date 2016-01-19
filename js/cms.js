@@ -44,7 +44,7 @@
 				$this.parent().next('.description').addClass('toggle-description-correct-description');
 			}
 		});
-		
+
 		/**
 		 * Custom merge actions for tags and categories
 		 */
@@ -81,18 +81,21 @@
 				});
 			}
 		});
-		
+
 		/**
 		 * Customise the cms-panel behaviour for blog sidebar
-		 * 
+		 *
 		 * see LeftAndMain.Panel.js for base behaviour
 		 */
 		$('.blog-admin-sidebar.cms-panel').entwine({
 			minInnerWidth: 620,
 			onadd: function() {
+				// Adding margin to prevent post options from overlaping message box
+				$('.message').attr('style', 'margin-right: 56px');
+
 				this._super();
 				this.updateLayout();
-				
+
 				// If this panel is open and the left hand column is smaller than the minimum, contract it instead
 				if(!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.getminInnerWidth())) {
 					this.collapsePanel();
@@ -104,7 +107,7 @@
 			},
 			/**
 			 * Adjust minimum width of content to account for extra panel
-			 * 
+			 *
 			 * @returns {undefined}
 			 */
 			updateLayout: function() {
