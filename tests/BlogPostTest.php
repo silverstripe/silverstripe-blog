@@ -34,7 +34,7 @@ class BlogPostTest extends SapphireTest
         SS_Datetime::set_mock_now($date);
         $this->assertEquals($canView, $pageRecord->canView($userRecord));
     }
-    
+
     public function canViewProvider()
     {
         $someFutureDate = '2013-10-10 20:00:00';
@@ -45,13 +45,13 @@ class BlogPostTest extends SapphireTest
             array($someFutureDate, 'Contributor', 'PostA', true),
             array($someFutureDate, 'BlogEditor', 'PostA', true),
             array($someFutureDate, 'Writer', 'PostA', true),
-            
+
             // Check unpublished pages
             array($somePastDate, 'Editor', 'PostA', true),
             array($somePastDate, 'Contributor', 'PostA', true),
             array($somePastDate, 'BlogEditor', 'PostA', true),
             array($somePastDate, 'Writer', 'PostA', true),
-            
+
             // Test a page that was authored by another user
 
             // Check this post given the date has passed
@@ -59,7 +59,7 @@ class BlogPostTest extends SapphireTest
             array($someFutureDate, 'Contributor', 'FirstBlogPost', true),
             array($someFutureDate, 'BlogEditor', 'FirstBlogPost', true),
             array($someFutureDate, 'Writer', 'FirstBlogPost', true),
-            
+
             // Check future pages - non-editors shouldn't be able to see this
             array($somePastDate, 'Editor', 'FirstBlogPost', true),
             array($somePastDate, 'Contributor', 'FirstBlogPost', false),
@@ -75,7 +75,7 @@ class BlogPostTest extends SapphireTest
         $this->assertEquals(7, $blogpost->getCandidateAuthors()->count());
 
         //Set the group to draw Members from
-        Config::inst()->update('BlogPost', 'restrict_authors_to_group', 'BlogUsers');
+        Config::inst()->update('BlogPost', 'restrict_authors_to_group', 'blogusers');
 
         $this->assertEquals(3, $blogpost->getCandidateAuthors()->count());
 

@@ -20,7 +20,9 @@ class URLSegmentExtension extends DataExtension
      */
     public function onBeforeWrite()
     {
-        $this->owner->generateURLSegment();
+        if ($this->owner->BlogID) {
+            $this->owner->generateURLSegment();
+        }
     }
 
     /**
@@ -38,6 +40,12 @@ class URLSegmentExtension extends DataExtension
 
         if (is_int($increment)) {
             $this->owner->URLSegment .= '-' . $increment;
+        }
+
+        // Postgres use '' instead of 0 as an emtpy blog ID
+        // Without this all the tests fail
+        if (!$this->owner->BlogID) {
+            $this->owner->BlogID = 0;
         }
 
         $duplicate = DataList::create($this->owner->ClassName)->filter(array(

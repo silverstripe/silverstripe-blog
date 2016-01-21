@@ -131,4 +131,22 @@ class BlogTagTest extends FunctionalTest
         $this->assertTrue($tag->canDelete($admin), 'Admin should always be able to delete tags.');
         $this->assertTrue($tag->canDelete($editor), 'Editor should be able to delete tag.');
     }
+
+    public function testDuplicateTagsForURLSegment() {
+        $blog = new Blog();
+        $blog->Title = 'Testing for duplicates blog';
+        $blog->write();
+        $tag1 = new BlogTag();
+        $tag1->Title = 'Cat';
+        $tag1->BlogID = $blog->ID;
+        $tag1->write();
+        $this->assertEquals('cat', $tag1->URLSegment);
+
+        $tag2 = new BlogTag();
+        $tag2->Title = 'Cat';
+        $tag2->BlogID = $blog->ID;
+        $tag2->write();
+        $this->assertEquals('cat-0', $tag2->URLSegment);
+
+    }
 }

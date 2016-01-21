@@ -93,7 +93,7 @@ class BlogPost extends Page
 
     /**
      * The default sorting lists BlogPosts with an empty PublishDate at the top.
-     * 
+     *
      * @var string
      */
     private static $default_sort = '"PublishDate" IS NULL DESC, "PublishDate" DESC';
