@@ -1,6 +1,21 @@
 # SilverStripe Blog Module
+[![Build Status](https://travis-ci.org/silverstripe/silverstripe-blog.svg?branch=master)](https://travis-ci.org/silverstripe/silverstripe-blog)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/badges/build.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/build-status/master)
+[![codecov.io](https://codecov.io/github/silverstripe/silverstripe-blog/coverage.svg?branch=master)](https://codecov.io/github/silverstripe/silverstripe-blog?branch=master)
 
-[![Build Status](https://travis-ci.org/silverstripe/silverstripe-blog.png?branch=master)](https://travis-ci.org/silverstripe/silverstripe-blog) [![Latest Stable Version](https://poser.pugx.org/silverstripe/blog/v/stable.svg)](https://packagist.org/packages/silverstripe/blog) [![Total Downloads](https://poser.pugx.org/silverstripe/blog/downloads.svg)](https://packagist.org/packages/silverstripe/blog) [![Latest Unstable Version](https://poser.pugx.org/silverstripe/blog/v/unstable.svg)](https://packagist.org/silverstripe/silverstripe/blog) [![License](https://poser.pugx.org/silverstripe/blog/license.svg)](https://packagist.org/packages/silverstripe/blog)
+[![Latest Stable Version](https://poser.pugx.org/silverstripe/blog/version)](https://packagist.org/packages/silverstripe/blog)
+[![Latest Unstable Version](https://poser.pugx.org/silverstripe/blog/v/unstable)](//packagist.org/packages/silverstripe/blog)
+[![Total Downloads](https://poser.pugx.org/silverstripe/blog/downloads)](https://packagist.org/packages/silverstripe/blog)
+[![License](https://poser.pugx.org/silverstripe/blog/license)](https://packagist.org/packages/silverstripe/blog)
+[![Monthly Downloads](https://poser.pugx.org/silverstripe/blog/d/monthly)](https://packagist.org/packages/silverstripe/blog)
+[![Daily Downloads](https://poser.pugx.org/silverstripe/blog/d/daily)](https://packagist.org/packages/silverstripe/blog)
+
+[![Dependency Status](https://www.versioneye.com/php/silverstripe:blog/badge.svg)](https://www.versioneye.com/php/silverstripe:blog)
+[![Reference Status](https://www.versioneye.com/php/silverstripe:blog/reference_badge.svg?style=flat)](https://www.versioneye.com/php/silverstripe:blog/references)
+
+![codecov.io](https://codecov.io/github/silverstripe/silverstripe-blog/branch.svg?branch=master)
+
 
 ## Documentation
 [User guide](docs/en/userguide/index.md)

@@ -7,16 +7,25 @@ addons:
     packages:
       - tidy
 
+before_install:
+  - pip install --user codecov
+
 env:
   global:
     - DB=MYSQL CORE_RELEASE=3.1
+
+    # Turn coverage off by default, as it's expensive time wise
+    - COVERAGE=0
+
+    # The path of the module when installed by composer
+    - MODULE_PATH=blog
 
 matrix:
   allow_failures:
     - php: hhvm-nightly
   include:
     - php: 5.6
-      env: DB=MYSQL
+      env: DB=MYSQL COVERAGE=1
     - php: 5.5
       env: DB=MYSQL
     - php: 5.4
@@ -35,5 +44,17 @@ before_script:
   - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
   - cd ~/builds/ss
 
+#Execute tests with or without coverage
 script:
-  - vendor/bin/phpunit blog/tests/
+  # Execute tests with no coverage.  This is the fastest option
+  - "if [ \"$COVERAGE\" = \"0\" ]; then vendor/bin/phpunit $MODULE_PATH/tests/; fi"
+
+  # Execute tests with coverage.  Do this for a small
+  - "if [ \"$COVERAGE\" = \"1\" ]; then vendor/bin/phpunit --coverage-clover=coverage.clover $MODULE_PATH/tests/; fi"
+
+#Upload coverage even if there is a failure
+after_script:
+  - "if [ \"$COVERAGE\" = \"1\" ]; then mv coverage.clover ~/build/$TRAVIS_REPO_SLUG/; fi"
+  - cd ~/build/$TRAVIS_REPO_SLUG
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - "if [ \"$COVERAGE\" = \"1\" ]; then travis_retry codecov && travis_retry php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi"
