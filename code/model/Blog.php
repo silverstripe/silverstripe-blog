@@ -473,35 +473,21 @@ class Blog extends Page implements PermissionProvider
 
         $query->innerJoin('BlogPost', sprintf('"SiteTree%s"."ID" = "BlogPost%s"."ID"', $stage, $stage));
 
-        // getConn is deprecated, but not get_conn in 3.1
-        $getConnectionMethod = 'getConn';
-        if (method_exists('DB','get_conn')) {
-            $getConnectionMethod = 'get_conn';
-        };
+        $conn = DB::getConn();
 
+        // Filter by year
+        $yearCond = $conn->formattedDatetimeClause('"BlogPost"."PublishDate"', '%Y');
+        $query->where(sprintf('%s = \'%04d\'', $yearCond, Convert::raw2sql($year)));
 
-        if (DB::$getConnectionMethod() instanceof MySQLDatabase) {
-            $query->where(sprintf('YEAR("PublishDate") = \'%s\'', Convert::raw2sql($year)));
+        // Filter by month (if given)
+        if ($month) {
+            $monthCond = $conn->formattedDatetimeClause('"BlogPost"."PublishDate"', '%m');
+            $query->where(sprintf('%s = \'%02d\'', $monthCond, Convert::raw2sql($month)));
 
-            if ($month) {
-                $query->where(sprintf('MONTH("PublishDate") = \'%s\'', Convert::raw2sql($month)));
-
-                if ($day) {
-                    $query->where(sprintf('DAY("PublishDate") = \'%s\'', Convert::raw2sql($day)));
-                }
+            if ($day) {
+                $dayCond = $conn->formattedDatetimeClause('"BlogPost"."PublishDate"', '%d');
+                $query->where(sprintf('%s = \'%02d\'', $dayCond, Convert::raw2sql($day)));
             }
-        } elseif (DB::$getConnectionMethod() instanceof PostgreSQLDatabase) {
-            $where = sprintf('EXTRACT(YEAR FROM "PublishDate") = \'%s\'', Convert::raw2sql($year));
-
-            if ($month) {
-                $where .= sprintf(' AND EXTRACT(MONTH FROM "PublishDate") = \'%s\'', Convert::raw2sql($month));
-
-                if ($day) {
-                    $where .= sprintf(' AND EXTRACT(DAY FROM "PublishDate") = \'%s\'', Convert::raw2sql($day));
-                }
-            }
-
-            $query->where($where);
         }
 
 

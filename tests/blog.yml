@@ -7,7 +7,7 @@ Group:
     Title: Editors
   BlogUsers:
     Title: Blog Users
-    Code: BlogUsers
+    Code: blogusers
 
 Permission:
   Administrators:
