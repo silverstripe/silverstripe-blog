@@ -8,7 +8,7 @@
 	],
 	"type": "silverstripe-module",
 	"require": {
-		"silverstripe/cms": ">=3.1.0",
+		"silverstripe/cms": "^3.1.0",
 		"silverstripe/lumberjack": "~1.1",
 		"silverstripe/tagfield": "^1.0"
 	},
