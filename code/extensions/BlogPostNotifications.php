@@ -27,6 +27,6 @@ class BlogPostNotifications extends DataExtension
      */
     public function updateNotificationSubject(&$subject, &$comment, &$recipient)
     {
-        $subject = sprintf('A new comment has been posted on ', $this->owner->Title);
+        $subject = sprintf('A new comment has been posted on %s', $this->owner->Title);
     }
 }
