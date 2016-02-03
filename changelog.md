@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.0]
+
+* Add BlogTagsCloudWidget
+* Added code coverage and extra badges on the home page
+* Changed blog page icon
+* Change image field label back to “Featured Image”
+* Rework documentation to have clear user guide and dev docs.
+* Fix blog date filtering for additional database server types
+* Tests now pass in Postgres on 3.1 and 3.2
+* improved pagination for blog posts
+
 ## [2.3.0]
 
 * Allow injection on date
