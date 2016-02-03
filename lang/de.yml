@@ -54,8 +54,10 @@ de:
     SINGULARNAME: 'Blog Kategorie'
     Title: Titel
   BlogEntry:
+    DESCRIPTION: 'Allgemeine Inhaltsseite'
     SINGULARNAME: 'Blogeintrag'
   BlogHolder:
+    DESCRIPTION: 'Allgemeine Inhaltsseite'
     SINGULARNAME: 'Blog'
   BlogPost:
     AUTHOR: Autor
@@ -72,6 +74,8 @@ de:
   BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
+    PLURALNAME: 'Aktuelle Blog Einträge Widgets'
+    SINGULARNAME: 'Aktuelle Blog Einträge Widget'
   BlogTag:
     PLURALNAME: 'Blog Schlagworte'
     SINGULARNAME: 'Blog Schlagwort'
@@ -89,6 +93,9 @@ de:
     Sort:
       Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
       Label: Sortierung
+  BlogTree:
+    DESCRIPTION: 'Allgemeine Inhaltsseite'
+    SINGULARNAME: 'Blog Baum-Ansicht'
   GridFieldAddByDBField:
     Add: '{name} hinzufügen'
     AddFail: 'Kann Klasse {class} nicht in der Datenbank speichern.'
@@ -97,3 +104,6 @@ de:
     Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Als Entwurf am {date} gespeichert'
     Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Veröffentlicht am {date}'
     Timer: '<i class="gridfield-icon blog-icon-timer"></i> Am {date} veröffentlichen'
+  TagCloudWidget:
+    PLURALNAME: 'Schlagwortwolke Widgets'
+    SINGULARNAME: 'Schlagwortwolke Widget'

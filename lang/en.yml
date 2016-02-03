@@ -66,11 +66,12 @@ en:
   BlogPost:
     AUTHOR: Author
     AdditionalCredits: 'Additional Credits'
+    AdditionalCredits_Description: 'If some authors of this post don''t have CMS access, enter their name(s) here. You can separate multiple names with a comma.'
     Authors: Authors
     CUSTOMSUMMARY: 'Add A Custom Summary'
     Categories: Categories
     DESCRIPTION: 'Generic content page'
-    FeaturedImage: 'Banner Image'
+    FeaturedImage: 'Featured Image'
     PLURALNAME: 'Base Pages'
     PageTitleLabel: 'Post Title'
     PublishDate: 'Publish Date'
@@ -87,6 +88,10 @@ en:
     PLURALNAME: 'Blog Tags'
     SINGULARNAME: 'Blog Tag'
     Title: Title
+  BlogTagsCloudWidget:
+    Blog: Blog
+    PLURALNAME: 'Blog Tags Cloud Widgets'
+    SINGULARNAME: 'Blog Tags Cloud Widget'
   BlogTagsWidget:
     Blog: Blog
     Direction:

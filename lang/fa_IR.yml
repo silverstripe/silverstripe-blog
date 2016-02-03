@@ -5,7 +5,7 @@ fa_IR:
   Blog:
     Archive: بایگانی
     By: توسط
-    CONTRIBUTOR: مولف
+    CONTRIBUTOR: مشارکت‌کننده
     Categories: مجموعه‌ها
     Category: مجموعه
     Comments: دیدگاه‌ها
@@ -17,11 +17,15 @@ fa_IR:
     FILTERDESCRIPTION_PAGE: 'صفحه‌ی {page}'
     FILTERDESCRIPTION_TAG: 'تگ‌شده با {tag}'
     LumberjackTitle: 'ارسال‌های وبلاگ'
-    NoPosts: 'هیچ ارسال وبلاگ وجود ندارد'
+    NoPosts: 'هیچ ارسالی وجود ندارد'
+    NoUnfeaturedPosts: 'هیچ ارسال ممتاز نشده‌ای وجود ندارد'
     PERMISSIONS_CATEGORY: 'دسترسی‌های وبلاگ'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'مدیریت کاربران برای بلاگ‌های انفرادی'
+    PERMISSION_MANAGE_USERS_HELP: 'تعیین اجازه‌ی دسترسی ویرایش‌گران، نویسندگان یا مشارکت‌کنندگان به وبلاگ'
+    PLURALNAME: 'صفحات پایه‌ای'
     Posted: ارسال شده
     PostedIn: 'ارسال شده در'
-    PostsPerPage: 'تعداد نوشته در صفحه'
+    PostsPerPage: 'تعداد ارسال در صفحه'
     ReadMoreAbout: 'درباره ''{title}'' بیشتر بخوانید...'
     SINGULARNAME: وبلاگ
     Tag: تگ
@@ -31,22 +35,51 @@ fa_IR:
   BlogArchiveWidget:
     ArchiveType: نوع بایگانی
     Blog: وبلاگ
+    NumberToDisplay: 'شمار در نمایش'
+    PLURALNAME: 'ویجت‌های بایگانی بلاگ'
+    SINGULARNAME: 'ویجت بایگانی بلاگ'
   BlogCategoriesWidget:
     Blog: وبلاگ
+    Direction:
+      Label: جهت
+    Limit:
+      Label: محدود کردن
+    PLURALNAME: 'ویجت‌های مجموعه‌های بلاگ'
+    SINGULARNAME: 'ویجت‌ مجموعه‌های بلاگ'
     Sort:
+      Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
       Label: مرتب‌سازی
   BlogCategory:
     PLURALNAME: 'مجموعه‌های وبلاگ'
     SINGULARNAME: 'مجموعه وبلاگ'
     Title: عنوان
+  BlogEntry:
+    DESCRIPTION: 'صفحه محتوای عمومی'
+    PLURALNAME: 'صفحات پایه‌ای'
+    SINGULARNAME: 'مدخل وبلاگ'
+  BlogHolder:
+    DESCRIPTION: 'صفحه محتوای عمومی'
+    PLURALNAME: 'صفحات پایه‌ای'
+    SINGULARNAME: 'نگهدارنده وبلاگ'
   BlogPost:
     AUTHOR: نگارنده
+    AdditionalCredits: 'دیگر مشارکت‌کنندگان'
     Authors: نگارندگان
+    CUSTOMSUMMARY: 'افزودن یک خلاصه دلخواه'
     Categories: مجموعه‌ها
-    PageTitleLabel: 'عنوان نوشته'
+    DESCRIPTION: 'صفحه محتوای عمومی'
+    FeaturedImage: 'تصویر سرصفحه'
+    PLURALNAME: 'صفحات پایه‌ای'
+    PageTitleLabel: 'عنوان ارسال'
+    PublishDate: 'تاریخ انتشار'
+    PublishDate_Description: 'اگر بدون داده‌ای منتشر شود به "اکنون" تنظیم خواهد شد.'
+    SINGULARNAME: 'ارسال وبلاگ'
     Tags: تگ‌ها
   BlogRecentPostsWidget:
     Blog: وبلاگ
+    NumberOfPosts: 'شمار ارسال‌ها'
+    PLURALNAME: 'ویجت‌های جدیدترین ارسال‌های بلاگ'
+    SINGULARNAME: 'ویجت جدیدترین ارسال‌های بلاگ'
   BlogTag:
     PLURALNAME: 'تگ‌های وبلاگ'
     SINGULARNAME: 'تگ وبلاگ'
@@ -63,9 +96,12 @@ fa_IR:
     Sort:
       Label: مرتب‌سازی
   BlogTree:
+    DESCRIPTION: 'صفحه محتوای عمومی'
+    PLURALNAME: 'صفحات پایه‌ای'
     SINGULARNAME: 'نمایش درختی وبلاگ'
   GridFieldAddByDBField:
     Add: 'افزودن {name}'
+    PermissionFail: 'شما دسترسی لازم جهت ایجاد یک {class} را ندارید.'
   TagCloudWidget:
     PLURALNAME: 'ویجت‌های ابر تگ'
     SINGULARNAME: 'ویجت ابر تگ'

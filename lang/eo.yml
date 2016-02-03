@@ -18,6 +18,7 @@ eo:
     FILTERDESCRIPTION_TAG: 'Etikedo {etikedo}'
     LumberjackTitle: 'Blogaj afiŝoj'
     NoPosts: 'Mankas afiŝoj'
+    NoUnfeaturedPosts: 'Mankas prezentitaj afiŝoj'
     PERMISSIONS_CATEGORY: 'Blogaj permesoj'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administri uzantojn por specifaj blogaĵoj'
     PERMISSION_MANAGE_USERS_HELP: 'Permesi agordi redaktantojn, verkantojn, aŭ kontribuantojn al blogoj'
@@ -73,6 +74,7 @@ eo:
     PLURALNAME: 'Bazaj paĝoj'
     PageTitleLabel: 'Titolo de afiŝo'
     PublishDate: 'Dato de publikigo'
+    PublishDate_Description: 'Agordiĝos al "nun", se publikigita sen valoro'
     SINGULARNAME: 'Blogaĵo'
     SUMMARY_DESCRIPTION: 'Se resumo ne estas agordita, la unuaj 30 vortoj uziĝos.'
     Tags: Etikedoj
