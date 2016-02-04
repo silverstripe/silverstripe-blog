@@ -88,13 +88,13 @@
 		 * see LeftAndMain.Panel.js for base behaviour
 		 */
 		$('.blog-admin-sidebar.cms-panel').entwine({
-			minInnerWidth: 620,
+			MinInnerWidth: 620,
 			onadd: function() {
 				this._super();
 				this.updateLayout();
 				
 				// If this panel is open and the left hand column is smaller than the minimum, contract it instead
-				if(!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.getminInnerWidth())) {
+				if(!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.getMinInnerWidth())) {
 					this.collapsePanel();
 				}
 			},
