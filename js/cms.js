@@ -2,6 +2,22 @@
 
 	$.entwine('ss', function ($) {
 
+        /**
+         * The page success/error message sits outside of the html block
+         * containing the sidebar and cms fields. This means it overflows
+         * underneath the sidebar.
+         *
+         * @see https://github.com/silverstripe/silverstripe-blog/issues/210
+         */
+        $('.cms-content-fields > #Form_EditForm_error').entwine({
+            'onadd': function() {
+                var $target = $('.blog-admin-outer');
+                if($target.length == 1) {
+                    $target.prepend(this);
+                }
+            }
+        });
+
 		/**
 		 * Register expandable help text functions with fields.
 		 */
@@ -44,7 +60,7 @@
 				$this.parent().next('.description').addClass('toggle-description-correct-description');
 			}
 		});
-		
+
 		/**
 		 * Custom merge actions for tags and categories
 		 */
@@ -81,10 +97,10 @@
 				});
 			}
 		});
-		
+
 		/**
 		 * Customise the cms-panel behaviour for blog sidebar
-		 * 
+		 *
 		 * see LeftAndMain.Panel.js for base behaviour
 		 */
 		$('.blog-admin-sidebar.cms-panel').entwine({
@@ -92,7 +108,7 @@
 			onadd: function() {
 				this._super();
 				this.updateLayout();
-				
+
 				// If this panel is open and the left hand column is smaller than the minimum, contract it instead
 				if(!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.getminInnerWidth())) {
 					this.collapsePanel();
@@ -104,7 +120,7 @@
 			},
 			/**
 			 * Adjust minimum width of content to account for extra panel
-			 * 
+			 *
 			 * @returns {undefined}
 			 */
 			updateLayout: function() {
