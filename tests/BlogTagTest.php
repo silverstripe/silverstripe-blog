@@ -137,16 +137,40 @@ class BlogTagTest extends FunctionalTest
         $blog->Title = 'Testing for duplicates blog';
         $blog->write();
         $tag1 = new BlogTag();
-        $tag1->Title = 'Cat';
+        $tag1->Title = 'cat-test';
         $tag1->BlogID = $blog->ID;
         $tag1->write();
-        $this->assertEquals('cat', $tag1->URLSegment);
+        $this->assertEquals('cat-test', $tag1->URLSegment);
 
         $tag2 = new BlogTag();
-        $tag2->Title = 'Cat';
+        $tag2->Title = 'cat test';
         $tag2->BlogID = $blog->ID;
         $tag2->write();
-        $this->assertEquals('cat-0', $tag2->URLSegment);
+        $this->assertEquals('cat-test-0', $tag2->URLSegment);
 
     }
+
+    public function testDuplicateTags() {
+        $blog = new Blog();
+        $blog->Title = 'Testing for duplicate tags';
+        $blog->write();
+
+        $tag = new BlogTag();
+        $tag->Title = 'Test';
+        $tag->BlogID = $blog->ID;
+        $tag->write();
+
+        $tag = new BlogTag();
+        $tag->Title = 'Test';
+        $tag->BlogID = $blog->ID;
+        try {
+            $tag->write();
+            $this->fail('Duplicate BlogTag written');
+        } catch (ValidationException $e) {
+            $codeList = $e->getResult()->codeList();
+            $this->assertCount(1, $codeList);
+            $this->assertEquals(BlogTag::DUPLICATE_EXCEPTION, $codeList[0]);
+        }
+    }
+
 }
