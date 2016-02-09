@@ -147,6 +147,8 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      */
     public function getHTMLFragments($gridField)
     {
+        Requirements::javascript(BLOGGER_DIR . '/js/gridfieldaddbydbfield.js');
+
         /**
          * @var DataList $dataList
          */
@@ -184,7 +186,6 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             'add',
             'add'
         );
-
         $addAction->setAttribute('data-icon', 'add');
 
         $forTemplate = new ArrayData(array());
