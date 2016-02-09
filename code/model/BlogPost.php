@@ -460,18 +460,19 @@ class BlogPost extends Page
             return false;
         }
 
+        if($this->canEdit($member)) {
+            return true;
+        }
+
         /**
          * @var SS_Datetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
-
-        // Show past posts
-        if (!$publishDate->exists() || !$publishDate->InFuture()) {
-            return true;
+        if(!$publishDate->exists()) {
+            return false;
         }
 
-        // Anyone that can edit this page can view it
-        return $this->canEdit($member);
+        return !$publishDate->InFuture();
     }
 
     /**

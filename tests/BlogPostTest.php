@@ -83,4 +83,15 @@ class BlogPostTest extends SapphireTest
         $fields = $blogpost->getCMSFields();
         $this->assertNotEmpty($fields->dataFieldByName('Authors'));
     }
+
+    public function testCanViewFuturePost()
+    {
+        $blogPost = $this->objFromFixture('BlogPost', 'NullPublishDate');
+
+        $editor = $this->objFromFixture('Member', 'BlogEditor');
+        $this->assertTrue($blogPost->canView($editor));
+
+        $visitor = $this->objFromFixture('Member', 'Visitor');
+        $this->assertFalse($blogPost->canView($visitor));
+    }
 }
