@@ -123,4 +123,27 @@ class BlogCategoryTest extends FunctionalTest
         $this->assertTrue($category->canDelete($admin), 'Admin should always be able to delete category.');
         $this->assertTrue($category->canDelete($editor), 'Editor should be able to delete category.');
     }
+
+    public function testDuplicateCategories() {
+        $blog = new Blog();
+        $blog->Title = 'Testing for duplicate categories';
+        $blog->write();
+
+        $category = new BlogCategory();
+        $category->Title = 'Test';
+        $category->BlogID = $blog->ID;
+        $category->write();
+
+        $category = new BlogCategory();
+        $category->Title = 'Test';
+        $category->BlogID = $blog->ID;
+        try {
+            $category->write();
+            $this->fail('Duplicate BlogCategory written');
+        } catch (ValidationException $e) {
+            $codeList = $e->getResult()->codeList();
+            $this->assertCount(1, $codeList);
+            $this->assertEquals(BlogTag::DUPLICATE_EXCEPTION, $codeList[0]);
+        }
+    }
 }

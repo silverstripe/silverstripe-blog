@@ -13,6 +13,16 @@
  */
 class BlogCategory extends DataObject implements CategorisationObject
 {
+
+    /**
+     * Use an exception code so that attempted writes can continue on
+     * duplicate errors.
+     *
+     * @const string
+     * This must be a string because ValidationException has decided we can't use int
+     */
+    const DUPLICATE_EXCEPTION = "DUPLICATE";
+
     /**
      * @var array
      */
@@ -40,16 +50,16 @@ class BlogCategory extends DataObject implements CategorisationObject
     private static $extensions = array(
         'URLSegmentExtension',
     );
-    
+
     /**
      * @return DataList
      */
     public function BlogPosts()
     {
         $blogPosts = parent::BlogPosts();
-    
+
         $this->extend("updateGetBlogPosts", $blogPosts);
-    
+
         return $blogPosts;
     }
 
@@ -65,6 +75,31 @@ class BlogCategory extends DataObject implements CategorisationObject
         $this->extend('updateCMSFields', $fields);
 
         return $fields;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function validate()
+    {
+        $validation = parent::validate();
+        if($validation->valid()) {
+            // Check for duplicate categories
+            $blog = $this->Blog();
+            if($blog && $blog->exists()) {
+                $existing = $blog->Categories()->filter('Title', $this->Title);
+                if($this->ID) {
+                    $existing = $existing->exclude('ID', $this->ID);
+                }
+                if($existing->count() > 0) {
+                    $validation->error(_t(
+                        'BlogCategory.Duplicate',
+                        'A blog category already exists with that name'
+                    ), BlogCategory::DUPLICATE_EXCEPTION);
+                }
+            }
+        }
+        return $validation;
     }
 
     /**

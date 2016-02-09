@@ -37,7 +37,7 @@ class BlogEntry extends BlogPost implements MigratableObject
      */
     public function up()
     {
-        
+
         //Migrate comma separated tags into BlogTag objects.
         foreach ($this->TagNames() as $tag) {
             $existingTag = BlogTag::get()->filter(array('Title' => $tag, 'BlogID' => $this->ParentID));
@@ -45,7 +45,6 @@ class BlogEntry extends BlogPost implements MigratableObject
                 //if tag already exists we will simply add it to this post.
                 $tagObject = $existingTag->First();
             } else {
-
                 //if the tag is now we create it and add it to this post.
                 $tagObject = new BlogTag();
                 $tagObject->Title = $tag;
@@ -69,7 +68,7 @@ class BlogEntry extends BlogPost implements MigratableObject
         $this->PublishDate = $this->Date;
         $this->AuthorNames = $this->Author;
         $this->InheritSideBar = true;
-        
+
         //Write and additionally publish the item if it was published before.
         $this->write();
         if ($published) {
@@ -78,7 +77,7 @@ class BlogEntry extends BlogPost implements MigratableObject
         } else {
             $message = "DRAFT: ";
         }
-        
+
         return $message . $this->Title;
     }
 

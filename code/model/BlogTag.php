@@ -14,6 +14,16 @@
  */
 class BlogTag extends DataObject implements CategorisationObject
 {
+
+    /**
+     * Use an exception code so that attempted writes can continue on
+     * duplicate errors.
+     *
+     * @const string
+     * This must be a string because ValidationException has decided we can't use int
+     */
+    const DUPLICATE_EXCEPTION = "DUPLICATE";
+
     /**
      * @var array
      */
@@ -66,6 +76,31 @@ class BlogTag extends DataObject implements CategorisationObject
         $this->extend('updateCMSFields', $fields);
 
         return $fields;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function validate()
+    {
+        $validation = parent::validate();
+        if($validation->valid()) {
+            // Check for duplicate tags
+            $blog = $this->Blog();
+            if($blog && $blog->exists()) {
+                $existing = $blog->Tags()->filter('Title', $this->Title);
+                if($this->ID) {
+                    $existing = $existing->exclude('ID', $this->ID);
+                }
+                if($existing->count() > 0) {
+                    $validation->error(_t(
+                        'BlogTag.Duplicate',
+                        'A blog tags already exists with that name'
+                    ), BlogTag::DUPLICATE_EXCEPTION);
+                }
+            }
+        }
+        return $validation;
     }
 
     /**
