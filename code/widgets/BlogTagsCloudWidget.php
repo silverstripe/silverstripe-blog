@@ -90,11 +90,14 @@ class BlogTagsCloudWidget extends Widget
             }
 
             // normalize the tag counts from 1 to 10
-            $tagfactor = 10 / $maxTagCount;
-            foreach ($tags->getIterator() as $tag) {
-                $normalized = round($tagfactor * ($tag->TagCount));
-                $tag->NormalizedTag = $normalized;
+            if ($maxTagCount) {
+                $tagfactor = 10 / $maxTagCount;
+                foreach ($tags->getIterator() as $tag) {
+                    $normalized = round($tagfactor * ($tag->TagCount));
+                    $tag->NormalizedTag = $normalized;
+                }
             }
+
 
             return $tags;
         }
