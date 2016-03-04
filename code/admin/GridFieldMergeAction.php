@@ -2,6 +2,26 @@
 
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
+
+    /**
+     * Cache results of records queries. This is useful for blogs
+     * with a lot of tags or categories.
+     *
+     * @var array
+     *
+     * @example
+     *  array(1) {
+     *      ["2d73dd8f18b8da3c8e5e75b6bee66d8d"]=> array(3) {
+     *          [2]=> string(5) "tag2"
+     *          [1]=> string(6) "tag1"
+     *          [3]=> string(4) "tag3"
+     *      }
+     *  }
+     *  The array key in the first level is made up of an md5 hash of the sql query,
+     *  then the second level is made if up ID => tag name.
+     */
+    protected static $cached_results = array();
+
     /**
      * List of records to show in the MergeAction column.
      *
@@ -69,27 +89,48 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnContent($gridField, $record, $columnName)
     {
-        if ($columnName === 'MergeAction' && $record->{$this->childMethod}()->Count() > 0) {
-            $dropdown = new DropdownField('Target', 'Target', $this->records->exclude('ID', $record->ID)->map());
-            $dropdown->setAttribute('id', 'Target_'.$record->ID);
-            $prefix = strtolower($this->parentMethod . '-' . $this->childMethod);
+        if ($columnName === 'MergeAction') {
 
-            $action = GridFieldFormAction::create(
-                $gridField,
-                'MergeAction' . $record->ID,
-                'Move',
-                'merge',
-                array(
-                    'record' => $record->ID,
-                    'target' => $prefix . '-target-record-' . $record->ID,
-                )
-            );
+            if(!$record->hasMethod($this->childMethod) || $record->{$this->childMethod}()->count() < 1) {
+                return '';
+            }
 
-            $action->setExtraAttributes(array(
-                'data-target' => $prefix . '-target-record-' . $record->ID
-            ));
+            $children = $record->{$this->childMethod}();
+            $cacheKey = md5($children->dataQuery()->sql());
+            if(isset(self::$cached_results[$cacheKey])) {
+                $data = self::$cached_results[$cacheKey];
+            } else {
+                $data = $this->records->map()->toArray();
+                self::$cached_results[$cacheKey] = $data;
+            }
 
-            return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
+            // Unset the current record
+            if(isset($data[$record->ID])) {
+                unset($data[$record->ID]);
+            }
+
+            if(count($data) > 0) {
+                $dropdown = new DropdownField('Target', 'Target', $data);
+                $dropdown->setAttribute('id', 'Target_'.$record->ID);
+                $prefix = strtolower($this->parentMethod . '-' . $this->childMethod);
+
+                $action = GridFieldFormAction::create(
+                    $gridField,
+                    'MergeAction' . $record->ID,
+                    'Move',
+                    'merge',
+                    array(
+                        'record' => $record->ID,
+                        'target' => $prefix . '-target-record-' . $record->ID,
+                    )
+                );
+
+                $action->setExtraAttributes(array(
+                    'data-target' => $prefix . '-target-record-' . $record->ID
+                ));
+
+                return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
+            }
         }
 
         return null;
