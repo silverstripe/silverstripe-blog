@@ -5,13 +5,18 @@ php:
  - 5.3
 
 env:
- - DB=MYSQL CORE_RELEASE=3.1
- - DB=PGSQL CORE_RELEASE=3.1
+  global:
+    - DB=MYSQL CORE_RELEASE=3.1
+
+    # The path of the module when installed by composer
+    - MODULE_PATH=blog
 
 matrix:
   include:
     - php: 5.4
-      env: DB=MYSQL CORE_RELEASE=master
+      env: DB=MYSQL
+    - php: 5.4
+      env: DB=PGSQL
 
 before_script:
  - git clone git://github.com/silverstripe-labs/silverstripe-travis-support.git ~/travis-support
@@ -19,4 +24,4 @@ before_script:
  - cd ~/builds/ss
 
 script: 
- - phpunit blog/tests/
+ - phpunit $MODULE_PATH/tests/
