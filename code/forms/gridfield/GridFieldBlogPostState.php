@@ -34,7 +34,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                         '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}',
                         'State for when a post is saved.',
                         array(
-                            'date' => $lastEdited->Nice(),
+                            'date' => $lastEdited->FormatFromSettings(),
                         )
                     );
                 }
@@ -50,7 +50,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                         '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}',
                         'State for when a post is published.',
                         array(
-                            'date' => $publishDate->Nice(),
+                            'date' => $publishDate->FormatFromSettings(),
                         )
                     ) . $modifiedLabel;
                 }
@@ -60,7 +60,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                     '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}',
                     'State for when a post is published.',
                     array(
-                        'date' => $publishDate->Nice(),
+                        'date' => $publishDate->FormatFromSettings(),
                     )
                 ) . $modifiedLabel;
             }
