@@ -7,7 +7,7 @@
 	</h2>
 
 	<p class="post-image">
-		<a href="$Link" <%t Blog.ReadMoreAbout "Read more about '{title}'..." title=$Title %>>
+		<a href="$Link" title="<%t Blog.ReadMoreAbout "Read more about '{title}'..." title=$Title %>">
 			$FeaturedImage.setWidth(795)
 		</a>
 	</p>
