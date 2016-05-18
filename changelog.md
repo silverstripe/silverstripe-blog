@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.1]
+
+* Added missing title attribute
+* Format dates in Blog Posts gridfield based on user preferences
+* FIX Ensure tag cloud widget does not break when there are zero tags
+* FIX Success/error message overflow in cms
+* FIX Prevent duplicate tags and categories
+* FIX Prevent showing future blog posts before their publish date
+* FIX Prevent the CMS Hijacking the return keypress in gridfieldaddbydbfield
+* FIX minInnerWidth should begin with upper-case M
+
 ## [2.4.0]
 
 * Add BlogTagsCloudWidget
@@ -35,12 +46,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * FIX Title bug due to [#320](https://github.com/silverstripe/silverstripe-blog/pull/320)
 * FIX Hardcode the year to the current year in setUp()
 * BUG Fix tag / category filters not being filtered in PaginatedList()
-* ENHANCEMENT Default archive year 
+* ENHANCEMENT Default archive year
 * BUGFIX: Dropdowns do not use unique IDs
 * BUG Fix crash if parent page isn't Blog type
 * ENHANCEMENT filtering for large user base sites.
 * FIX Explicitly set the PostsPerPage during migration
-* i18n wrong label in BlogPost.php 
+* i18n wrong label in BlogPost.php
 * Bugfix: avoid feeding null to PaginatedList constructor
 * Default PublishDate to NULL for drafts and sort them at the top
 * Update README to include additional requirements
