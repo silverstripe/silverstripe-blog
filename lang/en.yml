@@ -52,6 +52,7 @@ en:
       Description: 'Change the order of categories shown by this widget.'
       Label: Sort
   BlogCategory:
+    Duplicate: 'A blog category already exists with that name'
     PLURALNAME: 'Blog Categories'
     SINGULARNAME: 'Blog Category'
     Title: Title
@@ -85,6 +86,7 @@ en:
     PLURALNAME: 'Blog Recent Posts Widgets'
     SINGULARNAME: 'Blog Recent Posts Widget'
   BlogTag:
+    Duplicate: 'A blog tags already exists with that name'
     PLURALNAME: 'Blog Tags'
     SINGULARNAME: 'Blog Tag'
     Title: Title

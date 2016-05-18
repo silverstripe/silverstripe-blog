@@ -45,7 +45,6 @@ it:
     CUSTOMSUMMARY: 'Aggiungi una Sintesi Personalizzata'
     Categories: Categorie
     DESCRIPTION: 'Pagina di contenuto generico'
-    FeaturedImage: 'Immagine in primo piano'
     PageTitleLabel: 'Titolo Articolo'
     PublishDate: 'Data Pubblicazione'
     SINGULARNAME: 'Articolo del Blog'

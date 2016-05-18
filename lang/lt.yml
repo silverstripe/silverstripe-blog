@@ -1,15 +1,20 @@
 lt:
   Blog:
     Comments: Komentarai
+    PLURALNAME: 'Baziniai puslapiai'
   BlogCategory:
     Title: Pavadinimas
   BlogEntry:
     DESCRIPTION: 'Standartinio turinio puslapis'
+    PLURALNAME: 'Baziniai puslapiai'
   BlogHolder:
     DESCRIPTION: 'Standartinio turinio puslapis'
+    PLURALNAME: 'Baziniai puslapiai'
   BlogPost:
     DESCRIPTION: 'Standartinio turinio puslapis'
+    PLURALNAME: 'Baziniai puslapiai'
   BlogTag:
     Title: Pavadinimas
   BlogTree:
     DESCRIPTION: 'Standartinio turinio puslapis'
+    PLURALNAME: 'Baziniai puslapiai'

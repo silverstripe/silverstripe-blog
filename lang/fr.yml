@@ -70,7 +70,6 @@ fr:
     CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
     Categories: Catégories
     DESCRIPTION: 'Un billet du blog'
-    FeaturedImage: 'Image choisie'
     PLURALNAME: 'Billets'
     PageTitleLabel: 'Titre du billet'
     PublishDate: 'Date de publication'

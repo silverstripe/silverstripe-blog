@@ -1,9 +1,20 @@
 sk:
+  Blog:
+    FILTERDESCRIPTION_PAGE: 'Strana {page}'
+    PLURALNAME: 'Základné stránky'
+  BlogCategory:
+    Title: Názov
   BlogEntry:
     DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
+    PLURALNAME: 'Základné stránky'
   BlogHolder:
     DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
+    PLURALNAME: 'Základné stránky'
   BlogPost:
     DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
+    PLURALNAME: 'Základné stránky'
+  BlogTag:
+    Title: Názov
   BlogTree:
     DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
+    PLURALNAME: 'Základné stránky'

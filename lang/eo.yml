@@ -66,6 +66,7 @@ eo:
   BlogPost:
     AUTHOR: Aŭtoro
     AdditionalCredits: 'Kromaj agnoskoj'
+    AdditionalCredits_Description: 'Se iuj aŭtoroj de ĉi tiu afiŝo ne havas CMS-aliron, enigu iliajn nomo(j)n ĉi tie. Vi povas apartigi plurajn nomojn per komo.'
     Authors: Aŭtoroj
     CUSTOMSUMMARY: 'Aldoni propran resumon'
     Categories: Kategorioj
@@ -87,6 +88,10 @@ eo:
     PLURALNAME: 'Blogaj etikedoj'
     SINGULARNAME: 'Bloga etikedo'
     Title: Titolo
+  BlogTagsCloudWidget:
+    Blog: Blogo
+    PLURALNAME: 'Nubaj fenestraĵoj por blogaj etikedoj'
+    SINGULARNAME: 'Nuba fenestraĵo por blogaj etikedoj'
   BlogTagsWidget:
     Blog: Blog
     Direction:
