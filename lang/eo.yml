@@ -52,6 +52,7 @@ eo:
       Description: 'Ŝanĝi la ordon de kategorioj vidigotaj de tiu fenestraĵo.'
       Label: Ordigi
   BlogCategory:
+    Duplicate: 'Bloga kategorio jam ekzistas kun tiu nomo'
     PLURALNAME: 'Blogaj kategorioj'
     SINGULARNAME: 'Bloga kategorio'
     Title: Titolo
@@ -85,6 +86,7 @@ eo:
     PLURALNAME: 'Fenestraĵoj de lastaj blogaĵoj'
     SINGULARNAME: 'Fenestraĵo de lastaj blogaĵoj'
   BlogTag:
+    Duplicate: 'Blogaj etikedoj jam ekzistas kun tiu nomo'
     PLURALNAME: 'Blogaj etikedoj'
     SINGULARNAME: 'Bloga etikedo'
     Title: Titolo

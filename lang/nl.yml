@@ -5,16 +5,116 @@ nl:
   Blog:
     Archive: Archief
     By: door
-    CONTRIBUTOR: Mede auteur
+    CONTRIBUTOR: Co-auteur
     Categories: Categorieën
     Category: Categorie
     Comments: Reacties
     DESCRIPTION: 'Voegt een blog toe aan je site.'
+    EDITOR: Redacteur
     FILTERDESCRIPTION_AUTHOR: 'Door {author}'
     FILTERDESCRIPTION_CATEGORY: 'In categorie {category}'
-    FILTERDESCRIPTION_TAG: 'Tagged met {tag}'
+    FILTERDESCRIPTION_TAG: 'Getagd met {tag}'
     LumberjackTitle: 'Blog Artikelen'
     NoPosts: 'Er zijn geen blog artikelen'
+    NoUnfeaturedPosts: 'Er zijn geen niet aanbevolen artikelen'
     PERMISSIONS_CATEGORY: 'Blog rechten'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Beheer gebruikers voor individuele blogs'
+    PERMISSION_MANAGE_USERS_HELP: 'Laat toewijzing van Redacteurs, Auteurs en Co-auteurs toe.'
+    PLURALNAME: 'Blogs'
+    Posted: Geplaatst
+    PostedIn: 'Geplaatst in'
+    PostsPerPage: 'Artikelen per pagina'
+    ReadMoreAbout: 'Lees meer over ''{title}''...'
+    SINGULARNAME: Blog
+    Tag: Tag
+    Tagged: Getagd
+    Tags: Tags
+    WRITER: Auteur
+  BlogArchiveWidget:
+    ArchiveType: ArchiveType
+    Blog: Blog
+    NumberToDisplay: 'Aantal te tonen'
+    PLURALNAME: 'Blog Archief-widgets'
+    SINGULARNAME: 'Blog Archief-widget'
+  BlogCategoriesWidget:
+    Blog: Blog
+    Direction:
+      Description: 'Verander de sorteerrichting van categoriën getoond door deze widget.'
+      Label: Sorteerrichting
+    Limit:
+      Description: 'Limiteer het aantal categorieën getoond door deze widget (Stel in op 0 om alle categorieën te tonen).'
+      Label: Limiet
+    PLURALNAME: 'Blog Categorie-widgets'
+    SINGULARNAME: 'Blog Categorie-widget'
+    Sort:
+      Description: 'Verander de volgorde van categorieën getoond door deze widget.'
+      Label: Volgorde
+  BlogCategory:
+    PLURALNAME: 'Blog Categorieën'
+    SINGULARNAME: 'Blog Categorie'
+    Title: Titel
+  BlogEntry:
+    DESCRIPTION: 'Blog Artikel'
+    PLURALNAME: 'Blog Artikelen'
+    SINGULARNAME: 'Blog Artikel'
+  BlogHolder:
+    DESCRIPTION: 'Blog Houder'
+    PLURALNAME: 'Blog Houders'
+    SINGULARNAME: 'Blog Houder'
   BlogPost:
+    AUTHOR: Auteur
+    AdditionalCredits: 'Dankbetuigingen'
+    AdditionalCredits_Description: 'Indien (enkele) auteurs geen toegang hebben tot dit CMS, kunnen ze hier toegevoegd worden. Scheid namen door middel van komma''s'
+    Authors: Auterus
+    CUSTOMSUMMARY: 'Voeg een eigen samenvatting toe'
     Categories: Categorieën
+    DESCRIPTION: 'Blog Artikel'
+    FeaturedImage: 'Prominente Afbeelding'
+    PLURALNAME: 'Blog Artikelen'
+    PageTitleLabel: 'Artikel Titel'
+    PublishDate: 'Publicatiedatum'
+    PublishDate_Description: 'Wordt op "nu" gezet indien gepubliceerd zonder waarde.'
+    SINGULARNAME: 'Blog Artikel'
+    SUMMARY_DESCRIPTION: 'Als geen samenvatting ingevoerd wordt, worden de eerste 30 worden gebruikt.'
+    Tags: Tags
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Aantal Artikelen'
+    PLURALNAME: 'Blog Recente Artikelen-widgets'
+    SINGULARNAME: 'Blog Recente Artikelen-widget'
+  BlogTag:
+    PLURALNAME: 'Blog Tags'
+    SINGULARNAME: 'Blog Tag'
+    Title: Titel
+  BlogTagsCloudWidget:
+    Blog: Blog
+    PLURALNAME: 'Blog Tags Cloud-widgets'
+    SINGULARNAME: 'Blog Tags Cloud-widget'
+  BlogTagsWidget:
+    Blog: Blog
+    Direction:
+      Description: 'Verander de volgorde van tags getoond door deze widget.'
+      Label: Volgorde
+    Limit:
+      Description: 'Limiteer het aantal tags getoond door deze widget (Stel in op 0 om alle tags te tonen).'
+      Label: Limiet
+    PLURALNAME: 'Blog Tags-widgets'
+    SINGULARNAME: 'Blog Tags-widget'
+    Sort:
+      Description: 'Verander de volgorde van tags getoond door deze widget.'
+      Label: Volgorde
+  BlogTree:
+    DESCRIPTION: 'Blog Boomstructuur'
+    PLURALNAME: 'Blog Boomstructuren'
+    SINGULARNAME: 'Blog Boomstructuur'
+  GridFieldAddByDBField:
+    Add: 'Voeg {name} toe'
+    AddFail: 'Kon geen {class} opslaan in de database.'
+    PermissionFail: 'Je hebt geen permissie om een {class} aan te maken.'
+  GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Opgeslagen als concept op {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Gepubliceerd op {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publiceer op {date}'
+  TagCloudWidget:
+    PLURALNAME: 'Tag Cloud-widgets'
+    SINGULARNAME: 'Tag Cloud-widget'
