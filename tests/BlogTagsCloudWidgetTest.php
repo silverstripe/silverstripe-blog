@@ -35,25 +35,25 @@ class BlogTagsCloudWidgetTest extends SapphireTest {
 
         $tag = $tags[0];
         $this->assertEquals('Cat', $tag->TagName);
-        $this->assertEquals('/fourth-blog/tag/cat', $tag->Link);
+        $this->assertEquals(Controller::join_links(Director::baseURL(), 'fourth-blog/tag/cat'), $tag->Link);
         $this->assertEquals(2, $tag->TagCount);
         $this->assertEquals(5, $tag->NormalizedTag);
 
         $tag = $tags[1];
         $this->assertEquals('Cool', $tag->TagName);
-        $this->assertEquals('/fourth-blog/tag/cool', $tag->Link);
+        $this->assertEquals(Controller::join_links(Director::baseURL(), 'fourth-blog/tag/cool'), $tag->Link);
         $this->assertEquals(3, $tag->TagCount);
         $this->assertEquals(8, $tag->NormalizedTag);
 
         $tag = $tags[2];
         $this->assertEquals('Kiwi', $tag->TagName);
-        $this->assertEquals('/fourth-blog/tag/kiwi', $tag->Link);
+        $this->assertEquals(Controller::join_links(Director::baseURL(), 'fourth-blog/tag/kiwi'), $tag->Link);
         $this->assertEquals(1, $tag->TagCount);
         $this->assertEquals(3, $tag->NormalizedTag);
 
         $tag = $tags[3];
         $this->assertEquals('Popular', $tag->TagName);
-        $this->assertEquals('/fourth-blog/tag/popular', $tag->Link);
+        $this->assertEquals(Controller::join_links(Director::baseURL(), 'fourth-blog/tag/popular'), $tag->Link);
         $this->assertEquals(4, $tag->TagCount);
         $this->assertEquals(10, $tag->NormalizedTag);
     }
