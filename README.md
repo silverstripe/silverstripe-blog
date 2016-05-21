@@ -16,6 +16,8 @@
 
 ![codecov.io](https://codecov.io/github/silverstripe/silverstripe-blog/branch.svg?branch=master)
 
+![helpfulrobot](https://helpfulrobot.io/silverstripe/blog/badge)
+
 
 ## Documentation
 [User guide](docs/en/userguide/index.md)
