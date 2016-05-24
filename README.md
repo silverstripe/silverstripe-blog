@@ -27,8 +27,8 @@
 ## Requirements
 
 ```
-silverstripe/cms: ~3.1
-silverstripe/lumberjack: ~1.1
+silverstripe/cms: ^3.1
+silverstripe/lumberjack: ^1.1
 silverstripe/tagfield: ^1.0
 ```
 
@@ -42,11 +42,11 @@ silverstripe/comments: *
 ## Installation
 
 ```
-composer require silverstripe/blog 2.0.x-dev
+composer require silverstripe/blog
 ```
 
-## Upgrading legacy blog to 2.0
+## Upgrading legacy blog to 2.x
 
-If you're upgrading from blog version 1.0 to 2.0 you will need to run the `BlogMigrationTask`. Run the task using `dev/tasks/BlogMigrationTask` either via the browser or sake CLI to migrate your legacy blog to the new version data structure.
+If you're upgrading from blog version 1.0 to 2.x you will need to run the `BlogMigrationTask`. Run the task using `dev/tasks/BlogMigrationTask` either via the browser or sake CLI to migrate your legacy blog to the new version data structure.
 
 
