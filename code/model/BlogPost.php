@@ -687,6 +687,17 @@ class BlogPost extends Page
     }
 
     /**
+     * Proxy method for displaying the publish date in rss feeds.
+     * @see https://github.com/silverstripe/silverstripe-blog/issues/394
+     *
+     * @return string|null
+     */
+    public function getDate()
+    {
+        return !empty($this->PublishDate) ? $this->PublishDate : null;
+    }
+
+    /**
      * {@inheritdoc}
      */
     protected function onBeforeWrite()
