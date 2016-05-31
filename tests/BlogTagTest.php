@@ -53,6 +53,22 @@ class BlogTagTest extends FunctionalTest
     }
 
     /**
+     * @see https://github.com/silverstripe/silverstripe-blog/issues/376
+     */
+    public function testAllowMultibyteUrlSegment()
+    {
+        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $tag = new BlogTag();
+        $tag->BlogID = $blog->ID;
+        $tag->Title = 'تست';
+        $tag->write();
+        // urlencoded
+        $this->assertEquals('%D8%AA%D8%B3%D8%AA', $tag->URLSegment);
+        $link = Controller::join_links($tag->Blog()->Link(), 'tag', '%D8%AA%D8%B3%D8%AA');
+        $this->assertEquals($link, $tag->getLink());
+    }
+
+    /**
      * The first blog can be viewed by anybody.
      */
     public function testCanView()

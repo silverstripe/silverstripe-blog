@@ -36,6 +36,12 @@ class URLSegmentExtension extends DataExtension
     {
         $filter = new URLSegmentFilter();
 
+        // Setting this to on. Because of the UI flow, it would be quite a lot of work
+        // to support turning this off. (ie. the add by title flow would not work).
+        // If this becomes a problem we can approach it then.
+        // @see https://github.com/silverstripe/silverstripe-blog/issues/376
+        $filter->setAllowMultibyte(true);
+
         $this->owner->URLSegment = $filter->filter($this->owner->Title);
 
         if (is_int($increment)) {
