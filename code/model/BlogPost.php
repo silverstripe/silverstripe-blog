@@ -518,6 +518,12 @@ class BlogPost extends Page
     {
         $member = $this->getMember($member);
 
+        $extended = $this->extendedCan('canEdit', $member);
+
+        if ($extended !== null) {
+            return $extended;
+        }
+
         if (parent::canEdit($member)) {
             return true;
         }
