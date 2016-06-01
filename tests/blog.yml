@@ -166,7 +166,7 @@ BlogPost:
     Authors: =>Member.BlogEditor,=>Member.Writer,=>Member.Contributor
   NullPublishDate:
     Title: 'No publish date'
-    PublishDate: 'NULL'
+    PublishDate: ''
     Parent: =>Blog.FourthBlog
     Authors: =>Member.BlogEditor,=>Member.Writer,=>Member.Contributor
 

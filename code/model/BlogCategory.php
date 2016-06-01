@@ -80,7 +80,7 @@ class BlogCategory extends DataObject implements CategorisationObject
     /**
      * {@inheritdoc}
      */
-    protected function validate()
+    public function validate()
     {
         $validation = parent::validate();
         if($validation->valid()) {
@@ -131,13 +131,9 @@ class BlogCategory extends DataObject implements CategorisationObject
     }
 
     /**
-     * Inherits from the parent blog or can be overwritten using a DataExtension.
-     *
-     * @param null|Member $member
-     *
-     * @return bool
+     * {@inheritdoc}
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = array())
     {
         $extended = $this->extendedCan(__FUNCTION__, $member);
 

@@ -27,7 +27,7 @@ class BlogEntry extends BlogPost implements MigratableObject
     /**
      * {@inheritdoc}
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = array())
     {
         return false;
     }

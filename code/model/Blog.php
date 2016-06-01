@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Model\FieldType\DBDatetime;
+
 /**
  * Blog Holder
  *
@@ -1083,7 +1085,9 @@ class Blog_Controller extends Page_Controller
                 $date = sprintf('%s-01-01', $year);
             }
 
-            return DBField::create_field('Date', $date);
+            $obj = new DBDatetime('date');
+            $obj->setValue($date);
+            return $obj;
         }
 
         return null;

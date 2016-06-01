@@ -28,7 +28,7 @@ class BlogHolder extends BlogTree implements MigratableObject
     /**
      * {@inheritdoc}
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = array())
     {
         return false;
     }
@@ -64,7 +64,7 @@ class BlogHolder extends BlogTree implements MigratableObject
         } else {
             $message = "DRAFT: ";
         }
-        
+
         return $message . $this->Title;
     }
 }

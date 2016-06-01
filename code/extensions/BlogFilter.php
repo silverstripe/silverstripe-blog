@@ -17,7 +17,7 @@ class BlogFilter extends Lumberjack
         $staged = parent::stageChildren($showAll);
 
         if (!$this->shouldFilter() && $this->subclassForBlog() && !Permission::check('VIEW_DRAFT_CONTENT')) {
-            $stage = Versioned::current_stage();
+            $stage = Versioned::get_stage();
 
             if ($stage == 'Stage') {
                 $stage = '';
