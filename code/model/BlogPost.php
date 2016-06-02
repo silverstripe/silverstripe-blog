@@ -174,9 +174,7 @@ class BlogPost extends Page
         Requirements::css(BLOGGER_DIR . '/css/cms.css');
         Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
 
-        $self =& $this;
-
-        $this->beforeUpdateCMSFields(function ($fields) use ($self) {
+        $this->beforeUpdateCMSFields(function ($fields) {
             $uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
             $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 
@@ -207,7 +205,7 @@ class BlogPost extends Page
             $fields->push(HiddenField::create('MenuTitle'));
 
             $urlSegment = $fields->dataFieldByName('URLSegment');
-            $urlSegment->setURLPrefix($self->Parent()->RelativeLink());
+            $urlSegment->setURLPrefix($this->Parent()->RelativeLink());
 
             $fields->removeFieldsFromTab('Root.Main', array(
                 'MenuTitle',
@@ -217,7 +215,7 @@ class BlogPost extends Page
             $authorField = ListboxField::create(
                 'Authors',
                 _t('BlogPost.Authors', 'Authors'),
-                $self->getCandidateAuthors()->map()->toArray()
+                $this->getCandidateAuthors()->map()->toArray()
             );
 
             $authorNames = TextField::create(
@@ -230,14 +228,14 @@ class BlogPost extends Page
                     'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.')
             );
 
-            if (!$self->canEditAuthors()) {
+            if (!$this->canEditAuthors()) {
                 $authorField = $authorField->performDisabledTransformation();
                 $authorNames = $authorNames->performDisabledTransformation();
             }
 
             $publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
             $publishDate->getDateField()->setConfig('showcalendar', true);
-            if (!$self->PublishDate) {
+            if (!$this->PublishDate) {
                 $publishDate->setDescription(_t(
                         'BlogPost.PublishDate_Description',
                         'Will be set to "now" if published without a value.')
@@ -245,7 +243,7 @@ class BlogPost extends Page
             }
 
             // Get categories and tags
-            $parent = $self->Parent();
+            $parent = $this->Parent();
             $categories = $parent instanceof Blog
                 ? $parent->Categories()
                 : BlogCategory::get();
@@ -260,17 +258,17 @@ class BlogPost extends Page
                     'Categories',
                     _t('BlogPost.Categories', 'Categories'),
                     $categories,
-                    $self->Categories()
+                    $this->Categories()
                 )
-                    ->setCanCreate($self->canCreateCategories())
+                    ->setCanCreate($this->canCreateCategories())
                     ->setShouldLazyLoad(true),
                 TagField::create(
                     'Tags',
                     _t('BlogPost.Tags', 'Tags'),
                     $tags,
-                    $self->Tags()
+                    $this->Tags()
                 )
-                    ->setCanCreate($self->canCreateTags())
+                    ->setCanCreate($this->canCreateTags())
                     ->setShouldLazyLoad(true),
                 $authorField,
                 $authorNames

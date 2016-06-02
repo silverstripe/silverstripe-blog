@@ -21,18 +21,23 @@
 	float: left;
 }
 
-.blog-admin-sidebar {
+.has-panel .cms-content-tools.blog-admin-sidebar {
 	width: 280px;
 	border-right: none;
 	border-left: 1px solid #C0C0C2;
-	position: absolute;
+	position: absolute !important; /* overrides cms !imporant style */
 	right: 0px;
-	bottom: 0px;
+    top: 0;
 	height: 100%;
 
 	.cms-panel-toggle a {
 		text-align: left;
+        margin: 0;
 	}
+
+    .cms-panel-toggle.south {
+        border-top: 1px solid #aaaaaa;
+    }
 
 	~ .blog-admin-outer {
 		width: 100%;
@@ -101,7 +106,12 @@
 	&.collapsed {
 		~ .blog-admin-outer {
 			padding-right: 41px;
+
+            #Root_Main {
+                margin-right: 15px;
+            }
 		}
+
 	}
 
 	&.cms-content-tools {
