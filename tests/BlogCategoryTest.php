@@ -148,10 +148,12 @@ class BlogCategoryTest extends FunctionalTest
         $category = new BlogCategory();
         $category->Title = 'Test';
         $category->BlogID = $blog->ID;
+        $category->URLSegment = 'test';
         $category->write();
 
         $category = new BlogCategory();
         $category->Title = 'Test';
+        $category->URLSegment = 'test';
         $category->BlogID = $blog->ID;
         try {
             $category->write();

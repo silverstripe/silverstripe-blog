@@ -162,7 +162,7 @@ class BlogTagTest extends FunctionalTest
         $tag2->Title = 'cat test';
         $tag2->BlogID = $blog->ID;
         $tag2->write();
-        $this->assertEquals('cat-test-0', $tag2->URLSegment);
+        $this->assertEquals('cat-test-1', $tag2->URLSegment);
 
     }
 
@@ -174,10 +174,12 @@ class BlogTagTest extends FunctionalTest
         $tag = new BlogTag();
         $tag->Title = 'Test';
         $tag->BlogID = $blog->ID;
+        $tag->URLSegment = 'test';
         $tag->write();
 
         $tag = new BlogTag();
         $tag->Title = 'Test';
+        $tag->URLSegment = 'test';
         $tag->BlogID = $blog->ID;
         try {
             $tag->write();
