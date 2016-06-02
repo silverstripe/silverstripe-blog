@@ -1,5 +1,6 @@
 .ssh/*
 .bash*
 .profile
-vendor/*
+/vendor/*
 .sass-cache/*
+/node_modules/

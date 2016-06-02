@@ -4,16 +4,16 @@
 /**
  * Include Compass framework
  */
-@import "compass";
+// @import "compass";
 /*
  * Sprite maps & Icons
  */
-@import "compass/utilities/sprites/base";
-@import "blog-icon/*.png";
+// @import "compass/utilities/sprites/base";
+// @import "blog-icon/*.png";
 // buttons
 
-.gridfield-icon {
-	@include all-blog-icon-sprites;
+.gridfield-icon.blog-icon-timer {
+    background: url('../images/blog-icon/timer.png') center no-repeat;
 }
 
 #FeaturedImage .middleColumn {

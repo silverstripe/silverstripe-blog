@@ -1,0 +1,28 @@
+{
+  "name": "silverstripe-blog",
+  "version": "3.0.0",
+  "description": "Silverstripe blog module",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/silverstripe/silverstripe-blog.git"
+  },
+  "author": "",
+  "license": "BSD-3",
+  "bugs": {
+    "url": "https://github.com/silverstripe/silverstripe-blog/issues"
+  },
+  "homepage": "https://github.com/silverstripe/silverstripe-blog#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.1",
+    "gulp-watch": "^4.3.6"
+  }
+}
