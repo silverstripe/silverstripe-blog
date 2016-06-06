@@ -94,4 +94,17 @@ class BlogPostTest extends SapphireTest
         $visitor = $this->objFromFixture('Member', 'Visitor');
         $this->assertFalse($blogPost->canView($visitor));
     }
+
+    /**
+     * The purpose of getDate() is to act as a proxy for PublishDate in the default RSS
+     * template, rather than copying the entire template.
+     */
+    public function testGetDate()
+    {
+        $blogPost = $this->objFromFixture('BlogPost', 'NullPublishDate');
+        $this->assertNull($blogPost->getDate());
+
+        $blogPost = $this->objFromFixture('BlogPost', 'PostA');
+        $this->assertEquals('2012-01-09 15:00:00', $blogPost->getDate());
+    }
 }
