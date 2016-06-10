@@ -5,6 +5,7 @@ fi:
   Blog:
     Archive: Arkisto
     By: kirjoittanut
+    AND: ja
     CONTRIBUTOR: Avustaja
     Categories: Kategoriat
     Category: Kategoria
