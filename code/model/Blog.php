@@ -644,8 +644,8 @@ class Blog_Controller extends Page_Controller
      * @var array
      */
     private static $url_handlers = array(
-        'tag/$Tag!' => 'tag',
-        'category/$Category!' => 'category',
+        'tag/$Tag!/$Rss' => 'tag',
+        'category/$Category!/$Rss' => 'category',
         'archive/$Year!/$Month/$Day' => 'archive',
         'profile/$URLSegment!' => 'profile',
     );
@@ -834,7 +834,12 @@ class Blog_Controller extends Page_Controller
 
         if ($tag) {
             $this->blogPosts = $tag->BlogPosts();
-            return $this->render();
+
+            if($this->isRSS()) {
+            	return $this->rssFeed($this->blogPosts);
+            } else {
+            	return $this->render();
+            }
         }
 
         $this->httpError(404, 'Not Found');
@@ -874,7 +879,11 @@ class Blog_Controller extends Page_Controller
         if ($category) {
             $this->blogPosts = $category->BlogPosts();
 
-            return $this->render();
+            if($this->isRSS()) {
+            	return $this->rssFeed($this->blogPosts);
+            } else {
+            	return $this->render();
+            }
         }
 
         $this->httpError(404, 'Not Found');
@@ -1049,11 +1058,7 @@ class Blog_Controller extends Page_Controller
 
         $this->blogPosts = $dataRecord->getBlogPosts();
 
-        $rss = new RSSFeed($this->blogPosts, $this->Link(), $this->MetaTitle, $this->MetaDescription);
-
-        $this->extend('updateRss', $rss);
-
-        return $rss->outputToBrowser();
+        return $this->rssFeed($this->blogPosts);
     }
 
     /**
@@ -1093,4 +1098,30 @@ class Blog_Controller extends Page_Controller
     {
         return $this->Link('rss');
     }
+    
+    /**
+     * Displays an RSS feed of the given blog posts.
+     *
+     * @return string
+     */
+    public function rssFeed($blogPosts)
+    {
+        $rss = new RSSFeed($blogPosts, $this->Link() . 'category/general/', $this->MetaTitle, $this->MetaDescription);
+
+        $this->extend('updateRss', $rss);
+
+        return $rss->outputToBrowser();
+    }
+    
+    /** 
+     * Returns true if the $Rss sub-action for categories/tags has been set to "rss"
+     */
+     private function isRSS() {
+     	 $rss = $this->request->param('Rss');
+     	 if($rss && strcasecmp($rss, "rss") == 0) {
+     	 	 return true;
+     	 } else {
+     	 	 return false;
+     	 }
+     }
 }
