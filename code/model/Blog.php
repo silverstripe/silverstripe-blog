@@ -826,7 +826,7 @@ class Blog_Controller extends Page_Controller
     /**
      * Renders the blog posts for a given tag.
      *
-     * @return null|SS_HTTPResponse|string
+     * @return null|SS_HTTPResponse
      */
     public function tag()
     {
@@ -870,7 +870,7 @@ class Blog_Controller extends Page_Controller
     /**
      * Renders the blog posts for a given category.
      *
-     * @return null|SS_HTTPResponse|string
+     * @return null|SS_HTTPResponse
      */
     public function category()
     {
