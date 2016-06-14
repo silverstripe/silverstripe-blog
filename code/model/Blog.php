@@ -1104,9 +1104,9 @@ class Blog_Controller extends Page_Controller
      *
      * @return string
      */
-    public function rssFeed($blogPosts)
+    protected function rssFeed($blogPosts)
     {
-        $rss = new RSSFeed($blogPosts, $this->Link() . 'category/general/', $this->MetaTitle, $this->MetaDescription);
+        $rss = new RSSFeed($blogPosts, $this->Link(), $this->MetaTitle, $this->MetaDescription);
 
         $this->extend('updateRss', $rss);
 
@@ -1116,9 +1116,10 @@ class Blog_Controller extends Page_Controller
     /** 
      * Returns true if the $Rss sub-action for categories/tags has been set to "rss"
      */
-     private function isRSS() {
+     private function isRSS() 
+     {
      	 $rss = $this->request->param('Rss');
-     	 if($rss && strcasecmp($rss, "rss") == 0) {
+     	 if(is_string($rss) && strcasecmp($rss, "rss") == 0) {
      	 	 return true;
      	 } else {
      	 	 return false;
