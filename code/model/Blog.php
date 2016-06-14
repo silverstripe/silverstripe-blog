@@ -826,7 +826,7 @@ class Blog_Controller extends Page_Controller
     /**
      * Renders the blog posts for a given tag.
      *
-     * @return null|SS_HTTPResponse
+     * @return null|SS_HTTPResponse|string
      */
     public function tag()
     {
@@ -836,7 +836,7 @@ class Blog_Controller extends Page_Controller
             $this->blogPosts = $tag->BlogPosts();
 
             if($this->isRSS()) {
-            	return $this->rssFeed($this->blogPosts);
+            	return $this->rssFeed($this->blogPosts, $tag->getLink());
             } else {
             	return $this->render();
             }
@@ -870,7 +870,7 @@ class Blog_Controller extends Page_Controller
     /**
      * Renders the blog posts for a given category.
      *
-     * @return null|SS_HTTPResponse
+     * @return null|SS_HTTPResponse|string
      */
     public function category()
     {
@@ -880,7 +880,7 @@ class Blog_Controller extends Page_Controller
             $this->blogPosts = $category->BlogPosts();
 
             if($this->isRSS()) {
-            	return $this->rssFeed($this->blogPosts);
+            	return $this->rssFeed($this->blogPosts, $category->getLink());
             } else {
             	return $this->render();
             }
@@ -1058,7 +1058,7 @@ class Blog_Controller extends Page_Controller
 
         $this->blogPosts = $dataRecord->getBlogPosts();
 
-        return $this->rssFeed($this->blogPosts);
+        return $this->rssFeed($this->blogPosts, $this->Link());
     }
 
     /**
@@ -1102,11 +1102,14 @@ class Blog_Controller extends Page_Controller
     /**
      * Displays an RSS feed of the given blog posts.
      *
+     * @param DataList $blogPosts
+     * @param string $link
+     *
      * @return string
      */
-    protected function rssFeed($blogPosts)
+    protected function rssFeed($blogPosts, $link)
     {
-        $rss = new RSSFeed($blogPosts, $this->Link(), $this->MetaTitle, $this->MetaDescription);
+        $rss = new RSSFeed($blogPosts, $link, $this->MetaTitle, $this->MetaDescription);
 
         $this->extend('updateRss', $rss);
 
