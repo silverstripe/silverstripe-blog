@@ -1119,13 +1119,13 @@ class Blog_Controller extends Page_Controller
     /** 
      * Returns true if the $Rss sub-action for categories/tags has been set to "rss"
      */
-     private function isRSS() 
-     {
-     	 $rss = $this->request->param('Rss');
-     	 if(is_string($rss) && strcasecmp($rss, "rss") == 0) {
-     	 	 return true;
-     	 } else {
-     	 	 return false;
-     	 }
-     }
+    private function isRSS() 
+    {
+        $rss = $this->request->param('Rss');
+        if(is_string($rss) && strcasecmp($rss, "rss") == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
