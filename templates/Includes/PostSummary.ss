@@ -13,14 +13,15 @@
 	</p>
 
 	<% if $Summary %>
-		<p>$Summary
+		$Summary
 	<% else %>
-		<p>$Excerpt
+		<p>$Excerpt</p>
 	<% end_if %>
+	    <p>
 			<a href="$Link">
 				<%t Blog.ReadMoreAbout "Read more about '{title}'..." title=$Title %>
 			</a>
 		</p>
-	
+
 	<% include EntryMeta %>
 </div>
