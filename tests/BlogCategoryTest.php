@@ -52,6 +52,22 @@ class BlogCategoryTest extends FunctionalTest
         $this->assertEquals(5, $category->BlogPosts()->count(), 'Category blog post count');
     }
 
+    /**
+     * @see https://github.com/silverstripe/silverstripe-blog/issues/376
+     */
+    public function testAllowMultibyteUrlSegment()
+    {
+        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $cat = new BlogCategory();
+        $cat->BlogID = $blog->ID;
+        $cat->Title = 'تست';
+        $cat->write();
+        // urlencoded
+        $this->assertEquals('%D8%AA%D8%B3%D8%AA', $cat->URLSegment);
+        $link = Controller::join_links($cat->Blog()->Link(), 'category', '%D8%AA%D8%B3%D8%AA');
+        $this->assertEquals($link, $cat->getLink());
+    }
+
     public function testCanView()
     {
         $this->useDraftSite();
