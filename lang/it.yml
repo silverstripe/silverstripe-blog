@@ -2,6 +2,7 @@ it:
   Blog:
     Archive: Archivia
     By: di
+    AND: e
     CONTRIBUTOR: Collaboratore
     Categories: Categorie
     Category: Categoria
