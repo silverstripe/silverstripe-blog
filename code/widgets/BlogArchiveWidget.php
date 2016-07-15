@@ -113,12 +113,12 @@ class BlogArchiveWidget extends Widget
                 $date->setValue($post->PublishDate);
 
                 if ($this->ArchiveType == 'Yearly') {
-                    $year = $date->FormatI18N("%Y");
+                    $year = $date->Format("Y");
                     $month = null;
                     $title = $year;
                 } else {
-                    $year = $date->FormatI18N("%Y");
-                    $month = $date->FormatI18N("%m");
+                    $year = $date->Format("Y");
+                    $month = $date->Format("m");
                     $title = $date->FormatI18N("%B %Y");
                 }
 
