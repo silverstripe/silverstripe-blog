@@ -5,7 +5,6 @@ nl:
   Blog:
     Archive: Archief
     By: door
-    AND: en
     CONTRIBUTOR: Co-auteur
     Categories: Categorieën
     Category: Categorie
@@ -14,6 +13,8 @@ nl:
     EDITOR: Redacteur
     FILTERDESCRIPTION_AUTHOR: 'Door {author}'
     FILTERDESCRIPTION_CATEGORY: 'In categorie {category}'
+    FILTERDESCRIPTION_DATE: 'In {date}'
+    FILTERDESCRIPTION_PAGE: 'Pagina {page}'
     FILTERDESCRIPTION_TAG: 'Getagd met {tag}'
     LumberjackTitle: 'Blog Artikelen'
     NoPosts: 'Er zijn geen blog artikelen'
@@ -51,6 +52,7 @@ nl:
       Description: 'Verander de volgorde van categorieën getoond door deze widget.'
       Label: Volgorde
   BlogCategory:
+    Duplicate: 'Een blog categorie met dezelfde naam bestaat al'
     PLURALNAME: 'Blog Categorieën'
     SINGULARNAME: 'Blog Categorie'
     Title: Titel
@@ -84,6 +86,7 @@ nl:
     PLURALNAME: 'Blog Recente Artikelen-widgets'
     SINGULARNAME: 'Blog Recente Artikelen-widget'
   BlogTag:
+    Duplicate: 'Een blog tag met dezelfde naam bestaat al'
     PLURALNAME: 'Blog Tags'
     SINGULARNAME: 'Blog Tag'
     Title: Titel

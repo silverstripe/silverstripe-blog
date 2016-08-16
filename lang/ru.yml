@@ -5,7 +5,7 @@ ru:
   Blog:
     Archive: Архив
     By: 'автор:'
-    AND: а также
+    CONTRIBUTOR: Автор
     Categories: Категории
     Category: Категория
     Comments: Комментарии
@@ -16,14 +16,26 @@ ru:
     FILTERDESCRIPTION_DATE: 'Дата: {date}'
     FILTERDESCRIPTION_PAGE: 'Страница {page}'
     FILTERDESCRIPTION_TAG: 'С метками {tag}'
+    LumberjackTitle: 'Записи в блоге'
+    NoPosts: 'В блоге нет записей'
+    NoUnfeaturedPosts: 'В блоге нет отмеченых записей'
+    PERMISSIONS_CATEGORY: 'Права доступа к содержимому блога'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Управление пользователями для индивидуальных блогов'
     PLURALNAME: 'Базовые страницы'
     Posted: Отправлено
+    PostedIn: 'Отправлено'
+    PostsPerPage: 'Записей на странице'
+    ReadMoreAbout: 'Узнать больше о ''{title}''...'
     SINGULARNAME: Блог
     Tag: Метка
     Tagged: Метки
     Tags: Метки
+    WRITER: Автор
   BlogArchiveWidget:
+    ArchiveType: Тип архива
     Blog: Блог
+    PLURALNAME: 'Виджеты архива'
+    SINGULARNAME: 'Виджет архива'
   BlogCategoriesWidget:
     Blog: Блог
     Sort:

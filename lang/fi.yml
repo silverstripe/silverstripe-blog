@@ -5,7 +5,6 @@ fi:
   Blog:
     Archive: Arkisto
     By: kirjoittanut
-    AND: ja
     CONTRIBUTOR: Avustaja
     Categories: Kategoriat
     Category: Kategoria
@@ -53,6 +52,7 @@ fi:
       Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestys.'
       Label: Järjestä
   BlogCategory:
+    Duplicate: 'Tämä blogikategoria on jo olemassa'
     PLURALNAME: 'Blogikategoriat'
     SINGULARNAME: 'Blogikategoria'
     Title: Otsikko
@@ -86,6 +86,7 @@ fi:
     PLURALNAME: 'Viimeisimmät blogikirjoitukset -vimpaimet'
     SINGULARNAME: 'Viimeisimmät blogikirjoitukset -vimpain'
   BlogTag:
+    Duplicate: 'Tämä blogin avainsana on jo olemassa'
     PLURALNAME: 'Blogin avainsanat'
     SINGULARNAME: 'Blogin avainsana'
     Title: Otsikko

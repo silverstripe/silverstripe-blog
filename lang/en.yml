@@ -3,9 +3,9 @@ en:
     PLURALNAME: 'Archive Widgets'
     SINGULARNAME: 'Archive Widget'
   Blog:
+    AND: and
     Archive: Archive
     By: by
-    AND: and
     CONTRIBUTOR: Contributor
     Categories: Categories
     Category: Category
