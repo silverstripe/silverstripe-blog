@@ -84,6 +84,7 @@ class BlogPost extends Page
      */
     private static $casting = array(
         'Excerpt' => 'Text',
+        'Date' => 'SS_Datetime',
     );
 
     /**
