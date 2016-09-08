@@ -83,7 +83,7 @@ class BlogPost extends Page
      * @var array
      */
     private static $casting = array(
-        'Excerpt' => 'Text',
+        'Excerpt' => 'HTMLText',
         'Date' => 'SS_Datetime',
     );
 
@@ -549,9 +549,7 @@ class BlogPost extends Page
      */
     public function Excerpt($wordsToDisplay = 30)
     {
-        /**
-         * @var Text $content
-         */
+        /** @var HTMLText $content */
         $content = $this->dbObject('Content');
 
         return $content->Summary($wordsToDisplay);
