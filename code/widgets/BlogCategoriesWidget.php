@@ -1,5 +1,10 @@
 <?php
 
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Core\Convert;
+
 if (!class_exists("Widget")) {
     return;
 }

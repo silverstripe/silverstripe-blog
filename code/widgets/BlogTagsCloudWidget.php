@@ -1,5 +1,11 @@
 <?php
 
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Core\Convert;
+use SilverStripe\ORM\DB;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataObject;
+
 if (!class_exists('Widget')) {
     return;
 }

@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\ORM\DataExtension;
+
 /**
  * Customise blog post to support comment notifications.
  *

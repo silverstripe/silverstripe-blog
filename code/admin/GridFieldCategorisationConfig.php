@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+
 class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
 {
     /**
@@ -13,7 +15,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
     {
         parent::__construct($itemsPerPage);
 
-        $this->removeComponentsByType('GridFieldAddNewButton');
+        $this->removeComponentsByType('SilverStripe\\Forms\\GridField\\GridFieldAddNewButton');
 
         $this->addComponent(
             new GridFieldAddByDBField('buttons-before-left')
@@ -26,7 +28,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         /**
          * @var GridFieldDataColumns $columns
          */
-        $columns = $this->getComponentByType('GridFieldDataColumns');
+        $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
 
         $columns->setFieldFormatting(array(
             'BlogPostsCount' => function ($value, CategorisationObject $item) {
@@ -45,7 +47,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         /**
          * @var GridFieldDataColumns $columns
          */
-        $columns = $this->getComponentByType('GridFieldDataColumns');
+        $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
 
         $columns->setDisplayFields(array(
             'Title' => 'Title',

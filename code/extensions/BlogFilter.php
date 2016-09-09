@@ -1,5 +1,15 @@
 <?php
 
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\Versioning\Versioned;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Core\Convert;
+use SilverStripe\Core\ClassInfo;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\FormTransformation;
+use SilverStripe\Forms\GridField\GridField;
+
 /**
  * This class is responsible for filtering the SiteTree when necessary and also overlaps into
  * filtering only published posts.
@@ -27,7 +37,7 @@ class BlogFilter extends Lumberjack
 
             $dataQuery = $staged->dataQuery()
                 ->innerJoin('BlogPost', sprintf('"BlogPost%s"."ID" = "SiteTree%s"."ID"', $stage, $stage))
-                ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
+                ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(DBDatetime::now())));
 
             $staged = $staged->setDataQuery($dataQuery);
         }
@@ -53,7 +63,7 @@ class BlogFilter extends Lumberjack
         if (!$this->shouldFilter() && $this->isBlog() && !Permission::check('VIEW_DRAFT_CONTENT')) {
             $dataQuery = $staged->dataQuery()
                 ->innerJoin('BlogPost', '"BlogPost_Live"."ID" = "SiteTree_Live"."ID"')
-                ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
+                ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(DBDatetime::now())));
 
             $staged = $staged->setDataQuery($dataQuery);
         }

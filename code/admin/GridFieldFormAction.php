@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\Forms\GridField\GridField_FormAction;
+
 class GridFieldFormAction extends GridField_FormAction
 {
     /**

@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\ORM\DataExtension;
+
 /**
  * Adds Blog specific behaviour to Comment.
  */

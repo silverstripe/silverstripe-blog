@@ -1,5 +1,11 @@
 <?php
 
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Control\Controller;
+use SilverStripe\Forms\GridField\GridField_ColumnProvider;
+use SilverStripe\Forms\GridField\GridField_ActionProvider;
+
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
     /**

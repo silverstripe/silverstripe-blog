@@ -1,5 +1,16 @@
 <?php
 
+use SilverStripe\Core\Config\Config;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Security\Member;
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
+use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\ORM\DataModel;
+use SilverStripe\ORM\SS_List;
+use SilverStripe\Dev\SapphireTest;
+
 /**
  * @mixin PHPUnit_Framework_TestCase
  */
@@ -18,7 +29,7 @@ class BlogTest extends SapphireTest
         parent::setUp();
 
         Config::nest();
-        SS_Datetime::set_mock_now('2013-10-10 20:00:00');
+        DBDatetime::set_mock_now('2013-10-10 20:00:00');
 
         /**
          * @var Blog $blog
@@ -33,7 +44,7 @@ class BlogTest extends SapphireTest
      */
     public function tearDown()
     {
-        SS_Datetime::clear_mock_now();
+        DBDatetime::clear_mock_now();
         Config::unnest();
 
         parent::tearDown();
@@ -181,22 +192,22 @@ class BlogTest extends SapphireTest
         /**
          * @var Member $editor
          */
-        $editor = $this->objFromFixture('Member', 'BlogEditor');
+        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'BlogEditor');
 
         /**
          * @var Member $writer
          */
-        $writer = $this->objFromFixture('Member', 'Writer');
+        $writer = $this->objFromFixture('SilverStripe\\Security\\Member', 'Writer');
 
         /**
          * @var Member $contributor
          */
-        $contributor = $this->objFromFixture('Member', 'Contributor');
+        $contributor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Contributor');
 
         /**
          * @var Member $visitor
          */
-        $visitor = $this->objFromFixture('Member', 'Visitor');
+        $visitor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Visitor');
 
         $this->assertEquals('Editor', $fourthBlog->RoleOf($editor));
         $this->assertEquals('Contributor', $fourthBlog->RoleOf($contributor));
@@ -321,7 +332,7 @@ class BlogTest extends SapphireTest
      */
     protected function requestURL(ContentController $controller, $url)
     {
-        $request = new SS_HTTPRequest('get', $url);
+        $request = new HTTPRequest('get', $url);
         $request->match('$URLSegment//$Action/$ID/$OtherID');
         $request->shift();
         $controller->init();

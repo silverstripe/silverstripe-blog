@@ -1,5 +1,13 @@
 <?php
 
+use SilverStripe\ORM\Versioning\Versioned;
+use SilverStripe\Control\Controller;
+use SilverStripe\Admin\LeftAndMain;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Core\Convert;
+use SilverStripe\ORM\DataExtension;
+
 /**
  * This is responsible for filtering only published posts to users who do not have permission to
  * view non-published posts.
@@ -23,7 +31,7 @@ class BlogPostFilter extends DataExtension
         }
 
         if ($stage == 'Live' || !Permission::check('VIEW_DRAFT_CONTENT')) {
-            $query->addWhere(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(SS_Datetime::now())));
+            $query->addWhere(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(DBDatetime::now())));
         }
     }
 

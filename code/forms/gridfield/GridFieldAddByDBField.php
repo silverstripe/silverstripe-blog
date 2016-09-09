@@ -1,5 +1,17 @@
 <?php
 
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Control\Controller;
+use SilverStripe\Security\Security;
+use SilverStripe\View\Requirements;
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\GridField\GridField_FormAction;
+use SilverStripe\View\ArrayData;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\Forms\GridField\GridField_ActionProvider;
+use SilverStripe\Forms\GridField\GridField_HTMLProvider;
+
 /**
  * Adds a component which allows a user to add a new DataObject by database field.
  *

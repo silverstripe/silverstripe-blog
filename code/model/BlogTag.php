@@ -1,5 +1,11 @@
 <?php
 
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Control\Controller;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\DataObject;
+
 /**
  * A blog tag for keyword descriptions of a blog post.
  *

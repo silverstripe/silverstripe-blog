@@ -22,7 +22,7 @@ class BlogHolder extends BlogTree implements MigratableObject
      * @var array
      */
     private static $has_one = array(
-        'Owner' => 'Member',
+        'Owner' => 'SilverStripe\\Security\\Member',
     );
 
     /**

@@ -1,5 +1,9 @@
 <?php
 
+use SilverStripe\Control\Director;
+use SilverStripe\Control\Controller;
+use SilverStripe\Dev\SapphireTest;
+
 class BlogTagsCloudWidgetTest extends SapphireTest {
 
     /**
