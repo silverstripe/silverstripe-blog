@@ -44,7 +44,7 @@ class BlogPost extends Page
      * @var array
      */
     private static $db = array(
-        'PublishDate' => 'SS_Datetime',
+        'PublishDate' => 'Datetime',
         'AuthorNames' => 'Varchar(1024)',
         'Summary' => 'HTMLText',
     );
@@ -100,7 +100,7 @@ class BlogPost extends Page
      */
     private static $casting = array(
         'Excerpt' => 'HTMLText',
-        'Date' => 'SS_Datetime',
+        'Date' => 'Datetime',
     );
 
     /**
@@ -430,7 +430,7 @@ class BlogPost extends Page
     public function onBeforePublish()
     {
         /**
-         * @var SS_Datetime $publishDate
+         * @var SilverStripe\ORM\FieldType\DBDatetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
 
@@ -482,7 +482,7 @@ class BlogPost extends Page
         }
 
         /**
-         * @var SS_Datetime $publishDate
+         * @var SilverStripe\ORM\FieldType\DBDatetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
         if(!$publishDate->exists()) {
@@ -581,7 +581,7 @@ class BlogPost extends Page
     public function getMonthlyArchiveLink($type = 'day')
     {
         /**
-         * @var SS_Datetime $date
+         * @var SilverStripe\ORM\FieldType\DBDatetime $date
          */
         $date = $this->dbObject('PublishDate');
 
@@ -609,7 +609,7 @@ class BlogPost extends Page
     public function getYearlyArchiveLink()
     {
         /**
-         * @var SS_Datetime $date
+         * @var SilverStripe\ORM\FieldType\DBDatetime $date
          */
         $date = $this->dbObject('PublishDate');
 

@@ -1,12 +1,14 @@
 <?php
 
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\DataQuery;
+use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\Versioning\Versioned;
+use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\Control\Controller;
 use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Security\Permission;
-use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Core\Convert;
-use SilverStripe\ORM\DataExtension;
 
 /**
  * This is responsible for filtering only published posts to users who do not have permission to
@@ -20,11 +22,11 @@ class BlogPostFilter extends DataExtension
     /**
      * Augment queries so that we don't fetch unpublished articles.
      *
-     * @param SQLQuery $query
+     * @param SQLSelect $query
      */
-    public function augmentSQL(SQLQuery &$query)
+    public function augmentSQL(SQLSelect $query, DataQuery $dataQuery = null)
     {
-        $stage = Versioned::current_stage();
+        $stage = Versioned::get_stage();
 
         if (Controller::curr() instanceof LeftAndMain) {
             return;
