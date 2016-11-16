@@ -22,7 +22,7 @@ fr:
     PERMISSIONS_CATEGORY: 'Permissions du blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gérer les utilisateurs pour un blog'
     PERMISSION_MANAGE_USERS_HELP: 'Autoriser l''assignation d''éditeurs, auteurs ou contributeurs au blog'
-    PLURALNAME: 'Blogs'
+    PLURALNAME: Blogs
     Posted: Publié
     PostedIn: 'Publié dans'
     PostsPerPage: 'Billets par page'
@@ -70,11 +70,11 @@ fr:
     CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
     Categories: Catégories
     DESCRIPTION: 'Un billet du blog'
-    PLURALNAME: 'Billets'
+    PLURALNAME: Billets
     PageTitleLabel: 'Titre du billet'
     PublishDate: 'Date de publication'
     PublishDate_Description: 'Sera mis à "maintenant" si publié sans valeur.'
-    SINGULARNAME: 'Billet'
+    SINGULARNAME: Billet
     SUMMARY_DESCRIPTION: 'Si aucun sommaire, les 30 premiers mots seront utilisés.'
     Tags: Tags
   BlogRecentPostsWidget:

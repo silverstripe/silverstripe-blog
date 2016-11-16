@@ -5,9 +5,9 @@ fa_IR:
   Blog:
     Archive: بایگانی
     By: توسط
-    CONTRIBUTOR: مشارکت‌کننده
-    Categories: مجموعه‌ها
-    Category: مجموعه
+    CONTRIBUTOR: 'مشارکت‌کننده'
+    Categories: 'مجموعه‌ها'
+    Category: 'مجموعه'
     Comments: دیدگاه‌ها
     DESCRIPTION: 'یک وبلاگ به سایت شما می‌افزاید.'
     EDITOR: ویرایشگر
@@ -23,7 +23,7 @@ fa_IR:
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'مدیریت کاربران برای بلاگ‌های انفرادی'
     PERMISSION_MANAGE_USERS_HELP: 'تعیین اجازه‌ی دسترسی ویرایش‌گران، نویسندگان یا مشارکت‌کنندگان به وبلاگ'
     PLURALNAME: 'صفحات پایه‌ای'
-    Posted: ارسال شده
+    Posted: 'ارسال شده'
     PostedIn: 'ارسال شده در'
     PostsPerPage: 'تعداد ارسال در صفحه'
     ReadMoreAbout: 'درباره ''{title}'' بیشتر بخوانید...'
@@ -33,7 +33,7 @@ fa_IR:
     Tags: تگ‌ها
     WRITER: نویسنده
   BlogArchiveWidget:
-    ArchiveType: نوع بایگانی
+    ArchiveType: 'نوع بایگانی'
     Blog: وبلاگ
     NumberToDisplay: 'شمار در نمایش'
     PLURALNAME: 'ویجت‌های بایگانی بلاگ'
@@ -43,12 +43,12 @@ fa_IR:
     Direction:
       Label: جهت
     Limit:
-      Label: محدود کردن
+      Label: 'محدود کردن'
     PLURALNAME: 'ویجت‌های مجموعه‌های بلاگ'
     SINGULARNAME: 'ویجت‌ مجموعه‌های بلاگ'
     Sort:
       Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
-      Label: مرتب‌سازی
+      Label: 'مرتب‌سازی'
   BlogCategory:
     PLURALNAME: 'مجموعه‌های وبلاگ'
     SINGULARNAME: 'مجموعه وبلاگ'
@@ -66,7 +66,7 @@ fa_IR:
     AdditionalCredits: 'دیگر مشارکت‌کنندگان'
     Authors: نگارندگان
     CUSTOMSUMMARY: 'افزودن یک خلاصه دلخواه'
-    Categories: مجموعه‌ها
+    Categories: 'مجموعه‌ها'
     DESCRIPTION: 'صفحه محتوای عمومی'
     PLURALNAME: 'صفحات پایه‌ای'
     PageTitleLabel: 'عنوان ارسال'
@@ -89,11 +89,11 @@ fa_IR:
       Label: جهت
     Limit:
       Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
-      Label: محدود کردن
+      Label: 'محدود کردن'
     PLURALNAME: 'ویجت‌های تگ‌های وبلاگ'
     SINGULARNAME: 'ویجت تگ‌های وبلاگ'
     Sort:
-      Label: مرتب‌سازی
+      Label: 'مرتب‌سازی'
   BlogTree:
     DESCRIPTION: 'صفحه محتوای عمومی'
     PLURALNAME: 'صفحات پایه‌ای'

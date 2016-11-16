@@ -3,6 +3,7 @@ de:
     PLURALNAME: 'Archiv Widgets'
     SINGULARNAME: 'Archiv Widget'
   Blog:
+    AND: und
     Archive: Archiv
     By: von
     CONTRIBUTOR: Mitwirkende
@@ -16,7 +17,7 @@ de:
     FILTERDESCRIPTION_DATE: 'Am {date}'
     FILTERDESCRIPTION_PAGE: 'Seite {page}'
     FILTERDESCRIPTION_TAG: 'Verschlagwortet mit {tag}'
-    LumberjackTitle: 'Blog-Einträge'
+    LumberjackTitle: Blog-Einträge
     NoPosts: 'Keine Blog-Einträge vorhanden'
     PERMISSIONS_CATEGORY: 'Blog Berechtigungen'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Benutzer für einzelne Blog-Einträge verwalten'
@@ -51,28 +52,31 @@ de:
       Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
       Label: Sortierung
   BlogCategory:
+    Duplicate: 'Es gibt bereits eine Blog-Kategorie mit diesem Namen'
     PLURALNAME: 'Blog Kategorien'
     SINGULARNAME: 'Blog Kategorie'
     Title: Titel
   BlogEntry:
     DESCRIPTION: 'Allgemeine Inhaltsseite'
     PLURALNAME: 'Basis Seiten'
-    SINGULARNAME: 'Blogeintrag'
+    SINGULARNAME: Blogeintrag
   BlogHolder:
     DESCRIPTION: 'Allgemeine Inhaltsseite'
     PLURALNAME: 'Basis Seiten'
-    SINGULARNAME: 'Blog'
+    SINGULARNAME: Blog
   BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Zusätzliche Credits'
+    AdditionalCredits_Description: 'Wenn Autoren dieses Eintrags keinen Zugang zum CMS haben, können Sie die Namen hier mit Kommas getrennt eintragen.'
     Authors: Autoren
-    CUSTOMSUMMARY: 'Zusammenfassung'
+    CUSTOMSUMMARY: Zusammenfassung
     Categories: Kategorien
     DESCRIPTION: 'Allgemeine Inhaltsseite'
     PLURALNAME: 'Basis Seiten'
-    PageTitleLabel: 'Titel'
+    PageTitleLabel: Titel
     PublishDate: 'Datum der Veröffentlichung'
-    SINGULARNAME: 'Blog-Eintrag'
+    PublishDate_Description: 'Jetzt, wenn nichts eingegeben wird.'
+    SINGULARNAME: Blog-Eintrag
     SUMMARY_DESCRIPTION: 'Wenn keine Zusammenfassung angegeben wird, werden die ersten 30 Wörter verwendet.'
     Tags: Schlagworte
   BlogRecentPostsWidget:
@@ -81,9 +85,14 @@ de:
     PLURALNAME: 'Aktuelle Blog Einträge Widgets'
     SINGULARNAME: 'Aktuelle Blog Einträge Widget'
   BlogTag:
+    Duplicate: 'Es gibt bereits einen Blog-Tag mit diesem Namen'
     PLURALNAME: 'Blog Schlagworte'
     SINGULARNAME: 'Blog Schlagwort'
     Title: Titel
+  BlogTagsCloudWidget:
+    Blog: Blog
+    PLURALNAME: Blog-Tag-Cloud-Widgets
+    SINGULARNAME: Blog-Tag-Cloud-Widget
   BlogTagsWidget:
     Blog: Blog
     Direction:

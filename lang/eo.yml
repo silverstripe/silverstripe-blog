@@ -3,6 +3,7 @@ eo:
     PLURALNAME: 'Enarĥivi fenestraĵojn'
     SINGULARNAME: 'Enarĥivi fenestraĵon'
   Blog:
+    AND: kaj
     Archive: Arkivo
     By: de
     CONTRIBUTOR: Kontribuinto
@@ -29,7 +30,7 @@ eo:
     ReadMoreAbout: 'Legi plu pri ''{title}''...'
     SINGULARNAME: Blogo
     Tag: Etikedo
-    Tagged: Havas etikedon
+    Tagged: 'Havas etikedon'
     Tags: Etikedoj
     WRITER: Verkanto
   BlogArchiveWidget:
@@ -59,11 +60,11 @@ eo:
   BlogEntry:
     DESCRIPTION: 'Komuna enhavpaĝo'
     PLURALNAME: 'Bazaj paĝoj'
-    SINGULARNAME: 'Blogero'
+    SINGULARNAME: Blogero
   BlogHolder:
     DESCRIPTION: 'Komuna enhavpaĝo'
     PLURALNAME: 'Bazaj paĝoj'
-    SINGULARNAME: 'Blogenhavo'
+    SINGULARNAME: Blogenhavo
   BlogPost:
     AUTHOR: Aŭtoro
     AdditionalCredits: 'Kromaj agnoskoj'
@@ -77,7 +78,7 @@ eo:
     PageTitleLabel: 'Titolo de afiŝo'
     PublishDate: 'Dato de publikigo'
     PublishDate_Description: 'Agordiĝos al "nun", se publikigita sen valoro'
-    SINGULARNAME: 'Blogaĵo'
+    SINGULARNAME: Blogaĵo
     SUMMARY_DESCRIPTION: 'Se resumo ne estas agordita, la unuaj 30 vortoj uziĝos.'
     Tags: Etikedoj
   BlogRecentPostsWidget:
@@ -110,7 +111,7 @@ eo:
   BlogTree:
     DESCRIPTION: 'Komuna enhavpaĝo'
     PLURALNAME: 'Bazaj paĝoj'
-    SINGULARNAME: 'Blogarbo'
+    SINGULARNAME: Blogarbo
   GridFieldAddByDBField:
     Add: 'Aldoni {name}'
     AddFail: '{klaso} ne estas konservebla al la datumbazo.'

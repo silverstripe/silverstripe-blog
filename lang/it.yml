@@ -1,5 +1,9 @@
 it:
+  ArchiveWidget:
+    PLURALNAME: 'Widget Archiviazione'
+    SINGULARNAME: 'Widget Archiviazione'
   Blog:
+    AND: e
     Archive: Archivia
     By: di
     CONTRIBUTOR: Collaboratore
@@ -15,9 +19,11 @@ it:
     FILTERDESCRIPTION_TAG: 'Etichettato con {tag}'
     LumberjackTitle: 'Articoli del Blog'
     NoPosts: 'Non ci sono articoli'
+    NoUnfeaturedPosts: 'Non ci sono articoli non-featured'
     PERMISSIONS_CATEGORY: 'Permessi del blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gestire utenti per i singoli blog'
     PERMISSION_MANAGE_USERS_HELP: 'Consenti l''assegnazione di Editori, Scrittori o Collaboratori ai blog'
+    PLURALNAME: 'Pagine Base'
     Posted: Inserito
     PostedIn: 'Inserito il'
     PostsPerPage: 'Articoli Per Pagina'
@@ -28,25 +34,50 @@ it:
     Tags: Etichette
     WRITER: Scrittore
   BlogArchiveWidget:
+    ArchiveType: TipoArchiviazione
     Blog: Blog
     NumberToDisplay: 'N. da Visualizzare'
     PLURALNAME: 'Widget Archiviazione Blog'
     SINGULARNAME: 'Widget Archiviazione Blog'
   BlogCategoriesWidget:
     Blog: Blog
+    Direction:
+      Description: 'Modificare la direzione di ordinamento delle categorie mostrate da questo widget.'
+      Label: Direzione
+    Limit:
+      Description: 'Limitare il numero di categorie mostrate da questo widget (impostare a 0 per mostrare tutte le categorie).'
+      Label: Limite
     PLURALNAME: 'Widget Categorie Blog'
     SINGULARNAME: 'Widget Categorie Blog'
+    Sort:
+      Description: 'Modificare l''ordine delle categorie mostrate da questo widget.'
+      Label: Ordine
   BlogCategory:
+    Duplicate: 'Esiste già una categoria blog con quel nome'
+    PLURALNAME: 'Categorie Blog'
+    SINGULARNAME: 'Categoria Blog'
     Title: Titolo
+  BlogEntry:
+    DESCRIPTION: 'Pagina di contenuto generico'
+    PLURALNAME: 'Pagine Base'
+    SINGULARNAME: 'Voce Blog'
+  BlogHolder:
+    DESCRIPTION: 'Pagina di contenuto generico'
+    PLURALNAME: 'Pagine Base'
+    SINGULARNAME: 'Contenitore Blog'
   BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
+    AdditionalCredits_Description: 'Se l''autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola.'
     Authors: Autori
     CUSTOMSUMMARY: 'Aggiungi una Sintesi Personalizzata'
     Categories: Categorie
     DESCRIPTION: 'Pagina di contenuto generico'
+    FeaturedImage: 'Immagine in Evidenza'
+    PLURALNAME: 'Pagine Base'
     PageTitleLabel: 'Titolo Articolo'
     PublishDate: 'Data Pubblicazione'
+    PublishDate_Description: 'Sarà impostato a "now" se pubblicato senza un valore.'
     SINGULARNAME: 'Articolo del Blog'
     SUMMARY_DESCRIPTION: 'Se non è specificata una sintesi saranno usate le prime 30 parole.'
     Tags: Etichette
@@ -56,11 +87,31 @@ it:
     PLURALNAME: 'Widget Articoli Blog Recenti'
     SINGULARNAME: 'Widget Articoli Blog Recenti'
   BlogTag:
+    Duplicate: 'Esiste già un''etichetta con quel nome'
+    PLURALNAME: 'Etichette Blog'
+    SINGULARNAME: 'Etichetta Blog'
     Title: Titolo
+  BlogTagsCloudWidget:
+    Blog: Blog
+    PLURALNAME: 'Widget Tag Cloud del Blog'
+    SINGULARNAME: 'Widget Tag Cloud del Blog'
   BlogTagsWidget:
     Blog: Blog
+    Direction:
+      Description: 'Modificare la direzione di ordinamento delle etichette mostrate da questo widget.'
+      Label: Direzione
+    Limit:
+      Description: 'Limitare il numero di etichette mostrate da questo widget (impostare a 0 per mostrare tutte le etichette).'
+      Label: Limite
     PLURALNAME: 'Widget Etichette Blog'
     SINGULARNAME: 'Widget Etichette Blog'
+    Sort:
+      Description: 'Modificare l''ordine delle etichette mostrate da questo widget.'
+      Label: Ordine
+  BlogTree:
+    DESCRIPTION: 'Pagina di contenuto generico'
+    PLURALNAME: 'Pagine Base'
+    SINGULARNAME: 'Albero del blog'
   GridFieldAddByDBField:
     Add: 'Aggiungi {name}'
     AddFail: 'Impossibile salvare {class} nel database.'
@@ -69,3 +120,6 @@ it:
     Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Salvato come bozza il {date}'
     Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Pubblicato il {date}'
     Timer: '<i class="gridfield-icon blog-icon-timer"></i> Pubblicare al {date}'
+  TagCloudWidget:
+    PLURALNAME: 'Widget Tag Cloud'
+    SINGULARNAME: 'Widget Tag Cloud'

@@ -1,7 +1,7 @@
 fi:
   ArchiveWidget:
-    PLURALNAME: 'Arkistovimpaimet'
-    SINGULARNAME: 'Arkistovimpain'
+    PLURALNAME: Arkistovimpaimet
+    SINGULARNAME: Arkistovimpain
   Blog:
     Archive: Arkisto
     By: kirjoittanut
@@ -16,13 +16,13 @@ fi:
     FILTERDESCRIPTION_DATE: 'Pvm: {date}'
     FILTERDESCRIPTION_PAGE: 'Sivu {page}'
     FILTERDESCRIPTION_TAG: 'Avainsanat: {tag}'
-    LumberjackTitle: 'Blogikirjoitukset'
+    LumberjackTitle: Blogikirjoitukset
     NoPosts: 'Ei kirjoituksia'
     NoUnfeaturedPosts: 'Ei artikkeleita, jotka eivät ole nostoja'
     PERMISSIONS_CATEGORY: 'Blogin oikeudet'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hallinnoi käyttäjiä yksittäisissä blogeissa'
     PERMISSION_MANAGE_USERS_HELP: 'Salli toimittajien, kirjoittajien tai avustajien kiinnittäminen blogeihin'
-    PLURALNAME: 'Pohjasivut'
+    PLURALNAME: Pohjasivut
     Posted: Kirjoitettu
     PostedIn: 'Kirjoitettu:'
     PostsPerPage: 'Kirjoitusta per sivu'
@@ -35,9 +35,9 @@ fi:
   BlogArchiveWidget:
     ArchiveType: Arkistotyyppi
     Blog: Blogi
-    NumberToDisplay: 'Näytetään'
-    PLURALNAME: 'Blogiarkisto-vimpaimet'
-    SINGULARNAME: 'Blogiarkisto-vimpain'
+    NumberToDisplay: Näytetään
+    PLURALNAME: Blogiarkisto-vimpaimet
+    SINGULARNAME: Blogiarkisto-vimpain
   BlogCategoriesWidget:
     Blog: Blogi
     Direction:
@@ -46,38 +46,38 @@ fi:
     Limit:
       Description: 'Rajoita näytettävien kategorioiden määrää tässä vimpaimessa (aseta arvoksi 0, jos haluat näyttää kaikki kategoriat).'
       Label: Rajoita
-    PLURALNAME: 'Blogikategoriat-vimpaimet'
-    SINGULARNAME: 'Blogikategoriat-vimpain'
+    PLURALNAME: Blogikategoriat-vimpaimet
+    SINGULARNAME: Blogikategoriat-vimpain
     Sort:
       Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestys.'
       Label: Järjestä
   BlogCategory:
     Duplicate: 'Tämä blogikategoria on jo olemassa'
-    PLURALNAME: 'Blogikategoriat'
-    SINGULARNAME: 'Blogikategoria'
+    PLURALNAME: Blogikategoriat
+    SINGULARNAME: Blogikategoria
     Title: Otsikko
   BlogEntry:
     DESCRIPTION: 'Yleinen sisältösivu'
-    PLURALNAME: 'Pohjasivut'
-    SINGULARNAME: 'Blogikirjoitus'
+    PLURALNAME: Pohjasivut
+    SINGULARNAME: Blogikirjoitus
   BlogHolder:
     DESCRIPTION: 'Yleinen sisältösivu'
-    PLURALNAME: 'Pohjasivut'
+    PLURALNAME: Pohjasivut
     SINGULARNAME: 'Blogin koontisivu'
   BlogPost:
     AUTHOR: Kirjoittaja
-    AdditionalCredits: 'Lisäkiitokset'
+    AdditionalCredits: Lisäkiitokset
     AdditionalCredits_Description: 'Mikäli kaikilla artikkelin kirjoittajilla ei ole pääsyä sisällönhallintajärjestelmään, syötä heidän nimensä (nimi) tähän. Erota useampi pilkulla.'
     Authors: Kirjoittajat
     CUSTOMSUMMARY: 'Lisää tiivistelmä'
     Categories: Kategoriat
     DESCRIPTION: 'Yleinen sisältösivu'
-    FeaturedImage: 'Kuvanosto'
-    PLURALNAME: 'Pohjasivut'
-    PageTitleLabel: 'Otsikko'
-    PublishDate: 'Julkaisupäivä'
+    FeaturedImage: Kuvanosto
+    PLURALNAME: Pohjasivut
+    PageTitleLabel: Otsikko
+    PublishDate: Julkaisupäivä
     PublishDate_Description: 'Asetetaan "nyt", mikäli arvo jätetään asettamatta.'
-    SINGULARNAME: 'Blogikirjoitus'
+    SINGULARNAME: Blogikirjoitus
     SUMMARY_DESCRIPTION: 'Mikäli tiivistelmää ei ole kirjoitettu, käytetään 30 ensimmäistä sanaa kirjoituksesta.'
     Tags: Avainsanat
   BlogRecentPostsWidget:
@@ -102,15 +102,15 @@ fi:
     Limit:
       Description: 'Rajoita vimpaimella näytettävien avainsanojen määrää (aseta arvoksi 0, jos haluat näyttää kaikki avainsanat).'
       Label: Rajoita
-    PLURALNAME: 'Avainsanat-vimpaimet'
-    SINGULARNAME: 'Avainsanat-vimpain'
+    PLURALNAME: Avainsanat-vimpaimet
+    SINGULARNAME: Avainsanat-vimpain
     Sort:
       Description: 'Vaihda vimpaimella näytettävien avainsanojen järjestystä.'
       Label: Järjestä
   BlogTree:
     DESCRIPTION: 'Yleinen sisältösivu'
-    PLURALNAME: 'Pohjasivut'
-    SINGULARNAME: 'Blogihakemistopuu'
+    PLURALNAME: Pohjasivut
+    SINGULARNAME: Blogihakemistopuu
   GridFieldAddByDBField:
     Add: 'Lisää {name}'
     AddFail: '{class} ei voida tallentaa tietokantaan.'

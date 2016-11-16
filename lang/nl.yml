@@ -1,7 +1,7 @@
 nl:
   ArchiveWidget:
-    PLURALNAME: 'Archief-widgets'
-    SINGULARNAME: 'Archief-widget'
+    PLURALNAME: Archief-widgets
+    SINGULARNAME: Archief-widget
   Blog:
     Archive: Archief
     By: door
@@ -22,7 +22,7 @@ nl:
     PERMISSIONS_CATEGORY: 'Blog rechten'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Beheer gebruikers voor individuele blogs'
     PERMISSION_MANAGE_USERS_HELP: 'Laat toewijzing van Redacteurs, Auteurs en Co-auteurs toe.'
-    PLURALNAME: 'Blogs'
+    PLURALNAME: Blogs
     Posted: Geplaatst
     PostedIn: 'Geplaatst in'
     PostsPerPage: 'Artikelen per pagina'
@@ -66,7 +66,7 @@ nl:
     SINGULARNAME: 'Blog Houder'
   BlogPost:
     AUTHOR: Auteur
-    AdditionalCredits: 'Dankbetuigingen'
+    AdditionalCredits: Dankbetuigingen
     AdditionalCredits_Description: 'Indien (enkele) auteurs geen toegang hebben tot dit CMS, kunnen ze hier toegevoegd worden. Scheid namen door middel van komma''s'
     Authors: Auterus
     CUSTOMSUMMARY: 'Voeg een eigen samenvatting toe'
@@ -75,7 +75,7 @@ nl:
     FeaturedImage: 'Prominente Afbeelding'
     PLURALNAME: 'Blog Artikelen'
     PageTitleLabel: 'Artikel Titel'
-    PublishDate: 'Publicatiedatum'
+    PublishDate: Publicatiedatum
     PublishDate_Description: 'Wordt op "nu" gezet indien gepubliceerd zonder waarde.'
     SINGULARNAME: 'Blog Artikel'
     SUMMARY_DESCRIPTION: 'Als geen samenvatting ingevoerd wordt, worden de eerste 30 worden gebruikt.'
