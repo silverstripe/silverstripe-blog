@@ -1,39 +1,35 @@
 {
-	"name": "silverstripe/blog",
-	"description": "A fresh take on blogging in Silverstripe set out to tackle the issue of a cluttered Site Tree.",
-	"keywords": [
-		"silverstripe",
-		"blog",
-		"news"
-	],
-	"type": "silverstripe-module",
-	"require": {
-		"silverstripe/cms": "^3.1.0",
-		"silverstripe/lumberjack": "~1.1",
-		"silverstripe/tagfield": "^1.0"
-	},
-	"require-dev": {
-		"phpunit/PHPUnit": "~3.7@stable"
-	},
-	"extra": {
-		"branch-alias": {
-			"dev-master": "2.4.x-dev"
-		}
-	},
-	"license": "BSD-2-Clause",
-	"authors": [
-		{
-			"name": "Michael Strong",
-			"email": "github@michaelstrong.co.uk"
-		}
-	],
-	"suggest": {
-		"silverstripe/widgets": "Some widgets come with the blog which are compatible with the widgets module.",
-		"silverstripe/comments": "This module adds comments to your blog."
-	},
-	"replace": {
-		"micmania1/silverstripe-blog": "*"
-	},
-	"minimum-stability": "dev",
-	"prefer-stable": true
+    "name": "silverstripe/blog",
+    "description": "A fresh take on blogging in Silverstripe set out to tackle the issue of a cluttered Site Tree.",
+    "keywords": [
+        "silverstripe",
+        "blog",
+        "news"
+    ],
+    "type": "silverstripe-module",
+    "require": {
+        "silverstripe/cms": "^3.1.0",
+        "silverstripe/lumberjack": "~1.1",
+        "silverstripe/tagfield": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/PHPUnit": "~3.7@stable"
+    },
+    "extra": [],
+    "license": "BSD-2-Clause",
+    "authors": [
+        {
+            "name": "Michael Strong",
+            "email": "github@michaelstrong.co.uk"
+        }
+    ],
+    "suggest": {
+        "silverstripe/widgets": "Some widgets come with the blog which are compatible with the widgets module.",
+        "silverstripe/comments": "This module adds comments to your blog."
+    },
+    "replace": {
+        "micmania1/silverstripe-blog": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
