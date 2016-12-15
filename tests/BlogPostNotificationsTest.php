@@ -1,8 +1,11 @@
 <?php
 
+use SilverStripe\Dev\SapphireTest;
+
 class BlogPostNotificationsTest extends SapphireTest
 {
     /**
+     * {@inheritDoc}
      * @var string
      */
     public static $fixture_file = 'blog.yml';
@@ -13,7 +16,7 @@ class BlogPostNotificationsTest extends SapphireTest
             $this->markTestSkipped('Comments Notification module is not installed');
         }
 
-        $blogPost = $this->objFromFixture('BlogPost', 'PostC');
+        $blogPost = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogPost', 'PostC');
         $comment = new Comment();
         $comment->Comment = 'This is a comment';
         $comment->write();
@@ -27,8 +30,10 @@ class BlogPostNotificationsTest extends SapphireTest
         }
 
         sort($segments);
-        $this->assertEquals(array('blog-contributor', 'blog-editor',
-                                    'blog-writer', ), $segments);
+        $this->assertEquals(
+            array('blog-contributor', 'blog-editor', 'blog-writer'),
+            $segments
+        );
     }
 
     public function testUpdateNotificationSubject()
@@ -36,7 +41,7 @@ class BlogPostNotificationsTest extends SapphireTest
         if (!class_exists('CommentNotifier')) {
             $this->markTestSkipped('Comments Notification module is not installed');
         }
-        $blogPost = $this->objFromFixture('BlogPost', 'PostC');
+        $blogPost = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogPost', 'PostC');
         $comment = new Comment();
         $comment->Comment = 'This is a comment';
         $comment->write();

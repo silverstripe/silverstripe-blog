@@ -1,13 +1,19 @@
 <?php
 
-class BlogTagsCloudWidgetTest extends SapphireTest {
+use SilverStripe\Blog\Model\Blog\BlogTagsCloudWidget;
+use SilverStripe\Dev\SapphireTest;
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
 
+class BlogTagsCloudWidgetTest extends SapphireTest
+{
     /**
      * @var string
      */
     public static $fixture_file = 'blog.yml';
 
-    public function testGetCMSFields() {
+    public function testGetCMSFields()
+    {
         if (!class_exists('Widget')) {
             $this->markTestSkipped('Widgets module not installed');
         }
@@ -23,12 +29,13 @@ class BlogTagsCloudWidgetTest extends SapphireTest {
         $this->assertEquals($expected, $names);
     }
 
-    public function testGetTags() {
+    public function testGetTags()
+    {
         if (!class_exists('Widget')) {
             $this->markTestSkipped('Widgets module not installed');
         }
         $widget = new BlogTagsCloudWidget();
-        $blog = $this->objFromFixture('Blog', 'FourthBlog');
+        $blog = $this->objFromFixture('SilverStripe\\Blog\\Model\\Blog', 'FourthBlog');
         $widget->BlogID = $blog->ID;
         $widget->write();
         $tags = $widget->getTags()->toArray();

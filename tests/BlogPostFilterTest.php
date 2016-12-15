@@ -1,5 +1,9 @@
 <?php
 
+use SilverStripe\Dev\SapphireTest;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Security\Member;
+
 /**
  * @mixin PHPUnit_Framework_TestCase
  */
@@ -14,12 +18,12 @@ class BlogPostFilterTest extends SapphireTest
     {
         parent::setUp();
 
-        SS_Datetime::set_mock_now('2013-10-10 20:00:00');
+        DBDatetime::set_mock_now('2013-10-10 20:00:00');
     }
 
     public function tearDown()
     {
-        SS_Datetime::clear_mock_now();
+        DBDatetime::clear_mock_now();
 
         parent::tearDown();
     }
@@ -35,11 +39,11 @@ class BlogPostFilterTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $blog = $this->objFromFixture('SilverStripe\\Blog\\Model\\Blog', 'FirstBlog');
 
         $this->assertEquals(3, $blog->AllChildren()->Count(), 'Filtered blog posts');
 
-        SS_Datetime::set_mock_now('2020-01-01 00:00:00');
+        DBDatetime::set_mock_now('2020-01-01 00:00:00');
 
         $this->assertEquals(5, $blog->AllChildren()->Count(), 'Unfiltered blog posts');
     }
