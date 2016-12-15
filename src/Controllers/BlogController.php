@@ -121,7 +121,7 @@ class BlogController extends Page_Controller
     /**
      * Renders an archive for a specified date. This can be by year or year/month.
      *
-     * @return null|SS_HTTPResponse
+     * @return null|HTTPResponse
      */
     public function archive()
     {
@@ -256,7 +256,7 @@ class BlogController extends Page_Controller
     /**
      * Renders the blog posts for a given category.
      *
-     * @return null|SS_HTTPResponse
+     * @return null|HTTPResponse
      */
     public function category()
     {

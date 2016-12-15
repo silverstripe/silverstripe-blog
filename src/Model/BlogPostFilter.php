@@ -6,6 +6,7 @@ use SilverStripe\Admin\LeftAndMain;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DataQuery;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\Queries\SQLSelect;
@@ -57,6 +58,9 @@ class BlogPostFilter extends DataExtension
      */
     public function augmentLoadLazyFields(SQLSelect &$query, DataQuery &$dataQuery = null, $dataObject)
     {
-        $dataQuery->innerJoin('BlogPost', '"SiteTree"."ID" = "BlogPost"."ID"');
+        $dataQuery->innerJoin(
+            DataObject::getSchema()->tableName(BlogPost::class),
+            '"SiteTree"."ID" = "BlogPost"."ID"'
+        );
     }
 }

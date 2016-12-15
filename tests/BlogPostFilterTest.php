@@ -6,6 +6,7 @@ use SilverStripe\Security\Member;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
+ * @coversDefaultClass \SilverStripe\Blog\Model\BlogPostFilter
  */
 class BlogPostFilterTest extends SapphireTest
 {
@@ -28,6 +29,10 @@ class BlogPostFilterTest extends SapphireTest
         parent::tearDown();
     }
 
+    /**
+     * Tests that unpublished articles are not returned
+     * @covers ::augmentSQL
+     */
     public function testFilter()
     {
         $member = Member::currentUser();

@@ -49,14 +49,14 @@ class BlogTag extends DataObject implements CategorisationObject
      * @var array
      */
     private static $has_one = array(
-        'Blog' => 'SilverStripe\\Blog\\Model\\Blog',
+        'Blog' => 'SilverStripe\\Blog\\Model\\Blog'
     );
 
     /**
      * @var array
      */
     private static $belongs_many_many = array(
-        'BlogPosts' => 'SilverStripe\\Blog\\Model\\BlogPost',
+        'BlogPosts' => 'SilverStripe\\Blog\\Model\\BlogPost'
     );
 
     /**

@@ -264,9 +264,11 @@ class BlogPost extends Page
             $publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
             $publishDate->getDateField()->setConfig('showcalendar', true);
             if (!$this->PublishDate) {
-                $publishDate->setDescription(_t(
+                $publishDate->setDescription(
+                    _t(
                         'BlogPost.PublishDate_Description',
-                        'Will be set to "now" if published without a value.')
+                        'Will be set to "now" if published without a value.'
+                    )
                 );
             }
 
@@ -323,11 +325,11 @@ class BlogPost extends Page
     {
         if ($this->config()->restrict_authors_to_group) {
             return Group::get()->filter('Code', $this->config()->restrict_authors_to_group)->first()->Members();
-        } else {
-            $list = Member::get();
-            $this->extend('updateCandidateAuthors', $list);
-            return $list;
         }
+
+        $list = Member::get();
+        $this->extend('updateCandidateAuthors', $list);
+        return $list;
     }
 
     /**
@@ -487,7 +489,7 @@ class BlogPost extends Page
             return false;
         }
 
-        if($this->canEdit($member)) {
+        if ($this->canEdit($member)) {
             return true;
         }
 
@@ -495,7 +497,7 @@ class BlogPost extends Page
          * @var DBDatetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
-        if(!$publishDate->exists()) {
+        if (!$publishDate->exists()) {
             return false;
         }
 

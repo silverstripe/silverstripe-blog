@@ -161,7 +161,7 @@ trait BlogObject
     protected function onBeforeWrite()
     {
         parent::onBeforeWrite();
-        if(empty($this->URLSegment)) {
+        if (empty($this->URLSegment)) {
             return $this->generateURLSegment();
         }
     }
@@ -185,7 +185,7 @@ trait BlogObject
         }
 
         if ($this->getDuplicatesByUrlSegment()->count() > 0) {
-            $this->owner->generateURLSegment($increment+1);
+            $this->owner->generateURLSegment($increment + 1);
         }
 
         return $this->owner->URLSegment;

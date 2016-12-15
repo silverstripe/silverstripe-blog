@@ -152,23 +152,38 @@ class Blog extends Page implements PermissionProvider
                 'Categories',
                 _t('Blog.Categories', 'Categories'),
                 $self->Categories(),
-                GridFieldCategorisationConfig::create(15, $self->Categories()->sort('Title'), 'SilverStripe\\Blog\\Model\\BlogCategory', 'Categories', 'BlogPosts')
+                GridFieldCategorisationConfig::create(
+                    15,
+                    $self->Categories()->sort('Title'),
+                    BlogCategory::class,
+                    'Categories',
+                    'BlogPosts'
+                )
             );
 
             $tags = GridField::create(
                 'Tags',
                 _t('Blog.Tags', 'Tags'),
                 $self->Tags(),
-                GridFieldCategorisationConfig::create(15, $self->Tags()->sort('Title'), 'SilverStripe\\Blog\\Model\\BlogTag', 'Tags', 'BlogPosts')
+                GridFieldCategorisationConfig::create(
+                    15,
+                    $self->Tags()->sort('Title'),
+                    BlogTag::class,
+                    'Tags',
+                    'BlogPosts'
+                )
             );
 
             /**
              * @var FieldList $fields
              */
-            $fields->addFieldsToTab('Root.Categorisation', array(
-                $categories,
-                $tags
-            ));
+            $fields->addFieldsToTab(
+                'Root.Categorisation',
+                array(
+                    $categories,
+                    $tags
+                )
+            );
 
             $fields->findOrMakeTab('Root.Categorisation')->addExtraClass('blog-cms-categorisation');
         });
@@ -258,7 +273,7 @@ class Blog extends Page implements PermissionProvider
     public function RoleOf($member)
     {
         if (is_numeric($member)) {
-            $member = DataObject::get_by_id('Member', $member);
+            $member = DataObject::get_by_id(Member::class, $member);
         }
 
         if (!$member) {
@@ -331,7 +346,8 @@ class Blog extends Page implements PermissionProvider
     {
         $fields = parent::getSettingsFields();
 
-        $fields->addFieldToTab('Root.Settings',
+        $fields->addFieldToTab(
+            'Root.Settings',
             NumericField::create('PostsPerPage', _t('Blog.PostsPerPage', 'Posts Per Page'))
         );
 
@@ -387,11 +403,14 @@ class Blog extends Page implements PermissionProvider
             $contributorField = $contributorField->performDisabledTransformation();
         }
 
-        $fields->addFieldsToTab('Root.Users', array(
-            $editorField,
-            $writerField,
-            $contributorField
-        ));
+        $fields->addFieldsToTab(
+            'Root.Users',
+            array(
+                $editorField,
+                $writerField,
+                $contributorField
+            )
+        );
 
         return $fields;
     }
@@ -501,7 +520,10 @@ class Blog extends Page implements PermissionProvider
             $stage = '_' . $stage;
         }
 
-        $query->innerJoin('SilverStripe\\Blog\\Model\\BlogPost', sprintf('"SiteTree%s"."ID" = "BlogPost%s"."ID"', $stage, $stage));
+        $query->innerJoin(
+            DataObject::getSchema()->tableName(BlogPost::class),
+            sprintf('"SiteTree%s"."ID" = "BlogPost%s"."ID"', $stage, $stage)
+        );
 
         $conn = DB::getConn();
 
@@ -638,13 +660,13 @@ class Blog extends Page implements PermissionProvider
             return $group;
         }
 
-        $group = new Group();
+        $group = Group::create();
         $group->Title = 'Blog users';
         $group->Code = $code;
 
         $group->write();
 
-        $permission = new Permission();
+        $permission = Permission::create();
         $permission->Code = $this->config()->grant_user_permission;
 
         $group->Permissions()->add($permission);

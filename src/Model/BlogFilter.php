@@ -11,6 +11,7 @@ use SilverStripe\Forms\FormTransformation;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Lumberjack\Model\Lumberjack;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\Versioning\Versioned;
 use SilverStripe\Security\Permission;
@@ -41,7 +42,10 @@ class BlogFilter extends Lumberjack
             }
 
             $dataQuery = $staged->dataQuery()
-                ->innerJoin('BlogPost', sprintf('"BlogPost%s"."ID" = "SiteTree%s"."ID"', $stage, $stage))
+                ->innerJoin(
+                    DataObject::getSchema()->tableName(BlogPost::class),
+                    sprintf('"BlogPost%s"."ID" = "SiteTree%s"."ID"', $stage, $stage)
+                )
                 ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(DBDatetime::now())));
 
             $staged = $staged->setDataQuery($dataQuery);
@@ -55,7 +59,7 @@ class BlogFilter extends Lumberjack
      */
     protected function subclassForBlog()
     {
-        return in_array(get_class($this->owner), ClassInfo::subclassesFor('Blog'));
+        return in_array(get_class($this->owner), ClassInfo::subclassesFor(Blog::class));
     }
 
     /**
@@ -67,7 +71,10 @@ class BlogFilter extends Lumberjack
 
         if (!$this->shouldFilter() && $this->isBlog() && !Permission::check('VIEW_DRAFT_CONTENT')) {
             $dataQuery = $staged->dataQuery()
-                ->innerJoin('BlogPost', '"BlogPost_Live"."ID" = "SiteTree_Live"."ID"')
+                ->innerJoin(
+                    DataObject::getSchema()->tableName(BlogPost::class),
+                    '"BlogPost_Live"."ID" = "SiteTree_Live"."ID"'
+                )
                 ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(DBDatetime::now())));
 
             $staged = $staged->setDataQuery($dataQuery);
