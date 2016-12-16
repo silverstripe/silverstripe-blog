@@ -210,7 +210,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $forTemplate->Fields->push($addAction);
 
         return array(
-            $this->targetFragment => $forTemplate->renderWith('SilverStripe\\Blog\\Form\\GridField\\GridFieldAddByDBField')
+            $this->targetFragment => $forTemplate->renderWith('SilverStripe\\Blog\\Forms\\GridField\\GridFieldAddByDBField')
         );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace SilverStripe\Blog\Admin;
 
-use SilverStripe\Blog\Form\GridField\GridFieldAddByDBField;
+use SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField;
 use SilverStripe\Blog\Admin\GridFieldMergeAction;
 use SilverStripe\Blog\Model\CategorisationObject;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
@@ -33,13 +33,15 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         /**
          * @var GridFieldDataColumns $columns
          */
-        $columns = $this->getComponentByType('GridFieldDataColumns');
+        $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
 
-        $columns->setFieldFormatting(array(
-            'BlogPostsCount' => function ($value, CategorisationObject $item) {
-                return $item->BlogPosts()->Count();
-            }
-        ));
+        $columns->setFieldFormatting(
+            array(
+                'BlogPostsCount' => function ($value, CategorisationObject $item) {
+                    return $item->BlogPosts()->Count();
+                }
+            )
+        );
 
         $this->changeColumnOrder();
     }
@@ -52,7 +54,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         /**
          * @var GridFieldDataColumns $columns
          */
-        $columns = $this->getComponentByType('GridFieldDataColumns');
+        $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
 
         $columns->setDisplayFields(
             array(

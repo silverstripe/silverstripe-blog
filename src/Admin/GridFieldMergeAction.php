@@ -2,15 +2,16 @@
 
 namespace SilverStripe\Blog\Admin;
 
-use GridField_ColumnProvider;
-use GridField_ActionProvider;
-use DropdownField;
-
-use GridField;
-use Controller;
 use SilverStripe\Blog\Admin\GridFieldFormAction;
+use SilverStripe\Control\Controller;
+use Silverstripe\Forms\DropdownField;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridField_ActionProvider;
+use SilverStripe\Forms\GridField\GridField_ColumnProvider;
 
-
+/**
+ * @package blog
+ */
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
     /**
@@ -81,11 +82,11 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
     public function getColumnContent($gridField, $record, $columnName)
     {
         if ($columnName === 'MergeAction' && $record->{$this->childMethod}()->Count() > 0) {
-            $dropdown = new DropdownField('Target', 'Target', $this->records->exclude('ID', $record->ID)->map());
+            $dropdown = DropdownField::create('Target', 'Target', $this->records->exclude('ID', $record->ID)->map());
             $dropdown->setAttribute('id', 'Target_'.$record->ID);
             $prefix = strtolower($this->parentMethod . '-' . $this->childMethod);
 
-            $action = GridFieldFormAction::create(
+            $action = new GridFieldFormAction(
                 $gridField,
                 'MergeAction' . $record->ID,
                 'Move',

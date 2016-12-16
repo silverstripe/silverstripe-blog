@@ -2,7 +2,7 @@
 
 namespace SilverStripe\Blog\Admin;
 
-use GridField_FormAction;
+use SilverStripe\Forms\GridField\GridField_FormAction;
 
 class GridFieldFormAction extends GridField_FormAction
 {

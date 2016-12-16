@@ -354,7 +354,7 @@ class Blog extends Page implements PermissionProvider
         $members = $this->getCandidateUsers()->map()->toArray();
 
         $editorField = ListboxField::create('Editors', 'Editors', $members)
-            ->setMultiple(true)
+            // ->setMultiple(true)
             ->setRightTitle('<a class="toggle-description">help</a>')
             ->setDescription('
 				An editor has control over specific Blogs, and all posts included within it. Short of being able to assign other editors to a blog, they are able to handle most changes to their assigned blog.<br />
@@ -373,7 +373,7 @@ class Blog extends Page implements PermissionProvider
         }
 
         $writerField = ListboxField::create('Writers', 'Writers', $members)
-            ->setMultiple(true)
+            // ->setMultiple(true)
             ->setRightTitle('<a class="toggle-description">help</a>')
             ->setDescription('
 				A writer has full control over creating, editing and publishing BlogPosts they have authored or have been assigned to. Writers are unable to edit BlogPosts to which they are not assigned.<br />
@@ -389,7 +389,7 @@ class Blog extends Page implements PermissionProvider
         }
 
         $contributorField = ListboxField::create('Contributors', 'Contributors', $members)
-            ->setMultiple(true)
+            // ->setMultiple(true)
             ->setRightTitle('<a class="toggle-description">help</a>')
             ->setDescription('
 				Contributors have the ability to create or edit BlogPosts, but are unable to publish without authorisation of an editor. They are also unable to assign other contributing authors to any of their BlogPosts.<br />
