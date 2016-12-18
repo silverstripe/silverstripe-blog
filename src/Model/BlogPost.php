@@ -251,9 +251,11 @@ class BlogPost extends Page
                 _t('BlogPost.AdditionalCredits', 'Additional Credits'),
                 null,
                 1024
-            )->setDescription(_t(
+            )->setDescription(
+                _t(
                     'BlogPost.AdditionalCredits_Description',
-                    'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.')
+                    'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.'
+                )
             );
 
             if (!$this->canEditAuthors()) {

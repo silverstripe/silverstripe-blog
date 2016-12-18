@@ -5,7 +5,7 @@
 		<h1>$Title</h1>
 
 		<% if $FeaturedImage %>
-			<p class="post-image">$FeaturedImage.setWidth(795)</p>
+			<p class="post-image">$FeaturedImage.ScaleWidth(795)</p>
 		<% end_if %>
 
 		<div class="content">$Content</div>
