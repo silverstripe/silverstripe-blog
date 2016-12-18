@@ -1,6 +1,6 @@
 <?php
 
-namespace SilverStripe\Blog\Controllers;
+namespace SilverStripe\Blog\Model;
 
 use Page_Controller;
 

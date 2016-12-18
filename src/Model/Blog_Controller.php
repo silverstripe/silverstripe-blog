@@ -1,6 +1,6 @@
 <?php
 
-namespace SilverStripe\Blog\Controllers;
+namespace SilverStripe\Blog\Model;
 
 use Page_Controller;
 use SilverStripe\Control\RSS\RSSFeed;
@@ -410,7 +410,6 @@ class Blog_Controller extends Page_Controller
     public function PaginatedList()
     {
         $allPosts = $this->blogPosts ?: ArrayList::create();
-
         $posts = PaginatedList::create($allPosts);
 
         // Set appropriate page size
