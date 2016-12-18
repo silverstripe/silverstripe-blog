@@ -637,7 +637,7 @@ class BlogPost extends Page
      */
     public function getCredits()
     {
-        $list = new ArrayList();
+        $list = ArrayList::create();
 
         $list->merge($this->getDynamicCredits());
         $list->merge($this->getStaticCredits());

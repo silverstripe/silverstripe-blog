@@ -6,6 +6,7 @@ use Page;
 use Page_Controller;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
+use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\Core\Convert;
@@ -569,7 +570,13 @@ class Blog extends Page implements PermissionProvider
      */
     public function ProfileLink($urlSegment)
     {
-        return Controller::join_links($this->Link(), 'profile', $urlSegment);
+        $baseLink = $this->Link();
+        if ($baseLink === '/') {
+            // Handle homepage blogs
+            $baseLink = RootURLController::get_homepage_link();
+        }
+
+        return Controller::join_links($baseLink, 'profile', $urlSegment);
     }
 
     /**

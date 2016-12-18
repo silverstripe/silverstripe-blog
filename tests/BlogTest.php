@@ -1,6 +1,6 @@
 <?php
 
-use SilverStripe\Blog\Controllers\BlogController;
+use SilverStripe\Blog\Model\Blog_Controller;
 use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
@@ -148,7 +148,7 @@ class BlogTest extends SapphireTest
     public function testArchiveYear()
     {
         $blog = $this->objFromFixture('SilverStripe\\Blog\\Model\\Blog', 'FirstBlog');
-        $controller = new BlogController($blog);
+        $controller = new Blog_Controller($blog);
         $this->requestURL($controller, 'first-post/archive/');
         $this->assertEquals(2013, $controller->getArchiveYear(), 'getArchiveYear should return 2013');
     }
@@ -287,7 +287,7 @@ class BlogTest extends SapphireTest
     public function testFilteredCategories()
     {
         $blog = $this->objFromFixture('SilverStripe\\Blog\\Model\\Blog', 'FirstBlog');
-        $controller = new BlogController($blog);
+        $controller = new Blog_Controller($blog);
 
         // Root url
         $this->requestURL($controller, 'first-post');

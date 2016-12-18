@@ -69,7 +69,7 @@ class Blog_Controller extends Page_Controller
     /**
      * Renders a Blog Member's profile.
      *
-     * @return SS_HTTPResponse
+     * @return HTTPResponse
      */
     public function profile()
     {
