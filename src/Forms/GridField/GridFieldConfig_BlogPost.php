@@ -19,7 +19,7 @@ class GridFieldConfig_BlogPost extends GridFieldConfig_Lumberjack
     {
         parent::__construct($itemsPerPage);
 
-        $this->removeComponentsByType('GridFieldSiteTreeState');
+        $this->removeComponentsByType('SilverStripe\\Lumberjack\\Forms\\GridFieldSiteTreeState');
         $this->addComponent(new GridFieldBlogPostState());
     }
 }
