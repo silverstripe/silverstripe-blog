@@ -142,20 +142,18 @@ class Blog extends Page implements PermissionProvider
         Requirements::css(BLOGGER_DIR . '/css/cms.css');
         Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
 
-        $self =& $this;
-
-        $this->beforeUpdateCMSFields(function ($fields) use ($self) {
-            if (!$self->canEdit()) {
+        $this->beforeUpdateCMSFields(function ($fields) {
+            if (!$this->canEdit()) {
                 return;
             }
 
             $categories = GridField::create(
                 'Categories',
                 _t('Blog.Categories', 'Categories'),
-                $self->Categories(),
+                $this->Categories(),
                 GridFieldCategorisationConfig::create(
                     15,
-                    $self->Categories()->sort('Title'),
+                    $this->Categories()->sort('Title'),
                     BlogCategory::class,
                     'Categories',
                     'BlogPosts'
@@ -165,10 +163,10 @@ class Blog extends Page implements PermissionProvider
             $tags = GridField::create(
                 'Tags',
                 _t('Blog.Tags', 'Tags'),
-                $self->Tags(),
+                $this->Tags(),
                 GridFieldCategorisationConfig::create(
                     15,
-                    $self->Tags()->sort('Title'),
+                    $this->Tags()->sort('Title'),
                     BlogTag::class,
                     'Tags',
                     'BlogPosts'

@@ -58,14 +58,14 @@ class BlogPost extends Page
     private static $db = array(
         'PublishDate' => 'Datetime',
         'AuthorNames' => 'Varchar(1024)',
-        'Summary'     => 'HTMLText',
+        'Summary'     => 'HTMLText'
     );
 
     /**
      * @var array
      */
     private static $has_one = array(
-        'FeaturedImage' => 'SilverStripe\\Assets\\Image',
+        'FeaturedImage' => 'SilverStripe\\Assets\\Image'
     );
 
     /**
@@ -74,7 +74,7 @@ class BlogPost extends Page
     private static $many_many = array(
         'Categories' => 'SilverStripe\\Blog\\Model\\BlogCategory',
         'Tags'       => 'SilverStripe\\Blog\\Model\\BlogTag',
-        'Authors'    => 'SilverStripe\\Security\\Member',
+        'Authors'    => 'SilverStripe\\Security\\Member'
     );
 
     /**
@@ -83,7 +83,7 @@ class BlogPost extends Page
     private static $defaults = array(
         'ShowInMenus'     => false,
         'InheritSideBar'  => true,
-        'ProvideComments' => true,
+        'ProvideComments' => true
     );
 
     /**
@@ -112,7 +112,7 @@ class BlogPost extends Page
      */
     private static $casting = array(
         'Excerpt' => 'HTMLText',
-        'Date' => 'SS_Datetime'
+        'Date' => 'DBDatetime'
     );
 
     /**
