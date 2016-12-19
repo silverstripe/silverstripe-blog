@@ -5,4 +5,4 @@
  *
  * @return string
 **/
-define('BLOGGER_DIR', dirname(__FILE__));
+define('BLOGGER_DIR', basename(dirname(__FILE__)));
