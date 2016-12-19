@@ -274,6 +274,11 @@ class BlogPost extends Page
                 );
             }
 
+            /**
+             * @todo Fix the sidebar styles for SS4 + Bootstrap
+             */
+            return;
+
             // Get categories and tags
             $parent = $this->Parent();
             $categories = $parent instanceof Blog
