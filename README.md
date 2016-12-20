@@ -10,16 +10,16 @@
 
 
 ## Documentation
-[User guide](docs/en/userguide/index.md)
 
-[Developer documentation](docs/en/index.md)
+* [User guide](docs/en/userguide/index.md)
+* [Developer documentation](docs/en/index.md)
 
 ## Requirements
 
 ```
-silverstripe/cms: ^3.1
-silverstripe/lumberjack: ^1.1
-silverstripe/tagfield: ^1.0
+silverstripe/cms: ^4.0
+silverstripe/lumberjack: ^2.0
+silverstripe/tagfield: ^2.0
 ```
 
 ### Suggested Modules
@@ -35,8 +35,12 @@ silverstripe/comments: *
 composer require silverstripe/blog
 ```
 
-## Upgrading legacy blog to 2.x
+## Upgrading
+
+### Upgrading from 2.x to 3.x
+
+Aside from the framework and CMS upgrades required the blog module should not require anything extra to be completed.
+
+### Upgrading legacy blog to 2.x
 
 If you're upgrading from blog version 1.0 to 2.x you will need to run the `BlogMigrationTask`. Run the task using `dev/tasks/BlogMigrationTask` either via the browser or sake CLI to migrate your legacy blog to the new version data structure.
-
-
