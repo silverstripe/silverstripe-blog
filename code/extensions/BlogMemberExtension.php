@@ -1,5 +1,13 @@
 <?php
 
+use SilverStripe\View\Parsers\URLSegmentFilter;
+use SilverStripe\Security\Member;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\View\Requirements;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\ORM\DataExtension;
+
 /**
  * This class is responsible for add Blog specific behaviour to Members.
  *
@@ -20,7 +28,7 @@ class BlogMemberExtension extends DataExtension
      * @var array
      */
     private static $has_one = array(
-        'BlogProfileImage' => 'Image',
+        'BlogProfileImage' => 'SilverStripe\\Assets\\Image',
     );
 
     /**

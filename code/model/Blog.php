@@ -1,5 +1,24 @@
 <?php
 
+use SilverStripe\View\Requirements;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Security\Member;
+use SilverStripe\ORM\UnsavedRelationList;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\ListboxField;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\DB;
+use SilverStripe\Core\Convert;
+use SilverStripe\Control\Controller;
+use SilverStripe\Security\Group;
+use SilverStripe\Security\PermissionProvider;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\PaginatedList;
+use SilverStripe\ORM\FieldType\DBField;
+use SilverStripe\Control\RSS\RSSFeed;
+
 /**
  * Blog Holder
  *
@@ -69,9 +88,9 @@ class Blog extends Page implements PermissionProvider
      * @var array
      */
     private static $many_many = array(
-        'Editors' => 'Member',
-        'Writers' => 'Member',
-        'Contributors' => 'Member',
+        'Editors' => 'SilverStripe\\Security\\Member',
+        'Writers' => 'SilverStripe\\Security\\Member',
+        'Contributors' => 'SilverStripe\\Security\\Member',
     );
 
     /**
@@ -228,7 +247,7 @@ class Blog extends Page implements PermissionProvider
     public function RoleOf($member)
     {
         if (is_numeric($member)) {
-            $member = DataObject::get_by_id('Member', $member);
+            $member = DataObject::get_by_id('SilverStripe\\Security\\Member', $member);
         }
 
         if (!$member) {
@@ -779,7 +798,7 @@ class Blog_Controller extends Page_Controller
                 return (int) $year;
             }
         } elseif ($this->request->param('Action') == 'archive') {
-            return SS_Datetime::now()->Year();
+            return DBDatetime::now()->Year();
         }
 
         return null;

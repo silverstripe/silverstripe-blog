@@ -1,5 +1,11 @@
 <?php
 
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\Control\Controller;
+use SilverStripe\View\ArrayData;
+
 if (!class_exists('Widget')) {
     return;
 }

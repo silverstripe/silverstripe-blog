@@ -1,5 +1,8 @@
 <?php
 
+use SilverStripe\Control\Cookie;
+use SilverStripe\Forms\FieldGroup;
+
 class BlogAdminSidebar extends FieldGroup
 {
     /**

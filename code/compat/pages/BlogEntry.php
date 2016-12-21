@@ -19,7 +19,7 @@ class BlogEntry extends BlogPost implements MigratableObject
      * @var array
      */
     private static $db = array(
-        'Date' => 'SS_Datetime',
+        'Date' => 'Datetime',
         'Author' => 'Text',
         'Tags' => 'Text',
     );
@@ -27,7 +27,7 @@ class BlogEntry extends BlogPost implements MigratableObject
     /**
      * {@inheritdoc}
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return false;
     }

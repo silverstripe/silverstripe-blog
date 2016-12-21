@@ -21,7 +21,7 @@ class BlogTree extends Page implements MigratableObject
     /**
      * {@inheritdoc}
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return false;
     }

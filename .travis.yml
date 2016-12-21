@@ -12,7 +12,7 @@ before_install:
 
 env:
   global:
-    - DB=MYSQL CORE_RELEASE=3.1
+    - DB=MYSQL CORE_RELEASE=4
 
     # Turn coverage off by default, as it's expensive time wise
     - COVERAGE=0
@@ -21,8 +21,6 @@ env:
     - MODULE_PATH=blog
 
 matrix:
-  allow_failures:
-    - php: hhvm-nightly
   include:
     - php: 5.6
       env: DB=MYSQL COVERAGE=1
@@ -30,17 +28,6 @@ matrix:
       env: DB=MYSQL
     - php: 5.6
       env: DB=PGSQL
-    - php: 5.6
-      env: DB=MYSQL CORE_RELEASE=3.2
-    - php: 5.6
-      env: DB=PGSQL CORE_RELEASE=3.2
-    - php: 5.4
-      env: DB=SQLITE
-    - php: 5.3
-      env: DB=MYSQL
-    - php: hhvm
-      env: DB=MYSQL
-
 
 before_script:
   - phpenv rehash

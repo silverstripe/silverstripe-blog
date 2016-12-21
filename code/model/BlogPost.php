@@ -1,5 +1,21 @@
 <?php
 
+use SilverStripe\ORM\UnsavedRelationList;
+use SilverStripe\View\Requirements;
+use SilverStripe\Forms\UploadField;
+use SilverStripe\Forms\ToggleCompositeField;
+use SilverStripe\Forms\HiddenField;
+use SilverStripe\Forms\ListboxField;
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\DatetimeField;
+use SilverStripe\Security\Group;
+use SilverStripe\Security\Member;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Control\Controller;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\View\ArrayData;
+
 /**
  * An individual blog post.
  *
@@ -28,7 +44,7 @@ class BlogPost extends Page
      * @var array
      */
     private static $db = array(
-        'PublishDate' => 'SS_Datetime',
+        'PublishDate' => 'Datetime',
         'AuthorNames' => 'Varchar(1024)',
         'Summary' => 'HTMLText',
     );
@@ -37,7 +53,7 @@ class BlogPost extends Page
      * @var array
      */
     private static $has_one = array(
-        'FeaturedImage' => 'Image',
+        'FeaturedImage' => 'SilverStripe\\Assets\\Image',
     );
 
     /**
@@ -46,7 +62,7 @@ class BlogPost extends Page
     private static $many_many = array(
         'Categories' => 'BlogCategory',
         'Tags' => 'BlogTag',
-        'Authors' => 'Member',
+        'Authors' => 'SilverStripe\\Security\\Member',
     );
 
     /**
@@ -84,7 +100,7 @@ class BlogPost extends Page
      */
     private static $casting = array(
         'Excerpt' => 'HTMLText',
-        'Date' => 'SS_Datetime',
+        'Date' => 'Datetime',
     );
 
     /**
@@ -414,12 +430,12 @@ class BlogPost extends Page
     public function onBeforePublish()
     {
         /**
-         * @var SS_Datetime $publishDate
+         * @var SilverStripe\ORM\FieldType\DBDatetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
 
         if (!$publishDate->getValue()) {
-            $this->PublishDate = SS_Datetime::now()->getValue();
+            $this->PublishDate = DBDatetime::now()->getValue();
             $this->write();
         }
     }
@@ -466,7 +482,7 @@ class BlogPost extends Page
         }
 
         /**
-         * @var SS_Datetime $publishDate
+         * @var SilverStripe\ORM\FieldType\DBDatetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
         if(!$publishDate->exists()) {
@@ -565,7 +581,7 @@ class BlogPost extends Page
     public function getMonthlyArchiveLink($type = 'day')
     {
         /**
-         * @var SS_Datetime $date
+         * @var SilverStripe\ORM\FieldType\DBDatetime $date
          */
         $date = $this->dbObject('PublishDate');
 
@@ -593,7 +609,7 @@ class BlogPost extends Page
     public function getYearlyArchiveLink()
     {
         /**
-         * @var SS_Datetime $date
+         * @var SilverStripe\ORM\FieldType\DBDatetime $date
          */
         $date = $this->dbObject('PublishDate');
 

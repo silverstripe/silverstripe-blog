@@ -1,5 +1,12 @@
 <?php
 
+use SilverStripe\Core\ClassInfo;
+use SilverStripe\Control\Controller;
+use SilverStripe\ORM\DatabaseAdmin;
+use SilverStripe\ORM\DB;
+use SilverStripe\CMS\Model\SiteTree;
+use SilverStripe\Dev\MigrationTask;
+
 class BlogMigrationTask extends MigrationTask
 {
     /**
@@ -49,7 +56,7 @@ class BlogMigrationTask extends MigrationTask
             return;
         }
 
-        if (is_subclass_of($class, 'SiteTree')) {
+        if (is_subclass_of($class, 'SilverStripe\\CMS\\Model\\SiteTree')) {
             $items = SiteTree::get()->filter('ClassName', $class);
         } else {
             $items = $class::get();

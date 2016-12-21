@@ -1,5 +1,11 @@
 <?php
 
+use SilverStripe\Forms\TextField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Control\Controller;
+use SilverStripe\Security\Permission;
+use SilverStripe\ORM\DataObject;
+
 /**
  * A blog tag for keyword descriptions of a blog post.
  *
@@ -81,7 +87,7 @@ class BlogTag extends DataObject implements CategorisationObject
     /**
      * {@inheritdoc}
      */
-    protected function validate()
+    public function validate()
     {
         $validation = parent::validate();
         if($validation->valid()) {
@@ -138,7 +144,7 @@ class BlogTag extends DataObject implements CategorisationObject
      *
      * @return bool
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         $extended = $this->extendedCan(__FUNCTION__, $member);
 

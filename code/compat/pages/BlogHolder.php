@@ -22,13 +22,13 @@ class BlogHolder extends BlogTree implements MigratableObject
      * @var array
      */
     private static $has_one = array(
-        'Owner' => 'Member',
+        'Owner' => 'SilverStripe\\Security\\Member',
     );
 
     /**
      * {@inheritdoc}
      */
-    public function canCreate($member = null)
+    public function canCreate($member = null, $context = [])
     {
         return false;
     }
@@ -64,7 +64,7 @@ class BlogHolder extends BlogTree implements MigratableObject
         } else {
             $message = "DRAFT: ";
         }
-        
+
         return $message . $this->Title;
     }
 }

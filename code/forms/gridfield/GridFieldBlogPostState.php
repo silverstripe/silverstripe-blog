@@ -1,5 +1,7 @@
 <?php
 
+use SilverStripe\View\Requirements;
+
 /**
  * Provides a component to the {@link GridField} which tells the user whether or not a blog post
  * has been published and when.
@@ -25,7 +27,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
 
                 if (!$record->isPublished()) {
                     /**
-                     * @var SS_Datetime $lastEdited
+                     * @var SilverStripe\ORM\FieldType\DBDatetime $lastEdited
                      */
                     $lastEdited = $record->dbObject('LastEdited');
 
@@ -40,7 +42,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 }
 
                 /**
-                 * @var SS_Datetime $publishDate
+                 * @var SilverStripe\ORM\FieldType\DBDatetime $publishDate
                  */
                 $publishDate = $record->dbObject('PublishDate');
 

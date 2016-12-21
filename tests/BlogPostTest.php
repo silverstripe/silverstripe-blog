@@ -1,5 +1,9 @@
 <?php
 
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Dev\SapphireTest;
+
 class BlogPostTest extends SapphireTest
 {
     /**
@@ -20,7 +24,7 @@ class BlogPostTest extends SapphireTest
      */
     public function tearDown()
     {
-        SS_Datetime::clear_mock_now();
+        DBDatetime::clear_mock_now();
         parent::tearDown();
     }
 
@@ -29,9 +33,9 @@ class BlogPostTest extends SapphireTest
      */
     public function testCanView($date, $user, $page, $canView)
     {
-        $userRecord = $this->objFromFixture('Member', $user);
+        $userRecord = $this->objFromFixture('SilverStripe\\Security\\Member', $user);
         $pageRecord = $this->objFromFixture('BlogPost', $page);
-        SS_Datetime::set_mock_now($date);
+        DBDatetime::set_mock_now($date);
         $this->assertEquals($canView, $pageRecord->canView($userRecord));
     }
 
@@ -88,10 +92,10 @@ class BlogPostTest extends SapphireTest
     {
         $blogPost = $this->objFromFixture('BlogPost', 'NullPublishDate');
 
-        $editor = $this->objFromFixture('Member', 'BlogEditor');
+        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'BlogEditor');
         $this->assertTrue($blogPost->canView($editor));
 
-        $visitor = $this->objFromFixture('Member', 'Visitor');
+        $visitor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Visitor');
         $this->assertFalse($blogPost->canView($visitor));
     }
 

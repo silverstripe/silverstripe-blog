@@ -1,5 +1,11 @@
 <?php
 
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Security\Member;
+use SilverStripe\Control\Controller;
+use SilverStripe\ORM\ValidationException;
+use SilverStripe\Dev\FunctionalTest;
+
 /**
  * @mixin PHPUnit_Framework_TestCase
  */
@@ -17,7 +23,7 @@ class BlogCategoryTest extends FunctionalTest
     {
         parent::setUp();
 
-        SS_Datetime::set_mock_now('2013-10-10 20:00:00');
+        DBDatetime::set_mock_now('2013-10-10 20:00:00');
     }
 
     /**
@@ -25,7 +31,7 @@ class BlogCategoryTest extends FunctionalTest
      */
     public function tearDown()
     {
-        SS_Datetime::clear_mock_now();
+        DBDatetime::clear_mock_now();
 
         parent::tearDown();
     }
@@ -72,9 +78,9 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $this->objFromFixture('Member', 'Admin');
+        $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
 
-        $editor = $this->objFromFixture('Member', 'Editor');
+        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
         $category = $this->objFromFixture('BlogCategory', 'SecondCategory');
 
         $this->assertFalse($category->canView($editor), 'Editor should not be able to view category.');
@@ -87,8 +93,8 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('Member', 'Admin');
-        $editor = $this->objFromFixture('Member', 'Editor');
+        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
+        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
 
         $category = $this->objFromFixture('BlogCategory', 'FirstCategory');
 
@@ -110,8 +116,8 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('Member', 'Admin');
-        $editor = $this->objFromFixture('Member', 'Editor');
+        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
+        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
 
         $category = singleton('BlogCategory');
 
@@ -123,8 +129,8 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('Member', 'Admin');
-        $editor = $this->objFromFixture('Member', 'Editor');
+        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
+        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
 
         $category = $this->objFromFixture('BlogCategory', 'FirstCategory');
 
