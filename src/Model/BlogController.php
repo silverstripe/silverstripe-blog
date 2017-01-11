@@ -13,7 +13,7 @@ use SilverStripe\Security\Member;
  * @package    silverstripe
  * @subpackage blog
  */
-class Blog_Controller extends Page_Controller
+class BlogController extends Page_Controller
 {
     /**
      * @var array

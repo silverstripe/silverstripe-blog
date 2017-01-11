@@ -8,7 +8,7 @@ use Page_Controller;
  * @package    silverstripe
  * @subpackage blog
  */
-class BlogPost_Controller extends Page_Controller
+class BlogPostController extends Page_Controller
 {
 
 }
