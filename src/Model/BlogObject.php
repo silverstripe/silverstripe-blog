@@ -36,8 +36,10 @@ trait BlogObject
      */
     public function getCMSFields()
     {
-        $fields = TabSet::create('Root',
-            Tab::create('Main',
+        $fields = TabSet::create(
+            'Root',
+            Tab::create(
+                'Main',
                 TextField::create('Title', _t(self::class . '.Title', 'Title'))
             )
         );
@@ -65,9 +67,10 @@ trait BlogObject
             return $validation;
         }
 
-        if ($this->getDuplicatesByUrlSegment()->count() > 0) {
+        if ($this->getDuplicatesByField('Title')->count() > 0) {
             $validation->addError($this->getDuplicateError(), self::DUPLICATE_EXCEPTION);
         }
+
         return $validation;
     }
 
@@ -134,7 +137,7 @@ trait BlogObject
             return $extended;
         }
 
-        return $this->Blog()->canEdit($member);
+        return $this->Blog()->canDelete($member);
     }
 
     /**
@@ -178,36 +181,37 @@ trait BlogObject
         $increment = (int) $increment;
         $filter = URLSegmentFilter::create();
 
-        $this->URLSegment = $filter->filter($this->owner->Title);
+        $this->URLSegment = $filter->filter($this->Title);
 
         if ($increment > 0) {
             $this->URLSegment .= '-' . $increment;
         }
 
-        if ($this->getDuplicatesByUrlSegment()->count() > 0) {
-            $this->owner->generateURLSegment($increment + 1);
+        if ($this->getDuplicatesByField('URLSegment')->count() > 0) {
+            $this->generateURLSegment($increment + 1);
         }
 
-        return $this->owner->URLSegment;
+        return $this->URLSegment;
     }
 
     /**
-     * Looks for objects of the same type by url segment.
+     * Looks for objects o the same type and the same value by the given Field
      *
+     * @param  string $field E.g. URLSegment or Title
      * @return DataList
      */
-    protected function getDuplicatesByUrlSegment()
+    protected function getDuplicatesByField($field)
     {
         $duplicates = DataList::create(self::class)
             ->filter(
-                array(
-                    'URLSegment' => $this->URLSegment,
-                    'BlogID'     => (int) $this->BlogID,
-                )
+                [
+                    $field   => $this->$field,
+                    'BlogID' => (int) $this->BlogID
+                ]
             );
 
         if ($this->ID) {
-            $duplicates = $duplicates->exclude('ID', $this->ID);
+            $duplicates->exclude('ID', $this->ID);
         }
 
         return $duplicates;

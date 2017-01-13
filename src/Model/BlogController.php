@@ -2,7 +2,7 @@
 
 namespace SilverStripe\Blog\Model;
 
-use Page_Controller;
+use PageController;
 use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
@@ -13,7 +13,7 @@ use SilverStripe\Security\Member;
  * @package    silverstripe
  * @subpackage blog
  */
-class BlogController extends Page_Controller
+class BlogController extends PageController
 {
     /**
      * @var array

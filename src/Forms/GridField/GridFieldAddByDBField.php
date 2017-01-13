@@ -94,7 +94,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                 if ($obj->canCreate()) {
                     $id = $gridField->getList()->add($obj);
                     if (!$id) {
-                        $gridField->setError(
+                        $gridField->setCustomValidationMessage(
                             _t(
                                 'GridFieldAddByDBField.AddFail',
                                 'Unable to save {class} to the database.',
@@ -102,8 +102,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                                 array(
                                     'class' => get_class($obj),
                                 )
-                            ),
-                            'error'
+                            )
                         );
                     }
                 } else {
@@ -174,7 +173,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $obj = singleton($dataClass);
 
         if (!$obj->canCreate()) {
-            return "";
+            return '';
         }
 
         $dbField = $this->getDataObjectField();
@@ -192,16 +191,17 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $addAction = new GridField_FormAction(
             $gridField,
             'add',
-            _t('GridFieldAddByDBField.Add',
-                'Add {name}', "Add button text",
-                array(
-                    'name' => $obj->i18n_singular_name(),
-                )
+            _t(
+                'GridFieldAddByDBField.Add',
+                'Add {name}',
+                'Add button text',
+                ['name' => $obj->i18n_singular_name()]
             ),
             'add',
             'add'
         );
         $addAction->setAttribute('data-icon', 'add');
+        $addAction->addExtraClass('btn btn-primary');
 
         $forTemplate = new ArrayData(array());
 
@@ -210,7 +210,9 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $forTemplate->Fields->push($addAction);
 
         return array(
-            $this->targetFragment => $forTemplate->renderWith('SilverStripe\\Blog\\Forms\\GridField\\GridFieldAddByDBField')
+            $this->targetFragment => $forTemplate->renderWith(
+                'SilverStripe\\Blog\\Forms\\GridField\\GridFieldAddByDBField'
+            )
         );
     }
 }

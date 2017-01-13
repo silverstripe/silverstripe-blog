@@ -74,7 +74,7 @@ class BlogPost extends Page
     private static $many_many = array(
         'Categories' => 'SilverStripe\\Blog\\Model\\BlogCategory',
         'Tags'       => 'SilverStripe\\Blog\\Model\\BlogTag',
-        'Authors'    => 'SilverStripe\\Security\\Member'
+        'Authors'    => Member::class
     );
 
     /**
@@ -229,8 +229,6 @@ class BlogPost extends Page
             $summaryHolder->addExtraClass('custom-summary');
 
             $fields->insertAfter($summaryHolder, 'FeaturedImage');
-
-            $fields->push(HiddenField::create('MenuTitle'));
 
             $urlSegment = $fields->dataFieldByName('URLSegment');
             $urlSegment->setURLPrefix($this->Parent()->RelativeLink());

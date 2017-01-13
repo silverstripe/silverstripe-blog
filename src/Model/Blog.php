@@ -3,7 +3,7 @@
 namespace SilverStripe\Blog\Model;
 
 use Page;
-use Page_Controller;
+use PageController;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
 use SilverStripe\CMS\Controllers\RootURLController;
@@ -272,7 +272,7 @@ class Blog extends Page implements PermissionProvider
     public function RoleOf($member)
     {
         if (is_numeric($member)) {
-            $member = DataObject::get_by_id(Member::class, $member);
+            $member = Member::get()->byId($member);
         }
 
         if (!$member) {

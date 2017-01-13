@@ -117,6 +117,9 @@ label.right.toggle-description-correct-right {
 .blog-cms-categorisation .MergeActionReveal {
   margin-left: 10px; }
 
+.blog-cms-categorisation .toolbar--content {
+  margin-top: 0; }
+
 .blog-cms-categorisation .MergeActionReveal:after {
   content: '';
   background: url("../images/move-icon.png");
@@ -124,3 +127,6 @@ label.right.toggle-description-correct-right {
   height: 16px;
   width: 16px;
   margin-left: 4px; }
+
+.blog-cms-categorisation button.action {
+  margin-left: 5px; }

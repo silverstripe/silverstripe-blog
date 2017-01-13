@@ -20,7 +20,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
     {
         parent::__construct($itemsPerPage);
 
-        $this->removeComponentsByType('GridFieldAddNewButton');
+        $this->removeComponentsByType('SilverStripe\\Forms\\GridField\\GridFieldAddNewButton');
 
         $this->addComponent(
             new GridFieldAddByDBField('buttons-before-left')

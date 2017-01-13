@@ -2,13 +2,13 @@
 
 namespace SilverStripe\Blog\Model;
 
-use Page_Controller;
+use PageController;
 
 /**
  * @package    silverstripe
  * @subpackage blog
  */
-class BlogPostController extends Page_Controller
+class BlogPostController extends PageController
 {
 
 }
