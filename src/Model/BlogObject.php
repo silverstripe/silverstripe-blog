@@ -211,7 +211,7 @@ trait BlogObject
             );
 
         if ($this->ID) {
-            $duplicates->exclude('ID', $this->ID);
+            $duplicates = $duplicates->exclude('ID', $this->ID);
         }
 
         return $duplicates;

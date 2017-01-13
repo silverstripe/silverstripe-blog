@@ -272,11 +272,6 @@ class BlogPost extends Page
                 );
             }
 
-            /**
-             * @todo Fix the sidebar styles for SS4 + Bootstrap
-             */
-            return;
-
             // Get categories and tags
             $parent = $this->Parent();
             $categories = $parent instanceof Blog
@@ -286,32 +281,36 @@ class BlogPost extends Page
                 ? $parent->Tags()
                 : BlogTag::get();
 
-            $options = BlogAdminSidebar::create(
-                $publishDate,
-                $urlSegment,
-                TagField::create(
-                    'Categories',
-                    _t('BlogPost.Categories', 'Categories'),
-                    $categories,
-                    $this->Categories()
-                )
-                    ->setCanCreate($this->canCreateCategories())
-                    ->setShouldLazyLoad(true),
-                TagField::create(
-                    'Tags',
-                    _t('BlogPost.Tags', 'Tags'),
-                    $tags,
-                    $this->Tags()
-                )
-                    ->setCanCreate($this->canCreateTags())
-                    ->setShouldLazyLoad(true),
-                $authorField,
-                $authorNames
-            )->setTitle('Post Options');
-
-            $options->setName('blog-admin-sidebar');
-
-            $fields->insertBefore($options, 'Root');
+            // @todo: Reimplement the sidebar
+            // $options = BlogAdminSidebar::create(
+            $fields->addFieldsToTab(
+                'Root.PostOptions',
+                [
+                    $publishDate,
+                    $urlSegment,
+                    TagField::create(
+                        'Categories',
+                        _t('BlogPost.Categories', 'Categories'),
+                        $categories,
+                        $this->Categories()
+                    )
+                        ->setCanCreate($this->canCreateCategories())
+                        ->setShouldLazyLoad(true),
+                    TagField::create(
+                        'Tags',
+                        _t('BlogPost.Tags', 'Tags'),
+                        $tags,
+                        $this->Tags()
+                    )
+                        ->setCanCreate($this->canCreateTags())
+                        ->setShouldLazyLoad(true),
+                    $authorField,
+                    $authorNames
+                ]
+            );
+            // )->setTitle('Post Options');
+            // $options->setName('blog-admin-sidebar');
+            // $fields->insertBefore($options, 'Root');
         });
 
         $fields = parent::getCMSFields();

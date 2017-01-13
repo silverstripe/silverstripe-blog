@@ -64,7 +64,7 @@ class BlogCategory extends DataObject implements CategorisationObject
      */
     protected function getListUrlSegment()
     {
-        return 'categories';
+        return 'category';
     }
 
     /**
@@ -74,5 +74,4 @@ class BlogCategory extends DataObject implements CategorisationObject
     {
         return _t('BlogCategory.Duplicate', 'A blog category already exists with that name.');
     }
-
 }

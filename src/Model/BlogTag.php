@@ -64,7 +64,7 @@ class BlogTag extends DataObject implements CategorisationObject
      */
     protected function getListUrlSegment()
     {
-        return 'tags';
+        return 'tag';
     }
 
     /**
