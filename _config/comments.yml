@@ -3,7 +3,7 @@ Name: blogcommentsconfig
 Only:
   moduleexists: comments
 ---
-Comment:
+SilverStripe\Comments\Model\Comment:
   extensions:
     - SilverStripe\Blog\Model\BlogCommentExtension
 
