@@ -2,11 +2,16 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-use SilverStripe\Blog\Model\Blog;
-
-if (!class_exists('Widget')) {
+if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
     return;
 }
+
+use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Widgets\Model\Widget;
 
 /**
  * @method Blog Blog()
@@ -41,7 +46,7 @@ class BlogCategoriesWidget extends Widget
      * @var array
      */
     private static $has_one = array(
-        'Blog' => 'SilverStripe\\Blog\\Model\\Blog',
+        'Blog' => Blog::class,
     );
 
     /**
@@ -51,24 +56,44 @@ class BlogCategoriesWidget extends Widget
     {
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             $fields[] = DropdownField::create(
-                'BlogID', _t('BlogCategoriesWidget.Blog', 'SilverStripe\\Blog\\Model\\Blog'), Blog::get()->map()
+                'BlogID',
+                _t('BlogCategoriesWidget.Blog', 'Blog'),
+                Blog::get()->map()
             );
 
             $fields[] = NumericField::create(
-                'Limit', _t('BlogCategoriesWidget.Limit.Label', 'Limit'), 0
+                'Limit',
+                _t('BlogCategoriesWidget.Limit.Label', 'Limit'),
+                0
             )
-                ->setDescription(_t('BlogCategoriesWidget.Limit.Description', 'Limit the number of categories shown by this widget (set to 0 to show all categories).'))
+                ->setDescription(
+                    _t(
+                        'BlogCategoriesWidget.Limit.Description',
+                        'Limit the number of categories shown by this widget (set to 0 to show all categories).'
+                    )
+                )
                 ->setMaxLength(3);
 
             $fields[] = DropdownField::create(
-                'Order', _t('BlogCategoriesWidget.Sort.Label', 'Sort'), array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
+                'Order',
+                _t('BlogCategoriesWidget.Sort.Label', 'Sort'),
+                array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
             )
-                ->setDescription(_t('BlogCategoriesWidget.Sort.Description', 'Change the order of categories shown by this widget.'));
+                ->setDescription(
+                    _t('BlogCategoriesWidget.Sort.Description', 'Change the order of categories shown by this widget.')
+                );
 
             $fields[] = DropdownField::create(
-                'Direction', _t('BlogCategoriesWidget.Direction.Label', 'Direction'), array('ASC' => 'Ascending', 'DESC' => 'Descending')
+                'Direction',
+                _t('BlogCategoriesWidget.Direction.Label', 'Direction'),
+                array('ASC' => 'Ascending', 'DESC' => 'Descending')
             )
-                ->setDescription(_t('BlogCategoriesWidget.Direction.Description', 'Change the direction of ordering of categories shown by this widget.'));
+                ->setDescription(
+                    _t(
+                        'BlogCategoriesWidget.Direction.Description',
+                        'Change the direction of ordering of categories shown by this widget.'
+                    )
+                );
         });
 
         return parent::getCMSFields();
@@ -99,6 +124,4 @@ class BlogCategoriesWidget extends Widget
     }
 }
 
-class BlogCategoriesWidget_Controller extends Widget_Controller
-{
-}
+

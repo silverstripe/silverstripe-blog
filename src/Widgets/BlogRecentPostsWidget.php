@@ -2,11 +2,14 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-use SilverStripe\Blog\Model\Blog;
-
-if (!class_exists('Widget')) {
+if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
     return;
 }
+
+use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Widgets\Model\Widget;
 
 /**
  * @method Blog Blog()
@@ -41,7 +44,7 @@ class BlogRecentPostsWidget extends Widget
      * @var array
      */
     private static $has_one = array(
-        'Blog' => 'SilverStripe\\Blog\\Model\\Blog',
+        'Blog' => Blog::class,
     );
 
     /**
@@ -54,7 +57,7 @@ class BlogRecentPostsWidget extends Widget
              * @var FieldList $fields
              */
             $fields->merge(array(
-                DropdownField::create('BlogID', _t('BlogRecentPostsWidget.Blog', 'SilverStripe\\Blog\\Model\\Blog'), Blog::get()->map()),
+                DropdownField::create('BlogID', _t('BlogRecentPostsWidget.Blog', 'Blog'), Blog::get()->map()),
                 NumericField::create('NumberOfPosts', _t('BlogRecentPostsWidget.NumberOfPosts', 'Number of Posts'))
             ));
         });
@@ -77,8 +80,4 @@ class BlogRecentPostsWidget extends Widget
 
         return array();
     }
-}
-
-class BlogRecentPostsWidget_Controller extends Widget_Controller
-{
 }

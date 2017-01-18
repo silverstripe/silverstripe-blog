@@ -2,11 +2,17 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-use SilverStripe\Blog\Model\Blog;
-
-if (!class_exists('Widget')) {
+if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
     return;
 }
+
+use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\DB;
+use SilverStripe\Widgets\Model\Widget;
 
 /**
  * @method Blog Blog()
@@ -37,7 +43,7 @@ class BlogTagsCloudWidget extends Widget
      * @var array
      */
     private static $has_one = array(
-        'Blog' => 'SilverStripe\\Blog\\Model\\Blog',
+        'Blog' => Blog::class,
     );
 
     /**
@@ -50,8 +56,11 @@ class BlogTagsCloudWidget extends Widget
              * @var FieldList $fields
              */
             $fields->push(
-                DropdownField::create('BlogID', _t('BlogTagsCloudWidget.Blog',
-                                        'SilverStripe\\Blog\\Model\\Blog'), Blog::get()->map())
+                DropdownField::create(
+                    'BlogID',
+                    _t('BlogTagsCloudWidget.Blog', 'Blog'),
+                    Blog::get()->map()
+                )
             );
         });
 
@@ -108,8 +117,4 @@ class BlogTagsCloudWidget extends Widget
 
         return array();
     }
-}
-
-class BlogTagsCloudWidget_Controller extends Widget_Controller
-{
 }

@@ -2,11 +2,15 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-use SilverStripe\Blog\Model\Blog;
-
-if (!class_exists('Widget')) {
+if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
     return;
 }
+
+use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Control\Controller;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Widgets\Model\Widget;
 
 /**
  * @method Blog Blog()
@@ -50,7 +54,7 @@ class BlogArchiveWidget extends Widget
      * @var array
      */
     private static $has_one = array(
-        'Blog' => 'SilverStripe\\Blog\\Model\\Blog',
+        'Blog' => Blog::class,
     );
 
     /**
@@ -58,13 +62,11 @@ class BlogArchiveWidget extends Widget
      */
     public function getCMSFields()
     {
-        $self =& $this;
-
-        $this->beforeUpdateCMSFields(function ($fields) use ($self) {
+        $this->beforeUpdateCMSFields(function ($fields) {
             /**
              * @var Enum $archiveType
              */
-            $archiveType = $self->dbObject('ArchiveType');
+            $archiveType = $this->dbObject('ArchiveType');
 
             $type = $archiveType->enumValues();
 
@@ -76,7 +78,11 @@ class BlogArchiveWidget extends Widget
              * @var FieldList $fields
              */
             $fields->merge(array(
-                DropdownField::create('BlogID', _t('BlogArchiveWidget.Blog', 'SilverStripe\\Blog\\Model\\Blog'), Blog::get()->map()),
+                DropdownField::create(
+                    'BlogID',
+                    _t('BlogArchiveWidget.Blog', 'Blog'),
+                    Blog::get()->map()
+                ),
                 DropdownField::create('ArchiveType', _t('BlogArchiveWidget.ArchiveType', 'ArchiveType'), $type),
                 NumericField::create('NumberToDisplay', _t('BlogArchiveWidget.NumberToDisplay', 'No. to Display'))
             ));
@@ -135,8 +141,4 @@ class BlogArchiveWidget extends Widget
 
         return $archive;
     }
-}
-
-class BlogArchiveWidget_Controller extends Widget_Controller
-{
 }

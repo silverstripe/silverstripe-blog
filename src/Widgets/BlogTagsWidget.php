@@ -2,11 +2,16 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-use SilverStripe\Blog\Model\Blog;
-
-if (!class_exists('Widget')) {
+if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
     return;
 }
+
+use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Core\Convert;
+use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\NumericField;
+use SilverStripe\Widgets\Model\Widget;
 
 /**
  * @method Blog Blog()
@@ -41,7 +46,7 @@ class BlogTagsWidget extends Widget
      * @var array
      */
     private static $has_one = array(
-        'Blog' => 'SilverStripe\\Blog\\Model\\Blog',
+        'Blog' => Blog::class
     );
 
     /**
@@ -51,24 +56,44 @@ class BlogTagsWidget extends Widget
     {
         $this->beforeUpdateCMSFields(function (Fieldlist $fields) {
             $fields[] = DropdownField::create(
-                'BlogID', _t('BlogTagsWidget.Blog', 'SilverStripe\\Blog\\Model\\Blog'), Blog::get()->map()
+                'BlogID',
+                _t('BlogTagsWidget.Blog', 'Blog'),
+                Blog::get()->map()
             );
 
             $fields[] = NumericField::create(
-                'Limit', _t('BlogTagsWidget.Limit.Label', 'Limit'), 0
+                'Limit',
+                _t('BlogTagsWidget.Limit.Label', 'Limit'),
+                0
             )
-                ->setDescription(_t('BlogTagsWidget.Limit.Description', 'Limit the number of tags shown by this widget (set to 0 to show all tags).'))
+                ->setDescription(
+                    _t(
+                        'BlogTagsWidget.Limit.Description',
+                        'Limit the number of tags shown by this widget (set to 0 to show all tags).'
+                    )
+                )
                 ->setMaxLength(3);
 
             $fields[] = DropdownField::create(
-                'Order', _t('BlogTagsWidget.Sort.Label', 'Sort'), array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
+                'Order',
+                _t('BlogTagsWidget.Sort.Label', 'Sort'),
+                array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
             )
-                ->setDescription(_t('BlogTagsWidget.Sort.Description', 'Change the order of tags shown by this widget.'));
+                ->setDescription(
+                    _t('BlogTagsWidget.Sort.Description', 'Change the order of tags shown by this widget.')
+                );
 
             $fields[] = DropdownField::create(
-                'Direction', _t('BlogTagsWidget.Direction.Label', 'Direction'), array('ASC' => 'Ascending', 'DESC' => 'Descending')
+                'Direction',
+                _t('BlogTagsWidget.Direction.Label', 'Direction'),
+                array('ASC' => 'Ascending', 'DESC' => 'Descending')
             )
-                ->setDescription(_t('BlogTagsWidget.Direction.Description', 'Change the direction of ordering of tags shown by this widget.'));
+                ->setDescription(
+                    _t(
+                        'BlogTagsWidget.Direction.Description',
+                        'Change the direction of ordering of tags shown by this widget.'
+                    )
+                );
         });
 
         return parent::getCMSFields();
@@ -97,8 +122,4 @@ class BlogTagsWidget extends Widget
 
         return $query;
     }
-}
-
-class BlogTagsWidget_Controller extends Widget_Controller
-{
 }

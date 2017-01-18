@@ -22,7 +22,12 @@ mappings:
   GridFieldBlogPostState: SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState
   GridFieldConfig_BlogPost: SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost
   BlogArchiveWidget: SilverStripe\Blog\Widgets\BlogArchiveWidget
+  BlogArchiveWidget_Controller: SilverStripe\Blog\Widgets\BlogArchiveWidgetController
   BlogCategoriesWidget: SilverStripe\Blog\Widgets\BlogCategoriesWidget
+  BlogCategoriesWidget_Controller: SilverStripe\Blog\Widgets\BlogCategoriesWidgetController
   BlogRecentPostsWidget: SilverStripe\Blog\Widgets\BlogRecentPostsWidget
+  BlogRecentPostsWidget_Controller: SilverStripe\Blog\Widgets\BlogRecentPostsWidgetController
   BlogTagsCloudWidget: SilverStripe\Blog\Widgets\BlogTagsCloudWidget
+  BlogTagsCloudWidget_Controller: SilverStripe\Blog\Widgets\BlogTagsCloudWidgetController
   BlogTagsWidget: SilverStripe\Blog\Widgets\BlogTagsWidget
+  BlogTagsWidget_Controller: SilverStripe\Blog\Widgets\BlogTagsWidgetController
