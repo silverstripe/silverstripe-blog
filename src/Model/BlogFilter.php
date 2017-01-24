@@ -3,11 +3,11 @@
 namespace SilverStripe\Blog\Model;
 
 use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Blog\Model\BlogFilter\BlogFilterGridField;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\FormTransformation;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Lumberjack\Model\Lumberjack;
@@ -59,7 +59,7 @@ class BlogFilter extends Lumberjack
      */
     protected function subclassForBlog()
     {
-        return in_array(get_class($this->owner), ClassInfo::subclassesFor('SilverStripe\\Blog\\Model\\Blog'));
+        return in_array(get_class($this->owner), ClassInfo::subclassesFor(Blog::class));
     }
 
     /**
@@ -104,7 +104,7 @@ class BlogFilter extends Lumberjack
                 'ClassName' => $excluded
             ));
 
-            $gridField = BlogFilter_GridField::create(
+            $gridField = BlogFilterGridField::create(
                 'ChildPages',
                 $this->getLumberjackTitle(),
                 $pages,
@@ -115,22 +115,5 @@ class BlogFilter extends Lumberjack
 
             $fields->insertBefore($tab, 'Main');
         }
-    }
-}
-
-
-/**
- * Enables children of non-editable pages to be edited.
- */
-class BlogFilter_GridField extends GridField
-{
-    /**
-     * @param FormTransformation $transformation
-     *
-     * @return $this
-     */
-    public function transform(FormTransformation $transformation)
-    {
-        return $this;
     }
 }

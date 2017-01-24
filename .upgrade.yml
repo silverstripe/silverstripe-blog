@@ -4,7 +4,7 @@ mappings:
   GridFieldMergeAction: SilverStripe\Blog\Admin\GridFieldMergeAction
   BlogCommentExtension: SilverStripe\Blog\Model\BlogCommentExtension
   BlogFilter: SilverStripe\Blog\Model\BlogFilter
-  BlogFilter_GridField: SilverStripe\Blog\Model\BlogFilter_GridField
+  BlogFilter_GridField: SilverStripe\Blog\Model\BlogFilter\BlogFilterGridField
   BlogMemberExtension: SilverStripe\Blog\Model\BlogMemberExtension
   BlogPostFilter: SilverStripe\Blog\Model\BlogPostFilter
   BlogPostNotifications: SilverStripe\Blog\Model\BlogPostNotifications
