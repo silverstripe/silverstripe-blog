@@ -3,15 +3,15 @@ Name: blogcommentsconfig
 Only:
   moduleexists: comments
 ---
-Comment:
+SilverStripe\Comments\Model\Comment:
   extensions:
-    - BlogCommentExtension
+    - SilverStripe\Blog\Model\BlogCommentExtension
 
 ---
 Name: blogcommentnotifications
 Only:
   moduleexists: 'comment-notifications'
 ---
-BlogPost:
+SilverStripe\Blog\Model\BlogPost:
   extensions:
-    - BlogPostNotifications
+    - SilverStripe\Blog\Model\BlogPostNotifications

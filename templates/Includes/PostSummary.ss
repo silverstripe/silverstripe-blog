@@ -8,7 +8,7 @@
 
 	<p class="post-image">
 		<a href="$Link" title="<%t Blog.ReadMoreAbout "Read more about '{title}'..." title=$Title %>">
-			$FeaturedImage.setWidth(795)
+			$FeaturedImage.ScaleWidth(795)
 		</a>
 	</p>
 

@@ -87,7 +87,7 @@ en:
     PLURALNAME: 'Blog Recent Posts Widgets'
     SINGULARNAME: 'Blog Recent Posts Widget'
   BlogTag:
-    Duplicate: 'A blog tags already exists with that name'
+    Duplicate: 'A blog tag already exists with that name'
     PLURALNAME: 'Blog Tags'
     SINGULARNAME: 'Blog Tag'
     Title: Title

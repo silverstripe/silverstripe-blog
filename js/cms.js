@@ -113,6 +113,10 @@
 				if(!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.getMinInnerWidth())) {
 					this.collapsePanel();
 				}
+
+                window.onresize = function() {
+                    this.updateLayout();
+                }.bind(this);
 			},
 			togglePanel: function(bool, silent) {
 				this._super(bool, silent);
@@ -124,9 +128,16 @@
 			 * @returns {undefined}
 			 */
 			updateLayout: function() {
+                $(this).css('height', '100%');
+                var currentHeight = $(this).outerHeight();
+                var bottomHeight = $('.cms-content-actions').eq(0).outerHeight();
+                $(this).css('height', (currentHeight - bottomHeight) +  "px");
+                $(this).css('bottom', bottomHeight + "px");
+
 				$('.cms-container').updateLayoutOptions({
 					minContentWidth: 820 + this.width()
 				});
+
 			}
 		});
 

@@ -1,5 +1,21 @@
 <?php
 
+namespace SilverStripe\Blog\Tests;
+
+use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Blog\Model\BlogController;
+use SilverStripe\Blog\Model\BlogPost;
+use SilverStripe\CMS\Controllers\ContentController;
+use SilverStripe\Control\Controller;
+use SilverStripe\Control\Director;
+use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Dev\SapphireTest;
+use SilverStripe\ORM\DataModel;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\ORM\SS_List;
+use SilverStripe\Security\Member;
+
 /**
  * @mixin PHPUnit_Framework_TestCase
  */
@@ -8,7 +24,7 @@ class BlogTest extends SapphireTest
     /**
      * @var string
      */
-    public static $fixture_file = 'blog.yml';
+    protected static $fixture_file = 'blog.yml';
 
     /**
      * {@inheritdoc}
@@ -18,12 +34,12 @@ class BlogTest extends SapphireTest
         parent::setUp();
 
         Config::nest();
-        SS_Datetime::set_mock_now('2013-10-10 20:00:00');
+        DBDatetime::set_mock_now('2013-10-10 20:00:00');
 
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
         $blog->publish('Stage', 'Live');
     }
@@ -33,7 +49,7 @@ class BlogTest extends SapphireTest
      */
     public function tearDown()
     {
-        SS_Datetime::clear_mock_now();
+        DBDatetime::clear_mock_now();
         Config::unnest();
 
         parent::tearDown();
@@ -50,17 +66,17 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
-        Config::inst()->update('BlogPost', 'show_in_sitetree', true);
+        Config::inst()->update(BlogPost::class, 'show_in_sitetree', true);
         $classes = $blog->getExcludedSiteTreeClassNames();
 
-        $this->assertNotContains('BlogPost', $classes, 'BlogPost class should be hidden.');
+        $this->assertNotContains(BlogPost::class, $classes, 'BlogPost class should be hidden.');
 
-        Config::inst()->update('BlogPost', 'show_in_sitetree', false);
+        Config::inst()->update(BlogPost::class, 'show_in_sitetree', false);
         $classes = $blog->getExcludedSiteTreeClassNames();
 
-        $this->assertContains('BlogPost', $classes, 'BlogPost class should be hidden.');
+        $this->assertContains(BlogPost::class, $classes, 'BlogPost class should be hidden.');
     }
 
     public function testGetArchivedBlogPosts()
@@ -74,7 +90,7 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
         $archive = $blog->getArchivedBlogPosts(2013);
 
@@ -96,7 +112,7 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
         $link = Controller::join_links($blog->Link('archive'), '2013', '10', '01');
 
@@ -135,8 +151,8 @@ class BlogTest extends SapphireTest
      */
     public function testArchiveYear()
     {
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
-        $controller = new Blog_Controller($blog);
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $controller = new BlogController($blog);
         $this->requestURL($controller, 'first-post/archive/');
         $this->assertEquals(2013, $controller->getArchiveYear(), 'getArchiveYear should return 2013');
     }
@@ -156,47 +172,47 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $firstBlog
          */
-        $firstBlog = $this->objFromFixture('Blog', 'FirstBlog');
+        $firstBlog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
         /**
          * @var Blog $fourthBlog
          */
-        $fourthBlog = $this->objFromFixture('Blog', 'FourthBlog');
+        $fourthBlog = $this->objFromFixture(Blog::class, 'FourthBlog');
 
         /**
          * @var BlogPost $postA
          */
-        $postA = $this->objFromFixture('BlogPost', 'PostA');
+        $postA = $this->objFromFixture(BlogPost::class, 'PostA');
 
         /**
          * @var BlogPost $postB
          */
-        $postB = $this->objFromFixture('BlogPost', 'PostB');
+        $postB = $this->objFromFixture(BlogPost::class, 'PostB');
 
         /**
          * @var BlogPost $postC
          */
-        $postC = $this->objFromFixture('BlogPost', 'PostC');
+        $postC = $this->objFromFixture(BlogPost::class, 'PostC');
 
         /**
          * @var Member $editor
          */
-        $editor = $this->objFromFixture('Member', 'BlogEditor');
+        $editor = $this->objFromFixture(Member::class, 'BlogEditor');
 
         /**
          * @var Member $writer
          */
-        $writer = $this->objFromFixture('Member', 'Writer');
+        $writer = $this->objFromFixture(Member::class, 'Writer');
 
         /**
          * @var Member $contributor
          */
-        $contributor = $this->objFromFixture('Member', 'Contributor');
+        $contributor = $this->objFromFixture(Member::class, 'Contributor');
 
         /**
          * @var Member $visitor
          */
-        $visitor = $this->objFromFixture('Member', 'Visitor');
+        $visitor = $this->objFromFixture(Member::class, 'Visitor');
 
         $this->assertEquals('Editor', $fourthBlog->RoleOf($editor));
         $this->assertEquals('Contributor', $fourthBlog->RoleOf($contributor));
@@ -274,9 +290,9 @@ class BlogTest extends SapphireTest
 
     public function testFilteredCategories()
     {
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
-        $controller = new Blog_Controller($blog);
-        
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $controller = new BlogController($blog);
+
         // Root url
         $this->requestURL($controller, 'first-post');
         $this->assertIDsEquals(
@@ -293,10 +309,10 @@ class BlogTest extends SapphireTest
         );
 
         // Posts
-        $firstPostID = $this->idFromFixture('BlogPost', 'FirstBlogPost');
-        $secondPostID = $this->idFromFixture('BlogPost', 'SecondBlogPost');
-        $firstFuturePostID = $this->idFromFixture('BlogPost', 'FirstFutureBlogPost');
-        $secondFuturePostID = $this->idFromFixture('BlogPost', 'SecondFutureBlogPost');
+        $firstPostID = $this->idFromFixture(BlogPost::class, 'FirstBlogPost');
+        $secondPostID = $this->idFromFixture(BlogPost::class, 'SecondBlogPost');
+        $firstFuturePostID = $this->idFromFixture(BlogPost::class, 'FirstFutureBlogPost');
+        $secondFuturePostID = $this->idFromFixture(BlogPost::class, 'SecondFutureBlogPost');
 
         // Request first tag
         $this->requestURL($controller, 'first-post/tag/first-tag');
@@ -321,10 +337,10 @@ class BlogTest extends SapphireTest
      */
     protected function requestURL(ContentController $controller, $url)
     {
-        $request = new SS_HTTPRequest('get', $url);
+        $request = new HTTPRequest('get', $url);
         $request->match('$URLSegment//$Action/$ID/$OtherID');
         $request->shift();
-        $controller->init();
+        $controller->doInit();
         $controller->handleRequest($request, new DataModel());
     }
 

@@ -5,4 +5,4 @@
  *
  * @return string
 **/
-define('BLOGGER_DIR', ltrim(Director::makeRelative(realpath(__DIR__)), DIRECTORY_SEPARATOR));
+define('BLOGGER_DIR', basename(dirname(__FILE__)));
