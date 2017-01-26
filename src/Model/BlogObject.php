@@ -3,6 +3,7 @@
 namespace SilverStripe\Blog\Model;
 
 use SilverStripe\Control\Controller;
+use SilverStripe\Core\ClassInfo;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
@@ -36,11 +37,12 @@ trait BlogObject
      */
     public function getCMSFields()
     {
+        $shortClass = ClassInfo::shortName(self::class);
         $fields = TabSet::create(
             'Root',
             Tab::create(
                 'Main',
-                TextField::create('Title', _t(self::class . '.Title', 'Title'))
+                TextField::create('Title', _t($shortClass . '.Title', 'Title'))
             )
         );
 
