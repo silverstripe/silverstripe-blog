@@ -164,7 +164,7 @@ trait BlogObject
     protected function onBeforeWrite()
     {
         parent::onBeforeWrite();
-        if (empty($this->URLSegment)) {
+        if ($this->exists() || empty($this->URLSegment)) {
             return $this->generateURLSegment();
         }
     }
@@ -180,6 +180,12 @@ trait BlogObject
     {
         $increment = (int) $increment;
         $filter = URLSegmentFilter::create();
+
+        // Setting this to on. Because of the UI flow, it would be quite a lot of work
+        // to support turning this off. (ie. the add by title flow would not work).
+        // If this becomes a problem we can approach it then.
+        // @see https://github.com/silverstripe/silverstripe-blog/issues/376
+        $filter->setAllowMultibyte(true);
 
         $this->URLSegment = $filter->filter($this->Title);
 

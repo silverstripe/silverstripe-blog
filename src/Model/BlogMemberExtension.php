@@ -2,7 +2,9 @@
 
 namespace SilverStripe\Blog\Model;
 
+use SilverStripe\Assets\Image;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
+use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\Tab;
@@ -31,14 +33,14 @@ class BlogMemberExtension extends DataExtension
      * @var array
      */
     private static $has_one = array(
-        'BlogProfileImage' => 'SilverStripe\\Assets\\Image'
+        'BlogProfileImage' => Image::class
     );
 
     /**
      * @var array
      */
     private static $belongs_many_many = array(
-        'BlogPosts' => 'SilverStripe\\Blog\\Model\\BlogPost'
+        'BlogPosts' => BlogPost::class
     );
 
     /**

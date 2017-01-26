@@ -2,7 +2,9 @@
 
 namespace SilverStripe\Blog\Model;
 
+use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogObject;
+use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Blog\Model\CategorisationObject;
 use SilverStripe\ORM\DataObject;
 
@@ -49,14 +51,14 @@ class BlogCategory extends DataObject implements CategorisationObject
      * @var array
      */
     private static $has_one = array(
-        'Blog' => 'SilverStripe\\Blog\\Model\\Blog',
+        'Blog' => Blog::class,
     );
 
     /**
      * @var array
      */
     private static $belongs_many_many = array(
-        'BlogPosts' => 'SilverStripe\\Blog\\Model\\BlogPost',
+        'BlogPosts' => BlogPost::class,
     );
 
     /**

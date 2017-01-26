@@ -22,7 +22,8 @@
     },
     "autoload": {
         "psr-4": {
-            "SilverStripe\\Blog\\": "src/"
+            "SilverStripe\\Blog\\": "src/",
+            "SilverStripe\\Blog\\Tests\\": "tests/"
         }
     },
     "license": "BSD-2-Clause",

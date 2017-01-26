@@ -1,8 +1,12 @@
 <?php
 
+namespace SilverStripe\Blog\Tests;
+
+use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\Security\Member;
 
 class BlogPostTest extends SapphireTest
 {
@@ -10,15 +14,7 @@ class BlogPostTest extends SapphireTest
      * {@inheritDoc}
      * @var string
      */
-    public static $fixture_file = 'blog.yml';
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
-    {
-        parent::setUp();
-    }
+    protected static $fixture_file = 'blog.yml';
 
     /**
      * {@inheritdoc}
@@ -34,8 +30,8 @@ class BlogPostTest extends SapphireTest
      */
     public function testCanView($date, $user, $page, $canView)
     {
-        $userRecord = $this->objFromFixture('SilverStripe\\Security\\Member', $user);
-        $pageRecord = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogPost', $page);
+        $userRecord = $this->objFromFixture(Member::class, $user);
+        $pageRecord = $this->objFromFixture(BlogPost::class, $page);
         DBDatetime::set_mock_now($date);
         $this->assertEquals($canView, $pageRecord->canView($userRecord));
     }
@@ -78,12 +74,12 @@ class BlogPostTest extends SapphireTest
 
     public function testCandidateAuthors()
     {
-        $blogpost = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogPost', 'PostC');
+        $blogpost = $this->objFromFixture(BlogPost::class, 'PostC');
 
         $this->assertEquals(7, $blogpost->getCandidateAuthors()->count());
 
         //Set the group to draw Members from
-        Config::inst()->update('SilverStripe\\Blog\\Model\\BlogPost', 'restrict_authors_to_group', 'blogusers');
+        Config::inst()->update(BlogPost::class, 'restrict_authors_to_group', 'blogusers');
 
         $this->assertEquals(3, $blogpost->getCandidateAuthors()->count());
 
@@ -94,12 +90,12 @@ class BlogPostTest extends SapphireTest
 
     public function testCanViewFuturePost()
     {
-        $blogPost = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogPost', 'NullPublishDate');
+        $blogPost = $this->objFromFixture(BlogPost::class, 'NullPublishDate');
 
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'BlogEditor');
+        $editor = $this->objFromFixture(Member::class, 'BlogEditor');
         $this->assertTrue($blogPost->canView($editor));
 
-        $visitor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Visitor');
+        $visitor = $this->objFromFixture(Member::class, 'Visitor');
         $this->assertFalse($blogPost->canView($visitor));
     }
 
@@ -109,10 +105,10 @@ class BlogPostTest extends SapphireTest
      */
     public function testGetDate()
     {
-        $blogPost = $this->objFromFixture('BlogPost', 'NullPublishDate');
+        $blogPost = $this->objFromFixture(BlogPost::class, 'NullPublishDate');
         $this->assertNull($blogPost->getDate());
 
-        $blogPost = $this->objFromFixture('BlogPost', 'PostA');
+        $blogPost = $this->objFromFixture(BlogPost::class, 'PostA');
         $this->assertEquals('2012-01-09 15:00:00', $blogPost->getDate());
     }
 }

@@ -2,8 +2,8 @@
 
 namespace SilverStripe\Blog\Forms;
 
-use SilverStripe\Forms\FieldGroup;
 use SilverStripe\Control\Cookie;
+use SilverStripe\Forms\FieldGroup;
 
 class BlogAdminSidebar extends FieldGroup
 {

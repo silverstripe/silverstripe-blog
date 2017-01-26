@@ -6,6 +6,10 @@ use Page;
 use PageController;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
+use SilverStripe\Blog\Model\BlogCategory;
+use SilverStripe\Blog\Model\BlogFilter;
+use SilverStripe\Blog\Model\BlogPost;
+use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\RSS\RSSFeed;
@@ -92,31 +96,31 @@ class Blog extends Page implements PermissionProvider
      * @var array
      */
     private static $has_many = array(
-        'Tags' => 'SilverStripe\\Blog\\Model\\BlogTag',
-        'Categories' => 'SilverStripe\\Blog\\Model\\BlogCategory',
+        'Tags' => BlogTag::class,
+        'Categories' => BlogCategory::class,
     );
 
     /**
      * @var array
      */
     private static $many_many = array(
-        'Editors' => 'SilverStripe\\Security\\Member',
-        'Writers' => 'SilverStripe\\Security\\Member',
-        'Contributors' => 'SilverStripe\\Security\\Member',
+        'Editors' => Member::class,
+        'Writers' => Member::class,
+        'Contributors' => Member::class,
     );
 
     /**
      * @var array
      */
     private static $allowed_children = array(
-        'SilverStripe\\Blog\\Model\\BlogPost',
+        BlogPost::class,
     );
 
     /**
      * @var array
      */
     private static $extensions = array(
-        'SilverStripe\\Blog\\Model\\BlogFilter',
+        BlogFilter::class,
     );
 
     /**

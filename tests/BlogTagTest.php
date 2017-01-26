@@ -1,7 +1,11 @@
 <?php
 
+namespace SilverStripe\Blog\Tests;
+
 use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Blog\Model\BlogTag;
+use SilverStripe\Control\Controller;
 use SilverStripe\Dev\FunctionalTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\ValidationException;
@@ -16,7 +20,7 @@ class BlogTagTest extends FunctionalTest
      * {@inheritDoc}
      * @var string
      */
-    public static $fixture_file = 'blog.yml';
+    protected static $fixture_file = 'blog.yml';
 
     /**
      * {@inheritdoc}
@@ -50,12 +54,12 @@ class BlogTagTest extends FunctionalTest
             $member->logout();
         }
 
-        $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogPost', 'FirstBlogPost');
+        $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
 
         /**
          * @var BlogTag $tag
          */
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'FirstTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
 
         $this->assertEquals(1, $tag->BlogPosts()->count(), 'Tag blog post count');
     }
@@ -65,7 +69,7 @@ class BlogTagTest extends FunctionalTest
      */
     public function testAllowMultibyteUrlSegment()
     {
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
         $tag = new BlogTag();
         $tag->BlogID = $blog->ID;
         $tag->Title = 'تست';
@@ -83,15 +87,15 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
+        $admin = $this->objFromFixture(Member::class, 'Admin');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'FirstTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
 
         $this->assertTrue($tag->canView($admin), 'Admin should be able to view tag.');
         $this->assertTrue($tag->canView($editor), 'Editor should be able to view tag.');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'SecondTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'SecondTag');
 
         $this->assertTrue($tag->canView($admin), 'Admin should be able to view tag.');
         $this->assertFalse($tag->canView($editor), 'Editor should not be able to view tag.');
@@ -101,20 +105,20 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
+        $admin = $this->objFromFixture(Member::class, 'Admin');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'FirstTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
 
         $this->assertTrue($tag->canEdit($admin), 'Admin should be able to edit tag.');
         $this->assertTrue($tag->canEdit($editor), 'Editor should be able to edit tag.');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'SecondTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'SecondTag');
 
         $this->assertTrue($tag->canEdit($admin), 'Admin should be able to edit tag.');
         $this->assertFalse($tag->canEdit($editor), 'Editor should not be able to edit tag.');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'ThirdTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'ThirdTag');
 
         $this->assertTrue($tag->canEdit($admin), 'Admin should always be able to edit tags.');
         $this->assertTrue($tag->canEdit($editor), 'Editor should be able to edit tag.');
@@ -124,10 +128,10 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
+        $admin = $this->objFromFixture(Member::class, 'Admin');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
 
-        $tag = singleton('SilverStripe\\Blog\\Model\\BlogTag');
+        $tag = singleton(BlogTag::class);
 
         $this->assertTrue($tag->canCreate($admin), 'Admin should be able to create tag.');
         $this->assertTrue($tag->canCreate($editor), 'Editor should be able to create tag.');
@@ -137,20 +141,20 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
+        $admin = $this->objFromFixture(Member::class, 'Admin');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'FirstTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
 
         $this->assertTrue($tag->canDelete($admin), 'Admin should be able to delete tag.');
         $this->assertTrue($tag->canDelete($editor), 'Editor should be able to delete tag.');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'SecondTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'SecondTag');
 
         $this->assertTrue($tag->canDelete($admin), 'Admin should be able to delete tag.');
         $this->assertFalse($tag->canDelete($editor), 'Editor should not be able to delete tag.');
 
-        $tag = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogTag', 'ThirdTag');
+        $tag = $this->objFromFixture(BlogTag::class, 'ThirdTag');
 
         $this->assertTrue($tag->canDelete($admin), 'Admin should always be able to delete tags.');
         $this->assertTrue($tag->canDelete($editor), 'Editor should be able to delete tag.');

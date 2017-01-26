@@ -1,5 +1,8 @@
 <?php
 
+namespace SilverStripe\Blog\Tests;
+
+use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Security\Member;
@@ -13,7 +16,7 @@ class BlogPostFilterTest extends SapphireTest
     /**
      * @var string
      */
-    public static $fixture_file = 'blog.yml';
+    protected static $fixture_file = 'blog.yml';
 
     public function setUp()
     {
@@ -44,7 +47,7 @@ class BlogPostFilterTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture('SilverStripe\\Blog\\Model\\Blog', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
         $this->assertEquals(3, $blog->AllChildren()->Count(), 'Filtered blog posts');
 

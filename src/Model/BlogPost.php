@@ -3,7 +3,11 @@
 namespace SilverStripe\Blog\Model;
 
 use Page;
+use SilverStripe\Assets\Image;
 use SilverStripe\Blog\Forms\BlogAdminSidebar;
+use SilverStripe\Blog\Model\BlogCategory;
+use SilverStripe\Blog\Model\BlogPostFilter;
+use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\DatetimeField;
 use SilverStripe\Forms\HiddenField;
@@ -65,15 +69,15 @@ class BlogPost extends Page
      * @var array
      */
     private static $has_one = array(
-        'FeaturedImage' => 'SilverStripe\\Assets\\Image'
+        'FeaturedImage' => Image::class
     );
 
     /**
      * @var array
      */
     private static $many_many = array(
-        'Categories' => 'SilverStripe\\Blog\\Model\\BlogCategory',
-        'Tags'       => 'SilverStripe\\Blog\\Model\\BlogTag',
+        'Categories' => BlogCategory::class,
+        'Tags'       => BlogTag::class,
         'Authors'    => Member::class
     );
 
@@ -90,7 +94,7 @@ class BlogPost extends Page
      * @var array
      */
     private static $extensions = array(
-        'SilverStripe\\Blog\\Model\\BlogPostFilter'
+        BlogPostFilter::class
     );
 
     /**

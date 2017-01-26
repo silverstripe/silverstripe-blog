@@ -1,8 +1,12 @@
 <?php
 
+namespace SilverStripe\Blog\Tests;
+
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogCategory;
+use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Blog\Model\BlogTag;
+use SilverStripe\Control\Controller;
 use SilverStripe\Dev\FunctionalTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\ValidationException;
@@ -16,7 +20,7 @@ class BlogCategoryTest extends FunctionalTest
     /**
      * @var string
      */
-    public static $fixture_file = 'blog.yml';
+    protected static $fixture_file = 'blog.yml';
 
     /**
      * {@inheritdoc}
@@ -50,12 +54,12 @@ class BlogCategoryTest extends FunctionalTest
             $member->logout();
         }
 
-        $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogPost', 'FirstBlogPost');
+        $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
 
         /**
          * @var BlogCategory $category
          */
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'FirstCategory');
+        $category = $this->objFromFixture(BlogCategory::class, 'FirstCategory');
 
         $this->assertEquals(5, $category->BlogPosts()->count(), 'Category blog post count');
     }
@@ -65,7 +69,7 @@ class BlogCategoryTest extends FunctionalTest
      */
     public function testAllowMultibyteUrlSegment()
     {
-        $blog = $this->objFromFixture('Blog', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
         $cat = new BlogCategory();
         $cat->BlogID = $blog->ID;
         $cat->Title = 'تست';
@@ -80,10 +84,10 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
+        $this->objFromFixture(Member::class, 'Admin');
 
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'SecondCategory');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
+        $category = $this->objFromFixture(BlogCategory::class, 'SecondCategory');
 
         $this->assertFalse($category->canView($editor), 'Editor should not be able to view category.');
     }
@@ -95,20 +99,20 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
+        $admin = $this->objFromFixture(Member::class, 'Admin');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
 
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'FirstCategory');
+        $category = $this->objFromFixture(BlogCategory::class, 'FirstCategory');
 
         $this->assertTrue($category->canEdit($admin), 'Admin should be able to edit category.');
         $this->assertTrue($category->canEdit($editor), 'Editor should be able to edit category.');
 
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'SecondCategory');
+        $category = $this->objFromFixture(BlogCategory::class, 'SecondCategory');
 
         $this->assertTrue($category->canEdit($admin), 'Admin should be able to edit category.');
         $this->assertFalse($category->canEdit($editor), 'Editor should not be able to edit category.');
 
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'ThirdCategory');
+        $category = $this->objFromFixture(BlogCategory::class, 'ThirdCategory');
 
         $this->assertTrue($category->canEdit($admin), 'Admin should always be able to edit category.');
         $this->assertTrue($category->canEdit($editor), 'Editor should be able to edit category.');
@@ -118,10 +122,10 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
+        $admin = $this->objFromFixture(Member::class, 'Admin');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
 
-        $category = singleton('SilverStripe\\Blog\\Model\\BlogCategory');
+        $category = singleton(BlogCategory::class);
 
         $this->assertTrue($category->canCreate($admin), 'Admin should be able to create category.');
         $this->assertTrue($category->canCreate($editor), 'Editor should be able to create category.');
@@ -131,19 +135,19 @@ class BlogCategoryTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture('SilverStripe\\Security\\Member', 'Admin');
-        $editor = $this->objFromFixture('SilverStripe\\Security\\Member', 'Editor');
+        $admin = $this->objFromFixture(Member::class, 'Admin');
+        $editor = $this->objFromFixture(Member::class, 'Editor');
 
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'FirstCategory');
+        $category = $this->objFromFixture(BlogCategory::class, 'FirstCategory');
 
         $this->assertTrue($category->canDelete($admin), 'Admin should be able to delete category.');
         $this->assertTrue($category->canDelete($editor), 'Editor should be able to category category.');
 
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'SecondCategory');
+        $category = $this->objFromFixture(BlogCategory::class, 'SecondCategory');
         $this->assertTrue($category->canDelete($admin), 'Admin should be able to delete category.');
         $this->assertFalse($category->canDelete($editor), 'Editor should not be able to delete category.');
 
-        $category = $this->objFromFixture('SilverStripe\\Blog\\Model\\BlogCategory', 'ThirdCategory');
+        $category = $this->objFromFixture(BlogCategory::class, 'ThirdCategory');
         $this->assertTrue($category->canDelete($admin), 'Admin should always be able to delete category.');
         $this->assertTrue($category->canDelete($editor), 'Editor should be able to delete category.');
     }
