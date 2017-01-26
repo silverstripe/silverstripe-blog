@@ -24,7 +24,7 @@ matrix:
       env: DB=MYSQL CORE_RELEASE=4
 
     - php: 5.6
-      env: DB=MYSQL CORE_RELEASE=4 COVERAGE=1
+      env: DB=MYSQL CORE_RELEASE=4
     - php: 5.6
       env: DB=PGSQL CORE_RELEASE=4
     - php: 5.6
@@ -34,11 +34,7 @@ matrix:
       env: DB=MYSQL CORE_RELEASE=4
 
     - php: 7.1
-      env: DB=MYSQL CORE_RELEASE=4
-    - php: 7.1
-      env: DB=PGSQL CORE_RELEASE=4
-    - php: 7.1
-      env: DB=SQLITE CORE_RELEASE=4
+      env: DB=MYSQL CORE_RELEASE=4 COVERAGE=1
 
 
 before_script:
@@ -47,6 +43,7 @@ before_script:
   - git clone git://github.com/silverstripe/silverstripe-travis-support.git ~/travis-support
   - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss --require "silverstripe/comments" --require "silverstripe/widgets"
   - cd ~/builds/ss
+  - mv "$MODULE_PATH/phpunit.xml.dist" .
 
 #Execute tests with or without coverage
 script:
@@ -60,5 +57,4 @@ script:
 after_script:
   - "if [ \"$COVERAGE\" = \"1\" ]; then mv coverage.clover ~/build/$TRAVIS_REPO_SLUG/; fi"
   - cd ~/build/$TRAVIS_REPO_SLUG
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - "if [ \"$COVERAGE\" = \"1\" ]; then travis_retry codecov && travis_retry php ocular.phar code-coverage:upload --format=php-clover coverage.clover; fi"
+  - "if [ \"$COVERAGE\" = \"1\" ]; then travis_retry codecov; fi"
