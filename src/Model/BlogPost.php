@@ -266,7 +266,7 @@ class BlogPost extends Page
             }
 
             $publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
-            $publishDate->getDateField()->setConfig('showcalendar', true);
+            $publishDate->getDateField()->setShowCalendar(true);
             if (!$this->PublishDate) {
                 $publishDate->setDescription(
                     _t(
