@@ -63,12 +63,12 @@ class BlogTagsWidget extends Widget
 
             $fields[] = NumericField::create(
                 'Limit',
-                _t('BlogTagsWidget.Limit.Label', 'Limit'),
+                _t('BlogTagsWidget.Limit', 'Limit'),
                 0
             )
                 ->setDescription(
                     _t(
-                        'BlogTagsWidget.Limit.Description',
+                        'BlogTagsWidget.Limit_Description',
                         'Limit the number of tags shown by this widget (set to 0 to show all tags).'
                     )
                 )
@@ -76,21 +76,21 @@ class BlogTagsWidget extends Widget
 
             $fields[] = DropdownField::create(
                 'Order',
-                _t('BlogTagsWidget.Sort.Label', 'Sort'),
+                _t('BlogTagsWidget.Sort', 'Sort'),
                 array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
             )
                 ->setDescription(
-                    _t('BlogTagsWidget.Sort.Description', 'Change the order of tags shown by this widget.')
+                    _t('BlogTagsWidget.Sort_Description', 'Change the order of tags shown by this widget.')
                 );
 
             $fields[] = DropdownField::create(
                 'Direction',
-                _t('BlogTagsWidget.Direction.Label', 'Direction'),
+                _t('BlogTagsWidget.Direction', 'Direction'),
                 array('ASC' => 'Ascending', 'DESC' => 'Descending')
             )
                 ->setDescription(
                     _t(
-                        'BlogTagsWidget.Direction.Description',
+                        'BlogTagsWidget.Direction_Description',
                         'Change the direction of ordering of tags shown by this widget.'
                     )
                 );

@@ -40,15 +40,12 @@ fa_IR:
     SINGULARNAME: 'ویجت بایگانی بلاگ'
   BlogCategoriesWidget:
     Blog: وبلاگ
-    Direction:
-      Label: جهت
-    Limit:
-      Label: محدود کردن
+    Direction: جهت
+    Limit: محدود کردن
     PLURALNAME: 'ویجت‌های مجموعه‌های بلاگ'
     SINGULARNAME: 'ویجت‌ مجموعه‌های بلاگ'
-    Sort:
-      Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
-      Label: مرتب‌سازی
+    Sort: مرتب‌سازی
+    Sort_Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
   BlogCategory:
     PLURALNAME: 'مجموعه‌های وبلاگ'
     SINGULARNAME: 'مجموعه وبلاگ'
@@ -85,15 +82,12 @@ fa_IR:
     Title: عنوان
   BlogTagsWidget:
     Blog: وبلاگ
-    Direction:
-      Label: جهت
-    Limit:
-      Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
-      Label: محدود کردن
+    Direction: جهت
+    Limit: محدود کردن
+    Limit_Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
     PLURALNAME: 'ویجت‌های تگ‌های وبلاگ'
     SINGULARNAME: 'ویجت تگ‌های وبلاگ'
-    Sort:
-      Label: مرتب‌سازی
+    Sort: مرتب‌سازی
   BlogTree:
     DESCRIPTION: 'صفحه محتوای عمومی'
     PLURALNAME: 'صفحات پایه‌ای'

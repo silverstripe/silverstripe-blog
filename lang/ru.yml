@@ -38,8 +38,7 @@ ru:
     SINGULARNAME: 'Виджет архива'
   BlogCategoriesWidget:
     Blog: Блог
-    Sort:
-      Label: Сортировать
+    Sort: Сортировать
   BlogEntry:
     DESCRIPTION: 'Обычная страница'
     PLURALNAME: 'Базовые страницы'
@@ -63,8 +62,7 @@ ru:
     Blog: Блог
     PLURALNAME: 'Виджеты для меток блога'
     SINGULARNAME: 'Виджет для меток блога'
-    Sort:
-      Label: Сортировать
+    Sort: Сортировать
   BlogTree:
     DESCRIPTION: 'Обычная страница'
     PLURALNAME: 'Базовые страницы'

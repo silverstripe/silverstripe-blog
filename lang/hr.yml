@@ -37,8 +37,7 @@ hr:
     NumberToDisplay: 'Broj za prikaz'
   BlogCategoriesWidget:
     Blog: Blog
-    Limit:
-      Label: Limit
+    Limit: Limit
   BlogCategory:
     Title: Naslov
   BlogEntry:
@@ -68,5 +67,4 @@ hr:
     Blog: Blog
   BlogTagsWidget:
     Blog: Blog
-    Limit:
-      Label: Limit
+    Limit: Limit

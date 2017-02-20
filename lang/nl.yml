@@ -40,17 +40,14 @@ nl:
     SINGULARNAME: 'Blog Archief-widget'
   BlogCategoriesWidget:
     Blog: Blog
-    Direction:
-      Description: 'Verander de sorteerrichting van categoriën getoond door deze widget.'
-      Label: Sorteerrichting
-    Limit:
-      Description: 'Limiteer het aantal categorieën getoond door deze widget (Stel in op 0 om alle categorieën te tonen).'
-      Label: Limiet
+    Direction: Sorteerrichting
+    Direction_Description: 'Verander de sorteerrichting van categoriën getoond door deze widget.'
+    Limit: Limiet
+    Limit_Description: 'Limiteer het aantal categorieën getoond door deze widget (Stel in op 0 om alle categorieën te tonen).'
     PLURALNAME: 'Blog Categorie-widgets'
     SINGULARNAME: 'Blog Categorie-widget'
-    Sort:
-      Description: 'Verander de volgorde van categorieën getoond door deze widget.'
-      Label: Volgorde
+    Sort: Volgorde
+    Sort_Description: 'Verander de volgorde van categorieën getoond door deze widget.'
   BlogCategory:
     Duplicate: 'Een blog categorie met dezelfde naam bestaat al'
     PLURALNAME: 'Blog Categorieën'
@@ -96,17 +93,14 @@ nl:
     SINGULARNAME: 'Blog Tags Cloud-widget'
   BlogTagsWidget:
     Blog: Blog
-    Direction:
-      Description: 'Verander de volgorde van tags getoond door deze widget.'
-      Label: Volgorde
-    Limit:
-      Description: 'Limiteer het aantal tags getoond door deze widget (Stel in op 0 om alle tags te tonen).'
-      Label: Limiet
+    Direction: Volgorde
+    Direction_Description: 'Verander de volgorde van tags getoond door deze widget.'
+    Limit: Limiet
+    Limit_Description: 'Limiteer het aantal tags getoond door deze widget (Stel in op 0 om alle tags te tonen).'
     PLURALNAME: 'Blog Tags-widgets'
     SINGULARNAME: 'Blog Tags-widget'
-    Sort:
-      Description: 'Verander de volgorde van tags getoond door deze widget.'
-      Label: Volgorde
+    Sort: Volgorde
+    Sort_Description: 'Verander de volgorde van tags getoond door deze widget.'
   BlogTree:
     DESCRIPTION: 'Blog Boomstructuur'
     PLURALNAME: 'Blog Boomstructuren'

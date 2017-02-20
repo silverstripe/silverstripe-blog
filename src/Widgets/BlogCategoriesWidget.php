@@ -63,12 +63,12 @@ class BlogCategoriesWidget extends Widget
 
             $fields[] = NumericField::create(
                 'Limit',
-                _t('BlogCategoriesWidget.Limit.Label', 'Limit'),
+                _t('BlogCategoriesWidget.Limit', 'Limit'),
                 0
             )
                 ->setDescription(
                     _t(
-                        'BlogCategoriesWidget.Limit.Description',
+                        'BlogCategoriesWidget.Limit_Description',
                         'Limit the number of categories shown by this widget (set to 0 to show all categories).'
                     )
                 )
@@ -76,21 +76,21 @@ class BlogCategoriesWidget extends Widget
 
             $fields[] = DropdownField::create(
                 'Order',
-                _t('BlogCategoriesWidget.Sort.Label', 'Sort'),
+                _t('BlogCategoriesWidget.Sort', 'Sort'),
                 array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
             )
                 ->setDescription(
-                    _t('BlogCategoriesWidget.Sort.Description', 'Change the order of categories shown by this widget.')
+                    _t('BlogCategoriesWidget.Sort_Description', 'Change the order of categories shown by this widget.')
                 );
 
             $fields[] = DropdownField::create(
                 'Direction',
-                _t('BlogCategoriesWidget.Direction.Label', 'Direction'),
+                _t('BlogCategoriesWidget.Direction', 'Direction'),
                 array('ASC' => 'Ascending', 'DESC' => 'Descending')
             )
                 ->setDescription(
                     _t(
-                        'BlogCategoriesWidget.Direction.Description',
+                        'BlogCategoriesWidget.Direction_Description',
                         'Change the direction of ordering of categories shown by this widget.'
                     )
                 );

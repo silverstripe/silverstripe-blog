@@ -40,17 +40,14 @@ fr:
     SINGULARNAME: 'Widget archive du blog'
   BlogCategoriesWidget:
     Blog: Blog
-    Direction:
-      Description: 'Changer la direction du tri de ce widget.'
-      Label: Direction
-    Limit:
-      Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
-      Label: Limite
+    Direction: Direction
+    Direction_Description: 'Changer la direction du tri de ce widget.'
+    Limit: Limite
+    Limit_Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
     PLURALNAME: 'Widgets catégories du blog'
     SINGULARNAME: 'Widget catégories du blog'
-    Sort:
-      Description: 'Changer l''ordre de tri pour ce widget.'
-      Label: Tri
+    Sort: Tri
+    Sort_Description: 'Changer l''ordre de tri pour ce widget.'
   BlogCategory:
     PLURALNAME: 'Catégories du blog'
     SINGULARNAME: 'Catégorie du blog'
@@ -88,17 +85,14 @@ fr:
     Title: Titre
   BlogTagsWidget:
     Blog: Blog
-    Direction:
-      Description: 'Changer la direction du tri de ce widget.'
-      Label: Direction
-    Limit:
-      Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
-      Label: Limite
+    Direction: Direction
+    Direction_Description: 'Changer la direction du tri de ce widget.'
+    Limit: Limite
+    Limit_Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
     PLURALNAME: 'Widgets tags du blog'
     SINGULARNAME: 'Widget tag du blog'
-    Sort:
-      Description: 'Changer l''ordre de tri pour ce widget.'
-      Label: Tri
+    Sort: Tri
+    Sort_Description: 'Changer l''ordre de tri pour ce widget.'
   BlogTree:
     DESCRIPTION: 'Generic content page'
     PLURALNAME: 'Base Pages'
