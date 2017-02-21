@@ -39,17 +39,14 @@ de:
     SINGULARNAME: 'Blog Archiv Widget'
   BlogCategoriesWidget:
     Blog: Blog
-    Direction:
-      Description: 'Ändern Sie die Sortierreihenfolge der Kategorien, die von diesem Widget angezeigt werden.'
-      Label: Richtung
-    Limit:
-      Description: 'Begrenzen Sie die Anzahl der angezeigten Kategorien (0 zeigt alle Kategorien)'
-      Label: Begrenzen
+    Direction: Richtung
+    Direction_Description: 'Ändern Sie die Sortierreihenfolge der Kategorien, die von diesem Widget angezeigt werden.'
+    Limit: Begrenzen
+    Limit_Description: 'Begrenzen Sie die Anzahl der angezeigten Kategorien (0 zeigt alle Kategorien)'
     PLURALNAME: 'Blog Kategorien Widgets'
     SINGULARNAME: 'Blog Kategorien Widget'
-    Sort:
-      Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
-      Label: Sortierung
+    Sort: Sortierung
+    Sort_Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
   BlogCategory:
     PLURALNAME: 'Blog Kategorien'
     SINGULARNAME: 'Blog Kategorie'
@@ -86,17 +83,14 @@ de:
     Title: Titel
   BlogTagsWidget:
     Blog: Blog
-    Direction:
-      Description: 'Ändern Sie die Sortierreihenfolge der Schlagworte, die von diesem Widget angezeigt werden.'
-      Label: Richtung
-    Limit:
-      Description: 'Begrenzen Sie die Anzahl der angezeigten Schlagworte (0 zeigt alle Schlagworte)'
-      Label: Begrenzen
+    Direction: Richtung
+    Direction_Description: 'Ändern Sie die Sortierreihenfolge der Schlagworte, die von diesem Widget angezeigt werden.'
+    Limit: Begrenzen
+    Limit_Description: 'Begrenzen Sie die Anzahl der angezeigten Schlagworte (0 zeigt alle Schlagworte)'
     PLURALNAME: 'Blog Schlagworte Widgets'
     SINGULARNAME: 'Blog Schlagworte Widget'
-    Sort:
-      Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
-      Label: Sortierung
+    Sort: Sortierung
+    Sort_Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
   BlogTree:
     DESCRIPTION: 'Allgemeine Inhaltsseite'
     PLURALNAME: 'Basis Seiten'

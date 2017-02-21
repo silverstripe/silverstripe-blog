@@ -40,17 +40,14 @@ eo:
     SINGULARNAME: 'Fenestraĵo por bloga arkivo'
   BlogCategoriesWidget:
     Blog: Blogo
-    Direction:
-      Description: 'Ŝanĝi la direkton de ordigo de kategorioj vidigotaj de tiu fenestraĵo.'
-      Label: Direkto
-    Limit:
-      Description: 'Limigu la nombron da kategorioj vidigotaj de tiu fenestraĵo (agordu al 0 por vidigi ĉiujn kategoriojn).'
-      Label: Limigi
+    Direction: Direkto
+    Direction_Description: 'Ŝanĝi la direkton de ordigo de kategorioj vidigotaj de tiu fenestraĵo.'
+    Limit: Limigi
+    Limit_Description: 'Limigu la nombron da kategorioj vidigotaj de tiu fenestraĵo (agordu al 0 por vidigi ĉiujn kategoriojn).'
     PLURALNAME: 'Fenestraĵoj por blogaj kategorioj'
     SINGULARNAME: 'Fenestraĵo por blogaj kategorioj'
-    Sort:
-      Description: 'Ŝanĝi la ordon de kategorioj vidigotaj de tiu fenestraĵo.'
-      Label: Ordigi
+    Sort: Ordigi
+    Sort_Description: 'Ŝanĝi la ordon de kategorioj vidigotaj de tiu fenestraĵo.'
   BlogCategory:
     Duplicate: 'Bloga kategorio jam ekzistas kun tiu nomo'
     PLURALNAME: 'Blogaj kategorioj'
@@ -96,17 +93,14 @@ eo:
     SINGULARNAME: 'Nuba fenestraĵo por blogaj etikedoj'
   BlogTagsWidget:
     Blog: Blog
-    Direction:
-      Description: 'Ŝanĝi la direkton de ordigo de etikedoj vidigotaj de tiu fenestraĵo.'
-      Label: Direkto
-    Limit:
-      Description: 'Limigu la nombron da etikedoj vidigotaj de tiu fenestraĵo (agordu al 0 por vidigi ĉiujn etikedojn).'
-      Label: Limigi
+    Direction: Direkto
+    Direction_Description: 'Ŝanĝi la direkton de ordigo de etikedoj vidigotaj de tiu fenestraĵo.'
+    Limit: Limigi
+    Limit_Description: 'Limigu la nombron da etikedoj vidigotaj de tiu fenestraĵo (agordu al 0 por vidigi ĉiujn etikedojn).'
     PLURALNAME: 'Fenestraĵoj por blogaj etikedoj'
     SINGULARNAME: 'Fenestraĵo por blogaj etikedoj'
-    Sort:
-      Description: 'Ŝanĝi la ordon de etikedoj vidigotaj de tiu fenestraĵo.'
-      Label: Ordigi
+    Sort: Ordigi
+    Sort_Description: 'Ŝanĝi la ordon de etikedoj vidigotaj de tiu fenestraĵo.'
   BlogTree:
     DESCRIPTION: 'Komuna enhavpaĝo'
     PLURALNAME: 'Bazaj paĝoj'

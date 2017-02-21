@@ -40,17 +40,14 @@ sv:
     SINGULARNAME: 'Blogg Arkiv-Widget'
   BlogCategoriesWidget:
     Blog: Blogg
-    Direction:
-      Description: 'Ändra ordningen av kategorier som visas av denna widget.'
-      Label: Ordning
-    Limit:
-      Description: 'Begränsa antalet kategorier som visas av denna widget (sätt till 0 för att visa alla kategorier).'
-      Label: Begränsa
+    Direction: Ordning
+    Direction_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
+    Limit: Begränsa
+    Limit_Description: 'Begränsa antalet kategorier som visas av denna widget (sätt till 0 för att visa alla kategorier).'
     PLURALNAME: 'Blogg Kategorier-Widgets'
     SINGULARNAME: 'Blogg Kategori-Widget'
-    Sort:
-      Description: 'Ändra ordningen av kategorier som visas av denna widget.'
-      Label: Sortera
+    Sort: Sortera
+    Sort_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
   BlogCategory:
     PLURALNAME: 'Blogg Kategorier'
     SINGULARNAME: 'Blogg Kategori'
@@ -88,17 +85,14 @@ sv:
     Title: Titel
   BlogTagsWidget:
     Blog: Blogg
-    Direction:
-      Description: 'Ändra riktningen av ordningen av taggar som visas av denna widget.'
-      Label: Ordning
-    Limit:
-      Description: 'Begränsa antalet taggar som visas av denna widget (sätt till 0 för att visa alla taggar).'
-      Label: Begränsa
+    Direction: Ordning
+    Direction_Description: 'Ändra riktningen av ordningen av taggar som visas av denna widget.'
+    Limit: Begränsa
+    Limit_Description: 'Begränsa antalet taggar som visas av denna widget (sätt till 0 för att visa alla taggar).'
     PLURALNAME: 'Blogg taggar Widgets'
     SINGULARNAME: 'Blogg taggar Widget'
-    Sort:
-      Description: 'Ändra ordningen av taggar som visas av denna widget.'
-      Label: Sortera
+    Sort: Sortera
+    Sort_Description: 'Ändra ordningen av taggar som visas av denna widget.'
   BlogTree:
     DESCRIPTION: 'Generisk innehållssida'
     PLURALNAME: 'Bas sidor'

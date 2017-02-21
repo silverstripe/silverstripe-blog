@@ -41,17 +41,14 @@ en:
     SINGULARNAME: 'Blog Archive Widget'
   BlogCategoriesWidget:
     Blog: Blog
-    Direction:
-      Description: 'Change the direction of ordering of categories shown by this widget.'
-      Label: Direction
-    Limit:
-      Description: 'Limit the number of categories shown by this widget (set to 0 to show all categories).'
-      Label: Limit
+    Direction: Direction
+    Direction_Description: 'Change the direction of ordering of categories shown by this widget.'
+    Limit: Limit
+    Limit_Description: 'Limit the number of categories shown by this widget (set to 0 to show all categories).'
     PLURALNAME: 'Blog Categories Widgets'
     SINGULARNAME: 'Blog Categories Widget'
-    Sort:
-      Description: 'Change the order of categories shown by this widget.'
-      Label: Sort
+    Sort: Sort
+    Sort_Description: 'Change the order of categories shown by this widget.'
   BlogCategory:
     Duplicate: 'A blog category already exists with that name'
     PLURALNAME: 'Blog Categories'
@@ -97,17 +94,14 @@ en:
     SINGULARNAME: 'Blog Tags Cloud Widget'
   BlogTagsWidget:
     Blog: Blog
-    Direction:
-      Description: 'Change the direction of ordering of tags shown by this widget.'
-      Label: Direction
-    Limit:
-      Description: 'Limit the number of tags shown by this widget (set to 0 to show all tags).'
-      Label: Limit
+    Direction: Direction
+    Direction_Description: 'Change the direction of ordering of tags shown by this widget.'
+    Limit: Limit
+    Limit_Description: 'Limit the number of tags shown by this widget (set to 0 to show all tags).'
     PLURALNAME: 'Blog Tags Widgets'
     SINGULARNAME: 'Blog Tags Widget'
-    Sort:
-      Description: 'Change the order of tags shown by this widget.'
-      Label: Sort
+    Sort: Sort
+    Sort_Description: 'Change the order of tags shown by this widget.'
   BlogTree:
     DESCRIPTION: 'Generic content page'
     PLURALNAME: 'Base Pages'
