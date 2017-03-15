@@ -2,6 +2,9 @@
 
 class BlogMigrationTask extends MigrationTask
 {
+	protected $title = "Legacy blog migration to 2.x task";
+	protected $description = "Provide atomic database changes (not implemented yet)";
+
     /**
      * Should this task be invoked automatically via dev/build?
      *
