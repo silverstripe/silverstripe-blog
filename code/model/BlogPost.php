@@ -473,6 +473,12 @@ class BlogPost extends Page
             return false;
         }
 
+        $extended = $this->extendedCan('canView', $member);
+
+        if ($extended !== null) {
+            return $extended;
+        }
+        
         return !$publishDate->InFuture();
     }
 
