@@ -12,7 +12,7 @@ use SilverStripe\Forms\Tab;
 use SilverStripe\Lumberjack\Model\Lumberjack;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\ORM\Versioning\Versioned;
+use SilverStripe\Versioned\Versioned;
 use SilverStripe\Security\Permission;
 
 /**
