@@ -758,7 +758,6 @@ class Blog_Controller extends Page_Controller
 
         if ($year) {
             $this->blogPosts = $dataRecord->getArchivedBlogPosts($year, $month, $day);
-
             return $this->render();
         }
 
@@ -838,7 +837,7 @@ class Blog_Controller extends Page_Controller
             if($this->isRSS()) {
             	return $this->rssFeed($this->blogPosts, $tag->getLink());
             } else {
-            	return $this->render();
+                return $this->render();
             }
         }
 
@@ -882,7 +881,7 @@ class Blog_Controller extends Page_Controller
             if($this->isRSS()) {
             	return $this->rssFeed($this->blogPosts, $category->getLink());
             } else {
-            	return $this->render();
+                return $this->render();
             }
         }
 
@@ -1043,7 +1042,37 @@ class Blog_Controller extends Page_Controller
 
         return $posts;
     }
+    
+    /**
+     * Returns the absolute link to the next page for use in the page meta tags. This helps search engines
+     * find the pagination and index all pages properly.
+     * 
+     * @example "<% if $PaginationAbsoluteNextLink %><link rel="next" href="$PaginationAbsoluteNextLink"><% end_if %>"
+     * 
+     * @return string
+     */
+    public function PaginationAbsoluteNextLink() {
+        $posts = $this->PaginatedList();
+        if ($posts->NotLastPage()) {
+            return Director::absoluteURL($posts->NextLink());
+        }
+    }
 
+    /**
+     * Returns the absolute link to the previous page for use in the page meta tags. This helps search engines
+     * find the pagination and index all pages properly.
+     * 
+     * @example "<% if $PaginationAbsolutePrevLink %><link rel="prev" href="$PaginationAbsolutePrevLink"><% end_if %>"
+     *
+     * @return string
+     */
+    public function PaginationAbsolutePrevLink() {
+        $posts = $this->PaginatedList();
+        if ($posts->NotFirstPage()) {
+            return Director::absoluteURL($posts->PrevLink());
+        }
+    }
+    
     /**
      * Displays an RSS feed of blog posts.
      *
@@ -1128,4 +1157,5 @@ class Blog_Controller extends Page_Controller
             return false;
         }
     }
+	
 }
