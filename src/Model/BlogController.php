@@ -3,6 +3,7 @@
 namespace SilverStripe\Blog\Model;
 
 use PageController;
+use SilverStripe\Control\Director;
 use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
@@ -430,6 +431,39 @@ class BlogController extends PageController
         $posts->setPageStart($start);
 
         return $posts;
+    }
+
+
+    /**
+     * Returns the absolute link to the next page for use in the page meta tags. This helps search engines
+     * find the pagination and index all pages properly.
+     *
+     * @example "<% if $PaginationAbsoluteNextLink %><link rel="next" href="$PaginationAbsoluteNextLink"><% end_if %>"
+     *
+     * @return string
+     */
+    public function PaginationAbsoluteNextLink()
+    {
+        $posts = $this->PaginatedList();
+        if ($posts->NotLastPage()) {
+            return Director::absoluteURL($posts->NextLink());
+        }
+    }
+
+     /**
+     * Returns the absolute link to the previous page for use in the page meta tags. This helps search engines
+     * find the pagination and index all pages properly.
+     *
+     * @example "<% if $PaginationAbsolutePrevLink %><link rel="prev" href="$PaginationAbsolutePrevLink"><% end_if %>"
+     *
+     * @return string
+     */
+    public function PaginationAbsolutePrevLink()
+    {
+        $posts = $this->PaginatedList();
+        if ($posts->NotFirstPage()) {
+            return Director::absoluteURL($posts->PrevLink());
+        }
     }
 
     /**
