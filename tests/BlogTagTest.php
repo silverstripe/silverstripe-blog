@@ -54,12 +54,12 @@ class BlogTagTest extends FunctionalTest
             $member->logout();
         }
 
-        $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
+        $this->objFromFixture('SiteTree', 'FirstBlogPost');
 
         /**
          * @var BlogTag $tag
          */
-        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
+        $tag = $this->objFromFixture('BlogTag', 'FirstTag');
 
         $this->assertEquals(1, $tag->BlogPosts()->count(), 'Tag blog post count');
     }
@@ -69,7 +69,7 @@ class BlogTagTest extends FunctionalTest
      */
     public function testAllowMultibyteUrlSegment()
     {
-        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
         $tag = new BlogTag();
         $tag->BlogID = $blog->ID;
         $tag->Title = 'تست';
@@ -87,15 +87,15 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture(Member::class, 'Admin');
-        $editor = $this->objFromFixture(Member::class, 'Editor');
+        $admin = $this->objFromFixture('Member', 'Admin');
+        $editor = $this->objFromFixture('Member', 'Editor');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
+        $tag = $this->objFromFixture('BlogTag', 'FirstTag');
 
         $this->assertTrue($tag->canView($admin), 'Admin should be able to view tag.');
         $this->assertTrue($tag->canView($editor), 'Editor should be able to view tag.');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'SecondTag');
+        $tag = $this->objFromFixture('BlogTag', 'SecondTag');
 
         $this->assertTrue($tag->canView($admin), 'Admin should be able to view tag.');
         $this->assertFalse($tag->canView($editor), 'Editor should not be able to view tag.');
@@ -105,20 +105,20 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture(Member::class, 'Admin');
-        $editor = $this->objFromFixture(Member::class, 'Editor');
+        $admin = $this->objFromFixture('Member', 'Admin');
+        $editor = $this->objFromFixture('Member', 'Editor');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
+        $tag = $this->objFromFixture('BlogTag', 'FirstTag');
 
         $this->assertTrue($tag->canEdit($admin), 'Admin should be able to edit tag.');
         $this->assertTrue($tag->canEdit($editor), 'Editor should be able to edit tag.');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'SecondTag');
+        $tag = $this->objFromFixture('BlogTag', 'SecondTag');
 
         $this->assertTrue($tag->canEdit($admin), 'Admin should be able to edit tag.');
         $this->assertFalse($tag->canEdit($editor), 'Editor should not be able to edit tag.');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'ThirdTag');
+        $tag = $this->objFromFixture('BlogTag', 'ThirdTag');
 
         $this->assertTrue($tag->canEdit($admin), 'Admin should always be able to edit tags.');
         $this->assertTrue($tag->canEdit($editor), 'Editor should be able to edit tag.');
@@ -128,8 +128,8 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture(Member::class, 'Admin');
-        $editor = $this->objFromFixture(Member::class, 'Editor');
+        $admin = $this->objFromFixture('Member', 'Admin');
+        $editor = $this->objFromFixture('Member', 'Editor');
 
         $tag = singleton(BlogTag::class);
 
@@ -141,20 +141,20 @@ class BlogTagTest extends FunctionalTest
     {
         $this->useDraftSite();
 
-        $admin = $this->objFromFixture(Member::class, 'Admin');
-        $editor = $this->objFromFixture(Member::class, 'Editor');
+        $admin = $this->objFromFixture('Member', 'Admin');
+        $editor = $this->objFromFixture('Member', 'Editor');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'FirstTag');
+        $tag = $this->objFromFixture('BlogTag', 'FirstTag');
 
         $this->assertTrue($tag->canDelete($admin), 'Admin should be able to delete tag.');
         $this->assertTrue($tag->canDelete($editor), 'Editor should be able to delete tag.');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'SecondTag');
+        $tag = $this->objFromFixture('BlogTag', 'SecondTag');
 
         $this->assertTrue($tag->canDelete($admin), 'Admin should be able to delete tag.');
         $this->assertFalse($tag->canDelete($editor), 'Editor should not be able to delete tag.');
 
-        $tag = $this->objFromFixture(BlogTag::class, 'ThirdTag');
+        $tag = $this->objFromFixture('BlogTag', 'ThirdTag');
 
         $this->assertTrue($tag->canDelete($admin), 'Admin should always be able to delete tags.');
         $this->assertTrue($tag->canDelete($editor), 'Editor should be able to delete tag.');
@@ -203,4 +203,17 @@ class BlogTagTest extends FunctionalTest
             $this->assertEquals(BlogTag::DUPLICATE_EXCEPTION, $messages[0]['messageType']);
         }
     }
+
+    public function testBlogTagUrlSegmentsAreAutomaticallyUpdated()
+    {
+        $tag = new BlogTag;
+        $tag->Title = "a test";
+        $tag->write();
+        $this->assertEquals($tag->URLSegment, "a-test");
+
+        $tag->Title = "another test";
+        $tag->write();
+        $this->assertEquals($tag->URLSegment, "another-test");
+    }
+
 }

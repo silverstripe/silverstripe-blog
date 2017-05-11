@@ -39,7 +39,7 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
 
         $blog->publish('Stage', 'Live');
     }
@@ -66,7 +66,7 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
 
         Config::inst()->update(BlogPost::class, 'show_in_sitetree', true);
         $classes = $blog->getExcludedSiteTreeClassNames();
@@ -90,7 +90,7 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
 
         $archive = $blog->getArchivedBlogPosts(2013);
 
@@ -112,7 +112,7 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
 
         $link = Controller::join_links($blog->Link('archive'), '2013', '10', '01');
 
@@ -151,7 +151,7 @@ class BlogTest extends SapphireTest
      */
     public function testArchiveYear()
     {
-        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
         $controller = new BlogController($blog);
         $this->requestURL($controller, 'first-post/archive/');
         $this->assertEquals(2013, $controller->getArchiveYear(), 'getArchiveYear should return 2013');
@@ -172,47 +172,47 @@ class BlogTest extends SapphireTest
         /**
          * @var Blog $firstBlog
          */
-        $firstBlog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $firstBlog = $this->objFromFixture('SiteTree', 'FirstBlog');
 
         /**
          * @var Blog $fourthBlog
          */
-        $fourthBlog = $this->objFromFixture(Blog::class, 'FourthBlog');
+        $fourthBlog = $this->objFromFixture('SiteTree', 'FourthBlog');
 
         /**
          * @var BlogPost $postA
          */
-        $postA = $this->objFromFixture(BlogPost::class, 'PostA');
+        $postA = $this->objFromFixture('SiteTree', 'PostA');
 
         /**
          * @var BlogPost $postB
          */
-        $postB = $this->objFromFixture(BlogPost::class, 'PostB');
+        $postB = $this->objFromFixture('SiteTree', 'PostB');
 
         /**
          * @var BlogPost $postC
          */
-        $postC = $this->objFromFixture(BlogPost::class, 'PostC');
+        $postC = $this->objFromFixture('SiteTree', 'PostC');
 
         /**
          * @var Member $editor
          */
-        $editor = $this->objFromFixture(Member::class, 'BlogEditor');
+        $editor = $this->objFromFixture('Member', 'BlogEditor');
 
         /**
          * @var Member $writer
          */
-        $writer = $this->objFromFixture(Member::class, 'Writer');
+        $writer = $this->objFromFixture('Member', 'Writer');
 
         /**
          * @var Member $contributor
          */
-        $contributor = $this->objFromFixture(Member::class, 'Contributor');
+        $contributor = $this->objFromFixture('Member', 'Contributor');
 
         /**
          * @var Member $visitor
          */
-        $visitor = $this->objFromFixture(Member::class, 'Visitor');
+        $visitor = $this->objFromFixture('Member', 'Visitor');
 
         $this->assertEquals('Editor', $fourthBlog->RoleOf($editor));
         $this->assertEquals('Contributor', $fourthBlog->RoleOf($contributor));
@@ -290,7 +290,7 @@ class BlogTest extends SapphireTest
 
     public function testFilteredCategories()
     {
-        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
         $controller = new BlogController($blog);
 
         // Root url
@@ -309,10 +309,10 @@ class BlogTest extends SapphireTest
         );
 
         // Posts
-        $firstPostID = $this->idFromFixture(BlogPost::class, 'FirstBlogPost');
-        $secondPostID = $this->idFromFixture(BlogPost::class, 'SecondBlogPost');
-        $firstFuturePostID = $this->idFromFixture(BlogPost::class, 'FirstFutureBlogPost');
-        $secondFuturePostID = $this->idFromFixture(BlogPost::class, 'SecondFutureBlogPost');
+        $firstPostID = $this->idFromFixture('SiteTree', 'FirstBlogPost');
+        $secondPostID = $this->idFromFixture('SiteTree', 'SecondBlogPost');
+        $firstFuturePostID = $this->idFromFixture('SiteTree', 'FirstFutureBlogPost');
+        $secondFuturePostID = $this->idFromFixture('SiteTree', 'SecondFutureBlogPost');
 
         // Request first tag
         $this->requestURL($controller, 'first-post/tag/first-tag');

@@ -38,7 +38,7 @@ class BlogTagsCloudWidgetTest extends SapphireTest
             $this->markTestSkipped('Widgets module not installed');
         }
         $widget = new BlogTagsCloudWidget();
-        $blog = $this->objFromFixture(Blog::class, 'FourthBlog');
+        $blog = $this->objFromFixture('SiteTree', 'FourthBlog');
         $widget->BlogID = $blog->ID;
         $widget->write();
         $tags = $widget->getTags()->toArray();

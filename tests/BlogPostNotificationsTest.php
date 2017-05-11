@@ -19,7 +19,7 @@ class BlogPostNotificationsTest extends SapphireTest
             $this->markTestSkipped('Comments Notification module is not installed');
         }
 
-        $blogPost = $this->objFromFixture(BlogPost::class, 'PostC');
+        $blogPost = $this->objFromFixture('SiteTree', 'PostC');
         $comment = new \SilverStripe\Comments\Model\Comment();
         $comment->Comment = 'This is a comment';
         $comment->write();
@@ -44,7 +44,7 @@ class BlogPostNotificationsTest extends SapphireTest
         if (!class_exists('CommentNotifier')) {
             $this->markTestSkipped('Comments Notification module is not installed');
         }
-        $blogPost = $this->objFromFixture(BlogPost::class, 'PostC');
+        $blogPost = $this->objFromFixture('SiteTree', 'PostC');
         $comment = new SilverStripe\Comments\Model\Comment();
         $comment->Comment = 'This is a comment';
         $comment->write();
