@@ -1,0 +1,79 @@
+es:
+  Blog:
+    Archive: Archivo
+    Categories: Categorías
+    Category: Categoría
+    Comments: Comentarios
+    DESCRIPTION: 'Agrega un blog al sitio web.'
+    LumberjackTitle: 'Publicaciones'
+    NoPosts: 'No hay publicaciones'
+    PLURALNAME: Blogs
+    Posted: Publicado
+    PostedIn: 'Publicado en'
+    PostsPerPage: 'Publicaciones por página'
+    ReadMoreAbout: 'Lee más de ''{title}''...'
+    SINGULARNAME: Blog
+    Tag: Etiqueta
+    Tagged: Etiquetado
+    Tags: Etiquetas
+    By: por
+    CONTRIBUTOR: Contribuidor
+    EDITOR: Editor
+    FILTERDESCRIPTION_AUTHOR: 'Por {author}'
+    FILTERDESCRIPTION_CATEGORY: 'En la categoría {category}'
+    FILTERDESCRIPTION_DATE: 'En {date}'
+    FILTERDESCRIPTION_PAGE: 'Pagina {page}'
+    FILTERDESCRIPTION_TAG: 'Etiquetado con {tag}'
+    PERMISSIONS_CATEGORY: 'Permisos del blog'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administra usuarios para blogs individuales'
+    PERMISSION_MANAGE_USERS_HELP: 'Permite el asignamiento de Editores, Escritores ó Contribuidores a los blogs'
+    WRITER: Escritor
+  BlogArchiveWidget:
+    Blog: Blog
+    NumberToDisplay: 'No. para mostrar'
+    PLURALNAME: 'Widgets de archivo del Blog'
+    SINGULARNAME: 'Widget de archivo del Blog'
+    ArchiveType: Tipo
+  BlogCategoriesWidget:
+    Blog: Blog
+    PLURALNAME: 'Widgets de categorías del Blog'
+    SINGULARNAME: 'Widget de categoría del Blog'
+  BlogCategory:
+    PLURALNAME: 'Caategorías'
+    SINGULARNAME: 'Categoría'
+    Title: Titulo
+  BlogPost:
+    Categories: Categorías
+    DESCRIPTION: 'Página de contenido generica'
+    FeaturedImage: 'Imágen destacada'
+    PLURALNAME: 'Publicaciones'
+    PageTitleLabel: 'Titulo de la publicación'
+    PublishDate: 'Fecha de publicación'
+    SINGULARNAME: 'Publicación'
+    Tags: Etiquetas
+    AUTHOR: Autor
+    AdditionalCredits: 'Créditos adicionales'
+    Authors: Autores
+    CUSTOMSUMMARY: 'Agrega un resumen personalizado'
+    SUMMARY_DESCRIPTION: 'Si no se especifica un resumen seran usadas las primeras 30 palabras del contenido.'
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Número de publicaciones'
+    PLURALNAME: 'Widgets de publicaciones recientes'
+    SINGULARNAME: 'Widget de publicaciones recientes'
+  BlogTag:
+    PLURALNAME: 'Etiquetas'
+    SINGULARNAME: 'Etiqueta'
+    Title: Titulo
+  BlogTagsWidget:
+    Blog: Blog
+    PLURALNAME: 'Widgets de etiquetas del Blog'
+    SINGULARNAME: 'Widget de etiquetas del Blog'
+  GridFieldAddByDBField:
+    Add: 'Agregar {name}'
+    AddFail: 'Imposible de guardar {class} en la base de datos.'
+    PermissionFail: 'No tienes permiso para crear {class}.'
+  GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Guardar como borrador el {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publicar el {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publicar hasta el {date}'
