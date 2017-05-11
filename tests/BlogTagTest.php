@@ -203,4 +203,17 @@ class BlogTagTest extends FunctionalTest
             $this->assertEquals(BlogTag::DUPLICATE_EXCEPTION, $messages[0]['messageType']);
         }
     }
+
+    public function testBlogTagUrlSegmentsAreAutomaticallyUpdated()
+    {
+        $tag = new BlogTag;
+        $tag->Title = "a test";
+        $tag->write();
+        $this->assertEquals($tag->URLSegment, "a-test");
+
+        $tag->Title = "another test";
+        $tag->write();
+        $this->assertEquals($tag->URLSegment, "another-test");
+    }
+
 }
