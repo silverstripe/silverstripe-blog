@@ -106,6 +106,9 @@
 		$('.blog-admin-sidebar.cms-panel').entwine({
 			MinInnerWidth: 620,
 			onadd: function() {
+				// Adding margin to prevent post options from overlaping message box
+				$('#Form_EditForm_error ').css('margin-right', '56px');
+
 				this._super();
 				this.updateLayout();
 
