@@ -505,6 +505,8 @@ class BlogPost extends Page
          * @var DBDatetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
+        $publishDate->setValue($this->PublishDate);
+
         if (!$publishDate->exists()) {
             return false;
         }
@@ -604,6 +606,7 @@ class BlogPost extends Page
          * @var DBDatetime $date
          */
         $date = $this->dbObject('PublishDate');
+        $date->setValue($this->PublishDate);
 
         if ($type != 'year') {
             if ($type == 'day') {
@@ -632,6 +635,7 @@ class BlogPost extends Page
          * @var DBDatetime $date
          */
         $date = $this->dbObject('PublishDate');
+        $date->setValue($this->PublishDate);
 
         return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'));
     }
