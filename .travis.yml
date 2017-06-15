@@ -21,8 +21,6 @@ env:
     - MODULE_PATH=blog
 
 matrix:
-  allow_failures:
-    - php: hhvm-nightly
   include:
     - php: 5.6
       env: DB=MYSQL COVERAGE=1
@@ -37,8 +35,6 @@ matrix:
     - php: 5.4
       env: DB=SQLITE
     - php: 5.3
-      env: DB=MYSQL
-    - php: hhvm
       env: DB=MYSQL
     - php: 7.1
       env: DB=MYSQL CORE_RELEASE=3.6
