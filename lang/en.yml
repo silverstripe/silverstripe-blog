@@ -65,6 +65,9 @@ en:
     DESCRIPTION: 'Generic content page'
     PLURALNAME: 'Base Pages'
     SINGULARNAME: 'Blog Holder'
+  BlogMemberExtension:
+    BLOGPOSTS: 'Blog Posts'
+    TABBLOGPOSTS: 'Blog Posts'
   BlogPost:
     AUTHOR: Author
     AdditionalCredits: 'Additional Credits'
