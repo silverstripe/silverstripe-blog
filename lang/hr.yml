@@ -32,7 +32,7 @@ hr:
     Tags: Tagovi
     WRITER: Pisac
   BlogArchiveWidget:
-    ArchiveType: Tip arhive
+    ArchiveType: 'Tip arhive'
     Blog: Blog
     NumberToDisplay: 'Broj za prikaz'
   BlogCategoriesWidget:

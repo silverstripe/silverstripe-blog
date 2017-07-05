@@ -3,14 +3,15 @@ ru:
     PLURALNAME: 'Виджеты для архива'
     SINGULARNAME: 'Виджет для архива'
   Blog:
-    Archive: Архив
+    AND: и
+    Archive: 'Архив'
     By: 'автор:'
     CONTRIBUTOR: Автор
     Categories: Категории
     Category: Категория
     Comments: Комментарии
     DESCRIPTION: 'Добавляет к сайту блог.'
-    EDITOR: Редактор
+    EDITOR: 'Редактор'
     FILTERDESCRIPTION_AUTHOR: 'Автор: {author}'
     FILTERDESCRIPTION_CATEGORY: 'В категории: {category}'
     FILTERDESCRIPTION_DATE: 'Дата: {date}'
@@ -21,9 +22,10 @@ ru:
     NoUnfeaturedPosts: 'В блоге нет отмеченых записей'
     PERMISSIONS_CATEGORY: 'Права доступа к содержимому блога'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Управление пользователями для индивидуальных блогов'
+    PERMISSION_MANAGE_USERS_HELP: 'Разрешить назначать Редакторов, Писателей и Авторов к блогам'
     PLURALNAME: 'Базовые страницы'
     Posted: Отправлено
-    PostedIn: 'Отправлено'
+    PostedIn: Отправлено
     PostsPerPage: 'Записей на странице'
     ReadMoreAbout: 'Узнать больше о ''{title}''...'
     SINGULARNAME: Блог
@@ -32,42 +34,84 @@ ru:
     Tags: Метки
     WRITER: Автор
   BlogArchiveWidget:
-    ArchiveType: Тип архива
+    ArchiveType: 'Тип архива'
     Blog: Блог
+    NumberToDisplay: 'Отображать:'
     PLURALNAME: 'Виджеты архива'
     SINGULARNAME: 'Виджет архива'
   BlogCategoriesWidget:
     Blog: Блог
+    Direction:
+      Description: 'Изменять направление сортировки категорий отображаемых в этом блоке.'
+      Label: Направление
+    Limit:
+      Description: 'Ограничить количество категорий отображаемых в этом блоке (укажите 0 чтобы отображать все категории).'
+      Label: Ограничение
+    PLURALNAME: 'Блоки категорий блога'
+    SINGULARNAME: 'Блок категорий блога'
     Sort:
+      Description: 'Изменить порядок категорий в этом блоке.'
       Label: Сортировать
+  BlogCategory:
+    Duplicate: 'Категория блога с этим именем уже существует'
+    PLURALNAME: 'Категории Блога'
+    SINGULARNAME: 'Категория Блога'
+    Title: Заголовок
   BlogEntry:
     DESCRIPTION: 'Обычная страница'
     PLURALNAME: 'Базовые страницы'
+    SINGULARNAME: 'Сообщение Блога'
   BlogHolder:
     DESCRIPTION: 'Обычная страница'
     PLURALNAME: 'Базовые страницы'
+    SINGULARNAME: 'Контейнер Блога'
   BlogPost:
     AUTHOR: Автор
     AdditionalCredits: 'Дополнительные сведения'
+    AdditionalCredits_Description: 'Если некоторые авторы этого сообщения не имеют доступа к админке укажите их имена здесь. Для разделения имён используется запятая.'
     Authors: Авторы
+    CUSTOMSUMMARY: 'Добавить уникальное описание'
+    Categories: Категории
     DESCRIPTION: 'Обычная страница'
+    FeaturedImage: Изображение
     PLURALNAME: 'Базовые страницы'
+    PageTitleLabel: 'Заголовок Сообщения'
+    PublishDate: 'Дата публикации'
+    PublishDate_Description: 'Будет использована текущая дата если не будет указанно значение.'
     SINGULARNAME: 'Запись в блоге'
+    SUMMARY_DESCRIPTION: 'Если не указанно описание будут использованы первые 30 слов.'
     Tags: Метки
   BlogRecentPostsWidget:
     Blog: Блог
     NumberOfPosts: 'Количество записей'
+    PLURALNAME: 'Блоки последних сообщений блога'
+    SINGULARNAME: 'Блок последних сообщений блога'
   BlogTag:
+    Duplicate: 'Тэги блога с таким именем уже существуют'
+    PLURALNAME: 'Тэги Блога'
+    SINGULARNAME: 'Тэг Блога'
     Title: Заголовок
+  BlogTagsCloudWidget:
+    Blog: Блог
+    PLURALNAME: 'Блоки облака тэгов'
+    SINGULARNAME: 'Блок облака тэгов'
   BlogTagsWidget:
     Blog: Блог
+    Direction:
+      Description: 'Изменить направление сортировки тэгов отображаемых в этом блоке.'
+      Label: Направление
+    Limit:
+      Description: 'Ограничить количество тэгов в этом блоке (укажите 0 чтобы отобразить все тэги).'
+      Label: Ограничение
     PLURALNAME: 'Виджеты для меток блога'
     SINGULARNAME: 'Виджет для меток блога'
     Sort:
+      Description: 'Изменить порядок тэгов в этом блоке.'
       Label: Сортировать
   BlogTree:
     DESCRIPTION: 'Обычная страница'
     PLURALNAME: 'Базовые страницы'
+    SINGULARNAME: 'Древо Блога'
   GridFieldAddByDBField:
     Add: 'Добавить {name}'
     AddFail: 'Не удалось сохранить {class} в базе данных.'
