@@ -47,7 +47,7 @@ class BlogPostFilterTest extends SapphireTest
         /**
          * @var Blog $blog
          */
-        $blog = $this->objFromFixture('SiteTree', 'FirstBlog');
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
         $this->assertEquals(3, $blog->AllChildren()->Count(), 'Filtered blog posts');
 

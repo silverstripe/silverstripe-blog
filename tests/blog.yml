@@ -1,47 +1,6 @@
 # Mock date is set to 2013-10-01 20:00:00
 # Write to tables rather than dataobjects for performance
-
-Group:
-  Administrators:
-    Title: Administrators
-  Editors:
-    Title: Editors
-  BlogUsers:
-    Title: Blog Users
-    Code: blogusers
-
-Permission:
-  Administrators:
-    Code: ADMIN
-    GroupID: =>Group.Administrators
-  Editors:
-    Code: CMS_ACCESS_CMSMain
-    GroupID: =>Group.Editors
-  BlogUsers:
-    Code: CMS_ACCESS_CMSMain
-    GroupID: =>Group.BlogUsers
-
-SiteConfig:
-  Default:
-    CanEditType: 'OnlyTheseUsers'
-    CanCreateTopLevelType: 'OnlyTheseUsers'
-
-SiteConfig_EditorGroups:
-  A:
-    SiteConfigID: =>SiteConfig.Default
-    GroupID: =>Group.Administrators
-  B:
-    SiteConfigID: =>SiteConfig.Default
-    GroupID: =>Group.Editors
-SiteConfig_CreateTopLevelGroups:
-  A:
-    SiteConfigID: =>SiteConfig.Default
-    GroupID: =>Group.Administrators
-  B:
-    SiteConfigID: =>SiteConfig.Default
-    GroupID: =>Group.Editors
-
-Member:
+SilverStripe\Security\Member:
   Admin:
     FirstName: Test
     Surname: Administrator
@@ -61,24 +20,46 @@ Member:
     FirstName: Blog
     Surname: Visitor
 
-Group_Members:
-  Admin:
-    MemberID: =>Member.Admin
-    GroupID: =>Group.Administrators
-  Editor:
-    MemberID: =>Member.Editor
-    GroupID: =>Group.Editors
-  BlogEditor:
-    MemberID: =>Member.BlogEditor
-    GroupID: =>Group.BlogUsers
-  Writer:
-    MemberID: =>Member.Writer
-    GroupID: =>Group.BlogUsers
-  Contributor:
-    MemberID: =>Member.Contributor
-    GroupID: =>Group.BlogUsers
+SilverStripe\Security\Group:
+  Administrators:
+    Title: Administrators
+    Members:
+      - =>SilverStripe\Security\Member.Admin
+  Editors:
+    Title: Editors
+    Members:
+      - =>SilverStripe\Security\Member.Editor
+  BlogUsers:
+    Title: Blog Users
+    Code: blogusers
+    Members:
+      - =>SilverStripe\Security\Member.BlogEditor
+      - =>SilverStripe\Security\Member.Writer
+      - =>SilverStripe\Security\Member.Contributor
 
-SiteTree:
+SilverStripe\Security\Permission:
+  Administrators:
+    Code: ADMIN
+    Group: =>SilverStripe\Security\Group.Administrators
+  Editors:
+    Code: CMS_ACCESS_CMSMain
+    Group: =>SilverStripe\Security\Group.Editors
+  BlogUsers:
+    Code: CMS_ACCESS_CMSMain
+    Group: =>SilverStripe\Security\Group.BlogUsers
+
+SilverStripe\SiteConfig\SiteConfig:
+  Default:
+    CanEditType: 'OnlyTheseUsers'
+    CanCreateTopLevelType: 'OnlyTheseUsers'
+    EditorGroups:
+      - =>SilverStripe\Security\Group.Administrators
+      - =>SilverStripe\Security\Group.Editors
+    CreateTopLevelGroups:
+      - =>SilverStripe\Security\Group.Administrators
+      - =>SilverStripe\Security\Group.Editors
+
+SilverStripe\Blog\Model\Blog:
   FirstBlog:
     ClassName: SilverStripe\Blog\Model\Blog
     Title: 'First Blog'
@@ -89,292 +70,165 @@ SiteTree:
     CanViewType: 'OnlyTheseUsers'
     CanEditType: 'OnlyTheseUsers'
     URLSegment: 'second-blog'
+    ViewerGroups:
+      - =>SilverStripe\Security\Group.Administrators
+    EditorGroups:
+      - =>SilverStripe\Security\Group.Administrators
   ThirdBlog:
     ClassName: SilverStripe\Blog\Model\Blog
     Title: 'Third Blog'
     CanEditType: 'OnlyTheseUsers'
     URLSegment: 'third-blog'
+    EditorGroups:
+      - =>SilverStripe\Security\Group.Editors
   FourthBlog:
     ClassName: SilverStripe\Blog\Model\Blog
     Title: 'Fourth Blog'
     URLSegment: 'fourth-blog'
+    Editors: =>SilverStripe\Security\Member.BlogEditor
+    Writers: =>SilverStripe\Security\Member.Writer
+    Contributors: =>SilverStripe\Security\Member.Contributor
 
+SilverStripe\Blog\Model\BlogCategory:
+  FirstCategory:
+    Title: 'First Category'
+    URLSegment: 'first-category'
+    BlogID: =>SilverStripe\Blog\Model\Blog.FirstBlog
+  SecondCategory:
+    Title: 'Second Category'
+    URLSegment: 'second-category'
+    BlogID: =>SilverStripe\Blog\Model\Blog.SecondBlog
+  ThirdCategory:
+    Title: 'Third Category'
+    URLSegment: 'third-category'
+    BlogID: =>SilverStripe\Blog\Model\Blog.ThirdBlog
+
+SilverStripe\Blog\Model\BlogTag:
+  FirstTag:
+    Title: 'First Tag'
+    URLSegment: 'first-tag'
+    BlogID: =>SilverStripe\Blog\Model\Blog.FirstBlog
+  SecondTag:
+    Title: 'Second Tag'
+    URLSegment: 'second-tag'
+    BlogID: =>SilverStripe\Blog\Model\Blog.SecondBlog
+  ThirdTag:
+    Title: 'Third Tag'
+    URLSegment: 'third-tag'
+    BlogID: =>SilverStripe\Blog\Model\Blog.ThirdBlog
+
+  #Tags for Tag Cloud widget
+  PopularTag:
+    Title: 'Popular'
+    URLSegment: 'popular'
+    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+  CoolTag:
+    Title: 'Cool'
+    URLSegment: 'cool'
+    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+  CatTag:
+    Title: 'Cat'
+    URLSegment: 'cat'
+    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+  KiwiTag:
+    Title: 'Kiwi'
+    URLSegment: 'kiwi'
+    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+
+SilverStripe\Blog\Model\BlogPost:
   FirstBlogPost:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'First Post'
     URLSegment: first-post
-    ParentID: =>SiteTree.FirstBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FirstBlog
+    PublishDate: '2013-10-01 15:00:00'
+    Tags: =>SilverStripe\Blog\Model\BlogTag.FirstTag
+    Categories: =>SilverStripe\Blog\Model\BlogCategory.FirstCategory
   SecondBlogPost:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Second Post'
     URLSegment: second-post
-    ParentID: =>SiteTree.FirstBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FirstBlog
+    PublishDate: '2013-09-01 15:00:00'
   ThirdBlogPost:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Old Post'
     URLSegment: old-post
-    ParentID: =>SiteTree.FirstBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FirstBlog
+    PublishDate: '2012-01-09 15:00:00'
   FirstFutureBlogPost:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Future Post'
     URLSegment: future-post
-    ParentID: =>SiteTree.FirstBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FirstBlog
+    PublishDate: '2015-01-01 00:00:00'
+    Tags: =>SilverStripe\Blog\Model\BlogTag.FirstTag
+    Categories: =>SilverStripe\Blog\Model\BlogCategory.FirstCategory
   SecondFutureBlogPost:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Future Post 2'
     URLSegment: future-post-2
-    ParentID: =>SiteTree.FirstBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FirstBlog
+    PublishDate: '2013-11-01 00:00:00'
+    Tags: =>SilverStripe\Blog\Model\BlogTag.FirstTag
+    Categories: =>SilverStripe\Blog\Model\BlogCategory.FirstCategory
   PostA:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'One Post'
-    ParentID: =>SiteTree.FourthBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+    Authors: =>SilverStripe\Security\Member.Writer,=>SilverStripe\Security\Member.Contributor
+    PublishDate: '2012-01-09 15:00:00'
   PostB:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Second Post'
-    ParentID: =>SiteTree.FourthBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+    Authors: =>SilverStripe\Security\Member.BlogEditor
+    PublishDate: '2012-01-09 15:00:00'
   PostC:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Third Post'
-    ParentID: =>SiteTree.FourthBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+    Authors: =>SilverStripe\Security\Member.Writer,=>SilverStripe\Security\Member.Contributor,=>SilverStripe\Security\Member.BlogEditor
+    PublishDate: '2012-01-09 15:00:00'
   NullPublishDate:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'No publish date'
-    ParentID: =>SiteTree.FourthBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+    Authors: =>SilverStripe\Security\Member.Writer,=>SilverStripe\Security\Member.Contributor,=>SilverStripe\Security\Member.BlogEditor
+    PublishDate: null
 
   #Posts for the tag cloud widget test
   TaggedPost1:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Tagged Post 1'
     URLSegment: tagged-post-1
-    ParentID: =>SiteTree.FourthBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+    PublishDate: '2012-01-09 15:00:00'
+    Tags: =>SilverStripe\Blog\Model\BlogTag.PopularTag,=>SilverStripe\Blog\Model\BlogTag.CoolTag
+    Categories: =>SilverStripe\Blog\Model\BlogCategory.FirstCategory
   TaggedPost2:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Tagged Post 2'
     URLSegment: tagged-post-2
-    ParentID: =>SiteTree.FourthBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+    PublishDate: '2012-01-09 15:00:00'
+    Tags: =>SilverStripe\Blog\Model\BlogTag.PopularTag,=>SilverStripe\Blog\Model\BlogTag.CoolTag,=>SilverStripe\Blog\Model\BlogTag.CatTag
+    Categories: =>SilverStripe\Blog\Model\BlogCategory.FirstCategory
   TaggedPost3:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Tagged Post 3'
     URLSegment: tagged-post-3
-    ParentID: =>SiteTree.FourthBlog
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
+    PublishDate: '2012-01-09 17:20:00'
+    Tags: =>SilverStripe\Blog\Model\BlogTag.PopularTag,=>SilverStripe\Blog\Model\BlogTag.CoolTag,=>SilverStripe\Blog\Model\BlogTag.CatTag,=>SilverStripe\Blog\Model\BlogTag.KiwiTag
+    Categories: =>SilverStripe\Blog\Model\BlogCategory.FirstCategory
   TaggedPost4:
     ClassName: SilverStripe\Blog\Model\BlogPost
     Title: 'Tagged Post 4'
     URLSegment: tagged-post-4
-    ParentID: =>SiteTree.FourthBlog
-
-BlogPost:
-  FirstBlogPost:
-    ID: =>SiteTree.FirstBlogPost
-    PublishDate: '2013-10-01 15:00:00'
-  SecondBlogPost:
-    ID: =>SiteTree.SecondBlogPost
-    PublishDate: '2013-09-01 15:00:00'
-  ThirdBlogPost:
-    ID: =>SiteTree.ThirdBlogPost
-    PublishDate: '2012-01-09 15:00:00'
-  FirstFutureBlogPost:
-    ID: =>SiteTree.FirstFutureBlogPost
-    PublishDate: '2015-01-01 00:00:00'
-  SecondFutureBlogPost:
-    ID: =>SiteTree.SecondFutureBlogPost
-    PublishDate: '2013-11-01 00:00:00'
-  PostA:
-    ID: =>SiteTree.PostA
-    PublishDate: '2012-01-09 15:00:00'
-  PostB:
-    ID: =>SiteTree.PostB
-    PublishDate: '2012-01-09 15:00:00'
-  PostC:
-    ID: =>SiteTree.PostC
-    PublishDate: '2012-01-09 15:00:00'
-  NullPublishDate:
-    ID: =>SiteTree.NullPublishDate
-    PublishDate: null
-
-  #Posts for the tag cloud widget test
-  TaggedPost1:
-    ID: =>SiteTree.TaggedPost1
-    PublishDate: '2012-01-09 15:00:00'
-  TaggedPost2:
-    ID: =>SiteTree.TaggedPost2
-    PublishDate: '2012-01-09 15:00:00'
-  TaggedPost3:
-    ID: =>SiteTree.TaggedPost3
-    PublishDate: '2012-01-09 17:20:00'
-  TaggedPost4:
-    ID: =>SiteTree.TaggedPost4
+    ParentID: =>SilverStripe\Blog\Model\Blog.FourthBlog
     PublishDate: '2012-04-09 15:00:00'
+    Tags: =>SilverStripe\Blog\Model\BlogTag.PopularTag
+    Categories: =>SilverStripe\Blog\Model\BlogCategory.FirstCategory
 
-Blog_Editors:
-  FourthBlog:
-    BlogID: =>SiteTree.FourthBlog
-    MemberID: =>Member.BlogEditor
-
-Blog_Writers:
-  FourthBlog:
-    BlogID: =>SiteTree.FourthBlog
-    MemberID: =>Member.Writer
-
-Blog_Contributors:
-  FourthBlog:
-    BlogID: =>SiteTree.FourthBlog
-    MemberID: =>Member.Contributor
-
-SiteTree_ViewerGroups:
-  SecondBlog:
-    SiteTreeID: =>SiteTree.SecondBlog
-    GroupID: =>Group.Administrators
-
-SiteTree_EditorGroups:
-  SecondBlog:
-    SiteTreeID: =>SiteTree.SecondBlog
-    GroupID: =>Group.Administrators
-  ThirdBlog:
-    SiteTreeID: =>SiteTree.ThirdBlog
-    GroupID: =>Group.Editors
-
-BlogTag:
-  FirstTag:
-    Title: 'First Tag'
-    URLSegment: 'first-tag'
-    BlogID: =>SiteTree.FirstBlog
-  SecondTag:
-    Title: 'Second Tag'
-    URLSegment: 'second-tag'
-    BlogID: =>SiteTree.SecondBlog
-  ThirdTag:
-    Title: 'Third Tag'
-    URLSegment: 'third-tag'
-    BlogID: =>SiteTree.ThirdBlog
-
-  #Tags for Tag Cloud widget
-  PopularTag:
-    Title: 'Popular'
-    URLSegment: 'popular'
-    BlogID: =>SiteTree.FourthBlog
-  CoolTag:
-    Title: 'Cool'
-    URLSegment: 'cool'
-    BlogID: =>SiteTree.FourthBlog
-  CatTag:
-    Title: 'Cat'
-    URLSegment: 'cat'
-    BlogID: =>SiteTree.FourthBlog
-  KiwiTag:
-    Title: 'Kiwi'
-    URLSegment: 'kiwi'
-    BlogID: =>SiteTree.FourthBlog
-
-BlogCategory:
-  FirstCategory:
-    Title: 'First Category'
-    URLSegment: 'first-category'
-    BlogID: =>SiteTree.FirstBlog
-  SecondCategory:
-    Title: 'Second Category'
-    URLSegment: 'second-category'
-    BlogID: =>SiteTree.SecondBlog
-  ThirdCategory:
-    Title: 'Third Category'
-    URLSegment: 'third-category'
-    BlogID: =>SiteTree.ThirdBlog
-
-BlogPost_Tags:
-  FirstBlogPost:
-    BlogPostID: =>SiteTree.FirstBlogPost
-    BlogTagID: =>BlogTag.FirstTag
-  FirstFutureBlogPost:
-    BlogPostID: =>SiteTree.FirstFutureBlogPost
-    BlogTagID: =>BlogTag.FirstTag
-  SecondFutureBlogPost:
-    BlogPostID: =>SiteTree.SecondFutureBlogPost
-    BlogTagID: =>BlogTag.FirstTag
-
-
-  TaggedPost1A:
-    BlogPostID: =>SiteTree.TaggedPost1
-    BlogTagID: =>BlogTag.PopularTag
-  TaggedPost1B:
-    BlogPostID: =>SiteTree.TaggedPost1
-    BlogTagID: =>BlogTag.CoolTag
-
-  TaggedPost2A:
-    BlogPostID: =>SiteTree.TaggedPost2
-    BlogTagID: =>BlogTag.PopularTag
-  TaggedPost2B:
-    BlogPostID: =>SiteTree.TaggedPost2
-    BlogTagID: =>BlogTag.CoolTag
-  TaggedPost2C:
-    BlogPostID: =>SiteTree.TaggedPost2
-    BlogTagID: =>BlogTag.CatTag
-
-  TaggedPost3A:
-    BlogPostID: =>SiteTree.TaggedPost3
-    BlogTagID: =>BlogTag.PopularTag
-  TaggedPost3B:
-    BlogPostID: =>SiteTree.TaggedPost3
-    BlogTagID: =>BlogTag.CoolTag
-  TaggedPost3C:
-    BlogPostID: =>SiteTree.TaggedPost3
-    BlogTagID: =>BlogTag.CatTag
-  TaggedPost3D:
-    BlogPostID: =>SiteTree.TaggedPost3
-    BlogTagID: =>BlogTag.KiwiTag
-
-  TaggedPost4:
-    BlogPostID: =>SiteTree.TaggedPost4
-    BlogTagID: =>BlogTag.PopularTag
-
-BlogPost_Categories:
-  FirstBlogPost:
-    BlogPostID: =>SiteTree.FirstBlogPost
-    BlogCategoryID: =>BlogCategory.FirstCategory
-  FirstFutureBlogPost:
-    BlogPostID: =>SiteTree.FirstFutureBlogPost
-    BlogCategoryID: =>BlogCategory.FirstCategory
-  SecondFutureBlogPost:
-    BlogPostID: =>SiteTree.SecondFutureBlogPost
-    BlogCategoryID: =>BlogCategory.FirstCategory
-  TaggedPost1:
-    BlogPostID: =>SiteTree.TaggedPost1
-    BlogCategoryID: =>BlogCategory.FirstCategory
-  TaggedPost2:
-    BlogPostID: =>SiteTree.TaggedPost2
-    BlogCategoryID: =>BlogCategory.FirstCategory
-  TaggedPost3:
-    BlogPostID: =>SiteTree.TaggedPost3
-    BlogCategoryID: =>BlogCategory.FirstCategory
-  TaggedPost4:
-    BlogPostID: =>SiteTree.TaggedPost4
-    BlogCategoryID: =>BlogCategory.FirstCategory
-
-BlogPost_Authors:
-  PostAA:
-    BlogPostID: =>SiteTree.PostA
-    MemberID: =>Member.Writer
-  PostAB:
-    BlogPostID: =>SiteTree.PostA
-    MemberID: =>Member.Contributor
-  PostB:
-    BlogPostID: =>SiteTree.PostB
-    MemberID: =>Member.BlogEditor
-  PostCA:
-    BlogPostID: =>SiteTree.PostC
-    MemberID: =>Member.BlogEditor
-  PostCB:
-    BlogPostID: =>SiteTree.PostC
-    MemberID: =>Member.Writer
-  PostCC:
-    BlogPostID: =>SiteTree.PostC
-    MemberID: =>Member.Contributor
-  NullPublishDateA:
-    BlogPostID: =>SiteTree.NullPublishDate
-    MemberID: =>Member.BlogEditor
-  NullPublishDateB:
-    BlogPostID: =>SiteTree.NullPublishDate
-    MemberID: =>Member.Writer
-  NullPublishDateC:
-    BlogPostID: =>SiteTree.NullPublishDate
-    MemberID: =>Member.Contributor
 

@@ -30,8 +30,8 @@ class BlogPostTest extends SapphireTest
      */
     public function testCanView($date, $user, $page, $canView)
     {
-        $userRecord = $this->objFromFixture('Member', $user);
-        $pageRecord = $this->objFromFixture('SiteTree', $page);
+        $userRecord = $this->objFromFixture(Member::class, $user);
+        $pageRecord = $this->objFromFixture(BlogPost::class, $page);
         DBDatetime::set_mock_now($date);
         $this->assertEquals($canView, $pageRecord->canView($userRecord));
     }
@@ -74,7 +74,7 @@ class BlogPostTest extends SapphireTest
 
     public function testCandidateAuthors()
     {
-        $blogpost = $this->objFromFixture('SiteTree', 'PostC');
+        $blogpost = $this->objFromFixture(BlogPost::class, 'PostC');
 
         $this->assertEquals(7, $blogpost->getCandidateAuthors()->count());
 
@@ -90,12 +90,12 @@ class BlogPostTest extends SapphireTest
 
     public function testCanViewFuturePost()
     {
-        $blogPost = $this->objFromFixture('SiteTree', 'NullPublishDate');
+        $blogPost = $this->objFromFixture(BlogPost::class, 'NullPublishDate');
 
-        $editor = $this->objFromFixture('Member', 'BlogEditor');
+        $editor = $this->objFromFixture(Member::class, 'BlogEditor');
         $this->assertTrue($blogPost->canView($editor));
 
-        $visitor = $this->objFromFixture('Member', 'Visitor');
+        $visitor = $this->objFromFixture(Member::class, 'Visitor');
         $this->assertFalse($blogPost->canView($visitor));
     }
 
@@ -105,10 +105,10 @@ class BlogPostTest extends SapphireTest
      */
     public function testGetDate()
     {
-        $blogPost = $this->objFromFixture('SiteTree', 'NullPublishDate');
+        $blogPost = $this->objFromFixture(BlogPost::class, 'NullPublishDate');
         $this->assertNull($blogPost->getDate());
 
-        $blogPost = $this->objFromFixture('SiteTree', 'PostA');
+        $blogPost = $this->objFromFixture(BlogPost::class, 'PostA');
         $this->assertEquals('2012-01-09 15:00:00', $blogPost->getDate());
     }
 }
