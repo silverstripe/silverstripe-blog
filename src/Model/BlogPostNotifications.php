@@ -12,6 +12,12 @@ use SilverStripe\ORM\DataExtension;
 class BlogPostNotifications extends DataExtension
 {
     /**
+     * Configure whether to send notifications even for spam comments
+     * @config
+     */
+    private static $notification_on_spam = true;
+
+    /**
      * Notify all authors of notifications.
      *
      * @param SS_List $list
@@ -19,7 +25,13 @@ class BlogPostNotifications extends DataExtension
      */
     public function updateNotificationRecipients(&$list, &$comment)
     {
+        //default is notification is on regardless of spam status
         $list = $this->owner->Authors();
+
+        // If comment is spam and notification are set to not send on spam clear the recipient list
+        if (Config::inst()->get(__CLASS__, 'notification_on_spam') == false && $comment->IsSpam) {
+            $list = array();
+        }
     }
 
     /**

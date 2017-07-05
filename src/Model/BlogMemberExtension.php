@@ -109,11 +109,11 @@ class BlogMemberExtension extends DataExtension
         Requirements::css(BLOGGER_DIR . '/css/cms.css');
         Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
 
-        $tab = Tab::create('BlogPosts', 'Blog Posts');
+        $tab = Tab::create('BlogPosts', _t('BlogMemberExtension.TABBLOGPOSTS', 'Blog Posts'));
 
         $gridField = GridField::create(
             'BlogPosts',
-            'Blog Posts',
+            _t('BlogMemberExtension.BLOGPOSTS', 'Blog Posts'),
             $this->owner->BlogPosts(),
             GridFieldConfig_BlogPost::create()
         );

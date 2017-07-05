@@ -31,7 +31,7 @@ class BlogPostFilter extends DataExtension
     {
         $stage = Versioned::get_stage();
 
-        if (Controller::curr() instanceof LeftAndMain) {
+        if (Controller::has_curr() && Controller::curr() instanceof LeftAndMain) {
             return;
         }
 
