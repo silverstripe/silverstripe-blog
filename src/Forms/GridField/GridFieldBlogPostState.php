@@ -6,7 +6,6 @@ use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Lumberjack\Forms\GridFieldSiteTreeState;
 use SilverStripe\View\Requirements;
 
-
 /**
  * Provides a component to the {@link GridField} which tells the user whether or not a blog post
  * has been published and when.

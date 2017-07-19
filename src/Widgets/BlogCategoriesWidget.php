@@ -123,5 +123,3 @@ class BlogCategoriesWidget extends Widget
         return $query;
     }
 }
-
-

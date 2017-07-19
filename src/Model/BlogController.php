@@ -221,7 +221,7 @@ class BlogController extends PageController
         if ($tag) {
             $this->blogPosts = $tag->BlogPosts();
 
-            if($this->isRSS()) {
+            if ($this->isRSS()) {
                 return $this->rssFeed($this->blogPosts, $tag->getLink());
             } else {
                 return $this->render();
@@ -265,7 +265,7 @@ class BlogController extends PageController
         if ($category) {
             $this->blogPosts = $category->BlogPosts();
 
-            if($this->isRSS()) {
+            if ($this->isRSS()) {
                 return $this->rssFeed($this->blogPosts, $category->getLink());
             } else {
                 return $this->render();
