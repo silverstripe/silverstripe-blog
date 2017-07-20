@@ -37,6 +37,10 @@ class BlogMemberExtension extends DataExtension
     {
         $count = 1;
 
+        if ($this->owner->URLSegment && !$this->owner->isChanged('FirstName') && !$this->owner->isChanged('Surname')) {
+            return;
+        }
+        
         $this->owner->URLSegment = $this->generateURLSegment();
 
         while (!$this->validURLSegment()) {
