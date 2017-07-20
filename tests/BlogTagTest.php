@@ -215,5 +215,4 @@ class BlogTagTest extends FunctionalTest
         $tag->write();
         $this->assertEquals($tag->URLSegment, "another-test");
     }
-
 }
