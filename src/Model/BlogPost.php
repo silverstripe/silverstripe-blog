@@ -75,6 +75,13 @@ class BlogPost extends Page
     /**
      * @var array
      */
+    private static $owns = array(
+        'FeaturedImage',
+    );
+
+    /**
+     * @var array
+     */
     private static $many_many = array(
         'Categories' => BlogCategory::class,
         'Tags'       => BlogTag::class,
