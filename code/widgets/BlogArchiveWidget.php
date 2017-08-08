@@ -100,7 +100,7 @@ class BlogArchiveWidget extends Widget
         $query = SQLSelect::create($fields, "BlogPost{$suffix}")
             ->addGroupBy($publishDate)
             ->addOrderBy('PublishDate Desc')
-            ->addWhere(array('PublishDate < ?' => SS_Datetime::now()));
+            ->addWhere(array('PublishDate < ?' => SS_Datetime::now()->Format('Y-m-d')));
 
         $posts = $query->execute();
         $result = new ArrayList();
