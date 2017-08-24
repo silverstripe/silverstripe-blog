@@ -21,7 +21,7 @@ nl:
     NoUnfeaturedPosts: 'Er zijn geen niet aanbevolen artikelen'
     PERMISSIONS_CATEGORY: 'Blog rechten'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Beheer gebruikers voor individuele blogs'
-    PERMISSION_MANAGE_USERS_HELP: 'Laat toewijzing van Redacteurs, Auteurs en Co-auteurs toe.'
+    PERMISSION_MANAGE_USERS_HELP: 'Laat toewijzing toe van Redacteurs, Auteurs en Co-auteurs.'
     PLURALNAME: 'Blogs'
     Posted: Geplaatst
     PostedIn: 'Geplaatst in'
@@ -43,7 +43,7 @@ nl:
     Direction: Sorteerrichting
     Direction_Description: 'Verander de sorteerrichting van categoriën getoond door deze widget.'
     Limit: Limiet
-    Limit_Description: 'Limiteer het aantal categorieën getoond door deze widget (Stel in op 0 om alle categorieën te tonen).'
+    Limit_Description: 'Limiteer het aantal categorieën getoond door deze widget (stel in op 0 om alle categorieën te tonen).'
     PLURALNAME: 'Blog Categorie-widgets'
     SINGULARNAME: 'Blog Categorie-widget'
     Sort: Volgorde
@@ -64,8 +64,8 @@ nl:
   BlogPost:
     AUTHOR: Auteur
     AdditionalCredits: 'Dankbetuigingen'
-    AdditionalCredits_Description: 'Indien (enkele) auteurs geen toegang hebben tot dit CMS, kunnen ze hier toegevoegd worden. Scheid namen door middel van komma''s'
-    Authors: Auterus
+    AdditionalCredits_Description: 'Indien (enkele van) de auteurs geen toegang hebben tot dit CMS, kunnen ze hier toegevoegd worden. Scheid namen door middel van komma''s'
+    Authors: Auteurs
     CUSTOMSUMMARY: 'Voeg een eigen samenvatting toe'
     Categories: Categorieën
     DESCRIPTION: 'Blog Artikel'
@@ -96,7 +96,7 @@ nl:
     Direction: Volgorde
     Direction_Description: 'Verander de volgorde van tags getoond door deze widget.'
     Limit: Limiet
-    Limit_Description: 'Limiteer het aantal tags getoond door deze widget (Stel in op 0 om alle tags te tonen).'
+    Limit_Description: 'Limiteer het aantal tags getoond door deze widget (stel in op 0 om alle tags te tonen).'
     PLURALNAME: 'Blog Tags-widgets'
     SINGULARNAME: 'Blog Tags-widget'
     Sort: Volgorde
