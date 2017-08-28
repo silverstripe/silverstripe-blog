@@ -1,0 +1,96 @@
+es:
+  Blog:
+    AND: 'y'
+    Archive: Archivo
+    By: por
+    CONTRIBUTOR: Contribuidor
+    Categories: Categorías
+    Category: Categoría
+    Comments: Comentarios
+    DESCRIPTION: 'Añade un blog a tu sitio web.'
+    EDITOR: Editor
+    FILTERDESCRIPTION_AUTHOR: 'Por {author}'
+    FILTERDESCRIPTION_CATEGORY: 'En la categoría {category}'
+    FILTERDESCRIPTION_DATE: 'En {date}'
+    FILTERDESCRIPTION_PAGE: 'Página {page}'
+    FILTERDESCRIPTION_TAG: 'Etiquetado con {tag}'
+    LumberjackTitle: 'Publicaciones del Blog'
+    NoPosts: 'No hay publicaciones'
+    PERMISSIONS_CATEGORY: 'Permisos del Blog'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administrar usuarios para blogs individuales'
+    PLURALNAME: 'Página base'
+    Posted: Publicado
+    PostedIn: 'Publicado en'
+    PostsPerPage: 'Publicaciones por Página'
+    ReadMoreAbout: 'Leer más sobre ''{title}''...'
+    SINGULARNAME: Blog
+    Tag: Etiqueta
+    Tagged: Etiquetado
+    Tags: Etiquetas
+    WRITER: Escritor
+  BlogArchiveWidget:
+    ArchiveType: 'Tipo de Archivo'
+    Blog: Blog
+    NumberToDisplay: 'Nº a Mostrar'
+  BlogCategoriesWidget:
+    Blog: Blog
+    Direction:
+      Label: Dirección
+    Limit:
+      Label: Límite
+    Sort:
+      Label: Ordenar
+  BlogCategory:
+    Duplicate: 'Ya existe una categoría del blog con el mismo nombre'
+    PLURALNAME: 'Categorías del Blog'
+    SINGULARNAME: 'Categoría del Blog'
+    Title: Título
+  BlogEntry:
+    DESCRIPTION: 'Página de contenido genérico'
+    PLURALNAME: 'Página base'
+    SINGULARNAME: 'Entrada del Blog'
+  BlogHolder:
+    DESCRIPTION: 'Página de contenido genérico'
+    PLURALNAME: 'Página base'
+    SINGULARNAME: 'Contenedor de Blog'
+  BlogPost:
+    AUTHOR: Autor
+    AdditionalCredits: 'Créditos adicionales'
+    Authors: Autores
+    CUSTOMSUMMARY: 'Añadir un Resumen Personalizado'
+    Categories: Categorías
+    DESCRIPTION: 'Página de contenido genérico'
+    FeaturedImage: 'Imagen Destacada'
+    PLURALNAME: 'Página base'
+    PageTitleLabel: 'Título de la Publicación'
+    PublishDate: 'Fecha de Publicación'
+    PublishDate_Description: 'Se establecerá a "ahora" si se publica sin un valor.'
+    SINGULARNAME: 'Publicación del Blog'
+    SUMMARY_DESCRIPTION: 'Si no se especifica un resumen se usarán las 30 primeras palabras.'
+    Tags: Etiquetas
+  BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Número de entradas'
+  BlogTag:
+    PLURALNAME: 'Etiquetas del Blog'
+    SINGULARNAME: Blog
+    Title: Título
+  BlogTagsCloudWidget:
+    Blog: Blog
+  BlogTagsWidget:
+    Blog: Blog
+    Direction:
+      Label: Dirección
+    Limit:
+      Label: Límite
+    Sort:
+      Label: Ordenar
+  BlogTree:
+    DESCRIPTION: 'Página de contenido genérico'
+    PLURALNAME: 'Página base'
+    SINGULARNAME: 'Árbol del Blog'
+  GridFieldAddByDBField:
+    Add: 'Añadir {name}'
+  TagCloudWidget:
+    PLURALNAME: 'Nube de Etiquetas de Widgets'
+    SINGULARNAME: 'Nube de Etiquetas de Widget'
