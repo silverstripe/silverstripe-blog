@@ -708,8 +708,10 @@ class Blog_Controller extends Page_Controller
         $urlSegment = $this->request->param('URLSegment');
 
         if ($urlSegment) {
+            $filter = URLSegmentFilter::create();
+
             return Member::get()
-                ->filter('URLSegment', $urlSegment)
+                ->filter('URLSegment', $filter->filter($urlSegment))
                 ->first();
         }
 
@@ -860,8 +862,10 @@ class Blog_Controller extends Page_Controller
         $dataRecord = $this->dataRecord;
         $tag = $this->request->param('Tag');
         if ($tag) {
+            $filter = URLSegmentFilter::create();
+
             return $dataRecord->Tags()
-                ->filter('URLSegment', array($tag, rawurlencode($tag)))
+                ->filter('URLSegment', array($tag, $filter->filter($tag)))
                 ->first();
         }
         return null;
@@ -904,8 +908,10 @@ class Blog_Controller extends Page_Controller
         $dataRecord = $this->dataRecord;
         $category = $this->request->param('Category');
         if ($category) {
+            $filter = URLSegmentFilter::create();
+
             return $dataRecord->Categories()
-                ->filter('URLSegment', array($category, rawurlencode($category)))
+                ->filter('URLSegment', array($category, $filter->filter($category)))
                 ->first();
         }
         return null;
@@ -1098,7 +1104,7 @@ class Blog_Controller extends Page_Controller
     {
         return $this->Link('rss');
     }
-    
+
     /**
      * Displays an RSS feed of the given blog posts.
      *
@@ -1115,11 +1121,11 @@ class Blog_Controller extends Page_Controller
 
         return $rss->outputToBrowser();
     }
-    
-    /** 
+
+    /**
      * Returns true if the $Rss sub-action for categories/tags has been set to "rss"
      */
-    private function isRSS() 
+    private function isRSS()
     {
         $rss = $this->request->param('Rss');
         if(is_string($rss) && strcasecmp($rss, "rss") == 0) {
