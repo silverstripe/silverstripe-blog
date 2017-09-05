@@ -12,7 +12,7 @@ class BlogMemberExtension extends DataExtension
      * @var array
      */
     private static $db = array(
-        'URLSegment' => 'Varchar',
+        'URLSegment' => 'Varchar(255)',
         'BlogProfileSummary' => 'Text',
     );
 
