@@ -425,13 +425,13 @@ class Blog extends Page implements PermissionProvider
      */
     protected function getCandidateUsers()
     {
-        if ($this->config()->grant_user_access) {
+        if ($this->config()->get('grant_user_access')) {
             $list = Member::get();
             $this->extend('updateCandidateUsers', $list);
             return $list;
         } else {
             return Permission::get_members_by_permission(
-                $this->config()->grant_user_permission
+                $this->config()->get('grant_user_permission')
             );
         }
     }
@@ -636,7 +636,7 @@ class Blog extends Page implements PermissionProvider
      */
     protected function assignGroup()
     {
-        if (!$this->config()->grant_user_access) {
+        if (!$this->config()->get('grant_user_access')) {
             return;
         }
 
@@ -661,7 +661,7 @@ class Blog extends Page implements PermissionProvider
      */
     protected function getUserGroup()
     {
-        $code = $this->config()->grant_user_group;
+        $code = $this->config()->get('grant_user_group');
 
         $group = Group::get()->filter('Code', $code)->first();
 
@@ -676,7 +676,7 @@ class Blog extends Page implements PermissionProvider
         $group->write();
 
         $permission = Permission::create();
-        $permission->Code = $this->config()->grant_user_permission;
+        $permission->Code = $this->config()->get('grant_user_permission');
 
         $group->Permissions()->add($permission);
 

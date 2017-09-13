@@ -338,8 +338,8 @@ class BlogPost extends Page
      */
     public function getCandidateAuthors()
     {
-        if ($this->config()->restrict_authors_to_group) {
-            return Group::get()->filter('Code', $this->config()->restrict_authors_to_group)->first()->Members();
+        if ($this->config()->get('restrict_authors_to_group')) {
+            return Group::get()->filter('Code', $this->config()->get('restrict_authors_to_group'))->first()->Members();
         }
 
         $list = Member::get();
