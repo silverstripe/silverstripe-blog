@@ -87,48 +87,48 @@ class Blog extends Page implements PermissionProvider
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'PostsPerPage' => 'Int',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_many = array(
+    private static $has_many = [
         'Tags' => BlogTag::class,
         'Categories' => BlogCategory::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $many_many = array(
+    private static $many_many = [
         'Editors' => Member::class,
         'Writers' => Member::class,
         'Contributors' => Member::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $allowed_children = array(
+    private static $allowed_children = [
         BlogPost::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $extensions = array(
+    private static $extensions = [
         BlogFilter::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'ProvideComments' => false,
         'PostsPerPage'    => 10
-    );
+    ];
 
     /**
      * @var string
@@ -182,10 +182,10 @@ class Blog extends Page implements PermissionProvider
              */
             $fields->addFieldsToTab(
                 'Root.Categorisation',
-                array(
+                [
                     $categories,
                     $tags
-                )
+                ]
             );
 
             $fields->findOrMakeTab('Root.Categorisation')->addExtraClass('blog-cms-categorisation');
@@ -408,11 +408,11 @@ class Blog extends Page implements PermissionProvider
 
         $fields->addFieldsToTab(
             'Root.Users',
-            array(
+            [
                 $editorField,
                 $writerField,
                 $contributorField
-            )
+            ]
         );
 
         return $fields;
@@ -606,8 +606,8 @@ class Blog extends Page implements PermissionProvider
      */
     public function providePermissions()
     {
-        return array(
-            Blog::MANAGE_USERS => array(
+        return [
+            Blog::MANAGE_USERS => [
                 'name' => _t(
                     __CLASS__ . '.PERMISSION_MANAGE_USERS_DESCRIPTION',
                     'Manage users for individual blogs'
@@ -618,8 +618,8 @@ class Blog extends Page implements PermissionProvider
                 ),
                 'category' => _t(__CLASS__ . '.PERMISSIONS_CATEGORY', 'Blog permissions'),
                 'sort' => 100
-            )
-        );
+            ]
+        ];
     }
 
     /**
@@ -644,7 +644,7 @@ class Blog extends Page implements PermissionProvider
 
         // Must check if the method exists or else an error occurs when changing page type
         if ($this->hasMethod('Editors')) {
-            foreach (array($this->Editors(), $this->Writers(), $this->Contributors()) as $levels) {
+            foreach ([$this->Editors(), $this->Writers(), $this->Contributors()] as $levels) {
                 foreach ($levels as $user) {
                     if (!$user->inGroup($group)) {
                         $user->Groups()->add($group);

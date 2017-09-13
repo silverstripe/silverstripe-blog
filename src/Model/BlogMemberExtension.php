@@ -23,24 +23,24 @@ class BlogMemberExtension extends DataExtension
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'URLSegment'         => 'Varchar',
         'BlogProfileSummary' => 'Text'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'BlogProfileImage' => Image::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $belongs_many_many = array(
+    private static $belongs_many_many = [
         'BlogPosts' => BlogPost::class
-    );
+    ];
 
     /**
      * {@inheritdoc}

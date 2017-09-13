@@ -108,7 +108,7 @@ trait BlogObject
     /**
      * {@inheritdoc}
      */
-    public function canCreate($member = null, $context = array())
+    public function canCreate($member = null, $context = [])
     {
         $extended = $this->extendedCan(__FUNCTION__, $member);
 

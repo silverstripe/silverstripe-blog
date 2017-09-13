@@ -54,9 +54,9 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      */
     public function getActions($gridField)
     {
-        return array(
+        return [
             'add',
-        );
+        ];
     }
 
     /**
@@ -94,9 +94,9 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                                 __CLASS__ . '.AddFail',
                                 'Unable to save {class} to the database.',
                                 'Unable to add the DataObject.',
-                                array(
+                                [
                                     'class' => get_class($obj),
-                                )
+                                ]
                             )
                         );
                     }
@@ -107,9 +107,9 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                             __CLASS__ . '.PermissionFail',
                             'You don\'t have permission to create a {class}.',
                             'Unable to add the DataObject.',
-                            array(
+                            [
                                 'class' => get_class($obj)
-                            )
+                            ]
                         )
                     );
                 }
@@ -198,12 +198,12 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $addAction->setAttribute('data-icon', 'add');
         $addAction->addExtraClass('btn btn-primary');
 
-        $forTemplate = new ArrayData(array());
+        $forTemplate = new ArrayData([]);
 
         $forTemplate->Fields = new ArrayList();
         $forTemplate->Fields->push($textField);
         $forTemplate->Fields->push($addAction);
 
-        return array($this->targetFragment => $forTemplate->renderWith(self::class));
+        return [$this->targetFragment => $forTemplate->renderWith(self::class)];
     }
 }

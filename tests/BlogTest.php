@@ -325,7 +325,7 @@ class BlogTest extends SapphireTest
         // Request first tag
         $this->requestURL($controller, 'first-post/tag/first-tag');
         $this->assertIDsEquals(
-            array($firstPostID, $firstFuturePostID, $secondFuturePostID),
+            [$firstPostID, $firstFuturePostID, $secondFuturePostID],
             $controller->PaginatedList()
         );
     }
@@ -343,7 +343,7 @@ class BlogTest extends SapphireTest
         // Request 2013 posts
         $this->requestURL($controller, 'first-post/archive/2013');
         $this->assertIDsEquals(
-            array($firstPostID, $secondPostID, $secondFuturePostID),
+            [$firstPostID, $secondPostID, $secondFuturePostID],
             $controller->PaginatedList()
         );
     }

@@ -27,14 +27,14 @@ class BlogPostNotificationsTest extends SapphireTest
             $comment
         )->toArray();
 
-        $segments = array();
+        $segments = [];
         foreach ($recipients as $recipient) {
             array_push($segments, $recipient->URLSegment);
         }
 
         sort($segments);
         $this->assertEquals(
-            array('blog-contributor', 'blog-editor', 'blog-writer'),
+            ['blog-contributor', 'blog-editor', 'blog-writer'],
             $segments
         );
     }

@@ -36,11 +36,11 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
 
         $columns->setFieldFormatting(
-            array(
+            [
                 'BlogPostsCount' => function ($value, CategorisationObject $item) {
                     return $item->BlogPosts()->Count();
                 }
-            )
+            ]
         );
 
         $this->changeColumnOrder();
@@ -57,12 +57,12 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
 
         $columns->setDisplayFields(
-            array(
+            [
                 'Title'          => 'Title',
                 'BlogPostsCount' => 'Posts',
                 'MergeAction'    => 'MergeAction',
                 'Actions'        => 'Actions'
-            )
+            ]
         );
     }
 }

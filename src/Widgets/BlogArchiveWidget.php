@@ -38,24 +38,24 @@ class BlogArchiveWidget extends Widget
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'NumberToDisplay' => 'Int',
         'ArchiveType' => 'Enum(\'Monthly,Yearly\', \'Monthly\')',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'NumberOfMonths' => 12,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -77,7 +77,7 @@ class BlogArchiveWidget extends Widget
             /**
              * @var FieldList $fields
              */
-            $fields->merge(array(
+            $fields->merge([
                 DropdownField::create(
                     'BlogID',
                     _t(__CLASS__ . '.Blog', 'Blog'),
@@ -85,7 +85,7 @@ class BlogArchiveWidget extends Widget
                 ),
                 DropdownField::create('ArchiveType', _t(__CLASS__ . '.ArchiveType', 'ArchiveType'), $type),
                 NumericField::create('NumberToDisplay', _t(__CLASS__ . '.NumberToDisplay', 'No. to Display'))
-            ));
+            ]);
         });
 
         return parent::getCMSFields();
@@ -132,10 +132,10 @@ class BlogArchiveWidget extends Widget
                     $title = $date->FormatI18N("%B %Y");
                 }
 
-                $archive->push(new ArrayData(array(
+                $archive->push(new ArrayData([
                     'Title' => $title,
                     'Link' => Controller::join_links($this->Blog()->Link('archive'), $year, $month)
-                )));
+                ]));
             }
         }
 

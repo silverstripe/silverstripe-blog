@@ -58,77 +58,77 @@ class BlogPost extends Page
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'PublishDate' => 'Datetime',
         'AuthorNames' => 'Varchar(1024)',
         'Summary'     => 'HTMLText'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'FeaturedImage' => Image::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $owns = array(
+    private static $owns = [
         'FeaturedImage',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $many_many = array(
+    private static $many_many = [
         'Categories' => BlogCategory::class,
         'Tags'       => BlogTag::class,
         'Authors'    => Member::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'ShowInMenus'     => false,
         'InheritSideBar'  => true,
         'ProvideComments' => true
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $extensions = array(
+    private static $extensions = [
         BlogPostFilter::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $searchable_fields = array(
+    private static $searchable_fields = [
         'Title'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $summary_fields = array(
+    private static $summary_fields = [
         'Title'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $casting = array(
+    private static $casting = [
         'Excerpt' => 'HTMLText',
         'Date' => 'DBDatetime'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $allowed_children = array();
+    private static $allowed_children = [];
 
     /**
      * The default sorting lists BlogPosts with an empty PublishDate at the top.
@@ -215,7 +215,7 @@ class BlogPost extends Page
 
         $this->beforeUpdateCMSFields(function ($fields) {
             $uploadField = UploadField::create('FeaturedImage', _t(__CLASS__ . '.FeaturedImage', 'Featured Image'));
-            $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
+            $uploadField->getValidator()->setAllowedExtensions(['jpg', 'jpeg', 'png', 'gif']);
 
             /**
              * @var FieldList $fields
@@ -232,9 +232,9 @@ class BlogPost extends Page
             $summaryHolder = ToggleCompositeField::create(
                 'CustomSummary',
                 _t(__CLASS__ . '.CUSTOMSUMMARY', 'Add A Custom Summary'),
-                array(
+                [
                     $summary,
-                )
+                ]
             );
             $summaryHolder->setHeadingLevel(4);
             $summaryHolder->addExtraClass('custom-summary');
@@ -244,10 +244,10 @@ class BlogPost extends Page
             $urlSegment = $fields->dataFieldByName('URLSegment');
             $urlSegment->setURLPrefix($this->Parent()->RelativeLink());
 
-            $fields->removeFieldsFromTab('Root.Main', array(
+            $fields->removeFieldsFromTab('Root.Main', [
                 'MenuTitle',
                 'URLSegment',
-            ));
+            ]);
 
             $authorField = ListboxField::create(
                 'Authors',
@@ -681,9 +681,9 @@ class BlogPost extends Page
         $items = new ArrayList();
         foreach ($this->Authors() as $author) {
             // Add link for each author
-            $author = $author->customise(array(
+            $author = $author->customise([
                 'URL' => $parent->ProfileLink($author->URLSegment),
-            ));
+            ]);
             $items->push($author);
         }
 
@@ -702,9 +702,9 @@ class BlogPost extends Page
         $authors = array_filter(preg_split('/\s*,\s*/', $this->AuthorNames));
 
         foreach ($authors as $author) {
-            $item = new ArrayData(array(
+            $item = new ArrayData([
                 'Name' => $author,
-            ));
+            ]);
 
             $items->push($item);
         }

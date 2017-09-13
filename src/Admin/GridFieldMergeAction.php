@@ -45,7 +45,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      * @param string $parentMethod
      * @param string $childMethod
      */
-    public function __construct($records = array(), $parentType, $parentMethod, $childMethod)
+    public function __construct($records = [], $parentType, $parentMethod, $childMethod)
     {
         $this->records = $records;
         $this->parentType = $parentType;
@@ -70,7 +70,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnsHandled($gridField)
     {
-        return array('MergeAction');
+        return ['MergeAction'];
     }
 
     /**
@@ -88,15 +88,15 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
                 'MergeAction' . $record->ID,
                 'Move',
                 'merge',
-                array(
+                [
                     'record' => $record->ID,
                     'target' => $prefix . '-target-record-' . $record->ID,
-                )
+                ]
             );
 
-            $action->setExtraAttributes(array(
+            $action->setExtraAttributes([
                 'data-target' => $prefix . '-target-record-' . $record->ID
-            ));
+            ]);
 
             return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
         }
@@ -109,7 +109,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnAttributes($gridField, $record, $columnName)
     {
-        return array('class' => 'MergeAction');
+        return ['class' => 'MergeAction'];
     }
 
     /**
@@ -117,7 +117,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnMetadata($gridField, $columnName)
     {
-        return array('title' => 'Move posts to');
+        return ['title' => 'Move posts to'];
     }
 
     /**
@@ -125,7 +125,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getActions($gridField)
     {
-        return array('merge');
+        return ['merge'];
     }
 
     /**

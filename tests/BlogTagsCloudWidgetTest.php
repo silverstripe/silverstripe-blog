@@ -23,12 +23,12 @@ class BlogTagsCloudWidgetTest extends SapphireTest
 
         $widget = new BlogTagsCloudWidget();
         $fields = $widget->getCMSFields();
-        $names = array();
+        $names = [];
         foreach ($fields as $field) {
             array_push($names, $field->getName());
         }
 
-        $expected = array('Title', 'Enabled', 'BlogID');
+        $expected = ['Title', 'Enabled', 'BlogID'];
         $this->assertEquals($expected, $names);
     }
 

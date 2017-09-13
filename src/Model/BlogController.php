@@ -14,31 +14,31 @@ class BlogController extends PageController
     /**
      * @var array
      */
-    private static $allowed_actions = array(
+    private static $allowed_actions = [
         'archive',
         'tag',
         'category',
         'rss',
         'profile'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $url_handlers = array(
+    private static $url_handlers = [
         'tag/$Tag!/$Rss' => 'tag',
         'category/$Category!/$Rss' => 'category',
         'archive/$Year!/$Month/$Day' => 'archive',
         'profile/$URLSegment!' => 'profile'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $casting = array(
+    private static $casting = [
         'MetaTitle' => 'Text',
         'FilterDescription' => 'Text'
-    );
+    ];
 
     /**
      * The current Blog Post DataList query.
@@ -243,7 +243,7 @@ class BlogController extends PageController
         $tag = $this->request->param('Tag');
         if ($tag) {
             return $dataRecord->Tags()
-                ->filter('URLSegment', array($tag, rawurlencode($tag)))
+                ->filter('URLSegment', [$tag, rawurlencode($tag)])
                 ->first();
         }
         return null;
@@ -287,7 +287,7 @@ class BlogController extends PageController
         $category = $this->request->param('Category');
         if ($category) {
             return $dataRecord->Categories()
-                ->filter('URLSegment', array($category, rawurlencode($category)))
+                ->filter('URLSegment', [$category, rawurlencode($category)])
                 ->first();
         }
         return null;
@@ -319,7 +319,7 @@ class BlogController extends PageController
      */
     public function getFilterDescription()
     {
-        $items = array();
+        $items = [];
 
         $list = $this->PaginatedList();
         $currentPage = $list->CurrentPage();
@@ -329,9 +329,9 @@ class BlogController extends PageController
                 'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_PAGE',
                 'Page {page}',
                 null,
-                array(
+                [
                     'page' => $currentPage
-                )
+                ]
             );
         }
 
@@ -340,9 +340,9 @@ class BlogController extends PageController
                 'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_AUTHOR',
                 'By {author}',
                 null,
-                array(
+                [
                     'author' => $author->Title
-                )
+                ]
             );
         }
 
@@ -351,9 +351,9 @@ class BlogController extends PageController
                 'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_TAG',
                 'Tagged with {tag}',
                 null,
-                array(
+                [
                     'tag' => $tag->Title
-                )
+                ]
             );
         }
 
@@ -362,9 +362,9 @@ class BlogController extends PageController
                 'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_CATEGORY',
                 'In category {category}',
                 null,
-                array(
+                [
                     'category' => $category->Title
-                )
+                ]
             );
         }
 
@@ -381,9 +381,9 @@ class BlogController extends PageController
                 'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_DATE',
                 'In {date}',
                 null,
-                array(
+                [
                     'date' => $date,
-                )
+                ]
             );
         }
 

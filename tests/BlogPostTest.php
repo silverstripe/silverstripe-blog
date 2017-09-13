@@ -43,33 +43,33 @@ class BlogPostTest extends SapphireTest
     {
         $someFutureDate = '2013-10-10 20:00:00';
         $somePastDate = '2009-10-10 20:00:00';
-        return array(
+        return [
             // Check this post given the date has passed
-            array($someFutureDate, 'Editor', 'PostA', true),
-            array($someFutureDate, 'Contributor', 'PostA', true),
-            array($someFutureDate, 'BlogEditor', 'PostA', true),
-            array($someFutureDate, 'Writer', 'PostA', true),
+            [$someFutureDate, 'Editor', 'PostA', true],
+            [$someFutureDate, 'Contributor', 'PostA', true],
+            [$someFutureDate, 'BlogEditor', 'PostA', true],
+            [$someFutureDate, 'Writer', 'PostA', true],
 
             // Check unpublished pages
-            array($somePastDate, 'Editor', 'PostA', true),
-            array($somePastDate, 'Contributor', 'PostA', true),
-            array($somePastDate, 'BlogEditor', 'PostA', true),
-            array($somePastDate, 'Writer', 'PostA', true),
+            [$somePastDate, 'Editor', 'PostA', true],
+            [$somePastDate, 'Contributor', 'PostA', true],
+            [$somePastDate, 'BlogEditor', 'PostA', true],
+            [$somePastDate, 'Writer', 'PostA', true],
 
             // Test a page that was authored by another user
 
             // Check this post given the date has passed
-            array($someFutureDate, 'Editor', 'FirstBlogPost', true),
-            array($someFutureDate, 'Contributor', 'FirstBlogPost', true),
-            array($someFutureDate, 'BlogEditor', 'FirstBlogPost', true),
-            array($someFutureDate, 'Writer', 'FirstBlogPost', true),
+            [$someFutureDate, 'Editor', 'FirstBlogPost', true],
+            [$someFutureDate, 'Contributor', 'FirstBlogPost', true],
+            [$someFutureDate, 'BlogEditor', 'FirstBlogPost', true],
+            [$someFutureDate, 'Writer', 'FirstBlogPost', true],
 
             // Check future pages - non-editors shouldn't be able to see this
-            array($somePastDate, 'Editor', 'FirstBlogPost', true),
-            array($somePastDate, 'Contributor', 'FirstBlogPost', false),
-            array($somePastDate, 'BlogEditor', 'FirstBlogPost', false),
-            array($somePastDate, 'Writer', 'FirstBlogPost', false),
-        );
+            [$somePastDate, 'Editor', 'FirstBlogPost', true],
+            [$somePastDate, 'Contributor', 'FirstBlogPost', false],
+            [$somePastDate, 'BlogEditor', 'FirstBlogPost', false],
+            [$somePastDate, 'Writer', 'FirstBlogPost', false],
+        ];
     }
 
     public function testCandidateAuthors()

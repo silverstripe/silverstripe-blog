@@ -37,18 +37,18 @@ class BlogCategoriesWidget extends Widget
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'Limit' => 'Int',
         'Order' => 'Varchar',
         'Direction' => 'Varchar',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -78,7 +78,7 @@ class BlogCategoriesWidget extends Widget
             $fields[] = DropdownField::create(
                 'Order',
                 _t(__CLASS__ . '.Sort', 'Sort'),
-                array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
+                ['Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated']
             )
                 ->setDescription(
                     _t(__CLASS__ . '.Sort_Description', 'Change the order of categories shown by this widget.')
@@ -87,7 +87,7 @@ class BlogCategoriesWidget extends Widget
             $fields[] = DropdownField::create(
                 'Direction',
                 _t(__CLASS__ . '.Direction', 'Direction'),
-                array('ASC' => 'Ascending', 'DESC' => 'Descending')
+                ['ASC' => 'Ascending', 'DESC' => 'Descending']
             )
                 ->setDescription(
                     _t(
@@ -108,7 +108,7 @@ class BlogCategoriesWidget extends Widget
         $blog = $this->Blog();
 
         if (!$blog) {
-            return array();
+            return [];
         }
 
         $query = $blog->Categories();

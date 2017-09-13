@@ -37,14 +37,14 @@ class BlogTagsCloudWidget extends Widget
     /**
      * @var array
      */
-    private static $db = array();
+    private static $db = [];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -115,6 +115,6 @@ class BlogTagsCloudWidget extends Widget
             return $tags;
         }
 
-        return array();
+        return [];
     }
 }

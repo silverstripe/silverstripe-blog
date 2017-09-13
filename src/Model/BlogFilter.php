@@ -96,10 +96,10 @@ class BlogFilter extends Lumberjack
         $excluded = $this->owner->getExcludedSiteTreeClassNames();
 
         if (!empty($excluded)) {
-            $pages = BlogPost::get()->filter(array(
+            $pages = BlogPost::get()->filter([
                 'ParentID' => $this->owner->ID,
                 'ClassName' => $excluded
-            ));
+            ]);
 
             $gridField = BlogFilterGridField::create(
                 'ChildPages',

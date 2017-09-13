@@ -38,9 +38,9 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                         __CLASS__ . '.Draft',
                         '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}',
                         'State for when a post is saved.',
-                        array(
+                        [
                             'date' => $lastEdited->FormatFromSettings(),
-                        )
+                        ]
                     );
                 }
 
@@ -51,22 +51,22 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
 
                 if (strtotime($record->PublishDate) > time()) {
                     return _t(
-                            __CLASS__ . '.Timer',
+                        __CLASS__ . '.Timer',
                         '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}',
                         'State for when a post is published.',
-                        array(
+                        [
                             'date' => $publishDate->FormatFromSettings(),
-                        )
+                        ]
                     ) . $modifiedLabel;
                 }
 
                 return _t(
-                        __CLASS__ . '.Published',
+                    __CLASS__ . '.Published',
                     '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}',
                     'State for when a post is published.',
-                    array(
+                    [
                         'date' => $publishDate->FormatFromSettings(),
-                    )
+                    ]
                 ) . $modifiedLabel;
             }
         }
@@ -91,12 +91,12 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                     $class = 'gridfield-icon published';
                 }
 
-                return array(
+                return [
                     'class' => $class,
-                );
+                ];
             }
         }
 
-        return array();
+        return [];
     }
 }
