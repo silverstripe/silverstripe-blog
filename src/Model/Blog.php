@@ -151,7 +151,7 @@ class Blog extends Page implements PermissionProvider
 
             $categories = GridField::create(
                 'Categories',
-                _t('Blog.Categories', 'Categories'),
+                _t(__CLASS__ . '.Categories', 'Categories'),
                 $this->Categories(),
                 GridFieldCategorisationConfig::create(
                     15,
@@ -164,7 +164,7 @@ class Blog extends Page implements PermissionProvider
 
             $tags = GridField::create(
                 'Tags',
-                _t('Blog.Tags', 'Tags'),
+                _t(__CLASS__ . '.Tags', 'Tags'),
                 $this->Tags(),
                 GridFieldCategorisationConfig::create(
                     15,
@@ -282,15 +282,15 @@ class Blog extends Page implements PermissionProvider
         }
 
         if ($this->isEditor($member)) {
-            return _t('Blog.EDITOR', 'Editor');
+            return _t(__CLASS__ . '.EDITOR', 'Editor');
         }
 
         if ($this->isWriter($member)) {
-            return _t('Blog.WRITER', 'Writer');
+            return _t(__CLASS__ . '.WRITER', 'Writer');
         }
 
         if ($this->isContributor($member)) {
-            return _t('Blog.CONTRIBUTOR', 'Contributor');
+            return _t(__CLASS__ . '.CONTRIBUTOR', 'Contributor');
         }
 
         return null;
@@ -349,7 +349,7 @@ class Blog extends Page implements PermissionProvider
 
         $fields->addFieldToTab(
             'Root.Settings',
-            NumericField::create('PostsPerPage', _t('Blog.PostsPerPage', 'Posts Per Page'))
+            NumericField::create('PostsPerPage', _t(__CLASS__ . '.PostsPerPage', 'Posts Per Page'))
         );
 
         $members = $this->getCandidateUsers()->map()->toArray();
@@ -586,7 +586,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function getLumberjackTitle()
     {
-        return _t('Blog.LumberjackTitle', 'Blog Posts');
+        return _t(__CLASS__ . '.LumberjackTitle', 'Blog Posts');
     }
 
     /**
@@ -607,14 +607,14 @@ class Blog extends Page implements PermissionProvider
         return array(
             Blog::MANAGE_USERS => array(
                 'name' => _t(
-                    'Blog.PERMISSION_MANAGE_USERS_DESCRIPTION',
+                    __CLASS__ . '.PERMISSION_MANAGE_USERS_DESCRIPTION',
                     'Manage users for individual blogs'
                 ),
                 'help' => _t(
-                    'Blog.PERMISSION_MANAGE_USERS_HELP',
+                    __CLASS__ . '.PERMISSION_MANAGE_USERS_HELP',
                     'Allow assignment of Editors, Writers, or Contributors to blogs'
                 ),
-                'category' => _t('Blog.PERMISSIONS_CATEGORY', 'Blog permissions'),
+                'category' => _t(__CLASS__ . '.PERMISSIONS_CATEGORY', 'Blog permissions'),
                 'sort' => 100
             )
         );

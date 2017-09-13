@@ -169,7 +169,7 @@ class BlogPost extends Page
         }
 
         if ($this->isAuthor($member)) {
-            return _t('BlogPost.AUTHOR', 'Author');
+            return _t(__CLASS__ . '.AUTHOR', 'Author');
         }
 
         $parent = $this->Parent();
@@ -212,7 +212,7 @@ class BlogPost extends Page
         Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
 
         $this->beforeUpdateCMSFields(function ($fields) {
-            $uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
+            $uploadField = UploadField::create('FeaturedImage', _t(__CLASS__ . '.FeaturedImage', 'Featured Image'));
             $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
 
             /**
@@ -223,13 +223,13 @@ class BlogPost extends Page
             $summary = HtmlEditorField::create('Summary', false);
             $summary->setRows(5);
             $summary->setDescription(_t(
-                'BlogPost.SUMMARY_DESCRIPTION',
+                __CLASS__ . '.SUMMARY_DESCRIPTION',
                 'If no summary is specified the first 30 words will be used.'
             ));
 
             $summaryHolder = ToggleCompositeField::create(
                 'CustomSummary',
-                _t('BlogPost.CUSTOMSUMMARY', 'Add A Custom Summary'),
+                _t(__CLASS__ . '.CUSTOMSUMMARY', 'Add A Custom Summary'),
                 array(
                     $summary,
                 )
@@ -249,18 +249,18 @@ class BlogPost extends Page
 
             $authorField = ListboxField::create(
                 'Authors',
-                _t('BlogPost.Authors', 'Authors'),
+                _t(__CLASS__ . '.Authors', 'Authors'),
                 $this->getCandidateAuthors()->map()->toArray()
             );
 
             $authorNames = TextField::create(
                 'AuthorNames',
-                _t('BlogPost.AdditionalCredits', 'Additional Credits'),
+                _t(__CLASS__ . '.AdditionalCredits', 'Additional Credits'),
                 null,
                 1024
             )->setDescription(
                 _t(
-                    'BlogPost.AdditionalCredits_Description',
+                    __CLASS__ . '.AdditionalCredits_Description',
                     'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.'
                 )
             );
@@ -270,12 +270,12 @@ class BlogPost extends Page
                 $authorNames = $authorNames->performDisabledTransformation();
             }
 
-            $publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
+            $publishDate = DatetimeField::create('PublishDate', _t(__CLASS__ . '.PublishDate', 'Publish Date'));
 
             if (!$this->PublishDate) {
                 $publishDate->setDescription(
                     _t(
-                        'BlogPost.PublishDate_Description',
+                        __CLASS__ . '.PublishDate_Description',
                         'Will be set to "now" if published without a value.'
                     )
                 );
@@ -299,7 +299,7 @@ class BlogPost extends Page
                     $urlSegment,
                     TagField::create(
                         'Categories',
-                        _t('BlogPost.Categories', 'Categories'),
+                        _t(__CLASS__ . '.Categories', 'Categories'),
                         $categories,
                         $this->Categories()
                     )
@@ -307,7 +307,7 @@ class BlogPost extends Page
                         ->setShouldLazyLoad(true),
                     TagField::create(
                         'Tags',
-                        _t('BlogPost.Tags', 'Tags'),
+                        _t(__CLASS__ . '.Tags', 'Tags'),
                         $tags,
                         $this->Tags()
                     )
@@ -721,7 +721,7 @@ class BlogPost extends Page
     {
         $labels = parent::fieldLabels($includeRelations);
 
-        $labels['Title'] = _t('BlogPost.PageTitleLabel', 'Post Title');
+        $labels['Title'] = _t(__CLASS__ . '.PageTitleLabel', 'Post Title');
 
         return $labels;
     }

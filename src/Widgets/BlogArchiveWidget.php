@@ -71,7 +71,7 @@ class BlogArchiveWidget extends Widget
             $type = $archiveType->enumValues();
 
             foreach ($type as $k => $v) {
-                $type[$k] = _t('BlogArchiveWidget.' . ucfirst(strtolower($v)), $v);
+                $type[$k] = _t(__CLASS__ .'.' . ucfirst(strtolower($v)), $v);
             }
 
             /**
@@ -80,11 +80,11 @@ class BlogArchiveWidget extends Widget
             $fields->merge(array(
                 DropdownField::create(
                     'BlogID',
-                    _t('BlogArchiveWidget.Blog', 'Blog'),
+                    _t(__CLASS__ . '.Blog', 'Blog'),
                     Blog::get()->map()
                 ),
-                DropdownField::create('ArchiveType', _t('BlogArchiveWidget.ArchiveType', 'ArchiveType'), $type),
-                NumericField::create('NumberToDisplay', _t('BlogArchiveWidget.NumberToDisplay', 'No. to Display'))
+                DropdownField::create('ArchiveType', _t(__CLASS__ . '.ArchiveType', 'ArchiveType'), $type),
+                NumericField::create('NumberToDisplay', _t(__CLASS__ . '.NumberToDisplay', 'No. to Display'))
             ));
         });
 

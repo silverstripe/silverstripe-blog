@@ -57,18 +57,18 @@ class BlogTagsWidget extends Widget
         $this->beforeUpdateCMSFields(function (Fieldlist $fields) {
             $fields[] = DropdownField::create(
                 'BlogID',
-                _t('BlogTagsWidget.Blog', 'Blog'),
+                _t(__CLASS__ . '.Blog', 'Blog'),
                 Blog::get()->map()
             );
 
             $fields[] = NumericField::create(
                 'Limit',
-                _t('BlogTagsWidget.Limit', 'Limit'),
+                _t(__CLASS__ . '.Limit', 'Limit'),
                 0
             )
                 ->setDescription(
                     _t(
-                        'BlogTagsWidget.Limit_Description',
+                        __CLASS__ . '.Limit_Description',
                         'Limit the number of tags shown by this widget (set to 0 to show all tags).'
                     )
                 )
@@ -76,21 +76,21 @@ class BlogTagsWidget extends Widget
 
             $fields[] = DropdownField::create(
                 'Order',
-                _t('BlogTagsWidget.Sort', 'Sort'),
+                _t(__CLASS__ . '.Sort', 'Sort'),
                 array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
             )
                 ->setDescription(
-                    _t('BlogTagsWidget.Sort_Description', 'Change the order of tags shown by this widget.')
+                    _t(__CLASS__ . '.Sort_Description', 'Change the order of tags shown by this widget.')
                 );
 
             $fields[] = DropdownField::create(
                 'Direction',
-                _t('BlogTagsWidget.Direction', 'Direction'),
+                _t(__CLASS__ . '.Direction', 'Direction'),
                 array('ASC' => 'Ascending', 'DESC' => 'Descending')
             )
                 ->setDescription(
                     _t(
-                        'BlogTagsWidget.Direction_Description',
+                        __CLASS__ . '.Direction_Description',
                         'Change the direction of ordering of tags shown by this widget.'
                     )
                 );

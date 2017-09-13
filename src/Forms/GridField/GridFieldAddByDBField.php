@@ -90,7 +90,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                     if (!$id) {
                         $gridField->setCustomValidationMessage(
                             _t(
-                                'GridFieldAddByDBField.AddFail',
+                                __CLASS__ . '.AddFail',
                                 'Unable to save {class} to the database.',
                                 'Unable to add the DataObject.',
                                 array(
@@ -103,7 +103,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                     return Security::permissionFailure(
                         Controller::curr(),
                         _t(
-                            'GridFieldAddByDBField.PermissionFail',
+                            __CLASS__ . '.PermissionFail',
                             'You don\'t have permission to create a {class}.',
                             'Unable to add the DataObject.',
                             array(
@@ -186,7 +186,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             $gridField,
             'add',
             _t(
-                'GridFieldAddByDBField.Add',
+                __CLASS__ . '.Add',
                 'Add {name}',
                 'Add button text',
                 ['name' => $obj->i18n_singular_name()]

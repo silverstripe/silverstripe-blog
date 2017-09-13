@@ -57,8 +57,8 @@ class BlogRecentPostsWidget extends Widget
              * @var FieldList $fields
              */
             $fields->merge(array(
-                DropdownField::create('BlogID', _t('BlogRecentPostsWidget.Blog', 'Blog'), Blog::get()->map()),
-                NumericField::create('NumberOfPosts', _t('BlogRecentPostsWidget.NumberOfPosts', 'Number of Posts'))
+                DropdownField::create('BlogID', _t(__CLASS__ . '.Blog', 'Blog'), Blog::get()->map()),
+                NumericField::create('NumberOfPosts', _t(__CLASS__ . '.NumberOfPosts', 'Number of Posts'))
             ));
         });
 

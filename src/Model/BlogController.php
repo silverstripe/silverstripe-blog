@@ -326,7 +326,7 @@ class BlogController extends PageController
 
         if ($currentPage > 1) {
             $items[] = _t(
-                'Blog.FILTERDESCRIPTION_PAGE',
+                'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_PAGE',
                 'Page {page}',
                 null,
                 array(
@@ -337,7 +337,7 @@ class BlogController extends PageController
 
         if ($author = $this->getCurrentProfile()) {
             $items[] = _t(
-                'Blog.FILTERDESCRIPTION_AUTHOR',
+                'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_AUTHOR',
                 'By {author}',
                 null,
                 array(
@@ -348,7 +348,7 @@ class BlogController extends PageController
 
         if ($tag = $this->getCurrentTag()) {
             $items[] = _t(
-                'Blog.FILTERDESCRIPTION_TAG',
+                'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_TAG',
                 'Tagged with {tag}',
                 null,
                 array(
@@ -359,7 +359,7 @@ class BlogController extends PageController
 
         if ($category = $this->getCurrentCategory()) {
             $items[] = _t(
-                'Blog.FILTERDESCRIPTION_CATEGORY',
+                'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_CATEGORY',
                 'In category {category}',
                 null,
                 array(
@@ -378,7 +378,7 @@ class BlogController extends PageController
             }
 
             $items[] = _t(
-                'Blog.FILTERDESCRIPTION_DATE',
+                'SilverStripe\\Blog\\Model\\Blog.FILTERDESCRIPTION_DATE',
                 'In {date}',
                 null,
                 array(

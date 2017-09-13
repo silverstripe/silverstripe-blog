@@ -24,7 +24,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 $modifiedLabel = '';
 
                 if ($record->isModifiedOnStage) {
-                    $modifiedLabel = '<span class="modified">' . _t('GridFieldBlogPostState.Modified') . '</span>';
+                    $modifiedLabel = '<span class="modified">' . _t(__CLASS__ . '.Modified') . '</span>';
                 }
 
                 if (!$record->isPublished()) {
@@ -34,7 +34,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                     $lastEdited = $record->dbObject('LastEdited');
 
                     return _t(
-                        'GridFieldBlogPostState.Draft',
+                        __CLASS__ . '.Draft',
                         '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}',
                         'State for when a post is saved.',
                         array(
@@ -50,7 +50,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
 
                 if (strtotime($record->PublishDate) > time()) {
                     return _t(
-                        'GridFieldBlogPostState.Timer',
+                            __CLASS__ . '.Timer',
                         '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}',
                         'State for when a post is published.',
                         array(
@@ -60,7 +60,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 }
 
                 return _t(
-                    'GridFieldBlogPostState.Published',
+                        __CLASS__ . '.Published',
                     '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}',
                     'State for when a post is published.',
                     array(

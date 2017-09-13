@@ -72,6 +72,6 @@ class BlogTag extends DataObject implements CategorisationObject
      */
     protected function getDuplicateError()
     {
-        return _t('BlogTag.Duplicate', 'A blog tag already exists with that name.');
+        return _t(__CLASS__ . '.Duplicate', 'A blog tag already exists with that name.');
     }
 }

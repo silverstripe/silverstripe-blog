@@ -35,12 +35,11 @@ trait BlogObject
      */
     public function getCMSFields()
     {
-        $shortClass = ClassInfo::shortName(self::class);
         $fields = TabSet::create(
             'Root',
             Tab::create(
                 'Main',
-                TextField::create('Title', _t($shortClass . '.Title', 'Title'))
+                TextField::create('Title', _t(__CLASS__ . '.Title', 'Title'))
             )
         );
 

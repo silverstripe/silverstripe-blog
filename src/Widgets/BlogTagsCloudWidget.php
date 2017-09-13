@@ -58,7 +58,7 @@ class BlogTagsCloudWidget extends Widget
             $fields->push(
                 DropdownField::create(
                     'BlogID',
-                    _t('BlogTagsCloudWidget.Blog', 'Blog'),
+                    _t(__CLASS__ . '.Blog', 'Blog'),
                     Blog::get()->map()
                 )
             );
