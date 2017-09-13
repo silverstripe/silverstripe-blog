@@ -528,7 +528,7 @@ class Blog extends Page implements PermissionProvider
             sprintf('"SiteTree%s"."ID" = "BlogPost%s"."ID"', $stage, $stage)
         );
 
-        $conn = DB::getConn();
+        $conn = DB::get_conn();
 
         // Filter by year
         $yearCond = $conn->formattedDatetimeClause('"BlogPost"."PublishDate"', '%Y');
