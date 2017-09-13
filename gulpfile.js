@@ -8,10 +8,10 @@ gulp.task("scss", function () {
         .pipe(gulp.dest("./css"));
 });
 
-gulp.task('watch', ['scss'], function() {
+gulp.task('watch', ['scss'], function () {
     gulp.watch('./scss/*.scss', ['scss']);
 });
 
-gulp.task('default', ['scss'], function() {
+gulp.task('default', ['scss'], function () {
     // noop
 });
