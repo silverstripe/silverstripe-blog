@@ -10,6 +10,7 @@ use SilverStripe\Dev\FunctionalTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\Member;
+use SilverStripe\Security\Security;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
@@ -51,7 +52,7 @@ class BlogTagTest extends FunctionalTest
         $member = Security::getCurrentUser();
 
         if ($member) {
-            $member->logout();
+            Security::setCurrentUser(null);
         }
 
         $this->objFromFixture(BlogPost::class, 'FirstBlogPost');

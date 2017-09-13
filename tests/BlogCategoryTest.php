@@ -52,7 +52,7 @@ class BlogCategoryTest extends FunctionalTest
         $member = Security::getCurrentUser();
 
         if ($member) {
-            $member->logout();
+            Security::setCurrentUser(null);
         }
 
         $this->objFromFixture(BlogPost::class, 'FirstBlogPost');

@@ -42,7 +42,7 @@ class BlogPostFilterTest extends SapphireTest
         $member = Security::getCurrentUser();
 
         if ($member) {
-            $member->logout();
+            Security::setCurrentUser(null);
         }
 
         /**
