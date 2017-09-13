@@ -11,6 +11,7 @@ use SilverStripe\Dev\FunctionalTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\Member;
+use SilverStripe\Security\Security;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
@@ -48,7 +49,7 @@ class BlogCategoryTest extends FunctionalTest
      */
     public function testBlogPosts()
     {
-        $member = Member::currentUser();
+        $member = Security::getCurrentUser();
 
         if ($member) {
             $member->logout();

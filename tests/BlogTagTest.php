@@ -48,7 +48,7 @@ class BlogTagTest extends FunctionalTest
      */
     public function testBlogPosts()
     {
-        $member = Member::currentUser();
+        $member = Security::getCurrentUser();
 
         if ($member) {
             $member->logout();

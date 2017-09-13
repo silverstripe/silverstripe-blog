@@ -22,6 +22,7 @@ use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
+use SilverStripe\Security\Security;
 use SilverStripe\TagField\TagField;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
@@ -387,7 +388,7 @@ class BlogPost extends Page
     protected function getMember($member = null)
     {
         if (!$member) {
-            $member = Member::currentUser();
+            $member = Security::getCurrentUser();
         }
 
         if (is_numeric($member)) {
@@ -746,7 +747,7 @@ class BlogPost extends Page
     {
         parent::onBeforeWrite();
 
-        if (!$this->exists() && ($member = Member::currentUser())) {
+        if (!$this->exists() && ($member = Security::getCurrentUser())) {
             $this->Authors()->add($member);
         }
     }
