@@ -2,6 +2,7 @@
 
 namespace SilverStripe\Blog\Forms\GridField;
 
+use SilverStripe\Core\Manifest\ModuleLoader;
 use UnexpectedValueException;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
@@ -155,7 +156,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      */
     public function getHTMLFragments($gridField)
     {
-        Requirements::javascript(BLOGGER_DIR . '/js/gridfieldaddbydbfield.js');
+        Requirements::javascript(ModuleLoader::getModule('silverstripe/blog')->getRelativeResourcePath('js/gridfieldaddbydbfield.js'));
 
         /**
          * @var DataList $dataList

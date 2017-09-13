@@ -3,6 +3,7 @@
 namespace SilverStripe\Blog\Forms\GridField;
 
 use SilverStripe\Blog\Model\BlogPost;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Lumberjack\Forms\GridFieldSiteTreeState;
 use SilverStripe\View\Requirements;
 
@@ -19,7 +20,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
     public function getColumnContent($gridField, $record, $columnName)
     {
         if ($columnName == 'State') {
-            Requirements::css(BLOGGER_DIR . '/css/cms.css');
+            Requirements::css(ModuleLoader::getModule('silverstripe/blog')->getRelativeResourcePath('css/cms.css'));
             if ($record instanceof BlogPost) {
                 $modifiedLabel = '';
 

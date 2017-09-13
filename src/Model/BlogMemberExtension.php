@@ -5,6 +5,7 @@ namespace SilverStripe\Blog\Model;
 use SilverStripe\Assets\Image;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
 use SilverStripe\Blog\Model\BlogPost;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\Tab;
@@ -107,9 +108,9 @@ class BlogMemberExtension extends DataExtension
         $fields->removeFieldFromTab('Root', 'BlogPosts');
 
         // Construct a better posts tab.
-
-        Requirements::css(BLOGGER_DIR . '/css/cms.css');
-        Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
+        $module = ModuleLoader::getModule('silverstripe/blog');
+        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
+        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
 
         $tab = Tab::create('BlogPosts', _t(__CLASS__ . '.TABBLOGPOSTS', 'Blog Posts'));
 

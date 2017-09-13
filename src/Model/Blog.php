@@ -14,6 +14,7 @@ use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\Core\Convert;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\NumericField;
@@ -141,8 +142,9 @@ class Blog extends Page implements PermissionProvider
      */
     public function getCMSFields()
     {
-        Requirements::css(BLOGGER_DIR . '/css/cms.css');
-        Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
+        $module = ModuleLoader::getModule('silverstripe/blog');
+        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
+        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
 
         $this->beforeUpdateCMSFields(function ($fields) {
             if (!$this->canEdit()) {
