@@ -17,8 +17,6 @@ use SilverStripe\Security\Permission;
  * This is responsible for filtering only published posts to users who do not have permission to
  * view non-published posts.
  *
- * @package silverstripe
- * @subpackage blog
  */
 class BlogPostFilter extends DataExtension
 {

@@ -30,9 +30,6 @@ use SilverStripe\View\Requirements;
 /**
  * An individual blog post.
  *
- * @package silverstripe
- * @subpackage blog
- *
  * @method ManyManyList Categories()
  * @method ManyManyList Tags()
  * @method ManyManyList Authors()

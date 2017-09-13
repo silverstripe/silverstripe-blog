@@ -10,8 +10,6 @@ use SilverStripe\View\Requirements;
  * Provides a component to the {@link GridField} which tells the user whether or not a blog post
  * has been published and when.
  *
- * @package silverstripe
- * @subpackage blog
  */
 class GridFieldBlogPostState extends GridFieldSiteTreeState
 {

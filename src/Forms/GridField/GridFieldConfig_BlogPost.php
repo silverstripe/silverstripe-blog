@@ -8,8 +8,6 @@ use SilverStripe\Lumberjack\Forms\GridFieldSiteTreeState;
 /**
  * GridField config necessary for managing a SiteTree object.
  *
- * @package silverstripe
- * @subpackage blog
  */
 class GridFieldConfig_BlogPost extends GridFieldConfig_Lumberjack
 {

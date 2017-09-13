@@ -16,8 +16,6 @@ use SilverStripe\View\Requirements;
 /**
  * This class is responsible for add Blog specific behaviour to Members.
  *
- * @package silverstripe
- * @subpackage blog
  */
 class BlogMemberExtension extends DataExtension
 {
@@ -53,7 +51,7 @@ class BlogMemberExtension extends DataExtension
         if ($this->owner->URLSegment && !$this->owner->isChanged('FirstName') && !$this->owner->isChanged('Surname')) {
             return;
         }
-        
+
         $this->owner->URLSegment = $this->generateURLSegment();
 
         while (!$this->validURLSegment()) {

@@ -15,12 +15,6 @@ use SilverStripe\Security\Security;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
 
-/**
- * Adds a component which allows a user to add a new DataObject by database field.
- *
- * @package silverstripe
- * @subpackage blog
- */
 class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLProvider
 {
     /**

@@ -11,8 +11,6 @@ use SilverStripe\Blog\Model\CategorisationObject;
 /**
  * A blog tag for keyword descriptions of a blog post.
  *
- * @package silverstripe
- * @subpackage blog
  *
  * @method Blog Blog()
  *

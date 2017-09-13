@@ -19,8 +19,6 @@ use SilverStripe\Security\Permission;
  * This class is responsible for filtering the SiteTree when necessary and also overlaps into
  * filtering only published posts.
  *
- * @package silverstripe
- * @subpackage blog
  */
 class BlogFilter extends Lumberjack
 {

@@ -15,8 +15,6 @@ use SilverStripe\View\Parsers\URLSegmentFilter;
 /**
  * An object shared by BlogTag and BlogCategory.
  *
- * @package silverstripe
- * @subpackage blog
  */
 trait BlogObject
 {

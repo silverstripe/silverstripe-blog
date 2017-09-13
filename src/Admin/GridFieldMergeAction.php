@@ -9,9 +9,6 @@ use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_ColumnProvider;
 
-/**
- * @package blog
- */
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
     /**

@@ -9,10 +9,6 @@ use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Security\Member;
 
-/**
- * @package    silverstripe
- * @subpackage blog
- */
 class BlogController extends PageController
 {
     /**

@@ -33,9 +33,6 @@ use SilverStripe\View\Requirements;
 /**
  * Blog Holder
  *
- * @package silverstripe
- * @subpackage blog
- *
  * @method HasManyList Tags() List of tags in this blog
  * @method HasManyList Categories() List of categories in this blog
  * @method ManyManyList Editors() List of editors

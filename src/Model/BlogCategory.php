@@ -11,9 +11,7 @@ use SilverStripe\ORM\DataObject;
 /**
  * A blog category for generalising blog posts.
  *
- * @package silverstripe
- * @subpackage blog
- *
+*
  * @method Blog Blog()
  *
  * @property string $Title
