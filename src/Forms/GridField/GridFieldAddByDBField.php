@@ -2,6 +2,7 @@
 
 namespace SilverStripe\Blog\Forms\GridField;
 
+use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use UnexpectedValueException;
 use SilverStripe\Control\Controller;
@@ -18,6 +19,8 @@ use SilverStripe\View\Requirements;
 
 class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLProvider
 {
+    use Injectable;
+
     /**
      * HTML Fragment to render the field.
      *
@@ -81,7 +84,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             /**
              * @var DataObject $obj
              */
-            $obj = new $objClass();
+            $obj = $objClass::create();
 
             if ($obj->hasField($dbField)) {
                 $obj->setCastedField($dbField, $data['gridfieldaddbydbfield'][$obj->ClassName][$dbField]);
@@ -183,7 +186,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             ->setAttribute('placeholder', $obj->fieldLabel($dbField))
             ->addExtraClass('no-change-track');
 
-        $addAction = new GridField_FormAction(
+        $addAction = GridField_FormAction::create(
             $gridField,
             'add',
             _t(
@@ -198,9 +201,9 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $addAction->setAttribute('data-icon', 'add');
         $addAction->addExtraClass('btn btn-primary');
 
-        $forTemplate = new ArrayData([]);
+        $forTemplate = ArrayData::create([]);
 
-        $forTemplate->Fields = new ArrayList();
+        $forTemplate->Fields = ArrayList::create();
         $forTemplate->Fields->push($textField);
         $forTemplate->Fields->push($addAction);
 

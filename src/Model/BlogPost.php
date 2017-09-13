@@ -674,11 +674,11 @@ class BlogPost extends Page
         // If there is no parent blog, return list undecorated
         if (!$parent) {
             $items = $this->Authors()->toArray();
-            return new ArrayList($items);
+            return ArrayList::create($items);
         }
 
         // Update all authors
-        $items = new ArrayList();
+        $items = ArrayList::create();
         foreach ($this->Authors() as $author) {
             // Add link for each author
             $author = $author->customise([
@@ -697,12 +697,12 @@ class BlogPost extends Page
      */
     protected function getStaticCredits()
     {
-        $items = new ArrayList();
+        $items = ArrayList::create();
 
         $authors = array_filter(preg_split('/\s*,\s*/', $this->AuthorNames));
 
         foreach ($authors as $author) {
-            $item = new ArrayData([
+            $item = ArrayData::create([
                 'Name' => $author,
             ]);
 

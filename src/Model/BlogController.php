@@ -492,7 +492,7 @@ class BlogController extends PageController
      */
     protected function rssFeed($blogPosts, $link)
     {
-        $rss = new RSSFeed($blogPosts, $link, $this->MetaTitle, $this->MetaDescription);
+        $rss = RSSFeed::create($blogPosts, $link, $this->MetaTitle, $this->MetaDescription);
 
         $this->extend('updateRss', $rss);
 

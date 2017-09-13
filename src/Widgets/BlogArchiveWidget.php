@@ -112,7 +112,7 @@ class BlogArchiveWidget extends Widget
             $posts = $posts->limit($this->NumberToDisplay);
         }
 
-        $archive = new ArrayList();
+        $archive = ArrayList::create();
 
         if ($posts->count() > 0) {
             foreach ($posts as $post) {
@@ -132,7 +132,7 @@ class BlogArchiveWidget extends Widget
                     $title = $date->FormatI18N("%B %Y");
                 }
 
-                $archive->push(new ArrayData([
+                $archive->push(ArrayData::create([
                     'Title' => $title,
                     'Link' => Controller::join_links($this->Blog()->Link('archive'), $year, $month)
                 ]));

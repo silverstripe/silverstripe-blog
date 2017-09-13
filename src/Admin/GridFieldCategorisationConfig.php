@@ -23,11 +23,11 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         $this->removeComponentsByType('SilverStripe\\Forms\\GridField\\GridFieldAddNewButton');
 
         $this->addComponent(
-            new GridFieldAddByDBField('buttons-before-left')
+            GridFieldAddByDBField::create('buttons-before-left')
         );
 
         $this->addComponent(
-            new GridFieldMergeAction($mergeRecords, $parentType, $parentMethod, $childMethod)
+            GridFieldMergeAction::create($mergeRecords, $parentType, $parentMethod, $childMethod)
         );
 
         /**

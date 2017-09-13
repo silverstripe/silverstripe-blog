@@ -4,6 +4,7 @@ namespace SilverStripe\Blog\Admin;
 
 use SilverStripe\Blog\Admin\GridFieldFormAction;
 use SilverStripe\Control\Controller;
+use SilverStripe\Core\Injector\Injectable;
 use Silverstripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
@@ -11,6 +12,8 @@ use SilverStripe\Forms\GridField\GridField_ColumnProvider;
 
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
+    use Injectable;
+
     /**
      * List of records to show in the MergeAction column.
      *
@@ -83,7 +86,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
             $dropdown->setAttribute('id', 'Target_'.$record->ID);
             $prefix = strtolower($this->parentMethod . '-' . $this->childMethod);
 
-            $action = new GridFieldFormAction(
+            $action = GridFieldFormAction::create(
                 $gridField,
                 'MergeAction' . $record->ID,
                 'Move',

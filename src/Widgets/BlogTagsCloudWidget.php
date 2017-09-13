@@ -89,9 +89,9 @@ class BlogTagsCloudWidget extends Widget
             $maxTagCount = 0;
 
             // create DataObjects that can be used to render the tag cloud
-            $tags = new ArrayList();
+            $tags = ArrayList::create();
             foreach ($records as $record) {
-                $tag = new DataObject();
+                $tag = DataObject::create();
                 $tag->TagName = $record['Title'];
                 $link = $bloglink.'tag/'.$record['URLSegment'];
                 $tag->Link = $link;
