@@ -1,0 +1,22 @@
+Member:
+  member_a:
+    FirstName: عبّاس
+    Surname: آبان
+    Email: foo@example.com
+  member_b:
+    FirstName: Bob
+    Surname: Jones
+    Email: bobjones@example.com
+
+Blog:
+  blog_a:
+    URLSegment: آبید
+    Title: My Blog
+
+BlogPost:
+  blogpost_a:
+    Title: My Blog Post
+    URLSegment: آبیدآبید
+    PublishDate: '2017-08-01 00:00:00'
+    Parent: =>Blog.blog_a
+    Authors: =>Member.member_a, =>Member.member_b

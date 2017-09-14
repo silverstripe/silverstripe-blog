@@ -10,6 +10,13 @@ use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\NumericField;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DB;
+use SilverStripe\ORM\FieldType\DBDate;
+use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\ORM\Queries\SQLSelect;
+use SilverStripe\Versioned\Versioned;
+use SilverStripe\View\ArrayData;
 use SilverStripe\Widgets\Model\Widget;
 
 /**
@@ -94,51 +101,46 @@ class BlogArchiveWidget extends Widget
     /**
      * Returns a list of months where blog posts are present.
      *
-     * @return DataList
+     * @return ArrayList
      */
     public function getArchive()
     {
-        $query = $this->Blog()->getBlogPosts()->dataQuery();
+        $format = ($this->ArchiveType == 'Yearly') ? '%Y' : '%Y-%m';
+        $publishDate = DB::get_conn()->formattedDatetimeClause('"PublishDate"', $format);
+        $fields = [
+            'PublishDate' => $publishDate,
+            'Total' => "Count('PublishDate')"
+        ];
 
-        if ($this->ArchiveType == 'Yearly') {
-            $query->groupBy('DATE_FORMAT("PublishDate", \'%Y\')');
-        } else {
-            $query->groupBy('DATE_FORMAT("PublishDate", \'%Y-%M\')');
-        }
+        $stage = Versioned::get_stage();
+        $suffix = ($stage == 'Stage') ? '' : "_{$stage}";
+        $query = SQLSelect::create($fields, "BlogPost{$suffix}")
+            ->addGroupBy($publishDate)
+            ->addOrderBy('PublishDate Desc')
+            ->addWhere(['PublishDate < ?' => DBDatetime::now()->Format('Y-m-d')]);
 
-        $posts = $this->Blog()->getBlogPosts()->setDataQuery($query);
+        $posts = $query->execute();
+        $result = ArrayList::create();
+        while ($next = $posts->next()) {
+            $date = DBDate::create();
+            $date->setValue(strtotime($next['PublishDate']));
+            $year = $date->Format('Y');
 
-        if ($this->NumberToDisplay > 0) {
-            $posts = $posts->limit($this->NumberToDisplay);
-        }
-
-        $archive = ArrayList::create();
-
-        if ($posts->count() > 0) {
-            foreach ($posts as $post) {
-                /**
-                 * @var BlogPost $post
-                 */
-                $date = Date::create();
-                $date->setValue($post->PublishDate);
-
-                if ($this->ArchiveType == 'Yearly') {
-                    $year = $date->Format("Y");
-                    $month = null;
-                    $title = $year;
-                } else {
-                    $year = $date->Format("Y");
-                    $month = $date->Format("m");
-                    $title = $date->FormatI18N("%B %Y");
-                }
-
-                $archive->push(ArrayData::create([
-                    'Title' => $title,
-                    'Link' => Controller::join_links($this->Blog()->Link('archive'), $year, $month)
-                ]));
+            if ($this->ArchiveType == 'Yearly') {
+                $month = null;
+                $title = $year;
+            } else {
+                $month = $date->Format('m');
+                $title = $date->FormatI18N('%B %Y');
             }
+
+            $result->push(ArrayData::create([
+                'Title' => $title,
+                'Link' => Controller::join_links($this->Blog()->Link('archive'), $year, $month)
+            ]));
         }
 
-        return $archive;
+        $this->extend('updateGetArchive', $result);
+        return $result;
     }
 }

@@ -1,5 +1,3 @@
-# See https://github.com/silverstripe/silverstripe-travis-support for setup details
-
 sudo: false
 
 language: php
