@@ -1,18 +1,24 @@
 <?php
 
+namespace SilverStripe\Blog\Tests;
+
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Dev\FunctionalTest;
+use SilverStripe\i18n\i18n;
+use SilverStripe\View\Parsers\URLSegmentFilter;
+
 class BlogFunctionalTest extends FunctionalTest
 {
     protected static $fixture_file = 'BlogFunctionalTest.yml';
 
     protected static $use_draft_site = true;
 
-    public function setUp()
+    protected function setUp()
     {
-        Config::inst()->update('URLSegmentFilter', 'default_allow_multibyte', true);
+        Config::modify()->set(URLSegmentFilter::class, 'default_allow_multibyte', true);
+        i18n::set_locale('fa_IR');
 
         parent::setUp();
-
-        i18n::set_locale('fa_IR');
     }
 
     public function testBlogWithMultibyteUrl()

@@ -23,10 +23,9 @@ before_script:
 
 # Install composer dependencies
   - composer install --prefer-dist
-  - composer require --prefer-dist --no-update symfony/config:^3.2 silverstripe/framework:4.0.x-dev silverstripe/cms:4.0.x-dev silverstripe/admin:1.0.x-dev silverstripe/assets:1.0.x-dev silverstripe/versioned:1.0.x-dev
+  - composer require --prefer-dist --no-update silverstripe/installer:4.0.x-dev
+  - if [[ $DB == PGSQL ]]; then composer require --prefer-dist --no-update silverstripe/postgresql:2.0.x-dev; fi
   - composer update
-
-  - if [[ $DB == PGSQL ]]; then composer require silverstripe/postgresql:2.0.x-dev --prefer-dist; fi
 
 script:
   - if [[ $PHPUNIT_TEST ]]; then vendor/bin/phpunit tests/; fi
