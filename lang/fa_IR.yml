@@ -3,6 +3,7 @@ fa_IR:
     PLURALNAME: 'ویجت‌های بایگانی'
     SINGULARNAME: 'ویجت بایگانی'
   Blog:
+    AND: و
     Archive: بایگانی
     By: توسط
     CONTRIBUTOR: 'مشارکت‌کننده'
@@ -41,8 +42,10 @@ fa_IR:
   BlogCategoriesWidget:
     Blog: وبلاگ
     Direction:
+      Description: 'تغییر جهت ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
       Label: جهت
     Limit:
+      Description: 'محدود کردن تعداد مجموعه‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
       Label: 'محدود کردن'
     PLURALNAME: 'ویجت‌های مجموعه‌های بلاگ'
     SINGULARNAME: 'ویجت‌ مجموعه‌های بلاگ'
@@ -50,6 +53,7 @@ fa_IR:
       Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
       Label: 'مرتب‌سازی'
   BlogCategory:
+    Duplicate: 'یک مجموعه وبلاگ با این نام از قبل موجود است'
     PLURALNAME: 'مجموعه‌های وبلاگ'
     SINGULARNAME: 'مجموعه وبلاگ'
     Title: عنوان
@@ -64,15 +68,18 @@ fa_IR:
   BlogPost:
     AUTHOR: نگارنده
     AdditionalCredits: 'دیگر مشارکت‌کنندگان'
+    AdditionalCredits_Description: 'اگر برخی از نگارندگان این ارسال دسترسی به سی‌ام‌اس ندارند، نام آن‌ها را اینجا وارد نمایید. می‌توانید نام‌ها را با علامت ویرگول از هم جدا کنید.'
     Authors: نگارندگان
     CUSTOMSUMMARY: 'افزودن یک خلاصه دلخواه'
     Categories: 'مجموعه‌ها'
     DESCRIPTION: 'صفحه محتوای عمومی'
+    FeaturedImage: 'تصویر برجسته'
     PLURALNAME: 'صفحات پایه‌ای'
     PageTitleLabel: 'عنوان ارسال'
     PublishDate: 'تاریخ انتشار'
     PublishDate_Description: 'اگر بدون داده‌ای منتشر شود به "اکنون" تنظیم خواهد شد.'
     SINGULARNAME: 'ارسال وبلاگ'
+    SUMMARY_DESCRIPTION: 'اگر هیچ خلاصه‌ای معرفی نشود ۳۰ کلمه‌ی آغازین استفاده خواهد شد.'
     Tags: تگ‌ها
   BlogRecentPostsWidget:
     Blog: وبلاگ
@@ -80,12 +87,18 @@ fa_IR:
     PLURALNAME: 'ویجت‌های جدیدترین ارسال‌های بلاگ'
     SINGULARNAME: 'ویجت جدیدترین ارسال‌های بلاگ'
   BlogTag:
+    Duplicate: 'یک تگ وبلاگ با این نام از قبل موجود است'
     PLURALNAME: 'تگ‌های وبلاگ'
     SINGULARNAME: 'تگ وبلاگ'
     Title: عنوان
+  BlogTagsCloudWidget:
+    Blog: وبلاگ
+    PLURALNAME: 'ویجت ابر تگ‌های وبلاگ'
+    SINGULARNAME: 'ویجت‌های ابر تگ‌های وبلاگ'
   BlogTagsWidget:
     Blog: وبلاگ
     Direction:
+      Description: 'تغییر جهت ترتیب تگ‌های نمایش داده‌‌شده توسط این ویجت'
       Label: جهت
     Limit:
       Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
@@ -93,6 +106,7 @@ fa_IR:
     PLURALNAME: 'ویجت‌های تگ‌های وبلاگ'
     SINGULARNAME: 'ویجت تگ‌های وبلاگ'
     Sort:
+      Description: 'تغییر ترتیب تگ‌های نمایش داده‌‌شده توسط این ویجت'
       Label: 'مرتب‌سازی'
   BlogTree:
     DESCRIPTION: 'صفحه محتوای عمومی'
@@ -100,7 +114,12 @@ fa_IR:
     SINGULARNAME: 'نمایش درختی وبلاگ'
   GridFieldAddByDBField:
     Add: 'افزودن {name}'
+    AddFail: 'ناتوان از ذخیره‌سازی {class} در بانک داده'
     PermissionFail: 'شما دسترسی لازم جهت ایجاد یک {class} را ندارید.'
+  GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> ذخیره‌شده به عنوان پیش‌نویس در {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> انتشار یافته در {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> انتشار یافته در {date}'
   TagCloudWidget:
     PLURALNAME: 'ویجت‌های ابر تگ'
     SINGULARNAME: 'ویجت ابر تگ'

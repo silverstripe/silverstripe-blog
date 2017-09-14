@@ -3,6 +3,7 @@ sv:
     PLURALNAME: Arkiv-Widgets
     SINGULARNAME: Arkiv-Widget
   Blog:
+    AND: och
     Archive: Arkiv
     By: av
     CONTRIBUTOR: Bidragsgivare
@@ -52,6 +53,7 @@ sv:
       Description: 'Ändra ordningen av kategorier som visas av denna widget.'
       Label: Sortera
   BlogCategory:
+    Duplicate: 'En kategori med det här namnet är redan tillagd'
     PLURALNAME: 'Blogg Kategorier'
     SINGULARNAME: 'Blogg Kategori'
     Title: Titel
@@ -66,6 +68,7 @@ sv:
   BlogPost:
     AUTHOR: Författare
     AdditionalCredits: 'Ytterligare erkännanden'
+    AdditionalCredits_Description: 'Om några av författarna till denna post inte har konton i CMS:en kan du lägga till deras namn här. Fler än ett namn kan separeras med komma.'
     Authors: Författare
     CUSTOMSUMMARY: 'Lägg till en anpassad sammanfattning'
     Categories: Kategorier
@@ -83,9 +86,14 @@ sv:
     PLURALNAME: 'Blogg Senaste Inläggs-Widget'
     SINGULARNAME: 'Blogg Senaste Inläggs-Widget'
   BlogTag:
+    Duplicate: 'En tag med det här namnet är redan tillagd'
     PLURALNAME: 'Blogg taggar'
     SINGULARNAME: 'Blogg tag'
     Title: Titel
+  BlogTagsCloudWidget:
+    Blog: Blogg
+    PLURALNAME: 'Cloud-widgets för taggar'
+    SINGULARNAME: 'Cloud-widget för tagg'
   BlogTagsWidget:
     Blog: Blogg
     Direction:

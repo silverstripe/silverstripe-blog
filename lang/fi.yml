@@ -3,6 +3,7 @@ fi:
     PLURALNAME: Arkistovimpaimet
     SINGULARNAME: Arkistovimpain
   Blog:
+    AND: ja
     Archive: Arkisto
     By: kirjoittanut
     CONTRIBUTOR: Avustaja
