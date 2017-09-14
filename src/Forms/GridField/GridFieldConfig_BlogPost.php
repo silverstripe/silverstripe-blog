@@ -2,6 +2,7 @@
 
 namespace SilverStripe\Blog\Forms\GridField;
 
+use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Lumberjack\Forms\GridFieldConfig_Lumberjack;
 use SilverStripe\Lumberjack\Forms\GridFieldSiteTreeState;
 
@@ -19,6 +20,6 @@ class GridFieldConfig_BlogPost extends GridFieldConfig_Lumberjack
         parent::__construct($itemsPerPage);
 
         $this->removeComponentsByType(GridFieldSiteTreeState::class);
-        $this->addComponent(GridFieldBlogPostState::create());
+        $this->addComponent(Injector::inst()->create(GridFieldBlogPostState::class));
     }
 }
