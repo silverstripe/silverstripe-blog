@@ -4,16 +4,16 @@ namespace SilverStripe\Blog\Admin;
 
 use SilverStripe\Blog\Admin\GridFieldFormAction;
 use SilverStripe\Control\Controller;
+use SilverStripe\Core\Injector\Injectable;
 use Silverstripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_ColumnProvider;
 
-/**
- * @package blog
- */
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
+    use Injectable;
+
     /**
      * List of records to show in the MergeAction column.
      *
@@ -48,7 +48,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      * @param string $parentMethod
      * @param string $childMethod
      */
-    public function __construct($records = array(), $parentType, $parentMethod, $childMethod)
+    public function __construct($records = [], $parentType, $parentMethod, $childMethod)
     {
         $this->records = $records;
         $this->parentType = $parentType;
@@ -73,7 +73,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnsHandled($gridField)
     {
-        return array('MergeAction');
+        return ['MergeAction'];
     }
 
     /**
@@ -86,20 +86,20 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
             $dropdown->setAttribute('id', 'Target_'.$record->ID);
             $prefix = strtolower($this->parentMethod . '-' . $this->childMethod);
 
-            $action = new GridFieldFormAction(
+            $action = GridFieldFormAction::create(
                 $gridField,
                 'MergeAction' . $record->ID,
                 'Move',
                 'merge',
-                array(
+                [
                     'record' => $record->ID,
                     'target' => $prefix . '-target-record-' . $record->ID,
-                )
+                ]
             );
 
-            $action->setExtraAttributes(array(
+            $action->setExtraAttributes([
                 'data-target' => $prefix . '-target-record-' . $record->ID
-            ));
+            ]);
 
             return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
         }
@@ -112,7 +112,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnAttributes($gridField, $record, $columnName)
     {
-        return array('class' => 'MergeAction');
+        return ['class' => 'MergeAction'];
     }
 
     /**
@@ -120,7 +120,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnMetadata($gridField, $columnName)
     {
-        return array('title' => 'Move posts to');
+        return ['title' => 'Move posts to'];
     }
 
     /**
@@ -128,7 +128,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getActions($gridField)
     {
-        return array('merge');
+        return ['merge'];
     }
 
     /**

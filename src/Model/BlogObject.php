@@ -15,8 +15,6 @@ use SilverStripe\View\Parsers\URLSegmentFilter;
 /**
  * An object shared by BlogTag and BlogCategory.
  *
- * @package silverstripe
- * @subpackage blog
  */
 trait BlogObject
 {
@@ -37,12 +35,11 @@ trait BlogObject
      */
     public function getCMSFields()
     {
-        $shortClass = ClassInfo::shortName(self::class);
         $fields = TabSet::create(
             'Root',
             Tab::create(
                 'Main',
-                TextField::create('Title', _t($shortClass . '.Title', 'Title'))
+                TextField::create('Title', _t(__CLASS__ . '.Title', 'Title'))
             )
         );
 
@@ -111,7 +108,7 @@ trait BlogObject
     /**
      * {@inheritdoc}
      */
-    public function canCreate($member = null, $context = array())
+    public function canCreate($member = null, $context = [])
     {
         $extended = $this->extendedCan(__FUNCTION__, $member);
 

@@ -19,8 +19,6 @@ use SilverStripe\Security\Permission;
  * This class is responsible for filtering the SiteTree when necessary and also overlaps into
  * filtering only published posts.
  *
- * @package silverstripe
- * @subpackage blog
  */
 class BlogFilter extends Lumberjack
 {
@@ -98,10 +96,10 @@ class BlogFilter extends Lumberjack
         $excluded = $this->owner->getExcludedSiteTreeClassNames();
 
         if (!empty($excluded)) {
-            $pages = BlogPost::get()->filter(array(
+            $pages = BlogPost::get()->filter([
                 'ParentID' => $this->owner->ID,
                 'ClassName' => $excluded
-            ));
+            ]);
 
             $gridField = BlogFilterGridField::create(
                 'ChildPages',

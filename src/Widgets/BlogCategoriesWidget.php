@@ -11,6 +11,7 @@ use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\NumericField;
+use SilverStripe\ORM\DataList;
 use SilverStripe\Widgets\Model\Widget;
 
 /**
@@ -36,18 +37,18 @@ class BlogCategoriesWidget extends Widget
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'Limit' => 'Int',
         'Order' => 'Varchar',
         'Direction' => 'Varchar',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -57,18 +58,18 @@ class BlogCategoriesWidget extends Widget
         $this->beforeUpdateCMSFields(function (FieldList $fields) {
             $fields[] = DropdownField::create(
                 'BlogID',
-                _t('BlogCategoriesWidget.Blog', 'Blog'),
+                _t(__CLASS__ . '.Blog', 'Blog'),
                 Blog::get()->map()
             );
 
             $fields[] = NumericField::create(
                 'Limit',
-                _t('BlogCategoriesWidget.Limit', 'Limit'),
+                _t(__CLASS__ . '.Limit', 'Limit'),
                 0
             )
                 ->setDescription(
                     _t(
-                        'BlogCategoriesWidget.Limit_Description',
+                        __CLASS__ . '.Limit_Description',
                         'Limit the number of categories shown by this widget (set to 0 to show all categories).'
                     )
                 )
@@ -76,21 +77,21 @@ class BlogCategoriesWidget extends Widget
 
             $fields[] = DropdownField::create(
                 'Order',
-                _t('BlogCategoriesWidget.Sort', 'Sort'),
-                array('Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated')
+                _t(__CLASS__ . '.Sort', 'Sort'),
+                ['Title' => 'Title', 'Created' => 'Created', 'LastEdited' => 'Updated']
             )
                 ->setDescription(
-                    _t('BlogCategoriesWidget.Sort_Description', 'Change the order of categories shown by this widget.')
+                    _t(__CLASS__ . '.Sort_Description', 'Change the order of categories shown by this widget.')
                 );
 
             $fields[] = DropdownField::create(
                 'Direction',
-                _t('BlogCategoriesWidget.Direction', 'Direction'),
-                array('ASC' => 'Ascending', 'DESC' => 'Descending')
+                _t(__CLASS__ . '.Direction', 'Direction'),
+                ['ASC' => 'Ascending', 'DESC' => 'Descending']
             )
                 ->setDescription(
                     _t(
-                        'BlogCategoriesWidget.Direction_Description',
+                        __CLASS__ . '.Direction_Description',
                         'Change the direction of ordering of categories shown by this widget.'
                     )
                 );
@@ -107,7 +108,7 @@ class BlogCategoriesWidget extends Widget
         $blog = $this->Blog();
 
         if (!$blog) {
-            return array();
+            return [];
         }
 
         $query = $blog->Categories();

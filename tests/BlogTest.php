@@ -16,6 +16,7 @@ use SilverStripe\ORM\DataModel;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\SS_List;
 use SilverStripe\Security\Member;
+use SilverStripe\Security\Security;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
@@ -58,10 +59,10 @@ class BlogTest extends SapphireTest
 
     public function testGetExcludedSiteTreeClassNames()
     {
-        $member = Member::currentUser();
+        $member = Security::getCurrentUser();
 
         if ($member) {
-            $member->logout();
+            Security::setCurrentUser(null);
         }
 
         /**
@@ -82,10 +83,10 @@ class BlogTest extends SapphireTest
 
     public function testGetArchivedBlogPosts()
     {
-        $member = Member::currentUser();
+        $member = Security::getCurrentUser();
 
         if ($member) {
-            $member->logout();
+            Security::setCurrentUser(null);
         }
 
         /**
@@ -324,7 +325,7 @@ class BlogTest extends SapphireTest
         // Request first tag
         $this->requestURL($controller, 'first-post/tag/first-tag');
         $this->assertIDsEquals(
-            array($firstPostID, $firstFuturePostID, $secondFuturePostID),
+            [$firstPostID, $firstFuturePostID, $secondFuturePostID],
             $controller->PaginatedList()
         );
     }
@@ -342,7 +343,7 @@ class BlogTest extends SapphireTest
         // Request 2013 posts
         $this->requestURL($controller, 'first-post/archive/2013');
         $this->assertIDsEquals(
-            array($firstPostID, $secondPostID, $secondFuturePostID),
+            [$firstPostID, $secondPostID, $secondFuturePostID],
             $controller->PaginatedList()
         );
     }

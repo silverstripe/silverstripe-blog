@@ -30,7 +30,7 @@ class BlogPostNotifications extends DataExtension
 
         // If comment is spam and notification are set to not send on spam clear the recipient list
         if (Config::inst()->get(__CLASS__, 'notification_on_spam') == false && $comment->IsSpam) {
-            $list = array();
+            $list = [];
         }
     }
 

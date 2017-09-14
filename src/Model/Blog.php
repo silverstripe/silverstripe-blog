@@ -14,6 +14,7 @@ use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\Core\Convert;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\NumericField;
@@ -27,13 +28,11 @@ use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\PermissionProvider;
+use SilverStripe\Security\Security;
 use SilverStripe\View\Requirements;
 
 /**
  * Blog Holder
- *
- * @package silverstripe
- * @subpackage blog
  *
  * @method HasManyList Tags() List of tags in this blog
  * @method HasManyList Categories() List of categories in this blog
@@ -88,48 +87,48 @@ class Blog extends Page implements PermissionProvider
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'PostsPerPage' => 'Int',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_many = array(
+    private static $has_many = [
         'Tags' => BlogTag::class,
         'Categories' => BlogCategory::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $many_many = array(
+    private static $many_many = [
         'Editors' => Member::class,
         'Writers' => Member::class,
         'Contributors' => Member::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $allowed_children = array(
+    private static $allowed_children = [
         BlogPost::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $extensions = array(
+    private static $extensions = [
         BlogFilter::class,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'ProvideComments' => false,
         'PostsPerPage'    => 10
-    );
+    ];
 
     /**
      * @var string
@@ -143,8 +142,9 @@ class Blog extends Page implements PermissionProvider
      */
     public function getCMSFields()
     {
-        Requirements::css(BLOGGER_DIR . '/css/cms.css');
-        Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
+        $module = ModuleLoader::getModule('silverstripe/blog');
+        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
+        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
 
         $this->beforeUpdateCMSFields(function ($fields) {
             if (!$this->canEdit()) {
@@ -153,7 +153,7 @@ class Blog extends Page implements PermissionProvider
 
             $categories = GridField::create(
                 'Categories',
-                _t('Blog.Categories', 'Categories'),
+                _t(__CLASS__ . '.Categories', 'Categories'),
                 $this->Categories(),
                 GridFieldCategorisationConfig::create(
                     15,
@@ -166,7 +166,7 @@ class Blog extends Page implements PermissionProvider
 
             $tags = GridField::create(
                 'Tags',
-                _t('Blog.Tags', 'Tags'),
+                _t(__CLASS__ . '.Tags', 'Tags'),
                 $this->Tags(),
                 GridFieldCategorisationConfig::create(
                     15,
@@ -182,10 +182,10 @@ class Blog extends Page implements PermissionProvider
              */
             $fields->addFieldsToTab(
                 'Root.Categorisation',
-                array(
+                [
                     $categories,
                     $tags
-                )
+                ]
             );
 
             $fields->findOrMakeTab('Root.Categorisation')->addExtraClass('blog-cms-categorisation');
@@ -216,7 +216,7 @@ class Blog extends Page implements PermissionProvider
     protected function getMember($member = null)
     {
         if (!$member) {
-            $member = Member::currentUser();
+            $member = Security::getCurrentUser();
         }
 
         if (is_numeric($member)) {
@@ -284,15 +284,15 @@ class Blog extends Page implements PermissionProvider
         }
 
         if ($this->isEditor($member)) {
-            return _t('Blog.EDITOR', 'Editor');
+            return _t(__CLASS__ . '.EDITOR', 'Editor');
         }
 
         if ($this->isWriter($member)) {
-            return _t('Blog.WRITER', 'Writer');
+            return _t(__CLASS__ . '.WRITER', 'Writer');
         }
 
         if ($this->isContributor($member)) {
-            return _t('Blog.CONTRIBUTOR', 'Contributor');
+            return _t(__CLASS__ . '.CONTRIBUTOR', 'Contributor');
         }
 
         return null;
@@ -351,7 +351,7 @@ class Blog extends Page implements PermissionProvider
 
         $fields->addFieldToTab(
             'Root.Settings',
-            NumericField::create('PostsPerPage', _t('Blog.PostsPerPage', 'Posts Per Page'))
+            NumericField::create('PostsPerPage', _t(__CLASS__ . '.PostsPerPage', 'Posts Per Page'))
         );
 
         $members = $this->getCandidateUsers()->map()->toArray();
@@ -408,11 +408,11 @@ class Blog extends Page implements PermissionProvider
 
         $fields->addFieldsToTab(
             'Root.Users',
-            array(
+            [
                 $editorField,
                 $writerField,
                 $contributorField
-            )
+            ]
         );
 
         return $fields;
@@ -425,13 +425,13 @@ class Blog extends Page implements PermissionProvider
      */
     protected function getCandidateUsers()
     {
-        if ($this->config()->grant_user_access) {
+        if ($this->config()->get('grant_user_access')) {
             $list = Member::get();
             $this->extend('updateCandidateUsers', $list);
             return $list;
         } else {
             return Permission::get_members_by_permission(
-                $this->config()->grant_user_permission
+                $this->config()->get('grant_user_permission')
             );
         }
     }
@@ -528,7 +528,7 @@ class Blog extends Page implements PermissionProvider
             sprintf('"SiteTree%s"."ID" = "BlogPost%s"."ID"', $stage, $stage)
         );
 
-        $conn = DB::getConn();
+        $conn = DB::get_conn();
 
         // Filter by year
         $yearCond = $conn->formattedDatetimeClause('"BlogPost"."PublishDate"', '%Y');
@@ -588,7 +588,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function getLumberjackTitle()
     {
-        return _t('Blog.LumberjackTitle', 'Blog Posts');
+        return _t(__CLASS__ . '.LumberjackTitle', 'Blog Posts');
     }
 
     /**
@@ -606,20 +606,20 @@ class Blog extends Page implements PermissionProvider
      */
     public function providePermissions()
     {
-        return array(
-            Blog::MANAGE_USERS => array(
+        return [
+            Blog::MANAGE_USERS => [
                 'name' => _t(
-                    'Blog.PERMISSION_MANAGE_USERS_DESCRIPTION',
+                    __CLASS__ . '.PERMISSION_MANAGE_USERS_DESCRIPTION',
                     'Manage users for individual blogs'
                 ),
                 'help' => _t(
-                    'Blog.PERMISSION_MANAGE_USERS_HELP',
+                    __CLASS__ . '.PERMISSION_MANAGE_USERS_HELP',
                     'Allow assignment of Editors, Writers, or Contributors to blogs'
                 ),
-                'category' => _t('Blog.PERMISSIONS_CATEGORY', 'Blog permissions'),
+                'category' => _t(__CLASS__ . '.PERMISSIONS_CATEGORY', 'Blog permissions'),
                 'sort' => 100
-            )
-        );
+            ]
+        ];
     }
 
     /**
@@ -636,7 +636,7 @@ class Blog extends Page implements PermissionProvider
      */
     protected function assignGroup()
     {
-        if (!$this->config()->grant_user_access) {
+        if (!$this->config()->get('grant_user_access')) {
             return;
         }
 
@@ -644,7 +644,7 @@ class Blog extends Page implements PermissionProvider
 
         // Must check if the method exists or else an error occurs when changing page type
         if ($this->hasMethod('Editors')) {
-            foreach (array($this->Editors(), $this->Writers(), $this->Contributors()) as $levels) {
+            foreach ([$this->Editors(), $this->Writers(), $this->Contributors()] as $levels) {
                 foreach ($levels as $user) {
                     if (!$user->inGroup($group)) {
                         $user->Groups()->add($group);
@@ -661,7 +661,7 @@ class Blog extends Page implements PermissionProvider
      */
     protected function getUserGroup()
     {
-        $code = $this->config()->grant_user_group;
+        $code = $this->config()->get('grant_user_group');
 
         $group = Group::get()->filter('Code', $code)->first();
 
@@ -676,7 +676,7 @@ class Blog extends Page implements PermissionProvider
         $group->write();
 
         $permission = Permission::create();
-        $permission->Code = $this->config()->grant_user_permission;
+        $permission->Code = $this->config()->get('grant_user_permission');
 
         $group->Permissions()->add($permission);
 

@@ -9,6 +9,7 @@ use SilverStripe\Blog\Model\BlogCategory;
 use SilverStripe\Blog\Model\BlogPostFilter;
 use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Control\Controller;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\DatetimeField;
 use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
@@ -22,15 +23,13 @@ use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
+use SilverStripe\Security\Security;
 use SilverStripe\TagField\TagField;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
 
 /**
  * An individual blog post.
- *
- * @package silverstripe
- * @subpackage blog
  *
  * @method ManyManyList Categories()
  * @method ManyManyList Tags()
@@ -59,77 +58,77 @@ class BlogPost extends Page
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'PublishDate' => 'Datetime',
         'AuthorNames' => 'Varchar(1024)',
         'Summary'     => 'HTMLText'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'FeaturedImage' => Image::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $owns = array(
+    private static $owns = [
         'FeaturedImage',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $many_many = array(
+    private static $many_many = [
         'Categories' => BlogCategory::class,
         'Tags'       => BlogTag::class,
         'Authors'    => Member::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'ShowInMenus'     => false,
         'InheritSideBar'  => true,
         'ProvideComments' => true
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $extensions = array(
+    private static $extensions = [
         BlogPostFilter::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $searchable_fields = array(
+    private static $searchable_fields = [
         'Title'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $summary_fields = array(
+    private static $summary_fields = [
         'Title'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $casting = array(
+    private static $casting = [
         'Excerpt' => 'HTMLText',
         'Date' => 'DBDatetime'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $allowed_children = array();
+    private static $allowed_children = [];
 
     /**
      * The default sorting lists BlogPosts with an empty PublishDate at the top.
@@ -171,7 +170,7 @@ class BlogPost extends Page
         }
 
         if ($this->isAuthor($member)) {
-            return _t('BlogPost.AUTHOR', 'Author');
+            return _t(__CLASS__ . '.AUTHOR', 'Author');
         }
 
         $parent = $this->Parent();
@@ -210,12 +209,13 @@ class BlogPost extends Page
      */
     public function getCMSFields()
     {
-        Requirements::css(BLOGGER_DIR . '/css/cms.css');
-        Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
+        $module = ModuleLoader::getModule('silverstripe/blog');
+        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
+        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
 
         $this->beforeUpdateCMSFields(function ($fields) {
-            $uploadField = UploadField::create('FeaturedImage', _t('BlogPost.FeaturedImage', 'Featured Image'));
-            $uploadField->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
+            $uploadField = UploadField::create('FeaturedImage', _t(__CLASS__ . '.FeaturedImage', 'Featured Image'));
+            $uploadField->getValidator()->setAllowedExtensions(['jpg', 'jpeg', 'png', 'gif']);
 
             /**
              * @var FieldList $fields
@@ -225,16 +225,16 @@ class BlogPost extends Page
             $summary = HtmlEditorField::create('Summary', false);
             $summary->setRows(5);
             $summary->setDescription(_t(
-                'BlogPost.SUMMARY_DESCRIPTION',
+                __CLASS__ . '.SUMMARY_DESCRIPTION',
                 'If no summary is specified the first 30 words will be used.'
             ));
 
             $summaryHolder = ToggleCompositeField::create(
                 'CustomSummary',
-                _t('BlogPost.CUSTOMSUMMARY', 'Add A Custom Summary'),
-                array(
+                _t(__CLASS__ . '.CUSTOMSUMMARY', 'Add A Custom Summary'),
+                [
                     $summary,
-                )
+                ]
             );
             $summaryHolder->setHeadingLevel(4);
             $summaryHolder->addExtraClass('custom-summary');
@@ -244,25 +244,25 @@ class BlogPost extends Page
             $urlSegment = $fields->dataFieldByName('URLSegment');
             $urlSegment->setURLPrefix($this->Parent()->RelativeLink());
 
-            $fields->removeFieldsFromTab('Root.Main', array(
+            $fields->removeFieldsFromTab('Root.Main', [
                 'MenuTitle',
                 'URLSegment',
-            ));
+            ]);
 
             $authorField = ListboxField::create(
                 'Authors',
-                _t('BlogPost.Authors', 'Authors'),
+                _t(__CLASS__ . '.Authors', 'Authors'),
                 $this->getCandidateAuthors()->map()->toArray()
             );
 
             $authorNames = TextField::create(
                 'AuthorNames',
-                _t('BlogPost.AdditionalCredits', 'Additional Credits'),
+                _t(__CLASS__ . '.AdditionalCredits', 'Additional Credits'),
                 null,
                 1024
             )->setDescription(
                 _t(
-                    'BlogPost.AdditionalCredits_Description',
+                    __CLASS__ . '.AdditionalCredits_Description',
                     'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.'
                 )
             );
@@ -272,12 +272,12 @@ class BlogPost extends Page
                 $authorNames = $authorNames->performDisabledTransformation();
             }
 
-            $publishDate = DatetimeField::create('PublishDate', _t('BlogPost.PublishDate', 'Publish Date'));
+            $publishDate = DatetimeField::create('PublishDate', _t(__CLASS__ . '.PublishDate', 'Publish Date'));
 
             if (!$this->PublishDate) {
                 $publishDate->setDescription(
                     _t(
-                        'BlogPost.PublishDate_Description',
+                        __CLASS__ . '.PublishDate_Description',
                         'Will be set to "now" if published without a value.'
                     )
                 );
@@ -301,7 +301,7 @@ class BlogPost extends Page
                     $urlSegment,
                     TagField::create(
                         'Categories',
-                        _t('BlogPost.Categories', 'Categories'),
+                        _t(__CLASS__ . '.Categories', 'Categories'),
                         $categories,
                         $this->Categories()
                     )
@@ -309,7 +309,7 @@ class BlogPost extends Page
                         ->setShouldLazyLoad(true),
                     TagField::create(
                         'Tags',
-                        _t('BlogPost.Tags', 'Tags'),
+                        _t(__CLASS__ . '.Tags', 'Tags'),
                         $tags,
                         $this->Tags()
                     )
@@ -338,8 +338,8 @@ class BlogPost extends Page
      */
     public function getCandidateAuthors()
     {
-        if ($this->config()->restrict_authors_to_group) {
-            return Group::get()->filter('Code', $this->config()->restrict_authors_to_group)->first()->Members();
+        if ($this->config()->get('restrict_authors_to_group')) {
+            return Group::get()->filter('Code', $this->config()->get('restrict_authors_to_group'))->first()->Members();
         }
 
         $list = Member::get();
@@ -387,7 +387,7 @@ class BlogPost extends Page
     protected function getMember($member = null)
     {
         if (!$member) {
-            $member = Member::currentUser();
+            $member = Security::getCurrentUser();
         }
 
         if (is_numeric($member)) {
@@ -674,16 +674,16 @@ class BlogPost extends Page
         // If there is no parent blog, return list undecorated
         if (!$parent) {
             $items = $this->Authors()->toArray();
-            return new ArrayList($items);
+            return ArrayList::create($items);
         }
 
         // Update all authors
-        $items = new ArrayList();
+        $items = ArrayList::create();
         foreach ($this->Authors() as $author) {
             // Add link for each author
-            $author = $author->customise(array(
+            $author = $author->customise([
                 'URL' => $parent->ProfileLink($author->URLSegment),
-            ));
+            ]);
             $items->push($author);
         }
 
@@ -697,14 +697,14 @@ class BlogPost extends Page
      */
     protected function getStaticCredits()
     {
-        $items = new ArrayList();
+        $items = ArrayList::create();
 
         $authors = array_filter(preg_split('/\s*,\s*/', $this->AuthorNames));
 
         foreach ($authors as $author) {
-            $item = new ArrayData(array(
+            $item = ArrayData::create([
                 'Name' => $author,
-            ));
+            ]);
 
             $items->push($item);
         }
@@ -723,7 +723,7 @@ class BlogPost extends Page
     {
         $labels = parent::fieldLabels($includeRelations);
 
-        $labels['Title'] = _t('BlogPost.PageTitleLabel', 'Post Title');
+        $labels['Title'] = _t(__CLASS__ . '.PageTitleLabel', 'Post Title');
 
         return $labels;
     }
@@ -746,7 +746,7 @@ class BlogPost extends Page
     {
         parent::onBeforeWrite();
 
-        if (!$this->exists() && ($member = Member::currentUser())) {
+        if (!$this->exists() && ($member = Security::getCurrentUser())) {
             $this->Authors()->add($member);
         }
     }

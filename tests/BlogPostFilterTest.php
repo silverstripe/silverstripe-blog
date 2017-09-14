@@ -6,6 +6,7 @@ use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Security\Member;
+use SilverStripe\Security\Security;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
@@ -38,10 +39,10 @@ class BlogPostFilterTest extends SapphireTest
      */
     public function testFilter()
     {
-        $member = Member::currentUser();
+        $member = Security::getCurrentUser();
 
         if ($member) {
-            $member->logout();
+            Security::setCurrentUser(null);
         }
 
         /**

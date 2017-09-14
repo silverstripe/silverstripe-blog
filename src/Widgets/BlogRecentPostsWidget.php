@@ -36,16 +36,16 @@ class BlogRecentPostsWidget extends Widget
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'NumberOfPosts' => 'Int',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -56,10 +56,10 @@ class BlogRecentPostsWidget extends Widget
             /**
              * @var FieldList $fields
              */
-            $fields->merge(array(
-                DropdownField::create('BlogID', _t('BlogRecentPostsWidget.Blog', 'Blog'), Blog::get()->map()),
-                NumericField::create('NumberOfPosts', _t('BlogRecentPostsWidget.NumberOfPosts', 'Number of Posts'))
-            ));
+            $fields->merge([
+                DropdownField::create('BlogID', _t(__CLASS__ . '.Blog', 'Blog'), Blog::get()->map()),
+                NumericField::create('NumberOfPosts', _t(__CLASS__ . '.NumberOfPosts', 'Number of Posts'))
+            ]);
         });
 
         return parent::getCMSFields();
@@ -78,6 +78,6 @@ class BlogRecentPostsWidget extends Widget
                 ->limit($this->NumberOfPosts);
         }
 
-        return array();
+        return [];
     }
 }

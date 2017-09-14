@@ -38,24 +38,24 @@ class BlogArchiveWidget extends Widget
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'NumberToDisplay' => 'Int',
         'ArchiveType' => 'Enum(\'Monthly,Yearly\', \'Monthly\')',
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $defaults = array(
+    private static $defaults = [
         'NumberOfMonths' => 12,
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -71,21 +71,21 @@ class BlogArchiveWidget extends Widget
             $type = $archiveType->enumValues();
 
             foreach ($type as $k => $v) {
-                $type[$k] = _t('BlogArchiveWidget.' . ucfirst(strtolower($v)), $v);
+                $type[$k] = _t(__CLASS__ .'.' . ucfirst(strtolower($v)), $v);
             }
 
             /**
              * @var FieldList $fields
              */
-            $fields->merge(array(
+            $fields->merge([
                 DropdownField::create(
                     'BlogID',
-                    _t('BlogArchiveWidget.Blog', 'Blog'),
+                    _t(__CLASS__ . '.Blog', 'Blog'),
                     Blog::get()->map()
                 ),
-                DropdownField::create('ArchiveType', _t('BlogArchiveWidget.ArchiveType', 'ArchiveType'), $type),
-                NumericField::create('NumberToDisplay', _t('BlogArchiveWidget.NumberToDisplay', 'No. to Display'))
-            ));
+                DropdownField::create('ArchiveType', _t(__CLASS__ . '.ArchiveType', 'ArchiveType'), $type),
+                NumericField::create('NumberToDisplay', _t(__CLASS__ . '.NumberToDisplay', 'No. to Display'))
+            ]);
         });
 
         return parent::getCMSFields();
@@ -112,7 +112,7 @@ class BlogArchiveWidget extends Widget
             $posts = $posts->limit($this->NumberToDisplay);
         }
 
-        $archive = new ArrayList();
+        $archive = ArrayList::create();
 
         if ($posts->count() > 0) {
             foreach ($posts as $post) {
@@ -132,10 +132,10 @@ class BlogArchiveWidget extends Widget
                     $title = $date->FormatI18N("%B %Y");
                 }
 
-                $archive->push(new ArrayData(array(
+                $archive->push(ArrayData::create([
                     'Title' => $title,
                     'Link' => Controller::join_links($this->Blog()->Link('archive'), $year, $month)
-                )));
+                ]));
             }
         }
 

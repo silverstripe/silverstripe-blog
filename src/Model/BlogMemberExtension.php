@@ -5,6 +5,7 @@ namespace SilverStripe\Blog\Model;
 use SilverStripe\Assets\Image;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
 use SilverStripe\Blog\Model\BlogPost;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\Tab;
@@ -16,32 +17,30 @@ use SilverStripe\View\Requirements;
 /**
  * This class is responsible for add Blog specific behaviour to Members.
  *
- * @package silverstripe
- * @subpackage blog
  */
 class BlogMemberExtension extends DataExtension
 {
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'URLSegment'         => 'Varchar',
         'BlogProfileSummary' => 'Text'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'BlogProfileImage' => Image::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $belongs_many_many = array(
+    private static $belongs_many_many = [
         'BlogPosts' => BlogPost::class
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -53,7 +52,7 @@ class BlogMemberExtension extends DataExtension
         if ($this->owner->URLSegment && !$this->owner->isChanged('FirstName') && !$this->owner->isChanged('Surname')) {
             return;
         }
-        
+
         $this->owner->URLSegment = $this->generateURLSegment();
 
         while (!$this->validURLSegment()) {
@@ -109,15 +108,15 @@ class BlogMemberExtension extends DataExtension
         $fields->removeFieldFromTab('Root', 'BlogPosts');
 
         // Construct a better posts tab.
+        $module = ModuleLoader::getModule('silverstripe/blog');
+        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
+        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
 
-        Requirements::css(BLOGGER_DIR . '/css/cms.css');
-        Requirements::javascript(BLOGGER_DIR . '/js/cms.js');
-
-        $tab = Tab::create('BlogPosts', _t('BlogMemberExtension.TABBLOGPOSTS', 'Blog Posts'));
+        $tab = Tab::create('BlogPosts', _t(__CLASS__ . '.TABBLOGPOSTS', 'Blog Posts'));
 
         $gridField = GridField::create(
             'BlogPosts',
-            _t('BlogMemberExtension.BLOGPOSTS', 'Blog Posts'),
+            _t(__CLASS__ . '.BLOGPOSTS', 'Blog Posts'),
             $this->owner->BlogPosts(),
             GridFieldConfig_BlogPost::create()
         );

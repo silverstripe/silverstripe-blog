@@ -9,7 +9,7 @@ class GridFieldFormAction extends GridField_FormAction
     /**
      * @var array
      */
-    protected $extraAttributes = array();
+    protected $extraAttributes = [];
 
     /**
      * @param array $attributes

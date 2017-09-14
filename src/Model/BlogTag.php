@@ -11,8 +11,6 @@ use SilverStripe\Blog\Model\CategorisationObject;
 /**
  * A blog tag for keyword descriptions of a blog post.
  *
- * @package silverstripe
- * @subpackage blog
  *
  * @method Blog Blog()
  *
@@ -42,24 +40,24 @@ class BlogTag extends DataObject implements CategorisationObject
     /**
      * @var array
      */
-    private static $db = array(
+    private static $db = [
         'Title'      => 'Varchar(255)',
         'URLSegment' => 'Varchar(255)'
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class
-    );
+    ];
 
     /**
      * @var array
      */
-    private static $belongs_many_many = array(
+    private static $belongs_many_many = [
         'BlogPosts' => BlogPost::class
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -74,6 +72,6 @@ class BlogTag extends DataObject implements CategorisationObject
      */
     protected function getDuplicateError()
     {
-        return _t('BlogTag.Duplicate', 'A blog tag already exists with that name.');
+        return _t(__CLASS__ . '.Duplicate', 'A blog tag already exists with that name.');
     }
 }

@@ -2,6 +2,8 @@
 
 namespace SilverStripe\Blog\Forms\GridField;
 
+use SilverStripe\Core\Injector\Injectable;
+use SilverStripe\Core\Manifest\ModuleLoader;
 use UnexpectedValueException;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
@@ -15,14 +17,10 @@ use SilverStripe\Security\Security;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
 
-/**
- * Adds a component which allows a user to add a new DataObject by database field.
- *
- * @package silverstripe
- * @subpackage blog
- */
 class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLProvider
 {
+    use Injectable;
+
     /**
      * HTML Fragment to render the field.
      *
@@ -59,9 +57,9 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      */
     public function getActions($gridField)
     {
-        return array(
+        return [
             'add',
-        );
+        ];
     }
 
     /**
@@ -86,7 +84,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             /**
              * @var DataObject $obj
              */
-            $obj = new $objClass();
+            $obj = $objClass::create();
 
             if ($obj->hasField($dbField)) {
                 $obj->setCastedField($dbField, $data['gridfieldaddbydbfield'][$obj->ClassName][$dbField]);
@@ -96,12 +94,12 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                     if (!$id) {
                         $gridField->setCustomValidationMessage(
                             _t(
-                                'GridFieldAddByDBField.AddFail',
+                                __CLASS__ . '.AddFail',
                                 'Unable to save {class} to the database.',
                                 'Unable to add the DataObject.',
-                                array(
+                                [
                                     'class' => get_class($obj),
-                                )
+                                ]
                             )
                         );
                     }
@@ -109,12 +107,12 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                     return Security::permissionFailure(
                         Controller::curr(),
                         _t(
-                            'GridFieldAddByDBField.PermissionFail',
+                            __CLASS__ . '.PermissionFail',
                             'You don\'t have permission to create a {class}.',
                             'Unable to add the DataObject.',
-                            array(
+                            [
                                 'class' => get_class($obj)
-                            )
+                            ]
                         )
                     );
                 }
@@ -161,7 +159,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      */
     public function getHTMLFragments($gridField)
     {
-        Requirements::javascript(BLOGGER_DIR . '/js/gridfieldaddbydbfield.js');
+        Requirements::javascript(ModuleLoader::getModule('silverstripe/blog')->getRelativeResourcePath('js/gridfieldaddbydbfield.js'));
 
         /**
          * @var DataList $dataList
@@ -188,11 +186,11 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             ->setAttribute('placeholder', $obj->fieldLabel($dbField))
             ->addExtraClass('no-change-track');
 
-        $addAction = new GridField_FormAction(
+        $addAction = GridField_FormAction::create(
             $gridField,
             'add',
             _t(
-                'GridFieldAddByDBField.Add',
+                __CLASS__ . '.Add',
                 'Add {name}',
                 'Add button text',
                 ['name' => $obj->i18n_singular_name()]
@@ -203,12 +201,12 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $addAction->setAttribute('data-icon', 'add');
         $addAction->addExtraClass('btn btn-primary');
 
-        $forTemplate = new ArrayData(array());
+        $forTemplate = ArrayData::create([]);
 
-        $forTemplate->Fields = new ArrayList();
+        $forTemplate->Fields = ArrayList::create();
         $forTemplate->Fields->push($textField);
         $forTemplate->Fields->push($addAction);
 
-        return array($this->targetFragment => $forTemplate->renderWith(self::class));
+        return [$this->targetFragment => $forTemplate->renderWith(self::class)];
     }
 }

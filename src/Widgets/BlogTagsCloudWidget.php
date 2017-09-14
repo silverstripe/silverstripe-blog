@@ -37,14 +37,14 @@ class BlogTagsCloudWidget extends Widget
     /**
      * @var array
      */
-    private static $db = array();
+    private static $db = [];
 
     /**
      * @var array
      */
-    private static $has_one = array(
+    private static $has_one = [
         'Blog' => Blog::class,
-    );
+    ];
 
     /**
      * {@inheritdoc}
@@ -58,7 +58,7 @@ class BlogTagsCloudWidget extends Widget
             $fields->push(
                 DropdownField::create(
                     'BlogID',
-                    _t('BlogTagsCloudWidget.Blog', 'Blog'),
+                    _t(__CLASS__ . '.Blog', 'Blog'),
                     Blog::get()->map()
                 )
             );
@@ -89,9 +89,9 @@ class BlogTagsCloudWidget extends Widget
             $maxTagCount = 0;
 
             // create DataObjects that can be used to render the tag cloud
-            $tags = new ArrayList();
+            $tags = ArrayList::create();
             foreach ($records as $record) {
-                $tag = new DataObject();
+                $tag = DataObject::create();
                 $tag->TagName = $record['Title'];
                 $link = $bloglink.'tag/'.$record['URLSegment'];
                 $tag->Link = $link;
@@ -115,6 +115,6 @@ class BlogTagsCloudWidget extends Widget
             return $tags;
         }
 
-        return array();
+        return [];
     }
 }
