@@ -1,0 +1,24 @@
+SilverStripe\Security\Member:
+  member_a:
+    FirstName: عبّاس
+    Surname: آبان
+    Email: foo@example.com
+  member_b:
+    FirstName: Bob
+    Surname: Jones
+    Email: bobjones@example.com
+
+SilverStripe\Blog\Model\Blog:
+  blog_a:
+    URLSegment: آبید
+    Title: My Blog
+
+SilverStripe\Blog\Model\BlogPost:
+  blogpost_a:
+    Title: My Blog Post
+    URLSegment: آبیدآبید
+    PublishDate: 2017-08-01 00:00:00
+    Parent: =>SilverStripe\Blog\Model\Blog.blog_a
+    Authors:
+      - =>SilverStripe\Security\Member.member_a
+      - =>SilverStripe\Security\Member.member_b

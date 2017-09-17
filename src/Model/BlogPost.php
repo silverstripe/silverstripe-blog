@@ -736,6 +736,9 @@ class BlogPost extends Page
      */
     public function getDate()
     {
+        if ($this->hasDatabaseField('Date')) {
+            return $this->getField('Date');
+        }
         return !empty($this->PublishDate) ? $this->PublishDate : null;
     }
 

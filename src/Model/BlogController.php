@@ -8,6 +8,7 @@ use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Security\Member;
+use SilverStripe\View\Parsers\URLSegmentFilter;
 
 class BlogController extends PageController
 {
@@ -90,8 +91,10 @@ class BlogController extends PageController
         $urlSegment = $this->request->param('URLSegment');
 
         if ($urlSegment) {
+            $filter = URLSegmentFilter::create();
+
             return Member::get()
-                ->filter('URLSegment', $urlSegment)
+                ->filter('URLSegment', $filter->filter($urlSegment))
                 ->first();
         }
 
@@ -242,8 +245,10 @@ class BlogController extends PageController
         $dataRecord = $this->dataRecord;
         $tag = $this->request->param('Tag');
         if ($tag) {
+            $filter = URLSegmentFilter::create();
+
             return $dataRecord->Tags()
-                ->filter('URLSegment', [$tag, rawurlencode($tag)])
+                ->filter('URLSegment', [$tag, $filter->filter($tag)])
                 ->first();
         }
         return null;
@@ -286,8 +291,10 @@ class BlogController extends PageController
         $dataRecord = $this->dataRecord;
         $category = $this->request->param('Category');
         if ($category) {
+            $filter = URLSegmentFilter::create();
+
             return $dataRecord->Categories()
-                ->filter('URLSegment', [$category, rawurlencode($category)])
+                ->filter('URLSegment', [$category, $filter->filter($category)])
                 ->first();
         }
         return null;
