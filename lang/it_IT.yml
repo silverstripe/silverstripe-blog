@@ -1,8 +1,8 @@
 it_IT:
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i>Salva come Bozza in {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i>Pubblicato in {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Pubblica il {date}'
+    Draft: 'Salva come Bozza in {date}'
+    Published: 'Pubblicato in {date}'
+    Timer: 'Pubblica il {date}'
   SilverStripe\Blog\Model\Blog:
     Categories: Categorie
     Category: Categoria

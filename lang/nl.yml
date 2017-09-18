@@ -4,9 +4,9 @@ nl:
     AddFail: 'Kon geen {class} opslaan in de database.'
     PermissionFail: 'Je hebt geen permissie om een {class} aan te maken.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Opgeslagen als concept op {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Gepubliceerd op {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publiceer op {date}'
+    Draft: 'Opgeslagen als concept op {date}'
+    Published: 'Gepubliceerd op {date}'
+    Timer: 'Publiceer op {date}'
   SilverStripe\Blog\Model\Blog:
     Archive: Archief
     By: door

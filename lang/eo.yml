@@ -4,9 +4,9 @@ eo:
     AddFail: '{klaso} ne estas konservebla al la datumbazo.'
     PermissionFail: 'Vi ne havas permeson krei je {klaso}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Konservita kiel malneto je {dato}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publikigita je {dato}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publikigi je {dato}'
+    Draft: 'Konservita kiel malneto je {dato}'
+    Published: 'Publikigita je {dato}'
+    Timer: 'Publikigi je {dato}'
   SilverStripe\Blog\Model\Blog:
     Archive: Arkivo
     By: de

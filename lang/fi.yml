@@ -4,9 +4,9 @@ fi:
     AddFail: '{class} ei voida tallentaa tietokantaan.'
     PermissionFail: 'Sinulla ei ole oikeuksia luoda {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon blog-icon btn-icon-pencil"></i> Versio tallennettu {date}'
-    Published: '<i class="btn-icon blog-icon btn-icon-accept"></i> Julkaistu {date}'
-    Timer: '<i class="blog-icon blog-icon-timer"></i> Julkaistaan {date}'
+    Draft: 'Versio tallennettu {date}'
+    Published: 'Julkaistu {date}'
+    Timer: 'Julkaistaan {date}'
   SilverStripe\Blog\Model\Blog:
     Archive: Arkisto
     By: kirjoittanut

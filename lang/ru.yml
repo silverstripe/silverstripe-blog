@@ -4,9 +4,9 @@ ru:
     AddFail: 'Не удалось сохранить {class} в базе данных.'
     PermissionFail: 'У вас нет прав для создания элемента {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Черновик сохранен {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Опубликовано {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Опубликовать {date}'
+    Draft: 'Черновик сохранен {date}'
+    Published: 'Опубликовано {date}'
+    Timer: 'Опубликовать {date}'
   SilverStripe\Blog\Model\Blog:
     Archive: 'Архив'
     By: 'автор:'

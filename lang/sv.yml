@@ -4,9 +4,9 @@ sv:
     AddFail: 'Det går inte att spara {class} till databasen .'
     PermissionFail: 'Du har inte behörighet att skapa en {class} .'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Sparad som utkast den {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publicerad den {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publicerad den {date}'
+    Draft: 'Sparad som utkast den {date}'
+    Published: 'Publicerad den {date}'
+    Timer: 'Publicerad den {date}'
   SilverStripe\Blog\Model\Blog:
     Archive: Arkiv
     By: av

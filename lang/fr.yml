@@ -4,9 +4,9 @@ fr:
     AddFail: 'Impossible de sauvegarder {class} dans la base de données.'
     PermissionFail: 'Vous n''avez pas la permission de créer {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Enregistré comme brouillon à {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publié le {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publier le {date}'
+    Draft: 'Enregistré comme brouillon à {date}'
+    Published: 'Publié le {date}'
+    Timer: 'Publier le {date}'
   SilverStripe\Blog\Model\Blog:
     Archive: Archive
     By: par
