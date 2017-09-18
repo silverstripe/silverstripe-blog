@@ -4,9 +4,9 @@ en:
     AddFail: 'Unable to save {class} to the database.'
     PermissionFail: 'You don''t have permission to create a {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}'
+    Draft: 'Saved as Draft on {date}'
+    Published: 'Published on {date}'
+    Timer: 'Publish at {date}'
   SilverStripe\Blog\Model:
     Title: Title
   SilverStripe\Blog\Model\Blog:
