@@ -34,9 +34,9 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                      */
                     $lastEdited = $record->dbObject('LastEdited');
 
-                    return _t(
+                    return '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> '  . _t(
                         __CLASS__ . '.Draft',
-                        '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}',
+                        'Saved as Draft on {date}',
                         'State for when a post is saved.',
                         [
                             'date' => $lastEdited->FormatFromSettings(),
@@ -50,9 +50,9 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 $publishDate = $record->dbObject('PublishDate');
 
                 if (strtotime($record->PublishDate) > time()) {
-                    return _t(
+                    return '<i class="gridfield-icon blog-icon-timer"></i> ' . _t(
                         __CLASS__ . '.Timer',
-                        '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}',
+                        'Publish at {date}',
                         'State for when a post is published.',
                         [
                             'date' => $publishDate->FormatFromSettings(),
@@ -60,9 +60,9 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                     ) . $modifiedLabel;
                 }
 
-                return _t(
+                return '<i class="btn-icon gridfield-icon btn-icon-accept"></i> ' . _t(
                     __CLASS__ . '.Published',
-                    '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}',
+                    'Published on {date}',
                     'State for when a post is published.',
                     [
                         'date' => $publishDate->FormatFromSettings(),

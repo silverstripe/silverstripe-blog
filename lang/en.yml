@@ -1,8 +1,15 @@
 en:
-  ArchiveWidget:
-    PLURALNAME: 'Archive Widgets'
-    SINGULARNAME: 'Archive Widget'
-  Blog:
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Add {name}'
+    AddFail: 'Unable to save {class} to the database.'
+    PermissionFail: 'You don''t have permission to create a {class}.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: 'Saved as Draft on {date}'
+    Published: 'Published on {date}'
+    Timer: 'Publish at {date}'
+  SilverStripe\Blog\Model:
+    Title: Title
+  SilverStripe\Blog\Model\Blog:
     AND: and
     Archive: Archive
     By: by
@@ -19,11 +26,13 @@ en:
     FILTERDESCRIPTION_TAG: 'Tagged with {tag}'
     LumberjackTitle: 'Blog Posts'
     NoPosts: 'There are no posts'
-    NoUnfeaturedPosts: 'There are no non-featured posts'
     PERMISSIONS_CATEGORY: 'Blog permissions'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Manage users for individual blogs'
     PERMISSION_MANAGE_USERS_HELP: 'Allow assignment of Editors, Writers, or Contributors to blogs'
-    PLURALNAME: 'Base Pages'
+    PLURALNAME: Blogs
+    PLURALS:
+      one: 'A Blog'
+      other: '{count} Blogs'
     Posted: Posted
     PostedIn: 'Posted in'
     PostsPerPage: 'Posts Per Page'
@@ -33,87 +42,63 @@ en:
     Tagged: Tagged
     Tags: Tags
     WRITER: Writer
-  BlogArchiveWidget:
-    ArchiveType: ArchiveType
-    Blog: Blog
-    NumberToDisplay: 'No. to Display'
-    PLURALNAME: 'Blog Archive Widgets'
-    SINGULARNAME: 'Blog Archive Widget'
-  BlogCategoriesWidget:
-    Blog: Blog
-    Direction: Direction
-    Direction_Description: 'Change the direction of ordering of categories shown by this widget.'
-    Limit: Limit
-    Limit_Description: 'Limit the number of categories shown by this widget (set to 0 to show all categories).'
-    PLURALNAME: 'Blog Categories Widgets'
-    SINGULARNAME: 'Blog Categories Widget'
-    Sort: Sort
-    Sort_Description: 'Change the order of categories shown by this widget.'
-  BlogCategory:
-    Duplicate: 'A blog category already exists with that name'
+  SilverStripe\Blog\Model\BlogCategory:
+    Duplicate: 'A blog category already exists with that name.'
     PLURALNAME: 'Blog Categories'
+    PLURALS:
+      one: 'A Blog Category'
+      other: '{count} Blog Categories'
     SINGULARNAME: 'Blog Category'
-    Title: Title
-  BlogEntry:
-    DESCRIPTION: 'Generic content page'
-    PLURALNAME: 'Base Pages'
-    SINGULARNAME: 'Blog Entry'
-  BlogHolder:
-    DESCRIPTION: 'Generic content page'
-    PLURALNAME: 'Base Pages'
-    SINGULARNAME: 'Blog Holder'
-  BlogPost:
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Blog Posts'
+    TABBLOGPOSTS: 'Blog Posts'
+  SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Author
     AdditionalCredits: 'Additional Credits'
     AdditionalCredits_Description: 'If some authors of this post don''t have CMS access, enter their name(s) here. You can separate multiple names with a comma.'
     Authors: Authors
     CUSTOMSUMMARY: 'Add A Custom Summary'
     Categories: Categories
-    DESCRIPTION: 'Generic content page'
     FeaturedImage: 'Featured Image'
-    PLURALNAME: 'Base Pages'
+    PLURALNAME: 'Blog Posts'
+    PLURALS:
+      one: 'A Blog Post'
+      other: '{count} Blog Posts'
     PageTitleLabel: 'Post Title'
     PublishDate: 'Publish Date'
     PublishDate_Description: 'Will be set to "now" if published without a value.'
     SINGULARNAME: 'Blog Post'
     SUMMARY_DESCRIPTION: 'If no summary is specified the first 30 words will be used.'
     Tags: Tags
-  BlogRecentPostsWidget:
+  SilverStripe\Blog\Model\BlogTag:
+    Duplicate: 'A blog tag already exists with that name.'
+    PLURALNAME: 'Blog Tags'
+    PLURALS:
+      one: 'A Blog Tag'
+      other: '{count} Blog Tags'
+    SINGULARNAME: 'Blog Tag'
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: ArchiveType
+    Blog: Blog
+    NumberToDisplay: 'No. to Display'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: Blog
+    Direction: Direction
+    Direction_Description: 'Change the direction of ordering of categories shown by this widget.'
+    Limit: Limit
+    Limit_Description: 'Limit the number of categories shown by this widget (set to 0 to show all categories).'
+    Sort: Sort
+    Sort_Description: 'Change the order of categories shown by this widget.'
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Number of Posts'
-    PLURALNAME: 'Blog Recent Posts Widgets'
-    SINGULARNAME: 'Blog Recent Posts Widget'
-  BlogTag:
-    Duplicate: 'A blog tag already exists with that name'
-    PLURALNAME: 'Blog Tags'
-    SINGULARNAME: 'Blog Tag'
-    Title: Title
-  BlogTagsCloudWidget:
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blog
-    PLURALNAME: 'Blog Tags Cloud Widgets'
-    SINGULARNAME: 'Blog Tags Cloud Widget'
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Direction
     Direction_Description: 'Change the direction of ordering of tags shown by this widget.'
     Limit: Limit
     Limit_Description: 'Limit the number of tags shown by this widget (set to 0 to show all tags).'
-    PLURALNAME: 'Blog Tags Widgets'
-    SINGULARNAME: 'Blog Tags Widget'
     Sort: Sort
     Sort_Description: 'Change the order of tags shown by this widget.'
-  BlogTree:
-    DESCRIPTION: 'Generic content page'
-    PLURALNAME: 'Base Pages'
-    SINGULARNAME: 'Blog Tree'
-  GridFieldAddByDBField:
-    Add: 'Add {name}'
-    AddFail: 'Unable to save {class} to the database.'
-    PermissionFail: 'You don''t have permission to create a {class}.'
-  GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}'
-  TagCloudWidget:
-    PLURALNAME: 'Tag Cloud Widgets'
-    SINGULARNAME: 'Tag Cloud Widget'
