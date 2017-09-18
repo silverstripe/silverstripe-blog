@@ -1,8 +1,13 @@
 fr:
-  ArchiveWidget:
-    PLURALNAME: 'Widget archive'
-    SINGULARNAME: 'Widget archive'
-  Blog:
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Ajouter {name}'
+    AddFail: 'Impossible de sauvegarder {class} dans la base de données.'
+    PermissionFail: 'Vous n''avez pas la permission de créer {class}.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Enregistré comme brouillon à {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publié le {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publier le {date}'
+  SilverStripe\Blog\Model\Blog:
     Archive: Archive
     By: par
     CONTRIBUTOR: Contributeur
@@ -22,7 +27,7 @@ fr:
     PERMISSIONS_CATEGORY: 'Permissions du blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gérer les utilisateurs pour un blog'
     PERMISSION_MANAGE_USERS_HELP: 'Autoriser l''assignation d''éditeurs, auteurs ou contributeurs au blog'
-    PLURALNAME: 'Blogs'
+    PLURALNAME: Blogs
     Posted: Publié
     PostedIn: 'Publié dans'
     PostsPerPage: 'Billets par page'
@@ -32,13 +37,35 @@ fr:
     Tagged: Taggé
     Tags: Tags
     WRITER: Auteur
-  BlogArchiveWidget:
+  SilverStripe\Blog\Model\BlogCategory:
+    PLURALNAME: 'Catégories du blog'
+    SINGULARNAME: 'Catégorie du blog'
+    Title: Title
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Auteur
+    AdditionalCredits: 'Mentions additionnelles'
+    Authors: Auteurs
+    CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
+    Categories: Catégories
+    DESCRIPTION: 'Un billet du blog'
+    PLURALNAME: Billets
+    PageTitleLabel: 'Titre du billet'
+    PublishDate: 'Date de publication'
+    PublishDate_Description: 'Sera mis à "maintenant" si publié sans valeur.'
+    SINGULARNAME: Billet
+    SUMMARY_DESCRIPTION: 'Si aucun sommaire, les 30 premiers mots seront utilisés.'
+    Tags: Tags
+  SilverStripe\Blog\Model\BlogTag:
+    PLURALNAME: 'Tags du blog'
+    SINGULARNAME: 'Tag du blog'
+    Title: Titre
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: ArchiveType
     Blog: Blog
     NumberToDisplay: 'Num. à afficher'
     PLURALNAME: 'Widgets archive du blog'
     SINGULARNAME: 'Widget archive du blog'
-  BlogCategoriesWidget:
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
     Direction: Direction
     Direction_Description: 'Changer la direction du tri de ce widget.'
@@ -48,42 +75,12 @@ fr:
     SINGULARNAME: 'Widget catégories du blog'
     Sort: Tri
     Sort_Description: 'Changer l''ordre de tri pour ce widget.'
-  BlogCategory:
-    PLURALNAME: 'Catégories du blog'
-    SINGULARNAME: 'Catégorie du blog'
-    Title: Title
-  BlogEntry:
-    DESCRIPTION: 'Generic content page'
-    PLURALNAME: 'Base Pages'
-    SINGULARNAME: 'Blog Entry'
-  BlogHolder:
-    DESCRIPTION: 'Generic content page'
-    PLURALNAME: 'Base Pages'
-    SINGULARNAME: 'Blog Holder'
-  BlogPost:
-    AUTHOR: Auteur
-    AdditionalCredits: 'Mentions additionnelles'
-    Authors: Auteurs
-    CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
-    Categories: Catégories
-    DESCRIPTION: 'Un billet du blog'
-    PLURALNAME: 'Billets'
-    PageTitleLabel: 'Titre du billet'
-    PublishDate: 'Date de publication'
-    PublishDate_Description: 'Sera mis à "maintenant" si publié sans valeur.'
-    SINGULARNAME: 'Billet'
-    SUMMARY_DESCRIPTION: 'Si aucun sommaire, les 30 premiers mots seront utilisés.'
-    Tags: Tags
-  BlogRecentPostsWidget:
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Nombre de billets'
     PLURALNAME: 'Widgets billets récents'
     SINGULARNAME: 'Widget billet récent'
-  BlogTag:
-    PLURALNAME: 'Tags du blog'
-    SINGULARNAME: 'Tag du blog'
-    Title: Titre
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Direction
     Direction_Description: 'Changer la direction du tri de ce widget.'
@@ -93,18 +90,6 @@ fr:
     SINGULARNAME: 'Widget tag du blog'
     Sort: Tri
     Sort_Description: 'Changer l''ordre de tri pour ce widget.'
-  BlogTree:
-    DESCRIPTION: 'Generic content page'
-    PLURALNAME: 'Base Pages'
-    SINGULARNAME: 'Blog Tree'
-  GridFieldAddByDBField:
-    Add: 'Ajouter {name}'
-    AddFail: 'Impossible de sauvegarder {class} dans la base de données.'
-    PermissionFail: 'Vous n''avez pas la permission de créer {class}.'
-  GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Enregistré comme brouillon à {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publié le {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publier le {date}'
   TagCloudWidget:
     PLURALNAME: 'Widgets nuage de tags'
     SINGULARNAME: 'Widget nuage de tag'

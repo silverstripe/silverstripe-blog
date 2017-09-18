@@ -1,20 +1,11 @@
 sk:
-  Blog:
+  SilverStripe\Blog\Model\Blog:
     FILTERDESCRIPTION_PAGE: 'Strana {page}'
     PLURALNAME: 'Základné stránky'
-  BlogCategory:
+  SilverStripe\Blog\Model\BlogCategory:
     Title: Názov
-  BlogEntry:
+  SilverStripe\Blog\Model\BlogPost:
     DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
     PLURALNAME: 'Základné stránky'
-  BlogHolder:
-    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
-    PLURALNAME: 'Základné stránky'
-  BlogPost:
-    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
-    PLURALNAME: 'Základné stránky'
-  BlogTag:
+  SilverStripe\Blog\Model\BlogTag:
     Title: Názov
-  BlogTree:
-    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
-    PLURALNAME: 'Základné stránky'

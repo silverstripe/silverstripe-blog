@@ -1,16 +1,21 @@
 ru:
-  ArchiveWidget:
-    PLURALNAME: 'Виджеты для архива'
-    SINGULARNAME: 'Виджет для архива'
-  Blog:
-    Archive: Архив
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Добавить {name}'
+    AddFail: 'Не удалось сохранить {class} в базе данных.'
+    PermissionFail: 'У вас нет прав для создания элемента {class}.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Черновик сохранен {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Опубликовано {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Опубликовать {date}'
+  SilverStripe\Blog\Model\Blog:
+    Archive: 'Архив'
     By: 'автор:'
     CONTRIBUTOR: Автор
     Categories: Категории
     Category: Категория
     Comments: Комментарии
     DESCRIPTION: 'Добавляет к сайту блог.'
-    EDITOR: Редактор
+    EDITOR: 'Редактор'
     FILTERDESCRIPTION_AUTHOR: 'Автор: {author}'
     FILTERDESCRIPTION_CATEGORY: 'В категории: {category}'
     FILTERDESCRIPTION_DATE: 'Дата: {date}'
@@ -23,7 +28,7 @@ ru:
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Управление пользователями для индивидуальных блогов'
     PLURALNAME: 'Базовые страницы'
     Posted: Отправлено
-    PostedIn: 'Отправлено'
+    PostedIn: Отправлено
     PostsPerPage: 'Записей на странице'
     ReadMoreAbout: 'Узнать больше о ''{title}''...'
     SINGULARNAME: Блог
@@ -31,21 +36,7 @@ ru:
     Tagged: Метки
     Tags: Метки
     WRITER: Автор
-  BlogArchiveWidget:
-    ArchiveType: Тип архива
-    Blog: Блог
-    PLURALNAME: 'Виджеты архива'
-    SINGULARNAME: 'Виджет архива'
-  BlogCategoriesWidget:
-    Blog: Блог
-    Sort: Сортировать
-  BlogEntry:
-    DESCRIPTION: 'Обычная страница'
-    PLURALNAME: 'Базовые страницы'
-  BlogHolder:
-    DESCRIPTION: 'Обычная страница'
-    PLURALNAME: 'Базовые страницы'
-  BlogPost:
+  SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Автор
     AdditionalCredits: 'Дополнительные сведения'
     Authors: Авторы
@@ -53,27 +44,24 @@ ru:
     PLURALNAME: 'Базовые страницы'
     SINGULARNAME: 'Запись в блоге'
     Tags: Метки
-  BlogRecentPostsWidget:
+  SilverStripe\Blog\Model\BlogTag:
+    Title: Заголовок
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: 'Тип архива'
+    Blog: Блог
+    PLURALNAME: 'Виджеты архива'
+    SINGULARNAME: 'Виджет архива'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: Блог
+    Sort: Сортировать
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Блог
     NumberOfPosts: 'Количество записей'
-  BlogTag:
-    Title: Заголовок
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Блог
     PLURALNAME: 'Виджеты для меток блога'
     SINGULARNAME: 'Виджет для меток блога'
     Sort: Сортировать
-  BlogTree:
-    DESCRIPTION: 'Обычная страница'
-    PLURALNAME: 'Базовые страницы'
-  GridFieldAddByDBField:
-    Add: 'Добавить {name}'
-    AddFail: 'Не удалось сохранить {class} в базе данных.'
-    PermissionFail: 'У вас нет прав для создания элемента {class}.'
-  GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Черновик сохранен {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Опубликовано {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Опубликовать {date}'
   TagCloudWidget:
     PLURALNAME: 'Виджеты для облака меток'
     SINGULARNAME: 'Виджет для облака меток'

@@ -1,16 +1,10 @@
 fi_FI:
-  Blog:
+  SilverStripe\Blog\Model\Blog:
     FILTERDESCRIPTION_PAGE: 'Sivu {page}'
-    PLURALNAME: 'Pohjasivut'
-  BlogCategory:
+    PLURALNAME: Pohjasivut
+  SilverStripe\Blog\Model\BlogCategory:
     Title: Otsikko
-  BlogEntry:
-    PLURALNAME: 'Pohjasivut'
-  BlogHolder:
-    PLURALNAME: 'Pohjasivut'
-  BlogPost:
-    PLURALNAME: 'Pohjasivut'
-  BlogTag:
+  SilverStripe\Blog\Model\BlogPost:
+    PLURALNAME: Pohjasivut
+  SilverStripe\Blog\Model\BlogTag:
     Title: Otsikko
-  BlogTree:
-    PLURALNAME: 'Pohjasivut'

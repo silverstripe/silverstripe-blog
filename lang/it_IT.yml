@@ -1,5 +1,9 @@
 it_IT:
-  Blog:
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i>Salva come Bozza in {date}'
+    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i>Pubblicato in {date}'
+    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Pubblica il {date}'
+  SilverStripe\Blog\Model\Blog:
     Categories: Categorie
     Category: Categoria
     Comments: Commenti
@@ -14,9 +18,5 @@ it_IT:
     NoPosts: 'Non ci sono post'
     PERMISSIONS_CATEGORY: 'Permessi Blog'
     Tagged: Taggato
-  BlogPost:
+  SilverStripe\Blog\Model\BlogPost:
     Categories: Categorie
-  GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i>Salva come Bozza in {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i>Pubblicato in {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Pubblica il {date}'
