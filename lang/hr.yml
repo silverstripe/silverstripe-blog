@@ -1,8 +1,5 @@
 hr:
-  ArchiveWidget:
-    PLURALNAME: 'Arhivirani widgeti'
-    SINGULARNAME: 'Arhiviran widget'
-  Blog:
+  SilverStripe\Blog\Model\Blog:
     Archive: Arhiva
     By: od
     CONTRIBUTOR: Suradnik
@@ -31,23 +28,9 @@ hr:
     Tagged: Tagirano
     Tags: Tagovi
     WRITER: Pisac
-  BlogArchiveWidget:
-    ArchiveType: Tip arhive
-    Blog: Blog
-    NumberToDisplay: 'Broj za prikaz'
-  BlogCategoriesWidget:
-    Blog: Blog
-    Limit: Limit
-  BlogCategory:
+  SilverStripe\Blog\Model\BlogCategory:
     Title: Naslov
-  BlogEntry:
-    DESCRIPTION: 'Obična sadržajna stranica'
-    PLURALNAME: 'Bazne stranice'
-    SINGULARNAME: 'Blog zapis'
-  BlogHolder:
-    DESCRIPTION: 'Obična sadržajna stranica'
-    PLURALNAME: 'Bazne stranice'
-  BlogPost:
+  SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     Authors: Autori
     Categories: Kategorije
@@ -58,13 +41,20 @@ hr:
     PublishDate: 'Datum objave'
     SINGULARNAME: 'Blog zapis'
     Tags: Tagovi
-  BlogRecentPostsWidget:
+  SilverStripe\Blog\Model\BlogTag:
+    Title: Naslov
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: 'Tip arhive'
+    Blog: Blog
+    NumberToDisplay: 'Broj za prikaz'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: Blog
+    Limit: Limit
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Broj zapisa'
-  BlogTag:
-    Title: Naslov
-  BlogTagsCloudWidget:
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blog
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Limit: Limit

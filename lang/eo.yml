@@ -1,8 +1,13 @@
 eo:
-  ArchiveWidget:
-    PLURALNAME: 'Enarĥivi fenestraĵojn'
-    SINGULARNAME: 'Enarĥivi fenestraĵon'
-  Blog:
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Aldoni {name}'
+    AddFail: '{klaso} ne estas konservebla al la datumbazo.'
+    PermissionFail: 'Vi ne havas permeson krei je {klaso}.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: 'Konservita kiel malneto je {dato}'
+    Published: 'Publikigita je {dato}'
+    Timer: 'Publikigi je {dato}'
+  SilverStripe\Blog\Model\Blog:
     Archive: Arkivo
     By: de
     CONTRIBUTOR: Kontribuinto
@@ -29,39 +34,15 @@ eo:
     ReadMoreAbout: 'Legi plu pri ''{title}''...'
     SINGULARNAME: Blogo
     Tag: Etikedo
-    Tagged: Havas etikedon
+    Tagged: 'Havas etikedon'
     Tags: Etikedoj
     WRITER: Verkanto
-  BlogArchiveWidget:
-    ArchiveType: ArkivoTipo
-    Blog: Blogo
-    NumberToDisplay: 'Nombro vidigotaj'
-    PLURALNAME: 'Fenestraĵoj por bloga arkivo'
-    SINGULARNAME: 'Fenestraĵo por bloga arkivo'
-  BlogCategoriesWidget:
-    Blog: Blogo
-    Direction: Direkto
-    Direction_Description: 'Ŝanĝi la direkton de ordigo de kategorioj vidigotaj de tiu fenestraĵo.'
-    Limit: Limigi
-    Limit_Description: 'Limigu la nombron da kategorioj vidigotaj de tiu fenestraĵo (agordu al 0 por vidigi ĉiujn kategoriojn).'
-    PLURALNAME: 'Fenestraĵoj por blogaj kategorioj'
-    SINGULARNAME: 'Fenestraĵo por blogaj kategorioj'
-    Sort: Ordigi
-    Sort_Description: 'Ŝanĝi la ordon de kategorioj vidigotaj de tiu fenestraĵo.'
-  BlogCategory:
+  SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Bloga kategorio jam ekzistas kun tiu nomo'
     PLURALNAME: 'Blogaj kategorioj'
     SINGULARNAME: 'Bloga kategorio'
     Title: Titolo
-  BlogEntry:
-    DESCRIPTION: 'Komuna enhavpaĝo'
-    PLURALNAME: 'Bazaj paĝoj'
-    SINGULARNAME: 'Blogero'
-  BlogHolder:
-    DESCRIPTION: 'Komuna enhavpaĝo'
-    PLURALNAME: 'Bazaj paĝoj'
-    SINGULARNAME: 'Blogenhavo'
-  BlogPost:
+  SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Aŭtoro
     AdditionalCredits: 'Kromaj agnoskoj'
     AdditionalCredits_Description: 'Se iuj aŭtoroj de ĉi tiu afiŝo ne havas CMS-aliron, enigu iliajn nomo(j)n ĉi tie. Vi povas apartigi plurajn nomojn per komo.'
@@ -74,24 +55,40 @@ eo:
     PageTitleLabel: 'Titolo de afiŝo'
     PublishDate: 'Dato de publikigo'
     PublishDate_Description: 'Agordiĝos al "nun", se publikigita sen valoro'
-    SINGULARNAME: 'Blogaĵo'
+    SINGULARNAME: Blogaĵo
     SUMMARY_DESCRIPTION: 'Se resumo ne estas agordita, la unuaj 30 vortoj uziĝos.'
     Tags: Etikedoj
-  BlogRecentPostsWidget:
-    Blog: Blog
-    NumberOfPosts: 'Nombro da afiŝoj'
-    PLURALNAME: 'Fenestraĵoj de lastaj blogaĵoj'
-    SINGULARNAME: 'Fenestraĵo de lastaj blogaĵoj'
-  BlogTag:
+  SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Blogaj etikedoj jam ekzistas kun tiu nomo'
     PLURALNAME: 'Blogaj etikedoj'
     SINGULARNAME: 'Bloga etikedo'
     Title: Titolo
-  BlogTagsCloudWidget:
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: ArkivoTipo
+    Blog: Blogo
+    NumberToDisplay: 'Nombro vidigotaj'
+    PLURALNAME: 'Fenestraĵoj por bloga arkivo'
+    SINGULARNAME: 'Fenestraĵo por bloga arkivo'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: Blogo
+    Direction: Direkto
+    Direction_Description: 'Ŝanĝi la direkton de ordigo de kategorioj vidigotaj de tiu fenestraĵo.'
+    Limit: Limigi
+    Limit_Description: 'Limigu la nombron da kategorioj vidigotaj de tiu fenestraĵo (agordu al 0 por vidigi ĉiujn kategoriojn).'
+    PLURALNAME: 'Fenestraĵoj por blogaj kategorioj'
+    SINGULARNAME: 'Fenestraĵo por blogaj kategorioj'
+    Sort: Ordigi
+    Sort_Description: 'Ŝanĝi la ordon de kategorioj vidigotaj de tiu fenestraĵo.'
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Nombro da afiŝoj'
+    PLURALNAME: 'Fenestraĵoj de lastaj blogaĵoj'
+    SINGULARNAME: 'Fenestraĵo de lastaj blogaĵoj'
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blogo
     PLURALNAME: 'Nubaj fenestraĵoj por blogaj etikedoj'
     SINGULARNAME: 'Nuba fenestraĵo por blogaj etikedoj'
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Direkto
     Direction_Description: 'Ŝanĝi la direkton de ordigo de etikedoj vidigotaj de tiu fenestraĵo.'
@@ -101,18 +98,6 @@ eo:
     SINGULARNAME: 'Fenestraĵo por blogaj etikedoj'
     Sort: Ordigi
     Sort_Description: 'Ŝanĝi la ordon de etikedoj vidigotaj de tiu fenestraĵo.'
-  BlogTree:
-    DESCRIPTION: 'Komuna enhavpaĝo'
-    PLURALNAME: 'Bazaj paĝoj'
-    SINGULARNAME: 'Blogarbo'
-  GridFieldAddByDBField:
-    Add: 'Aldoni {name}'
-    AddFail: '{klaso} ne estas konservebla al la datumbazo.'
-    PermissionFail: 'Vi ne havas permeson krei je {klaso}.'
-  GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Konservita kiel malneto je {dato}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Publikigita je {dato}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publikigi je {dato}'
   TagCloudWidget:
     PLURALNAME: 'Etikednubaj fenestraĵoj'
     SINGULARNAME: 'Etikednuba fenestraĵo'

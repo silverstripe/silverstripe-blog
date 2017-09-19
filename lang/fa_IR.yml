@@ -1,13 +1,13 @@
 fa_IR:
-  ArchiveWidget:
-    PLURALNAME: 'ویجت‌های بایگانی'
-    SINGULARNAME: 'ویجت بایگانی'
-  Blog:
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'افزودن {name}'
+    PermissionFail: 'شما دسترسی لازم جهت ایجاد یک {class} را ندارید.'
+  SilverStripe\Blog\Model\Blog:
     Archive: بایگانی
     By: توسط
-    CONTRIBUTOR: مشارکت‌کننده
-    Categories: مجموعه‌ها
-    Category: مجموعه
+    CONTRIBUTOR: 'مشارکت‌کننده'
+    Categories: 'مجموعه‌ها'
+    Category: 'مجموعه'
     Comments: دیدگاه‌ها
     DESCRIPTION: 'یک وبلاگ به سایت شما می‌افزاید.'
     EDITOR: ویرایشگر
@@ -23,7 +23,7 @@ fa_IR:
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'مدیریت کاربران برای بلاگ‌های انفرادی'
     PERMISSION_MANAGE_USERS_HELP: 'تعیین اجازه‌ی دسترسی ویرایش‌گران، نویسندگان یا مشارکت‌کنندگان به وبلاگ'
     PLURALNAME: 'صفحات پایه‌ای'
-    Posted: ارسال شده
+    Posted: 'ارسال شده'
     PostedIn: 'ارسال شده در'
     PostsPerPage: 'تعداد ارسال در صفحه'
     ReadMoreAbout: 'درباره ''{title}'' بیشتر بخوانید...'
@@ -32,38 +32,16 @@ fa_IR:
     Tagged: تگ‌شده
     Tags: تگ‌ها
     WRITER: نویسنده
-  BlogArchiveWidget:
-    ArchiveType: نوع بایگانی
-    Blog: وبلاگ
-    NumberToDisplay: 'شمار در نمایش'
-    PLURALNAME: 'ویجت‌های بایگانی بلاگ'
-    SINGULARNAME: 'ویجت بایگانی بلاگ'
-  BlogCategoriesWidget:
-    Blog: وبلاگ
-    Direction: جهت
-    Limit: محدود کردن
-    PLURALNAME: 'ویجت‌های مجموعه‌های بلاگ'
-    SINGULARNAME: 'ویجت‌ مجموعه‌های بلاگ'
-    Sort: مرتب‌سازی
-    Sort_Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
-  BlogCategory:
+  SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'مجموعه‌های وبلاگ'
     SINGULARNAME: 'مجموعه وبلاگ'
     Title: عنوان
-  BlogEntry:
-    DESCRIPTION: 'صفحه محتوای عمومی'
-    PLURALNAME: 'صفحات پایه‌ای'
-    SINGULARNAME: 'مدخل وبلاگ'
-  BlogHolder:
-    DESCRIPTION: 'صفحه محتوای عمومی'
-    PLURALNAME: 'صفحات پایه‌ای'
-    SINGULARNAME: 'نگهدارنده وبلاگ'
-  BlogPost:
+  SilverStripe\Blog\Model\BlogPost:
     AUTHOR: نگارنده
     AdditionalCredits: 'دیگر مشارکت‌کنندگان'
     Authors: نگارندگان
     CUSTOMSUMMARY: 'افزودن یک خلاصه دلخواه'
-    Categories: مجموعه‌ها
+    Categories: 'مجموعه‌ها'
     DESCRIPTION: 'صفحه محتوای عمومی'
     PLURALNAME: 'صفحات پایه‌ای'
     PageTitleLabel: 'عنوان ارسال'
@@ -71,30 +49,37 @@ fa_IR:
     PublishDate_Description: 'اگر بدون داده‌ای منتشر شود به "اکنون" تنظیم خواهد شد.'
     SINGULARNAME: 'ارسال وبلاگ'
     Tags: تگ‌ها
-  BlogRecentPostsWidget:
+  SilverStripe\Blog\Model\BlogTag:
+    PLURALNAME: 'تگ‌های وبلاگ'
+    SINGULARNAME: 'تگ وبلاگ'
+    Title: عنوان
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: 'نوع بایگانی'
+    Blog: وبلاگ
+    NumberToDisplay: 'شمار در نمایش'
+    PLURALNAME: 'ویجت‌های بایگانی بلاگ'
+    SINGULARNAME: 'ویجت بایگانی بلاگ'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: وبلاگ
+    Direction: جهت
+    Limit: 'محدود کردن'
+    PLURALNAME: 'ویجت‌های مجموعه‌های بلاگ'
+    SINGULARNAME: 'ویجت‌ مجموعه‌های بلاگ'
+    Sort: 'مرتب‌سازی'
+    Sort_Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: وبلاگ
     NumberOfPosts: 'شمار ارسال‌ها'
     PLURALNAME: 'ویجت‌های جدیدترین ارسال‌های بلاگ'
     SINGULARNAME: 'ویجت جدیدترین ارسال‌های بلاگ'
-  BlogTag:
-    PLURALNAME: 'تگ‌های وبلاگ'
-    SINGULARNAME: 'تگ وبلاگ'
-    Title: عنوان
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: وبلاگ
     Direction: جهت
-    Limit: محدود کردن
+    Limit: 'محدود کردن'
     Limit_Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
     PLURALNAME: 'ویجت‌های تگ‌های وبلاگ'
     SINGULARNAME: 'ویجت تگ‌های وبلاگ'
-    Sort: مرتب‌سازی
-  BlogTree:
-    DESCRIPTION: 'صفحه محتوای عمومی'
-    PLURALNAME: 'صفحات پایه‌ای'
-    SINGULARNAME: 'نمایش درختی وبلاگ'
-  GridFieldAddByDBField:
-    Add: 'افزودن {name}'
-    PermissionFail: 'شما دسترسی لازم جهت ایجاد یک {class} را ندارید.'
+    Sort: 'مرتب‌سازی'
   TagCloudWidget:
     PLURALNAME: 'ویجت‌های ابر تگ'
     SINGULARNAME: 'ویجت ابر تگ'

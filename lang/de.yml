@@ -1,8 +1,13 @@
 de:
-  ArchiveWidget:
-    PLURALNAME: 'Archiv Widgets'
-    SINGULARNAME: 'Archiv Widget'
-  Blog:
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: '{name} hinzufügen'
+    AddFail: 'Kann Klasse {class} nicht in der Datenbank speichern.'
+    PermissionFail: 'Sie haben keine Berechtigungen, um {class} zu erstellen.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: 'Als Entwurf am {date} gespeichert'
+    Published: 'Veröffentlicht am {date}'
+    Timer: 'Am {date} veröffentlichen'
+  SilverStripe\Blog\Model\Blog:
     Archive: Archiv
     By: von
     CONTRIBUTOR: Mitwirkende
@@ -16,7 +21,7 @@ de:
     FILTERDESCRIPTION_DATE: 'Am {date}'
     FILTERDESCRIPTION_PAGE: 'Seite {page}'
     FILTERDESCRIPTION_TAG: 'Verschlagwortet mit {tag}'
-    LumberjackTitle: 'Blog-Einträge'
+    LumberjackTitle: Blog-Einträge
     NoPosts: 'Keine Blog-Einträge vorhanden'
     PERMISSIONS_CATEGORY: 'Blog Berechtigungen'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Benutzer für einzelne Blog-Einträge verwalten'
@@ -31,13 +36,34 @@ de:
     Tagged: Verschlagwortet
     Tags: Schlagworte
     WRITER: Autor
-  BlogArchiveWidget:
+  SilverStripe\Blog\Model\BlogCategory:
+    PLURALNAME: 'Blog Kategorien'
+    SINGULARNAME: 'Blog Kategorie'
+    Title: Titel
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Autor
+    AdditionalCredits: 'Zusätzliche Credits'
+    Authors: Autoren
+    CUSTOMSUMMARY: Zusammenfassung
+    Categories: Kategorien
+    DESCRIPTION: 'Allgemeine Inhaltsseite'
+    PLURALNAME: 'Basis Seiten'
+    PageTitleLabel: Titel
+    PublishDate: 'Datum der Veröffentlichung'
+    SINGULARNAME: Blog-Eintrag
+    SUMMARY_DESCRIPTION: 'Wenn keine Zusammenfassung angegeben wird, werden die ersten 30 Wörter verwendet.'
+    Tags: Schlagworte
+  SilverStripe\Blog\Model\BlogTag:
+    PLURALNAME: 'Blog Schlagworte'
+    SINGULARNAME: 'Blog Schlagwort'
+    Title: Titel
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Archivtyp
     Blog: Blog
     NumberToDisplay: 'Anzahl anzeigen'
     PLURALNAME: 'Blog Archiv Widgets'
     SINGULARNAME: 'Blog Archiv Widget'
-  BlogCategoriesWidget:
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
     Direction: Richtung
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Kategorien, die von diesem Widget angezeigt werden.'
@@ -47,41 +73,12 @@ de:
     SINGULARNAME: 'Blog Kategorien Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
-  BlogCategory:
-    PLURALNAME: 'Blog Kategorien'
-    SINGULARNAME: 'Blog Kategorie'
-    Title: Titel
-  BlogEntry:
-    DESCRIPTION: 'Allgemeine Inhaltsseite'
-    PLURALNAME: 'Basis Seiten'
-    SINGULARNAME: 'Blogeintrag'
-  BlogHolder:
-    DESCRIPTION: 'Allgemeine Inhaltsseite'
-    PLURALNAME: 'Basis Seiten'
-    SINGULARNAME: 'Blog'
-  BlogPost:
-    AUTHOR: Autor
-    AdditionalCredits: 'Zusätzliche Credits'
-    Authors: Autoren
-    CUSTOMSUMMARY: 'Zusammenfassung'
-    Categories: Kategorien
-    DESCRIPTION: 'Allgemeine Inhaltsseite'
-    PLURALNAME: 'Basis Seiten'
-    PageTitleLabel: 'Titel'
-    PublishDate: 'Datum der Veröffentlichung'
-    SINGULARNAME: 'Blog-Eintrag'
-    SUMMARY_DESCRIPTION: 'Wenn keine Zusammenfassung angegeben wird, werden die ersten 30 Wörter verwendet.'
-    Tags: Schlagworte
-  BlogRecentPostsWidget:
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
     PLURALNAME: 'Aktuelle Blog Einträge Widgets'
     SINGULARNAME: 'Aktuelle Blog Einträge Widget'
-  BlogTag:
-    PLURALNAME: 'Blog Schlagworte'
-    SINGULARNAME: 'Blog Schlagwort'
-    Title: Titel
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Richtung
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Schlagworte, die von diesem Widget angezeigt werden.'
@@ -91,18 +88,6 @@ de:
     SINGULARNAME: 'Blog Schlagworte Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
-  BlogTree:
-    DESCRIPTION: 'Allgemeine Inhaltsseite'
-    PLURALNAME: 'Basis Seiten'
-    SINGULARNAME: 'Blog Baum-Ansicht'
-  GridFieldAddByDBField:
-    Add: '{name} hinzufügen'
-    AddFail: 'Kann Klasse {class} nicht in der Datenbank speichern.'
-    PermissionFail: 'Sie haben keine Berechtigungen, um {class} zu erstellen.'
-  GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Als Entwurf am {date} gespeichert'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Veröffentlicht am {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Am {date} veröffentlichen'
   TagCloudWidget:
     PLURALNAME: 'Schlagwortwolke Widgets'
     SINGULARNAME: 'Schlagwortwolke Widget'

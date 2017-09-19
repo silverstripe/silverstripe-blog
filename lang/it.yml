@@ -1,5 +1,13 @@
 it:
-  Blog:
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Aggiungi {name}'
+    AddFail: 'Impossibile salvare {class} nel database.'
+    PermissionFail: 'Non hai i permessi per creare un {class}.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: 'Salvato come bozza il {date}'
+    Published: 'Pubblicato il {date}'
+    Timer: 'Pubblicare al {date}'
+  SilverStripe\Blog\Model\Blog:
     Archive: Archivia
     By: di
     CONTRIBUTOR: Collaboratore
@@ -27,18 +35,9 @@ it:
     Tagged: Etichettato
     Tags: Etichette
     WRITER: Scrittore
-  BlogArchiveWidget:
-    Blog: Blog
-    NumberToDisplay: 'N. da Visualizzare'
-    PLURALNAME: 'Widget Archiviazione Blog'
-    SINGULARNAME: 'Widget Archiviazione Blog'
-  BlogCategoriesWidget:
-    Blog: Blog
-    PLURALNAME: 'Widget Categorie Blog'
-    SINGULARNAME: 'Widget Categorie Blog'
-  BlogCategory:
+  SilverStripe\Blog\Model\BlogCategory:
     Title: Titolo
-  BlogPost:
+  SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
     Authors: Autori
@@ -50,22 +49,23 @@ it:
     SINGULARNAME: 'Articolo del Blog'
     SUMMARY_DESCRIPTION: 'Se non è specificata una sintesi saranno usate le prime 30 parole.'
     Tags: Etichette
-  BlogRecentPostsWidget:
+  SilverStripe\Blog\Model\BlogTag:
+    Title: Titolo
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    Blog: Blog
+    NumberToDisplay: 'N. da Visualizzare'
+    PLURALNAME: 'Widget Archiviazione Blog'
+    SINGULARNAME: 'Widget Archiviazione Blog'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: Blog
+    PLURALNAME: 'Widget Categorie Blog'
+    SINGULARNAME: 'Widget Categorie Blog'
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
     PLURALNAME: 'Widget Articoli Blog Recenti'
     SINGULARNAME: 'Widget Articoli Blog Recenti'
-  BlogTag:
-    Title: Titolo
-  BlogTagsWidget:
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     PLURALNAME: 'Widget Etichette Blog'
     SINGULARNAME: 'Widget Etichette Blog'
-  GridFieldAddByDBField:
-    Add: 'Aggiungi {name}'
-    AddFail: 'Impossibile salvare {class} nel database.'
-    PermissionFail: 'Non hai i permessi per creare un {class}.'
-  GridFieldBlogPostState:
-    Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Salvato come bozza il {date}'
-    Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Pubblicato il {date}'
-    Timer: '<i class="gridfield-icon blog-icon-timer"></i> Pubblicare al {date}'
