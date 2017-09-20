@@ -16,11 +16,11 @@ SilverStripe\Blog\Model\Blog:
   grant_user_access: false
 ```
 
-Note: depending on the incusion order of your config.yml you may need to clear the config setting 
+Note: depending on the inclusion order of your config.yml you may need to clear the config setting 
 before updating it. In this case use the following in your `mysite/_config.php`:
 
 ```php
-SilverStripe\Core\Config\Config::inst()->remove(SilverStripe\Blog\Model\Blog::class, 'grant_user_access');
+SilverStripe\Core\Config\Config::modify()->remove(SilverStripe\Blog\Model\Blog::class, 'grant_user_access');
 ```
 
 If you create your own permissions and want to ensure the pool of possible selectable users includes 
@@ -48,7 +48,7 @@ SilverStripe\Blog\Model\BlogPost:
 ## Extension points in Blog and BlogPost users and how to use
 Both Blog and BlogPost have methods which return the list of candidate users or authors. If the previously 
 mentioned methods of reducing this list are not suitable or you wish to roll your own, you can utilise a 
-DataExtension to get the controller you require.
+DataExtension to get the control you require.
 
 For example in BlogPost:
 
@@ -56,7 +56,7 @@ For example in BlogPost:
 protected function getCandidateAuthors()
 {
     if ($restrictedGroup = $this->config()->get('restrict_authors_to_group')) {
-        if ($group = $Group::get()->filter('Code', $restrictedGroup)->first()) {
+        if ($group = Group::get()->filter('Code', $restrictedGroup)->first()) {
             return $group->Members();
         }
     } else {
@@ -69,7 +69,7 @@ protected function getCandidateAuthors()
 
 Note the line `$this->extend('updateCandidateAuthors', $list);` which allows you to call a 
 `updateCandidateAuthors` method in a DataExtension to the Blog Post class if you have not set a 
-`restrict_authors_to_group` config, further filter the passed 
+`restrict_authors_to_group` config, further filters the passed 
 in Member list before it gets sent back to the form field.
 
 See the documentation on [DataExtension](https://docs.silverstripe.org/en/developer_guides/extending/extensions/) for further implementation notes.
