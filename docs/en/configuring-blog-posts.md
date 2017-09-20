@@ -11,6 +11,6 @@ If you'd rather display your posts within the SiteTree, you can do so using Silv
 In mysite/_config/settings.yml
 
 ```yaml
-BlogPost:
+SilverStripe\Blog\Model\BlogPost:
   show_in_sitetree: true
 ```

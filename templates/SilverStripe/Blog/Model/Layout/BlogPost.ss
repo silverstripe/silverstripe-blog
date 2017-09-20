@@ -10,11 +10,11 @@
 
 		<div class="content">$Content</div>
 
-		<% include EntryMeta %>
+		<% include SilverStripe\\Blog\\EntryMeta %>
 	</article>
 
 	$Form
 	$CommentsForm
 </div>
 
-<% include BlogSideBar %>
+<% include SilverStripe\\Blog\\BlogSideBar %>
