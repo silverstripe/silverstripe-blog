@@ -23,5 +23,5 @@
 			</a>
 		</p>
 
-	<% include EntryMeta %>
+	<% include SilverStripe\\Blog\\EntryMeta %>
 </div>

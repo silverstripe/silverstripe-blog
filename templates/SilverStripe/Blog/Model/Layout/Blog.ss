@@ -26,7 +26,7 @@
 
 		<% if $PaginatedList.Exists %>
 			<% loop $PaginatedList %>
-				<% include PostSummary %>
+				<% include SilverStripe\\Blog\\PostSummary %>
 			<% end_loop %>
 		<% else %>
 			<p><%t Blog.NoPosts 'There are no posts' %></p>
@@ -37,8 +37,8 @@
 	$CommentsForm
 
 	<% with $PaginatedList %>
-		<% include Pagination %>
+		<% include SilverStripe\\Blog\\Pagination %>
 	<% end_with %>
 </div>
 
-<% include BlogSideBar %>
+<% include SilverStripe\\Blog\\BlogSideBar %>

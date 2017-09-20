@@ -2,12 +2,12 @@
 
 <div class="blog-entry content-container <% if $SideBarView %>unit size3of4<% end_if %>">
 
-	<% include MemberDetails %>
+	<% include SilverStripe\\Blog\\MemberDetails %>
 
 	<% if $PaginatedList.Exists %>
 		<h2>Posts by $CurrentProfile.FirstName $CurrentProfile.Surname for $Title:</h2>
 		<% loop $PaginatedList %>
-			<% include PostSummary %>
+			<% include SilverStripe\\Blog\\PostSummary %>
 		<% end_loop %>
 	<% end_if %>
 
@@ -15,9 +15,9 @@
 	$CommentsForm
 
 	<% with $PaginatedList %>
-		<% include Pagination %>
+		<% include SilverStripe\\Blog\\Pagination %>
 	<% end_with %>
 
 </div>
 
-<% include BlogSideBar %>
+<% include SilverStripe\\Blog\\BlogSideBar %>
