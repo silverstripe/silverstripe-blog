@@ -105,14 +105,15 @@ class BlogArchiveWidget extends Widget
         $posts = $query->execute();
         $result = new ArrayList();
         while ($next = $posts->next()) {
-            $date = Date::create();
-            $date->setValue(strtotime($next['PublishDate']));
-            $year = $date->Format('Y');
-
             if ($this->ArchiveType == 'Yearly') {
+                $year  = $next['PublishDate'];
                 $month = null;
                 $title = $year;
             } else {
+                $date = Date::create();
+                $date->setValue(strtotime($next['PublishDate']));
+
+                $year  = $date->Format('Y');
                 $month = $date->Format('m');
                 $title = $date->FormatI18N('%B %Y');
             }
