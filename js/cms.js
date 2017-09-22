@@ -38,19 +38,18 @@
                  * Toggle next description when button is clicked.
                  */
                 var shown = false;
+                var $helpInfo = $this.closest('.field').find('.form-text');
 
                 $this.on('click', function () {
-                    $this.parent().next('.description')[shown ? 'hide' : 'show']();
-
+                    $helpInfo[shown ? 'hide' : 'show']();
                     $this.toggleClass('toggle-description-shown');
-
                     shown = !shown;
                 });
 
                 /**
                  * Hide next description by default.
                  */
-                $this.parent().next('.description').hide();
+                $helpInfo.hide();
 
                 /**
                  * Add classes to correct inherited layout issues in a small context.

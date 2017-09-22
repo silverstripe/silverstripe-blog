@@ -74,16 +74,18 @@
   background: url("../images/information.png") no-repeat center center;
   width: 20px;
   height: 20px;
-  margin-left: 4px; }
+  margin-left: 4px;
+  cursor:pointer; }
 
 .middleColumn.toggle-description-correct-middle {
   margin-left: 0;
   float: left;
   width: 416px; }
 
-label.right.toggle-description-correct-right {
+.tab-content .field p.toggle-description-correct-right {
   display: inline-block;
   margin-left: 0;
+  padding-left: 0;
   clear: none;
   float: left; }
 

@@ -3,26 +3,18 @@
 namespace SilverStripe\Blog\Model;
 
 use Page;
-use PageController;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
-use SilverStripe\Blog\Model\BlogCategory;
-use SilverStripe\Blog\Model\BlogFilter;
-use SilverStripe\Blog\Model\BlogPost;
-use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
-use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\Core\Convert;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\ListboxField;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\NumericField;
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
-use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\ORM\PaginatedList;
 use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
@@ -142,9 +134,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function getCMSFields()
     {
-        $module = ModuleLoader::getModule('silverstripe/blog');
-        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
-        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
+        $this->addCMSRequirements();
 
         $this->beforeUpdateCMSFields(function ($fields) {
             if (!$this->canEdit()) {
@@ -194,6 +184,15 @@ class Blog extends Page implements PermissionProvider
         return parent::getCMSFields();
     }
 
+    /**
+     * Adds CMS related css and js overrides
+     */
+    protected function addCMSRequirements()
+    {
+        $module = ModuleLoader::getModule('silverstripe/blog');
+        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
+        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
+    }
     /**
      * {@inheritdoc}
      */
@@ -347,6 +346,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function getSettingsFields()
     {
+        $this->addCMSRequirements();
         $fields = parent::getSettingsFields();
 
         $fields->addFieldToTab(
@@ -355,37 +355,43 @@ class Blog extends Page implements PermissionProvider
         );
 
         $members = $this->getCandidateUsers()->map()->toArray();
+        $toggleButton = LiteralField::create('ToggleButton', '<a class="toggle-description"></a>');
 
         $editorField = ListboxField::create('Editors', 'Editors', $members)
-            // ->setMultiple(true)
-            ->setRightTitle('<a class="toggle-description">help</a>')
-            ->setDescription('
-				An editor has control over specific Blogs, and all posts included within it. Short of being able to assign other editors to a blog, they are able to handle most changes to their assigned blog.<br />
-				<br />
-				Editors have these permissions:<br />
-				<br />
-				Update or publish any BlogPost in their Blog<br />
-				Update or publish their Blog<br />
-				Assign/unassign writers to their Blog<br />
-				Assign/unassign contributors to their Blog<br />
-				Assign/unassign any member as an author of a particular BlogPost
-			');
-
+            ->setRightTitle($toggleButton)
+            ->setDescription(
+                _t(
+                    __CLASS__ . '.UsersEditorsFieldDescription',
+                    'An editor has control over specific Blogs, and all posts included within it. 
+                     Short of being able to assign other editors to a blog, they are able to handle most changes to
+                     their assigned blog. <br /><br />
+                    Editors have these permissions:<br />
+                    <br />
+                    Update or publish any BlogPost in their Blog<br />
+                    Update or publish their Blog<br />
+                    Assign/unassign writers to their Blog<br />
+                    Assign/unassign contributors to their Blog<br />
+                    Assign/unassign any member as an author of a particular BlogPost'
+                )
+            );
         if (!$this->canEditEditors()) {
             $editorField = $editorField->performDisabledTransformation();
         }
-
         $writerField = ListboxField::create('Writers', 'Writers', $members)
-            // ->setMultiple(true)
-            ->setRightTitle('<a class="toggle-description">help</a>')
-            ->setDescription('
-				A writer has full control over creating, editing and publishing BlogPosts they have authored or have been assigned to. Writers are unable to edit BlogPosts to which they are not assigned.<br />
-				<br />
-				Writers have these permissions:<br />
-				<br />
-				Update or publish any BlogPost they have authored or have been assigned to<br />
-				Assign/unassign any member as an author of a particular BlogPost they have authored or have been assigned to
-			');
+            ->setRightTitle($toggleButton)
+            ->setDescription(
+                _t(
+                    __CLASS__ . '.UsersWritersFieldDescription',
+                    'A writer has full control over creating, editing and publishing BlogPosts they have authored
+                      or have been assigned to. Writers are unable to edit BlogPosts to which they are not assigned.
+                    <br /><br />
+                    Writers have these permissions:<br />
+                    <br />
+                    Update or publish any BlogPost they have authored or have been assigned to<br />
+                    Assign/unassign any member as an author of a particular BlogPost they have authored or have been 
+                    assigned to'
+                )
+            );
 
         if (!$this->canEditWriters()) {
             $writerField = $writerField->performDisabledTransformation();
@@ -393,14 +399,19 @@ class Blog extends Page implements PermissionProvider
 
         $contributorField = ListboxField::create('Contributors', 'Contributors', $members)
             // ->setMultiple(true)
-            ->setRightTitle('<a class="toggle-description">help</a>')
-            ->setDescription('
-				Contributors have the ability to create or edit BlogPosts, but are unable to publish without authorisation of an editor. They are also unable to assign other contributing authors to any of their BlogPosts.<br />
-				<br />
-				Contributors have these permissions:<br />
-				<br />
-				Update any BlogPost they have authored or have been assigned to
-			');
+            ->setRightTitle($toggleButton)
+            ->setDescription(
+                _t(
+                    __CLASS__ . '.UsersContributorsFieldDescription',
+                    'Contributors have the ability to create or edit BlogPosts, but are unable to publish without 
+                        authorisation of an editor. They are also unable to assign other contributing authors to any of
+                         their BlogPosts.<br />
+                        <br />
+                        Contributors have these permissions:<br />
+                        <br />
+                        Update any BlogPost they have authored or have been assigned to'
+                )
+            );
 
         if (!$this->canEditContributors()) {
             $contributorField = $contributorField->performDisabledTransformation();
