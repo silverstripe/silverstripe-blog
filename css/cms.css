@@ -74,16 +74,18 @@
   background: url("../images/information.png") no-repeat center center;
   width: 20px;
   height: 20px;
-  margin-left: 4px; }
+  margin-left: 4px;
+  cursor: pointer; }
 
 .middleColumn.toggle-description-correct-middle {
   margin-left: 0;
   float: left;
   width: 416px; }
 
-label.right.toggle-description-correct-right {
+.tab-content .field p.toggle-description-correct-right {
   display: inline-block;
   margin-left: 0;
+  padding-left: 0;
   clear: none;
   float: left; }
 
@@ -93,11 +95,9 @@ label.right.toggle-description-correct-right {
 
 .custom-summary .ui-accordion-content .field {
   margin: 0; }
-
 .custom-summary .ui-accordion-content,
 .custom-summary .ui-accordion-content .field {
   padding: 0; }
-
 .custom-summary .ui-icon-triangle-1-e {
   background-position: -16px -128px; }
 
@@ -116,10 +116,8 @@ label.right.toggle-description-correct-right {
 
 .blog-cms-categorisation .MergeActionReveal {
   margin-left: 10px; }
-
 .blog-cms-categorisation .toolbar--content {
   margin-top: 0; }
-
 .blog-cms-categorisation .MergeActionReveal:after {
   content: '';
   background: url("../images/move-icon.png");
@@ -127,6 +125,5 @@ label.right.toggle-description-correct-right {
   height: 16px;
   width: 16px;
   margin-left: 4px; }
-
 .blog-cms-categorisation button.action {
   margin-left: 5px; }
