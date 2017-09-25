@@ -75,7 +75,7 @@
   width: 20px;
   height: 20px;
   margin-left: 4px;
-  cursor:pointer; }
+  cursor: pointer; }
 
 .middleColumn.toggle-description-correct-middle {
   margin-left: 0;
@@ -95,11 +95,9 @@
 
 .custom-summary .ui-accordion-content .field {
   margin: 0; }
-
 .custom-summary .ui-accordion-content,
 .custom-summary .ui-accordion-content .field {
   padding: 0; }
-
 .custom-summary .ui-icon-triangle-1-e {
   background-position: -16px -128px; }
 
@@ -118,10 +116,8 @@
 
 .blog-cms-categorisation .MergeActionReveal {
   margin-left: 10px; }
-
 .blog-cms-categorisation .toolbar--content {
   margin-top: 0; }
-
 .blog-cms-categorisation .MergeActionReveal:after {
   content: '';
   background: url("../images/move-icon.png");
@@ -129,6 +125,5 @@
   height: 16px;
   width: 16px;
   margin-left: 4px; }
-
 .blog-cms-categorisation button.action {
   margin-left: 5px; }
