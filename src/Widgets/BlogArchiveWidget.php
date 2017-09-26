@@ -2,10 +2,6 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
-    return;
-}
-
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\DropdownField;
@@ -18,6 +14,10 @@ use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Widgets\Model\Widget;
+
+if (!class_exists(Widget::class)) {
+    return;
+}
 
 /**
  * @method Blog Blog()
@@ -109,27 +109,28 @@ class BlogArchiveWidget extends Widget
         $publishDate = DB::get_conn()->formattedDatetimeClause('"PublishDate"', $format);
         $fields = [
             'PublishDate' => $publishDate,
-            'Total' => "Count('PublishDate')"
+            'Total' => "COUNT('\"PublishDate\"')"
         ];
 
         $stage = Versioned::get_stage();
-        $suffix = ($stage == 'Stage') ? '' : "_{$stage}";
-        $query = SQLSelect::create($fields, "BlogPost{$suffix}")
+        $suffix = ($stage === Versioned::LIVE) ? '_' . Versioned::LIVE : '';
+        $query = SQLSelect::create($fields, '"BlogPost' . $suffix . '"')
             ->addGroupBy($publishDate)
-            ->addOrderBy('PublishDate Desc')
-            ->addWhere(['PublishDate < ?' => DBDatetime::now()->Format('Y-m-d')]);
+            ->addOrderBy('"PublishDate" DESC')
+            ->addWhere(['"PublishDate" < ?' => DBDatetime::now()->getISOFormat()]);
 
         $posts = $query->execute();
         $result = ArrayList::create();
         while ($next = $posts->next()) {
-            $date = DBDate::create();
-            $date->setValue(strtotime($next['PublishDate']));
-            $year = $date->Format('Y');
-
             if ($this->ArchiveType == 'Yearly') {
+                $year  = $next['PublishDate'];
                 $month = null;
                 $title = $year;
             } else {
+                $date = Date::create();
+                $date->setValue(strtotime($next['PublishDate']));
+
+                $year  = $date->Format('Y');
                 $month = $date->Format('m');
                 $title = $date->FormatI18N('%B %Y');
             }
@@ -141,6 +142,7 @@ class BlogArchiveWidget extends Widget
         }
 
         $this->extend('updateGetArchive', $result);
+
         return $result;
     }
 }
