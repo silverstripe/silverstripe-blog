@@ -127,12 +127,12 @@ class BlogArchiveWidget extends Widget
                 $month = null;
                 $title = $year;
             } else {
-                $date = Date::create();
+                $date = DBDate::create();
                 $date->setValue(strtotime($next['PublishDate']));
 
-                $year  = $date->Format('Y');
-                $month = $date->Format('m');
-                $title = $date->FormatI18N('%B %Y');
+                $year  = $date->Format('y');
+                $month = $date->Format('MM');
+                $title = $date->Format('MMMM y');
             }
 
             $result->push(ArrayData::create([
