@@ -92,27 +92,28 @@ class BlogArchiveWidget extends Widget
         $publishDate = DB::get_conn()->formattedDatetimeClause('"PublishDate"', $format);
         $fields = array(
             'PublishDate' => $publishDate,
-            'Total' => "Count('PublishDate')"
+            'Total' => "COUNT('\"PublishDate\"')"
         );
 
         $stage = Versioned::current_stage();
-        $suffix = ($stage == 'Stage') ? '' : "_{$stage}";
-        $query = SQLSelect::create($fields, "BlogPost{$suffix}")
+        $suffix = ($stage === 'Live') ? '_Live' : '';
+        $query = SQLSelect::create($fields, '"BlogPost' . $suffix . '"')
             ->addGroupBy($publishDate)
-            ->addOrderBy('PublishDate Desc')
-            ->addWhere(array('PublishDate < ?' => SS_Datetime::now()->Format('Y-m-d')));
+            ->addOrderBy('"PublishDate" DESC')
+            ->addWhere(array('"PublishDate" < ?' => SS_Datetime::now()->Format('Y-m-d')));
 
         $posts = $query->execute();
         $result = new ArrayList();
         while ($next = $posts->next()) {
-            $date = Date::create();
-            $date->setValue(strtotime($next['PublishDate']));
-            $year = $date->Format('Y');
-
             if ($this->ArchiveType == 'Yearly') {
+                $year  = $next['PublishDate'];
                 $month = null;
                 $title = $year;
             } else {
+                $date = Date::create();
+                $date->setValue(strtotime($next['PublishDate']));
+
+                $year  = $date->Format('Y');
                 $month = $date->Format('m');
                 $title = $date->FormatI18N('%B %Y');
             }
@@ -124,6 +125,7 @@ class BlogArchiveWidget extends Widget
         }
 
         $this->extend('updateGetArchive', $result);
+
         return $result;
     }
 }
