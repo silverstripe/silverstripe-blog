@@ -92,15 +92,15 @@ class BlogArchiveWidget extends Widget
         $publishDate = DB::get_conn()->formattedDatetimeClause('"PublishDate"', $format);
         $fields = array(
             'PublishDate' => $publishDate,
-            'Total' => "Count('PublishDate')"
+            'Total' => "COUNT('\"PublishDate\"')"
         );
 
         $stage = Versioned::current_stage();
         $suffix = ($stage === 'Live') ? '_Live' : '';
-        $query = SQLSelect::create($fields, "BlogPost{$suffix}")
+        $query = SQLSelect::create($fields, '"BlogPost' . $suffix . '"')
             ->addGroupBy($publishDate)
-            ->addOrderBy('PublishDate Desc')
-            ->addWhere(array('PublishDate < ?' => SS_Datetime::now()->Format('Y-m-d')));
+            ->addOrderBy('"PublishDate" DESC')
+            ->addWhere(array('"PublishDate" < ?' => SS_Datetime::now()->Format('Y-m-d')));
 
         $posts = $query->execute();
         $result = new ArrayList();
