@@ -96,7 +96,7 @@ class BlogArchiveWidget extends Widget
         );
 
         $stage = Versioned::current_stage();
-        $suffix = ($stage == 'Stage') ? '' : "_{$stage}";
+        $suffix = ($stage === 'Live') ? '_Live' : '';
         $query = SQLSelect::create($fields, "BlogPost{$suffix}")
             ->addGroupBy($publishDate)
             ->addOrderBy('PublishDate Desc')
@@ -125,6 +125,7 @@ class BlogArchiveWidget extends Widget
         }
 
         $this->extend('updateGetArchive', $result);
+
         return $result;
     }
 }

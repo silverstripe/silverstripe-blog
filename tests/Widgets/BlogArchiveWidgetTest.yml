@@ -1,0 +1,27 @@
+Blog:
+  my-blog:
+    Title: My Blog
+
+BlogPost:
+  post-a:
+    Title: September Digest
+    PublishDate: 2017-09-01 00:00:00
+    ParentID: =>Blog.my-blog
+  post-b:
+    Title: August is Awesome
+    PublishDate: 2017-08-01 00:00:00
+    ParentID: =>Blog.my-blog
+  post-c:
+    Title: 2015 is so two years ago
+    PublishDate: 2015-05-02 00:01:02
+    ParentID: =>Blog.my-blog
+
+BlogArchiveWidget:
+  archive-monthly:
+    NumberToDisplay: 5
+    ArchiveType: Monthly
+    BlogID: =>Blog.my-blog
+  archive-yearly:
+    NumberToDisplay: 5
+    ArchiveType: Yearly
+    BlogID: =>Blog.my-blog
