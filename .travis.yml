@@ -14,7 +14,7 @@ before_install:
 
 env:
   global:
-    - DB=MYSQL CORE_RELEASE=3.1
+    - DB=MYSQL CORE_RELEASE=3.6
 
     # Turn coverage off by default, as it's expensive time wise
     - COVERAGE=0
@@ -27,13 +27,13 @@ matrix:
     - php: 5.6
       env: DB=MYSQL COVERAGE=1
     - php: 5.5
-      env: DB=MYSQL
-    - php: 5.6
-      env: DB=PGSQL
-    - php: 5.6
       env: DB=MYSQL CORE_RELEASE=3.2
     - php: 5.6
-      env: DB=PGSQL CORE_RELEASE=3.2
+      env: DB=PGSQL CORE_RELEASE=3.3
+    - php: 5.6
+      env: DB=MYSQL CORE_RELEASE=3.4
+    - php: 5.6
+      env: DB=PGSQL CORE_RELEASE=3.5
     - php: 5.4
       env: DB=SQLITE
     - php: 5.3
