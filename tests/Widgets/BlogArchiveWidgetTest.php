@@ -12,7 +12,7 @@ class BlogArchiveWidgetTest extends SapphireTest
             $this->markTestSkipped('Test requires silverstripe/widgets to be installed.');
         }
 
-        SS_Datetime::set_mock_now('2017-09-20 00:00:00');
+        SS_Datetime::set_mock_now('2017-09-20 12:00:00');
 
         parent::setUp();
     }
@@ -67,5 +67,30 @@ class BlogArchiveWidgetTest extends SapphireTest
             array('Title' => '2017'),
             array('Title' => '2015'),
         ), $archive);
+    }
+
+    public function testArchiveMonthlyWithNewPostsAdded()
+    {
+        $original = Versioned::current_stage();
+        Versioned::reading_stage('Stage');
+
+        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly');
+        $archive = $widget->getArchive();
+
+        $this->assertCount(3, $archive, 'Three months are shown in the blog archive list from fixtures');
+
+        SS_Datetime::set_mock_now('2018-01-01 12:00:00');
+
+        $newPost = new BlogPost;
+        $newPost->ParentID = $this->objFromFixture('Blog', 'my-blog')->ID;
+        $newPost->Title = 'My new blog post';
+        $newPost->PublishDate = '2018-01-01 08:00:00'; // Same day as the mocked now, but slightly earlier
+        $newPost->write();
+
+        $archive = $widget->getArchive();
+
+        $this->assertCount(4, $archive, 'Four months are shown in the blog archive list after new post added');
+
+        Versioned::reading_stage($original);
     }
 }
