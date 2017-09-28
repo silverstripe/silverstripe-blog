@@ -100,18 +100,18 @@ class BlogArchiveWidget extends Widget
         $query = SQLSelect::create($fields, '"BlogPost' . $suffix . '"')
             ->addGroupBy($publishDate)
             ->addOrderBy('"PublishDate" DESC')
-            ->addWhere(array('"PublishDate" < ?' => SS_Datetime::now()->Format('Y-m-d')));
+            ->addWhere(array('"PublishDate" <= ?' => SS_Datetime::now()->Format('Y-m-d H:i:s')));
 
         $posts = $query->execute();
         $result = new ArrayList();
-        while ($next = $posts->next()) {
+        foreach ($posts as $post) {
             if ($this->ArchiveType == 'Yearly') {
-                $year  = $next['PublishDate'];
+                $year  = $post['PublishDate'];
                 $month = null;
                 $title = $year;
             } else {
                 $date = Date::create();
-                $date->setValue(strtotime($next['PublishDate']));
+                $date->setValue(strtotime($post['PublishDate']));
 
                 $year  = $date->Format('Y');
                 $month = $date->Format('m');
