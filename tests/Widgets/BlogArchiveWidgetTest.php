@@ -2,6 +2,7 @@
 
 namespace SilverStripe\Blog\Tests;
 
+use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Blog\Widgets\BlogArchiveWidget;
 use SilverStripe\Dev\SapphireTest;
@@ -83,18 +84,18 @@ class BlogArchiveWidgetTest extends SapphireTest
 
     public function testArchiveMonthlyWithNewPostsAdded()
     {
-        $original = Versioned::current_stage();
-        Versioned::reading_stage('Stage');
+        $original = Versioned::get_stage();
+        Versioned::set_stage('Stage');
 
-        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly');
+        $widget = $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly');
         $archive = $widget->getArchive();
 
         $this->assertCount(3, $archive, 'Three months are shown in the blog archive list from fixtures');
 
-        SS_Datetime::set_mock_now('2018-01-01 12:00:00');
+        DBDatetime::set_mock_now('2018-01-01 12:00:00');
 
         $newPost = new BlogPost;
-        $newPost->ParentID = $this->objFromFixture('Blog', 'my-blog')->ID;
+        $newPost->ParentID = $this->objFromFixture(Blog::class, 'my-blog')->ID;
         $newPost->Title = 'My new blog post';
         $newPost->PublishDate = '2018-01-01 08:00:00'; // Same day as the mocked now, but slightly earlier
         $newPost->write();
@@ -103,6 +104,8 @@ class BlogArchiveWidgetTest extends SapphireTest
 
         $this->assertCount(4, $archive, 'Four months are shown in the blog archive list after new post added');
 
-        Versioned::reading_stage($original);
+        if ($original) {
+            Versioned::set_stage($original);
+        }
     }
 }
