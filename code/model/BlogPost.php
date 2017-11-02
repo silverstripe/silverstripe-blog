@@ -461,7 +461,12 @@ class BlogPost extends Page
             return false;
         }
 
-        if($this->canEdit($member)) {
+        if ($this->canEdit($member)) {
+            return true;
+        }
+
+        // If on draft stage, user has permission to view draft, so show it
+        if (Versioned::current_stage() === 'Stage') {
             return true;
         }
 
@@ -469,7 +474,7 @@ class BlogPost extends Page
          * @var SS_Datetime $publishDate
          */
         $publishDate = $this->dbObject('PublishDate');
-        if(!$publishDate->exists()) {
+        if (!$publishDate->exists()) {
             return false;
         }
 
