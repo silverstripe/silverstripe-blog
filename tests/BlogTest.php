@@ -9,6 +9,7 @@ use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPRequest;
+use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Control\Session;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
@@ -346,6 +347,21 @@ class BlogTest extends SapphireTest
             [$firstPostID, $secondPostID, $secondFuturePostID],
             $controller->PaginatedList()
         );
+    }
+
+    public function testDisabledProfiles()
+    {
+        Config::modify()->set(BlogController::class, 'disable_profiles', true);
+
+        try {
+            $controller = BlogController::create();
+            $controller->setRequest(Controller::curr()->getRequest());
+            $controller->profile();
+
+            $this->fail('The "profile" action should throw a HTTPResponse_Exception when disable_profiles is enabled');
+        } catch (HTTPResponse_Exception $e) {
+            $this->assertEquals(404, $e->getResponse()->getStatusCode(), 'The response status code should be 404 Not Found');
+        }
     }
 
     /**
