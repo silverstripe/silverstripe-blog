@@ -4,6 +4,7 @@ namespace SilverStripe\Blog\Model;
 
 use PageController;
 use SilverStripe\Control\Director;
+use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataList;
@@ -44,6 +45,14 @@ class BlogController extends PageController
     ];
 
     /**
+     * If enabled, blog author profiles will be turned off for this site
+     *
+     * @config
+     * @var bool
+     */
+    private static $disable_profiles = false;
+
+    /**
      * The current Blog Post DataList query.
      *
      * @var DataList
@@ -68,10 +77,16 @@ class BlogController extends PageController
     /**
      * Renders a Blog Member's profile.
      *
+     * @throws HTTPResponse_Exception
+     *
      * @return string
      */
     public function profile()
     {
+        if ($this->config()->get('disable_profiles')) {
+            $this->httpError(404, 'Not Found');
+        }
+
         $profile = $this->getCurrentProfile();
 
         if (!$profile) {

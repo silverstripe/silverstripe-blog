@@ -29,7 +29,7 @@
         <% loop $Credits %>
             <% if not $First && not $Last %>, <% end_if %>
             <% if not $First && $Last %> <%t SilverStripe\\Blog\\Model\\Blog.AND "and" %> <% end_if %>
-            <% if $URLSegment %>
+            <% if $URLSegment && not $Up.ProfilesDisabled %>
                 <a href="$URL">$Name.XML</a>
             <% else %>
                 $Name.XML

@@ -9,6 +9,7 @@ use SilverStripe\Blog\Model\BlogCategory;
 use SilverStripe\Blog\Model\BlogPostFilter;
 use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Control\Controller;
+use SilverStripe\Core\Config\Config;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\DatetimeField;
 use SilverStripe\Forms\HiddenField;
@@ -710,6 +711,16 @@ class BlogPost extends Page
         }
 
         return $items;
+    }
+
+    /**
+     * Checks to see if User Profiles has been disabled via config
+     *
+     * @return bool
+     */
+    public function getProfilesDisabled()
+    {
+        return Config::inst()->get(BlogController::class, 'disable_profiles');
     }
 
     /**
