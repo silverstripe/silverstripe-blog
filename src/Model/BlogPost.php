@@ -25,6 +25,7 @@ use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\Security;
 use SilverStripe\TagField\TagField;
+use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
 
@@ -505,6 +506,11 @@ class BlogPost extends Page
         }
 
         if ($this->canEdit($member)) {
+            return true;
+        }
+
+        // If on draft stage, user has permission to view draft, so show it
+        if (Versioned::get_stage() === Versioned::DRAFT) {
             return true;
         }
 

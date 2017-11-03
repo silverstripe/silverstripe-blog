@@ -7,6 +7,7 @@ use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Security\Member;
+use SilverStripe\Versioned\Versioned;
 
 class BlogPostTest extends SapphireTest
 {
@@ -28,16 +29,26 @@ class BlogPostTest extends SapphireTest
     /**
      * @dataProvider canViewProvider
      */
-    public function testCanView($date, $user, $page, $canView)
+    public function testCanView($date, $user, $page, $canView, $stage)
     {
         $userRecord = $this->objFromFixture(Member::class, $user);
         $pageRecord = $this->objFromFixture(BlogPost::class, $page);
         DBDatetime::set_mock_now($date);
+        if ($stage === 'Live') {
+            $pageRecord->publishSingle();
+        }
+
+        Versioned::set_stage($stage);
         $this->assertEquals($canView, $pageRecord->canView($userRecord));
     }
 
     /**
-     * @return array
+     * @return array Format:
+     *  - mock now date
+     *  - user role (see fixture)
+     *  - blog post fixture ID
+     *  - expected result
+     *  - versioned stage
      */
     public function canViewProvider()
     {
@@ -45,30 +56,40 @@ class BlogPostTest extends SapphireTest
         $somePastDate = '2009-10-10 20:00:00';
         return [
             // Check this post given the date has passed
-            [$someFutureDate, 'Editor', 'PostA', true],
-            [$someFutureDate, 'Contributor', 'PostA', true],
-            [$someFutureDate, 'BlogEditor', 'PostA', true],
-            [$someFutureDate, 'Writer', 'PostA', true],
+            [$someFutureDate, 'Editor', 'PostA', true, 'Stage'],
+            [$someFutureDate, 'Contributor', 'PostA', true, 'Stage'],
+            [$someFutureDate, 'BlogEditor', 'PostA', true, 'Stage'],
+            [$someFutureDate, 'Writer', 'PostA', true, 'Stage'],
 
             // Check unpublished pages
-            [$somePastDate, 'Editor', 'PostA', true],
-            [$somePastDate, 'Contributor', 'PostA', true],
-            [$somePastDate, 'BlogEditor', 'PostA', true],
-            [$somePastDate, 'Writer', 'PostA', true],
+            [$somePastDate, 'Editor', 'PostA', true, 'Stage'],
+            [$somePastDate, 'Contributor', 'PostA', true, 'Stage'],
+            [$somePastDate, 'BlogEditor', 'PostA', true, 'Stage'],
+            [$somePastDate, 'Writer', 'PostA', true, 'Stage'],
+
 
             // Test a page that was authored by another user
 
             // Check this post given the date has passed
-            [$someFutureDate, 'Editor', 'FirstBlogPost', true],
-            [$someFutureDate, 'Contributor', 'FirstBlogPost', true],
-            [$someFutureDate, 'BlogEditor', 'FirstBlogPost', true],
-            [$someFutureDate, 'Writer', 'FirstBlogPost', true],
+            [$someFutureDate, 'Editor', 'FirstBlogPost', true, 'Stage'],
+            [$someFutureDate, 'Contributor', 'FirstBlogPost', true, 'Stage'],
+            [$someFutureDate, 'BlogEditor', 'FirstBlogPost', true, 'Stage'],
+            [$someFutureDate, 'Writer', 'FirstBlogPost', true, 'Stage'],
 
-            // Check future pages - non-editors shouldn't be able to see this
-            [$somePastDate, 'Editor', 'FirstBlogPost', true],
-            [$somePastDate, 'Contributor', 'FirstBlogPost', false],
-            [$somePastDate, 'BlogEditor', 'FirstBlogPost', false],
-            [$somePastDate, 'Writer', 'FirstBlogPost', false],
+            // Check future pages in draft stage - users with "view draft pages" permission should
+            // be able to see this, but visitors should not
+            [$somePastDate, 'Editor', 'FirstBlogPost', true, 'Stage'],
+            [$somePastDate, 'Contributor', 'FirstBlogPost', true, 'Stage'],
+            [$somePastDate, 'BlogEditor', 'FirstBlogPost', true, 'Stage'],
+            [$somePastDate, 'Writer', 'FirstBlogPost', true, 'Stage'],
+            [$somePastDate, 'Visitor', 'FirstBlogPost', false, 'Stage'],
+
+            // No future pages in live stage should be visible, even to users that can edit them (in draft)
+            [$somePastDate, 'Editor', 'FirstBlogPost', false, 'Live'],
+            [$somePastDate, 'Contributor', 'FirstBlogPost', false, 'Live'],
+            [$somePastDate, 'BlogEditor', 'FirstBlogPost', false, 'Live'],
+            [$somePastDate, 'Writer', 'FirstBlogPost', false, 'Live'],
+            [$somePastDate, 'Visitor', 'FirstBlogPost', false, 'Live'],
         ];
     }
 
