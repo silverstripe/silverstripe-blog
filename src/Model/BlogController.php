@@ -4,8 +4,10 @@ namespace SilverStripe\Blog\Model;
 
 use PageController;
 use SilverStripe\Control\Director;
+use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Control\RSS\RSSFeed;
 use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Security\Member;
@@ -43,6 +45,14 @@ class BlogController extends PageController
     ];
 
     /**
+     * If enabled, blog author profiles will be turned off for this site
+     *
+     * @config
+     * @var bool
+     */
+    private static $disable_profiles = false;
+
+    /**
      * The current Blog Post DataList query.
      *
      * @var DataList
@@ -67,10 +77,16 @@ class BlogController extends PageController
     /**
      * Renders a Blog Member's profile.
      *
-     * @return HTTPResponse
+     * @throws HTTPResponse_Exception
+     *
+     * @return string
      */
     public function profile()
     {
+        if ($this->config()->get('disable_profiles')) {
+            $this->httpError(404, 'Not Found');
+        }
+
         $profile = $this->getCurrentProfile();
 
         if (!$profile) {
@@ -121,7 +137,7 @@ class BlogController extends PageController
     /**
      * Renders an archive for a specified date. This can be by year or year/month.
      *
-     * @return null|HTTPResponse
+     * @return null|string
      */
     public function archive()
     {
@@ -212,7 +228,7 @@ class BlogController extends PageController
     /**
      * Renders the blog posts for a given tag.
      *
-     * @return null|HTTPResponse
+     * @return null|string
      */
     public function tag()
     {
@@ -258,7 +274,7 @@ class BlogController extends PageController
     /**
      * Renders the blog posts for a given category.
      *
-     * @return null|HTTPResponse
+     * @return null|string
      */
     public function category()
     {
@@ -440,7 +456,7 @@ class BlogController extends PageController
      *
      * @example "<% if $PaginationAbsoluteNextLink %><link rel="next" href="$PaginationAbsoluteNextLink"><% end_if %>"
      *
-     * @return string
+     * @return string|null
      */
     public function PaginationAbsoluteNextLink()
     {
@@ -448,6 +464,8 @@ class BlogController extends PageController
         if ($posts->NotLastPage()) {
             return Director::absoluteURL($posts->NextLink());
         }
+
+        return null;
     }
 
      /**
@@ -456,7 +474,7 @@ class BlogController extends PageController
      *
      * @example "<% if $PaginationAbsolutePrevLink %><link rel="prev" href="$PaginationAbsolutePrevLink"><% end_if %>"
      *
-     * @return string
+     * @return string|null
      */
     public function PaginationAbsolutePrevLink()
     {
@@ -464,6 +482,8 @@ class BlogController extends PageController
         if ($posts->NotFirstPage()) {
             return Director::absoluteURL($posts->PrevLink());
         }
+
+        return null;
     }
 
     /**
@@ -486,7 +506,7 @@ class BlogController extends PageController
     /**
      * Returns the current archive date.
      *
-     * @return null|Date
+     * @return null|DBDatetime
      */
     public function getArchiveDate()
     {
