@@ -17,7 +17,7 @@
     },
     "extra": {
         "branch-alias": {
-            "2.x-dev": "2.5.x-dev"
+            "2.x-dev": "2.6.x-dev"
         }
     },
     "license": "BSD-2-Clause",
