@@ -51,6 +51,11 @@ class BlogCategoriesWidget extends Widget
     ];
 
     /**
+     * @var string
+     */
+    private static $table_name = 'BlogCategoriesWidget';
+
+    /**
      * {@inheritdoc}
      */
     public function getCMSFields()
