@@ -48,6 +48,11 @@ class BlogRecentPostsWidget extends Widget
     ];
 
     /**
+     * @var string
+     */
+    private static $table_name = 'BlogRecentPostsWidget';
+
+    /**
      * {@inheritdoc}
      */
     public function getCMSFields()

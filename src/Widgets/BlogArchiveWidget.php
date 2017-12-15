@@ -65,6 +65,11 @@ class BlogArchiveWidget extends Widget
     ];
 
     /**
+     * @var string
+     */
+    private static $table_name = 'BlogArchiveWidget';
+
+    /**
      * {@inheritdoc}
      */
     public function getCMSFields()

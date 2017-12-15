@@ -47,6 +47,11 @@ class BlogTagsCloudWidget extends Widget
     ];
 
     /**
+     * @var string
+     */
+    private static $table_name = 'BlogTagsCloudWidget';
+
+    /**
      * {@inheritdoc}
      */
     public function getCMSFields()
