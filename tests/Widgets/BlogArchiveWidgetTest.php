@@ -54,6 +54,7 @@ class BlogArchiveWidgetTest extends SapphireTest
         $original = Versioned::get_stage();
 
         $this->objFromFixture(BlogPost::class, 'post-b')->publishRecursive();
+        $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly')->publishRecursive();
         Versioned::set_stage(Versioned::LIVE);
 
         $widget = $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly');
