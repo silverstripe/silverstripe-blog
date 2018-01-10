@@ -2,11 +2,11 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
+use SilverStripe\Widgets\Model\WidgetController;
+
+if (!class_exists(WidgetController::class)) {
     return;
 }
-
-use SilverStripe\Widgets\Model\WidgetController;
 
 class BlogTagsCloudWidgetController extends WidgetController
 {

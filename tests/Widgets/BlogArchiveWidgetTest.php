@@ -42,7 +42,7 @@ class BlogArchiveWidgetTest extends SapphireTest
 
         $this->assertInstanceOf(SS_List::class, $archive);
         $this->assertCount(3, $archive);
-        $this->assertDOSContains([
+        $this->assertListContains([
             ['Title' => 'August 2017'],
             ['Title' => 'September 2017'],
             ['Title' => 'May 2015'],
@@ -54,13 +54,14 @@ class BlogArchiveWidgetTest extends SapphireTest
         $original = Versioned::get_stage();
 
         $this->objFromFixture(BlogPost::class, 'post-b')->publishRecursive();
+        $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly')->publishRecursive();
         Versioned::set_stage(Versioned::LIVE);
 
         $widget = $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly');
         $archive = $widget->getArchive();
 
         $this->assertCount(1, $archive);
-        $this->assertDOSContains([
+        $this->assertListContains([
             ['Title' => 'August 2017'],
         ], $archive);
 
@@ -76,7 +77,7 @@ class BlogArchiveWidgetTest extends SapphireTest
 
         $this->assertInstanceOf(SS_List::class, $archive);
         $this->assertCount(2, $archive);
-        $this->assertDOSContains([
+        $this->assertListContains([
             ['Title' => '2017'],
             ['Title' => '2015'],
         ], $archive);
