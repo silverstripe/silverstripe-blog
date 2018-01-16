@@ -127,3 +127,6 @@
   margin-left: 4px; }
 .blog-cms-categorisation button.action {
   margin-left: 5px; }
+#Form_EditForm_Summary_Holder .form__field-holder.form__field-holder--no-label {
+	margin: 20px 0 10px 0;
+}
