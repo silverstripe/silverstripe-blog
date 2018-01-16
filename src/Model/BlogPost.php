@@ -324,6 +324,9 @@ class BlogPost extends Page
 
         $fields->fieldByName('Root')->setTemplate('TabSet_holder');
 
+        $fields->fieldByName('Root.PostOptions')
+            ->setTitle(_t(__CLASS__ . '.PostOptions', 'Post Options'));
+
         return $fields;
     }
 
