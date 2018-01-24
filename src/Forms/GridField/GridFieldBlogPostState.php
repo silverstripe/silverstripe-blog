@@ -51,7 +51,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 $publishDate = $record->dbObject('PublishDate');
 
                 if (strtotime($record->PublishDate) > time()) {
-                    return '<i class="font-icon-back-in-time mr-2"></i> ' . _t(
+                    return '<i class="font-icon-clock mr-2"></i> ' . _t(
                         __CLASS__ . '.Timer',
                         'Publish at {date}',
                         'State for when a post is published.',
