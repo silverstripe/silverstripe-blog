@@ -5,6 +5,7 @@ namespace SilverStripe\Blog\Forms\GridField;
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Lumberjack\Forms\GridFieldSiteTreeState;
+use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\View\Requirements;
 
 /**
@@ -20,7 +21,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
     public function getColumnContent($gridField, $record, $columnName)
     {
         if ($columnName == 'State') {
-            Requirements::css(ModuleLoader::getModule('silverstripe/blog')->getRelativeResourcePath('css/cms.css'));
+            Requirements::css('silverstripe/blog:css/cms.css');
             if ($record instanceof BlogPost) {
                 $modifiedLabel = '';
 
@@ -30,11 +31,11 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
 
                 if (!$record->isPublished()) {
                     /**
-                     * @var SS_Datetime $lastEdited
+                     * @var DBDatetime $lastEdited
                      */
                     $lastEdited = $record->dbObject('LastEdited');
 
-                    return '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> '  . _t(
+                    return '<i class="font-icon-edit mr-2"></i> '  . _t(
                         __CLASS__ . '.Draft',
                         'Saved as Draft on {date}',
                         'State for when a post is saved.',
@@ -45,12 +46,12 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 }
 
                 /**
-                 * @var SS_Datetime $publishDate
+                 * @var DBDatetime $publishDate
                  */
                 $publishDate = $record->dbObject('PublishDate');
 
                 if (strtotime($record->PublishDate) > time()) {
-                    return '<i class="gridfield-icon blog-icon-timer"></i> ' . _t(
+                    return '<i class="font-icon-back-in-time mr-2"></i> ' . _t(
                         __CLASS__ . '.Timer',
                         'Publish at {date}',
                         'State for when a post is published.',
@@ -60,7 +61,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                     ) . $modifiedLabel;
                 }
 
-                return '<i class="btn-icon gridfield-icon btn-icon-accept"></i> ' . _t(
+                return '<i class="font-icon-check-mark-circle text-success mr-2"></i> ' . _t(
                     __CLASS__ . '.Published',
                     'Published on {date}',
                     'State for when a post is published.',
