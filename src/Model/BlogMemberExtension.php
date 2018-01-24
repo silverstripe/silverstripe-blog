@@ -59,6 +59,11 @@ class BlogMemberExtension extends DataExtension
             $this->owner->URLSegment = preg_replace('/-[0-9]+$/', null, $this->owner->URLSegment) . '-' . $count;
             $count++;
         }
+
+        // Auto publish profile images
+        if ($this->owner->BlogProfileImage() && $this->owner->BlogProfileImage()->exists()) {
+            $this->owner->BlogProfileImage()->publishSingle();
+        }
     }
 
     /**
