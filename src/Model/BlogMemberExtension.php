@@ -113,9 +113,8 @@ class BlogMemberExtension extends DataExtension
         $fields->removeFieldFromTab('Root', 'BlogPosts');
 
         // Construct a better posts tab.
-        $module = ModuleLoader::getModule('silverstripe/blog');
-        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
-        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
+        Requirements::css('silverstripe/blog:client/dist/styles/main.css');
+        Requirements::javascript('silverstripe/blog:client/dist/js/main.bundle.js');
 
         $tab = Tab::create('BlogPosts', _t(__CLASS__ . '.TABBLOGPOSTS', 'Blog Posts'));
 

@@ -159,7 +159,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      */
     public function getHTMLFragments($gridField)
     {
-        Requirements::javascript(ModuleLoader::getModule('silverstripe/blog')->getRelativeResourcePath('js/gridfieldaddbydbfield.js'));
+        Requirements::javascript('silverstripe/blog:client/dist/js/main.bundle.js');
 
         /**
          * @var DataList $dataList

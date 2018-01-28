@@ -211,9 +211,8 @@ class BlogPost extends Page
      */
     public function getCMSFields()
     {
-        $module = ModuleLoader::getModule('silverstripe/blog');
-        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
-        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
+        Requirements::css('silverstripe/blog:client/dist/styles/main.css');
+        Requirements::javascript('silverstripe/blog:client/dist/js/main.bundle.js');
 
         $this->beforeUpdateCMSFields(function ($fields) {
             $uploadField = UploadField::create('FeaturedImage', _t(__CLASS__ . '.FeaturedImage', 'Featured Image'));
