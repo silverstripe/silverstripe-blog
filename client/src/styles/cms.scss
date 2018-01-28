@@ -1,16 +1,6 @@
 /**
  * CMS Styles
  */
-/**
- * Include Compass framework
- */
-// @import "compass";
-/*
- * Sprite maps & Icons
- */
-// @import "compass/utilities/sprites/base";
-// @import "blog-icon/*.png";
-// buttons
 
 #FeaturedImage .middleColumn {
     clear: none;
@@ -120,7 +110,7 @@
 .toggle-description {
     text-indent: -1000000px;
     display: inline-block;
-    background: url("../images/information.png") no-repeat center center;
+    //background: url("../images/information.png") no-repeat center center;
     width: 20px;
     height: 20px;
     margin-left: 4px;
@@ -193,7 +183,7 @@
 
     .MergeActionReveal:after {
         content: '';
-        background: url('../images/move-icon.png');
+        //background: url('../images/move-icon.png');
         display: inline-block;
         height: 16px;
         width: 16px;
