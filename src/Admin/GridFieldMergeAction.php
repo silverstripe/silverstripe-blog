@@ -48,7 +48,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      * @param string $parentMethod
      * @param string $childMethod
      */
-    public function __construct($records = [], $parentType, $parentMethod, $childMethod)
+    public function __construct($records, $parentType, $parentMethod, $childMethod)
     {
         $this->records = $records;
         $this->parentType = $parentType;

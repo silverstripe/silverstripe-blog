@@ -16,7 +16,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
      * @param string $parentMethod
      * @param string $childMethod
      */
-    public function __construct($itemsPerPage = 15, $mergeRecords, $parentType, $parentMethod, $childMethod)
+    public function __construct($itemsPerPage, $mergeRecords, $parentType, $parentMethod, $childMethod)
     {
         parent::__construct($itemsPerPage);
 
