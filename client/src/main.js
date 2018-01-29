@@ -1,2 +1,2 @@
-import 'bundles/cms.js';
-import 'bundles/gridfieldaddbydbfield.js';
+import 'bundles/cms';
+import 'bundles/gridfieldaddbydbfield';
