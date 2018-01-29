@@ -8,6 +8,7 @@ if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
 
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\Widgets\Model\Widget;
 

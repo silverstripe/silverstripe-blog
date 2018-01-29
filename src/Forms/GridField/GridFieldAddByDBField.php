@@ -2,11 +2,9 @@
 
 namespace SilverStripe\Blog\Forms\GridField;
 
-use SilverStripe\Core\Injector\Injectable;
-use SilverStripe\Core\Manifest\ModuleLoader;
-use UnexpectedValueException;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
+use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_FormAction;
@@ -16,6 +14,7 @@ use SilverStripe\ORM\ArrayList;
 use SilverStripe\Security\Security;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
+use UnexpectedValueException;
 
 class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLProvider
 {

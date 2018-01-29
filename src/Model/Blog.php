@@ -8,7 +8,6 @@ use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
-use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\LiteralField;

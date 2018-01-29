@@ -3,10 +3,8 @@
 namespace SilverStripe\Blog\Forms\GridField;
 
 use SilverStripe\Blog\Model\BlogPost;
-use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Lumberjack\Forms\GridFieldSiteTreeState;
 use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\View\Requirements;
 
 /**
  * Provides a component to the {@link GridField} which tells the user whether or not a blog post

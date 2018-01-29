@@ -2,7 +2,6 @@
 
 namespace SilverStripe\Blog\Model;
 
-use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\ORM\DataExtension;
 
 /**

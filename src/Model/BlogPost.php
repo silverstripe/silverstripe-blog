@@ -3,21 +3,15 @@
 namespace SilverStripe\Blog\Model;
 
 use Page;
+use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
-use SilverStripe\Blog\Forms\BlogAdminSidebar;
-use SilverStripe\Blog\Model\BlogCategory;
-use SilverStripe\Blog\Model\BlogPostFilter;
-use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
-use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\DatetimeField;
-use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ToggleCompositeField;
-use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\UnsavedRelationList;
