@@ -101,7 +101,10 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
                 'data-target' => $prefix . '-target-record-' . $record->ID
             ]);
 
-            return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
+            $action->addExtraClass('btn btn-primary btn-sm blog-merge-action');
+
+            return $dropdown->Field() . $action->Field() .
+                '<a title="Move posts to" class="MergeActionReveal">Move posts to</a>';
         }
 
         return null;

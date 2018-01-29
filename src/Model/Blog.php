@@ -354,7 +354,10 @@ class Blog extends Page implements PermissionProvider
         );
 
         $members = $this->getCandidateUsers()->map()->toArray();
-        $toggleButton = LiteralField::create('ToggleButton', '<a class="toggle-description"></a>');
+        $toggleButton = LiteralField::create(
+            'ToggleButton',
+            '<a class="font-icon-info-circled toggle-description"></a>'
+        );
 
         $editorField = ListboxField::create('Editors', 'Editors', $members)
             ->setRightTitle($toggleButton)

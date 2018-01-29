@@ -360,7 +360,11 @@ class BlogTest extends SapphireTest
 
             $this->fail('The "profile" action should throw a HTTPResponse_Exception when disable_profiles is enabled');
         } catch (HTTPResponse_Exception $e) {
-            $this->assertEquals(404, $e->getResponse()->getStatusCode(), 'The response status code should be 404 Not Found');
+            $this->assertEquals(
+                404,
+                $e->getResponse()->getStatusCode(),
+                'The response status code should be 404 Not Found'
+            );
         }
     }
 

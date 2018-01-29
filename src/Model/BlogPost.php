@@ -264,7 +264,8 @@ class BlogPost extends Page
             )->setDescription(
                 _t(
                     __CLASS__ . '.AdditionalCredits_Description',
-                    'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.'
+                    'If some authors of this post don\'t have CMS access, enter their name(s) here. '.
+                    'You can separate multiple names with a comma.'
                 )
             );
 
