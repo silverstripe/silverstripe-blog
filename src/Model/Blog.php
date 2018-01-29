@@ -4,7 +4,7 @@ namespace SilverStripe\Blog\Model;
 
 use Page;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
-use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
+use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
@@ -608,7 +608,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function getLumberjackGridFieldConfig()
     {
-        return GridFieldConfig_BlogPost::create();
+        return GridFieldConfigBlogPost::create();
     }
 
     /**

@@ -3,9 +3,7 @@
 namespace SilverStripe\Blog\Model;
 
 use SilverStripe\Assets\Image;
-use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
-use SilverStripe\Blog\Model\BlogPost;
-use SilverStripe\Core\Manifest\ModuleLoader;
+use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\Tab;
@@ -122,7 +120,7 @@ class BlogMemberExtension extends DataExtension
             'BlogPosts',
             _t(__CLASS__ . '.BLOGPOSTS', 'Blog Posts'),
             $this->owner->BlogPosts(),
-            GridFieldConfig_BlogPost::create()
+            GridFieldConfigBlogPost::create()
         );
 
         $tab->Fields()->add($gridField);
