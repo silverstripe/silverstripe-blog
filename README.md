@@ -2,12 +2,6 @@
 [![Build Status](https://travis-ci.org/silverstripe/silverstripe-blog.svg?branch=master)](https://travis-ci.org/silverstripe/silverstripe-blog)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/?branch=master)
 [![codecov.io](https://codecov.io/github/silverstripe/silverstripe-blog/coverage.svg?branch=master)](https://codecov.io/github/silverstripe/silverstripe-blog?branch=master)
-![helpfulrobot](https://helpfulrobot.io/silverstripe/blog/badge)
-
-[![Latest Stable Version](https://poser.pugx.org/silverstripe/blog/version)](https://packagist.org/packages/silverstripe/blog)
-[![License](https://poser.pugx.org/silverstripe/blog/license)](https://packagist.org/packages/silverstripe/blog)
-[![Monthly Downloads](https://poser.pugx.org/silverstripe/blog/d/monthly)](https://packagist.org/packages/silverstripe/blog)
-
 
 ## Documentation
 
@@ -16,18 +10,18 @@
 
 ## Requirements
 
-```
-silverstripe/cms: ^4.0
-silverstripe/lumberjack: ^2.0
-silverstripe/tagfield: ^2.0
-```
+* SilverStripe CMS 4.0+
+* SilverStripe Lumberjack Module 2.0+
+* SilverStripe Tag Field Module 2.0+
+* SilverStripe Assets 1.0+
+* SilverStripe Asset Admin Module 1.0+
+
+Note: this version is compatible with SilverStripe 4. For SilverStripe 3, please see [the 2.x release line](https://github.com/silverstripe/silverstripe-blog/tree/2).
 
 ### Suggested Modules
 
-```
-silverstripe/widgets: *
-silverstripe/comments: *
-```
+* SilverStripe Widgets Module
+* SilverStripe Comments Module
 
 ## Installation
 
