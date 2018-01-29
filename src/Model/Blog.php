@@ -4,11 +4,10 @@ namespace SilverStripe\Blog\Model;
 
 use Page;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
-use SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost;
+use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
-use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\LiteralField;
@@ -127,7 +126,7 @@ class Blog extends Page implements PermissionProvider
      */
     private static $description = 'Adds a blog to your website.';
 
-    private static $icon = 'blog/images/site-tree-icon.png';
+    private static $icon = 'silverstripe/blog:client/images/site-tree-icon.png';
 
     /**
      * {@inheritdoc}
@@ -189,9 +188,8 @@ class Blog extends Page implements PermissionProvider
      */
     protected function addCMSRequirements()
     {
-        $module = ModuleLoader::getModule('silverstripe/blog');
-        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
-        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
+        Requirements::css('silverstripe/blog:client/dist/styles/main.css');
+        Requirements::javascript('silverstripe/blog:client/dist/js/main.bundle.js');
     }
     /**
      * {@inheritdoc}
@@ -355,7 +353,10 @@ class Blog extends Page implements PermissionProvider
         );
 
         $members = $this->getCandidateUsers()->map()->toArray();
-        $toggleButton = LiteralField::create('ToggleButton', '<a class="toggle-description"></a>');
+        $toggleButton = LiteralField::create(
+            'ToggleButton',
+            '<a class="font-icon-info-circled toggle-description"></a>'
+        );
 
         $editorField = ListboxField::create('Editors', 'Editors', $members)
             ->setRightTitle($toggleButton)
@@ -609,7 +610,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function getLumberjackGridFieldConfig()
     {
-        return GridFieldConfig_BlogPost::create();
+        return GridFieldConfigBlogPost::create();
     }
 
     /**

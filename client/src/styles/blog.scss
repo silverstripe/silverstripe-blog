@@ -1,0 +1,76 @@
+.no-sidebar .content-container.size3of4 {
+  width: 75%;
+}
+
+.blog-entry .post-image img {
+  width: 98.75%;
+}
+
+.blog-sidebar .WidgetHolder ul {
+  margin-left: 0;
+
+  li {
+    list-style-type: none;
+  }
+}
+
+// tag cloud related
+$base_tag_font_size: 4pt;
+
+ul.blogTagCloud {
+  list-style-type: none;
+  clear: both;
+
+  li {
+    float: left;
+    display: inline;
+    padding-right: 8px;
+
+    a span {
+      float: left;
+      line-height: 30px;
+      text-align: center;
+      padding: 0;
+    }
+  }
+
+  .tagCount10 {
+    font-size: $base_tag_font_size + 22pt;
+  }
+
+  .tagCount9 {
+    font-size: $base_tag_font_size + 20pt;
+  }
+
+  .tagCount8 {
+    font-size: $base_tag_font_size + 18pt;
+  }
+
+  .tagCount7 {
+    font-size: $base_tag_font_size + 16pt;
+  }
+
+  .tagCount6 {
+    font-size: $base_tag_font_size + 14pt;
+  }
+
+  .tagCount5 {
+    font-size: $base_tag_font_size + 12pt;
+  }
+
+  .tagCount4 {
+    font-size: $base_tag_font_size + 10pt;
+  }
+
+  .tagCount3 {
+    font-size: $base_tag_font_size + 8pt;
+  }
+
+  .tagCount2 {
+    font-size: $base_tag_font_size + 6pt;
+  }
+
+  .tagCount1 {
+    font-size: $base_tag_font_size + 4pt;
+  }
+}

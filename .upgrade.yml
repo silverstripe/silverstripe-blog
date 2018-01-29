@@ -20,7 +20,7 @@ mappings:
   BlogAdminSidebar: SilverStripe\Blog\Forms\BlogAdminSidebar
   GridFieldAddByDBField: SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField
   GridFieldBlogPostState: SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState
-  GridFieldConfig_BlogPost: SilverStripe\Blog\Forms\GridField\GridFieldConfig_BlogPost
+  GridFieldConfig_BlogPost: SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost
   BlogArchiveWidget: SilverStripe\Blog\Widgets\BlogArchiveWidget
   BlogArchiveWidget_Controller: SilverStripe\Blog\Widgets\BlogArchiveWidgetController
   BlogCategoriesWidget: SilverStripe\Blog\Widgets\BlogCategoriesWidget

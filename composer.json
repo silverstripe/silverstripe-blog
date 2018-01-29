@@ -6,7 +6,7 @@
         "blog",
         "news"
     ],
-    "type": "silverstripe-module",
+    "type": "silverstripe-vendormodule",
     "require": {
         "silverstripe/cms": "^4.0",
         "silverstripe/lumberjack": "^2.0",
@@ -21,7 +21,11 @@
     "extra": {
         "branch-alias": {
             "dev-master": "3.0.x-dev"
-        }
+        },
+        "expose": [
+            "client/dist",
+            "client/images"
+        ]
     },
     "autoload": {
         "psr-4": {

@@ -1,28 +1,30 @@
 {
   "name": "silverstripe-blog",
   "version": "3.0.0",
-  "description": "Silverstripe blog module",
-  "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
-  },
+  "description": "A fresh take on blogging in Silverstripe set out to tackle the issue of a cluttered Site Tree",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "yarn && NODE_ENV=production webpack -p --bail --progress",
+    "watch": "yarn && NODE_ENV=development webpack --watch --progress",
+    "css": "WEBPACK_CHILD=css npm run build",
+    "lint": "eslint client/src; sass-lint -v"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/silverstripe/silverstripe-blog.git"
   },
-  "author": "",
-  "license": "BSD-3",
+  "keywords": [
+    "silverstripe",
+    "blog"
+  ],
+  "author": "SilverStripe Ltd",
+  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/silverstripe/silverstripe-blog/issues"
   },
   "homepage": "https://github.com/silverstripe/silverstripe-blog#readme",
+  "dependencies": [],
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-sass": "^2.3.1",
-    "gulp-watch": "^4.3.6"
+    "@silverstripe/eslint-config": "^0.0.4",
+    "@silverstripe/webpack-config": "^0.5"
   }
 }

@@ -10,8 +10,8 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DataQuery;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\Queries\SQLSelect;
-use SilverStripe\Versioned\Versioned;
 use SilverStripe\Security\Permission;
+use SilverStripe\Versioned\Versioned;
 
 /**
  * This is responsible for filtering only published posts to users who do not have permission to

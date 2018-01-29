@@ -3,9 +3,9 @@
 namespace SilverStripe\Blog\Admin;
 
 use SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField;
-use SilverStripe\Blog\Admin\GridFieldMergeAction;
 use SilverStripe\Blog\Model\CategorisationObject;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+use SilverStripe\Forms\GridField\GridFieldDataColumns;
 
 class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
 {
@@ -16,7 +16,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
      * @param string $parentMethod
      * @param string $childMethod
      */
-    public function __construct($itemsPerPage = 15, $mergeRecords, $parentType, $parentMethod, $childMethod)
+    public function __construct($itemsPerPage, $mergeRecords, $parentType, $parentMethod, $childMethod)
     {
         parent::__construct($itemsPerPage);
 

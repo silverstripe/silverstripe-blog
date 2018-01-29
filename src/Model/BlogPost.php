@@ -3,21 +3,15 @@
 namespace SilverStripe\Blog\Model;
 
 use Page;
+use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
-use SilverStripe\Blog\Forms\BlogAdminSidebar;
-use SilverStripe\Blog\Model\BlogCategory;
-use SilverStripe\Blog\Model\BlogPostFilter;
-use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
-use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Forms\DatetimeField;
-use SilverStripe\Forms\HiddenField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ToggleCompositeField;
-use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\UnsavedRelationList;
@@ -211,9 +205,8 @@ class BlogPost extends Page
      */
     public function getCMSFields()
     {
-        $module = ModuleLoader::getModule('silverstripe/blog');
-        Requirements::css($module->getRelativeResourcePath('css/cms.css'));
-        Requirements::javascript($module->getRelativeResourcePath('js/cms.js'));
+        Requirements::css('silverstripe/blog:client/dist/styles/main.css');
+        Requirements::javascript('silverstripe/blog:client/dist/js/main.bundle.js');
 
         $this->beforeUpdateCMSFields(function ($fields) {
             $uploadField = UploadField::create('FeaturedImage', _t(__CLASS__ . '.FeaturedImage', 'Featured Image'));
@@ -265,7 +258,8 @@ class BlogPost extends Page
             )->setDescription(
                 _t(
                     __CLASS__ . '.AdditionalCredits_Description',
-                    'If some authors of this post don\'t have CMS access, enter their name(s) here. You can separate multiple names with a comma.'
+                    'If some authors of this post don\'t have CMS access, enter their name(s) here. '.
+                    'You can separate multiple names with a comma.'
                 )
             );
 

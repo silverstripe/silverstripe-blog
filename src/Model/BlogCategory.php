@@ -2,10 +2,6 @@
 
 namespace SilverStripe\Blog\Model;
 
-use SilverStripe\Blog\Model\Blog;
-use SilverStripe\Blog\Model\BlogObject;
-use SilverStripe\Blog\Model\BlogPost;
-use SilverStripe\Blog\Model\CategorisationObject;
 use SilverStripe\ORM\DataObject;
 
 /**

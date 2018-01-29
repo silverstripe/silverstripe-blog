@@ -2,13 +2,13 @@
 
 namespace SilverStripe\Blog\Admin;
 
-use SilverStripe\Blog\Admin\GridFieldFormAction;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Injector\Injectable;
 use Silverstripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_ColumnProvider;
+use SilverStripe\ORM\SS_List;
 
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {
@@ -48,7 +48,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      * @param string $parentMethod
      * @param string $childMethod
      */
-    public function __construct($records = [], $parentType, $parentMethod, $childMethod)
+    public function __construct($records, $parentType, $parentMethod, $childMethod)
     {
         $this->records = $records;
         $this->parentType = $parentType;
@@ -101,7 +101,10 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
                 'data-target' => $prefix . '-target-record-' . $record->ID
             ]);
 
-            return $dropdown->Field() . $action->Field() . '<a title="Move posts to" class="MergeActionReveal">move posts to</a>';
+            $action->addExtraClass('btn btn-primary btn-sm blog-merge-action');
+
+            return $dropdown->Field() . $action->Field() .
+                '<a title="Move posts to" class="MergeActionReveal">Move posts to</a>';
         }
 
         return null;

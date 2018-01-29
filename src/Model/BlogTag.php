@@ -3,10 +3,6 @@
 namespace SilverStripe\Blog\Model;
 
 use SilverStripe\ORM\DataObject;
-use SilverStripe\Blog\Model\Blog;
-use SilverStripe\Blog\Model\BlogObject;
-use SilverStripe\Blog\Model\BlogPost;
-use SilverStripe\Blog\Model\CategorisationObject;
 
 /**
  * A blog tag for keyword descriptions of a blog post.

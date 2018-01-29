@@ -1,6 +1,5 @@
-.ssh/*
-.bash*
-.profile
 /vendor/*
 .sass-cache/*
 /node_modules/
+**/*.js.map
+**/*.css.map

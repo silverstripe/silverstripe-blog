@@ -41,6 +41,9 @@ en:
     Tag: Tag
     Tagged: Tagged
     Tags: Tags
+    UsersContributorsFieldDescription: "Contributors have the ability to create or edit BlogPosts, but are unable to publish without \n                        authorisation of an editor. They are also unable to assign other contributing authors to any of\n                         their BlogPosts.<br />\n                        <br />\n                        Contributors have these permissions:<br />\n                        <br />\n                        Update any BlogPost they have authored or have been assigned to"
+    UsersEditorsFieldDescription: "An editor has control over specific Blogs, and all posts included within it. \n                     Short of being able to assign other editors to a blog, they are able to handle most changes to\n                     their assigned blog. <br /><br />\n                    Editors have these permissions:<br />\n                    <br />\n                    Update or publish any BlogPost in their Blog<br />\n                    Update or publish their Blog<br />\n                    Assign/unassign writers to their Blog<br />\n                    Assign/unassign contributors to their Blog<br />\n                    Assign/unassign any member as an author of a particular BlogPost"
+    UsersWritersFieldDescription: "A writer has full control over creating, editing and publishing BlogPosts they have authored\n                      or have been assigned to. Writers are unable to edit BlogPosts to which they are not assigned.\n                    <br /><br />\n                    Writers have these permissions:<br />\n                    <br />\n                    Update or publish any BlogPost they have authored or have been assigned to<br />\n                    Assign/unassign any member as an author of a particular BlogPost they have authored or have been \n                    assigned to"
     WRITER: Writer
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'A blog category already exists with that name.'
@@ -81,24 +84,49 @@ en:
     ArchiveType: ArchiveType
     Blog: Blog
     NumberToDisplay: 'No. to Display'
+    PLURALNAME: 'Blog Archive Widgets'
+    PLURALS:
+      one: 'A Blog Archive Widget'
+      other: '{count} Blog Archive Widgets'
+    SINGULARNAME: 'Blog Archive Widget'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
     Direction: Direction
     Direction_Description: 'Change the direction of ordering of categories shown by this widget.'
     Limit: Limit
     Limit_Description: 'Limit the number of categories shown by this widget (set to 0 to show all categories).'
+    PLURALNAME: 'Blog Categories Widgets'
+    PLURALS:
+      one: 'A Blog Categories Widget'
+      other: '{count} Blog Categories Widgets'
+    SINGULARNAME: 'Blog Categories Widget'
     Sort: Sort
     Sort_Description: 'Change the order of categories shown by this widget.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Number of Posts'
+    PLURALNAME: 'Blog Recent Posts Widgets'
+    PLURALS:
+      one: 'A Blog Recent Posts Widget'
+      other: '{count} Blog Recent Posts Widgets'
+    SINGULARNAME: 'Blog Recent Posts Widget'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blog
+    PLURALNAME: 'Blog Tags Cloud Widgets'
+    PLURALS:
+      one: 'A Blog Tags Cloud Widget'
+      other: '{count} Blog Tags Cloud Widgets'
+    SINGULARNAME: 'Blog Tags Cloud Widget'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Direction
     Direction_Description: 'Change the direction of ordering of tags shown by this widget.'
     Limit: Limit
     Limit_Description: 'Limit the number of tags shown by this widget (set to 0 to show all tags).'
+    PLURALNAME: 'Blog Tags Widgets'
+    PLURALS:
+      one: 'A Blog Tags Widget'
+      other: '{count} Blog Tags Widgets'
+    SINGULARNAME: 'Blog Tags Widget'
     Sort: Sort
     Sort_Description: 'Change the order of tags shown by this widget.'

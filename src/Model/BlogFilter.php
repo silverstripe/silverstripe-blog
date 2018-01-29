@@ -2,9 +2,7 @@
 
 namespace SilverStripe\Blog\Model;
 
-use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogFilter\BlogFilterGridField;
-use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\FieldList;
@@ -12,8 +10,8 @@ use SilverStripe\Forms\Tab;
 use SilverStripe\Lumberjack\Model\Lumberjack;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\Versioned\Versioned;
 use SilverStripe\Security\Permission;
+use SilverStripe\Versioned\Versioned;
 
 /**
  * This class is responsible for filtering the SiteTree when necessary and also overlaps into
