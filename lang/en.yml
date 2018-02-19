@@ -5,6 +5,7 @@ en:
     PermissionFail: 'You don''t have permission to create a {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Saved as Draft on {date}'
+    Modified: 'Modified'
     Published: 'Published on {date}'
     Timer: 'Publish at {date}'
   SilverStripe\Blog\Model:

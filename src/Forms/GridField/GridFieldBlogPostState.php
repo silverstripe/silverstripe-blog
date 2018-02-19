@@ -23,7 +23,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 $modifiedLabel = '';
 
                 if ($record->isModifiedOnStage) {
-                    $modifiedLabel = '<span class="modified">' . _t(__CLASS__ . '.Modified') . '</span>';
+                    $modifiedLabel = '<span class="modified">' . _t(__CLASS__ . '.Modified', 'Modified') . '</span>';
                 }
 
                 if (!$record->isPublished()) {
