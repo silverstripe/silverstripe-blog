@@ -36,7 +36,7 @@ matrix:
       env: DB=PGSQL CORE_RELEASE=3.5
     - php: 5.4
       env: DB=SQLITE
-    - php: 5.3
+    - php: 5.4
       env: DB=MYSQL
     - php: 7.1
       env: DB=MYSQL CORE_RELEASE=3.6

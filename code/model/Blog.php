@@ -1043,7 +1043,7 @@ class Blog_Controller extends Page_Controller
         $posts->setPageLength($pageSize);
 
         // Set current page
-        $start = $this->request->getVar($posts->getPaginationGetVar());
+        $start = (int)$this->request->getVar($posts->getPaginationGetVar());
         $posts->setPageStart($start);
 
         return $posts;
