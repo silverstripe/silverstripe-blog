@@ -121,6 +121,7 @@ en:
     PermissionFail: 'You don''t have permission to create a {class}.'
   GridFieldBlogPostState:
     Draft: '<i class="btn-icon gridfield-icon btn-icon-pencil"></i> Saved as Draft on {date}'
+    Modified: 'Modified'
     Published: '<i class="btn-icon gridfield-icon btn-icon-accept"></i> Published on {date}'
     Timer: '<i class="gridfield-icon blog-icon-timer"></i> Publish at {date}'
   TagCloudWidget:
