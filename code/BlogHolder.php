@@ -28,7 +28,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	);
 
 	function getCMSFields() {
-		$blogOwners = $this->blogOwners(); 
+		$blogOwners = $this->blogOwners();
 
 		SiteTree::disableCMSFieldsExtensions();
 		$fields = parent::getCMSFields();
@@ -42,22 +42,22 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 
 		return $fields;
 	}
-	
+
 	/**
 	 * Get members who have BLOGMANAGEMENT and ADMIN permission
-	 */ 
+	 */
 	function blogOwners($sort = 'Name', $direction = "ASC") {
-		$adminMembers = Permission::get_members_by_permission('ADMIN'); 
+		$adminMembers = Permission::get_members_by_permission('ADMIN');
 		$blogOwners = Permission::get_members_by_permission('BLOGMANAGEMENT');
-		
-		if(!$adminMembers) $adminMembers = new DataObjectSet(); 
+
+		if(!$adminMembers) $adminMembers = new DataObjectSet();
 		if(!$blogOwners) $blogOwners = new DataObjectSet();
-		
+
 		$blogOwners->merge($adminMembers);
 		$blogOwners->sort($sort, $direction);
-		
+
 		$this->extend('extendBlogOwners', $blogOwners);
-		
+
 		return $blogOwners;
 	}
 
@@ -152,6 +152,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 }
 
 class BlogHolder_Controller extends BlogTree_Controller {
+
 	static $allowed_actions = array(
 		'index',
 		'tag',
@@ -161,7 +162,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		'post' => 'BLOGMANAGEMENT',
 		'BlogEntryForm' => 'BLOGMANAGEMENT',
 	);
-	
+
 	function init() {
 		parent::init();
 		Requirements::themedCSS("bbcodehelp");
@@ -194,9 +195,9 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	/**
 	 * A simple form for creating blog entries
 	 */
-	function BlogEntryForm() {	
+	function BlogEntryForm() {
 		if(!Permission::check('BLOGMANAGEMENT')) return Security::permissionFailure();
-		
+
 
 		$id = 0;
 		if($this->request->latestParam('ID')) {
@@ -221,7 +222,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		} else {
 			$tagfield = new TextField('Tags');
 		}
-		
+
 		$field = 'TextField';
 		if(!$this->AllowCustomAuthors && !Permission::check('ADMIN')) {
 			$field = 'ReadonlyField';
@@ -235,7 +236,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 			new LiteralField("Tagsnote"," <label id='tagsnote'>"._t('BlogHolder.TE', "For example: sport, personal, science fiction")."<br/>" .
 												_t('BlogHolder.SPUC', "Please separate tags using commas.")."</label>")
 		);
-		
+
 		$submitAction = new FormAction('postblog', _t('BlogHolder.POST', 'Post blog entry'));
 		$actions = new FieldSet($submitAction);
 		$validator = new RequiredFields('Title','BlogPost');
@@ -273,12 +274,12 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		}
 
 		$form->saveInto($blogentry);
-		
+
 		$blogentry->ParentID = $this->ID;
 		$blogentry->Content = $form->datafieldByName('BlogPost')->dataValue();
-		
+
 		if(Object::hasExtension('Translatable')) {
-			$blogentry->Locale = $this->Locale; 
+			$blogentry->Locale = $this->Locale;
 		}
 
 		$blogentry->Status = "Published";

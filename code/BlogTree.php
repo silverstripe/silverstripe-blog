@@ -13,6 +13,13 @@ class BlogTree extends Page {
 	// Default number of blog entries to show
 	static $default_entries_limit = 10;
 	
+	/**
+	 * @var bool Include an automatic link to the rss feed for
+	 * the browser. Disabling this will allow you to include your
+	 * own feedburner link
+	 */
+	static $include_rss_link = true;
+
 	static $db = array(
 		'Name' => 'Varchar',
 		'InheritSideBar' => 'Boolean',
@@ -41,7 +48,7 @@ class BlogTree extends Page {
 	 * 				uses current
 	 */
 	static function current($page = null) {
-		
+
 		if (!$page) {
 			$controller = Controller::curr();
 			if($controller) $page = $controller->data();
@@ -152,7 +159,6 @@ class BlogTree extends Page {
 	 * @return DataObjectSet
 	 */
 	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
-		
 		$tagCheck = '';
 		$dateCheck = '';
 		
@@ -185,7 +191,6 @@ class BlogTree extends Page {
 				}
 			}
 		}
-
 		// Build a list of all IDs for BlogHolders that are children of us
 		$holderIDs = $this->BlogHolderIDs();
 		
@@ -206,7 +211,7 @@ class BlogTree extends Page {
 }
 
 class BlogTree_Controller extends Page_Controller {
-	
+
 	static $allowed_actions = array(
 		'index',
 		'rss',
@@ -216,14 +221,16 @@ class BlogTree_Controller extends Page_Controller {
 	function init() {
 		parent::init();
 		
-		$this->IncludeBlogRSS();
+		if(BlogTree::$include_rss_link) {
+			$this->IncludeBlogRSS();
+		}
 		
 		Requirements::themedCSS("blog");
 	}
 
 	function BlogEntries($limit = null) {
 		require_once('Zend/Date.php');
-		
+
 		if($limit === null) $limit = BlogTree::$default_entries_limit;
 
 		// only use freshness if no action is present (might be displaying tags or rss)
@@ -231,7 +238,7 @@ class BlogTree_Controller extends Page_Controller {
 			$d = new Zend_Date(SS_Datetime::now()->getValue());
 			$d->sub($this->LandingPageFreshness);
 			$date = $d->toString('YYYY-MM-dd');
-			
+
 			$filter = "\"BlogEntry\".\"Date\" > '$date'";
 		} else {
 			$filter = '';
@@ -241,7 +248,7 @@ class BlogTree_Controller extends Page_Controller {
 		if(isset($_GET['author']) && isset($_GET['authorID'])) {
 			$author = Convert::raw2sql($_GET['author']);
 			$id = Convert::raw2sql($_GET['authorID']);
-			
+
 			$filter .= " \"BlogEntry\".\"Author\" LIKE '". $author . "' OR \"BlogEntry\".\"AuthorID\" = '". $id ."'";
 		}
 		else if(isset($_GET['author'])) {
@@ -252,9 +259,9 @@ class BlogTree_Controller extends Page_Controller {
 		}
 		
 		$start = isset($_GET['start']) ? (int) $_GET['start'] : 0;
-		
+
 		$date = $this->SelectedDate();
-		
+
 		return $this->Entries("$start,$limit", $this->SelectedTag(), ($date) ? $date->Format('Y-m') : '', null, $filter);
 	}
 
@@ -264,7 +271,7 @@ class BlogTree_Controller extends Page_Controller {
 	function IncludeBlogRSS() {
 		RSSFeed::linkToFeed($this->Link() . "rss", _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
 	}
-	
+
 	/**
 	 * Get the rss feed for this blog holder's entries
 	 */
@@ -281,7 +288,7 @@ class BlogTree_Controller extends Page_Controller {
 			$rss->outputToBrowser();
 		}
 	}
-	
+
 	/**
 	 * Protection against infinite loops when an RSS widget pointing to this page is added to this page
 	 */
@@ -290,16 +297,16 @@ class BlogTree_Controller extends Page_Controller {
 		
 		return parent::defaultAction($action);
 	}
-	
+
 	/**
-	 * Return the currently viewing tag used in the template as $Tag 
+	 * Return the currently viewing tag used in the template as $Tag
 	 *
 	 * @return String
 	 */
 	function SelectedTag() {
-		return ($this->request->latestParam('Action') == 'tag') ? Convert::raw2xml($this->request->latestParam('ID')) : ''; 
+		return ($this->request->latestParam('Action') == 'tag') ? Convert::raw2xml($this->request->latestParam('ID')) : '';
 	}
-	
+
 	/**
 	 * Return the selected date from the blog tree
 	 *
@@ -309,15 +316,15 @@ class BlogTree_Controller extends Page_Controller {
 		if($this->request->latestParam('Action') == 'date') {
 			$year = $this->request->latestParam('ID');
 			$month = $this->request->latestParam('OtherID');
-	
+
 			if(is_numeric($year) && is_numeric($month) && $month < 13) {
 				$date = new Date();
 				$date->setValue($year .'-'. $month);
-				
+
 				return $date;
 			}
 		}
-			
+
 		return false;
 	}
 }

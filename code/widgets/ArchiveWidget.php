@@ -52,6 +52,8 @@ class ArchiveWidget extends Widget {
 		$container = BlogTree::current();
 		$ids = $container->BlogHolderIDs();
 		
+		if(empty($ids)) return $results;
+		
 		$stage = Versioned::current_stage();
 		$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
 
