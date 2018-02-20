@@ -131,7 +131,7 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 }
 
 class BlogHolder_Controller extends BlogTree_Controller {
-	
+
 	static $allowed_actions = array(
 		'index',
 		'tag',
@@ -139,7 +139,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		'post' => 'BLOGMANAGEMENT',
 		'BlogEntryForm' => 'BLOGMANAGEMENT',
 	);
-	
+
 	function init() {
 		parent::init();
 		Requirements::themedCSS("bbcodehelp");
@@ -149,9 +149,9 @@ class BlogHolder_Controller extends BlogTree_Controller {
 	 * TODO: this is an urgent fix to work with archive link (e.g. page_url/2009/04). Replace this with something better.
 	 */
 	function checkAccessAction($action) {
-		if (preg_match('/[0-9]{4}/', $action)) 
+		if (preg_match('/[0-9]{4}/', $action))
 		{
-			return true; 
+			return true;
 		}
 		return parent::checkAccessAction($action);
 	}
