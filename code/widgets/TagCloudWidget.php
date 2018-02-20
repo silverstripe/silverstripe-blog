@@ -1,14 +1,14 @@
 <?php
 
 if(class_exists('Widget')) {
-	
+
 	/**
 	 * A list of tags associated with blog posts
-	 * 
+	 *
 	 * @package blog
 	 */
 	class TagCloudWidget extends Widget {
-		
+
 		private static $db = array(
 			"Title" => "Varchar",
 			"Limit" => "Int",
@@ -22,7 +22,7 @@ if(class_exists('Widget')) {
 		);
 
 		private static $cmsTitle = "Tag Cloud";
-		
+
 		private static $description = "Shows a tag cloud of tags on your blog.";
 
 		/**
@@ -41,7 +41,7 @@ if(class_exists('Widget')) {
 		);
 
 		public function getCMSFields() {
-			
+
 			$this->beforeUpdateCMSFields(function($fields) {
 				$fields->merge(
 					new FieldList(
@@ -65,18 +65,18 @@ if(class_exists('Widget')) {
 		function Title() {
 			return $this->Title ? $this->Title : _t('TagCloudWidget.DEFAULTTITLE', 'Tag Cloud');
 		}
-		
+
 		/**
 		 * Current BlogTree used as the container for this tagcloud.
 		 * Used by {@link TagCloudWidgetTest} for testing
-		 * 
+		 *
 		 * @var BlogTree
 		 */
 		public static $container = null;
 
 		/**
 		 * Return all sorted tags in the system
-		 * 
+		 *
 		 * @return ArrayList
 		 */
 		function getTagsCollection() {
@@ -114,7 +114,7 @@ if(class_exists('Widget')) {
 					return $b - $a;
 				});
 			}
-			
+
 			// Apply limiting
 			if($this->Limit > 0) $tagCounts = array_slice($tagCounts, 0, $this->Limit, true);
 
@@ -125,13 +125,13 @@ if(class_exists('Widget')) {
 
 			// If there are more frequencies than buckets, divide frequencies into buckets
 			if ($numsizes > $buckets) $numsizes = $buckets;
-			
+
 			// Adjust offset to use central buckets (if using a subset of available buckets)
 			$offset = round(($buckets - $numsizes)/2);
 
 			$output = new ArrayList();
 			foreach($tagCounts as $tag => $count) {
-				
+
 				// Find position of $count in the selected range, adjusted for bucket range used
 				if($maxCount == $minCount) {
 					$popularity = $offset;

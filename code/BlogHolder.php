@@ -64,7 +64,6 @@ class BlogHolder extends BlogTree implements PermissionProvider {
 	/**
 	 * Get members who have BLOGMANAGEMENT and ADMIN permission
 	 */
-
 	function blogOwners($sort = array('FirstName'=>'ASC','Surname'=>'ASC'), $direction = null) {
 
 		$members = Permission::get_members_by_permission(array('ADMIN','BLOGMANAGEMENT'));
@@ -308,6 +307,7 @@ class BlogHolder_Controller extends BlogTree_Controller {
 		}
 
 		$form->saveInto($blogentry);
+
 		$blogentry->ParentID = $this->ID;
 
 		$blogentry->Content = str_replace("\r\n", "\n", $form->Fields()->fieldByName('BlogPost')->dataValue());

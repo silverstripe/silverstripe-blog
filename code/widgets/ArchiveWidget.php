@@ -1,34 +1,34 @@
 <?php
 
 if(class_exists('Widget')) {
-	
+
 	/**
 	 * Shows a widget with viewing blog entries
 	 * by months or years.
-	 * 
+	 *
 	 * @package blog
 	 */
 	class ArchiveWidget extends Widget {
-		
+
 		private static $db = array(
 			'DisplayMode' => 'Varchar'
 		);
-		
+
 		private static $defaults = array(
 			'DisplayMode' => 'month'
 		);
-		
+
 		private static $title = 'Browse by Date';
-		
+
 		private static $cmsTitle = 'Blog Archive';
-		
+
 		private static $description =
 			'Show a list of months or years in which there are blog posts, and provide links to them.';
-		
+
 		function getCMSFields() {
-			$fields = parent::getCMSFields(); 
-			
-			$fields->merge( 
+			$fields = parent::getCMSFields();
+
+			$fields->merge(
 
 				new FieldList(
 					new OptionsetField(
@@ -39,21 +39,21 @@ if(class_exists('Widget')) {
 							'year' => _t('ArchiveWidget.YEAR', 'year')
 						)
 					)
-				)	
+				)
 			);
-			
+
 			$this->extend('updateCMSFields', $fields);
-			
+
 			return $fields;
 		}
-		
+
 		function getDates() {
 			Requirements::themedCSS('archivewidget');
-			
+
 			$results = new ArrayList();
 			$container = BlogTree::current();
 			$ids = $container->BlogHolderIDs();
-			
+
 			$stage = Versioned::current_stage();
 			$suffix = (!$stage || $stage == 'Stage') ? "" : "_$stage";
 
@@ -64,9 +64,9 @@ if(class_exists('Widget')) {
 				$monthclause = 'MONTH("Date")';
 				$yearclause  = 'YEAR("Date")';
 			}
-			
+
 			// Changed the WHERE clause from where ParentID to WHERE SiteTree$suffix.ParentID as it was ambiguous.
-			
+
 			if($this->DisplayMode == 'month') {
 				$sqlResults = DB::query("
 					SELECT DISTINCT CAST($monthclause AS " . DB::getConn()->dbDataType('unsigned integer') . ")
@@ -86,33 +86,34 @@ if(class_exists('Widget')) {
 					ORDER BY \"Year\" DESC"
 				);
 			}
+
 			if($sqlResults) foreach($sqlResults as $sqlResult) {
 				$isMonthDisplay = $this->DisplayMode == 'month';
-				
+
 				$monthVal = (isset($sqlResult['Month'])) ? (int) $sqlResult['Month'] : 1;
 				$month = ($isMonthDisplay) ? $monthVal : 1;
 				$year = ($sqlResult['Year']) ? (int) $sqlResult['Year'] : date('Y');
-				
+
 				$date = DBField::create_field('Date', array(
 					'Day' => 1,
 					'Month' => $month,
 					'Year' => $year
 				));
-				
+
 				if($isMonthDisplay) {
 					$link = $container->Link('date') . '/' . $sqlResult['Year'] . '/' . sprintf("%'02d", $monthVal);
 				} else {
 					$link = $container->Link('date') . '/' . $sqlResult['Year'];
 				}
-				
+
 				$results->push(new ArrayData(array(
 					'Date' => $date,
 					'Link' => $link
 				)));
 			}
-			
+
 			return $results;
-		}	
+		}
 	}
 
 }
