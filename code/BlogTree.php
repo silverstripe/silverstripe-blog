@@ -5,7 +5,7 @@
  */
 
 /**
- * Blog tree is a way to group Blogs. It allows a tree of "Blog Holders". 
+ * Blog tree is a way to group Blogs. It allows a tree of "Blog Holders".
  * Viewing branch nodes shows all blog entries from all blog holder children
  */
 
@@ -14,18 +14,25 @@ class BlogTree extends Page {
 	static $icon = "blog/images/blogtree-file.png";
 
 	static $description = "A grouping of blogs";
-	
+
 	static $singular_name = 'Blog Tree Page';
-	
+
 	static $plural_name = 'Blog Tree Pages';
-	
+
 	// Default number of blog entries to show
 	static $default_entries_limit = 10;
 	
+	/**
+	 * @var bool Include an automatic link to the rss feed for
+	 * the browser. Disabling this will allow you to include your
+	 * own feedburner link
+	 */
+	static $include_rss_link = true;
+
 	static $db = array(
 		'LandingPageFreshness' => 'Varchar',
 	);
-	
+
 	static $allowed_children = array(
 		'BlogTree', 'BlogHolder'
 	);
@@ -40,7 +47,7 @@ class BlogTree extends Page {
 	 * 				uses current
 	 */
 	static function current($page = null) {
-		
+
 		if (!$page) {
 			$controller = Controller::curr();
 			if($controller) $page = $controller->data();
@@ -78,35 +85,35 @@ class BlogTree extends Page {
 		if ($freshness == "INHERIT") $freshness = '';
 		return $freshness;
 	}
-	
+
 	/* ----------- CMS CONTROL -------------- */
 	
 	function getSettingsFields() {
 		$fields = parent::getSettingsFields();
 
 		$fields->addFieldToTab(
-			'Root.Settings', 
+			'Root.Settings',
 			new DropdownField(
-				'LandingPageFreshness', 
-				'When you first open the blog, how many entries should I show', 
-				array( 
-		 			"" => "All entries", 
-					"1" => "Last month's entries", 
-					"2" => "Last 2 months' entries", 
-					"3" => "Last 3 months' entries", 
-					"4" => "Last 4 months' entries", 
-					"5" => "Last 5 months' entries", 
-					"6" => "Last 6 months' entries", 
-					"7" => "Last 7 months' entries", 
-					"8" => "Last 8 months' entries", 
-					"9" => "Last 9 months' entries", 
-					"10" => "Last 10 months' entries", 
-					"11" => "Last 11 months' entries", 
-					"12" => "Last year's entries", 
+				'LandingPageFreshness',
+				'When you first open the blog, how many entries should I show',
+				array(
+		 			"" => "All entries",
+					"1" => "Last month's entries",
+					"2" => "Last 2 months' entries",
+					"3" => "Last 3 months' entries",
+					"4" => "Last 4 months' entries",
+					"5" => "Last 5 months' entries",
+					"6" => "Last 6 months' entries",
+					"7" => "Last 7 months' entries",
+					"8" => "Last 8 months' entries",
+					"9" => "Last 9 months' entries",
+					"10" => "Last 10 months' entries",
+					"11" => "Last 11 months' entries",
+					"12" => "Last year's entries",
 					"INHERIT" => "Take value from parent Blog Tree"
 				)
 			)
-		); 
+		);
 
 		return $fields;
 	}
@@ -144,7 +151,6 @@ class BlogTree extends Page {
 	 * @return DataObjectSet
 	 */
 	public function Entries($limit = '', $tag = '', $date = '', $retrieveCallback = null, $filter = '') {
-		
 		$tagCheck = '';
 		$dateCheck = '';
 		
@@ -157,12 +163,12 @@ class BlogTree extends Page {
 			// Some systems still use the / seperator for date presentation
 			if( strpos($date, '-') ) $seperator = '-';
 			elseif( strpos($date, '/') ) $seperator = '/';
-			
+
 			if(isset($seperator) && !empty($seperator)) {
 				// The 2 in the explode argument will tell it to only create 2 elements
 				// i.e. in this instance the $year and $month fields respectively
 				list($year,$month) = explode( $seperator, $date, 2);
-				
+
 				$year = (int)$year;
 				$month = (int)$month;
 
@@ -185,7 +191,6 @@ class BlogTree extends Page {
 				}
 			}
 		}
-
 		// Build a list of all IDs for BlogHolders that are children of us
 		$holderIDs = $this->BlogHolderIDs();
 		
@@ -210,7 +215,7 @@ class BlogTree extends Page {
 }
 
 class BlogTree_Controller extends Page_Controller {
-	
+
 	static $allowed_actions = array(
 		'index',
 		'rss',
@@ -221,22 +226,24 @@ class BlogTree_Controller extends Page_Controller {
 	function init() {
 		parent::init();
 		
-		$this->IncludeBlogRSS();
+		if(BlogTree::$include_rss_link) {
+			$this->IncludeBlogRSS();
+		}
 		
 		Requirements::themedCSS("blog","blog");
 	}
 
 	function BlogEntries($limit = null) {
 		require_once('Zend/Date.php');
-		
+
 		if($limit === null) $limit = BlogTree::$default_entries_limit;
 
 		// only use freshness if no action is present (might be displaying tags or rss)
 		if ($this->LandingPageFreshness && !$this->request->param('Action')) {
 			$d = new Zend_Date(SS_Datetime::now()->getValue());
-			$d->sub($this->LandingPageFreshness, Zend_Date::MONTH);
+			$d->sub(intval($this->LandingPageFreshness, Zend_Date::MONTH), Zend_Date::MONTH);
 			$date = $d->toString('YYYY-MM-dd');
-			
+
 			$filter = "\"BlogEntry\".\"Date\" > '$date'";
 		} else {
 			$filter = '';
@@ -246,7 +253,7 @@ class BlogTree_Controller extends Page_Controller {
 		if(isset($_GET['author']) && isset($_GET['authorID'])) {
 			$author = Convert::raw2sql($_GET['author']);
 			$id = Convert::raw2sql($_GET['authorID']);
-			
+
 			$filter .= " \"BlogEntry\".\"Author\" LIKE '". $author . "' OR \"BlogEntry\".\"AuthorID\" = '". $id ."'";
 		}
 		else if(isset($_GET['author'])) {
@@ -257,7 +264,7 @@ class BlogTree_Controller extends Page_Controller {
 		}
 
 		$date = $this->SelectedDate();
-		
+
 		return $this->Entries($limit, $this->SelectedTag(), ($date) ? $date : '', null, $filter);
 	}
 
@@ -267,7 +274,7 @@ class BlogTree_Controller extends Page_Controller {
 	function IncludeBlogRSS() {
 		RSSFeed::linkToFeed($this->Link('rss'), _t('BlogHolder.RSSFEED',"RSS feed of these blogs"));
 	}
-	
+
 	/**
 	 * Get the rss feed for this blog holder's entries
 	 */
@@ -284,7 +291,7 @@ class BlogTree_Controller extends Page_Controller {
 			return $rss->outputToBrowser();
 		}
 	}
-	
+
 	/**
 	 * Protection against infinite loops when an RSS widget pointing to this page is added to this page
 	 */
@@ -293,16 +300,16 @@ class BlogTree_Controller extends Page_Controller {
 		
 		return parent::defaultAction($action);
 	}
-	
+
 	/**
-	 * Return the currently viewing tag used in the template as $Tag 
+	 * Return the currently viewing tag used in the template as $Tag
 	 *
 	 * @return String
 	 */
 	function SelectedTag() {
 		return ($this->request->latestParam('Action') == 'tag') ? Convert::raw2xml($this->request->latestParam('ID')) : '';
 	}
-	
+
 	/**
 	 * Return the selected date from the blog tree
 	 *
@@ -312,18 +319,18 @@ class BlogTree_Controller extends Page_Controller {
 		if($this->request->latestParam('Action') == 'date') {
 			$year = $this->request->latestParam('ID');
 			$month = $this->request->latestParam('OtherID');
-	
+
 			if(is_numeric($year) && is_numeric($month) && $month < 13) {
-		
+
 				$date = $year .'-'. $month;
 				return $date;
-				
+
 			} else {
-				
-				if(is_numeric($year)) return $year;	
+
+				if(is_numeric($year)) return $year;
 			}
 		}
-			
+
 		return false;
 	}
 
@@ -350,14 +357,14 @@ class BlogTree_Controller extends Page_Controller {
 			}
 		}
 	}
-	
+
 	function SelectedNiceDate(){
 		$date = $this->SelectedDate();
-		
+
 		if(strpos($date, '-')) {
 			$date = explode("-",$date);
 			return date("F", mktime(0, 0, 0, $date[1], 1, date('Y'))). " " .date("Y", mktime(0, 0, 0, date('m'), 1, $date[0]));
-		
+
 		} else {
 			return date("Y", mktime(0, 0, 0, date('m'), 1, $date));
 		}
