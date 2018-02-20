@@ -1,7 +1,7 @@
 # See https://github.com/silverstripe-labs/silverstripe-travis-support for setup details
 
-language: php 
-php: 
+language: php
+php:
  - 5.3
 
 env:
@@ -23,5 +23,5 @@ before_script:
  - php ~/travis-support/travis_setup.php --source `pwd` --target ~/builds/ss
  - cd ~/builds/ss
 
-script: 
+script:
  - phpunit $MODULE_PATH/tests/
