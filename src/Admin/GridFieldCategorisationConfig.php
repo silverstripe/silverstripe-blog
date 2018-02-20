@@ -58,8 +58,8 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
 
         $columns->setDisplayFields(
             [
-                'Title'          => 'Title',
-                'BlogPostsCount' => 'Posts',
+                'Title'          => _t(__CLASS__ . '.Title', 'Title'),
+                'BlogPostsCount' => _t(__CLASS__ . '.Posts', 'Posts'),
                 'MergeAction'    => 'MergeAction',
                 'Actions'        => 'Actions'
             ]

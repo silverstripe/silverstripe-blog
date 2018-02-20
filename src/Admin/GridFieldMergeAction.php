@@ -102,9 +102,10 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
             ]);
 
             $action->addExtraClass('btn btn-primary btn-sm blog-merge-action');
+            $MovePostsTo = _t(__CLASS__ . '.MovePostsTo', 'Move posts to');
+            $MergeActionReveal = '<a title="' . $MovePostsTo . '" class="MergeActionReveal">' . $MovePostsTo . '</a>';
 
-            return $dropdown->Field() . $action->Field() .
-                '<a title="Move posts to" class="MergeActionReveal">Move posts to</a>';
+            return $dropdown->Field() . $action->Field() . $MergeActionReveal;
         }
 
         return null;
@@ -123,7 +124,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function getColumnMetadata($gridField, $columnName)
     {
-        return ['title' => 'Move posts to'];
+        return ['title' => _t(__CLASS__ . '.MovePostsTo', 'Move posts to')];
     }
 
     /**
