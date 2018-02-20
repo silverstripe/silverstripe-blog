@@ -1,6 +1,8 @@
 # See https://github.com/silverstripe-labs/silverstripe-travis-support for setup details
 
-language: php 
+dist: precise
+
+language: php
 php: 
  - 5.3
 
