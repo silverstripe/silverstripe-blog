@@ -36,4 +36,10 @@
             <% end_if %>
         <% end_loop %>
     <% end_if %>
+
+    <% if $MinutesToRead < 1 %>
+        <%t SilverStripe\\Blog\\Model\\Blog.LessThanAMinuteToRead "Less than a minute to read" %>
+    <% else %>
+        $MinutesToRead <%t SilverStripe\\Blog\\Model\\Blog.MinutesToRead "Minute(s) to read" %>
+    <% end_if %>
 </p>

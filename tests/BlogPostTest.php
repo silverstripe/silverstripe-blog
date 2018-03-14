@@ -132,4 +132,25 @@ class BlogPostTest extends SapphireTest
         $blogPost = $this->objFromFixture(BlogPost::class, 'PostA');
         $this->assertEquals('2012-01-09 15:00:00', $blogPost->getDate());
     }
+
+    public function testMinutesToRead()
+    {
+        /** @var BlogPost $blogPost */
+        $blogPost = $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
+
+        // over 400 words, should take slightly longer than 2 minutes
+        $this->assertEquals(2, $blogPost->MinutesToRead());
+
+        $blogPost = $this->objFromFixture(BlogPost::class, 'SecondBlogPost');
+
+        // over 200 words, should take slighter longer than 1 minute
+        $this->assertEquals(1, $blogPost->MinutesToRead());
+
+        $blogPost = $this->objFromFixture(BlogPost::class, 'ThirdBlogPost');
+        // less than 200 words, should take less than a minute thus return an integer of 0 (zero)
+        $this->assertEquals(0, $blogPost->MinutesToRead());
+
+        $this->expectException(\InvalidArgumentException::class);
+        $blogPost->MinutesToRead('not-a-number');
+    }
 }
