@@ -47,6 +47,8 @@ en:
     UsersWritersFieldDescription: "A writer has full control over creating, editing and publishing BlogPosts they have authored\n                      or have been assigned to. Writers are unable to edit BlogPosts to which they are not assigned.\n                    <br /><br />\n                    Writers have these permissions:<br />\n                    <br />\n                    Update or publish any BlogPost they have authored or have been assigned to<br />\n                    Assign/unassign any member as an author of a particular BlogPost they have authored or have been \n                    assigned to"
     WRITER: Writer
     Categorisation: 'Categorisation'
+    MinutesToRead: 'Minute(s) to read'
+    LessThanAMinuteToRead: 'Less than a minute to read'
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'A blog category already exists with that name.'
     PLURALNAME: 'Blog Categories'

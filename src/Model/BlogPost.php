@@ -22,6 +22,7 @@ use SilverStripe\Security\Security;
 use SilverStripe\TagField\TagField;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\ArrayData;
+use SilverStripe\View\Parsers\ShortcodeParser;
 use SilverStripe\View\Requirements;
 
 /**
@@ -145,6 +146,14 @@ class BlogPost extends Page
      * @var bool
      */
     private static $show_in_sitetree = false;
+
+    /**
+     * This helps estimate how long an article will take to read, if your target audience
+     * is elderly then you should lower this value. See {@link getMinutesToRead()}
+     *
+     * @var int
+     */
+    private static $minutes_to_read_wpm = 200;
 
     /**
      * Determine the role of the given member.
@@ -754,6 +763,31 @@ class BlogPost extends Page
             return $this->getField('Date');
         }
         return !empty($this->PublishDate) ? $this->PublishDate : null;
+    }
+
+    /**
+     * Provides a rough estimate of how long this post will take to read based on wikipedias answer to "How fast can a
+     * human read" of 200wpm. Source https://en.wikipedia.org/wiki/Speed_reading
+     *
+     * @param null|integer $wpm
+     *
+     * @return string
+     */
+    public function MinutesToRead($wpm = null)
+    {
+        $wpm = $wpm ?: $this->config()->get('minutes_to_read_wpm');
+
+        if (!is_numeric($wpm)) {
+            throw new \InvalidArgumentException(sprintf("Expecting integer but got %s instead", gettype($wpm)));
+        }
+
+        $wordCount = str_word_count(strip_tags($this->Content));
+
+        if ($wordCount < $wpm) {
+            return 0;
+        }
+
+        return round($wordCount / $wpm, 0);
     }
 
     /**
