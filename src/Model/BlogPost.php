@@ -630,12 +630,12 @@ class BlogPost extends Page
                 return Controller::join_links(
                     $this->Parent()->Link('archive'),
                     $date->format('Y'),
-                    $date->format('m'),
+                    $date->format('M'),
                     $date->format('d')
                 );
             }
 
-            return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'), $date->format('m'));
+            return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'), $date->format('M'));
         }
 
         return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'));
