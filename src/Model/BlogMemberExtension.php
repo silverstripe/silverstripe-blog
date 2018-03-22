@@ -6,6 +6,7 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\Tab;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Security\Member;
@@ -120,8 +121,11 @@ class BlogMemberExtension extends DataExtension
             'BlogPosts',
             _t(__CLASS__ . '.BLOGPOSTS', 'Blog Posts'),
             $this->owner->BlogPosts(),
-            GridFieldConfigBlogPost::create()
+            $gridFieldConfig = GridFieldConfigBlogPost::create()
         );
+
+        // Remove the "add new blog post" action from a member's profile
+        $gridFieldConfig->removeComponentsByType(GridFieldAddNewButton::class);
 
         $tab->Fields()->add($gridField);
 
