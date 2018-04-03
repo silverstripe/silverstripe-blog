@@ -1,0 +1,92 @@
+es:
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Agregar {name}'
+    AddFail: 'No se pudo guardar {class} en la base de datos.'
+    PermissionFail: 'No tienes los permisos para crear {class}.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Draft: 'Guardado como Borrador el {date}'
+    Published: 'Publicado el {date}'
+    Timer: 'Se publicará el {date}'
+  SilverStripe\Blog\Model:
+    Title: Título
+  SilverStripe\Blog\Model\Blog:
+    AND: 'y'
+    Archive: Archivo
+    By: Por
+    CONTRIBUTOR: Contribuidor
+    Categories: Categorías
+    Category: Categoría
+    Comments: Comentarios
+    DESCRIPTION: 'Agrega un blog al sitio web.'
+    EDITOR: Editor
+    FILTERDESCRIPTION_AUTHOR: 'Por {author}'
+    FILTERDESCRIPTION_CATEGORY: 'En la categoría {category}'
+    FILTERDESCRIPTION_DATE: 'En {date}'
+    FILTERDESCRIPTION_PAGE: 'Página {page}'
+    FILTERDESCRIPTION_TAG: 'Etiquetado con {tag}'
+    LumberjackTitle: 'Artículos del blog'
+    NoPosts: 'No hay artículos'
+    PERMISSIONS_CATEGORY: 'Permisos del blog'
+    PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administrar usuarios para blogs individuales'
+    PERMISSION_MANAGE_USERS_HELP: 'Permitir  de asignación de Editores, Escritores o Contribuidores a los blogs'
+    PLURALNAME: Blogs
+    Posted: Publicado
+    PostedIn: 'Publicado el'
+    PostsPerPage: 'Artículos por página'
+    ReadMoreAbout: 'Leer más sobre ''{title}''...'
+    SINGULARNAME: Blog
+    Tag: Etiqueta
+    Tagged: Etiquetado
+    Tags: Etiquetas
+    WRITER: Escritor
+  SilverStripe\Blog\Model\BlogCategory:
+    Duplicate: 'Ya existe una categoría con el mismo nombre.'
+    PLURALNAME: 'Categorías del Blog'
+    SINGULARNAME: 'Categoría del blog'
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Artículos del Blog'
+    TABBLOGPOSTS: 'Artículos del Blog'
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Autor
+    AdditionalCredits: 'Créditos adicionales'
+    AdditionalCredits_Description: 'Si algunos autores de este artículo no tienen acceso al CMS, agregue aquí su(s) nombres. Puedes agregar varios nombres utilizando una coma.'
+    Authors: Autores
+    CUSTOMSUMMARY: 'Agregar un resumen personalizado'
+    Categories: Categorías
+    FeaturedImage: 'Imagen Destacada'
+    PLURALNAME: 'Artículos del Blog'
+    PageTitleLabel: 'Título del artículo'
+    PublishDate: 'Fecha de publicación'
+    PublishDate_Description: 'Se usara la fecha "actual" si se publica sin un valor.'
+    SINGULARNAME: 'Artículo del blog'
+    SUMMARY_DESCRIPTION: 'Si no se especifica un resumen se usarán las primeras 30 palabras.'
+    Tags: Etiquetas
+  SilverStripe\Blog\Model\BlogTag:
+    Duplicate: 'Ya existe una etiqueta con este nombre.'
+    PLURALNAME: 'Etiquetas del Blog'
+    SINGULARNAME: 'Etiqueta del Blog'
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: 'Tipo de archivo'
+    Blog: Blog
+    NumberToDisplay: 'No. a mostrar'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: Blog
+    Direction: Dirección
+    Direction_Description: 'Cambia la dirección de ordenamiento de las categorías mostradas por este widget.'
+    Limit: Limite
+    Limit_Description: 'Limita el número de categorías mostradas por este widget (use 0 para mostrar todas las categorías) '
+    Sort: Ordenar
+    Sort_Description: 'Cambia el orden de las categorías mostradas por este widget.'
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Numero de artículos'
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
+    Blog: Blog
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
+    Blog: Blog
+    Direction: Dirección
+    Direction_Description: 'Cambia la dirección del orden de las etiquetas mostradas por este widget.'
+    Limit: Limit
+    Limit_Description: 'Limita el número de etiquetas mostradas por este widget (use 0 para mostrar todas las etiquetas).'
+    Sort: Ordenar
+    Sort_Description: 'Cambiar el orden de las etiquetas mostradas por este widget'

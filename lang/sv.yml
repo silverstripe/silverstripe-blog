@@ -7,7 +7,10 @@ sv:
     Draft: 'Sparad som utkast den {date}'
     Published: 'Publicerad den {date}'
     Timer: 'Publicerad den {date}'
+  SilverStripe\Blog\Model:
+    Title: Titel
   SilverStripe\Blog\Model\Blog:
+    AND: och
     Archive: Arkiv
     By: av
     CONTRIBUTOR: Bidragsgivare
@@ -23,7 +26,6 @@ sv:
     FILTERDESCRIPTION_TAG: 'Taggat med {tag}'
     LumberjackTitle: Bloginlägg
     NoPosts: 'Det finns inga bloginlägg'
-    NoUnfeaturedPosts: 'Det finns inga icke-etablerade inlägg'
     PERMISSIONS_CATEGORY: 'Blogg rättigheter'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hantera användare för enskilda bloggar'
     PERMISSION_MANAGE_USERS_HELP: 'Tillåt tilldelning av redaktörer , författare , eller bidragsgivare till bloggar'
@@ -38,16 +40,20 @@ sv:
     Tags: Taggar
     WRITER: Författare
   SilverStripe\Blog\Model\BlogCategory:
+    Duplicate: 'En bloggkategori finns redan med det namnet.'
     PLURALNAME: 'Blogg Kategorier'
     SINGULARNAME: 'Blogg Kategori'
-    Title: Titel
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: Blogginlägg
+    TABBLOGPOSTS: Blogginlägg
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Författare
     AdditionalCredits: 'Ytterligare erkännanden'
+    AdditionalCredits_Description: 'Om vissa författare till det här inlägget inte har CMS-åtkomst anger du deras namn (en) här. Du kan separera flera namn med komma.'
     Authors: Författare
     CUSTOMSUMMARY: 'Lägg till en anpassad sammanfattning'
     Categories: Kategorier
-    DESCRIPTION: 'Generisk innehållssida'
+    FeaturedImage: 'Utvald bild'
     PLURALNAME: 'Bas sidor'
     PageTitleLabel: Blogginläggstitel
     PublishDate: 'Publicerat datum'
@@ -56,40 +62,31 @@ sv:
     SUMMARY_DESCRIPTION: 'Om ingen sammanfattning anges, kommer de första 30 orden att användas .'
     Tags: Taggar
   SilverStripe\Blog\Model\BlogTag:
+    Duplicate: 'En tag med det här namnet är redan tillagd'
     PLURALNAME: 'Blogg taggar'
     SINGULARNAME: 'Blogg tag'
-    Title: Titel
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: ArkivTyp
     Blog: Blogg
     NumberToDisplay: 'Antal att visa'
-    PLURALNAME: 'Blogg Arkiv-Widgets'
-    SINGULARNAME: 'Blogg Arkiv-Widget'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blogg
     Direction: Ordning
     Direction_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
     Limit: Begränsa
     Limit_Description: 'Begränsa antalet kategorier som visas av denna widget (sätt till 0 för att visa alla kategorier).'
-    PLURALNAME: 'Blogg Kategorier-Widgets'
-    SINGULARNAME: 'Blogg Kategori-Widget'
     Sort: Sortera
     Sort_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blogg
     NumberOfPosts: 'Antal inlägg'
-    PLURALNAME: 'Blogg Senaste Inläggs-Widget'
-    SINGULARNAME: 'Blogg Senaste Inläggs-Widget'
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
+    Blog: Blogg
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blogg
     Direction: Ordning
     Direction_Description: 'Ändra riktningen av ordningen av taggar som visas av denna widget.'
     Limit: Begränsa
     Limit_Description: 'Begränsa antalet taggar som visas av denna widget (sätt till 0 för att visa alla taggar).'
-    PLURALNAME: 'Blogg taggar Widgets'
-    SINGULARNAME: 'Blogg taggar Widget'
     Sort: Sortera
     Sort_Description: 'Ändra ordningen av taggar som visas av denna widget.'
-  TagCloudWidget:
-    PLURALNAME: 'Taggmoln Widgets'
-    SINGULARNAME: 'Taggmoln Widget'

@@ -7,7 +7,10 @@ de:
     Draft: 'Als Entwurf am {date} gespeichert'
     Published: 'Veröffentlicht am {date}'
     Timer: 'Am {date} veröffentlichen'
+  SilverStripe\Blog\Model:
+    Title: Titel
   SilverStripe\Blog\Model\Blog:
+    AND: und
     Archive: Archiv
     By: von
     CONTRIBUTOR: Mitwirkende
@@ -39,14 +42,12 @@ de:
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Blog Kategorien'
     SINGULARNAME: 'Blog Kategorie'
-    Title: Titel
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Zusätzliche Credits'
     Authors: Autoren
     CUSTOMSUMMARY: Zusammenfassung
     Categories: Kategorien
-    DESCRIPTION: 'Allgemeine Inhaltsseite'
     PLURALNAME: 'Basis Seiten'
     PageTitleLabel: Titel
     PublishDate: 'Datum der Veröffentlichung'
@@ -56,38 +57,28 @@ de:
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Blog Schlagworte'
     SINGULARNAME: 'Blog Schlagwort'
-    Title: Titel
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Archivtyp
     Blog: Blog
     NumberToDisplay: 'Anzahl anzeigen'
-    PLURALNAME: 'Blog Archiv Widgets'
-    SINGULARNAME: 'Blog Archiv Widget'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
     Direction: Richtung
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Kategorien, die von diesem Widget angezeigt werden.'
     Limit: Begrenzen
     Limit_Description: 'Begrenzen Sie die Anzahl der angezeigten Kategorien (0 zeigt alle Kategorien)'
-    PLURALNAME: 'Blog Kategorien Widgets'
-    SINGULARNAME: 'Blog Kategorien Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
-    PLURALNAME: 'Aktuelle Blog Einträge Widgets'
-    SINGULARNAME: 'Aktuelle Blog Einträge Widget'
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
+    Blog: Blog
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Richtung
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Schlagworte, die von diesem Widget angezeigt werden.'
     Limit: Begrenzen
     Limit_Description: 'Begrenzen Sie die Anzahl der angezeigten Schlagworte (0 zeigt alle Schlagworte)'
-    PLURALNAME: 'Blog Schlagworte Widgets'
-    SINGULARNAME: 'Blog Schlagworte Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
-  TagCloudWidget:
-    PLURALNAME: 'Schlagwortwolke Widgets'
-    SINGULARNAME: 'Schlagwortwolke Widget'

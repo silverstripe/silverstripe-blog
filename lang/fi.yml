@@ -7,7 +7,10 @@ fi:
     Draft: 'Versio tallennettu {date}'
     Published: 'Julkaistu {date}'
     Timer: 'Julkaistaan {date}'
+  SilverStripe\Blog\Model:
+    Title: Otsikko
   SilverStripe\Blog\Model\Blog:
+    AND: ja
     Archive: Arkisto
     By: kirjoittanut
     CONTRIBUTOR: Avustaja
@@ -23,11 +26,13 @@ fi:
     FILTERDESCRIPTION_TAG: 'Avainsanat: {tag}'
     LumberjackTitle: Blogikirjoitukset
     NoPosts: 'Ei kirjoituksia'
-    NoUnfeaturedPosts: 'Ei artikkeleita, jotka eivät ole nostoja'
     PERMISSIONS_CATEGORY: 'Blogin oikeudet'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hallinnoi käyttäjiä yksittäisissä blogeissa'
     PERMISSION_MANAGE_USERS_HELP: 'Salli toimittajien, kirjoittajien tai avustajien kiinnittäminen blogeihin'
     PLURALNAME: Pohjasivut
+    PLURALS:
+      one: Blogi
+      other: '{count} blogia'
     Posted: Kirjoitettu
     PostedIn: 'Kirjoitettu:'
     PostsPerPage: 'Kirjoitusta per sivu'
@@ -40,8 +45,13 @@ fi:
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Tämä blogikategoria on jo olemassa'
     PLURALNAME: Blogikategoriat
+    PLURALS:
+      one: 'Blogin kategoria'
+      other: '{count} blogin kategoriaa'
     SINGULARNAME: Blogikategoria
-    Title: Otsikko
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: Artikkelit
+    TABBLOGPOSTS: Artikkelit
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Kirjoittaja
     AdditionalCredits: Lisäkiitokset
@@ -49,9 +59,11 @@ fi:
     Authors: Kirjoittajat
     CUSTOMSUMMARY: 'Lisää tiivistelmä'
     Categories: Kategoriat
-    DESCRIPTION: 'Yleinen sisältösivu'
     FeaturedImage: Kuvanosto
     PLURALNAME: Pohjasivut
+    PLURALS:
+      one: Blogipostaus
+      other: '{count} Blogipostausta'
     PageTitleLabel: Otsikko
     PublishDate: Julkaisupäivä
     PublishDate_Description: 'Asetetaan "nyt", mikäli arvo jätetään asettamatta.'
@@ -61,49 +73,32 @@ fi:
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Tämä blogin avainsana on jo olemassa'
     PLURALNAME: 'Blogin avainsanat'
+    PLURALS:
+      one: 'Blogin avainsana'
+      other: '{count} blogin avainsanaa'
     SINGULARNAME: 'Blogin avainsana'
-    Title: Otsikko
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Arkistotyyppi
     Blog: Blogi
     NumberToDisplay: Näytetään
-    PLURALNAME: Blogiarkisto-vimpaimet
-    SINGULARNAME: Blogiarkisto-vimpain
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blogi
-    Direction:
-      Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestyksen suunta.'
-      Label: Suunta
-    Limit:
-      Description: 'Rajoita näytettävien kategorioiden määrää tässä vimpaimessa (aseta arvoksi 0, jos haluat näyttää kaikki kategoriat).'
-      Label: Rajoita
-    PLURALNAME: Blogikategoriat-vimpaimet
-    SINGULARNAME: Blogikategoriat-vimpain
-    Sort:
-      Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestys.'
-      Label: Järjestä
+    Direction: Suunta
+    Direction_Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestyksen suunta.'
+    Limit: Rajoita
+    Limit_Description: 'Rajoita näytettävien kategorioiden määrää tässä vimpaimessa (aseta arvoksi 0, jos haluat näyttää kaikki kategoriat).'
+    Sort: Järjestä
+    Sort_Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestys.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blogi
     NumberOfPosts: 'Kirjoituksien määrä'
-    PLURALNAME: 'Viimeisimmät blogikirjoitukset -vimpaimet'
-    SINGULARNAME: 'Viimeisimmät blogikirjoitukset -vimpain'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blogi
-    PLURALNAME: 'Avainsanapilvi vimpaimet'
-    SINGULARNAME: 'Avainsanapilvi vimpaimet'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blogi
-    Direction:
-      Description: 'Vaihda vimpaimen näytettävien avainsanojen järjestyksen suunta'
-      Label: Suunta
-    Limit:
-      Description: 'Rajoita vimpaimella näytettävien avainsanojen määrää (aseta arvoksi 0, jos haluat näyttää kaikki avainsanat).'
-      Label: Rajoita
-    PLURALNAME: Avainsanat-vimpaimet
-    SINGULARNAME: Avainsanat-vimpain
-    Sort:
-      Description: 'Vaihda vimpaimella näytettävien avainsanojen järjestystä.'
-      Label: Järjestä
-  TagCloudWidget:
-    PLURALNAME: 'Avainsanapilvi vimpaimet'
-    SINGULARNAME: 'Avainsanapilvi vimpain'
+    Direction: Suunta
+    Direction_Description: 'Vaihda vimpaimen näytettävien avainsanojen järjestyksen suunta'
+    Limit: Rajoita
+    Limit_Description: 'Rajoita vimpaimella näytettävien avainsanojen määrää (aseta arvoksi 0, jos haluat näyttää kaikki avainsanat).'
+    Sort: Järjestä
+    Sort_Description: 'Vaihda vimpaimella näytettävien avainsanojen järjestystä.'

@@ -35,37 +35,24 @@ it:
     Tagged: Etichettato
     Tags: Etichette
     WRITER: Scrittore
-  SilverStripe\Blog\Model\BlogCategory:
-    Title: Titolo
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
     Authors: Autori
     CUSTOMSUMMARY: 'Aggiungi una Sintesi Personalizzata'
     Categories: Categorie
-    DESCRIPTION: 'Pagina di contenuto generico'
     PageTitleLabel: 'Titolo Articolo'
     PublishDate: 'Data Pubblicazione'
     SINGULARNAME: 'Articolo del Blog'
     SUMMARY_DESCRIPTION: 'Se non è specificata una sintesi saranno usate le prime 30 parole.'
     Tags: Etichette
-  SilverStripe\Blog\Model\BlogTag:
-    Title: Titolo
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     Blog: Blog
     NumberToDisplay: 'N. da Visualizzare'
-    PLURALNAME: 'Widget Archiviazione Blog'
-    SINGULARNAME: 'Widget Archiviazione Blog'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
-    PLURALNAME: 'Widget Categorie Blog'
-    SINGULARNAME: 'Widget Categorie Blog'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
-    PLURALNAME: 'Widget Articoli Blog Recenti'
-    SINGULARNAME: 'Widget Articoli Blog Recenti'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
-    PLURALNAME: 'Widget Etichette Blog'
-    SINGULARNAME: 'Widget Etichette Blog'
