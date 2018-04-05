@@ -5,7 +5,7 @@
 	<% include SilverStripe\\Blog\\MemberDetails %>
 
 	<% if $PaginatedList.Exists %>
-		<h2>Posts by $CurrentProfile.FirstName $CurrentProfile.Surname for $Title:</h2>
+        <h2><%t SilverStripe\\Blog\\Model\\Blog.PostsByUser 'Posts by {firstname} {surname} for {title}' firstname=$CurrentProfile.FirstName surname=$CurrentProfile.Surname title=$Title %></h2>
 		<% loop $PaginatedList %>
 			<% include SilverStripe\\Blog\\PostSummary %>
 		<% end_loop %>
