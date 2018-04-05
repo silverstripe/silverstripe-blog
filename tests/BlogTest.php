@@ -49,11 +49,7 @@ class BlogTest extends SapphireTest
 
     public function testGetExcludedSiteTreeClassNames()
     {
-        $member = Security::getCurrentUser();
-
-        if ($member) {
-            Security::setCurrentUser(null);
-        }
+        $this->logOut();
 
         /**
          * @var Blog $blog
@@ -73,11 +69,7 @@ class BlogTest extends SapphireTest
 
     public function testGetArchivedBlogPosts()
     {
-        $member = Security::getCurrentUser();
-
-        if ($member) {
-            Security::setCurrentUser(null);
-        }
+        $this->logOut();
 
         /**
          * @var Blog $blog
