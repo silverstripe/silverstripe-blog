@@ -2,10 +2,6 @@
 
 namespace SilverStripe\Blog\Widgets;
 
-if (!class_exists('\\SilverStripe\\Widgets\\Model\\Widget')) {
-    return;
-}
-
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DropdownField;
@@ -13,6 +9,10 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\ORM\DataList;
 use SilverStripe\Widgets\Model\Widget;
+
+if (!class_exists(Widget::class)) {
+    return;
+}
 
 /**
  * @method Blog Blog()

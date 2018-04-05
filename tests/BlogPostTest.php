@@ -11,16 +11,9 @@ use SilverStripe\Versioned\Versioned;
 
 class BlogPostTest extends SapphireTest
 {
-    /**
-     * {@inheritDoc}
-     * @var string
-     */
     protected static $fixture_file = 'blog.yml';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function tearDown()
+    protected function tearDown()
     {
         DBDatetime::clear_mock_now();
         parent::tearDown();

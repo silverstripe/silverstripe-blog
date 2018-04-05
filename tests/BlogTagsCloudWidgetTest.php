@@ -7,6 +7,7 @@ use SilverStripe\Blog\Widgets\BlogTagsCloudWidget;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
+use SilverStripe\Widgets\Model\Widget;
 
 class BlogTagsCloudWidgetTest extends SapphireTest
 {
@@ -17,7 +18,7 @@ class BlogTagsCloudWidgetTest extends SapphireTest
 
     public function testGetCMSFields()
     {
-        if (!class_exists('SilverStripe\\Widgets\\Model\\Widget')) {
+        if (!class_exists(Widget::class)) {
             $this->markTestSkipped('Widgets module not installed');
         }
 
@@ -34,7 +35,7 @@ class BlogTagsCloudWidgetTest extends SapphireTest
 
     public function testGetTags()
     {
-        if (!class_exists('SilverStripe\\Widgets\\Model\\Widget')) {
+        if (!class_exists(Widget::class)) {
             $this->markTestSkipped('Widgets module not installed');
         }
         $widget = new BlogTagsCloudWidget();

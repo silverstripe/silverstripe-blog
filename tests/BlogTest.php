@@ -2,6 +2,7 @@
 
 namespace SilverStripe\Blog\Tests;
 
+use PHPUnit_Framework_TestCase;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogController;
 use SilverStripe\Blog\Model\BlogPost;
@@ -24,36 +25,24 @@ use SilverStripe\Security\Security;
  */
 class BlogTest extends SapphireTest
 {
-    /**
-     * @var string
-     */
     protected static $fixture_file = 'blog.yml';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
-        Config::nest();
         DBDatetime::set_mock_now('2013-10-10 20:00:00');
 
         /**
          * @var Blog $blog
          */
         $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
-
-        $blog->publish('Stage', 'Live');
+        $blog->publishRecursive();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function tearDown()
+    protected function tearDown()
     {
         DBDatetime::clear_mock_now();
-        Config::unnest();
 
         parent::tearDown();
     }
