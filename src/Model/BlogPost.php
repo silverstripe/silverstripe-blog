@@ -227,7 +227,7 @@ class BlogPost extends Page
             /**
              * @var FieldList $fields
              */
-            $fields->insertAfter($uploadField, 'Content');
+            $fields->insertAfter('Content', $uploadField);
 
             $summary = HtmlEditorField::create('Summary', false);
             $summary->setRows(5);
@@ -246,7 +246,7 @@ class BlogPost extends Page
             $summaryHolder->setHeadingLevel(4);
             $summaryHolder->addExtraClass('custom-summary');
 
-            $fields->insertAfter($summaryHolder, 'FeaturedImage');
+            $fields->insertAfter('FeaturedImage', $summaryHolder);
 
             $urlSegment = $fields->dataFieldByName('URLSegment');
             $urlSegment->setURLPrefix($this->Parent()->RelativeLink());
