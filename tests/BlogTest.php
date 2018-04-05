@@ -10,15 +10,12 @@ use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPRequest;
-use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Control\Session;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
-use SilverStripe\ORM\DataModel;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\SS_List;
 use SilverStripe\Security\Member;
-use SilverStripe\Security\Security;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
@@ -331,7 +328,7 @@ class BlogTest extends SapphireTest
     }
 
     /**
-     * @expectedException HTTPResponse_Exception
+     * @expectedException \SilverStripe\Control\HTTPResponse_Exception
      * @expectedExceptionCode 404
      */
     public function testDisabledProfiles()
