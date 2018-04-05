@@ -330,23 +330,17 @@ class BlogTest extends SapphireTest
         );
     }
 
+    /**
+     * @expectedException HTTPResponse_Exception
+     * @expectedExceptionCode 404
+     */
     public function testDisabledProfiles()
     {
         Config::modify()->set(BlogController::class, 'disable_profiles', true);
 
-        try {
-            $controller = BlogController::create();
-            $controller->setRequest(Controller::curr()->getRequest());
-            $controller->profile();
-
-            $this->fail('The "profile" action should throw a HTTPResponse_Exception when disable_profiles is enabled');
-        } catch (HTTPResponse_Exception $e) {
-            $this->assertEquals(
-                404,
-                $e->getResponse()->getStatusCode(),
-                'The response status code should be 404 Not Found'
-            );
-        }
+        $controller = BlogController::create();
+        $controller->setRequest(Controller::curr()->getRequest());
+        $controller->profile();
     }
 
     /**
