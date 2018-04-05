@@ -5,11 +5,13 @@ namespace SilverStripe\Blog\Widgets;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Control\Controller;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\NumericField;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DB;
 use SilverStripe\ORM\FieldType\DBDate;
 use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\ORM\FieldType\DBEnum;
 use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\ArrayData;
@@ -76,7 +78,7 @@ class BlogArchiveWidget extends Widget
     {
         $this->beforeUpdateCMSFields(function ($fields) {
             /**
-             * @var Enum $archiveType
+             * @var DBEnum $archiveType
              */
             $archiveType = $this->dbObject('ArchiveType');
 

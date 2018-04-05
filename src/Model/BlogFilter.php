@@ -108,7 +108,7 @@ class BlogFilter extends Lumberjack
 
             $tab = Tab::create('ChildPages', $this->getLumberjackTitle(), $gridField);
 
-            $fields->insertBefore($tab, 'Main');
+            $fields->insertBefore('Main', $tab);
         }
     }
 }

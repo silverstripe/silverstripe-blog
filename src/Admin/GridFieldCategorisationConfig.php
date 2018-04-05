@@ -4,8 +4,10 @@ namespace SilverStripe\Blog\Admin;
 
 use SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField;
 use SilverStripe\Blog\Model\CategorisationObject;
+use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridFieldDataColumns;
+use SilverStripe\ORM\SS_List;
 
 class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
 {
@@ -20,7 +22,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
     {
         parent::__construct($itemsPerPage);
 
-        $this->removeComponentsByType('SilverStripe\\Forms\\GridField\\GridFieldAddNewButton');
+        $this->removeComponentsByType(GridFieldAddNewButton::class);
 
         $this->addComponent(
             GridFieldAddByDBField::create('buttons-before-left')
@@ -33,7 +35,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         /**
          * @var GridFieldDataColumns $columns
          */
-        $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
+        $columns = $this->getComponentByType(GridFieldDataColumns::class);
 
         $columns->setFieldFormatting(
             [
@@ -54,7 +56,7 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
         /**
          * @var GridFieldDataColumns $columns
          */
-        $columns = $this->getComponentByType('SilverStripe\\Forms\\GridField\\GridFieldDataColumns');
+        $columns = $this->getComponentByType(GridFieldDataColumns::class);
 
         $columns->setDisplayFields(
             [

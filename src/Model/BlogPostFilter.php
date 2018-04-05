@@ -23,7 +23,8 @@ class BlogPostFilter extends DataExtension
     /**
      * Augment queries so that we don't fetch unpublished articles.
      *
-     * @param SQLQuery $query
+     * @param SQLSelect $query
+     * @param DataQuery $query
      */
     public function augmentSQL(SQLSelect $query, DataQuery $dataQuery = null)
     {
