@@ -5,7 +5,6 @@ namespace SilverStripe\Blog\Tests;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\Security\Member;
 use SilverStripe\Security\Security;
 
 /**

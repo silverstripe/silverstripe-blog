@@ -8,12 +8,15 @@ use SilverStripe\Assets\Image;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Forms\DatetimeField;
+use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ToggleCompositeField;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\ORM\SS_List;
 use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
@@ -224,7 +227,7 @@ class BlogPost extends Page
             /**
              * @var FieldList $fields
              */
-            $fields->insertAfter($uploadField, 'Content');
+            $fields->insertAfter('Content', $uploadField);
 
             $summary = HtmlEditorField::create('Summary', false);
             $summary->setRows(5);
@@ -243,7 +246,7 @@ class BlogPost extends Page
             $summaryHolder->setHeadingLevel(4);
             $summaryHolder->addExtraClass('custom-summary');
 
-            $fields->insertAfter($summaryHolder, 'FeaturedImage');
+            $fields->insertAfter('FeaturedImage', $summaryHolder);
 
             $urlSegment = $fields->dataFieldByName('URLSegment');
             $urlSegment->setURLPrefix($this->Parent()->RelativeLink());
@@ -605,7 +608,7 @@ class BlogPost extends Page
      */
     public function Excerpt($wordsToDisplay = 30)
     {
-        /** @var HTMLText $content */
+        /** @var DBHTMLText $content */
         $content = $this->dbObject('Content');
 
         return $content->Summary($wordsToDisplay);

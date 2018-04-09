@@ -2,6 +2,7 @@
 
 namespace SilverStripe\Blog\Tests;
 
+use PHPUnit_Framework_TestCase;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogController;
 use SilverStripe\Blog\Model\BlogPost;
@@ -9,62 +10,43 @@ use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPRequest;
-use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Control\Session;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
-use SilverStripe\ORM\DataModel;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\SS_List;
 use SilverStripe\Security\Member;
-use SilverStripe\Security\Security;
 
 /**
  * @mixin PHPUnit_Framework_TestCase
  */
 class BlogTest extends SapphireTest
 {
-    /**
-     * @var string
-     */
     protected static $fixture_file = 'blog.yml';
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
+    protected function setUp()
     {
         parent::setUp();
 
-        Config::nest();
         DBDatetime::set_mock_now('2013-10-10 20:00:00');
 
         /**
          * @var Blog $blog
          */
         $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
-
-        $blog->publish('Stage', 'Live');
+        $blog->publishRecursive();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function tearDown()
+    protected function tearDown()
     {
         DBDatetime::clear_mock_now();
-        Config::unnest();
 
         parent::tearDown();
     }
 
     public function testGetExcludedSiteTreeClassNames()
     {
-        $member = Security::getCurrentUser();
-
-        if ($member) {
-            Security::setCurrentUser(null);
-        }
+        $this->logOut();
 
         /**
          * @var Blog $blog
@@ -84,11 +66,7 @@ class BlogTest extends SapphireTest
 
     public function testGetArchivedBlogPosts()
     {
-        $member = Security::getCurrentUser();
-
-        if ($member) {
-            Security::setCurrentUser(null);
-        }
+        $this->logOut();
 
         /**
          * @var Blog $blog
@@ -349,23 +327,17 @@ class BlogTest extends SapphireTest
         );
     }
 
+    /**
+     * @expectedException \SilverStripe\Control\HTTPResponse_Exception
+     * @expectedExceptionCode 404
+     */
     public function testDisabledProfiles()
     {
         Config::modify()->set(BlogController::class, 'disable_profiles', true);
 
-        try {
-            $controller = BlogController::create();
-            $controller->setRequest(Controller::curr()->getRequest());
-            $controller->profile();
-
-            $this->fail('The "profile" action should throw a HTTPResponse_Exception when disable_profiles is enabled');
-        } catch (HTTPResponse_Exception $e) {
-            $this->assertEquals(
-                404,
-                $e->getResponse()->getStatusCode(),
-                'The response status code should be 404 Not Found'
-            );
-        }
+        $controller = BlogController::create();
+        $controller->setRequest(Controller::curr()->getRequest());
+        $controller->profile();
     }
 
     /**

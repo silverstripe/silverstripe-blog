@@ -8,12 +8,16 @@ use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
+use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\NumericField;
+use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
+use SilverStripe\ORM\SS_List;
 use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
@@ -443,11 +447,11 @@ class Blog extends Page implements PermissionProvider
             $list = Member::get();
             $this->extend('updateCandidateUsers', $list);
             return $list;
-        } else {
-            return Permission::get_members_by_permission(
-                $this->config()->get('grant_user_permission')
-            );
         }
+
+        return Permission::get_members_by_permission(
+            $this->config()->get('grant_user_permission')
+        );
     }
 
     /**

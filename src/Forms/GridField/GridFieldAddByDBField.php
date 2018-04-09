@@ -3,6 +3,7 @@
 namespace SilverStripe\Blog\Forms\GridField;
 
 use SilverStripe\Control\Controller;
+use SilverStripe\Control\HTTPResponse;
 use SilverStripe\Core\Convert;
 use SilverStripe\Core\Injector\Injectable;
 use SilverStripe\Forms\GridField\GridField;
@@ -11,6 +12,8 @@ use SilverStripe\Forms\GridField\GridField_FormAction;
 use SilverStripe\Forms\GridField\GridField_HTMLProvider;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataList;
+use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Security;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
@@ -69,7 +72,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      * @param $arguments mixed
      * @param $data array
      *
-     * @return null|SS_HTTPResponse
+     * @return null|HTTPResponse
      *
      * @throws UnexpectedValueException
      */
@@ -154,7 +157,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
      *
      * @param $gridField GridField
      *
-     * @return string
+     * @return string[]
      */
     public function getHTMLFragments($gridField)
     {
@@ -170,7 +173,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         $obj = singleton($dataClass);
 
         if (!$obj->canCreate()) {
-            return '';
+            return [];
         }
 
         $dbField = $this->getDataObjectField();

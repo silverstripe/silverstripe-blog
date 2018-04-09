@@ -3,24 +3,22 @@
 namespace SilverStripe\Blog\Tests;
 
 use SilverStripe\Blog\Model\BlogPost;
+use SilverStripe\CommentNotifications\Extensions\CommentNotifier;
+use SilverStripe\Comments\Model\Comment;
 use SilverStripe\Dev\SapphireTest;
 
 class BlogPostNotificationsTest extends SapphireTest
 {
-    /**
-     * {@inheritDoc}
-     * @var string
-     */
     protected static $fixture_file = 'blog.yml';
 
     public function testUpdateNotificationRecipients()
     {
-        if (!class_exists('CommentNotifier')) {
+        if (!class_exists(CommentNotifier::class)) {
             $this->markTestSkipped('Comments Notification module is not installed');
         }
 
         $blogPost = $this->objFromFixture(BlogPost::class, 'PostC');
-        $comment = new \SilverStripe\Comments\Model\Comment();
+        $comment = new Comment();
         $comment->Comment = 'This is a comment';
         $comment->write();
         $recipients = $blogPost->notificationRecipients(
@@ -41,11 +39,11 @@ class BlogPostNotificationsTest extends SapphireTest
 
     public function testUpdateNotificationSubject()
     {
-        if (!class_exists('CommentNotifier')) {
+        if (!class_exists(CommentNotifier::class)) {
             $this->markTestSkipped('Comments Notification module is not installed');
         }
         $blogPost = $this->objFromFixture(BlogPost::class, 'PostC');
-        $comment = new \SilverStripe\Comments\Model\Comment();
+        $comment = new Comment();
         $comment->Comment = 'This is a comment';
         $comment->write();
         $recipients = $blogPost->notificationRecipients(
