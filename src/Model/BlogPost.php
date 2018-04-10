@@ -245,14 +245,6 @@ class BlogPost extends Page
 
             $fields->insertAfter($summaryHolder, 'FeaturedImage');
 
-            $urlSegment = $fields->dataFieldByName('URLSegment');
-            $urlSegment->setURLPrefix($this->Parent()->RelativeLink());
-
-            $fields->removeFieldsFromTab('Root.Main', [
-                'MenuTitle',
-                'URLSegment',
-            ]);
-
             $authorField = ListboxField::create(
                 'Authors',
                 _t(__CLASS__ . '.Authors', 'Authors'),
@@ -303,7 +295,6 @@ class BlogPost extends Page
                 'Root.PostOptions',
                 [
                     $publishDate,
-                    $urlSegment,
                     TagField::create(
                         'Categories',
                         _t(__CLASS__ . '.Categories', 'Categories'),
