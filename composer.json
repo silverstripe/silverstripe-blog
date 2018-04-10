@@ -15,11 +15,10 @@
         "silverstripe/asset-admin": "^1.0"
     },
     "require-dev": {
-        "phpunit/PHPUnit": "^5.7",
+        "phpunit/phpunit": "^5.7",
         "squizlabs/php_codesniffer": "^3.0"
     },
     "extra": {
-        "branch-alias": [],
         "expose": [
             "client/dist",
             "client/images"
