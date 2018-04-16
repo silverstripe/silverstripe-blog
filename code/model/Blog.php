@@ -1031,7 +1031,7 @@ class Blog_Controller extends Page_Controller
     {
         $allPosts = $this->blogPosts ?: new ArrayList();
 
-        $posts = new PaginatedList($allPosts);
+        $posts = PaginatedList::create($allPosts);
 
         // Set appropriate page size
         if ($this->PostsPerPage > 0) {
@@ -1049,13 +1049,13 @@ class Blog_Controller extends Page_Controller
 
         return $posts;
     }
-    
+
     /**
      * Returns the absolute link to the next page for use in the page meta tags. This helps search engines
      * find the pagination and index all pages properly.
-     * 
+     *
      * @example "<% if $PaginationAbsoluteNextLink %><link rel="next" href="$PaginationAbsoluteNextLink"><% end_if %>"
-     * 
+     *
      * @return string
      */
     public function PaginationAbsoluteNextLink() {
@@ -1068,7 +1068,7 @@ class Blog_Controller extends Page_Controller
     /**
      * Returns the absolute link to the previous page for use in the page meta tags. This helps search engines
      * find the pagination and index all pages properly.
-     * 
+     *
      * @example "<% if $PaginationAbsolutePrevLink %><link rel="prev" href="$PaginationAbsolutePrevLink"><% end_if %>"
      *
      * @return string
@@ -1079,7 +1079,7 @@ class Blog_Controller extends Page_Controller
             return Director::absoluteURL($posts->PrevLink());
         }
     }
-    
+
     /**
      * Displays an RSS feed of blog posts.
      *
@@ -1164,5 +1164,5 @@ class Blog_Controller extends Page_Controller
             return false;
         }
     }
-	
+
 }
