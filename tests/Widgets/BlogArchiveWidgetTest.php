@@ -53,7 +53,9 @@ class BlogArchiveWidgetTest extends SapphireTest
             array('Title' => 'August 2017'),
         ), $archive);
 
-        Versioned::reading_stage($original);
+        if ($original) {
+            Versioned::reading_stage($original);
+        }
     }
 
     public function testArchiveYearly()
@@ -91,6 +93,8 @@ class BlogArchiveWidgetTest extends SapphireTest
 
         $this->assertCount(4, $archive, 'Four months are shown in the blog archive list after new post added');
 
-        Versioned::reading_stage($original);
+        if ($original) {
+            Versioned::reading_stage($original);
+        }
     }
 }
