@@ -709,6 +709,7 @@ class Blog_Controller extends Page_Controller
 
         if ($urlSegment) {
             $filter = URLSegmentFilter::create();
+            $filter->setAllowMultibyte(true);
 
             return Member::get()
                 ->filter('URLSegment', $filter->filter($urlSegment))
