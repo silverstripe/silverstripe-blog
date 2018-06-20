@@ -864,6 +864,7 @@ class Blog_Controller extends Page_Controller
         $tag = $this->request->param('Tag');
         if ($tag) {
             $filter = URLSegmentFilter::create();
+            $filter->setAllowMultibyte(true);
 
             return $dataRecord->Tags()
                 ->filter('URLSegment', array($tag, $filter->filter($tag)))
@@ -910,6 +911,7 @@ class Blog_Controller extends Page_Controller
         $category = $this->request->param('Category');
         if ($category) {
             $filter = URLSegmentFilter::create();
+            $filter->setAllowMultibyte(true);
 
             return $dataRecord->Categories()
                 ->filter('URLSegment', array($category, $filter->filter($category)))

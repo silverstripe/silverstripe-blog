@@ -57,6 +57,8 @@ class BlogMemberExtension extends DataExtension
     public function generateURLSegment()
     {
         $filter = URLSegmentFilter::create();
+        $filter->setAllowMultibyte(true);
+	    
         $name = $this->owner->FirstName . ' ' . $this->owner->Surname;
         $urlSegment = $filter->filter($name);
 
