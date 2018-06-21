@@ -88,7 +88,7 @@ class BlogTag extends DataObject implements CategorisationObject
             // Check for duplicate tags
             $blog = $this->Blog();
             if($blog && $blog->exists()) {
-                $existing = $blog->Tags()->filter('Title', $this->Title);
+                $existing = $blog->Tags()->filter('URLSegment', $this->URLSegment);
                 if($this->ID) {
                     $existing = $existing->exclude('ID', $this->ID);
                 }
