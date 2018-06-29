@@ -26,16 +26,26 @@ class BlogArchiveWidgetTest extends SapphireTest
 
     public function testArchiveMonthlyFromStage()
     {
-        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly');
-        $archive = $widget->getArchive();
+        $widgetA = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly-a');
+        $archiveA = $widgetA->getArchive();
 
-        $this->assertInstanceOf('SS_List', $archive);
-        $this->assertCount(3, $archive);
+        $this->assertInstanceOf('SS_List', $archiveA);
+        $this->assertCount(3, $archiveA);
         $this->assertDOSContains(array(
             array('Title' => 'August 2017'),
             array('Title' => 'September 2017'),
             array('Title' => 'May 2015'),
-        ), $archive);
+        ), $archiveA);
+
+        $widgetB = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly-b');
+        $archiveB = $widgetB->getArchive();
+
+        $this->assertInstanceOf('SS_List', $archiveB);
+        $this->assertCount(2, $archiveB);
+        $this->assertDOSContains(array(
+            array('Title' => 'March 2016'),
+            array('Title' => 'June 2016'),
+        ), $archiveB);
     }
 
     public function testArchiveMonthlyFromLive()
@@ -45,7 +55,7 @@ class BlogArchiveWidgetTest extends SapphireTest
         $this->objFromFixture('BlogPost', 'post-b')->doPublish();
         Versioned::reading_stage('Live');
 
-        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly');
+        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly-a');
         $archive = $widget->getArchive();
 
         $this->assertCount(1, $archive);
@@ -60,15 +70,24 @@ class BlogArchiveWidgetTest extends SapphireTest
 
     public function testArchiveYearly()
     {
-        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-yearly');
-        $archive = $widget->getArchive();
+        $widgetA = $this->objFromFixture('BlogArchiveWidget', 'archive-yearly-a');
+        $archiveA = $widgetA->getArchive();
 
-        $this->assertInstanceOf('SS_List', $archive);
-        $this->assertCount(2, $archive);
+        $this->assertInstanceOf('SS_List', $archiveA);
+        $this->assertCount(2, $archiveA);
         $this->assertDOSContains(array(
             array('Title' => '2017'),
             array('Title' => '2015'),
-        ), $archive);
+        ), $archiveA);
+
+        $widgetB = $this->objFromFixture('BlogArchiveWidget', 'archive-yearly-b');
+        $archiveB = $widgetB->getArchive();
+
+        $this->assertInstanceOf('SS_List', $archiveB);
+        $this->assertCount(1, $archiveB);
+        $this->assertDOSContains(array(
+            array('Title' => '2016'),
+        ), $archiveB);
     }
 
     public function testArchiveMonthlyWithNewPostsAdded()
@@ -76,7 +95,7 @@ class BlogArchiveWidgetTest extends SapphireTest
         $original = Versioned::current_stage();
         Versioned::reading_stage('Stage');
 
-        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly');
+        $widget = $this->objFromFixture('BlogArchiveWidget', 'archive-monthly-a');
         $archive = $widget->getArchive();
 
         $this->assertCount(3, $archive, 'Three months are shown in the blog archive list from fixtures');
@@ -84,7 +103,7 @@ class BlogArchiveWidgetTest extends SapphireTest
         SS_Datetime::set_mock_now('2018-01-01 12:00:00');
 
         $newPost = new BlogPost;
-        $newPost->ParentID = $this->objFromFixture('Blog', 'my-blog')->ID;
+        $newPost->ParentID = $this->objFromFixture('Blog', 'blog-a')->ID;
         $newPost->Title = 'My new blog post';
         $newPost->PublishDate = '2018-01-01 08:00:00'; // Same day as the mocked now, but slightly earlier
         $newPost->write();
