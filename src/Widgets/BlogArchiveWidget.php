@@ -127,7 +127,7 @@ class BlogArchiveWidget extends Widget
             ->addLeftJoin('SiteTree' . $suffix, '"SiteTree' . $suffix . '"."ID" = "BlogPost' . $suffix . '"."ID"')
             ->addWhere([
                 '"PublishDate" <= ?' => DBDatetime::now()->Format(DBDatetime::ISO_DATETIME),
-                'SiteTree' . $suffix . '.ParentID' => $this->BlogID,
+                '"SiteTree' . $suffix . '"."ParentID"' => $this->BlogID,
             ]);
 
         $posts = $query->execute();
