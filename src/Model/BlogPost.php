@@ -321,14 +321,14 @@ class BlogPost extends Page
             // )->setTitle('Post Options');
             // $options->setName('blog-admin-sidebar');
             // $fields->insertBefore($options, 'Root');
+
+            $fields->fieldByName('Root.PostOptions')
+                ->setTitle(_t(__CLASS__ . '.PostOptions', 'Post Options'));
         });
 
         $fields = parent::getCMSFields();
 
         $fields->fieldByName('Root')->setTemplate('TabSet_holder');
-
-        $fields->fieldByName('Root.PostOptions')
-            ->setTitle(_t(__CLASS__ . '.PostOptions', 'Post Options'));
 
         return $fields;
     }
