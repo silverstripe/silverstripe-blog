@@ -19,9 +19,6 @@
         "squizlabs/php_codesniffer": "^3.0"
     },
     "extra": {
-        "branch-alias": {
-            "dev-master": "3.x-dev"
-        },
         "expose": [
             "client/dist",
             "client/images"
