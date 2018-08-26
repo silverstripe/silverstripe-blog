@@ -12,6 +12,7 @@ use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Security\Member;
 use SilverStripe\View\Parsers\URLSegmentFilter;
+use SilverStripe\Control\HTTPRequest;
 
 class BlogController extends PageController
 {
