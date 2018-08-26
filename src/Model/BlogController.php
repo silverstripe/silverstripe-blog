@@ -62,7 +62,7 @@ class BlogController extends PageController
     /**
      * @return string
      */
-    public function index()
+    public function index(HTTPRequest $request)
     {
         /**
          * @var Blog $dataRecord
