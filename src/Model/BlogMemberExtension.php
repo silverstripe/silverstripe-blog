@@ -7,6 +7,7 @@ use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Security\Member;
 use SilverStripe\View\Parsers\URLSegmentFilter;
@@ -107,7 +108,6 @@ class BlogMemberExtension extends DataExtension
         $fields->removeByName('URLSegment');
 
         // Remove the automatically-generated posts tab.
-
         $fields->removeFieldFromTab('Root', 'BlogPosts');
 
         // Construct a better posts tab.
@@ -126,6 +126,13 @@ class BlogMemberExtension extends DataExtension
         $tab->Fields()->add($gridField);
 
         $fields->addFieldToTab('Root', $tab);
+
+        // Ensure blog fields are added after defaults
+        $fields->addFieldToTab(
+            'Root.Main',
+            TextareaField::create('BlogProfileSummary'),
+            'BlogProfileImage'
+        );
 
         return $fields;
     }
