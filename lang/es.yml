@@ -31,7 +31,7 @@ es:
     PERMISSION_MANAGE_USERS_HELP: 'Permitir  de asignación de Editores, Escritores o Contribuidores a los blogs'
     PLURALNAME: Blogs
     Posted: Publicado
-    PostedIn: 'Publicado el'
+    PostedIn: 'Publicado en'
     PostsPerPage: 'Artículos por página'
     ReadMoreAbout: 'Leer más sobre ''{title}''...'
     SINGULARNAME: Blog
