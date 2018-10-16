@@ -9,12 +9,12 @@ mappings:
   BlogPostFilter: SilverStripe\Blog\Model\BlogPostFilter
   BlogPostNotifications: SilverStripe\Blog\Model\BlogPostNotifications
   Blog: SilverStripe\Blog\Model\Blog
-  Blog_Controller: SilverStripe\Blog\Controllers\BlogController
-  BlogController: SilverStripe\Blog\Controllers\BlogController
+  Blog_Controller: SilverStripe\Blog\Model\BlogController
+  BlogController: SilverStripe\Blog\Model\BlogController
   BlogCategory: SilverStripe\Blog\Model\BlogCategory
   BlogPost: SilverStripe\Blog\Model\BlogPost
-  BlogPost_Controller: SilverStripe\Blog\Controllers\BlogPostController
-  BlogPostController: SilverStripe\Blog\Controllers\BlogPostController
+  BlogPost_Controller: SilverStripe\Blog\Model\BlogPostController
+  BlogPostController: SilverStripe\Blog\Model\BlogPostController
   BlogTag: SilverStripe\Blog\Model\BlogTag
   CategorisationObject: SilverStripe\Blog\Model\CategorisationObject
   BlogAdminSidebar: SilverStripe\Blog\Forms\BlogAdminSidebar
