@@ -72,6 +72,13 @@ class BlogPost extends Page
     /**
      * @var array
      */
+    private static $indexes = [
+        'PublishDate' => true,
+    ];
+
+    /**
+     * @var array
+     */
     private static $has_one = [
         'FeaturedImage' => Image::class
     ];
