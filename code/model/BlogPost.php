@@ -32,6 +32,13 @@ class BlogPost extends Page
         'AuthorNames' => 'Varchar(1024)',
         'Summary' => 'HTMLText',
     );
+    
+    /**
+     * @var array
+     */
+    private static $indexes = array(
+        'PublishDate' => true,
+    ):
 
     /**
      * @var array
