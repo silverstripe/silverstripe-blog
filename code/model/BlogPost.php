@@ -38,7 +38,7 @@ class BlogPost extends Page
      */
     private static $indexes = array(
         'PublishDate' => true,
-    ):
+    );
 
     /**
      * @var array
