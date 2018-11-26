@@ -9,9 +9,9 @@
 				<% if $ArchiveDay %>
 					$ArchiveDate.Nice
 				<% else_if $ArchiveMonth %>
-					$ArchiveDate.format('F, Y')
+					$ArchiveDate.format('MMMM, y')
 				<% else %>
-					$ArchiveDate.format('Y')
+					$ArchiveDate.format('y')
 				<% end_if %>
 			<% else_if $CurrentTag %>
 				<%t SilverStripe\\Blog\\Model\\Blog.Tag 'Tag' %>: $CurrentTag.Title
