@@ -396,9 +396,9 @@ class BlogController extends PageController
             if ($this->owner->getArchiveDay()) {
                 $date = $this->owner->getArchiveDate()->Nice();
             } elseif ($this->owner->getArchiveMonth()) {
-                $date = $this->owner->getArchiveDate()->format('F, Y');
+                $date = $this->owner->getArchiveDate()->format('MMMM, y');
             } else {
-                $date = $this->owner->getArchiveDate()->format('Y');
+                $date = $this->owner->getArchiveDate()->format('y');
             }
 
             $items[] = _t(
