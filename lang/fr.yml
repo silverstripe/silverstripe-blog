@@ -45,11 +45,11 @@ fr:
     Authors: Auteurs
     CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
     Categories: Catégories
-    PLURALNAME: Billets
+    PLURALNAME: 'Billets'
     PageTitleLabel: 'Titre du billet'
     PublishDate: 'Date de publication'
     PublishDate_Description: 'Sera mis à "maintenant" si publié sans valeur.'
-    SINGULARNAME: Billet
+    SINGULARNAME: 'Billet'
     SUMMARY_DESCRIPTION: 'Si aucun sommaire, les 30 premiers mots seront utilisés.'
     Tags: Tags
   SilverStripe\Blog\Model\BlogTag:
