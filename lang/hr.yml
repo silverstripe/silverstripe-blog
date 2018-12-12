@@ -15,10 +15,9 @@ hr:
     FILTERDESCRIPTION_TAG: 'Tagiran s {tag}'
     LumberjackTitle: 'Blog zapisi'
     NoPosts: 'Nema zapisa'
-    NoUnfeaturedPosts: 'Nema izdvojenih zapisa'
     PERMISSIONS_CATEGORY: 'Blog dozvole'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Upravljaj korisnike za pojedinačne blogove'
-    PLURALNAME: 'Bazne stranice'
+    PLURALNAME: Bazne stranice
     Posted: Objavljeno
     PostedIn: 'Objavljeno u'
     PostsPerPage: 'Postova po stranici'
@@ -28,23 +27,18 @@ hr:
     Tagged: Tagirano
     Tags: Tagovi
     WRITER: Pisac
-  SilverStripe\Blog\Model\BlogCategory:
-    Title: Naslov
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     Authors: Autori
     Categories: Kategorije
-    DESCRIPTION: 'Obična sadržajna stranica'
     FeaturedImage: 'Izdvojena slika'
     PLURALNAME: 'Bazna stranica'
     PageTitleLabel: 'Naslov posta'
     PublishDate: 'Datum objave'
     SINGULARNAME: 'Blog zapis'
     Tags: Tagovi
-  SilverStripe\Blog\Model\BlogTag:
-    Title: Naslov
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
-    ArchiveType: 'Tip arhive'
+    ArchiveType: Tip arhive
     Blog: Blog
     NumberToDisplay: 'Broj za prikaz'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
