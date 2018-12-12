@@ -24,14 +24,14 @@ fi:
     FILTERDESCRIPTION_DATE: 'Pvm: {date}'
     FILTERDESCRIPTION_PAGE: 'Sivu {page}'
     FILTERDESCRIPTION_TAG: 'Avainsanat: {tag}'
-    LumberjackTitle: Blogikirjoitukset
+    LumberjackTitle: 'Blogikirjoitukset'
     NoPosts: 'Ei kirjoituksia'
     PERMISSIONS_CATEGORY: 'Blogin oikeudet'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hallinnoi käyttäjiä yksittäisissä blogeissa'
     PERMISSION_MANAGE_USERS_HELP: 'Salli toimittajien, kirjoittajien tai avustajien kiinnittäminen blogeihin'
     PLURALNAME: Pohjasivut
     PLURALS:
-      one: Blogi
+      one: 'Blogi'
       other: '{count} blogia'
     Posted: Kirjoitettu
     PostedIn: 'Kirjoitettu:'
@@ -44,30 +44,30 @@ fi:
     WRITER: Kirjoittaja
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Tämä blogikategoria on jo olemassa'
-    PLURALNAME: Blogikategoriat
+    PLURALNAME: 'Blogikategoriat'
     PLURALS:
       one: 'Blogin kategoria'
       other: '{count} blogin kategoriaa'
-    SINGULARNAME: Blogikategoria
+    SINGULARNAME: 'Blogikategoria'
   SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: Artikkelit
-    TABBLOGPOSTS: Artikkelit
+    BLOGPOSTS: 'Artikkelit'
+    TABBLOGPOSTS: 'Artikkelit'
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Kirjoittaja
-    AdditionalCredits: Lisäkiitokset
+    AdditionalCredits: 'Lisäkiitokset'
     AdditionalCredits_Description: 'Mikäli kaikilla artikkelin kirjoittajilla ei ole pääsyä sisällönhallintajärjestelmään, syötä heidän nimensä (nimi) tähän. Erota useampi pilkulla.'
     Authors: Kirjoittajat
     CUSTOMSUMMARY: 'Lisää tiivistelmä'
     Categories: Kategoriat
-    FeaturedImage: Kuvanosto
-    PLURALNAME: Pohjasivut
+    FeaturedImage: 'Kuvanosto'
+    PLURALNAME: 'Pohjasivut'
     PLURALS:
-      one: Blogipostaus
+      one: 'Blogipostaus'
       other: '{count} Blogipostausta'
-    PageTitleLabel: Otsikko
-    PublishDate: Julkaisupäivä
+    PageTitleLabel: 'Otsikko'
+    PublishDate: 'Julkaisupäivä'
     PublishDate_Description: 'Asetetaan "nyt", mikäli arvo jätetään asettamatta.'
-    SINGULARNAME: Blogikirjoitus
+    SINGULARNAME: 'Blogikirjoitus'
     SUMMARY_DESCRIPTION: 'Mikäli tiivistelmää ei ole kirjoitettu, käytetään 30 ensimmäistä sanaa kirjoituksesta.'
     Tags: Avainsanat
   SilverStripe\Blog\Model\BlogTag:
@@ -80,7 +80,7 @@ fi:
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Arkistotyyppi
     Blog: Blogi
-    NumberToDisplay: Näytetään
+    NumberToDisplay: 'Näytetään'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blogi
     Direction: Suunta
