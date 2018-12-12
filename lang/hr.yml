@@ -17,7 +17,7 @@ hr:
     NoPosts: 'Nema zapisa'
     PERMISSIONS_CATEGORY: 'Blog dozvole'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Upravljaj korisnike za pojedinačne blogove'
-    PLURALNAME: 'Bazne stranice'
+    PLURALNAME: Bazne stranice
     Posted: Objavljeno
     PostedIn: 'Objavljeno u'
     PostsPerPage: 'Postova po stranici'
@@ -38,7 +38,7 @@ hr:
     SINGULARNAME: 'Blog zapis'
     Tags: Tagovi
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
-    ArchiveType: 'Tip arhive'
+    ArchiveType: Tip arhive
     Blog: Blog
     NumberToDisplay: 'Broj za prikaz'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
