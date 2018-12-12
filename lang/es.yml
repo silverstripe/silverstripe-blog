@@ -1,20 +1,27 @@
 es:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Artículos
+    Title: Título
+  SilverStripe\Blog\Admin\GridFieldMergeAction:
+    MovePostsTo: 'Mover artículos a'
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Agregar {name}'
     AddFail: 'No se pudo guardar {class} en la base de datos.'
     PermissionFail: 'No tienes los permisos para crear {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Guardado como Borrador el {date}'
+    Modified: Modificado
     Published: 'Publicado el {date}'
     Timer: 'Se publicará el {date}'
   SilverStripe\Blog\Model:
     Title: Título
   SilverStripe\Blog\Model\Blog:
-    AND: 'y'
+    AND: y
     Archive: Archivo
     By: Por
     CONTRIBUTOR: Contribuidor
     Categories: Categorías
+    Categorisation: Categorización
     Category: Categoría
     Comments: Comentarios
     DESCRIPTION: 'Agrega un blog al sitio web.'
@@ -24,14 +31,19 @@ es:
     FILTERDESCRIPTION_DATE: 'En {date}'
     FILTERDESCRIPTION_PAGE: 'Página {page}'
     FILTERDESCRIPTION_TAG: 'Etiquetado con {tag}'
+    LessThanAMinuteToRead: 'Menos de un minuto para leer'
     LumberjackTitle: 'Artículos del blog'
+    MinutesToRead: 'Minuto(s) para leer'
     NoPosts: 'No hay artículos'
     PERMISSIONS_CATEGORY: 'Permisos del blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administrar usuarios para blogs individuales'
     PERMISSION_MANAGE_USERS_HELP: 'Permitir  de asignación de Editores, Escritores o Contribuidores a los blogs'
     PLURALNAME: Blogs
+    PLURALS:
+      one: 'Un blog'
+      other: '{count} Blogs'
     Posted: Publicado
-    PostedIn: 'Publicado el'
+    PostedIn: 'Publicado en'
     PostsPerPage: 'Artículos por página'
     ReadMoreAbout: 'Leer más sobre ''{title}''...'
     SINGULARNAME: Blog
@@ -42,10 +54,13 @@ es:
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Ya existe una categoría con el mismo nombre.'
     PLURALNAME: 'Categorías del Blog'
+    PLURALS:
+      one: 'Una categoría de blog'
+      other: '{count} Categorías de blog'
     SINGULARNAME: 'Categoría del blog'
   SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'Artículos del Blog'
-    TABBLOGPOSTS: 'Artículos del Blog'
+    BLOGPOSTS: 'Artículos del blog'
+    TABBLOGPOSTS: 'Artículos del blog'
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Créditos adicionales'
@@ -54,8 +69,12 @@ es:
     CUSTOMSUMMARY: 'Agregar un resumen personalizado'
     Categories: Categorías
     FeaturedImage: 'Imagen Destacada'
-    PLURALNAME: 'Artículos del Blog'
+    PLURALNAME: 'Artículos del blog'
+    PLURALS:
+      one: 'Un artículo del blog'
+      other: '{count} Artículos del blog'
     PageTitleLabel: 'Título del artículo'
+    PostOptions: 'Opciones del artículo'
     PublishDate: 'Fecha de publicación'
     PublishDate_Description: 'Se usara la fecha "actual" si se publica sin un valor.'
     SINGULARNAME: 'Artículo del blog'
@@ -64,9 +83,12 @@ es:
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Ya existe una etiqueta con este nombre.'
     PLURALNAME: 'Etiquetas del Blog'
+    PLURALS:
+      one: 'Una etiqueta de blog'
+      other: '{count} Etiquetas de blog'
     SINGULARNAME: 'Etiqueta del Blog'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
-    ArchiveType: 'Tipo de archivo'
+    ArchiveType: Tipo de archivo
     Blog: Blog
     NumberToDisplay: 'No. a mostrar'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
