@@ -130,7 +130,7 @@ class Blog extends Page implements PermissionProvider
      */
     private static $description = 'Adds a blog to your website.';
 
-    private static $icon = 'silverstripe/blog:client/images/site-tree-icon.png';
+    private static $icon_class = 'font-icon-p-posts';
 
     /**
      * {@inheritdoc}
@@ -369,7 +369,7 @@ class Blog extends Page implements PermissionProvider
             ->setDescription(
                 _t(
                     __CLASS__ . '.UsersEditorsFieldDescription',
-                    'An editor has control over specific Blogs, and all posts included within it. 
+                    'An editor has control over specific Blogs, and all posts included within it.
                      Short of being able to assign other editors to a blog, they are able to handle most changes to
                      their assigned blog. <br /><br />
                     Editors have these permissions:<br />
@@ -395,7 +395,7 @@ class Blog extends Page implements PermissionProvider
                     Writers have these permissions:<br />
                     <br />
                     Update or publish any BlogPost they have authored or have been assigned to<br />
-                    Assign/unassign any member as an author of a particular BlogPost they have authored or have been 
+                    Assign/unassign any member as an author of a particular BlogPost they have authored or have been
                     assigned to'
                 )
             );
@@ -410,7 +410,7 @@ class Blog extends Page implements PermissionProvider
             ->setDescription(
                 _t(
                     __CLASS__ . '.UsersContributorsFieldDescription',
-                    'Contributors have the ability to create or edit BlogPosts, but are unable to publish without 
+                    'Contributors have the ability to create or edit BlogPosts, but are unable to publish without
                         authorisation of an editor. They are also unable to assign other contributing authors to any of
                          their BlogPosts.<br />
                         <br />
