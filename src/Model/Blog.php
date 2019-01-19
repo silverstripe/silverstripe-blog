@@ -700,4 +700,9 @@ class Blog extends Page implements PermissionProvider
 
         return $group;
     }
+
+    public function getControllerName()
+    {
+        return BlogController::class;
+    }
 }
