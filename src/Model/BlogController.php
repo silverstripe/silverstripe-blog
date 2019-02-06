@@ -106,12 +106,16 @@ class BlogController extends PageController
     public function getCurrentProfile()
     {
         $urlSegment = $this->request->param('URLSegment');
-
         if ($urlSegment) {
             $filter = URLSegmentFilter::create();
+            // url encode unless it's multibyte (already pre-encoded in the database)
+            // see https://github.com/silverstripe/silverstripe-cms/pull/2384
+            if (!$filter->getAllowMultibyte()) {
+                $urlSegment = rawurlencode($urlSegment);
+            }
 
             return Member::get()
-                ->filter('URLSegment', $filter->filter($urlSegment))
+                ->filter('URLSegment', $urlSegment)
                 ->first();
         }
 
