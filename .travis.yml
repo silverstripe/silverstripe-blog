@@ -2,10 +2,6 @@ sudo: false
 
 language: php
 
-env:
-  global:
-    - COMPOSER_ROOT_VERSION="4.0.x-dev"
-
 matrix:
   include:
     - php: 5.6
@@ -15,6 +11,8 @@ matrix:
     - php: 7.1
       env: DB=MYSQL INSTALLER_VERSION=4.2.x-dev PHPUNIT_COVERAGE_TEST=1
     - php: 7.2
+      env: DB=MYSQL INSTALLER_VERSION=4.3.x-dev PHPUNIT_TEST=1
+    - php: 7.3
       env: DB=MYSQL INSTALLER_VERSION=4.x-dev PHPUNIT_TEST=1
 
 before_script:
