@@ -107,12 +107,16 @@ class BlogController extends PageController
     public function getCurrentProfile()
     {
         $urlSegment = $this->request->param('URLSegment');
-
         if ($urlSegment) {
             $filter = URLSegmentFilter::create();
+            // url encode unless it's multibyte (already pre-encoded in the database)
+            // see https://github.com/silverstripe/silverstripe-cms/pull/2384
+            if (!$filter->getAllowMultibyte()) {
+                $urlSegment = rawurlencode($urlSegment);
+            }
 
             return Member::get()
-                ->filter('URLSegment', $filter->filter($urlSegment))
+                ->filter('URLSegment', $urlSegment)
                 ->first();
         }
 
@@ -264,9 +268,14 @@ class BlogController extends PageController
         $tag = $this->request->param('Tag');
         if ($tag) {
             $filter = URLSegmentFilter::create();
+            // url encode unless it's multibyte (already pre-encoded in the database)
+            // see https://github.com/silverstripe/silverstripe-cms/pull/2384
+            if (!$filter->getAllowMultibyte()) {
+                $tag = rawurlencode($tag);
+            }
 
             return $dataRecord->Tags()
-                ->filter('URLSegment', [$tag, $filter->filter($tag)])
+                ->filter('URLSegment', $tag)
                 ->first();
         }
         return null;
@@ -286,9 +295,8 @@ class BlogController extends PageController
 
             if ($this->isRSS()) {
                 return $this->rssFeed($this->blogPosts, $category->getLink());
-            } else {
-                return $this->render();
             }
+            return $this->render();
         }
 
         $this->httpError(404, 'Not Found');
@@ -310,9 +318,14 @@ class BlogController extends PageController
         $category = $this->request->param('Category');
         if ($category) {
             $filter = URLSegmentFilter::create();
+            // url encode unless it's multibyte (already pre-encoded in the database)
+            // see https://github.com/silverstripe/silverstripe-cms/pull/2384
+            if (!$filter->getAllowMultibyte()) {
+                $category = rawurlencode($category);
+            }
 
             return $dataRecord->Categories()
-                ->filter('URLSegment', [$category, $filter->filter($category)])
+                ->filter('URLSegment', $category)
                 ->first();
         }
         return null;

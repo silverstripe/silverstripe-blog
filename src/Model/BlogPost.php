@@ -16,6 +16,7 @@ use SilverStripe\Forms\ToggleCompositeField;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\FieldType\DBHTMLText;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\SS_List;
 use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\Security\Group;
@@ -25,7 +26,6 @@ use SilverStripe\Security\Security;
 use SilverStripe\TagField\TagField;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\ArrayData;
-use SilverStripe\View\Parsers\ShortcodeParser;
 use SilverStripe\View\Requirements;
 
 /**

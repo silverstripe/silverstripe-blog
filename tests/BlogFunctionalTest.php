@@ -23,14 +23,14 @@ class BlogFunctionalTest extends FunctionalTest
 
     public function testBlogWithMultibyteUrl()
     {
-        $result = $this->get('آبید');
+        $result = $this->get(rawurlencode('آبید'));
 
         $this->assertEquals(200, $result->getStatusCode());
     }
 
     public function testMemberProfileWithMultibyteUrlAndName()
     {
-        $result = $this->get('آبید/profile/عبّاس-آبان');
+        $result = $this->get(rawurlencode('آبید') . '/profile/' . rawurlencode('عبّاس-آبان'));
 
         $this->assertEquals(200, $result->getStatusCode());
         $this->assertContains('My Blog Post', $result->getBody());
@@ -38,7 +38,7 @@ class BlogFunctionalTest extends FunctionalTest
 
     public function testMemberProfileWithMultibyteUrlAndEnglishName()
     {
-        $result = $this->get('آبید/profile/bob-jones');
+        $result = $this->get(rawurlencode('آبید') . '/profile/bob-jones');
 
         $this->assertEquals(200, $result->getStatusCode());
         $this->assertContains('My Blog Post', $result->getBody());
