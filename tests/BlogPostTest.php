@@ -146,4 +146,42 @@ class BlogPostTest extends SapphireTest
         $this->expectException(\InvalidArgumentException::class);
         $blogPost->MinutesToRead('not-a-number');
     }
+
+    /**
+     * @param string $type
+     * @param string $expected
+     * @dataProvider monthlyArchiveLinkProvider
+     * @group wip
+     */
+    public function testGetMonthlyArchiveLink($type, $expected)
+    {
+        /** @var BlogPost $blogPost */
+        $blogPost = $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
+
+        $archiveLink = $blogPost->getMonthlyArchiveLink($type);
+        $this->assertContains('archive/', $archiveLink);
+        $this->assertContains($expected, $archiveLink);
+    }
+
+    /**
+     * @return array[]
+     */
+    public function monthlyArchiveLinkProvider()
+    {
+        return [
+            ['day', '/2013/10/1'],
+            ['month', '/2013/10'],
+            ['year', '/2013'],
+        ];
+    }
+
+    public function testGetYearlyArchiveLink()
+    {
+        /** @var BlogPost $blogPost */
+        $blogPost = $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
+
+        $archiveLink = $blogPost->getYearlyArchiveLink();
+        $this->assertContains('archive/', $archiveLink);
+        $this->assertContains('/2013', $archiveLink);
+    }
 }
