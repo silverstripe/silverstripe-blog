@@ -621,18 +621,15 @@ class BlogPost extends Page
      * Returns a monthly archive link for the current blog post.
      *
      * @param string $type
-     *
      * @return string
      */
     public function getMonthlyArchiveLink($type = 'day')
     {
-        /**
-         * @var DBDatetime $date
-         */
+        /** @var DBDatetime $date */
         $date = $this->dbObject('PublishDate');
 
-        if ($type != 'year') {
-            if ($type == 'day') {
+        if ($type !== 'year') {
+            if ($type === 'day') {
                 return Controller::join_links(
                     $this->Parent()->Link('archive'),
                     $date->format('Y'),
@@ -654,12 +651,7 @@ class BlogPost extends Page
      */
     public function getYearlyArchiveLink()
     {
-        /**
-         * @var DBDatetime $date
-         */
-        $date = $this->dbObject('PublishDate');
-
-        return Controller::join_links($this->Parent()->Link('archive'), $date->format('Y'));
+        return $this->getMonthlyArchiveLink('year');
     }
 
     /**
