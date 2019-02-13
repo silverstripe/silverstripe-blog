@@ -160,7 +160,7 @@ class BlogPostTest extends SapphireTest
 
         $archiveLink = $blogPost->getMonthlyArchiveLink($type);
         $this->assertContains('archive/', $archiveLink);
-        $this->assertContains($expected, $archiveLink);
+        $this->assertStringEndsWith($expected, $archiveLink);
     }
 
     /**
@@ -182,6 +182,6 @@ class BlogPostTest extends SapphireTest
 
         $archiveLink = $blogPost->getYearlyArchiveLink();
         $this->assertContains('archive/', $archiveLink);
-        $this->assertContains('/2013', $archiveLink);
+        $this->assertStringEndsWith('/2013', $archiveLink);
     }
 }
