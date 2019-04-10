@@ -4,3 +4,12 @@ Name: blogconfig
 SilverStripe\Security\Member:
   extensions:
     - SilverStripe\Blog\Model\BlogMemberExtension
+
+---
+Name: featuredpostswidget
+Only:
+  moduleexists: widgets
+---
+SilverStripe\Blog\Model\BlogPost:
+  extensions:
+    - SilverStripe\Blog\Model\BlogPostFeaturedExtension
