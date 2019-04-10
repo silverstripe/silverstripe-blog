@@ -3,6 +3,7 @@
 namespace SilverStripe\Blog\Widgets;
 
 use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Control\Director;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\NumericField;
@@ -81,6 +82,7 @@ class BlogRecentPostsWidget extends Widget
 
         if ($blog) {
             return $blog->getBlogPosts()
+                ->filter('ID:not', Director::get_current_page()->ID)
                 ->sort('"PublishDate" DESC')
                 ->limit($this->NumberOfPosts);
         }
