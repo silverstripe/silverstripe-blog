@@ -28,7 +28,5 @@ class BlogPostFeaturedExtension extends DataExtension
             'Root.PostOptions',
             CheckboxField::create('FeaturedInWidget', _t(__CLASS__ . '.FEATURED', 'Include Post in Feature Widget'))
         );
-
-        return $fields;
     }
 }

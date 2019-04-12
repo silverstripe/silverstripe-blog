@@ -8,7 +8,7 @@ SilverStripe\Security\Member:
 ---
 Name: featuredpostswidget
 Only:
-  moduleexists: widgets
+  moduleexists: silverstripe/widgets
 ---
 SilverStripe\Blog\Model\BlogPost:
   extensions:
