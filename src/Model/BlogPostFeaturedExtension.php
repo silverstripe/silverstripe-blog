@@ -26,7 +26,7 @@ class BlogPostFeaturedExtension extends DataExtension
         // Add the checkbox in.
         $fields->addFieldToTab(
             'Root.PostOptions',
-            new CheckboxField("FeaturedInWidget", _t(__CLASS__ . '.FEATURED', 'Include Post in Feature Widget'))
+            CheckboxField::create('FeaturedInWidget', _t(__CLASS__ . '.FEATURED', 'Include Post in Feature Widget'))
         );
 
         return $fields;
