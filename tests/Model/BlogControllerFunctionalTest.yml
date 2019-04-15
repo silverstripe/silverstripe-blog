@@ -1,0 +1,29 @@
+SilverStripe\Blog\Model\BlogCategory:
+  category_a:
+    Title: آبید
+    URLSegment: آبید
+
+SilverStripe\Blog\Model\BlogTag:
+  tag_a:
+    Title: برتراند
+    URLSegment: برتراند
+
+SilverStripe\Blog\Model\Blog:
+  blog_a:
+    URLSegment: my-blog
+    Title: My Blog
+    Categories:
+      - =>SilverStripe\Blog\Model\BlogCategory.category_a
+    Tags:
+      - =>SilverStripe\Blog\Model\BlogTag.tag_a
+
+SilverStripe\Blog\Model\BlogPost:
+  blogpost_a:
+    Title: My Blog Post
+    URLSegment: آبیدآبید
+    PublishDate: 2017-08-01 00:00:00
+    Parent: =>SilverStripe\Blog\Model\Blog.blog_a
+    Categories:
+      - =>SilverStripe\Blog\Model\BlogCategory.category_a
+    Tags:
+      - =>SilverStripe\Blog\Model\BlogTag.tag_a
