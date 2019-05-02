@@ -1,4 +1,4 @@
 <nav class="secondary">
-	<h3>$Title</h3>
-	$Content
+    <% if $Title %><h3>$Title</h3><% end_if %>
+    $Content
 </nav>
