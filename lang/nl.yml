@@ -1,9 +1,9 @@
 nl:
   SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Posts: Posts
+    Posts: Artikels
     Title: Titel
   SilverStripe\Blog\Admin\GridFieldMergeAction:
-    MovePostsTo: 'Posts verplaatsen naar'
+    MovePostsTo: 'Artikels verplaatsen naar'
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Voeg {name} toe'
     AddFail: 'Kon geen {class} opslaan in de database.'
@@ -66,7 +66,7 @@ nl:
     TABBLOGPOSTS: 'Blog Artikel'
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Auteur
-    AdditionalCredits: 'Dankbetuigingen'
+    AdditionalCredits: Dankbetuigingen
     AdditionalCredits_Description: 'Indien enkele van de auteurs geen toegang hebben tot dit CMS, kunnen ze hier worden toegevoegd. Scheid namen door middel van komma''s.'
     Authors: Auteurs
     CUSTOMSUMMARY: 'Voeg een eigen samenvatting toe'
@@ -78,7 +78,7 @@ nl:
       other: '{count} Blog Artikelen'
     PageTitleLabel: 'Artikel Titel'
     PostOptions: 'Artikel opties'
-    PublishDate: 'Publicatiedatum'
+    PublishDate: Publicatiedatum
     PublishDate_Description: 'Wordt op "nu" gezet indien gepubliceerd zonder waarde.'
     SINGULARNAME: 'Blog Artikel'
     SUMMARY_DESCRIPTION: 'Als geen samenvatting ingevoerd wordt, worden de eerste 30 worden gebruikt.'
