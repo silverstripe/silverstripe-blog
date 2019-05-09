@@ -24,12 +24,12 @@ sv:
     FILTERDESCRIPTION_DATE: 'På {date}'
     FILTERDESCRIPTION_PAGE: 'Sida {page}'
     FILTERDESCRIPTION_TAG: 'Taggat med {tag}'
-    LumberjackTitle: 'Bloginlägg'
+    LumberjackTitle: Bloginlägg
     NoPosts: 'Det finns inga bloginlägg'
     PERMISSIONS_CATEGORY: 'Blogg rättigheter'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hantera användare för enskilda bloggar'
     PERMISSION_MANAGE_USERS_HELP: 'Tillåt tilldelning av redaktörer , författare , eller bidragsgivare till bloggar'
-    PLURALNAME: Bas sidor
+    PLURALNAME: 'Bas sidor'
     Posted: Postat
     PostedIn: 'Postat den'
     PostsPerPage: 'Blogginlägg per sida'
@@ -44,8 +44,8 @@ sv:
     PLURALNAME: 'Blogg Kategorier'
     SINGULARNAME: 'Blogg Kategori'
   SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'Blogginlägg'
-    TABBLOGPOSTS: 'Blogginlägg'
+    BLOGPOSTS: Blogginlägg
+    TABBLOGPOSTS: Blogginlägg
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Författare
     AdditionalCredits: 'Ytterligare erkännanden'
@@ -55,10 +55,10 @@ sv:
     Categories: Kategorier
     FeaturedImage: 'Utvald bild'
     PLURALNAME: 'Bas sidor'
-    PageTitleLabel: 'Blogginläggstitel'
+    PageTitleLabel: Blogginläggstitel
     PublishDate: 'Publicerat datum'
     PublishDate_Description: 'Kommer att sättas till "nu" om publiceras utan ett värde .'
-    SINGULARNAME: 'Bloginlägg'
+    SINGULARNAME: Bloginlägg
     SUMMARY_DESCRIPTION: 'Om ingen sammanfattning anges, kommer de första 30 orden att användas .'
     Tags: Taggar
   SilverStripe\Blog\Model\BlogTag:

@@ -32,13 +32,16 @@ de:
     FILTERDESCRIPTION_PAGE: 'Seite {page}'
     FILTERDESCRIPTION_TAG: 'Verschlagwortet mit {tag}'
     LessThanAMinuteToRead: 'Weniger als eine Minute zum Lesen'
-    LumberjackTitle: 'Blog-Einträge'
+    LumberjackTitle: Blog-Einträge
     MinutesToRead: 'Minute(n) zum Lesen'
     NoPosts: 'Keine Blog-Einträge vorhanden'
     PERMISSIONS_CATEGORY: 'Blog Berechtigungen'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Benutzer für einzelne Blog-Einträge verwalten'
     PERMISSION_MANAGE_USERS_HELP: 'Erlaubt, Editoren, Autoren und Mitwirkende zum Blog hinzuzufügen'
-    PLURALNAME: Basis Seiten
+    PLURALNAME: 'Basis Seiten'
+    PLURALS:
+      one: 'Ein Blog'
+      other: '{count} Blogs'
     Posted: Veröffentlicht
     PostedIn: 'Veröffentlicht in'
     PostsPerPage: 'Einträge pro Seite'
@@ -51,32 +54,47 @@ de:
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Eine Blog Kategorie mit diesem Namen existiert bereits.'
     PLURALNAME: 'Blog Kategorien'
+    PLURALS:
+      one: 'Eine Blog Kategorie'
+      other: '{count} Blog Kategorien'
     SINGULARNAME: 'Blog Kategorie'
   SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'Blogbeiträge'
-    TABBLOGPOSTS: 'Blogbeiträge'
+    BLOGPOSTS: Blogbeiträge
+    TABBLOGPOSTS: Blogbeiträge
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Zusätzliche Credits'
+    AdditionalCredits_Description: 'Wenn Autoren dieses Eintrags keinen Zugang zum CMS haben, können Sie die Namen hier mit Kommas getrennt eintragen.'
     Authors: Autoren
-    CUSTOMSUMMARY: 'Zusammenfassung'
+    CUSTOMSUMMARY: Zusammenfassung
     Categories: Kategorien
-    FeaturedImage: 'Titelbild'
+    FeaturedImage: Titelbild
     PLURALNAME: 'Basis Seiten'
-    PageTitleLabel: 'Titel'
-    PostOptions: 'Einstellungen'
+    PLURALS:
+      one: 'Ein Blogbeitrag'
+      other: '{count} Blogbeiträge'
+    PageTitleLabel: Titel
+    PostOptions: Einstellungen
     PublishDate: 'Datum der Veröffentlichung'
-    SINGULARNAME: 'Blog-Eintrag'
+    PublishDate_Description: 'Jetzt, wenn nichts eingegeben wird.'
+    SINGULARNAME: Blog-Eintrag
     SUMMARY_DESCRIPTION: 'Wenn keine Zusammenfassung angegeben wird, werden die ersten 30 Wörter verwendet.'
     Tags: Schlagworte
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Ein Blog Tag mit diesem Namen existiert bereits.'
     PLURALNAME: 'Blog Schlagworte'
+    PLURALS:
+      one: 'Ein Blog Schlagwort'
+      other: '{count} Blog Schlagworte'
     SINGULARNAME: 'Blog Schlagwort'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Archivtyp
     Blog: Blog
     NumberToDisplay: 'Anzahl anzeigen'
+    PLURALNAME: 'Blog Archiv Widgets'
+    PLURALS:
+      one: 'Ein Blog Archiv Widget'
+      other: '{count} Blog Archiv Widgets'
     SINGULARNAME: 'Blog Archiv Widget'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
@@ -84,18 +102,38 @@ de:
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Kategorien, die von diesem Widget angezeigt werden.'
     Limit: Begrenzen
     Limit_Description: 'Begrenzen Sie die Anzahl der angezeigten Kategorien (0 zeigt alle Kategorien)'
+    PLURALNAME: 'Blog Kategorien Widgets'
+    PLURALS:
+      one: 'Ein Blog Kategorien Widget'
+      other: '{count} Blog Kategorien Widgets'
+    SINGULARNAME: 'Blog Kategorien Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
+    PLURALNAME: 'Aktuelle Blog Einträge Widgets'
+    PLURALS:
+      one: 'Ein Aktuelle Blog Einträge Widget'
+      other: '{count} Aktuelle Blog Einträge Widgets'
+    SINGULARNAME: 'Aktuelle Blog Einträge Widget'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blog
+    PLURALNAME: Blog-Tag-Cloud-Widgets
+    PLURALS:
+      one: 'Ein Blog-Tag-Cloud-Widget'
+      other: '{count} Blog-Tag-Cloud-Widgets'
+    SINGULARNAME: Blog-Tag-Cloud-Widget
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Richtung
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Schlagworte, die von diesem Widget angezeigt werden.'
     Limit: Begrenzen
     Limit_Description: 'Begrenzen Sie die Anzahl der angezeigten Schlagworte (0 zeigt alle Schlagworte)'
+    PLURALNAME: 'Blog Tags Widgets'
+    PLURALS:
+      one: 'Ein Blog Tags Widget'
+      other: '{count} Blog Tags Widgets'
+    SINGULARNAME: 'Blog Tags Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
