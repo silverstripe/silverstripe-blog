@@ -16,7 +16,7 @@ es:
   SilverStripe\Blog\Model:
     Title: Título
   SilverStripe\Blog\Model\Blog:
-    AND: y
+    AND: 'y'
     Archive: Archivo
     By: Por
     CONTRIBUTOR: Contribuidor
@@ -88,7 +88,7 @@ es:
       other: '{count} Etiquetas de blog'
     SINGULARNAME: 'Etiqueta del Blog'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
-    ArchiveType: Tipo de archivo
+    ArchiveType: 'Tipo de archivo'
     Blog: Blog
     NumberToDisplay: 'No. a mostrar'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:

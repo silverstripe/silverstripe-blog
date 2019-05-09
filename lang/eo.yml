@@ -38,7 +38,7 @@ eo:
     PERMISSIONS_CATEGORY: 'Blogaj permesoj'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administri uzantojn por specifaj blogaĵoj'
     PERMISSION_MANAGE_USERS_HELP: 'Permesi agordi redaktantojn, verkantojn, aŭ kontribuantojn al blogoj'
-    PLURALNAME: Bazaj paĝoj
+    PLURALNAME: 'Bazaj paĝoj'
     PLURALS:
       one: 'Unu blogo'
       other: '{count} blogoj'
@@ -48,7 +48,7 @@ eo:
     ReadMoreAbout: 'Legi plu pri ''{title}''...'
     SINGULARNAME: Blogo
     Tag: Etikedo
-    Tagged: Havas etikedon
+    Tagged: 'Havas etikedon'
     Tags: Etikedoj
     UsersContributorsFieldDescription: "Kontribuantoj povas krei aŭ redakti BlogAfiŝojn, sed ne povas publikigi sen la rajtigo\nde redaktanto. Ili ankaŭ ne povas atribui aliajn kontribuantajn aŭtorojn al iu \nel siaj BlogAfiŝojn.\n\nKontribuantoj havas la jenajn permesojn:\n\nĜisdatigi ajnan BlogAfiŝon kiun ili aŭtoris aŭ al kiu ili estas atribuitaj"
     UsersEditorsFieldDescription: "Redaktanto mastrumas specifajn blogojn, kaj ĉiujn afiŝojn en ĝi.\nAscepte de atribui aliajn redaktantojn al blogo, ili povas traki plejmultajn ŝanĝojn al\nsia atribuita blogo.\nRedaktantoj havas ĉi tiujn permesojn:\n\nĜisdatigi aŭ publikigi iun BlogAfiŝon en sia BlogĜisdatigo\nĜisdatigi aŭ publikigi sian blogon\nAtribui/malatribui verkantojn al sia blogo\nAtribui/malatribui kontribuantojn al sia blogo\nAtribui/malatribui iun membron kiel aŭtoron de specifa BlogAfiŝo"
@@ -80,7 +80,7 @@ eo:
     PostOptions: 'Afiŝaj agordoj'
     PublishDate: 'Dato de publikigo'
     PublishDate_Description: 'Agordiĝos al "nun", se publikigita sen valoro'
-    SINGULARNAME: 'Blogaĵo'
+    SINGULARNAME: Blogaĵo
     SUMMARY_DESCRIPTION: 'Se resumo ne estas agordita, la unuaj 30 vortoj uziĝos.'
     Tags: Etikedoj
   SilverStripe\Blog\Model\BlogTag:

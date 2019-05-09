@@ -1,10 +1,16 @@
 fi:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Artikkelit
+    Title: Otsikko
+  SilverStripe\Blog\Admin\GridFieldMergeAction:
+    MovePostsTo: 'Siirrä artikkeli kohteeseen'
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Lisää {name}'
     AddFail: '{class} ei voida tallentaa tietokantaan.'
     PermissionFail: 'Sinulla ei ole oikeuksia luoda {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Versio tallennettu {date}'
+    Modified: Muokattu
     Published: 'Julkaistu {date}'
     Timer: 'Julkaistaan {date}'
   SilverStripe\Blog\Model:
@@ -15,6 +21,7 @@ fi:
     By: kirjoittanut
     CONTRIBUTOR: Avustaja
     Categories: Kategoriat
+    Categorisation: Kategoriointi
     Category: Kategoria
     Comments: Kommentit
     DESCRIPTION: 'Lisää blogin nettisivuillesi.'
@@ -24,14 +31,16 @@ fi:
     FILTERDESCRIPTION_DATE: 'Pvm: {date}'
     FILTERDESCRIPTION_PAGE: 'Sivu {page}'
     FILTERDESCRIPTION_TAG: 'Avainsanat: {tag}'
-    LumberjackTitle: 'Blogikirjoitukset'
+    LessThanAMinuteToRead: 'Lukemiseen kuluu alle minuutti'
+    LumberjackTitle: Blogikirjoitukset
+    MinutesToRead: 'Minuutti(a) lukemiseen'
     NoPosts: 'Ei kirjoituksia'
     PERMISSIONS_CATEGORY: 'Blogin oikeudet'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hallinnoi käyttäjiä yksittäisissä blogeissa'
     PERMISSION_MANAGE_USERS_HELP: 'Salli toimittajien, kirjoittajien tai avustajien kiinnittäminen blogeihin'
     PLURALNAME: Pohjasivut
     PLURALS:
-      one: 'Blogi'
+      one: Blogi
       other: '{count} blogia'
     Posted: Kirjoitettu
     PostedIn: 'Kirjoitettu:'
@@ -41,33 +50,35 @@ fi:
     Tag: Avainsana
     Tagged: Merkitty
     Tags: Avainsanat
+    UsersContributorsFieldDescription: "Kirjoittajilla on oikeus luoda tai muokata artikkeli, mutta ei julkausuoikeuksia \n                        ilman päätoimittajan hyväksyntää. He eivät voi myöskään antaa oikeuksia muille kirjoittajille\n                         omaan artikkeliinsa.<br />\n                        <br />\n                        Kirjoittajilla on seuraavat oikeudet:<br />\n                        <br />\n                        Artikkelin päivitys ja luonti (niihin, jotka he ovat itse kirjoittaneet tai saaneet oikeuden)."
     WRITER: Kirjoittaja
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Tämä blogikategoria on jo olemassa'
-    PLURALNAME: 'Blogikategoriat'
+    PLURALNAME: Blogikategoriat
     PLURALS:
       one: 'Blogin kategoria'
       other: '{count} blogin kategoriaa'
-    SINGULARNAME: 'Blogikategoria'
+    SINGULARNAME: Blogikategoria
   SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'Artikkelit'
-    TABBLOGPOSTS: 'Artikkelit'
+    BLOGPOSTS: Artikkelit
+    TABBLOGPOSTS: Artikkelit
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Kirjoittaja
-    AdditionalCredits: 'Lisäkiitokset'
+    AdditionalCredits: Lisäkiitokset
     AdditionalCredits_Description: 'Mikäli kaikilla artikkelin kirjoittajilla ei ole pääsyä sisällönhallintajärjestelmään, syötä heidän nimensä (nimi) tähän. Erota useampi pilkulla.'
     Authors: Kirjoittajat
     CUSTOMSUMMARY: 'Lisää tiivistelmä'
     Categories: Kategoriat
-    FeaturedImage: 'Kuvanosto'
-    PLURALNAME: 'Pohjasivut'
+    FeaturedImage: Kuvanosto
+    PLURALNAME: Pohjasivut
     PLURALS:
-      one: 'Blogipostaus'
+      one: Blogipostaus
       other: '{count} Blogipostausta'
-    PageTitleLabel: 'Otsikko'
-    PublishDate: 'Julkaisupäivä'
+    PageTitleLabel: Otsikko
+    PostOptions: 'Artikkelin asetukset'
+    PublishDate: Julkaisupäivä
     PublishDate_Description: 'Asetetaan "nyt", mikäli arvo jätetään asettamatta.'
-    SINGULARNAME: 'Blogikirjoitus'
+    SINGULARNAME: Blogikirjoitus
     SUMMARY_DESCRIPTION: 'Mikäli tiivistelmää ei ole kirjoitettu, käytetään 30 ensimmäistä sanaa kirjoituksesta.'
     Tags: Avainsanat
   SilverStripe\Blog\Model\BlogTag:
@@ -80,25 +91,50 @@ fi:
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Arkistotyyppi
     Blog: Blogi
-    NumberToDisplay: 'Näytetään'
+    NumberToDisplay: Näytetään
+    PLURALNAME: Blogiarkisto-vimpaimet
+    PLURALS:
+      one: Blogiarkisto-vimpain
+      other: '{count} Blogiarkisto-vimpaimet'
+    SINGULARNAME: Blogiarkisto-vimpain
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blogi
     Direction: Suunta
     Direction_Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestyksen suunta.'
     Limit: Rajoita
     Limit_Description: 'Rajoita näytettävien kategorioiden määrää tässä vimpaimessa (aseta arvoksi 0, jos haluat näyttää kaikki kategoriat).'
+    PLURALNAME: Blogikategoria-vimpaimet
+    PLURALS:
+      one: 'Blogin kategoria-vimpain'
+      other: '{count} blogikategoria-vimpainta'
+    SINGULARNAME: Blogikategoriat-vimpain
     Sort: Järjestä
     Sort_Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestys.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blogi
     NumberOfPosts: 'Kirjoituksien määrä'
+    PLURALNAME: 'Äskettäiset julkaisut vimpain'
+    PLURALS:
+      one: 'Blogin äskettäiset julkaisut -vimpain'
+      other: '{count} blogin äskettäiset julkaisut -vimpainta'
+    SINGULARNAME: 'Äskettäin julkaistut artikkelit -vimpain'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blogi
+    PLURALNAME: Avainsanapilvi-vimpaimet
+    PLURALS:
+      one: Avainsanapilvi-vimpain
+      other: '{count} avainsanapilvi-vimpainta'
+    SINGULARNAME: 'Blogin avainanapilvivimpain'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blogi
     Direction: Suunta
     Direction_Description: 'Vaihda vimpaimen näytettävien avainsanojen järjestyksen suunta'
     Limit: Rajoita
     Limit_Description: 'Rajoita vimpaimella näytettävien avainsanojen määrää (aseta arvoksi 0, jos haluat näyttää kaikki avainsanat).'
+    PLURALNAME: 'Blogin avainsanavimpain'
+    PLURALS:
+      one: 'Blogin avainsanavimpain'
+      other: '{count} blogin avainsanavimpainta'
+    SINGULARNAME: 'Blogin avainsanavimpain'
     Sort: Järjestä
     Sort_Description: 'Vaihda vimpaimella näytettävien avainsanojen järjestystä.'
