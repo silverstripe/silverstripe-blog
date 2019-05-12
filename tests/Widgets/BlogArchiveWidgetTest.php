@@ -64,7 +64,7 @@ class BlogArchiveWidgetTest extends SapphireTest
         $original = Versioned::get_stage();
 
         $this->objFromFixture(BlogPost::class, 'post-b')->publishRecursive();
-        $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly')->publishRecursive();
+        $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly-a')->publishRecursive();
         Versioned::set_stage(Versioned::LIVE);
 
         $widget = $this->objFromFixture(BlogArchiveWidget::class, 'archive-monthly-a');
@@ -95,7 +95,7 @@ class BlogArchiveWidgetTest extends SapphireTest
         $widgetB = $this->objFromFixture(BlogArchiveWidget::class, 'archive-yearly-b');
         $archiveB = $widgetB->getArchive();
 
-        $this->assertInstanceOf('SS_List', $archiveB);
+        $this->assertInstanceOf(SS_List::class, $archiveB);
         $this->assertCount(1, $archiveB);
         $this->assertListContains([
             ['Title' => '2016'],
