@@ -150,6 +150,6 @@ class BlogArchiveWidget extends Widget
 
         $this->extend('updateGetArchive', $result);
 
-        return $this->NumberToDisplay ? $result->limit($this->NumberToDisplay) : $result;
+        return $result->limit($this->NumberToDisplay);
     }
 }
