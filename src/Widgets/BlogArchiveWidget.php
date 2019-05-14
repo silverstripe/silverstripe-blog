@@ -16,6 +16,7 @@ use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\ArrayData;
 use SilverStripe\Widgets\Model\Widget;
+use SilverStripe\Core\Convert;
 
 if (!class_exists(Widget::class)) {
     return;
@@ -124,7 +125,11 @@ class BlogArchiveWidget extends Widget
         $query = SQLSelect::create($fields, '"BlogPost' . $suffix . '"')
             ->addGroupBy($publishDate)
             ->addOrderBy('"PublishDate" DESC')
-            ->addWhere(['"PublishDate" <= ?' => DBDatetime::now()->Format(DBDatetime::ISO_DATETIME)]);
+            ->addLeftJoin('SiteTree' . $suffix, '"SiteTree' . $suffix . '"."ID" = "BlogPost' . $suffix . '"."ID"')
+            ->addWhere([
+                '"PublishDate" <= ?' => DBDatetime::now()->Format(DBDatetime::ISO_DATETIME),
+                '"SiteTree' . $suffix . '"."ParentID"' => $this->BlogID,
+            ]);
 
         $posts = $query->execute();
         $result = ArrayList::create();
@@ -148,8 +153,12 @@ class BlogArchiveWidget extends Widget
             ]));
         }
 
+        if ($this->NumberToDisplay) {
+            $result = $result->limit($this->NumberToDisplay);
+        }
+
         $this->extend('updateGetArchive', $result);
 
-        return $result->limit($this->NumberToDisplay);
+        return $result;
     }
 }
