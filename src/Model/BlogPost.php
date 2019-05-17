@@ -258,6 +258,10 @@ class BlogPost extends Page
             $summaryHolder->setHeadingLevel(4);
             $summaryHolder->addExtraClass('custom-summary');
 
+            if ($this->Summary) {
+                $summaryHolder->setStartClosed(false);
+            }
+
             $fields->insertAfter('FeaturedImage', $summaryHolder);
 
             $authorField = ListboxField::create(
