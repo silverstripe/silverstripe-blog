@@ -241,7 +241,7 @@ class BlogPost extends Page
              */
             $fields->insertAfter('Content', $uploadField);
 
-            $summary = HtmlEditorField::create('Summary', false);
+            $summary = HtmlEditorField::create('Summary', 'Summary');
             $summary->setRows(5);
             $summary->setDescription(_t(
                 __CLASS__ . '.SUMMARY_DESCRIPTION',
