@@ -152,7 +152,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
     /**
      * Set the button name
      *
-     * @param $name
+     * @param $name string
      * @return $this
      */
     public function setButtonName($name)
@@ -211,7 +211,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
         if (!$this->buttonName) {
             // provide a default button name, can be changed by calling {@link setButtonName()} on this component
             $objectName = $obj->i18n_singular_name();
-            $this->buttonName = _t(__CLASS__ . '.ButtonName', 'Add {name}', array('name' => $objectName));
+            $this->buttonName = _t(__CLASS__ . '.ButtonName', '{name}', ['name' => $objectName]);
         }
 
         $addAction = GridField_FormAction::create(
@@ -219,7 +219,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             'add',
             _t(
                 __CLASS__ . '.Add',
-                '{name}',
+                'Add {name}',
                 'Add button text',
                 ['name' => $this->buttonName]
             ),
