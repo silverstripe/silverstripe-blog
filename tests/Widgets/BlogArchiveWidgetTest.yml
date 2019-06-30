@@ -1,27 +1,45 @@
 SilverStripe\Blog\Model\Blog:
-  my-blog:
-    Title: My Blog
+  blog-a:
+    Title: Blog A
+  blog-b:
+    Title: Blog B
 
 SilverStripe\Blog\Model\BlogPost:
   post-a:
     Title: September Digest
     PublishDate: 2017-09-01 00:00:00
-    ParentID: =>SilverStripe\Blog\Model\Blog.my-blog
+    ParentID: =>SilverStripe\Blog\Model\Blog.blog-a
   post-b:
     Title: August is Awesome
     PublishDate: 2017-08-01 00:00:00
-    ParentID: =>SilverStripe\Blog\Model\Blog.my-blog
+    ParentID: =>SilverStripe\Blog\Model\Blog.blog-a
   post-c:
     Title: 2015 is so two years ago
     PublishDate: 2015-05-02 00:01:02
-    ParentID: =>SilverStripe\Blog\Model\Blog.my-blog
+    ParentID: =>SilverStripe\Blog\Model\Blog.blog-a
+  post-d:
+    Title: Blog post on Blog B
+    PublishDate: 2016-03-13 21:05:36
+    ParentID: =>SilverStripe\Blog\Model\Blog.blog-b
+  post-e:
+    Title: Blog post 2 on Blog B
+    PublishDate: 2016-06-15 10:00:00
+    ParentID: =>SilverStripe\Blog\Model\Blog.blog-b
 
 SilverStripe\Blog\Widgets\BlogArchiveWidget:
-  archive-monthly:
+  archive-monthly-a:
     NumberToDisplay: 5
     ArchiveType: Monthly
-    BlogID: =>SilverStripe\Blog\Model\Blog.my-blog
-  archive-yearly:
+    BlogID: =>SilverStripe\Blog\Model\Blog.blog-a
+  archive-monthly-b:
+    NumberToDisplay: 5
+    ArchiveType: Monthly
+    BlogID: =>SilverStripe\Blog\Model\Blog.blog-b
+  archive-yearly-a:
     NumberToDisplay: 5
     ArchiveType: Yearly
-    BlogID: =>SilverStripe\Blog\Model\Blog.my-blog
+    BlogID: =>SilverStripe\Blog\Model\Blog.blog-a
+  archive-yearly-b:
+    NumberToDisplay: 5
+    ArchiveType: Yearly
+    BlogID: =>SilverStripe\Blog\Model\Blog.blog-b
