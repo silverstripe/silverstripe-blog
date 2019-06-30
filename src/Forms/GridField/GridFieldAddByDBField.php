@@ -38,6 +38,13 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
     protected $dataObjectField = 'Title';
 
     /**
+     * Name for the buttons displayed in the CMS
+     *
+     * @var string
+     */
+    protected $buttonName;
+
+    /**
      * Creates a text field and add button which allows the user to directly create a new
      * DataObject by just entering the title.
      *
@@ -143,6 +150,19 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
     }
 
     /**
+     * Set the button name
+     *
+     * @param $name
+     * @return $this
+     */
+    public function setButtonName($name)
+    {
+        $this->buttonName = $name;
+
+        return $this;
+    }
+
+    /**
      * Set the database field.
      *
      * @param $field string
@@ -188,14 +208,20 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             ->setAttribute('placeholder', $obj->fieldLabel($dbField))
             ->addExtraClass('no-change-track');
 
+        if (!$this->buttonName) {
+            // provide a default button name, can be changed by calling {@link setButtonName()} on this component
+            $objectName = $obj->i18n_singular_name();
+            $this->buttonName = _t(__CLASS__ . '.ButtonName', 'Add {name}', array('name' => $objectName));
+        }
+
         $addAction = GridField_FormAction::create(
             $gridField,
             'add',
             _t(
                 __CLASS__ . '.Add',
-                'Add {name}',
+                '{name}',
                 'Add button text',
-                ['name' => $obj->i18n_singular_name()]
+                ['name' => $this->buttonName]
             ),
             'add',
             'add'
