@@ -124,7 +124,11 @@ class BlogArchiveWidget extends Widget
         $query = SQLSelect::create($fields, '"BlogPost' . $suffix . '"')
             ->addGroupBy($publishDate)
             ->addOrderBy('"PublishDate" DESC')
-            ->addWhere(['"PublishDate" <= ?' => DBDatetime::now()->Format(DBDatetime::ISO_DATETIME)]);
+            ->addLeftJoin('SiteTree' . $suffix, '"SiteTree' . $suffix . '"."ID" = "BlogPost' . $suffix . '"."ID"')
+            ->addWhere([
+                '"PublishDate" <= ?' => DBDatetime::now()->Format(DBDatetime::ISO_DATETIME),
+                '"SiteTree' . $suffix . '"."ParentID"' => $this->BlogID,
+            ]);
 
         $posts = $query->execute();
         $result = ArrayList::create();
