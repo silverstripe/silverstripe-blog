@@ -171,6 +171,14 @@ class BlogPost extends Page
     private static $minutes_to_read_wpm = 200;
 
     /**
+     * Sets the upload directory for featured images to help keep your files organised
+     *
+     * @config
+     * @var string
+     */
+    private static $featured_images_directory = null;
+
+    /**
      * Determine the role of the given member.
      *
      * Call be called via template to determine the current user.
@@ -235,6 +243,11 @@ class BlogPost extends Page
         $this->beforeUpdateCMSFields(function ($fields) {
             $uploadField = UploadField::create('FeaturedImage', _t(__CLASS__ . '.FeaturedImage', 'Featured Image'));
             $uploadField->getValidator()->setAllowedExtensions(['jpg', 'jpeg', 'png', 'gif']);
+
+            $uploadDirectory = $this->config()->get('featured_images_directory');
+            if ($uploadDirectory != '') {
+                $uploadField->setFolderName($uploadDirectory);
+            }
 
             /**
              * @var FieldList $fields
