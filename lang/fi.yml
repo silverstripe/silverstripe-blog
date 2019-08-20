@@ -44,13 +44,13 @@ fi:
       other: '{count} blogia'
     Posted: Kirjoitettu
     PostedIn: 'Kirjoitettu:'
+    PostsByUser: 'Postaukset kirjoittajalta {firstname} {surname} otsikolla {title}'
     PostsPerPage: 'Kirjoitusta per sivu'
     ReadMoreAbout: 'Lue lisää kirjoituksesta ''{title}''...'
     SINGULARNAME: Blogi
     Tag: Avainsana
     Tagged: Merkitty
     Tags: Avainsanat
-    UsersContributorsFieldDescription: "Kirjoittajilla on oikeus luoda tai muokata artikkeli, mutta ei julkausuoikeuksia \n                        ilman päätoimittajan hyväksyntää. He eivät voi myöskään antaa oikeuksia muille kirjoittajille\n                         omaan artikkeliinsa.<br />\n                        <br />\n                        Kirjoittajilla on seuraavat oikeudet:<br />\n                        <br />\n                        Artikkelin päivitys ja luonti (niihin, jotka he ovat itse kirjoittaneet tai saaneet oikeuden)."
     WRITER: Kirjoittaja
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Tämä blogikategoria on jo olemassa'
@@ -81,6 +81,8 @@ fi:
     SINGULARNAME: Blogikirjoitus
     SUMMARY_DESCRIPTION: 'Mikäli tiivistelmää ei ole kirjoitettu, käytetään 30 ensimmäistä sanaa kirjoituksesta.'
     Tags: Avainsanat
+  SilverStripe\Blog\Model\BlogPostFeaturedExtension:
+    FEATURED: 'Sisällytä postaus pääjutuksi'
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Tämä blogin avainsana on jo olemassa'
     PLURALNAME: 'Blogin avainsanat'
@@ -110,6 +112,14 @@ fi:
     SINGULARNAME: Blogikategoriat-vimpain
     Sort: Järjestä
     Sort_Description: 'Vaihda vimpaimen näytettävien kategorioiden järjestys.'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blogi
+    NumberOfPosts: 'Postausten määrä'
+    PLURALNAME: 'Blogin pääjutut-vimpaimet'
+    PLURALS:
+      one: 'Blogin pääjutut-vimpain'
+      other: '{count} blogin pääjutut vimpainta'
+    SINGULARNAME: 'Blogin pääjutut-vimpain'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blogi
     NumberOfPosts: 'Kirjoituksien määrä'

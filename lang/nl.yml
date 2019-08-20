@@ -50,9 +50,6 @@ nl:
     Tag: Tag
     Tagged: Getagd
     Tags: Tags
-    UsersContributorsFieldDescription: "Co-auteurs hebben de mogelijkheid om Blog Artikelen te maken of aan te passen, maar kunnen niet publiceren zonder toelating van een redacteur. Ze kunnen ook geen andere co-auteurs toewijzen aan hun eigen Blog Artikelen.<br />\n<br />\nCo-auteurs hebben de volgende mogelijkheden:<br />\n<br />\nBlog Artikelen aanpassen die ze zelf gemaakt hebben of waar ze aan zijn toegewezen"
-    UsersEditorsFieldDescription: "Een redacteur heeft de controle over bepaalde Blogs en alle artikelen er in. Buiten de mogelijkheid om andere redacteurs aan een blog toe te wijzen, kunnen ze de meeste aanpassingen maken aan hun toegewezen blog.<br /><br />\nRedacteurs hebben de volgende mogelijkheden: <br />\n<br />\nBlog Artikelen in hun Blog aanpassen of publiceren<br />\nHun Blog aanpassen of publiceren<br />\nAuteurs en co-auteurs toewijzen aan hun Blog<br />\nEen lid aanduiden als auteur van een bepaald Blog Artikel"
-    UsersWritersFieldDescription: "Een auteur heeft de volledige controle over het maken, aanpassen en publiceren van Blog Artikels die ze zelf hebben geschreven of waar ze aan zijn toegewezen. Auteurs kunnen geen Blog Artikelen aanpassen waar ze niet aan zijn toegewezen.\n<br /><br />\nAuteurs hhebben de volgende mogelijkheden: <br />\n<br />\nBlog Artikelen aanpassen of publiceren die ze zelf gemaakt hebben of waar ze aan zijn toegewezen<br />\nEen lid aanduiden als auteur van een BlogArtikel dat ze zelf hebben gemaakt of waar ze aan zijn toegewezen"
     WRITER: Auteur
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Een blog categorie met dezelfde naam bestaat al'

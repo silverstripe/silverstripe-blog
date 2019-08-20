@@ -7,6 +7,7 @@ en:
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Add {name}'
     AddFail: 'Unable to save {class} to the database.'
+    ButtonName: '{name}'
     PermissionFail: 'You don''t have permission to create a {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Saved as Draft on {date}'
