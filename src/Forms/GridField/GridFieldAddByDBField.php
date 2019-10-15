@@ -99,6 +99,7 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
                 $obj->setCastedField($dbField, $data['gridfieldaddbydbfield'][$obj->ClassName][$dbField]);
 
                 if ($obj->canCreate()) {
+                    $obj->write();
                     $id = $gridField->getList()->add($obj);
                     if (!$id) {
                         $gridField->setCustomValidationMessage(
