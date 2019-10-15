@@ -124,7 +124,8 @@ trait BlogObject
             return $extended;
         }
 
-        return $this->Blog()->canView($member);
+        $blog = $this->Blog();
+        return $blog && $blog->canView($member);
     }
 
     /**
@@ -158,7 +159,8 @@ trait BlogObject
             return $extended;
         }
 
-        return $this->Blog()->canDelete($member);
+        $blog = $this->Blog();
+        return $blog && $blog->canDelete($member);
     }
 
     /**
@@ -176,7 +178,8 @@ trait BlogObject
             return $extended;
         }
 
-        return $this->Blog()->canEdit($member);
+        $blog = $this->Blog();
+        return $blog && $blog->canEdit($member);
     }
 
     protected function onBeforeWrite()
