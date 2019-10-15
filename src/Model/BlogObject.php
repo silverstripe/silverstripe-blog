@@ -68,6 +68,24 @@ trait BlogObject
     }
 
     /**
+     * Number of times this object has blog posts in the current blog
+     *
+     * @return int
+     */
+    public function getBlogCount()
+    {
+        $blog = $this->Blog();
+        if (!$blog) {
+            return 0;
+        }
+
+        return $this
+            ->BlogPosts()
+            ->filter(['ParentID' => $blog->ID])
+            ->Count();
+    }
+
+    /**
      * {@inheritdoc}
      * @return ValidationResult
      */

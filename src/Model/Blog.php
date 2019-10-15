@@ -135,17 +135,15 @@ class Blog extends Page implements PermissionProvider
      */
     public function Tags($hideEmpty = true)
     {
-        $tags = BlogTag::get();
-        if ($this->ID) {
-            $tags->setDataQueryParam('BlogID', $this->ID);
+        $tags = BlogTag::get()->setDataQueryParam('BlogID', $this->ID);
 
-            // Conditionally hide empty tags
-            if ($hideEmpty) {
-                $tags = $tags->filter([
-                    'BlogPosts.ParentID' => $this->ID,
-                ]);
-            }
+        // Conditionally hide empty tags
+        if ($this->ID && $hideEmpty) {
+            $tags = $tags->filter([
+                'BlogPosts.ParentID' => $this->ID,
+            ]);
         }
+
         $this->extend('updateBlogTags', $tags);
         return $tags;
     }
@@ -158,17 +156,15 @@ class Blog extends Page implements PermissionProvider
      */
     public function Categories($hideEmpty = true)
     {
-        $tags = BlogCategory::get();
-        if ($this->ID) {
-            $tags->setDataQueryParam('BlogID', $this->ID);
+        $tags = BlogCategory::get()->setDataQueryParam('BlogID', $this->ID);
 
-            // Conditionally hide empty categories
-            if ($hideEmpty) {
-                $tags = $tags->filter([
-                    'BlogPosts.ParentID' => $this->ID,
-                ]);
-            }
+        // Conditionally hide empty categories
+        if ($this->ID && $hideEmpty) {
+            $tags = $tags->filter([
+                'BlogPosts.ParentID' => $this->ID,
+            ]);
         }
+
         $this->extend('updateBlogCategories', $tags);
         return $tags;
     }
@@ -184,7 +180,7 @@ class Blog extends Page implements PermissionProvider
             if (!$this->canEdit()) {
                 return;
             }
-
+            
             $categories = GridField::create(
                 'Categories',
                 _t(__CLASS__ . '.Categories', 'Categories'),
@@ -194,8 +190,7 @@ class Blog extends Page implements PermissionProvider
                     $this->Categories(false)->sort('Title'),
                     BlogCategory::class,
                     'Categories',
-                    'BlogPosts',
-                    $this
+                    'BlogPosts'
                 )
             );
 
@@ -208,8 +203,7 @@ class Blog extends Page implements PermissionProvider
                     $this->Tags(false)->sort('Title'),
                     BlogTag::class,
                     'Tags',
-                    'BlogPosts',
-                    $this
+                    'BlogPosts'
                 )
             );
 

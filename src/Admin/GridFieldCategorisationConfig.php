@@ -4,7 +4,6 @@ namespace SilverStripe\Blog\Admin;
 
 use SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField;
 use SilverStripe\Blog\Model\CategorisationObject;
-use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridFieldDataColumns;
@@ -18,9 +17,8 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
      * @param string        $parentType
      * @param string        $parentMethod
      * @param string        $childMethod
-     * @param SiteTree      $parent
      */
-    public function __construct($itemsPerPage, $mergeRecords, $parentType, $parentMethod, $childMethod, $parent)
+    public function __construct($itemsPerPage, $mergeRecords, $parentType, $parentMethod, $childMethod)
     {
         parent::__construct($itemsPerPage);
 
@@ -41,11 +39,8 @@ class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
 
         $columns->setFieldFormatting(
             [
-                'BlogPostsCount'    => function ($value, CategorisationObject $item) use ($parent) {
-                    return $item
-                        ->BlogPosts()
-                        ->filter(['ParentID' => $parent->ID])
-                        ->Count();
+                'BlogPostsCount'    => function ($value, CategorisationObject $item) {
+                    return $item->getBlogCount();
                 },
                 'BlogPostsAllCount' => function ($value, CategorisationObject $item) {
                     return $item->BlogPosts()->Count();
