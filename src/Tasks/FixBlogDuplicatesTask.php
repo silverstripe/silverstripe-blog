@@ -108,7 +108,8 @@ class FixBlogDuplicatesTask extends BuildTask
             $title = $duplicate['Title'];
             $id = $duplicate['UseID'];
 
-            DB::prepared_query(<<<SQL
+            DB::prepared_query(
+                <<<SQL
 UPDATE "{$mappingTable}"
 INNER JOIN "{$itemTable}" ON "{$mappingTable}"."{$relationField}" = "{$itemTable}"."ID"
 SET "{$mappingTable}"."{$relationField}" = ? 
