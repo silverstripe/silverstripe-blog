@@ -2,10 +2,10 @@
 
 namespace SilverStripe\Blog\Model;
 
+use Exception;
 use Page;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
-use SilverStripe\CMS\Controllers\RootURLController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\FieldList;
@@ -14,13 +14,15 @@ use SilverStripe\Forms\GridField\GridFieldConfig;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\NumericField;
+use SilverStripe\Forms\Tab;
+use SilverStripe\Forms\TabSet;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
-use SilverStripe\ORM\HasManyList;
 use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\SS_List;
 use SilverStripe\ORM\UnsavedRelationList;
+use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
@@ -31,8 +33,7 @@ use SilverStripe\View\Requirements;
 /**
  * Blog Holder
  *
- * @method HasManyList Tags() List of tags in this blog
- * @method HasManyList Categories() List of categories in this blog
+ * @property int $PostsPerPage
  * @method ManyManyList Editors() List of editors
  * @method ManyManyList Writers() List of writers
  * @method ManyManyList Contributors() List of contributors
@@ -91,17 +92,9 @@ class Blog extends Page implements PermissionProvider
     /**
      * @var array
      */
-    private static $has_many = [
-        'Tags' => BlogTag::class,
-        'Categories' => BlogCategory::class,
-    ];
-
-    /**
-     * @var array
-     */
     private static $many_many = [
-        'Editors' => Member::class,
-        'Writers' => Member::class,
+        'Editors'      => Member::class,
+        'Writers'      => Member::class,
         'Contributors' => Member::class,
     ];
 
@@ -135,13 +128,59 @@ class Blog extends Page implements PermissionProvider
     private static $icon_class = 'font-icon-p-posts';
 
     /**
+     * Gets the list of all tags attached to this blog
+     *
+     * @param bool $hideEmpty Set to false to include tags without posts
+     * @return DataList|BlogTag[]
+     */
+    public function Tags($hideEmpty = true)
+    {
+        $tags = BlogTag::get();
+        if ($this->ID) {
+            $tags->setDataQueryParam('BlogID', $this->ID);
+
+            // Conditionally hide empty tags
+            if ($hideEmpty) {
+                $tags = $tags->filter([
+                    'BlogPosts.ParentID' => $this->ID,
+                ]);
+            }
+        }
+        $this->extend('updateBlogTags', $tags);
+        return $tags;
+    }
+
+    /**
+     * Gets the list of all categories attached to this blog
+     *
+     * @param bool $hideEmpty Set to false to include categories without posts
+     * @return DataList|BlogCategory[]
+     */
+    public function Categories($hideEmpty = true)
+    {
+        $tags = BlogCategory::get();
+        if ($this->ID) {
+            $tags->setDataQueryParam('BlogID', $this->ID);
+
+            // Conditionally hide empty categories
+            if ($hideEmpty) {
+                $tags = $tags->filter([
+                    'BlogPosts.ParentID' => $this->ID,
+                ]);
+            }
+        }
+        $this->extend('updateBlogCategories', $tags);
+        return $tags;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getCMSFields()
     {
         $this->addCMSRequirements();
 
-        $this->beforeUpdateCMSFields(function ($fields) {
+        $this->beforeUpdateCMSFields(function (FieldList $fields) {
             if (!$this->canEdit()) {
                 return;
             }
@@ -149,43 +188,47 @@ class Blog extends Page implements PermissionProvider
             $categories = GridField::create(
                 'Categories',
                 _t(__CLASS__ . '.Categories', 'Categories'),
-                $this->Categories(),
+                $this->Categories(false),
                 GridFieldCategorisationConfig::create(
                     15,
-                    $this->Categories()->sort('Title'),
+                    $this->Categories(false)->sort('Title'),
                     BlogCategory::class,
                     'Categories',
-                    'BlogPosts'
+                    'BlogPosts',
+                    $this
                 )
             );
 
             $tags = GridField::create(
                 'Tags',
                 _t(__CLASS__ . '.Tags', 'Tags'),
-                $this->Tags(),
+                $this->Tags(false),
                 GridFieldCategorisationConfig::create(
                     15,
-                    $this->Tags()->sort('Title'),
+                    $this->Tags(false)->sort('Title'),
                     BlogTag::class,
                     'Tags',
-                    'BlogPosts'
+                    'BlogPosts',
+                    $this
                 )
             );
 
-            /**
-             * @var FieldList $fields
-             */
-            $fields->addFieldsToTab(
+            $fields->addFieldToTab(
+                'Root',
+                TabSet::create('Categorisation', _t(__CLASS__ . '.Categorisation', 'Categorisation'))
+                    ->addExtraClass('blog-cms-categorisation')
+            );
+            $fields->addFieldToTab(
                 'Root.Categorisation',
-                [
-                    $categories,
-                    $tags
-                ]
+                Tab::create('Categories', _t(__CLASS__ . '.Categories', 'Categories'))
+            );
+            $fields->addFieldToTab(
+                'Root.Categorisation',
+                Tab::create('Tags', _t(__CLASS__ . '.Tags', 'Tags'))
             );
 
-            $fields->fieldByName('Root.Categorisation')
-                ->addExtraClass('blog-cms-categorisation')
-                ->setTitle(_t(__CLASS__ . '.Categorisation', 'Categorisation'));
+            $fields->addFieldToTab('Root.Categorisation.Categories', $categories);
+            $fields->addFieldToTab('Root.Categorisation.Tags', $tags);
         });
 
         return parent::getCMSFields();
@@ -199,6 +242,7 @@ class Blog extends Page implements PermissionProvider
         Requirements::css('silverstripe/blog:client/dist/styles/main.css');
         Requirements::javascript('silverstripe/blog:client/dist/js/main.bundle.js');
     }
+
     /**
      * {@inheritdoc}
      */
@@ -249,7 +293,7 @@ class Blog extends Page implements PermissionProvider
     /**
      * Determine if the given member belongs to the given relation.
      *
-     * @param Member $member
+     * @param Member   $member
      * @param DataList $relation
      *
      * @return bool
@@ -527,7 +571,7 @@ class Blog extends Page implements PermissionProvider
     /**
      * Returns BlogPosts for a given date period.
      *
-     * @param int $year
+     * @param int      $year
      * @param null|int $month
      * @param null|int $day
      *
@@ -592,13 +636,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function ProfileLink($urlSegment)
     {
-        $baseLink = $this->Link();
-        if ($baseLink === '/') {
-            // Handle homepage blogs
-            $baseLink = RootURLController::get_homepage_link();
-        }
-
-        return Controller::join_links($baseLink, 'profile', $urlSegment);
+        return Controller::join_links($this->Link('Profile'), $urlSegment);
     }
 
     /**
@@ -628,22 +666,22 @@ class Blog extends Page implements PermissionProvider
     {
         return [
             Blog::MANAGE_USERS => [
-                'name' => _t(
+                'name'     => _t(
                     __CLASS__ . '.PERMISSION_MANAGE_USERS_DESCRIPTION',
                     'Manage users for individual blogs'
                 ),
-                'help' => _t(
+                'help'     => _t(
                     __CLASS__ . '.PERMISSION_MANAGE_USERS_HELP',
                     'Allow assignment of Editors, Writers, or Contributors to blogs'
                 ),
                 'category' => _t(__CLASS__ . '.PERMISSIONS_CATEGORY', 'Blog permissions'),
-                'sort' => 100
+                'sort'     => 100
             ]
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @throws ValidationException
      */
     protected function onBeforeWrite()
     {
@@ -653,6 +691,9 @@ class Blog extends Page implements PermissionProvider
 
     /**
      * Assign users as necessary to the blog group.
+     *
+     * @throws ValidationException
+     * @throws Exception
      */
     protected function assignGroup()
     {
@@ -665,6 +706,7 @@ class Blog extends Page implements PermissionProvider
         // Must check if the method exists or else an error occurs when changing page type
         if ($this->hasMethod('Editors')) {
             foreach ([$this->Editors(), $this->Writers(), $this->Contributors()] as $levels) {
+                /** @var Member $user */
                 foreach ($levels as $user) {
                     if (!$user->inGroup($group)) {
                         $user->Groups()->add($group);
@@ -678,13 +720,14 @@ class Blog extends Page implements PermissionProvider
      * Gets or creates the group used to assign CMS access.
      *
      * @return Group
+     * @throws ValidationException
      */
     protected function getUserGroup()
     {
         $code = $this->config()->get('grant_user_group');
 
+        /** @var Group $group */
         $group = Group::get()->filter('Code', $code)->first();
-
         if ($group) {
             return $group;
         }

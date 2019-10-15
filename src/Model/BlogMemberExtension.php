@@ -10,6 +10,7 @@ use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\Security\Member;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\View\Requirements;
@@ -17,6 +18,10 @@ use SilverStripe\View\Requirements;
 /**
  * This class is responsible for add Blog specific behaviour to Members.
  *
+ * @property string $URLSegment
+ * @property string $BlogProfileSummary
+ * @method Image BlogProfileImage()
+ * @method ManyManyList|BlogPost[] BlogPosts()
  */
 class BlogMemberExtension extends DataExtension
 {

@@ -3,16 +3,14 @@
 namespace SilverStripe\Blog\Model;
 
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\ManyManyList;
 
 /**
  * A blog category for generalising blog posts.
  *
-*
- * @method Blog Blog()
- *
+ * @method ManyManyList|BlogPost[] BlogPosts()
  * @property string $Title
  * @property string $URLSegment
- * @property int $BlogID
  */
 class BlogCategory extends DataObject implements CategorisationObject
 {
@@ -44,8 +42,8 @@ class BlogCategory extends DataObject implements CategorisationObject
     /**
      * @var array
      */
-    private static $has_one = [
-        'Blog' => Blog::class,
+    private static $indexes = [
+        'URLSegment' => true,
     ];
 
     /**

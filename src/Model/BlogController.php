@@ -6,14 +6,17 @@ use PageController;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Control\RSS\RSSFeed;
-use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\FieldType\DBDatetime;
+use SilverStripe\ORM\FieldType\DBHTMLText;
 use SilverStripe\ORM\PaginatedList;
+use SilverStripe\ORM\SS_List;
 use SilverStripe\Security\Member;
 use SilverStripe\View\Parsers\URLSegmentFilter;
-use SilverStripe\Control\HTTPRequest;
 
+/**
+ * @method Blog data()
+ */
 class BlogController extends PageController
 {
     /**
@@ -31,17 +34,17 @@ class BlogController extends PageController
      * @var array
      */
     private static $url_handlers = [
-        'tag/$Tag!/$Rss' => 'tag',
-        'category/$Category!/$Rss' => 'category',
+        'tag/$Tag!/$Rss'             => 'tag',
+        'category/$Category!/$Rss'   => 'category',
         'archive/$Year!/$Month/$Day' => 'archive',
-        'profile/$URLSegment!' => 'profile'
+        'profile/$Profile!'          => 'profile'
     ];
 
     /**
      * @var array
      */
     private static $casting = [
-        'MetaTitle' => 'Text',
+        'MetaTitle'         => 'Text',
         'FilterDescription' => 'Text'
     ];
 
@@ -61,26 +64,10 @@ class BlogController extends PageController
     protected $blogPosts;
 
     /**
-     * @return string
-     */
-    public function index(HTTPRequest $request)
-    {
-        /**
-         * @var Blog $dataRecord
-         */
-        $dataRecord = $this->dataRecord;
-
-        $this->blogPosts = $dataRecord->getBlogPosts();
-
-        return $this->render();
-    }
-
-    /**
      * Renders a Blog Member's profile.
      *
      * @throws HTTPResponse_Exception
-     *
-     * @return string
+     * @return $this
      */
     public function profile()
     {
@@ -88,45 +75,59 @@ class BlogController extends PageController
             $this->httpError(404, 'Not Found');
         }
 
-        $profile = $this->getCurrentProfile();
-
-        if (!$profile) {
-            return $this->httpError(404, 'Not Found');
+        // Get profile posts
+        $posts = $this->getCurrentProfilePosts();
+        if (!$posts) {
+            $this->httpError(404, 'Not Found');
         }
 
-        $this->blogPosts = $this->getCurrentProfilePosts();
-
-        return $this->render();
+        $this->setFilteredPosts($posts);
+        return $this;
     }
 
     /**
      * Get the Member associated with the current URL segment.
      *
-     * @return null|Member
+     * @return null|Member|BlogMemberExtension
      */
     public function getCurrentProfile()
     {
-        $urlSegment = $this->request->param('URLSegment');
-        if ($urlSegment) {
-            $filter = URLSegmentFilter::create();
-            // url encode unless it's multibyte (already pre-encoded in the database)
-            // see https://github.com/silverstripe/silverstripe-cms/pull/2384
-            if (!$filter->getAllowMultibyte()) {
-                $urlSegment = rawurlencode($urlSegment);
-            }
-
-            return Member::get()
-                ->filter('URLSegment', $urlSegment)
-                ->first();
+        $segment = $this->getCurrentProfileURLSegment();
+        if (!$segment) {
+            return null;
         }
 
-        return null;
+        /** @var Member $profile */
+        $profile = Member::get()
+            ->find('URLSegment', $segment);
+        return $profile;
+    }
+
+    /**
+     * Get URL Segment of current profile
+     *
+     * @return null|string
+     */
+    public function getCurrentProfileURLSegment()
+    {
+        $segment = isset($this->urlParams['Profile'])
+            ? $this->urlParams['Profile']
+            : null;
+        if (!$segment) {
+            return null;
+        }
+
+        // url encode unless it's multibyte (already pre-encoded in the database)
+        // see https://github.com/silverstripe/silverstripe-cms/pull/2384
+        return URLSegmentFilter::singleton()->getAllowMultibyte()
+            ? $segment
+            : rawurlencode($segment);
     }
 
     /**
      * Get posts related to the current Member profile.
      *
-     * @return null|DataList
+     * @return null|DataList|BlogPost[]
      */
     public function getCurrentProfilePosts()
     {
@@ -142,166 +143,190 @@ class BlogController extends PageController
     /**
      * Renders an archive for a specified date. This can be by year or year/month.
      *
-     * @return null|string
+     * @return $this
+     * @throws HTTPResponse_Exception
      */
     public function archive()
     {
-        /**
-         * @var Blog $dataRecord
-         */
-        $dataRecord = $this->dataRecord;
-
         $year = $this->getArchiveYear();
         $month = $this->getArchiveMonth();
         $day = $this->getArchiveDay();
 
-        if ($this->request->param('Month') && !$month) {
+        // Validate all values
+        if ($year === false || $month === false || $day === false) {
             $this->httpError(404, 'Not Found');
         }
 
-        if ($month && $this->request->param('Day') && !$day) {
-            $this->httpError(404, 'Not Found');
-        }
-
-        if ($year) {
-            $this->blogPosts = $dataRecord->getArchivedBlogPosts($year, $month, $day);
-
-            return $this->render();
-        }
-
-        $this->httpError(404, 'Not Found');
-
-        return null;
+        $posts = $this->data()->getArchivedBlogPosts($year, $month, $day);
+        $this->setFilteredPosts($posts);
+        return $this;
     }
 
     /**
      * Fetches the archive year from the url.
      *
-     * @return int
+     * Returns int if valid, current year if not provided, false if invalid value
+     *
+     * @return int|false
      */
     public function getArchiveYear()
     {
-        if ($this->request->param('Year')) {
-            if (preg_match('/^[0-9]{4}$/', $year = $this->request->param('Year'))) {
-                return (int) $year;
-            }
-        } elseif ($this->request->param('Action') == 'archive') {
+        if (isset($this->urlParams['Year'])
+            && preg_match('/^[0-9]{4}$/', $this->urlParams['Year'])
+        ) {
+            return (int)$this->urlParams['Year'];
+        }
+
+        if ($this->urlParams['Action'] === 'archive') {
             return DBDatetime::now()->Year();
         }
 
-        return null;
+        return false;
     }
 
     /**
      * Fetches the archive money from the url.
      *
-     * @return null|int
+     * Returns int if valid, null if not provided, false if invalid value
+     *
+     * @return null|int|false
      */
     public function getArchiveMonth()
     {
-        $month = $this->request->param('Month');
+        $month = isset($this->urlParams['Month'])
+            ? $this->urlParams['Month']
+            : null;
 
-        if (preg_match('/^[0-9]{1,2}$/', $month)) {
-            if ($month > 0 && $month < 13) {
-                if (checkdate($month, 01, $this->getArchiveYear())) {
-                    return (int) $month;
-                }
-            }
+        if (preg_match('/^[0-9]{1,2}$/', $month)
+            && $month > 0
+            && $month < 13
+        ) {
+            return (int)$month;
         }
 
-        return null;
+        return false;
     }
 
     /**
      * Fetches the archive day from the url.
      *
-     * @return null|int
+     * Returns int if valid, null if not provided, false if invalid value
+     *
+     * @return null|int|false
      */
     public function getArchiveDay()
     {
-        $day = $this->request->param('Day');
+        $day = isset($this->urlParams['Day'])
+            ? $this->urlParams['Day']
+            : null;
 
-        if (preg_match('/^[0-9]{1,2}$/', $day)) {
-            if (checkdate($this->getArchiveMonth(), $day, $this->getArchiveYear())) {
-                return (int) $day;
-            }
+        // Cannot calculate day without month and year
+        $month = $this->getArchiveMonth();
+        $year = $this->getArchiveYear();
+        if (!$month || !$year) {
+            return false;
         }
 
-        return null;
+        if (preg_match('/^[0-9]{1,2}$/', $day) && checkdate($month, $day, $year)) {
+            return (int)$day;
+        }
+
+        return false;
     }
 
     /**
      * Renders the blog posts for a given tag.
      *
-     * @return null|string
+     * @return DBHTMLText|$this
+     * @throws HTTPResponse_Exception
      */
     public function tag()
     {
+        // Ensure tag exists
         $tag = $this->getCurrentTag();
-
-        if ($tag) {
-            $this->blogPosts = $tag->BlogPosts();
-
-            if ($this->isRSS()) {
-                return $this->rssFeed($this->blogPosts, $tag->getLink());
-            } else {
-                return $this->render();
-            }
+        if (!$tag) {
+            $this->httpError(404, 'Not Found');
         }
 
-        $this->httpError(404, 'Not Found');
+        // Get posts with this tag
+        $posts = $this
+            ->data()
+            ->getBlogPosts()
+            ->filter(['Tags.URLSegment' => $tag->URLSegment]); // Soft duplicate handling
 
-        return null;
+        $this->setFilteredPosts($posts);
+
+        // Render as RSS if provided
+        if ($this->isRSS()) {
+            return $this->rssFeed($posts, $tag->getLink());
+        }
+
+        return $this;
     }
 
     /**
-     * Tag Getter for use in templates.
+     * Get BlogTag assigned to current filter
      *
      * @return null|BlogTag
      */
     public function getCurrentTag()
     {
-        /**
-         * @var Blog $dataRecord
-         */
-        $dataRecord = $this->dataRecord;
-        $tag = $this->request->param('Tag');
-        if ($tag) {
-            $filter = URLSegmentFilter::create();
-            // url encode unless it's multibyte (already pre-encoded in the database)
-            // see https://github.com/silverstripe/silverstripe-cms/pull/2384
-            if (!$filter->getAllowMultibyte()) {
-                $tag = rawurlencode($tag);
-            }
-
-            return $dataRecord->Tags()
-                ->filter('URLSegment', $tag)
-                ->first();
+        $segment = $this->getCurrentTagURLSegment();
+        if (!$segment) {
+            return null;
         }
-        return null;
+
+        /** @var BlogTag $tag */
+        $tag = $this
+            ->data()
+            ->Tags(false)// Show "no results" instead of "404"
+            ->find('URLSegment', $segment);
+        return $tag;
+    }
+
+    /**
+     * Get URLSegment of selected category (not: URLEncoded based on multibyte)
+     *
+     * @return string|null
+     */
+    public function getCurrentTagURLSegment()
+    {
+        $segment = isset($this->urlParams['Tag'])
+            ? $this->urlParams['Tag']
+            : null;
+
+        // url encode unless it's multibyte (already pre-encoded in the database)
+        // see https://github.com/silverstripe/silverstripe-cms/pull/2384
+        return URLSegmentFilter::singleton()->getAllowMultibyte()
+            ? $segment
+            : rawurlencode($segment);
     }
 
     /**
      * Renders the blog posts for a given category.
      *
-     * @return null|string
+     * @return DBHTMLText|$this
+     * @throws HTTPResponse_Exception
      */
     public function category()
     {
         $category = $this->getCurrentCategory();
 
-        if ($category) {
-            $this->blogPosts = $category->BlogPosts();
-
-            if ($this->isRSS()) {
-                return $this->rssFeed($this->blogPosts, $category->getLink());
-            }
-            return $this->render();
+        if (!$category) {
+            $this->httpError(404, 'Not Found');
         }
 
-        $this->httpError(404, 'Not Found');
+        // Get posts with this category
+        $posts = $this
+            ->data()
+            ->getBlogPosts()
+            ->filter(['Categories.URLSegment' => $category->URLSegment]); // Soft duplicate handling
+        $this->setFilteredPosts($posts);
 
-        return null;
+        if ($this->isRSS()) {
+            return $this->rssFeed($posts, $category->getLink());
+        }
+        return $this;
     }
 
     /**
@@ -311,24 +336,35 @@ class BlogController extends PageController
      */
     public function getCurrentCategory()
     {
-        /**
-         * @var Blog $dataRecord
-         */
-        $dataRecord = $this->dataRecord;
-        $category = $this->request->param('Category');
-        if ($category) {
-            $filter = URLSegmentFilter::create();
-            // url encode unless it's multibyte (already pre-encoded in the database)
-            // see https://github.com/silverstripe/silverstripe-cms/pull/2384
-            if (!$filter->getAllowMultibyte()) {
-                $category = rawurlencode($category);
-            }
-
-            return $dataRecord->Categories()
-                ->filter('URLSegment', $category)
-                ->first();
+        $segment = $this->getCurrentCategoryURLSegment();
+        if (!$segment) {
+            return null;
         }
-        return null;
+
+        /** @var BlogCategory $category */
+        $category = $this
+            ->data()
+            ->Categories(false)// Show "no results" instead of "404"
+            ->find('URLSegment', $segment);
+        return $category;
+    }
+
+    /**
+     * Get URLSegment of selected category
+     *
+     * @return string|null
+     */
+    public function getCurrentCategoryURLSegment()
+    {
+        $segment = isset($this->urlParams['Category'])
+            ? $this->urlParams['Category']
+            : null;
+
+        // url encode unless it's multibyte (already pre-encoded in the database)
+        // see https://github.com/silverstripe/silverstripe-cms/pull/2384
+        return URLSegmentFilter::singleton()->getAllowMultibyte()
+            ? $segment
+            : rawurlencode($segment);
     }
 
     /**
@@ -406,13 +442,13 @@ class BlogController extends PageController
             );
         }
 
-        if ($this->owner->getArchiveYear()) {
-            if ($this->owner->getArchiveDay()) {
-                $date = $this->owner->getArchiveDate()->Nice();
-            } elseif ($this->owner->getArchiveMonth()) {
-                $date = $this->owner->getArchiveDate()->format('MMMM, y');
+        if ($this->getArchiveYear()) {
+            if ($this->getArchiveDay()) {
+                $date = $this->getArchiveDate()->Nice();
+            } elseif ($this->getArchiveMonth()) {
+                $date = $this->getArchiveDate()->format('MMMM, y');
             } else {
-                $date = $this->owner->getArchiveDate()->format('y');
+                $date = $this->getArchiveDate()->format('y');
             }
 
             $items[] = _t(
@@ -437,18 +473,40 @@ class BlogController extends PageController
     }
 
     /**
+     * Get filtered blog posts
+     *
+     * @return DataList|BlogPost[]
+     */
+    public function getFilteredPosts()
+    {
+        return $this->blogPosts ?: $this->data()->getBlogPosts();
+    }
+
+    /**
+     * Set filtered posts
+     *
+     * @param SS_List|BlogPost[] $posts
+     * @return $this
+     */
+    public function setFilteredPosts($posts)
+    {
+        $this->blogPosts = $posts;
+        return $this;
+    }
+
+    /**
      * Returns a list of paginated blog posts based on the BlogPost dataList.
      *
      * @return PaginatedList
      */
     public function PaginatedList()
     {
-        $allPosts = $this->blogPosts ?: ArrayList::create();
+        $allPosts = $this->getFilteredPosts();
         $posts = PaginatedList::create($allPosts);
 
         // Set appropriate page size
-        if ($this->PostsPerPage > 0) {
-            $pageSize = $this->PostsPerPage;
+        if ($this->data()->PostsPerPage > 0) {
+            $pageSize = $this->data()->PostsPerPage;
         } elseif ($count = $allPosts->count()) {
             $pageSize = $count;
         } else {
@@ -482,7 +540,7 @@ class BlogController extends PageController
         return null;
     }
 
-     /**
+    /**
      * Returns the absolute link to the previous page for use in the page meta tags. This helps search engines
      * find the pagination and index all pages properly.
      *
@@ -507,14 +565,7 @@ class BlogController extends PageController
      */
     public function rss()
     {
-        /**
-         * @var Blog $dataRecord
-         */
-        $dataRecord = $this->dataRecord;
-
-        $this->blogPosts = $dataRecord->getBlogPosts();
-
-        return $this->rssFeed($this->blogPosts, $this->Link());
+        return $this->rssFeed($this->getFilteredPosts(), $this->Link());
     }
 
     /**
@@ -561,13 +612,18 @@ class BlogController extends PageController
      * Displays an RSS feed of the given blog posts.
      *
      * @param DataList $blogPosts
-     * @param string $link
+     * @param string   $link
      *
-     * @return string
+     * @return DBHTMLText
      */
     protected function rssFeed($blogPosts, $link)
     {
-        $rss = RSSFeed::create($blogPosts, $link, $this->MetaTitle, $this->MetaDescription);
+        $rss = RSSFeed::create(
+            $blogPosts,
+            $link,
+            $this->getMetaTitle(),
+            $this->data()->MetaDescription
+        );
 
         $this->extend('updateRss', $rss);
 
@@ -581,7 +637,6 @@ class BlogController extends PageController
      */
     protected function isRSS()
     {
-        $rss = $this->request->param('Rss');
-        return (is_string($rss) && strcasecmp($rss, 'rss') == 0);
+        return isset($this->urlParams['RSS']) && strcasecmp($this->urlParams['RSS'], 'rss') == 0;
     }
 }

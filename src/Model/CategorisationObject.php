@@ -2,8 +2,10 @@
 
 namespace SilverStripe\Blog\Model;
 
+use SilverStripe\ORM\ManyManyList;
+
 /**
- * @method ManyManyList BlogPosts
+ * @method ManyManyList|BlogPost[] BlogPosts()
  */
 interface CategorisationObject
 {
