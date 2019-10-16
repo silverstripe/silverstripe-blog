@@ -93,47 +93,37 @@ SilverStripe\Blog\Model\BlogCategory:
   FirstCategory:
     Title: 'First Category'
     URLSegment: 'first-category'
-    BlogID: =>SilverStripe\Blog\Model\Blog.FirstBlog
   SecondCategory:
     Title: 'Second Category'
     URLSegment: 'second-category'
-    BlogID: =>SilverStripe\Blog\Model\Blog.SecondBlog
   ThirdCategory:
     Title: 'Third Category'
     URLSegment: 'third-category'
-    BlogID: =>SilverStripe\Blog\Model\Blog.ThirdBlog
 
 SilverStripe\Blog\Model\BlogTag:
   FirstTag:
     Title: 'First Tag'
     URLSegment: 'first-tag'
-    BlogID: =>SilverStripe\Blog\Model\Blog.FirstBlog
   SecondTag:
     Title: 'Second Tag'
     URLSegment: 'second-tag'
-    BlogID: =>SilverStripe\Blog\Model\Blog.SecondBlog
   ThirdTag:
     Title: 'Third Tag'
     URLSegment: 'third-tag'
-    BlogID: =>SilverStripe\Blog\Model\Blog.ThirdBlog
 
   #Tags for Tag Cloud widget
   PopularTag:
     Title: 'Popular'
     URLSegment: 'popular'
-    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
   CoolTag:
     Title: 'Cool'
     URLSegment: 'cool'
-    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
   CatTag:
     Title: 'Cat'
     URLSegment: 'cat'
-    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
   KiwiTag:
     Title: 'Kiwi'
     URLSegment: 'kiwi'
-    BlogID: =>SilverStripe\Blog\Model\Blog.FourthBlog
 
 SilverStripe\Blog\Model\BlogPost:
   FirstBlogPost:

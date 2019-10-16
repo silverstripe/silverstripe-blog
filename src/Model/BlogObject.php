@@ -97,11 +97,6 @@ trait BlogObject
             return $validation;
         }
 
-        $blog = $this->Blog();
-        if (!$blog || !$blog->exists()) {
-            return $validation;
-        }
-
         if ($this->getDuplicatesByField('Title')->count() > 0) {
             $validation->addError($this->getDuplicateError(), self::DUPLICATE_EXCEPTION);
         }
