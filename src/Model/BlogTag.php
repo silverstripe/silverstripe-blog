@@ -41,6 +41,11 @@ class BlogTag extends DataObject implements CategorisationObject
         'URLSegment' => 'Varchar(255)'
     ];
 
+    private static $translate = [
+        'Title',
+        'URLSegment'
+    ];
+
     /**
      * @var array
      */

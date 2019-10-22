@@ -78,6 +78,8 @@ trait BlogObject
     );
 
 
+
+
     /**
      * Simple Generate SEO-friendly URLs
      * @param $text

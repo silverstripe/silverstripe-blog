@@ -55,6 +55,11 @@ class BlogCategory extends DataObject implements CategorisationObject
         'BlogPosts' => BlogPost::class,
     ];
 
+    private static $translate = [
+        'Title',
+        'URLSegment'
+    ];
+
     /**
      * {@inheritdoc}
      */
