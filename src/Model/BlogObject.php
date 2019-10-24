@@ -39,7 +39,7 @@ trait BlogObject
      */
     public function Blog()
     {
-        $blogID = $this->getSourceQueryParam('BlogID');
+        $blogID = $this->getBlogID();
         if ($blogID) {
             /** @var Blog $blog */
             $blog = Blog::get()->byID($blogID);
@@ -193,6 +193,26 @@ trait BlogObject
 
         $blog = $this->Blog();
         return $blog && $blog->canEdit($member);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBlogID()
+    {
+        return $this->getSourceQueryParam('BlogID');
+    }
+
+    /**
+     * Set a blog ID for this record
+     *
+     * @param int $id
+     * @return $this
+     */
+    public function setBlogID($id)
+    {
+        $this->setSourceQueryParam('BlogID', $id);
+        return $this;
     }
 
     protected function onBeforeWrite()

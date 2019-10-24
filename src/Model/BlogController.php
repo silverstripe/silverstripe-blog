@@ -177,7 +177,9 @@ class BlogController extends PageController
             return (int)$this->urlParams['Year'];
         }
 
-        if ($this->urlParams['Action'] === 'archive') {
+        if (empty($this->urlParams['Year']) &&
+            $this->urlParams['Action'] === 'archive'
+        ) {
             return DBDatetime::now()->Year();
         }
 
@@ -196,6 +198,10 @@ class BlogController extends PageController
         $month = isset($this->urlParams['Month'])
             ? $this->urlParams['Month']
             : null;
+
+        if (!$month) {
+            return null;
+        }
 
         if (preg_match('/^[0-9]{1,2}$/', $month)
             && $month > 0
@@ -219,6 +225,10 @@ class BlogController extends PageController
         $day = isset($this->urlParams['Day'])
             ? $this->urlParams['Day']
             : null;
+
+        if (!$day) {
+            return null;
+        }
 
         // Cannot calculate day without month and year
         $month = $this->getArchiveMonth();

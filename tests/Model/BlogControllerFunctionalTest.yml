@@ -12,10 +12,6 @@ SilverStripe\Blog\Model\Blog:
   blog_a:
     URLSegment: my-blog
     Title: My Blog
-    Categories:
-      - =>SilverStripe\Blog\Model\BlogCategory.category_a
-    Tags:
-      - =>SilverStripe\Blog\Model\BlogTag.tag_a
 
 SilverStripe\Blog\Model\BlogPost:
   blogpost_a:
@@ -23,7 +19,3 @@ SilverStripe\Blog\Model\BlogPost:
     URLSegment: آبیدآبید
     PublishDate: 2017-08-01 00:00:00
     Parent: =>SilverStripe\Blog\Model\Blog.blog_a
-    Categories:
-      - =>SilverStripe\Blog\Model\BlogCategory.category_a
-    Tags:
-      - =>SilverStripe\Blog\Model\BlogTag.tag_a
