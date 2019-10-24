@@ -2,7 +2,9 @@
 
 namespace SilverStripe\Blog\Model;
 
+
 use Page;
+use TractorCow\Fluent\Model\Locale;
 use SilverStripe\Blog\Admin\GridFieldCategorisationConfig;
 use SilverStripe\Blog\Forms\GridField\GridFieldConfigBlogPost;
 use SilverStripe\CMS\Controllers\RootURLController;
@@ -27,6 +29,7 @@ use SilverStripe\Security\Permission;
 use SilverStripe\Security\PermissionProvider;
 use SilverStripe\Security\Security;
 use SilverStripe\View\Requirements;
+use TractorCow\Fluent\State\FluentState;
 
 /**
  * Blog Holder
@@ -145,11 +148,13 @@ class Blog extends Page implements PermissionProvider
             if (!$this->canEdit()) {
                 return;
             }
+            $locale =  FluentState::singleton()->getLocale();
+            $locale = Locale::get()->filter(['Locale' => $locale])->first();
 
             $categories = GridField::create(
                 'Categories',
                 _t(__CLASS__ . '.Categories', 'Categories'),
-                $this->Categories(),
+                $this->Categories()->filter(['LocalID' => $locale->ID]),
                 GridFieldCategorisationConfig::create(
                     15,
                     $this->Categories()->sort('Title'),
@@ -162,7 +167,7 @@ class Blog extends Page implements PermissionProvider
             $tags = GridField::create(
                 'Tags',
                 _t(__CLASS__ . '.Tags', 'Tags'),
-                $this->Tags(),
+                $this->Tags()->filter(['LocalID' => $locale->ID]),
                 GridFieldCategorisationConfig::create(
                     15,
                     $this->Tags()->sort('Title'),
