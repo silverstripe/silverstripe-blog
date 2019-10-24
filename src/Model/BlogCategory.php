@@ -54,6 +54,11 @@ class BlogCategory extends DataObject implements CategorisationObject
     ];
 
     /**
+     * @var string
+     */
+    private static $default_sort = '"BlogCategory"."Title" ASC';
+
+    /**
      * {@inheritdoc}
      */
     protected function getListUrlSegment()

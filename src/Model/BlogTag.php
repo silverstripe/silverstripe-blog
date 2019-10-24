@@ -57,6 +57,11 @@ class BlogTag extends DataObject implements CategorisationObject
     ];
 
     /**
+     * @var string
+     */
+    private static $default_sort = '"BlogTag"."Title" ASC';
+
+    /**
      * {@inheritdoc}
      */
     protected function getListUrlSegment()
