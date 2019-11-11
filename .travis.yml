@@ -15,7 +15,7 @@ matrix:
     - php: 7.2
       env: DB=MYSQL INSTALLER_VERSION=4.4.x-dev PHPUNIT_TEST=1
     - php: 7.3
-      env: DB=MYSQL INSTALLER_VERSION=4.x-dev PHPUNIT_TEST=1
+      env: DB=MYSQL INSTALLER_VERSION=4.x-dev PHPUNIT_TEST=1 NPM_TEST=1
 
 before_script:
 # Init PHP
@@ -28,11 +28,14 @@ before_script:
   - composer require --no-update silverstripe/installer:$INSTALLER_VERSION silverstripe/widgets:2.x-dev
   - if [[ $DB == PGSQL ]]; then composer require --no-update silverstripe/postgresql:2.2.x-dev; fi
   - composer install --prefer-dist --no-interaction --no-progress --no-suggest --optimize-autoloader --verbose --profile
+  - if [[ $NPM_TEST ]]; then nvm install && nvm use && npm install -g yarn && yarn install --network-concurrency 1 && (cd vendor/silverstripe/admin && yarn install --network-concurrency 1) && yarn run build; fi
 
 script:
   - if [[ $PHPUNIT_TEST ]]; then vendor/bin/phpunit tests/; fi
   - if [[ $PHPUNIT_COVERAGE_TEST ]]; then phpdbg -qrr vendor/bin/phpunit --coverage-clover=coverage.xml tests/; fi
   - if [[ $PHPCS_TEST ]]; then composer run-script lint; fi
+  - if [[ $NPM_TEST ]]; then git diff-files --quiet -w --relative=client; fi
+  - if [[ $NPM_TEST ]]; then git diff --name-status --relative=client; fi
 
 after_success:
   - if [[ $PHPUNIT_COVERAGE_TEST ]]; then bash <(curl -s https://codecov.io/bash) -f coverage.xml; fi

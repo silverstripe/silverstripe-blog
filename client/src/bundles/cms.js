@@ -10,9 +10,9 @@ jQuery.entwine('ss', ($) => {
      * @see https://github.com/silverstripe/silverstripe-blog/issues/210
      */
     $('.cms-content-fields > #Form_EditForm_error').entwine({
-        'onadd': function () {
-            var $target = $('.blog-admin-outer');
-            if ($target.length == 1) {
+        onadd() {
+            const $target = $('.blog-admin-outer');
+            if ($target.length === 1) {
                 $target.prepend(this);
             }
         }
@@ -22,8 +22,8 @@ jQuery.entwine('ss', ($) => {
      * Register expandable help text functions with fields.
      */
     $('.toggle-description').entwine({
-        'onadd': function () {
-            var $this = $(this);
+        onadd() {
+            const $this = $(this);
 
             /**
              * Prevent multiple events being added.
@@ -37,10 +37,10 @@ jQuery.entwine('ss', ($) => {
             /**
              * Toggle next description when button is clicked.
              */
-            var shown = false;
-            var $helpInfo = $this.closest('.field').find('.form-text');
+            let shown = false;
+            const $helpInfo = $this.closest('.field').find('.form-text');
 
-            $this.on('click', function () {
+            $this.on('click', () => {
                 $helpInfo[shown ? 'hide' : 'show']();
                 $this.toggleClass('toggle-description-shown');
                 shown = !shown;
@@ -64,30 +64,28 @@ jQuery.entwine('ss', ($) => {
      * Custom merge actions for tags and categories
      */
     $('.MergeAction').entwine({
-        'onadd': function () {
-            var $this = $(this);
+        onadd() {
+            const $this = $(this);
 
-            $this.on('click', 'select', function () {
-                return false;
+            $this.on('click', 'select', () => false);
+
+            $this.children('button').each((i, button) => {
+                const $button = $(button);
+                const $select = $button.prev('select');
+
+                $button.before(`<input type="hidden" name="${$button.attr('data-target')}" value="${$select.val()}" />`);
             });
 
-            $this.children('button').each(function (i, button) {
-                var $button = $(button);
-                var $select = $button.prev('select');
-
-                $button.before('<input type="hidden" name="' + $button.attr('data-target') + '" value="' + $select.val() + '" />');
-            });
-
-            $this.on('change', 'select', function (e) {
-                var $target = $(e.target);
+            $this.on('change', 'select', (e) => {
+                const $target = $(e.target);
 
                 $target.next('input').val($target.val());
             });
 
             $this.children('button, select').hide();
 
-            $this.on('click', '.MergeActionReveal', function (e) {
-                var $target = $(e.target);
+            $this.on('click', '.MergeActionReveal', (e) => {
+                const $target = $(e.target);
 
                 $target.parent().children('button, select').show();
                 $target.hide();
@@ -104,20 +102,23 @@ jQuery.entwine('ss', ($) => {
      */
     $('.blog-admin-sidebar.cms-panel').entwine({
         MinInnerWidth: 620,
-        onadd: function () {
+        onadd() {
             this._super();
             this.updateLayout();
 
-            // If this panel is open and the left hand column is smaller than the minimum, contract it instead
-            if (!this.hasClass('collapsed') && ($(".blog-admin-outer").width() < this.getMinInnerWidth())) {
+            // Contract panel if it's open and the left hand column is smaller than the minimum
+            if (!this.hasClass('collapsed') && ($('.blog-admin-outer').width() < this.getMinInnerWidth())) {
                 this.collapsePanel();
             }
 
-            window.onresize = function () {
-                this.updateLayout();
-            }.bind(this);
+            const onresize = () => {
+              this.updateLayout();
+            };
+            onresize.bind(this);
+
+            window.onresize = onresize;
         },
-        togglePanel: function (bool, silent) {
+        togglePanel(bool, silent) {
             this._super(bool, silent);
             this.updateLayout();
         },
@@ -126,17 +127,16 @@ jQuery.entwine('ss', ($) => {
          *
          * @returns {undefined}
          */
-        updateLayout: function () {
+        updateLayout() {
             $(this).css('height', '100%');
-            var currentHeight = $(this).outerHeight();
-            var bottomHeight = $('.cms-content-actions').eq(0).outerHeight();
-            $(this).css('height', (currentHeight - bottomHeight) +  "px");
-            $(this).css('bottom', bottomHeight + "px");
+            const currentHeight = $(this).outerHeight();
+            const bottomHeight = $('.cms-content-actions').eq(0).outerHeight();
+            $(this).css('height', `${currentHeight - bottomHeight}px`);
+            $(this).css('bottom', `${bottomHeight}px`);
 
             $('.cms-container').updateLayoutOptions({
                 minContentWidth: 820 + this.width()
             });
-
         }
     });
 });
