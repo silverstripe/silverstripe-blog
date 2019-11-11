@@ -27,6 +27,9 @@
   },
   "homepage": "https://github.com/silverstripe/silverstripe-blog#readme",
   "dependencies": {},
+  "peerDependencies": {
+    "jquery": "^3"
+  },
   "devDependencies": {
     "@silverstripe/eslint-config": "^0.0.5",
     "@silverstripe/webpack-config": "^1.3"
