@@ -50,9 +50,6 @@ eo:
     Tag: Etikedo
     Tagged: 'Havas etikedon'
     Tags: Etikedoj
-    UsersContributorsFieldDescription: "Kontribuantoj povas krei aŭ redakti BlogAfiŝojn, sed ne povas publikigi sen la rajtigo\nde redaktanto. Ili ankaŭ ne povas atribui aliajn kontribuantajn aŭtorojn al iu \nel siaj BlogAfiŝojn.\n\nKontribuantoj havas la jenajn permesojn:\n\nĜisdatigi ajnan BlogAfiŝon kiun ili aŭtoris aŭ al kiu ili estas atribuitaj"
-    UsersEditorsFieldDescription: "Redaktanto mastrumas specifajn blogojn, kaj ĉiujn afiŝojn en ĝi.\nAscepte de atribui aliajn redaktantojn al blogo, ili povas traki plejmultajn ŝanĝojn al\nsia atribuita blogo.\nRedaktantoj havas ĉi tiujn permesojn:\n\nĜisdatigi aŭ publikigi iun BlogAfiŝon en sia BlogĜisdatigo\nĜisdatigi aŭ publikigi sian blogon\nAtribui/malatribui verkantojn al sia blogo\nAtribui/malatribui kontribuantojn al sia blogo\nAtribui/malatribui iun membron kiel aŭtoron de specifa BlogAfiŝo"
-    UsersWritersFieldDescription: "Verkanto plene mastrumas kreadon, redaktadon kaj publikadon de BlogAfiŝoj kreitaj de si\naŭ atribuitaj al ili. Verkantoj ne povas redakti BlogAfiŝon al kiu ili ne estas atribuitaj.\n\nVerkantoj havas ĉi tiujn permesojn:\n\nĜisdatigi aŭ publikigi iun BlogAfiŝon kiun ili verkis aŭ al kiu ili estas atribuitaj\nAtribui/malatribui iun membron kiel aŭtoron de specifa BlogAfiŝo kiun ili verkis aŭ al kiu ili estas atribuitaj"
     WRITER: Verkanto
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Bloga kategorio jam ekzistas kun tiu nomo'
