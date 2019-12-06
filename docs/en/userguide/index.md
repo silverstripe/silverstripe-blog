@@ -1,5 +1,7 @@
+---
 title: Blogging
 summary: Working with blogging and comments in SilverStripe CMS.
+---
 
 # Blogging in SilverStripe CMS
 

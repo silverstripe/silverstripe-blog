@@ -1,5 +1,7 @@
+---
 title: Adding a blog post
 summary: How to add a new blog post.
+---
 
 # Adding a blog post
 
