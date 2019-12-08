@@ -1,3 +1,7 @@
+---
+title: Using widgets
+---
+
 # Using Widgets
 
 **This guide assumes you have the optional [Widgets](https://addons.silverstripe.org/add-ons/silverstripe/widgets/) module installed**

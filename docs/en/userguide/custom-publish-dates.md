@@ -1,3 +1,7 @@
+---
+title: Custom publish dates
+---
+
 # Custom publish dates
 
 Sometimes to want to write a post now, and have it published automatically, some time in the future.

@@ -1,3 +1,7 @@
+---
+title: Tags and categories
+---
+
 # Tags and categories
 
 Quickly add new tags and categories to your posts.
