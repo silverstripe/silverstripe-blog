@@ -1,3 +1,7 @@
+---
+title: Managing comments
+---
+
 # Managing comments
 
 **This guide assumes you have the optional [Comments](https://addons.silverstripe.org/add-ons/silverstripe/comments/) module installed**
