@@ -492,32 +492,6 @@ class BlogPost extends Page
 
     /**
      * {@inheritdoc}
-     *
-     * Sets blog relationship on all categories and tags assigned to this post.
-     */
-    public function onAfterWrite()
-    {
-        parent::onAfterWrite();
-
-        foreach ($this->Categories() as $category) {
-            /**
-             * @var BlogCategory $category
-             */
-            $category->BlogID = $this->ParentID;
-            $category->write();
-        }
-
-        foreach ($this->Tags() as $tag) {
-            /**
-             * @var BlogTag $tag
-             */
-            $tag->BlogID = $this->ParentID;
-            $tag->write();
-        }
-    }
-
-    /**
-     * {@inheritdoc}
      */
     public function canView($member = null)
     {
