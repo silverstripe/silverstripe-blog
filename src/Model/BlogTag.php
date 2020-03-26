@@ -3,6 +3,7 @@
 namespace SilverStripe\Blog\Model;
 
 use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\ManyManyList;
 
 /**
  * A blog tag for keyword descriptions of a blog post.
@@ -10,9 +11,9 @@ use SilverStripe\ORM\DataObject;
  *
  * @method Blog Blog()
  *
+ * @method ManyManyList|BlogPost[] BlogPosts()
  * @property string $Title
  * @property string $URLSegment
- * @property int $BlogID
  */
 class BlogTag extends DataObject implements CategorisationObject
 {
@@ -44,8 +45,8 @@ class BlogTag extends DataObject implements CategorisationObject
     /**
      * @var array
      */
-    private static $has_one = [
-        'Blog' => Blog::class
+    private static $indexes = [
+        'URLSegment' => true,
     ];
 
     /**
@@ -54,6 +55,11 @@ class BlogTag extends DataObject implements CategorisationObject
     private static $belongs_many_many = [
         'BlogPosts' => BlogPost::class
     ];
+
+    /**
+     * @var string
+     */
+    private static $default_sort = '"BlogTag"."Title" ASC';
 
     /**
      * {@inheritdoc}

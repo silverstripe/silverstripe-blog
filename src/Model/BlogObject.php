@@ -8,6 +8,7 @@ use SilverStripe\Forms\Tab;
 use SilverStripe\Forms\TabSet;
 use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\DataList;
+use SilverStripe\ORM\ManyManyList;
 use SilverStripe\ORM\ValidationResult;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
@@ -20,7 +21,7 @@ use SilverStripe\View\Parsers\URLSegmentFilter;
 trait BlogObject
 {
     /**
-     * @return DataList
+     * @return ManyManyList|BlogPost[]
      */
     public function BlogPosts()
     {
@@ -29,6 +30,22 @@ trait BlogObject
         $this->extend('updateGetBlogPosts', $blogPosts);
 
         return $blogPosts;
+    }
+
+    /**
+     * Get blog this tag was queried from
+     *
+     * @return Blog|null
+     */
+    public function Blog()
+    {
+        $blogID = $this->getBlogID();
+        if ($blogID) {
+            /** @var Blog $blog */
+            $blog = Blog::get()->byID($blogID);
+            return $blog;
+        }
+        return null;
     }
 
     /**
@@ -51,6 +68,24 @@ trait BlogObject
     }
 
     /**
+     * Number of times this object has blog posts in the current blog
+     *
+     * @return int
+     */
+    public function getBlogCount()
+    {
+        $blog = $this->Blog();
+        if (!$blog) {
+            return 0;
+        }
+
+        return $this
+            ->BlogPosts()
+            ->filter(['ParentID' => $blog->ID])
+            ->Count();
+    }
+
+    /**
      * {@inheritdoc}
      * @return ValidationResult
      */
@@ -62,11 +97,6 @@ trait BlogObject
             return $validation;
         }
 
-        $blog = $this->Blog();
-        if (!$blog || !$blog->exists()) {
-            return $validation;
-        }
-
         if ($this->getDuplicatesByField('Title')->count() > 0) {
             $validation->addError($this->getDuplicateError(), self::DUPLICATE_EXCEPTION);
         }
@@ -75,14 +105,18 @@ trait BlogObject
     }
 
     /**
-     * Returns a relative link to this category.
+     * Returns a relative link to this category or tag
      *
      * @return string
      */
     public function getLink()
     {
+        $blog = $this->Blog();
+        if (!$blog) {
+            return null;
+        }
         return Controller::join_links(
-            $this->Blog()->Link(),
+            $blog->Link(),
             $this->getListUrlSegment(),
             $this->URLSegment
         );
@@ -103,7 +137,8 @@ trait BlogObject
             return $extended;
         }
 
-        return $this->Blog()->canView($member);
+        $blog = $this->Blog();
+        return $blog && $blog->canView($member);
     }
 
     /**
@@ -137,7 +172,8 @@ trait BlogObject
             return $extended;
         }
 
-        return $this->Blog()->canDelete($member);
+        $blog = $this->Blog();
+        return $blog && $blog->canDelete($member);
     }
 
     /**
@@ -155,17 +191,36 @@ trait BlogObject
             return $extended;
         }
 
-        return $this->Blog()->canEdit($member);
+        $blog = $this->Blog();
+        return $blog && $blog->canEdit($member);
     }
 
     /**
-     * {@inheritdoc}
+     * @return mixed
      */
+    public function getBlogID()
+    {
+        return $this->getSourceQueryParam('BlogID');
+    }
+
+    /**
+     * Set a blog ID for this record
+     *
+     * @param int $id
+     * @return $this
+     */
+    public function setBlogID($id)
+    {
+        $this->setSourceQueryParam('BlogID', $id);
+        return $this;
+    }
+
     protected function onBeforeWrite()
     {
         parent::onBeforeWrite();
+
         if ($this->exists() || empty($this->URLSegment)) {
-            return $this->generateURLSegment();
+            $this->generateURLSegment();
         }
     }
 
@@ -178,7 +233,7 @@ trait BlogObject
      */
     public function generateURLSegment($increment = 0)
     {
-        $increment = (int) $increment;
+        $increment = (int)$increment;
         $filter = URLSegmentFilter::create();
 
         // Setting this to on. Because of the UI flow, it would be quite a lot of work
@@ -209,12 +264,7 @@ trait BlogObject
     protected function getDuplicatesByField($field)
     {
         $duplicates = DataList::create(self::class)
-            ->filter(
-                [
-                    $field   => $this->$field,
-                    'BlogID' => (int) $this->BlogID
-                ]
-            );
+            ->filter([$field => $this->$field]);
 
         if ($this->ID) {
             $duplicates = $duplicates->exclude('ID', $this->ID);

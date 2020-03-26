@@ -313,14 +313,6 @@ class BlogPost extends Page
             }
 
             // Get categories and tags
-            $parent = $this->Parent();
-            $categories = $parent instanceof Blog
-                ? $parent->Categories()
-                : BlogCategory::get();
-            $tags = $parent instanceof Blog
-                ? $parent->Tags()
-                : BlogTag::get();
-
             // @todo: Reimplement the sidebar
             // $options = BlogAdminSidebar::create(
             $fields->addFieldsToTab(
@@ -330,7 +322,7 @@ class BlogPost extends Page
                     TagField::create(
                         'Categories',
                         _t(__CLASS__ . '.Categories', 'Categories'),
-                        $categories,
+                        BlogCategory::get(),
                         $this->Categories()
                     )
                         ->setCanCreate($this->canCreateCategories())
@@ -338,7 +330,7 @@ class BlogPost extends Page
                     TagField::create(
                         'Tags',
                         _t(__CLASS__ . '.Tags', 'Tags'),
-                        $tags,
+                        BlogTag::get(),
                         $this->Tags()
                     )
                         ->setCanCreate($this->canCreateTags())
@@ -495,32 +487,6 @@ class BlogPost extends Page
         if (!$publishDate->getValue()) {
             $this->PublishDate = DBDatetime::now()->getValue();
             $this->write();
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * Sets blog relationship on all categories and tags assigned to this post.
-     */
-    public function onAfterWrite()
-    {
-        parent::onAfterWrite();
-
-        foreach ($this->Categories() as $category) {
-            /**
-             * @var BlogCategory $category
-             */
-            $category->BlogID = $this->ParentID;
-            $category->write();
-        }
-
-        foreach ($this->Tags() as $tag) {
-            /**
-             * @var BlogTag $tag
-             */
-            $tag->BlogID = $this->ParentID;
-            $tag->write();
         }
     }
 
@@ -815,5 +781,17 @@ class BlogPost extends Page
         if (!$this->exists() && ($member = Security::getCurrentUser())) {
             $this->Authors()->add($member);
         }
+    }
+
+    /**
+     * So that tags / categories queried through this post generate the correct Link()
+     *
+     * @return array
+     */
+    public function getInheritableQueryParams()
+    {
+        $params = parent::getInheritableQueryParams();
+        $params['BlogID'] = $this->ParentID;
+        return $params;
     }
 }

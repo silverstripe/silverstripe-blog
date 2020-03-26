@@ -3,11 +3,10 @@
 namespace SilverStripe\Blog\Widgets;
 
 use SilverStripe\Blog\Model\Blog;
-use SilverStripe\Core\Convert;
+use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\ORM\ArrayList;
-use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\DB;
+use SilverStripe\View\ArrayData;
 use SilverStripe\Widgets\Model\Widget;
 
 if (!class_exists(Widget::class)) {
@@ -73,53 +72,42 @@ class BlogTagsCloudWidget extends Widget
     }
 
     /**
-     * @return array
+     * @return ArrayList
      */
     public function getTags()
     {
-        if ($blog = $this->Blog()) {
-            $escapedID = Convert::raw2sql($blog->ID);
-            $sql = 'SELECT DISTINCT "BlogTag"."URLSegment","BlogTag"."Title",Count("BlogTagID") AS "TagCount"
-				    from "BlogPost_Tags"
-				    INNER JOIN "BlogPost"
-				    ON "BlogPost"."ID" = "BlogPost_Tags"."BlogPostID"
-				    INNER JOIN "BlogTag"
-				    ON "BlogTag"."ID" = "BlogPost_Tags"."BlogTagID"
-				    WHERE "BlogID" = ' . $escapedID
-                . ' GROUP By  "BlogTag"."URLSegment","BlogTag"."Title"
-				    ORDER BY "Title"';
-
-            $records = DB::query($sql);
-            $bloglink = $blog->Link();
-            $maxTagCount = 0;
-
-            // create DataObjects that can be used to render the tag cloud
-            $tags = ArrayList::create();
-            foreach ($records as $record) {
-                $tag = DataObject::create();
-                $tag->TagName = $record['Title'];
-                $link = $bloglink.'tag/'.$record['URLSegment'];
-                $tag->Link = $link;
-                if ($record['TagCount'] > $maxTagCount) {
-                    $maxTagCount = $record['TagCount'];
-                }
-                $tag->TagCount = $record['TagCount'];
-                $tags->push($tag);
-            }
-
-            // normalize the tag counts from 1 to 10
-            if ($maxTagCount) {
-                $tagfactor = 10 / $maxTagCount;
-                foreach ($tags->getIterator() as $tag) {
-                    $normalized = round($tagfactor * ($tag->TagCount));
-                    $tag->NormalizedTag = $normalized;
-                }
-            }
-
-
-            return $tags;
+        // Check blog exists
+        $blog = $this->Blog();
+        if (!$blog) {
+            return ArrayList::create([]);
         }
 
-        return [];
+        // create ArrayData that can be used to render the tag cloud
+        $maxTagCount = 0;
+        $tags = ArrayList::create();
+        /** @var BlogTag $record */
+        foreach ($blog->Tags() as $record) {
+            // Remember max count found
+            $count = $record->getBlogCount();
+            $maxTagCount = $maxTagCount > $count ? $maxTagCount : $count;
+
+            // Save
+            $tags->push(ArrayData::create([
+                'TagName'  => $record->Title,
+                'Link'     => $record->getLink(),
+                'TagCount' => $count,
+            ]));
+        }
+
+        // normalize the tag counts from 1 to 10
+        if ($maxTagCount) {
+            $tagfactor = 10 / $maxTagCount;
+            foreach ($tags->getIterator() as $tag) {
+                $normalized = round($tagfactor * ($tag->TagCount));
+                $tag->NormalizedTag = $normalized;
+            }
+        }
+
+        return $tags;
     }
 }
