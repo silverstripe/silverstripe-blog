@@ -564,8 +564,8 @@ class BlogPost extends Page
     {
         $member = $this->getMember($member);
 
-        if (parent::canEdit($member)) {
-            return true;
+        if (!parent::canEdit($member)) {
+            return false;
         }
 
         $parent = $this->Parent();
