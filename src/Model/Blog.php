@@ -630,7 +630,7 @@ class Blog extends Page implements PermissionProvider
      */
     public function ProfileLink($urlSegment)
     {
-        return Controller::join_links($this->Link('Profile'), $urlSegment);
+        return Controller::join_links($this->Link('profile'), $urlSegment);
     }
 
     /**
