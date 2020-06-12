@@ -7,3 +7,8 @@ SilverStripe\ORM\DatabaseAdmin:
     BlogCategory: SilverStripe\Blog\Model\BlogCategory
     BlogPost: SilverStripe\Blog\Model\BlogPost
     BlogTag: SilverStripe\Blog\Model\BlogTag
+    BlogArchiveWidget: SilverStripe\Blog\Widgets\BlogArchiveWidget
+    BlogCategoriesWidget: SilverStripe\Blog\Widgets\BlogCategoriesWidget
+    BlogRecentPostsWidget: SilverStripe\Blog\Widgets\BlogRecentPostsWidget
+    BlogTagsCloudWidget: SilverStripe\Blog\Widgets\BlogTagsCloudWidget
+    BlogTagsWidget: SilverStripe\Blog\Widgets\BlogTagsWidget
