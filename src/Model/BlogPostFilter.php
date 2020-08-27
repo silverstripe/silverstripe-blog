@@ -57,9 +57,10 @@ class BlogPostFilter extends DataExtension
      */
     public function augmentLoadLazyFields(SQLSelect &$query, DataQuery &$dataQuery = null, $dataObject)
     {
+        $blogPostTable = DataObject::getSchema()->tableName(BlogPost::class);
         $dataQuery->innerJoin(
-            DataObject::getSchema()->tableName(BlogPost::class),
-            '"SiteTree"."ID" = "BlogPost"."ID"'
+            $blogPostTable,
+            '"SiteTree"."ID" = "' . $blogPostTable . '"."ID"'
         );
     }
 }
