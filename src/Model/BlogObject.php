@@ -20,11 +20,12 @@ use SilverStripe\View\Parsers\URLSegmentFilter;
 trait BlogObject
 {
     /**
+     * @param int|array|null $id Optional ID(s) for parent of this relation, if not the current record
      * @return DataList
      */
-    public function BlogPosts()
+    public function BlogPosts($id = null)
     {
-        $blogPosts = parent::BlogPosts();
+        $blogPosts = parent::BlogPosts($id);
 
         $this->extend('updateGetBlogPosts', $blogPosts);
 
