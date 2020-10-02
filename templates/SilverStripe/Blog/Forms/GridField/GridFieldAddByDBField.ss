@@ -1,5 +1,13 @@
 <div class="add-existing-autocompleter">
-	<% loop $Fields %>
-	<span>$Field</span>
-	<% end_loop %>
+    <div class="input-group">
+        <% loop $Fields %>
+            <% if $Type == 'action' %>
+                <div class="input-group-append">
+                    $Field
+                </div>
+            <% else %>
+                $Field
+            <% end_if %>
+        <% end_loop %>
+	</div>
 </div>
