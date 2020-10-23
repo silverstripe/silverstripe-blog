@@ -528,14 +528,14 @@ class BlogPost extends Page
     {
         $member = $this->getMember($member);
 
-        if (Permission::checkMember($member, 'ADMIN')) {
-            return true;
-        }
-
         $extended = $this->extendedCan('canPublish', $member);
 
         if ($extended !== null) {
             return $extended;
+        }
+        
+        if (Permission::checkMember($member, 'ADMIN')) {
+            return true;
         }
 
         $parent = $this->Parent();
