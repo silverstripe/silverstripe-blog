@@ -35,10 +35,11 @@ class BlogFilter extends Lumberjack
                 $stage = '_' . $stage;
             }
 
+            $blogPostTable = DataObject::getSchema()->tableName(BlogPost::class);
             $dataQuery = $staged->dataQuery()
                 ->innerJoin(
-                    DataObject::getSchema()->tableName(BlogPost::class),
-                    sprintf('"BlogPost%s"."ID" = "SiteTree%s"."ID"', $stage, $stage)
+                    $blogPostTable,
+                    sprintf('"' . $blogPostTable . '%s"."ID" = "SiteTree%s"."ID"', $stage, $stage)
                 )
                 ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(DBDatetime::now())));
 
@@ -64,10 +65,11 @@ class BlogFilter extends Lumberjack
         $staged = parent::liveChildren($showAll, $onlyDeletedFromStage);
 
         if (!$this->shouldFilter() && $this->isBlog() && !Permission::check('VIEW_DRAFT_CONTENT')) {
+            $blogPostTable = DataObject::getSchema()->tableName(BlogPost::class);
             $dataQuery = $staged->dataQuery()
                 ->innerJoin(
-                    DataObject::getSchema()->tableName(BlogPost::class),
-                    '"BlogPost_Live"."ID" = "SiteTree_Live"."ID"'
+                    $blogPostTable,
+                    '"' . $blogPostTable . '_Live"."ID" = "SiteTree_Live"."ID"'
                 )
                 ->where(sprintf('"PublishDate" < \'%s\'', Convert::raw2sql(DBDatetime::now())));
 
