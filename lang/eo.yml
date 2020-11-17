@@ -7,6 +7,7 @@ eo:
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Aldoni {name}'
     AddFail: '{klaso} ne estas konservebla al la datumbazo.'
+    ButtonName: '{name}'
     PermissionFail: 'Vi ne havas permeson krei je {klaso}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Konservita kiel malneto je {dato}'
@@ -44,12 +45,16 @@ eo:
       other: '{count} blogoj'
     Posted: Afiŝita
     PostedIn: 'Afiŝita en'
+    PostsByUser: 'Afiŝoj laŭ {firstname} {surname} por {title}'
     PostsPerPage: 'Afiŝoj en ĉiu paĝo'
     ReadMoreAbout: 'Legi plu pri ''{title}''...'
     SINGULARNAME: Blogo
     Tag: Etikedo
     Tagged: 'Havas etikedon'
     Tags: Etikedoj
+    UsersContributorsFieldDescription: "Kontribuantoj rajtas krei aŭ redakti BlogAfiŝojn, sed ne publikigi sen \npermeso de redaktanto, Ankaŭ ili ne rajtas asigni aliajn kontribuantajn aŭtorojn al iu el \n                         siaj BlogAfiŝoj.<br />\n                        <br />\n                        Kontribuantoj rajtas:<br />\n                        <br />\n                        Ĝisdatigi iun BlogAfiŝon kiun ili aŭtoris aŭ al kiu li/ŝi estas asignita."
+    UsersEditorsFieldDescription: "Redaktanto regas specifajn BlogAfiŝojn, kaj ĉiujn afiŝojn en ĉiu.\n                     Malpli ol asigni aliajn redaktantojn al blogo, ili rajtas trakti plejmultajn ŝanĝojn al\n                    sia asignita blogo. <br /><br />\n                    Redaktantoj havas ĉi tiujn permesojn:<br />\n                    <br />\n                    Ĝisdatigi aŭ publikigi ajnan BlogAfiŝon en sia Blogo<br />\n                    Ĝisdatigi aŭ publikigi sian Blogon<br />\n                    Asigni/malasigni verkantojn al sia Blogo<br />\n                    Asigni/malasigni kontribuantojn al sia Blogo<br />\n                    Asigni/malasigni ajnan membron aŭtoro de specifa BlogAfiŝo"
+    UsersWritersFieldDescription: "Verkanto tute regas krei, redakti kaj publikigi BlogAfiŝojn kiujn ili verkis\n                      aŭ al kiuj ili estas asignitaj. Verkantoj ne rajtas redakti  BlogAfiŝon al kiu ili ne estas asignitaj.\n                    <br /><br />\n                    Verkantoj havas la jenajn permesojn:<br />\n                    <br />\n                    Ĝisdatigi aŭ publikigi ajnan BlogAfiŝon kiun ili verkis, aŭ al kiu ili estas asignitaj<br />\n                    Asigni/malasigni ajnan membron aŭtoro de specifa BlogAfiŝo kiun ili verkis aŭ al kiu ili estas asignita."
     WRITER: Verkanto
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Bloga kategorio jam ekzistas kun tiu nomo'
@@ -80,6 +85,8 @@ eo:
     SINGULARNAME: Blogaĵo
     SUMMARY_DESCRIPTION: 'Se resumo ne estas agordita, la unuaj 30 vortoj uziĝos.'
     Tags: Etikedoj
+  SilverStripe\Blog\Model\BlogPostFeaturedExtension:
+    FEATURED: 'Inkludi afiŝon en elstara fenestraĵo'
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Blogaj etikedoj jam ekzistas kun tiu nomo'
     PLURALNAME: 'Blogaj etikedoj'
@@ -109,6 +116,14 @@ eo:
     SINGULARNAME: 'Fenestraĵo por blogaj kategorioj'
     Sort: Ordigi
     Sort_Description: 'Ŝanĝi la ordon de kategorioj vidigotaj de tiu fenestraĵo.'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blogo
+    NumberOfPosts: 'Nombro da afiŝoj'
+    PLURALNAME: 'Fenestraĵoj de lastatempaj blogaĵoj'
+    PLURALS:
+      one: 'Unu fenestraĵo de lastatempa blogaĵo'
+      other: '{count} fenestraĵoj de lastatempaj blogaĵoj'
+    SINGULARNAME: 'Fenestraĵo de lastatempa blogaĵo'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Nombro da afiŝoj'
