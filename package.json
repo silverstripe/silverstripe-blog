@@ -10,7 +10,8 @@
     "lint": "yarn lint-js && yarn lint-sass",
     "lint-js": "eslint client/src",
     "lint-js-fix": "eslint client/src --fix",
-    "lint-sass": "sass-lint client/src"
+    "lint-sass": "sass-lint client/src",
+    "test": "true"
   },
   "repository": {
     "type": "git",
