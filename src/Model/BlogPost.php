@@ -38,6 +38,7 @@ use SilverStripe\View\Requirements;
  *
  * @property string $PublishDate
  * @property string $AuthorNames
+ * @property string $Summary
  * @property int $ParentID
  */
 class BlogPost extends Page
