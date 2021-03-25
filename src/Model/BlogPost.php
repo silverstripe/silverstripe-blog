@@ -105,7 +105,6 @@ class BlogPost extends Page
     private static $defaults = [
         'ShowInMenus'     => false,
         'InheritSideBar'  => true,
-        'ProvideComments' => true
     ];
 
     /**
