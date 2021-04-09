@@ -35,10 +35,13 @@ use SilverStripe\View\Requirements;
  * @method ManyManyList Tags()
  * @method ManyManyList Authors()
  * @method Blog Parent()
+ * @method Blog FeaturedImage()
  *
  * @property string $PublishDate
  * @property string $AuthorNames
+ * @property string $Summary
  * @property int $ParentID
+ * @property int $FeaturedImageID
  */
 class BlogPost extends Page
 {
