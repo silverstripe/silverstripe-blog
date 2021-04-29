@@ -1,0 +1,8 @@
+---
+Name: blogindexes
+---
+SilverStripe\CMS\Model\SiteTree:
+  indexes:
+    SiteTreeClassNameParentID:
+      - ClassName
+      - ParentID
