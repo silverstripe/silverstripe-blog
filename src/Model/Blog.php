@@ -120,6 +120,8 @@ class Blog extends Page implements PermissionProvider
     ];
 
     /**
+     * The ProvideComments db column is defined in the silverstripe/comments module
+     *
      * @var array
      */
     private static $defaults = [
