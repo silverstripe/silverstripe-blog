@@ -312,6 +312,11 @@ class BlogPost extends Page
                 );
             }
 
+            $shouldLazyLoadCategories = true;
+            if($this->Categories()->count() < 15) {
+                $shouldLazyLoadCategories = false;
+            }
+
             // Get categories and tags
             // @todo: Reimplement the sidebar
             // $options = BlogAdminSidebar::create(
@@ -326,7 +331,7 @@ class BlogPost extends Page
                         $this->Categories()
                     )
                         ->setCanCreate($this->canCreateCategories())
-                        ->setShouldLazyLoad(true),
+                        ->setShouldLazyLoad($shouldLazyLoadCategories),
                     TagField::create(
                         'Tags',
                         _t(__CLASS__ . '.Tags', 'Tags'),
