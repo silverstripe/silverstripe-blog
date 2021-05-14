@@ -8,7 +8,7 @@ title: Using widgets
 
 ![](_images/widgets.png)
 
-To add a widget - simply click the *plus* icon and the widget will be appear in the "Widgets currently used" column.
+To add a widget - simply click the *plus* icon and the widget will appear in the "Widgets currently used" column.
 
 After you've finished adding widgets, publish your blog, and your freshly minted widgets will appear in your blog's sidebar.
 
