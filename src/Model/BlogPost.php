@@ -493,6 +493,10 @@ class BlogPost extends Page
      */
     public function onBeforePublish()
     {
+        if (method_exists(get_parent_class($this), 'onBeforePublish')) {
+            parent::onBeforePublish();
+        }
+        
         /**
          * @var DBDatetime $publishDate
          */
