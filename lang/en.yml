@@ -39,10 +39,10 @@ en:
     PERMISSIONS_CATEGORY: 'Blog permissions'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Manage users for individual blogs'
     PERMISSION_MANAGE_USERS_HELP: 'Allow assignment of Editors, Writers, or Contributors to blogs'
-    PLURALNAME: Blogs
+    PLURALNAME: 'Base Pages'
     PLURALS:
       one: 'A Blog'
-      other: '{count} Blogs'
+      other: '{count} Base Pages'
     Posted: Posted
     PostedIn: 'Posted in'
     PostsByUser: 'Posts by {firstname} {surname} for {title}'
@@ -74,10 +74,10 @@ en:
     CUSTOMSUMMARY: 'Add A Custom Summary'
     Categories: Categories
     FeaturedImage: 'Featured Image'
-    PLURALNAME: 'Blog Posts'
+    PLURALNAME: 'Base Pages'
     PLURALS:
       one: 'A Blog Post'
-      other: '{count} Blog Posts'
+      other: '{count} Base Pages'
     PageTitleLabel: 'Post Title'
     PostOptions: 'Post Options'
     PublishDate: 'Publish Date'
