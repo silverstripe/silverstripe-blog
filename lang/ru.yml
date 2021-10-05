@@ -25,7 +25,6 @@ ru:
     NoPosts: 'В блоге нет записей'
     PERMISSIONS_CATEGORY: 'Права доступа к содержимому блога'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Управление пользователями для индивидуальных блогов'
-    PLURALNAME: 'Базовые страницы'
     Posted: Отправлено
     PostedIn: Отправлено
     PostsPerPage: 'Записей на странице'
@@ -39,7 +38,6 @@ ru:
     AUTHOR: Автор
     AdditionalCredits: 'Дополнительные сведения'
     Authors: Авторы
-    PLURALNAME: 'Базовые страницы'
     SINGULARNAME: 'Запись в блоге'
     Tags: Метки
   SilverStripe\Blog\Widgets\BlogArchiveWidget:

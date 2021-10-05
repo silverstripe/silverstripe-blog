@@ -39,10 +39,6 @@ eo:
     PERMISSIONS_CATEGORY: 'Blogaj permesoj'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administri uzantojn por specifaj blogaĵoj'
     PERMISSION_MANAGE_USERS_HELP: 'Permesi agordi redaktantojn, verkantojn, aŭ kontribuantojn al blogoj'
-    PLURALNAME: 'Bazaj paĝoj'
-    PLURALS:
-      one: 'Unu blogo'
-      other: '{count} blogoj'
     Posted: Afiŝita
     PostedIn: 'Afiŝita en'
     PostsByUser: 'Afiŝoj laŭ {firstname} {surname} por {title}'
@@ -74,10 +70,6 @@ eo:
     CUSTOMSUMMARY: 'Aldoni propran resumon'
     Categories: Kategorioj
     FeaturedImage: 'Prezentita bildo'
-    PLURALNAME: 'Bazaj paĝoj'
-    PLURALS:
-      one: 'Unu bloga afiŝo'
-      other: '{count} blogaj afiŝoj'
     PageTitleLabel: 'Titolo de afiŝo'
     PostOptions: 'Afiŝaj agordoj'
     PublishDate: 'Dato de publikigo'

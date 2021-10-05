@@ -26,7 +26,6 @@ fr:
     PERMISSIONS_CATEGORY: 'Permissions du blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gérer les utilisateurs pour un blog'
     PERMISSION_MANAGE_USERS_HELP: 'Autoriser l''assignation d''éditeurs, auteurs ou contributeurs au blog'
-    PLURALNAME: Blogs
     Posted: Publié
     PostedIn: 'Publié dans'
     PostsPerPage: 'Billets par page'
@@ -45,7 +44,6 @@ fr:
     Authors: Auteurs
     CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
     Categories: Catégories
-    PLURALNAME: Billets
     PageTitleLabel: 'Titre du billet'
     PublishDate: 'Date de publication'
     PublishDate_Description: 'Sera mis à "maintenant" si publié sans valeur.'

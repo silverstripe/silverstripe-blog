@@ -29,7 +29,6 @@ sv:
     PERMISSIONS_CATEGORY: 'Blogg rättigheter'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hantera användare för enskilda bloggar'
     PERMISSION_MANAGE_USERS_HELP: 'Tillåt tilldelning av redaktörer , författare , eller bidragsgivare till bloggar'
-    PLURALNAME: 'Bas sidor'
     Posted: Postat
     PostedIn: 'Postat den'
     PostsPerPage: 'Blogginlägg per sida'
@@ -54,7 +53,6 @@ sv:
     CUSTOMSUMMARY: 'Lägg till en anpassad sammanfattning'
     Categories: Kategorier
     FeaturedImage: 'Utvald bild'
-    PLURALNAME: 'Bas sidor'
     PageTitleLabel: Blogginläggstitel
     PublishDate: 'Publicerat datum'
     PublishDate_Description: 'Kommer att sättas till "nu" om publiceras utan ett värde .'

@@ -21,7 +21,6 @@ fa_IR:
     PERMISSIONS_CATEGORY: 'دسترسی‌های وبلاگ'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'مدیریت کاربران برای بلاگ‌های انفرادی'
     PERMISSION_MANAGE_USERS_HELP: 'تعیین اجازه‌ی دسترسی ویرایش‌گران، نویسندگان یا مشارکت‌کنندگان به وبلاگ'
-    PLURALNAME: 'صفحات پایه‌ای'
     Posted: 'ارسال شده'
     PostedIn: 'ارسال شده در'
     PostsPerPage: 'تعداد ارسال در صفحه'
@@ -40,7 +39,6 @@ fa_IR:
     Authors: نگارندگان
     CUSTOMSUMMARY: 'افزودن یک خلاصه دلخواه'
     Categories: مجموعه‌ها
-    PLURALNAME: 'صفحات پایه‌ای'
     PageTitleLabel: 'عنوان ارسال'
     PublishDate: 'تاریخ انتشار'
     PublishDate_Description: 'اگر بدون داده‌ای منتشر شود به "اکنون" تنظیم خواهد شد.'

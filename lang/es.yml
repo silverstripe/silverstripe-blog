@@ -38,10 +38,6 @@ es:
     PERMISSIONS_CATEGORY: 'Permisos del blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administrar usuarios para blogs individuales'
     PERMISSION_MANAGE_USERS_HELP: 'Permitir  de asignación de Editores, Escritores o Contribuidores a los blogs'
-    PLURALNAME: Blogs
-    PLURALS:
-      one: 'Un blog'
-      other: '{count} Blogs'
     Posted: Publicado
     PostedIn: 'Publicado en'
     PostsPerPage: 'Artículos por página'
@@ -69,10 +65,6 @@ es:
     CUSTOMSUMMARY: 'Agregar un resumen personalizado'
     Categories: Categorías
     FeaturedImage: 'Imagen Destacada'
-    PLURALNAME: 'Artículos del blog'
-    PLURALS:
-      one: 'Un artículo del blog'
-      other: '{count} Artículos del blog'
     PageTitleLabel: 'Título del artículo'
     PostOptions: 'Opciones del artículo'
     PublishDate: 'Fecha de publicación'

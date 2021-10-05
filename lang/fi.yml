@@ -38,10 +38,6 @@ fi:
     PERMISSIONS_CATEGORY: 'Blogin oikeudet'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hallinnoi käyttäjiä yksittäisissä blogeissa'
     PERMISSION_MANAGE_USERS_HELP: 'Salli toimittajien, kirjoittajien tai avustajien kiinnittäminen blogeihin'
-    PLURALNAME: Pohjasivut
-    PLURALS:
-      one: Blogi
-      other: '{count} blogia'
     Posted: Kirjoitettu
     PostedIn: 'Kirjoitettu:'
     PostsByUser: 'Postaukset kirjoittajalta {firstname} {surname} otsikolla {title}'
@@ -70,10 +66,6 @@ fi:
     CUSTOMSUMMARY: 'Lisää tiivistelmä'
     Categories: Kategoriat
     FeaturedImage: Kuvanosto
-    PLURALNAME: Pohjasivut
-    PLURALS:
-      one: Blogipostaus
-      other: '{count} Blogipostausta'
     PageTitleLabel: Otsikko
     PostOptions: 'Artikkelin asetukset'
     PublishDate: Julkaisupäivä
