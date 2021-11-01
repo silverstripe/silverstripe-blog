@@ -2,7 +2,7 @@
 
 namespace SilverStripe\Blog\Tests;
 
-use PHPUnit_Framework_TestCase;
+use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Blog\Model\Blog;
 use SilverStripe\Blog\Model\BlogController;
 use SilverStripe\Blog\Model\BlogPost;
@@ -17,14 +17,11 @@ use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\SS_List;
 use SilverStripe\Security\Member;
 
-/**
- * @mixin PHPUnit_Framework_TestCase
- */
 class BlogTest extends SapphireTest
 {
     protected static $fixture_file = 'blog.yml';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -37,7 +34,7 @@ class BlogTest extends SapphireTest
         $blog->publishRecursive();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         DBDatetime::clear_mock_now();
 
@@ -327,12 +324,10 @@ class BlogTest extends SapphireTest
         );
     }
 
-    /**
-     * @expectedException \SilverStripe\Control\HTTPResponse_Exception
-     * @expectedExceptionCode 404
-     */
     public function testDisabledProfiles()
     {
+        $this->expectException(HTTPResponse_Exception::class);
+        $this->expectExceptionCode(404);
         Config::modify()->set(BlogController::class, 'disable_profiles', true);
 
         $controller = BlogController::create();

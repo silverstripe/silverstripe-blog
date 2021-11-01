@@ -15,7 +15,7 @@ class BlogArchiveWidgetTest extends SapphireTest
 {
     protected static $fixture_file = 'BlogArchiveWidgetTest.yml';
 
-    protected function setUp()
+    protected function setUp(): void
     {
         if (!class_exists(Widget::class)) {
             self::$fixture_file = null;
@@ -28,7 +28,7 @@ class BlogArchiveWidgetTest extends SapphireTest
         parent::setUp();
     }
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
 

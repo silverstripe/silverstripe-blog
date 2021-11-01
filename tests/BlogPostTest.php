@@ -13,7 +13,7 @@ class BlogPostTest extends SapphireTest
 {
     protected static $fixture_file = 'blog.yml';
 
-    protected function tearDown()
+    protected function tearDown(): void
     {
         DBDatetime::clear_mock_now();
         parent::tearDown();
@@ -159,7 +159,7 @@ class BlogPostTest extends SapphireTest
         $blogPost = $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
 
         $archiveLink = $blogPost->getMonthlyArchiveLink($type);
-        $this->assertContains('archive/', $archiveLink);
+        $this->assertStringContainsString('archive/', $archiveLink);
         $this->assertStringEndsWith($expected, $archiveLink);
     }
 
@@ -181,7 +181,7 @@ class BlogPostTest extends SapphireTest
         $blogPost = $this->objFromFixture(BlogPost::class, 'FirstBlogPost');
 
         $archiveLink = $blogPost->getYearlyArchiveLink();
-        $this->assertContains('archive/', $archiveLink);
+        $this->assertStringContainsString('archive/', $archiveLink);
         $this->assertStringEndsWith('/2013', $archiveLink);
     }
 }

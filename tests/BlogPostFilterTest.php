@@ -8,7 +8,6 @@ use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Security\Security;
 
 /**
- * @mixin PHPUnit_Framework_TestCase
  * @coversDefaultClass \SilverStripe\Blog\Model\BlogPostFilter
  */
 class BlogPostFilterTest extends SapphireTest
@@ -18,14 +17,14 @@ class BlogPostFilterTest extends SapphireTest
      */
     protected static $fixture_file = 'blog.yml';
 
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
         DBDatetime::set_mock_now('2013-10-10 20:00:00');
     }
 
-    public function tearDown()
+    protected function tearDown(): void
     {
         DBDatetime::clear_mock_now();
 
