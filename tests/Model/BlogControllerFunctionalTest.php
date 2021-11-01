@@ -13,7 +13,7 @@ class BlogControllerFunctionalTest extends FunctionalTest
 
     protected static $use_draft_site = true;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         Config::modify()->set(URLSegmentFilter::class, 'default_allow_multibyte', true);
         i18n::set_locale('fa_IR');
@@ -26,7 +26,7 @@ class BlogControllerFunctionalTest extends FunctionalTest
         $result = $this->get('my-blog/category/' . rawurlencode('آبید'));
 
         $this->assertEquals(200, $result->getStatusCode());
-        $this->assertContains('آبید', $result->getBody());
+        $this->assertStringContainsString('آبید', $result->getBody());
     }
 
     public function testGetTagsWithMultibyteUrl()
@@ -34,6 +34,6 @@ class BlogControllerFunctionalTest extends FunctionalTest
         $result = $this->get('my-blog/tag/' . rawurlencode('برتراند'));
 
         $this->assertEquals(200, $result->getStatusCode());
-        $this->assertContains('برتراند', $result->getBody());
+        $this->assertStringContainsString('برتراند', $result->getBody());
     }
 }

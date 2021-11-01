@@ -8,6 +8,7 @@
     ],
     "type": "silverstripe-vendormodule",
     "require": {
+        "php": "^7.3 || ^8.0",
         "silverstripe/cms": "^4.0",
         "silverstripe/lumberjack": "^2.0",
         "silverstripe/tagfield": "^2.0",
@@ -15,7 +16,7 @@
         "silverstripe/asset-admin": "^1.0"
     },
     "require-dev": {
-        "sminnee/phpunit": "^5.7",
+        "phpunit/phpunit": "^9.5",
         "squizlabs/php_codesniffer": "^3.0"
     },
     "extra": {

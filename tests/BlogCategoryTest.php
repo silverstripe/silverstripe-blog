@@ -13,9 +13,6 @@ use SilverStripe\ORM\ValidationException;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Security;
 
-/**
- * @mixin PHPUnit_Framework_TestCase
- */
 class BlogCategoryTest extends FunctionalTest
 {
     /**
@@ -26,7 +23,7 @@ class BlogCategoryTest extends FunctionalTest
     /**
      * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -36,7 +33,7 @@ class BlogCategoryTest extends FunctionalTest
     /**
      * {@inheritdoc}
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         DBDatetime::clear_mock_now();
 

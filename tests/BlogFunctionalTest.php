@@ -13,7 +13,7 @@ class BlogFunctionalTest extends FunctionalTest
 
     protected static $use_draft_site = true;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         Config::modify()->set(URLSegmentFilter::class, 'default_allow_multibyte', true);
         i18n::set_locale('fa_IR');
@@ -33,7 +33,7 @@ class BlogFunctionalTest extends FunctionalTest
         $result = $this->get(rawurlencode('آبید') . '/profile/' . rawurlencode('عبّاس-آبان'));
 
         $this->assertEquals(200, $result->getStatusCode());
-        $this->assertContains('My Blog Post', $result->getBody());
+        $this->assertStringContainsString('My Blog Post', $result->getBody());
     }
 
     public function testMemberProfileWithMultibyteUrlAndEnglishName()
@@ -41,6 +41,6 @@ class BlogFunctionalTest extends FunctionalTest
         $result = $this->get(rawurlencode('آبید') . '/profile/bob-jones');
 
         $this->assertEquals(200, $result->getStatusCode());
-        $this->assertContains('My Blog Post', $result->getBody());
+        $this->assertStringContainsString('My Blog Post', $result->getBody());
     }
 }
