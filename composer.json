@@ -28,7 +28,8 @@
     "autoload": {
         "psr-4": {
             "SilverStripe\\Blog\\": "src/",
-            "SilverStripe\\Blog\\Tests\\": "tests/"
+            "SilverStripe\\Blog\\Tests\\": "tests/php/",
+            "SilverStripe\\Blog\\Tests\\Behat\\Context\\": "tests/behat/src/"
         }
     },
     "license": "BSD-2-Clause",
