@@ -5,6 +5,4 @@ import:
 
 env:
   global:
-    - COMPOSER_ROOT_VERSION=2.x-dev
-    # Required for behat testing
     - REQUIRE_EXTRA="silverstripe/widgets:^2 silverstripe/comments:^3 silverstripe/content-widget:^2"
