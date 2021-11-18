@@ -39,6 +39,7 @@ Feature: Create a blog
     And I click the "Settings" CMS tab
     And I press the "Save" button
     And I click the "Users" CMS tab
+    And I wait for 3 seconds
     And I select "EDITOR" from "Editors"
     And I press the "Publish" button
 
