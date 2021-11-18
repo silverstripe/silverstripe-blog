@@ -39,10 +39,10 @@ nl:
     PERMISSIONS_CATEGORY: 'Blog rechten'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Beheer gebruikers voor individuele blogs'
     PERMISSION_MANAGE_USERS_HELP: 'Laat toewijzing toe van Redacteurs, Auteurs en Co-auteurs'
-    PLURALNAME: Blogs
+    PLURALNAME: Blog
     PLURALS:
-      one: 'Een Blog'
-      other: '{count} Blogs'
+      one: 'Eén blogpagina'
+      other: '{count} blogpagina''s'
     Posted: Geplaatst
     PostedIn: 'Geplaatst in'
     PostsByUser: 'Berichten van {firstname} {surname} bij {title}'
@@ -74,10 +74,10 @@ nl:
     CUSTOMSUMMARY: 'Voeg een eigen samenvatting toe'
     Categories: Categorieën
     FeaturedImage: 'Prominente Afbeelding'
-    PLURALNAME: 'Blog Artikelen'
+    PLURALNAME: Artikel
     PLURALS:
-      one: 'Een Blog Artikel'
-      other: '{count} Blog Artikelen'
+      one: 'Eén artikel'
+      other: '{count} artikelen'
     PageTitleLabel: 'Artikel Titel'
     PostOptions: 'Artikel opties'
     PublishDate: Publicatiedatum
