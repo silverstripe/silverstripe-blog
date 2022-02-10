@@ -8,7 +8,7 @@
     ],
     "type": "silverstripe-vendormodule",
     "require": {
-        "php": "^7.3 || ^8.0",
+        "php": "^7.4 || ^8.0",
         "silverstripe/cms": "^4.0",
         "silverstripe/lumberjack": "^2.0",
         "silverstripe/tagfield": "^2.0",
