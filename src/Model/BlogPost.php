@@ -179,11 +179,11 @@ class BlogPost extends Page
 
 
     /**
-     * Disable automatic author insertion when post is created
+     * Control whether the current member is added to list of authors when a post is created
      *
      * @var bool
      */
-    private static $add_author = true;
+    private static $add_default_author = true;
 	
 	
     /**
@@ -828,7 +828,7 @@ class BlogPost extends Page
     {
         parent::onBeforeWrite();
 
-        if (!$this->exists() && $this->config()->get('add_author') && ($member = Security::getCurrentUser())) {
+        if (!$this->exists() && $this->config()->get('add_default_author') && ($member = Security::getCurrentUser())) {
             $this->Authors()->add($member);
         }
     }
