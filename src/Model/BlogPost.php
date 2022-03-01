@@ -176,6 +176,16 @@ class BlogPost extends Page
      */
     private static $minutes_to_read_wpm = 200;
 
+
+
+    /**
+     * Disable automatic author insertion when post is created
+     *
+     * @var bool
+     */
+    private static $add_author = true;
+	
+	
     /**
      * Sets the upload directory for featured images to help keep your files organised
      *
@@ -818,7 +828,7 @@ class BlogPost extends Page
     {
         parent::onBeforeWrite();
 
-        if (!$this->exists() && ($member = Security::getCurrentUser())) {
+        if (!$this->exists() && $this->config()->get('add_author') && ($member = Security::getCurrentUser())) {
             $this->Authors()->add($member);
         }
     }
