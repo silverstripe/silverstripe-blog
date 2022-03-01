@@ -179,7 +179,7 @@ class BlogPost extends Page
 
 
     /**
-     * Disable automatic author insertion when post is created
+     * Control whether the current member is added to list of authors when a post is created
      *
      * @var bool
      */
