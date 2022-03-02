@@ -184,8 +184,8 @@ class BlogPost extends Page
      * @var bool
      */
     private static $add_default_author = true;
-	
-	
+
+
     /**
      * Sets the upload directory for featured images to help keep your files organised
      *
