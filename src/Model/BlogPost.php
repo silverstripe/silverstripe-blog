@@ -177,6 +177,13 @@ class BlogPost extends Page
     private static $minutes_to_read_wpm = 200;
 
     /**
+     * Control whether the current member is added to list of authors when a post is created
+     *
+     * @var bool
+     */
+    private static $add_default_author = true;
+
+    /**
      * Sets the upload directory for featured images to help keep your files organised
      *
      * @config
@@ -818,7 +825,7 @@ class BlogPost extends Page
     {
         parent::onBeforeWrite();
 
-        if (!$this->exists() && ($member = Security::getCurrentUser())) {
+        if (!$this->exists() && $this->config()->get('add_default_author') && ($member = Security::getCurrentUser())) {
             $this->Authors()->add($member);
         }
     }
