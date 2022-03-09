@@ -4,9 +4,11 @@ namespace SilverStripe\Blog\Tests;
 
 use SilverStripe\Blog\Model\BlogPost;
 use SilverStripe\Core\Config\Config;
+use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Security\Member;
+use SilverStripe\Security\Security;
 use SilverStripe\Versioned\Versioned;
 
 class BlogPostTest extends SapphireTest
@@ -183,5 +185,24 @@ class BlogPostTest extends SapphireTest
         $archiveLink = $blogPost->getYearlyArchiveLink();
         $this->assertStringContainsString('archive/', $archiveLink);
         $this->assertStringEndsWith('/2013', $archiveLink);
+    }
+
+    public function testAddDefaultAuthor()
+    {
+        $member = Security::getCurrentUser();
+        $rootPage = SiteTree::create();
+        $rootPage->write();
+
+        $blogPost = BlogPost::create(['ParentID' => $rootPage->ID]);
+        $this->assertSame(0, $blogPost->Authors()->count());
+        $blogPost->write();
+        $this->assertSame(1, $blogPost->Authors()->count());
+        $this->assertSame($member->ID, $blogPost->Authors()->first()->ID);
+
+        BlogPost::config()->set('add_default_author', false);
+        $blogPost2 = BlogPost::create(['ParentID' => $rootPage->ID]);
+        $this->assertSame(0, $blogPost2->Authors()->count());
+        $blogPost2->write();
+        $this->assertSame(0, $blogPost2->Authors()->count());
     }
 }
