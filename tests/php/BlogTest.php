@@ -371,6 +371,6 @@ class BlogTest extends SapphireTest
         }
         asort($left);
         asort($right);
-        $this->assertEquals(array_values($left), array_values($right));
+        $this->assertEquals(array_values($left ?? []), array_values($right ?? []));
     }
 }

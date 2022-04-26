@@ -61,7 +61,7 @@ class GridFieldMergeAction implements GridField_ColumnProvider, GridField_Action
      */
     public function augmentColumns($gridField, &$columns)
     {
-        if (!in_array('MergeAction', $columns)) {
+        if (!in_array('MergeAction', $columns ?? [])) {
             $columns[] = 'MergeAction';
         }
 

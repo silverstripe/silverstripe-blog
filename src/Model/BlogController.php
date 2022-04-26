@@ -112,7 +112,7 @@ class BlogController extends PageController
             // url encode unless it's multibyte (already pre-encoded in the database)
             // see https://github.com/silverstripe/silverstripe-cms/pull/2384
             if (!$filter->getAllowMultibyte()) {
-                $urlSegment = rawurlencode($urlSegment);
+                $urlSegment = rawurlencode($urlSegment ?? '');
             }
 
             return Member::get()
@@ -201,9 +201,9 @@ class BlogController extends PageController
     {
         $month = $this->request->param('Month');
 
-        if (preg_match('/^[0-9]{1,2}$/', $month)) {
+        if (preg_match('/^[0-9]{1,2}$/', $month ?? '')) {
             if ($month > 0 && $month < 13) {
-                if (checkdate($month, 01, $this->getArchiveYear())) {
+                if (checkdate($month ?? 0, 01, $this->getArchiveYear() ?? 0)) {
                     return (int) $month;
                 }
             }
@@ -221,8 +221,8 @@ class BlogController extends PageController
     {
         $day = $this->request->param('Day');
 
-        if (preg_match('/^[0-9]{1,2}$/', $day)) {
-            if (checkdate($this->getArchiveMonth(), $day, $this->getArchiveYear())) {
+        if (preg_match('/^[0-9]{1,2}$/', $day ?? '')) {
+            if (checkdate($this->getArchiveMonth() ?? 0, $day ?? 0, $this->getArchiveYear() ?? 0)) {
                 return (int) $day;
             }
         }
@@ -271,7 +271,7 @@ class BlogController extends PageController
             // url encode unless it's multibyte (already pre-encoded in the database)
             // see https://github.com/silverstripe/silverstripe-cms/pull/2384
             if (!$filter->getAllowMultibyte()) {
-                $tag = rawurlencode($tag);
+                $tag = rawurlencode($tag ?? '');
             }
 
             return $dataRecord->Tags()
@@ -321,7 +321,7 @@ class BlogController extends PageController
             // url encode unless it's multibyte (already pre-encoded in the database)
             // see https://github.com/silverstripe/silverstripe-cms/pull/2384
             if (!$filter->getAllowMultibyte()) {
-                $category = rawurlencode($category);
+                $category = rawurlencode($category ?? '');
             }
 
             return $dataRecord->Categories()
@@ -582,6 +582,6 @@ class BlogController extends PageController
     protected function isRSS()
     {
         $rss = $this->request->param('Rss');
-        return (is_string($rss) && strcasecmp($rss, 'rss') == 0);
+        return (is_string($rss) && strcasecmp($rss ?? '', 'rss') == 0);
     }
 }

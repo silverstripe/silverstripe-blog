@@ -58,7 +58,7 @@ class FeatureContext extends SilverStripeContext
         $this->getSession()->evaluateScript(sprintf(
             "jQuery('#%s').entwine('ss').getEditor().setContent('%s')",
             $field->getAttribute('id'),
-            addcslashes($value, "'")
+            addcslashes($value ?? '', "'")
         ));
         $this->getSession()->evaluateScript(sprintf(
             "jQuery('#%s').entwine('ss').getEditor().save()",

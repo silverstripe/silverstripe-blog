@@ -56,7 +56,7 @@ class BlogMemberExtension extends DataExtension
         $this->owner->URLSegment = $this->generateURLSegment();
 
         while (!$this->validURLSegment()) {
-            $this->owner->URLSegment = preg_replace('/-[0-9]+$/', '', $this->owner->URLSegment) . '-' . $count;
+            $this->owner->URLSegment = preg_replace('/-[0-9]+$/', '', $this->owner->URLSegment ?? '') . '-' . $count;
             $count++;
         }
 

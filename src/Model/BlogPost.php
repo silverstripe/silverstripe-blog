@@ -239,7 +239,7 @@ class BlogPost extends Page
         $list = $this->Authors();
 
         if ($list instanceof UnsavedRelationList) {
-            return in_array($member->ID, $list->getIDList());
+            return in_array($member->ID, $list->getIDList() ?? []);
         }
 
         return $list->byID($member->ID) !== null;
@@ -740,7 +740,7 @@ class BlogPost extends Page
     {
         $items = ArrayList::create();
 
-        $authors = array_filter(preg_split('/\s*,\s*/', $this->AuthorNames));
+        $authors = array_filter(preg_split('/\s*,\s*/', $this->AuthorNames ?? '') ?? []);
 
         foreach ($authors as $author) {
             $item = ArrayData::create([
@@ -809,7 +809,7 @@ class BlogPost extends Page
             throw new \InvalidArgumentException(sprintf("Expecting integer but got %s instead", gettype($wpm)));
         }
 
-        $wordCount = str_word_count(strip_tags($this->Content));
+        $wordCount = str_word_count(strip_tags($this->Content ?? ''));
 
         if ($wordCount < $wpm) {
             return 0;

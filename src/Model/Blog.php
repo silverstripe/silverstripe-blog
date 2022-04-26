@@ -263,7 +263,7 @@ class Blog extends Page implements PermissionProvider
         }
 
         if ($relation instanceof UnsavedRelationList) {
-            return in_array($member->ID, $relation->getIDList());
+            return in_array($member->ID, $relation->getIDList() ?? []);
         }
 
         return $relation->byID($member->ID) !== null;

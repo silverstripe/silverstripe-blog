@@ -54,7 +54,7 @@ class BlogFilter extends Lumberjack
      */
     protected function subclassForBlog()
     {
-        return in_array(get_class($this->owner), ClassInfo::subclassesFor(Blog::class));
+        return in_array(get_class($this->owner), ClassInfo::subclassesFor(Blog::class) ?? []);
     }
 
     /**

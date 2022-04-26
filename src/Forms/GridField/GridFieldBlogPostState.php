@@ -47,7 +47,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                  */
                 $publishDate = $record->dbObject('PublishDate');
 
-                if (strtotime($record->PublishDate) > time()) {
+                if (strtotime($record->PublishDate ?? '') > time()) {
                     return '<i class="font-icon-clock mr-2"></i> ' . _t(
                         __CLASS__ . '.Timer',
                         'Publish at {date}',
@@ -83,7 +83,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
 
                 if (!$published) {
                     $class = 'gridfield-icon draft';
-                } elseif (strtotime($record->PublishDate) > time()) {
+                } elseif (strtotime($record->PublishDate ?? '') > time()) {
                     $class = 'gridfield-icon timer';
                 } else {
                     $class = 'gridfield-icon published';

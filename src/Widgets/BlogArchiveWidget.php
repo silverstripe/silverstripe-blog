@@ -85,7 +85,7 @@ class BlogArchiveWidget extends Widget
             $type = $archiveType->enumValues();
 
             foreach ($type as $k => $v) {
-                $type[$k] = _t(__CLASS__ .'.' . ucfirst(strtolower($v)), $v);
+                $type[$k] = _t(__CLASS__ .'.' . ucfirst(strtolower($v ?? '')), $v);
             }
 
             /**
@@ -139,7 +139,7 @@ class BlogArchiveWidget extends Widget
                 $title = $year;
             } else {
                 $date = DBDate::create();
-                $date->setValue(strtotime($post['PublishDate']));
+                $date->setValue(strtotime($post['PublishDate'] ?? ''));
 
                 $year  = $date->Format('y');
                 $month = $date->Format('MM');
