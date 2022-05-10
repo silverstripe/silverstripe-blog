@@ -41,8 +41,8 @@ eo:
     PERMISSION_MANAGE_USERS_HELP: 'Permesi agordi redaktantojn, verkantojn, aŭ kontribuantojn al blogoj'
     PLURALNAME: 'Bazaj paĝoj'
     PLURALS:
-      one: 'Unu blogo'
-      other: '{count} blogoj'
+      one: '1 baza paĝo'
+      other: '{count} bazaj paĝoj'
     Posted: Afiŝita
     PostedIn: 'Afiŝita en'
     PostsByUser: 'Afiŝoj laŭ {firstname} {surname} por {title}'
@@ -76,8 +76,8 @@ eo:
     FeaturedImage: 'Prezentita bildo'
     PLURALNAME: 'Bazaj paĝoj'
     PLURALS:
-      one: 'Unu bloga afiŝo'
-      other: '{count} blogaj afiŝoj'
+      one: '1 baza paĝo'
+      other: '{count} bazaj paĝoj'
     PageTitleLabel: 'Titolo de afiŝo'
     PostOptions: 'Afiŝaj agordoj'
     PublishDate: 'Dato de publikigo'
