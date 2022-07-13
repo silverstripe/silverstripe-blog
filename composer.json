@@ -17,7 +17,10 @@
     },
     "require-dev": {
         "silverstripe/recipe-testing": "^2",
-        "squizlabs/php_codesniffer": "^3.0"
+        "squizlabs/php_codesniffer": "^3.0",
+        "silverstripe/widgets": "^2",
+        "silverstripe/comments": "^3.7",
+        "silverstripe/content-widget": "^2"
     },
     "extra": {
         "expose": [
