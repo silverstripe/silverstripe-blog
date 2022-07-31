@@ -1,8 +1,0 @@
-version: ~> 1.0
-
-import:
-  - silverstripe/silverstripe-travis-shared:config/provision/standard-jobs-range-behat-npm.yml
-
-env:
-  global:
-    - REQUIRE_EXTRA="silverstripe/widgets:^2 silverstripe/comments:^3 silverstripe/content-widget:^2"
