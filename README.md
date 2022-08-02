@@ -1,8 +1,7 @@
-# SilverStripe Blog Module
+# Silverstripe Blog Module
+
 [![CI](https://github.com/silverstripe/silverstripe-blog/actions/workflows/ci.yml/badge.svg)](https://github.com/silverstripe/silverstripe-blog/actions/workflows/ci.yml)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/silverstripe/silverstripe-blog/?branch=master)
-[![codecov.io](https://codecov.io/github/silverstripe/silverstripe-blog/coverage.svg?branch=master)](https://codecov.io/github/silverstripe/silverstripe-blog?branch=master)
-[![SilverStripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
+[![Silverstripe supported module](https://img.shields.io/badge/silverstripe-supported-0071C4.svg)](https://www.silverstripe.org/software/addons/silverstripe-commercially-supported-module-list/)
 
 ## Documentation
 
@@ -11,18 +10,18 @@
 
 ## Requirements
 
-* SilverStripe CMS 4.0+
-* SilverStripe Lumberjack Module 2.0+
-* SilverStripe Tag Field Module 2.0+
-* SilverStripe Assets 1.0+
-* SilverStripe Asset Admin Module 1.0+
+* Silverstripe CMS 4.0+
+* Silverstripe Lumberjack Module 2.0+
+* Silverstripe Tag Field Module 2.0+
+* Silverstripe Assets 1.0+
+* Silverstripe Asset Admin Module 1.0+
 
-Note: this version is compatible with SilverStripe 4. For SilverStripe 3, please see [the 2.x release line](https://github.com/silverstripe/silverstripe-blog/tree/2).
+Note: this version is compatible with Silverstripe 4. For Silverstripe 3, please see [the 2.x release line](https://github.com/silverstripe/silverstripe-blog/tree/2).
 
 ### Suggested Modules
 
-* SilverStripe Widgets Module
-* SilverStripe Comments Module
+* Silverstripe Widgets Module
+* Silverstripe Comments Module
 
 ## Installation
 
