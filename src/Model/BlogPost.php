@@ -47,7 +47,7 @@ class BlogPost extends Page
      * given credit in the author field for blog posts
      * @var string|bool false or group code
      */
-    private static $restrict_authors_to_group = false;
+    private static $restrict_authors_to_group = 'CMS_ACCESS_CMSMain';
 
     /**
      * {@inheritDoc}
