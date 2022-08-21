@@ -1,3 +1,7 @@
+---
+title: Using widgets
+---
+
 # Using Widgets
 
 **This guide assumes you have the optional [Widgets](https://addons.silverstripe.org/add-ons/silverstripe/widgets/) module installed**
@@ -36,7 +40,7 @@ Similar to the blog categories widget, blog tags help your readers find relevant
 
 ## Optional extra widgets
 
-Additional widgets can be installed alongside your blog. 
+Additional widgets can be installed alongside your blog.
 
  * [Content Widget - Display HTML content in a widget](https://github.com/silverstripe-labs/silverstripe-content-widget)
 

@@ -1,3 +1,8 @@
+---
+title: Adding a blog post
+summary: How to add a new blog post.
+---
+
 # Adding a blog post
 
 ## Creating a new blog
@@ -16,7 +21,7 @@ To create a blog post, click on your Blog page in the Page Tree in the site-tree
 
 ![Adding a blog post](_images/blogging-add-blog-post.png)
 
-Fill out your blog post content as you would any page in the CMS. 
+Fill out your blog post content as you would any page in the CMS.
 
 You can also include a banner images and a custom summary description (if this is omitted the first 30 words of your post content will be used when displaying your posts's abstract).
 
