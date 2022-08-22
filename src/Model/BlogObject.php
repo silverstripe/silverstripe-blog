@@ -181,12 +181,7 @@ trait BlogObject
     {
         $increment = (int) $increment;
         $filter = URLSegmentFilter::create();
-
-        // Setting this to on. Because of the UI flow, it would be quite a lot of work
-        // to support turning this off. (ie. the add by title flow would not work).
-        // If this becomes a problem we can approach it then.
-        // @see https://github.com/silverstripe/silverstripe-blog/issues/376
-        $filter->setAllowMultibyte(true);
+        $filter->setAllowMultibyte($this->config()->get('allow_urlsegment_multibyte') ?? true);
 
         $this->URLSegment = $filter->filter($this->Title);
 

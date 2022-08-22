@@ -7,7 +7,6 @@ use SilverStripe\ORM\DataObject;
 /**
  * A blog category for generalising blog posts.
  *
-*
  * @method Blog Blog()
  *
  * @property string $Title
@@ -32,6 +31,8 @@ class BlogCategory extends DataObject implements CategorisationObject
      * @var string
      */
     private static $table_name = 'BlogCategory';
+
+    private static bool $allow_urlsegment_multibyte = true;
 
     /**
      * @var array
