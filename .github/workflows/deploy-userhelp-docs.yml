@@ -1,0 +1,16 @@
+name: Deploy Userhelp Docs
+on:
+  push:
+    branches:
+      - '4'
+      - '3'
+      - '2'
+    paths:
+      - 'docs/en/userguide/**'
+jobs:
+  deploy:
+    name: deploy-userhelp-docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run build hook
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/${{ secrets.NETLIFY_BUILD_HOOK }}
