@@ -27,6 +27,6 @@ You can also include a banner images and a custom summary description (if this i
 
 ![Banner image and summary](_images/blogging-banner-summary.png)
 
-From the tab labelled 'Post Options'  you can set a publish date, categories, tags and authors.
+From the tab labelled "Post Options"  you can set a publish date, categories, tags and authors.
 
 ![Setting blog options](_images/blogging-options.png)
