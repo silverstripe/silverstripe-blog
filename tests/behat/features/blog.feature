@@ -3,19 +3,12 @@ Feature: Create a blog
   I want to create a blog
 
   Background:
-    Given the "group" "EDITOR group" has permissions "CMS_ACCESS_LeftAndMain"
+    Given the "group" "EDITOR" has permissions "CMS_ACCESS_CMSMain"
     And I add an extension "SilverStripe\Widgets\Extensions\WidgetPageExtension" to the "Page" class
     And I add an extension "SilverStripe\Comments\Extensions\CommentsExtension" to the "Page" class
-       
+
     And an "image" "Uploads/file1.jpg"
-
-    # Login then logout to created member
-    And I am logged in with "EDITOR" permissions
-    And I go to "/Security/login"
-    And I press the "Log in as someone else" button
-    And I am logged in with "ADMIN" permissions
-
-    When I go to "/dev/build?flush"
+    And I am logged in as a member of "EDITOR" group
 
     # Create a new blog called "New Blog"
     When I go to "/admin/pages"
@@ -35,9 +28,15 @@ Feature: Create a blog
     And I fill in the "Blog Tags" widget field "Title" with "My blog tags widget title"
     And I press the "Save" button
 
+    # Logout
+    And I go to "/Security/login"
+    And I press the "Log in as someone else" button
+    And I am logged in with "ADMIN" permissions
+
     # Add EDITOR as an Editor
+    When I go to "/admin/pages"
+    And I follow "New Blog"
     And I click the "Settings" CMS tab
-    And I press the "Save" button
     And I click the "Users" CMS tab
     And I wait for 3 seconds
     And I select "EDITOR" from "Editors"
@@ -48,8 +47,8 @@ Feature: Create a blog
     And I press the "Log in as someone else" button
 
   Scenario: Create a blog post
-    Given I log in with "EDITOR@example.org" and "Secret!123"
-
+  
+    Given I am logged in as a member of "EDITOR" group
     # Create a new blog post called "New Post"
     When I go to "/admin/pages"
     And I follow "New Blog"
@@ -102,6 +101,8 @@ Feature: Create a blog
     Then I should see "New Post"
 
     # Commenting
+    When I click "New Post" in the ".post-summary" element
+    Then I should see "New Post"
     When I fill in "Your name" with "My Name"
     And I fill in "Email" with "hello@example.com"
     And I fill in "Comments" with "My comments"
@@ -110,17 +111,16 @@ Feature: Create a blog
 
     # Commenting is bizarly not working in behat, even though it works during manual testing on my local
     # Moderation
-    #Given I log in with "EDITOR@example.org" and "Secret!123"
-    #When I go to "/admin/pages"
-    #And I follow "New Blog"
-    #And I click the "Blog Posts" CMS tab
-    # Click on the first blog post
-    #And I click on the ".col-Title" element
-    #And I click the "Comments" CMS tab
-    #Then I should see "Approved (1)"
-    #When I click the "Approved (1)" CMS tab
-    #Then I should see "hello@example.com"
-    #When I click on the ".action-menu__toggle" element
-    #And I press the "Spam" button
-    #And I wait for 2 seconds
-    #Then I should not see "hello@example.com"
+    # When I am logged in as a member of "EDITOR" group
+    # When I go to "/admin/pages"
+    # And I follow "New Blog"
+    # And I click the "Blog Posts" CMS tab
+    # And I click on the ".ss-gridfield-item" element
+    # And I click the "Comments" CMS tab
+    # Then I should see "New (1)"
+    # When I click the "New (1)" CMS tab
+    # Then I should see "hello@example.com"
+    # When I click on the ".action-menu__toggle" element
+    # And I press the "Spam" button
+    # And I wait for 2 seconds
+    # Then I should not see "hello@example.com"
