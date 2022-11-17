@@ -35,7 +35,7 @@ use SilverStripe\View\Requirements;
  * @method ManyManyList Tags()
  * @method ManyManyList Authors()
  * @method Blog Parent()
- * @method Blog FeaturedImage()
+ * @method Image FeaturedImage()
  *
  * @property string $PublishDate
  * @property string $AuthorNames
