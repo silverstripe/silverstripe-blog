@@ -73,8 +73,6 @@ class BlogTagTest extends FunctionalTest
      */
     public function testCanView()
     {
-        $this->useDraftSite();
-
         $admin = $this->objFromFixture(Member::class, 'Admin');
         $editor = $this->objFromFixture(Member::class, 'Editor');
 
@@ -91,8 +89,6 @@ class BlogTagTest extends FunctionalTest
 
     public function testCanEdit()
     {
-        $this->useDraftSite();
-
         $admin = $this->objFromFixture(Member::class, 'Admin');
         $editor = $this->objFromFixture(Member::class, 'Editor');
 
@@ -114,8 +110,6 @@ class BlogTagTest extends FunctionalTest
 
     public function testCanCreate()
     {
-        $this->useDraftSite();
-
         $admin = $this->objFromFixture(Member::class, 'Admin');
         $editor = $this->objFromFixture(Member::class, 'Editor');
 
@@ -127,8 +121,6 @@ class BlogTagTest extends FunctionalTest
 
     public function testCanDelete()
     {
-        $this->useDraftSite();
-
         $admin = $this->objFromFixture(Member::class, 'Admin');
         $editor = $this->objFromFixture(Member::class, 'Editor');
 

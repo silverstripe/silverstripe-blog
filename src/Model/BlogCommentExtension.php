@@ -16,7 +16,7 @@ class BlogCommentExtension extends DataExtension
      */
     public function getExtraClass()
     {
-        $blogPost = $this->owner->getParent();
+        $blogPost = $this->owner->Parent();
 
         if ($blogPost instanceof BlogPost) {
             if ($blogPost->isAuthor($this->owner->Author())) {

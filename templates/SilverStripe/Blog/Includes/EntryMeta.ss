@@ -2,14 +2,14 @@
     <% if $Categories.exists %>
         <%t SilverStripe\\Blog\\Model\\Blog.PostedIn "Posted in" %>
         <% loop $Categories %>
-            <a href="$Link" title="$Title">$Title</a><% if not Last %>, <% else %>;<% end_if %>
+            <a href="$Link" title="$Title">$Title</a><% if not $IsLast %>, <% else %>;<% end_if %>
         <% end_loop %>
     <% end_if %>
 
     <% if $Tags.exists %>
         <%t SilverStripe\\Blog\\Model\\Blog.Tagged "Tagged" %>
         <% loop $Tags %>
-            <a href="$Link" title="$Title">$Title</a><% if not Last %>, <% else %>;<% end_if %>
+            <a href="$Link" title="$Title">$Title</a><% if not $IsLast %>, <% else %>;<% end_if %>
         <% end_loop %>
     <% end_if %>
 
@@ -27,8 +27,8 @@
         <%t SilverStripe\\Blog\\Model\\Blog.By "by" %>
 
         <% loop $Credits %>
-            <% if not $First && not $Last %>, <% end_if %>
-            <% if not $First && $Last %> <%t SilverStripe\\Blog\\Model\\Blog.AND "and" %> <% end_if %>
+            <% if not $IsFirst && not $IsLast %>, <% end_if %>
+            <% if not $IsFirst && $IsLast %> <%t SilverStripe\\Blog\\Model\\Blog.AND "and" %> <% end_if %>
             <% if $URLSegment && not $Up.ProfilesDisabled %>
                 <a href="$URL">$Name.XML</a>
             <% else %>
