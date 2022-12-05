@@ -50,12 +50,12 @@ class BlogTest extends SapphireTest
          */
         $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
 
-        Config::inst()->update(BlogPost::class, 'show_in_sitetree', true);
+        Config::inst()->set(BlogPost::class, 'show_in_sitetree', true);
         $classes = $blog->getExcludedSiteTreeClassNames();
 
         $this->assertNotContains(BlogPost::class, $classes, 'BlogPost class should be hidden.');
 
-        Config::inst()->update(BlogPost::class, 'show_in_sitetree', false);
+        Config::inst()->set(BlogPost::class, 'show_in_sitetree', false);
         $classes = $blog->getExcludedSiteTreeClassNames();
 
         $this->assertContains(BlogPost::class, $classes, 'BlogPost class should be hidden.');

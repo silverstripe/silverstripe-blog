@@ -95,7 +95,7 @@ class BlogPostTest extends SapphireTest
         $this->assertEquals(7, $blogpost->getCandidateAuthors()->count());
 
         //Set the group to draw Members from
-        Config::inst()->update(BlogPost::class, 'restrict_authors_to_group', 'blogusers');
+        Config::inst()->set(BlogPost::class, 'restrict_authors_to_group', 'blogusers');
 
         $this->assertEquals(3, $blogpost->getCandidateAuthors()->count());
 
