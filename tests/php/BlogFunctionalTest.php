@@ -11,8 +11,6 @@ class BlogFunctionalTest extends FunctionalTest
 {
     protected static $fixture_file = 'BlogFunctionalTest.yml';
 
-    protected static $use_draft_site = true;
-
     protected function setUp(): void
     {
         Config::modify()->set(URLSegmentFilter::class, 'default_allow_multibyte', true);
@@ -23,14 +21,16 @@ class BlogFunctionalTest extends FunctionalTest
 
     public function testBlogWithMultibyteUrl()
     {
-        $result = $this->get(rawurlencode('آبید'));
+        $this->logInWithPermission('VIEW_DRAFT_CONTENT');
+        $result = $this->get(rawurlencode('آبید') . '?stage=Stage');
 
         $this->assertEquals(200, $result->getStatusCode());
     }
 
     public function testMemberProfileWithMultibyteUrlAndName()
     {
-        $result = $this->get(rawurlencode('آبید') . '/profile/' . rawurlencode('عبّاس-آبان'));
+        $this->logInWithPermission('VIEW_DRAFT_CONTENT');
+        $result = $this->get(rawurlencode('آبید') . '/profile/' . rawurlencode('عبّاس-آبان') . '?stage=Stage');
 
         $this->assertEquals(200, $result->getStatusCode());
         $this->assertStringContainsString('My Blog Post', $result->getBody());
@@ -38,7 +38,8 @@ class BlogFunctionalTest extends FunctionalTest
 
     public function testMemberProfileWithMultibyteUrlAndEnglishName()
     {
-        $result = $this->get(rawurlencode('آبید') . '/profile/bob-jones');
+        $this->logInWithPermission('VIEW_DRAFT_CONTENT');
+        $result = $this->get(rawurlencode('آبید') . '/profile/bob-jones' . '?stage=Stage');
 
         $this->assertEquals(200, $result->getStatusCode());
         $this->assertStringContainsString('My Blog Post', $result->getBody());
