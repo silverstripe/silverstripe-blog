@@ -11,8 +11,6 @@ class BlogControllerFunctionalTest extends FunctionalTest
 {
     protected static $fixture_file = 'BlogControllerFunctionalTest.yml';
 
-    protected static $use_draft_site = true;
-
     protected function setUp(): void
     {
         Config::modify()->set(URLSegmentFilter::class, 'default_allow_multibyte', true);
@@ -23,7 +21,8 @@ class BlogControllerFunctionalTest extends FunctionalTest
 
     public function testGetCategoriesWithMultibyteUrl()
     {
-        $result = $this->get('my-blog/category/' . rawurlencode('آبید'));
+        $this->logInWithPermission('VIEW_DRAFT_CONTENT');
+        $result = $this->get('my-blog/category/' . rawurlencode('آبید') . '?stage=Stage');
 
         $this->assertEquals(200, $result->getStatusCode());
         $this->assertStringContainsString('آبید', $result->getBody());
@@ -31,7 +30,8 @@ class BlogControllerFunctionalTest extends FunctionalTest
 
     public function testGetTagsWithMultibyteUrl()
     {
-        $result = $this->get('my-blog/tag/' . rawurlencode('برتراند'));
+        $this->logInWithPermission('VIEW_DRAFT_CONTENT');
+        $result = $this->get('my-blog/tag/' . rawurlencode('برتراند')  . '?stage=Stage');
 
         $this->assertEquals(200, $result->getStatusCode());
         $this->assertStringContainsString('برتراند', $result->getBody());

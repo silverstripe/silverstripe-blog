@@ -8,19 +8,19 @@
     ],
     "type": "silverstripe-vendormodule",
     "require": {
-        "php": "^7.4 || ^8.0",
-        "silverstripe/cms": "^4.0",
-        "silverstripe/lumberjack": "^2.0",
-        "silverstripe/tagfield": "^2.0",
-        "silverstripe/assets": "^1.0",
-        "silverstripe/asset-admin": "^1.0"
+        "php": "^8.1",
+        "silverstripe/cms": "^5",
+        "silverstripe/lumberjack": "^3.0",
+        "silverstripe/tagfield": "^3.0",
+        "silverstripe/assets": "^2.0",
+        "silverstripe/asset-admin": "^2.0"
     },
     "require-dev": {
-        "silverstripe/recipe-testing": "^2",
-        "squizlabs/php_codesniffer": "^3.0",
-        "silverstripe/widgets": "^2",
-        "silverstripe/comments": "^3.7",
-        "silverstripe/content-widget": "^2"
+        "silverstripe/recipe-testing": "^3",
+        "squizlabs/php_codesniffer": "^3",
+        "silverstripe/widgets": "^3",
+        "silverstripe/comments": "^4",
+        "silverstripe/content-widget": "^3"
     },
     "extra": {
         "expose": [
