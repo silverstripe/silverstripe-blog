@@ -47,7 +47,7 @@ Feature: Create a blog
     And I press the "Log in as someone else" button
 
   Scenario: Create a blog post
-  
+
     Given I am logged in as a member of "EDITOR" group
     # Create a new blog post called "New Post"
     When I go to "/admin/pages"
@@ -65,8 +65,8 @@ Feature: Create a blog
 
     # Add categories and tags
     And I click the "Post Options" CMS tab
-    And I add "My Category" to the "Categories" tag field
-    And I add "My Tag" to the "Tags" tag field
+    And I add "My Category" to the "#Form_EditForm_Categories_Holder" tag field
+    And I add "My Tag" to the "#Form_EditForm_Tags_Holder" tag field
 
     # Publish the blog post and logout
     And I press the "Publish" button
