@@ -9,6 +9,7 @@ use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
 use SilverStripe\Widgets\Model\Widget;
+use SilverStripe\Control\Controller;
 
 if (!class_exists(Widget::class)) {
     return;
@@ -98,7 +99,7 @@ class BlogTagsCloudWidget extends Widget
             foreach ($records as $record) {
                 $tag = DataObject::create();
                 $tag->TagName = $record['Title'];
-                $link = $bloglink.'tag/'.$record['URLSegment'];
+                $link = Controller::join_links($bloglink, 'tag', $record['URLSegment']);
                 $tag->Link = $link;
                 if ($record['TagCount'] > $maxTagCount) {
                     $maxTagCount = $record['TagCount'];
