@@ -195,4 +195,23 @@ class BlogTagTest extends FunctionalTest
         $tag->write();
         $this->assertEquals($tag->URLSegment, "another-test");
     }
+
+    public function testEmptyTitle()
+    {
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+
+        $tag = new BlogTag();
+        $tag->Title = '';
+        $tag->BlogID = $blog->ID;
+        $tag->URLSegment = 'test';
+
+        try {
+            $tag->write();
+            $this->fail('BlogTag with empty title is written');
+        } catch (ValidationException $e) {
+            $messages = $e->getResult()->getMessages();
+            $this->assertCount(1, $messages);
+            $this->assertEquals(BlogTag::EMPTY_TITLE_EXCEPTION, $messages[0]['messageType']);
+        }
+    }
 }

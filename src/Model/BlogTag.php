@@ -27,6 +27,8 @@ class BlogTag extends DataObject implements CategorisationObject
      */
     const DUPLICATE_EXCEPTION = 'DUPLICATE';
 
+    const EMPTY_TITLE_EXCEPTION = 'EMPTY_TITLE';
+
     /**
      * {@inheritDoc}
      * @var string

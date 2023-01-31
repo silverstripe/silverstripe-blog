@@ -72,6 +72,10 @@ trait BlogObject
             $validation->addError($this->getDuplicateError(), self::DUPLICATE_EXCEPTION);
         }
 
+        if(empty($this->Title)) {
+            $validation->addError($this->getEmptyTitleError(), self::EMPTY_TITLE_EXCEPTION);
+        }
+
         return $validation;
     }
 
@@ -244,4 +248,14 @@ trait BlogObject
      * @return string
      */
     abstract protected function getDuplicateError();
+
+    /**
+     * Returns an error message for this object when it tries to write with an empty title.
+     *
+     * @return string
+     */
+    protected function getEmptyTitleError()
+    {
+        return _t(__CLASS__ . '.EmptyTitle', 'Title must not be empty');
+    }
 }

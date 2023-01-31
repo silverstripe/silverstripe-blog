@@ -167,4 +167,23 @@ class BlogCategoryTest extends FunctionalTest
             $this->assertEquals(BlogTag::DUPLICATE_EXCEPTION, $messages[0]['messageType']);
         }
     }
+
+    public function testEmptyTitle()
+    {
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+
+        $category = new BlogCategory();
+        $category->Title = '';
+        $category->BlogID = $blog->ID;
+        $category->URLSegment = 'test';
+
+        try {
+            $category->write();
+            $this->fail('BlogCategory with empty title is written');
+        } catch (ValidationException $e) {
+            $messages = $e->getResult()->getMessages();
+            $this->assertCount(1, $messages);
+            $this->assertEquals(BlogCategory::EMPTY_TITLE_EXCEPTION, $messages[0]['messageType']);
+        }
+    }
 }
