@@ -72,7 +72,7 @@ trait BlogObject
             $validation->addError($this->getDuplicateError(), self::DUPLICATE_EXCEPTION);
         }
 
-        if(empty($this->Title)) {
+        if (empty($this->Title)) {
             $validation->addError($this->getEmptyTitleError(), self::EMPTY_TITLE_EXCEPTION);
         }
 
