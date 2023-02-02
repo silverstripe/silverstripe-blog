@@ -57,6 +57,7 @@ es:
     PLURALS:
       one: 'Una categoría de blog'
       other: '{count} Categorías de blog'
+      many: '{count} Categorías de blog'
     SINGULARNAME: 'Categoría del blog'
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Artículos del blog'
@@ -86,6 +87,7 @@ es:
     PLURALS:
       one: 'Una etiqueta de blog'
       other: '{count} Etiquetas de blog'
+      many: '{count} Etiquetas de blog'
     SINGULARNAME: 'Etiqueta del Blog'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Tipo de archivo'
