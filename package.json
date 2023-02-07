@@ -1,9 +1,8 @@
 {
   "name": "silverstripe-blog",
-  "version": "3.0.0",
   "description": "A fresh take on blogging in Silverstripe set out to tackle the issue of a cluttered Site Tree",
   "scripts": {
-    "build": "yarn && yarn lint && NODE_ENV=production webpack -p --bail --progress",
+    "build": "yarn && yarn lint && rm -rf client/dist/* && NODE_ENV=production webpack --mode production --bail --progress",
     "dev": "NODE_ENV=development webpack --progress",
     "watch": "NODE_ENV=development webpack --watch --progress",
     "css": "WEBPACK_CHILD=css npm run build",
@@ -28,11 +27,16 @@
   },
   "homepage": "https://github.com/silverstripe/silverstripe-blog#readme",
   "dependencies": {},
-  "peerDependencies": {
-    "jquery": "^3"
-  },
   "devDependencies": {
-    "@silverstripe/eslint-config": "^0.0.5",
-    "@silverstripe/webpack-config": "^1.3"
-  }
+    "@silverstripe/eslint-config": "^1.0.0-alpha6",
+    "@silverstripe/webpack-config": "^2.0.0-alpha5",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^5.0.0"
+  },
+  "resolutions": {
+    "colors": "1.4.0"
+  },
+  "browserslist": [
+    "defaults"
+  ]
 }
