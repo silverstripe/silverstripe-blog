@@ -2,9 +2,28 @@ fi_FI:
   SilverStripe\Blog\Model\Blog:
     FILTERDESCRIPTION_PAGE: 'Sivu {page}'
     PLURALNAME: Pohjasivut
+    AND: ja
+    Archive: Arkistoi
+    Comments: Kommentit
+    LumberjackTitle: Pohjasivut
   SilverStripe\Blog\Model\BlogCategory:
     Title: Otsikko
   SilverStripe\Blog\Model\BlogPost:
     PLURALNAME: Pohjasivut
+    AUTHOR: Kirjoittaja
   SilverStripe\Blog\Model\BlogTag:
     Title: Otsikko
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Postaukset
+    Title: Otsikko
+  SilverStripe\Blog\Admin\GridFieldMergeAction:
+    MovePostsTo: 'Siirrä postaus kohteeseen'
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Lisää {name}'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: Muokattu
+  SilverStripe\Blog\Model:
+    Title: Otsikko
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: Pohjasivut
+    TABBLOGPOSTS: Pohjasivut

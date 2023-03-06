@@ -1,0 +1,21 @@
+pl:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Posty
+    Title: Tytuł
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Dodaj {name}'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: Zmodyfikowany
+  SilverStripe\Blog\Model:
+    Title: Tytuł
+  SilverStripe\Blog\Model\Blog:
+    AND: i
+    Archive: Archiwizuj
+    By: przez
+    Comments: Komentarze
+    PLURALNAME: 'Podstawowe strony'
+    Tags: 'Tagi:'
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Autor
+    PLURALNAME: 'Podstawowe strony'
+    Tags: 'Tagi:'

@@ -7,6 +7,7 @@ it:
     Draft: 'Salvato come bozza il {date}'
     Published: 'Pubblicato il {date}'
     Timer: 'Pubblicare al {date}'
+    Modified: Modificato
   SilverStripe\Blog\Model\Blog:
     Archive: Archivia
     By: di
@@ -35,6 +36,8 @@ it:
     Tagged: Etichettato
     Tags: Etichette
     WRITER: Scrittore
+    AND: e
+    PLURALNAME: 'Pagine Base'
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
@@ -46,13 +49,59 @@ it:
     SINGULARNAME: 'Articolo del Blog'
     SUMMARY_DESCRIPTION: 'Se non è specificata una sintesi saranno usate le prime 30 parole.'
     Tags: Etichette
+    AdditionalCredits_Description: 'Se l''autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola.'
+    FeaturedImage: 'Immagine in Evidenza'
+    PLURALNAME: 'Pagine Base'
+    PublishDate_Description: 'Sarà impostato a "now" se pubblicato senza un valore.'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     Blog: Blog
     NumberToDisplay: 'N. da Visualizzare'
+    ArchiveType: TipoArchiviazione
+    PLURALNAME: 'Widget Archiviazione Blog'
+    SINGULARNAME: 'Widget Archiviazione Blog'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
+    Direction: Direzione
+    Direction_Description: 'Modificare la direzione di ordinamento delle categorie mostrate da questo widget.'
+    Limit: Limite
+    Limit_Description: 'Limitare il numero di categorie mostrate da questo widget (impostare a 0 per mostrare tutte le categorie).'
+    PLURALNAME: 'Widget Categorie Blog'
+    SINGULARNAME: 'Widget Categorie Blog'
+    Sort: Ordine
+    Sort_Description: 'Modificare l''ordine delle categorie mostrate da questo widget.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
+    PLURALNAME: 'Widget Articoli Blog Recenti'
+    SINGULARNAME: 'Widget Articoli Blog Recenti'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
+    Direction: Direzione
+    Direction_Description: 'Modificare la direzione di ordinamento delle etichette mostrate da questo widget.'
+    Limit: Limite
+    Limit_Description: 'Limitare il numero di etichette mostrate da questo widget (impostare a 0 per mostrare tutte le etichette).'
+    PLURALNAME: 'Widget Etichette Blog'
+    SINGULARNAME: 'Widget Etichette Blog'
+    Sort: Ordine
+    Sort_Description: 'Modificare l''ordine delle etichette mostrate da questo widget.'
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Messaggi
+    Title: Titolo
+  SilverStripe\Blog\Model:
+    Title: Titolo
+  SilverStripe\Blog\Model\BlogCategory:
+    PLURALNAME: 'Categorie Blog'
+    SINGULARNAME: 'Categoria Blog'
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Articoli del Blog'
+    TABBLOGPOSTS: 'Articoli del Blog'
+  SilverStripe\Blog\Model\BlogTag:
+    PLURALNAME: 'Etichette Blog'
+    SINGULARNAME: 'Etichetta Blog'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Numero di Articoli'
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
+    Blog: Blog
+    PLURALNAME: 'Widget Tag Cloud del Blog'
+    SINGULARNAME: 'Widget Tag Cloud del Blog'

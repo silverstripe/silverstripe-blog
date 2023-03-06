@@ -7,6 +7,7 @@ ru:
     Draft: 'Черновик сохранен {date}'
     Published: 'Опубликовано {date}'
     Timer: 'Опубликовать {date}'
+    Modified: Измененные
   SilverStripe\Blog\Model\Blog:
     Archive: Архив
     By: 'автор:'
@@ -35,6 +36,8 @@ ru:
     Tagged: Метки
     Tags: Метки
     WRITER: Автор
+    AND: и
+    PERMISSION_MANAGE_USERS_HELP: 'Разрешить назначать Редакторов, Писателей и Авторов к блогам'
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Автор
     AdditionalCredits: 'Дополнительные сведения'
@@ -42,15 +45,63 @@ ru:
     PLURALNAME: 'Базовые страницы'
     SINGULARNAME: 'Запись в блоге'
     Tags: Метки
+    AdditionalCredits_Description: 'Если некоторые авторы этого сообщения не имеют доступа к админке укажите их имена здесь. Для разделения имён используется запятая.'
+    CUSTOMSUMMARY: 'Добавить уникальное описание'
+    Categories: Категории
+    FeaturedImage: Изображение
+    PageTitleLabel: 'Заголовок Сообщения'
+    PublishDate: 'Дата публикации'
+    PublishDate_Description: 'Будет использована текущая дата если не будет указанно значение.'
+    SUMMARY_DESCRIPTION: 'Если не указанно описание будут использованы первые 30 слов.'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Тип архива'
     Blog: Блог
+    NumberToDisplay: 'Отображать:'
+    PLURALNAME: 'Виджеты архива'
+    SINGULARNAME: 'Виджет архива'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Блог
     Sort: Сортировать
+    Direction: Направление
+    Direction_Description: 'Изменять направление сортировки категорий отображаемых в этом блоке.'
+    Limit: Ограничение
+    Limit_Description: 'Ограничить количество категорий отображаемых в этом блоке (укажите 0 чтобы отображать все категории).'
+    PLURALNAME: 'Блоки категорий блога'
+    SINGULARNAME: 'Блок категорий блога'
+    Sort_Description: 'Изменить порядок категорий в этом блоке.'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Блог
     NumberOfPosts: 'Количество записей'
+    PLURALNAME: 'Блоки последних сообщений блога'
+    SINGULARNAME: 'Блок последних сообщений блога'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Блог
     Sort: Сортировать
+    Direction: Направление
+    Direction_Description: 'Изменить направление сортировки тэгов отображаемых в этом блоке.'
+    Limit: Ограничение
+    Limit_Description: 'Ограничить количество тэгов в этом блоке (укажите 0 чтобы отобразить все тэги).'
+    PLURALNAME: 'Виджеты для меток блога'
+    SINGULARNAME: 'Виджет для меток блога'
+    Sort_Description: 'Изменить порядок тэгов в этом блоке.'
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Сообщения
+    Title: Заголовок
+  SilverStripe\Blog\Model:
+    Title: Заголовок
+  SilverStripe\Blog\Model\BlogCategory:
+    PLURALNAME: 'Категории Блога'
+    SINGULARNAME: 'Категория Блога'
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Базовые страницы'
+    TABBLOGPOSTS: 'Базовые страницы'
+  SilverStripe\Blog\Model\BlogTag:
+    PLURALNAME: 'Тэги Блога'
+    SINGULARNAME: 'Тэг Блога'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Блог
+    NumberOfPosts: 'Количество записей'
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
+    Blog: Блог
+    PLURALNAME: 'Блоки облака тэгов'
+    SINGULARNAME: 'Блок облака тэгов'

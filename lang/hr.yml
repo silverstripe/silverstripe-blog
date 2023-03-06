@@ -17,7 +17,7 @@ hr:
     NoPosts: 'Nema zapisa'
     PERMISSIONS_CATEGORY: 'Blog dozvole'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Upravljaj korisnike za pojedinačne blogove'
-    PLURALNAME: 'Bazne stranice'
+    PLURALNAME: 'Osnovne stranice'
     Posted: Objavljeno
     PostedIn: 'Objavljeno u'
     PostsPerPage: 'Postova po stranici'
@@ -27,12 +27,13 @@ hr:
     Tagged: Tagirano
     Tags: Tagovi
     WRITER: Pisac
+    AND: i
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     Authors: Autori
     Categories: Kategorije
     FeaturedImage: 'Izdvojena slika'
-    PLURALNAME: 'Bazna stranica'
+    PLURALNAME: 'Osnovne stranice'
     PageTitleLabel: 'Naslov posta'
     PublishDate: 'Datum objave'
     SINGULARNAME: 'Blog zapis'
@@ -52,3 +53,17 @@ hr:
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Limit: Limit
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: Naslov
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Dodaj {name}'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: Izmjenjeno
+  SilverStripe\Blog\Model:
+    Title: Naslov
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Bazna stranica'
+    TABBLOGPOSTS: 'Bazna stranica'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Broj zapisa'
