@@ -20,3 +20,6 @@ it_IT:
     Tagged: Taggato
   SilverStripe\Blog\Model\BlogPost:
     Categories: Categorie
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Blog Posts'
+    TABBLOGPOSTS: 'Blog Posts'

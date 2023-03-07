@@ -2,10 +2,25 @@ lt:
   SilverStripe\Blog\Model\Blog:
     Comments: Komentarai
     PLURALNAME: 'Baziniai puslapiai'
+    AND: ir
+    Archive: Archyvuoti
+    LumberjackTitle: 'Baziniai puslapiai'
+    Tags: Žymos
   SilverStripe\Blog\Model\BlogCategory:
     Title: Pavadinimas
   SilverStripe\Blog\Model\BlogPost:
     DESCRIPTION: 'Standartinio turinio puslapis'
     PLURALNAME: 'Baziniai puslapiai'
+    AUTHOR: Autorius
+    Tags: Žymos
   SilverStripe\Blog\Model\BlogTag:
     Title: Pavadinimas
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: Pavadinimas
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: Pakeistas
+  SilverStripe\Blog\Model:
+    Title: Pavadinimas
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Baziniai puslapiai'
+    TABBLOGPOSTS: 'Baziniai puslapiai'

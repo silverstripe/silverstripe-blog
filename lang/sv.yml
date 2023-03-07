@@ -7,6 +7,7 @@ sv:
     Draft: 'Sparad som utkast den {date}'
     Published: 'Publicerad den {date}'
     Timer: 'Publicerad den {date}'
+    Modified: Ändrad
   SilverStripe\Blog\Model:
     Title: Titel
   SilverStripe\Blog\Model\Blog:
@@ -29,7 +30,7 @@ sv:
     PERMISSIONS_CATEGORY: 'Blogg rättigheter'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Hantera användare för enskilda bloggar'
     PERMISSION_MANAGE_USERS_HELP: 'Tillåt tilldelning av redaktörer , författare , eller bidragsgivare till bloggar'
-    PLURALNAME: 'Bas sidor'
+    PLURALNAME: Bas-sidor
     Posted: Postat
     PostedIn: 'Postat den'
     PostsPerPage: 'Blogginlägg per sida'
@@ -54,7 +55,7 @@ sv:
     CUSTOMSUMMARY: 'Lägg till en anpassad sammanfattning'
     Categories: Kategorier
     FeaturedImage: 'Utvald bild'
-    PLURALNAME: 'Bas sidor'
+    PLURALNAME: Bas-sidor
     PageTitleLabel: Blogginläggstitel
     PublishDate: 'Publicerat datum'
     PublishDate_Description: 'Kommer att sättas till "nu" om publiceras utan ett värde .'
@@ -69,6 +70,8 @@ sv:
     ArchiveType: ArkivTyp
     Blog: Blogg
     NumberToDisplay: 'Antal att visa'
+    PLURALNAME: 'Blogg Arkiv-Widgets'
+    SINGULARNAME: 'Blogg Arkiv-Widget'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blogg
     Direction: Ordning
@@ -77,11 +80,17 @@ sv:
     Limit_Description: 'Begränsa antalet kategorier som visas av denna widget (sätt till 0 för att visa alla kategorier).'
     Sort: Sortera
     Sort_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
+    PLURALNAME: 'Blogg Kategorier-Widgets'
+    SINGULARNAME: 'Blogg Kategori-Widget'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blogg
     NumberOfPosts: 'Antal inlägg'
+    PLURALNAME: 'Blogg Senaste Inläggs-Widget'
+    SINGULARNAME: 'Blogg Senaste Inläggs-Widget'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blogg
+    PLURALNAME: 'Cloud-widgets för taggar'
+    SINGULARNAME: 'Cloud-widget för tagg'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blogg
     Direction: Ordning
@@ -90,3 +99,11 @@ sv:
     Limit_Description: 'Begränsa antalet taggar som visas av denna widget (sätt till 0 för att visa alla taggar).'
     Sort: Sortera
     Sort_Description: 'Ändra ordningen av taggar som visas av denna widget.'
+    PLURALNAME: 'Blogg taggar Widgets'
+    SINGULARNAME: 'Blogg taggar Widget'
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Inlägg
+    Title: Titel
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blogg
+    NumberOfPosts: 'Antal inlägg'
