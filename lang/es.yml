@@ -38,7 +38,7 @@ es:
     PERMISSIONS_CATEGORY: 'Permisos del blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Administrar usuarios para blogs individuales'
     PERMISSION_MANAGE_USERS_HELP: 'Permitir  de asignación de Editores, Escritores o Contribuidores a los blogs'
-    PLURALNAME: Blogs
+    PLURALNAME: 'Páginas base'
     PLURALS:
       one: 'Un blog'
       other: '{count} Blogs'
@@ -70,7 +70,7 @@ es:
     CUSTOMSUMMARY: 'Agregar un resumen personalizado'
     Categories: Categorías
     FeaturedImage: 'Imagen Destacada'
-    PLURALNAME: 'Artículos del blog'
+    PLURALNAME: 'Páginas base'
     PLURALS:
       one: 'Un artículo del blog'
       other: '{count} Artículos del blog'
@@ -114,3 +114,6 @@ es:
     Limit_Description: 'Limita el número de etiquetas mostradas por este widget (use 0 para mostrar todas las etiquetas).'
     Sort: Ordenar
     Sort_Description: 'Cambiar el orden de las etiquetas mostradas por este widget'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Numero de artículos'

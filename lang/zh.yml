@@ -1,0 +1,19 @@
+zh:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: 题目
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: '添加 {name}'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: 已修改
+  SilverStripe\Blog\Model:
+    Title: 题目
+  SilverStripe\Blog\Model\Blog:
+    Archive: 归档
+    Comments: 评论
+    PLURALNAME: 基本页面
+    Tags: 标签
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: 作者
+    FeaturedImage: 特色图片
+    PLURALNAME: 基本页面
+    Tags: 标签
