@@ -137,3 +137,6 @@ de:
     SINGULARNAME: 'Blog Tags Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Anzahl der Einträge'

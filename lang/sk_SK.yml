@@ -1,7 +1,13 @@
-sk:
+sk_SK:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: Názov
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Pridať {name}'
+    AddFail: 'Nie je možné uložiť {class} do databázy.'
+    PermissionFail: 'Nemáte oprávnenie na vytvorenie {class}.'
+  SilverStripe\Blog\Model:
+    Title: Názov
   SilverStripe\Blog\Model\Blog:
-    FILTERDESCRIPTION_PAGE: 'Strana {page}'
-    PLURALNAME: 'Základné stránky'
     AND: a
     Archive: Archív
     By: ' od'
@@ -14,12 +20,14 @@ sk:
     FILTERDESCRIPTION_AUTHOR: '{author}'
     FILTERDESCRIPTION_CATEGORY: 'V kategórii {category}'
     FILTERDESCRIPTION_DATE: '{date}'
+    FILTERDESCRIPTION_PAGE: 'Stránka {page}'
     FILTERDESCRIPTION_TAG: 'Štítkovaný {tag}'
-    LumberjackTitle: 'Základné stránky'
+    LumberjackTitle: 'Príspevky v blogu'
     NoPosts: 'Žiadne príspevky'
     PERMISSIONS_CATEGORY: 'Práva blogu'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Správa užívateľov pre jednotlivé blogy'
     PERMISSION_MANAGE_USERS_HELP: 'Umožniť priradenie vydavateľov, spisovateľov alebo prispievateľov do blogu.'
+    PLURALNAME: 'Základné stránky'
     Posted: Uverejnené
     PostedIn: 'Uverejnené v'
     PostsPerPage: 'Príspevky na stránke'
@@ -30,19 +38,20 @@ sk:
     Tags: Štítky
     WRITER: Spisovateľ
   SilverStripe\Blog\Model\BlogCategory:
-    Title: Názov
     PLURALNAME: 'Kategórie blogu'
     SINGULARNAME: 'Kategória blogu'
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Príspevky v blogu'
+    TABBLOGPOSTS: 'Príspevky v blogu'
   SilverStripe\Blog\Model\BlogPost:
-    DESCRIPTION: 'Obyčajná jednoduchá stránka s vlastným obsahom.'
-    PLURALNAME: 'Základné stránky'
     AUTHOR: Autor
     AdditionalCredits: 'Doplnkoví autori'
     AdditionalCredits_Description: 'Ak niektorí autori tohto príspevku nemajú prístup k CMS, zadajte ich mená sem. Viacero autorov môžete oddeliť čiarkou.'
-    Authors: 'Ak niektorí autori tohto príspevku nemajú prístup k CMS, zadajte ich mená sem. Viacero autorov môžete oddeliť čiarkou.'
+    Authors: Autori
     CUSTOMSUMMARY: 'Pridať vlastné zhrnutie'
     Categories: Kategórie
     FeaturedImage: 'Hlavný obrázok'
+    PLURALNAME: 'Základné stránky'
     PageTitleLabel: 'Názov príspevku'
     PublishDate: 'Dátum publikovania'
     PublishDate_Description: 'V prípade zverejnenia bez hodnoty bude nastavený aktuálny dátum a čas.'
@@ -50,22 +59,8 @@ sk:
     SUMMARY_DESCRIPTION: 'Ak zhrnutie nie je uvedené, bude použitých prvých 30 slov z obsahu.'
     Tags: Štítky
   SilverStripe\Blog\Model\BlogTag:
-    Title: Názov
     PLURALNAME: 'Štítky blogu'
     SINGULARNAME: 'Štítok blogu'
-  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Title: Názov
-  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
-    Add: 'Pridať {name}'
-    AddFail: 'Nie je možné uložiť {class} do databázy.'
-    PermissionFail: 'Nemáte oprávnenie na vytvorenie {class}.'
-  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Modified: Zmenené
-  SilverStripe\Blog\Model:
-    Title: Názov
-  SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'Základné stránky'
-    TABBLOGPOSTS: 'Základné stránky'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Typ archívu'
     Blog: Blog
