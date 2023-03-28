@@ -9,11 +9,11 @@
     "type": "silverstripe-vendormodule",
     "require": {
         "php": "^7.4 || ^8.0",
-        "silverstripe/cms": "4.13.x-dev",
+        "silverstripe/cms": "^4.0",
         "silverstripe/lumberjack": "^2.0",
-        "silverstripe/tagfield": "2.11.x-dev",
-        "silverstripe/assets": "1.13.x-dev",
-        "silverstripe/asset-admin": "1.13.x-dev"
+        "silverstripe/tagfield": "^2.0",
+        "silverstripe/assets": "^1.0",
+        "silverstripe/asset-admin": "^1.0"
     },
     "require-dev": {
         "silverstripe/recipe-testing": "^2",
