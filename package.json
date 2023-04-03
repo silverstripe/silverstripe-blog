@@ -28,8 +28,8 @@
   "homepage": "https://github.com/silverstripe/silverstripe-blog#readme",
   "dependencies": {},
   "devDependencies": {
-    "@silverstripe/eslint-config": "^1.0.0-alpha6",
-    "@silverstripe/webpack-config": "^2.0.0-alpha5",
+    "@silverstripe/eslint-config": "^1.0.0",
+    "@silverstripe/webpack-config": "^2.0.0",
     "webpack": "^5.74.0",
     "webpack-cli": "^5.0.0"
   },
