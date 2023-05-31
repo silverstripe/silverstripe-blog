@@ -83,7 +83,7 @@ nl:
     PublishDate: Publicatiedatum
     PublishDate_Description: 'Wordt op "nu" gezet indien gepubliceerd zonder waarde.'
     SINGULARNAME: 'Blog Artikel'
-    SUMMARY_DESCRIPTION: 'Als geen samenvatting ingevoerd wordt, worden de eerste 30 worden gebruikt.'
+    SUMMARY_DESCRIPTION: 'Als er geen samenvatting ingevoerd wordt, dan worden de eerste 30 woorden gebruikt.'
     Tags: Tags
   SilverStripe\Blog\Model\BlogPostFeaturedExtension:
     FEATURED: 'Dit artikel tonen in de Uitgelicht-widget'
