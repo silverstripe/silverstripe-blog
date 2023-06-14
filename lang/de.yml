@@ -51,6 +51,8 @@ de:
     Tagged: Verschlagwortet
     Tags: Schlagworte
     WRITER: Autor
+    has_many_Categories: Kategorien
+    has_many_Tags: Schlagwörter
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Eine Blog Kategorie mit diesem Namen existiert bereits.'
     PLURALNAME: 'Blog Kategorien'
@@ -58,9 +60,13 @@ de:
       one: 'Eine Blog Kategorie'
       other: '{count} Blog Kategorien'
     SINGULARNAME: 'Blog Kategorie'
+    db_Title: Titel
+    db_URLSegment: URL-Segment
+    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Blogbeiträge
     TABBLOGPOSTS: Blogbeiträge
+    db_URLSegment: URL-Segment
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Zusätzliche Credits'
@@ -80,6 +86,9 @@ de:
     SINGULARNAME: Blog-Eintrag
     SUMMARY_DESCRIPTION: 'Wenn keine Zusammenfassung angegeben wird, werden die ersten 30 Wörter verwendet.'
     Tags: Schlagworte
+    many_many_Authors: Autoren
+    many_many_Categories: Kategorien
+    many_many_Tags: Schlagwörter
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Ein Blog Tag mit diesem Namen existiert bereits.'
     PLURALNAME: 'Blog Schlagworte'
@@ -87,6 +96,9 @@ de:
       one: 'Ein Blog Schlagwort'
       other: '{count} Blog Schlagworte'
     SINGULARNAME: 'Blog Schlagwort'
+    db_Title: Titel
+    db_URLSegment: URL-Segment
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Archivtyp
     Blog: Blog
@@ -140,3 +152,5 @@ de:
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titel

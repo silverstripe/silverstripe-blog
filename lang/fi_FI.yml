@@ -8,11 +8,13 @@ fi_FI:
     LumberjackTitle: Pohjasivut
   SilverStripe\Blog\Model\BlogCategory:
     Title: Otsikko
+    db_Title: Otsikko
   SilverStripe\Blog\Model\BlogPost:
     PLURALNAME: Pohjasivut
     AUTHOR: Kirjoittaja
   SilverStripe\Blog\Model\BlogTag:
     Title: Otsikko
+    db_Title: Otsikko
   SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
     Posts: Postaukset
     Title: Otsikko
@@ -27,3 +29,5 @@ fi_FI:
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Pohjasivut
     TABBLOGPOSTS: Pohjasivut
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Otsikko

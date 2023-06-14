@@ -56,6 +56,8 @@ eo:
     UsersEditorsFieldDescription: "Redaktanto regas specifajn BlogAfiŝojn, kaj ĉiujn afiŝojn en ĉiu.\n                     Malpli ol asigni aliajn redaktantojn al blogo, ili rajtas trakti plejmultajn ŝanĝojn al\n                    sia asignita blogo. <br /><br />\n                    Redaktantoj havas ĉi tiujn permesojn:<br />\n                    <br />\n                    Ĝisdatigi aŭ publikigi ajnan BlogAfiŝon en sia Blogo<br />\n                    Ĝisdatigi aŭ publikigi sian Blogon<br />\n                    Asigni/malasigni verkantojn al sia Blogo<br />\n                    Asigni/malasigni kontribuantojn al sia Blogo<br />\n                    Asigni/malasigni ajnan membron aŭtoro de specifa BlogAfiŝo"
     UsersWritersFieldDescription: "Verkanto tute regas krei, redakti kaj publikigi BlogAfiŝojn kiujn ili verkis\n                      aŭ al kiuj ili estas asignitaj. Verkantoj ne rajtas redakti  BlogAfiŝon al kiu ili ne estas asignitaj.\n                    <br /><br />\n                    Verkantoj havas la jenajn permesojn:<br />\n                    <br />\n                    Ĝisdatigi aŭ publikigi ajnan BlogAfiŝon kiun ili verkis, aŭ al kiu ili estas asignitaj<br />\n                    Asigni/malasigni ajnan membron aŭtoro de specifa BlogAfiŝo kiun ili verkis aŭ al kiu ili estas asignita."
     WRITER: Verkanto
+    has_many_Categories: Kategorioj
+    has_many_Tags: Etikedoj
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Bloga kategorio jam ekzistas kun tiu nomo'
     PLURALNAME: 'Blogaj kategorioj'
@@ -63,9 +65,13 @@ eo:
       one: 'Unu bloga kategorio'
       other: '{count} blogaj kategorioj'
     SINGULARNAME: 'Bloga kategorio'
+    db_Title: Titolo
+    db_URLSegment: URL-segmento
+    has_one_Blog: Blogo
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Blogaj afiŝoj'
     TABBLOGPOSTS: 'Blogaj afiŝoj'
+    db_URLSegment: URL-segmento
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Aŭtoro
     AdditionalCredits: 'Kromaj agnoskoj'
@@ -85,6 +91,9 @@ eo:
     SINGULARNAME: Blogaĵo
     SUMMARY_DESCRIPTION: 'Se resumo ne estas agordita, la unuaj 30 vortoj uziĝos.'
     Tags: Etikedoj
+    many_many_Authors: Aŭtoroj
+    many_many_Categories: Kategorioj
+    many_many_Tags: Etikedoj
   SilverStripe\Blog\Model\BlogPostFeaturedExtension:
     FEATURED: 'Inkludi afiŝon en elstara fenestraĵo'
   SilverStripe\Blog\Model\BlogTag:
@@ -94,6 +103,9 @@ eo:
       one: 'Unu bloga etikedo'
       other: '{count} blogaj etikedoj'
     SINGULARNAME: 'Bloga etikedo'
+    db_Title: Titolo
+    db_URLSegment: URL-segmento
+    has_one_Blog: Blogo
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: ArkivoTipo
     Blog: Blogo
@@ -152,3 +164,5 @@ eo:
     SINGULARNAME: 'Fenestraĵo por blogaj etikedoj'
     Sort: Ordigi
     Sort_Description: 'Ŝanĝi la ordon de etikedoj vidigotaj de tiu fenestraĵo.'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titolo

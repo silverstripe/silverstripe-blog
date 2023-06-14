@@ -1,0 +1,29 @@
+da:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: Titel
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Tilføj {name}'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: Ændret
+  SilverStripe\Blog\Model:
+    Title: Titel
+  SilverStripe\Blog\Model\Blog:
+    AND: og
+    Archive: Arkiv
+    Comments: Kommentarer
+    Tags: Tags
+    has_many_Tags: Tags
+  SilverStripe\Blog\Model\BlogCategory:
+    db_Title: Titel
+    db_URLSegment: 'URL adresse'
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    db_URLSegment: 'URL adresse'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titel
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Forfatter
+    Tags: Tags
+    many_many_Tags: Tags
+  SilverStripe\Blog\Model\BlogTag:
+    db_Title: Titel
+    db_URLSegment: 'URL adresse'

@@ -28,6 +28,8 @@ hr:
     Tags: Tagovi
     WRITER: Pisac
     AND: i
+    has_many_Categories: Kategorije
+    has_many_Tags: Tagovi
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     Authors: Autori
@@ -38,6 +40,9 @@ hr:
     PublishDate: 'Datum objave'
     SINGULARNAME: 'Blog zapis'
     Tags: Tagovi
+    many_many_Authors: Autori
+    many_many_Categories: Kategorije
+    many_many_Tags: Tagovi
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Tip arhive'
     Blog: Blog
@@ -67,3 +72,11 @@ hr:
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Broj zapisa'
+  SilverStripe\Blog\Model\BlogCategory:
+    db_Title: Naslov
+    has_one_Blog: Blog
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Naslov
+  SilverStripe\Blog\Model\BlogTag:
+    db_Title: Naslov
+    has_one_Blog: Blog

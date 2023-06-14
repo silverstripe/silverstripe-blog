@@ -1,0 +1,27 @@
+sl:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: Naziv
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Dodaj {name}'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: Spremenjeno
+  SilverStripe\Blog\Model:
+    Title: Naziv
+  SilverStripe\Blog\Model\Blog:
+    AND: in
+    Archive: Arhiv
+    Comments: Komentarji
+    PLURALNAME: 'Izvorna stran'
+  SilverStripe\Blog\Model\BlogCategory:
+    db_Title: Naziv
+    db_URLSegment: 'Naslov URL'
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    db_URLSegment: 'Naslov URL'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Naziv
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Avtor
+    PLURALNAME: 'Izvorna stran'
+  SilverStripe\Blog\Model\BlogTag:
+    db_Title: Naziv
+    db_URLSegment: 'Naslov URL'
