@@ -37,9 +37,13 @@ sk_SK:
     Tagged: Oštítkované
     Tags: Štítky
     WRITER: Spisovateľ
+    has_many_Categories: Kategórie
+    has_many_Tags: Štítky
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Kategórie blogu'
     SINGULARNAME: 'Kategória blogu'
+    db_Title: Názov
+    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Príspevky v blogu'
     TABBLOGPOSTS: 'Príspevky v blogu'
@@ -58,9 +62,14 @@ sk_SK:
     SINGULARNAME: 'Príspevok v blogu'
     SUMMARY_DESCRIPTION: 'Ak zhrnutie nie je uvedené, bude použitých prvých 30 slov z obsahu.'
     Tags: Štítky
+    many_many_Authors: Autori
+    many_many_Categories: Kategórie
+    many_many_Tags: Štítky
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Štítky blogu'
     SINGULARNAME: 'Štítok blogu'
+    db_Title: Názov
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Typ archívu'
     Blog: Blog
@@ -99,3 +108,5 @@ sk_SK:
     SINGULARNAME: 'Widget štítkov blogu'
     Sort: Usporiadanie
     Sort_Description: 'Zmení usporiadanie štítkov na tomto widgete.'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Názov

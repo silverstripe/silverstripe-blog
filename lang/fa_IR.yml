@@ -33,9 +33,13 @@ fa_IR:
     Tags: تگ‌ها
     WRITER: نویسنده
     AND: و
+    has_many_Categories: مجموعه‌ها
+    has_many_Tags: تگ‌ها
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'مجموعه‌های وبلاگ'
     SINGULARNAME: 'مجموعه وبلاگ'
+    db_Title: عنوان
+    has_one_Blog: وبلاگ
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: نگارنده
     AdditionalCredits: 'دیگر مشارکت‌کنندگان'
@@ -51,9 +55,14 @@ fa_IR:
     AdditionalCredits_Description: 'اگر برخی از نگارندگان این ارسال دسترسی به سی‌ام‌اس ندارند، نام آن‌ها را اینجا وارد نمایید. می‌توانید نام‌ها را با علامت ویرگول از هم جدا کنید.'
     FeaturedImage: 'تصویر برجسته'
     SUMMARY_DESCRIPTION: 'اگر هیچ خلاصه‌ای معرفی نشود ۳۰ کلمه‌ی آغازین استفاده خواهد شد.'
+    many_many_Authors: نگارندگان
+    many_many_Categories: مجموعه‌ها
+    many_many_Tags: تگ‌ها
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'تگ‌های وبلاگ'
     SINGULARNAME: 'تگ وبلاگ'
+    db_Title: عنوان
+    has_one_Blog: وبلاگ
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'نوع بایگانی'
     Blog: وبلاگ
@@ -101,3 +110,5 @@ fa_IR:
     Blog: وبلاگ
     PLURALNAME: 'ویجت ابر تگ‌های وبلاگ'
     SINGULARNAME: 'ویجت‌های ابر تگ‌های وبلاگ'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: عنوان

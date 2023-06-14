@@ -1,26 +1,15 @@
-pl:
+pl_PL:
   SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Posts: Posty
     Title: Tytuł
-  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
-    Add: 'Dodaj {name}'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Modified: Zmodyfikowany
+    Modified: Zmodyfikowano
   SilverStripe\Blog\Model:
     Title: Tytuł
   SilverStripe\Blog\Model\Blog:
-    AND: i
     Archive: Archiwizuj
-    By: przez
     Comments: Komentarze
-    PLURALNAME: 'Podstawowe strony'
-    Tags: 'Tagi:'
-    has_many_Tags: 'Tagi:'
-  SilverStripe\Blog\Model\BlogPost:
-    AUTHOR: Autor
-    PLURALNAME: 'Podstawowe strony'
-    Tags: 'Tagi:'
-    many_many_Tags: 'Tagi:'
+    FILTERDESCRIPTION_PAGE: 'Strona {page}'
+    PLURALNAME: 'Podstawowa strona'
   SilverStripe\Blog\Model\BlogCategory:
     db_Title: Tytuł
     db_URLSegment: URL
@@ -28,6 +17,9 @@ pl:
     db_URLSegment: URL
   SilverStripe\Blog\Model\BlogObject:
     Title: Tytuł
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Autor
+    PLURALNAME: 'Podstawowa strona'
   SilverStripe\Blog\Model\BlogTag:
     db_Title: Tytuł
     db_URLSegment: URL

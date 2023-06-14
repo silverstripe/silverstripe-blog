@@ -40,10 +40,14 @@ sv:
     Tagged: Taggad
     Tags: Taggar
     WRITER: Författare
+    has_many_Categories: Kategorier
+    has_many_Tags: Taggar
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'En bloggkategori finns redan med det namnet.'
     PLURALNAME: 'Blogg Kategorier'
     SINGULARNAME: 'Blogg Kategori'
+    db_Title: Titel
+    has_one_Blog: Blogg
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Blogginlägg
     TABBLOGPOSTS: Blogginlägg
@@ -62,10 +66,15 @@ sv:
     SINGULARNAME: Bloginlägg
     SUMMARY_DESCRIPTION: 'Om ingen sammanfattning anges, kommer de första 30 orden att användas .'
     Tags: Taggar
+    many_many_Authors: Författare
+    many_many_Categories: Kategorier
+    many_many_Tags: Taggar
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'En tag med det här namnet är redan tillagd'
     PLURALNAME: 'Blogg taggar'
     SINGULARNAME: 'Blogg tag'
+    db_Title: Titel
+    has_one_Blog: Blogg
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: ArkivTyp
     Blog: Blogg
@@ -107,3 +116,5 @@ sv:
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Blogg
     NumberOfPosts: 'Antal inlägg'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titel
