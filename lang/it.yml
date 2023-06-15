@@ -38,6 +38,8 @@ it:
     WRITER: Scrittore
     AND: e
     PLURALNAME: 'Pagine Base'
+    has_many_Categories: Categorie
+    has_many_Tags: Etichette
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
@@ -53,6 +55,9 @@ it:
     FeaturedImage: 'Immagine in Evidenza'
     PLURALNAME: 'Pagine Base'
     PublishDate_Description: 'Sarà impostato a "now" se pubblicato senza un valore.'
+    many_many_Authors: Autori
+    many_many_Categories: Categorie
+    many_many_Tags: Etichette
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     Blog: Blog
     NumberToDisplay: 'N. da Visualizzare'
@@ -92,12 +97,19 @@ it:
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Categorie Blog'
     SINGULARNAME: 'Categoria Blog'
+    db_Title: Titolo
+    db_URLSegment: 'Segmento URL'
+    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Articoli del Blog'
     TABBLOGPOSTS: 'Articoli del Blog'
+    db_URLSegment: 'Segmento URL'
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Etichette Blog'
     SINGULARNAME: 'Etichetta Blog'
+    db_Title: Titolo
+    db_URLSegment: 'Segmento URL'
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
@@ -105,3 +117,5 @@ it:
     Blog: Blog
     PLURALNAME: 'Widget Tag Cloud del Blog'
     SINGULARNAME: 'Widget Tag Cloud del Blog'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titolo

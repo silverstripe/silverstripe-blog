@@ -56,6 +56,8 @@ nl:
     UsersEditorsFieldDescription: "Een Redacteur heeft het beheer over specifieke blogs (en alle artikelen die daaronder vallen).\n                     Behalve dat ze andere Redacteuren aan een blog kunnen toewijzen, kunnen ze de meeste instellingen\n                     van hun blog zelf beheren. <br /><br />\n                    Redacteuren hebben deze rechten:<br />\n                    <br />\n                    Bijwerken en publiceren van artikelen in hun blog<br />\n                    Aanpassen en publiceren van hun blog<br />\n                    Auteurs (ont)koppelen aan hun blog\n                    Co-auteurs (ont)koppelen aan hun blog<br />\n                    Een gebruiker instellen als auteur van een artikel"
     UsersWritersFieldDescription: "Een Auteur heeft volledig beheer over artikelen die zij geschreven hebben                      of aan gekoppeld zijn. \nAuteurs kunnen geen artikelen beheren waar zij niet aan gekoppeld zijn.\n                    <br /><br />\n                    Auteurs hebben deze rechten:<br />\n                    <br />\n                    Bewerken of publiceren van artikelen die zij geschreven hebben of aan gekoppeld zijn<br />\n                     Een gebruiker (ont)koppelen als auteur van een artikel die zij geschreven hebben of aan gekoppeld zijn"
     WRITER: Auteur
+    has_many_Categories: Categorieën
+    has_many_Tags: Tags
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Een blog categorie met dezelfde naam bestaat al'
     PLURALNAME: 'Blog Categorieën'
@@ -63,9 +65,13 @@ nl:
       one: 'Een Blog Categorie'
       other: '{count} Blog Categorieën'
     SINGULARNAME: 'Blog Categorie'
+    db_Title: Titel
+    db_URLSegment: 'URL segment'
+    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Blog Artikelen'
     TABBLOGPOSTS: 'Blog Artikel'
+    db_URLSegment: 'URL segment'
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Auteur
     AdditionalCredits: Dankbetuigingen
@@ -85,6 +91,9 @@ nl:
     SINGULARNAME: 'Blog Artikel'
     SUMMARY_DESCRIPTION: 'Als er geen samenvatting ingevoerd wordt, dan worden de eerste 30 woorden gebruikt.'
     Tags: Tags
+    many_many_Authors: Auteurs
+    many_many_Categories: Categorieën
+    many_many_Tags: Tags
   SilverStripe\Blog\Model\BlogPostFeaturedExtension:
     FEATURED: 'Dit artikel tonen in de Uitgelicht-widget'
   SilverStripe\Blog\Model\BlogTag:
@@ -94,6 +103,9 @@ nl:
       one: 'Een Blog Tag'
       other: '{count} Blog Tags'
     SINGULARNAME: 'Blog Tag'
+    db_Title: Titel
+    db_URLSegment: 'URL segment'
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: ArchiveType
     Blog: Blog
@@ -152,3 +164,5 @@ nl:
     SINGULARNAME: 'Blog Tags-widget'
     Sort: Volgorde
     Sort_Description: 'Verander de volgorde van tags getoond door deze widget.'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titel

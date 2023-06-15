@@ -38,9 +38,14 @@ fr:
     Tags: Tags
     WRITER: Auteur
     AND: et
+    has_many_Categories: Catégories
+    has_many_Tags: Tags
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Catégories du blog'
     SINGULARNAME: 'Catégorie du blog'
+    db_Title: Titre
+    db_URLSegment: 'Segment d''URL'
+    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Auteur
     AdditionalCredits: 'Mentions additionnelles'
@@ -54,9 +59,15 @@ fr:
     SINGULARNAME: Billet
     SUMMARY_DESCRIPTION: 'Si aucun sommaire, les 30 premiers mots seront utilisés.'
     Tags: Tags
+    many_many_Authors: Auteurs
+    many_many_Categories: Catégories
+    many_many_Tags: Tags
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Tags du blog'
     SINGULARNAME: 'Tag du blog'
+    db_Title: Titre
+    db_URLSegment: 'Segment d''URL'
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: ArchiveType
     Blog: Blog
@@ -96,8 +107,11 @@ fr:
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Billets
     TABBLOGPOSTS: Billets
+    db_URLSegment: 'Segment d''URL'
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Nombre de billets'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Blog
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titre
