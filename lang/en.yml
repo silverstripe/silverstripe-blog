@@ -80,8 +80,6 @@ en:
     db_BlogProfileSummary: 'Blog profile summary'
     db_URLSegment: 'URL segment'
     has_one_BlogProfileImage: 'Blog profile image'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Title
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Author
     AdditionalCredits: 'Additional Credits'
@@ -180,3 +178,5 @@ en:
     SINGULARNAME: 'Blog Tags Widget'
     Sort: Sort
     Sort_Description: 'Change the order of tags shown by this widget.'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Title

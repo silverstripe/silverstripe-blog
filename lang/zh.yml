@@ -12,8 +12,16 @@ zh:
     Comments: 评论
     PLURALNAME: 基本页面
     Tags: 标签
+    has_many_Tags: 标签
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: 作者
     FeaturedImage: 特色图片
     PLURALNAME: 基本页面
     Tags: 标签
+    many_many_Tags: 标签
+  SilverStripe\Blog\Model\BlogCategory:
+    db_Title: 题目
+  SilverStripe\Blog\Model\BlogObject:
+    Title: 题目
+  SilverStripe\Blog\Model\BlogTag:
+    db_Title: 题目

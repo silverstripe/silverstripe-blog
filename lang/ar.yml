@@ -14,8 +14,16 @@ ar:
     Comments: التعليقات
     PLURALNAME: 'الصفحات الأساسية'
     Tags: البطاقات
+    has_many_Tags: البطاقات
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: الكاتب
     FeaturedImage: 'صورة مميزة'
     PLURALNAME: 'الصفحات الأساسية'
     Tags: البطاقات
+    many_many_Tags: البطاقات
+  SilverStripe\Blog\Model\BlogCategory:
+    db_Title: عنوان
+  SilverStripe\Blog\Model\BlogObject:
+    Title: عنوان
+  SilverStripe\Blog\Model\BlogTag:
+    db_Title: عنوان

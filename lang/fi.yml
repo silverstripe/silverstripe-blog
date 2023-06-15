@@ -52,6 +52,8 @@ fi:
     Tagged: Merkitty
     Tags: Avainsanat
     WRITER: Kirjoittaja
+    has_many_Categories: Kategoriat
+    has_many_Tags: Avainsanat
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Tämä blogikategoria on jo olemassa'
     PLURALNAME: Blogikategoriat
@@ -59,9 +61,13 @@ fi:
       one: 'Blogin kategoria'
       other: '{count} blogin kategoriaa'
     SINGULARNAME: Blogikategoria
+    db_Title: Otsikko
+    db_URLSegment: 'URL-osoitteen osio'
+    has_one_Blog: Blogi
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Artikkelit
     TABBLOGPOSTS: Artikkelit
+    db_URLSegment: 'URL-osoitteen osio'
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Kirjoittaja
     AdditionalCredits: Lisäkiitokset
@@ -81,6 +87,9 @@ fi:
     SINGULARNAME: Blogikirjoitus
     SUMMARY_DESCRIPTION: 'Mikäli tiivistelmää ei ole kirjoitettu, käytetään 30 ensimmäistä sanaa kirjoituksesta.'
     Tags: Avainsanat
+    many_many_Authors: Kirjoittajat
+    many_many_Categories: Kategoriat
+    many_many_Tags: Avainsanat
   SilverStripe\Blog\Model\BlogPostFeaturedExtension:
     FEATURED: 'Sisällytä postaus pääjutuksi'
   SilverStripe\Blog\Model\BlogTag:
@@ -90,6 +99,9 @@ fi:
       one: 'Blogin avainsana'
       other: '{count} blogin avainsanaa'
     SINGULARNAME: 'Blogin avainsana'
+    db_Title: Otsikko
+    db_URLSegment: 'URL-osoitteen osio'
+    has_one_Blog: Blogi
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Arkistotyyppi
     Blog: Blogi
@@ -148,3 +160,5 @@ fi:
     SINGULARNAME: 'Blogin avainsanavimpain'
     Sort: Järjestä
     Sort_Description: 'Vaihda vimpaimella näytettävien avainsanojen järjestystä.'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Otsikko
