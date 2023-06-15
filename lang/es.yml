@@ -51,6 +51,8 @@ es:
     Tagged: Etiquetado
     Tags: Etiquetas
     WRITER: Escritor
+    has_many_Categories: Categorías
+    has_many_Tags: Etiquetas
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Ya existe una categoría con el mismo nombre.'
     PLURALNAME: 'Categorías del Blog'
@@ -59,6 +61,8 @@ es:
       other: '{count} Categorías de blog'
       many: '{count} Categorías de blog'
     SINGULARNAME: 'Categoría del blog'
+    db_Title: Título
+    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Artículos del blog'
     TABBLOGPOSTS: 'Artículos del blog'
@@ -81,6 +85,9 @@ es:
     SINGULARNAME: 'Artículo del blog'
     SUMMARY_DESCRIPTION: 'Si no se especifica un resumen se usarán las primeras 30 palabras.'
     Tags: Etiquetas
+    many_many_Authors: Autores
+    many_many_Categories: Categorías
+    many_many_Tags: Etiquetas
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Ya existe una etiqueta con este nombre.'
     PLURALNAME: 'Etiquetas del Blog'
@@ -89,6 +96,8 @@ es:
       other: '{count} Etiquetas de blog'
       many: '{count} Etiquetas de blog'
     SINGULARNAME: 'Etiqueta del Blog'
+    db_Title: Título
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Tipo de archivo'
     Blog: Blog
@@ -117,3 +126,5 @@ es:
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero de artículos'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Título

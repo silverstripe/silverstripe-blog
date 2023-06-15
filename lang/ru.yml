@@ -38,6 +38,8 @@ ru:
     WRITER: Автор
     AND: и
     PERMISSION_MANAGE_USERS_HELP: 'Разрешить назначать Редакторов, Писателей и Авторов к блогам'
+    has_many_Categories: Категории
+    has_many_Tags: Метки
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Автор
     AdditionalCredits: 'Дополнительные сведения'
@@ -53,6 +55,9 @@ ru:
     PublishDate: 'Дата публикации'
     PublishDate_Description: 'Будет использована текущая дата если не будет указанно значение.'
     SUMMARY_DESCRIPTION: 'Если не указанно описание будут использованы первые 30 слов.'
+    many_many_Authors: Авторы
+    many_many_Categories: Категории
+    many_many_Tags: Метки
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Тип архива'
     Blog: Блог
@@ -92,12 +97,16 @@ ru:
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Категории Блога'
     SINGULARNAME: 'Категория Блога'
+    db_Title: Заголовок
+    has_one_Blog: Блог
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Базовые страницы'
     TABBLOGPOSTS: 'Базовые страницы'
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Тэги Блога'
     SINGULARNAME: 'Тэг Блога'
+    db_Title: Заголовок
+    has_one_Blog: Блог
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Блог
     NumberOfPosts: 'Количество записей'
@@ -105,3 +114,5 @@ ru:
     Blog: Блог
     PLURALNAME: 'Блоки облака тэгов'
     SINGULARNAME: 'Блок облака тэгов'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Заголовок
