@@ -1,13 +1,16 @@
 sv:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Inlägg
+    Title: Titel
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Lägg till {name}'
     AddFail: 'Det går inte att spara {class} till databasen .'
     PermissionFail: 'Du har inte behörighet att skapa en {class} .'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Sparad som utkast den {date}'
+    Modified: Ändrad
     Published: 'Publicerad den {date}'
     Timer: 'Publicerad den {date}'
-    Modified: Ändrad
   SilverStripe\Blog\Model:
     Title: Titel
   SilverStripe\Blog\Model\Blog:
@@ -51,6 +54,8 @@ sv:
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Blogginlägg
     TABBLOGPOSTS: Blogginlägg
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titel
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Författare
     AdditionalCredits: 'Ytterligare erkännanden'
@@ -87,10 +92,13 @@ sv:
     Direction_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
     Limit: Begränsa
     Limit_Description: 'Begränsa antalet kategorier som visas av denna widget (sätt till 0 för att visa alla kategorier).'
-    Sort: Sortera
-    Sort_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
     PLURALNAME: 'Blogg Kategorier-Widgets'
     SINGULARNAME: 'Blogg Kategori-Widget'
+    Sort: Sortera
+    Sort_Description: 'Ändra ordningen av kategorier som visas av denna widget.'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blogg
+    NumberOfPosts: 'Antal inlägg'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blogg
     NumberOfPosts: 'Antal inlägg'
@@ -106,15 +114,7 @@ sv:
     Direction_Description: 'Ändra riktningen av ordningen av taggar som visas av denna widget.'
     Limit: Begränsa
     Limit_Description: 'Begränsa antalet taggar som visas av denna widget (sätt till 0 för att visa alla taggar).'
-    Sort: Sortera
-    Sort_Description: 'Ändra ordningen av taggar som visas av denna widget.'
     PLURALNAME: 'Blogg taggar Widgets'
     SINGULARNAME: 'Blogg taggar Widget'
-  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Posts: Inlägg
-    Title: Titel
-  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blogg
-    NumberOfPosts: 'Antal inlägg'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Titel
+    Sort: Sortera
+    Sort_Description: 'Ändra ordningen av taggar som visas av denna widget.'

@@ -67,6 +67,8 @@ de:
     BLOGPOSTS: Blogbeiträge
     TABBLOGPOSTS: Blogbeiträge
     db_URLSegment: URL-Segment
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titel
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Zusätzliche Credits'
@@ -121,6 +123,9 @@ de:
     SINGULARNAME: 'Blog Kategorien Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Anzahl der Einträge'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
@@ -149,8 +154,3 @@ de:
     SINGULARNAME: 'Blog Tags Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'
-  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
-    NumberOfPosts: 'Anzahl der Einträge'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Titel

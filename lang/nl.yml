@@ -72,6 +72,8 @@ nl:
     BLOGPOSTS: 'Blog Artikelen'
     TABBLOGPOSTS: 'Blog Artikel'
     db_URLSegment: 'URL segment'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titel
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Auteur
     AdditionalCredits: Dankbetuigingen
@@ -164,5 +166,3 @@ nl:
     SINGULARNAME: 'Blog Tags-widget'
     Sort: Volgorde
     Sort_Description: 'Verander de volgorde van tags getoond door deze widget.'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Titel
