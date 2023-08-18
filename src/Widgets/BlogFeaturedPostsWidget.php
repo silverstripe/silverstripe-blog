@@ -84,7 +84,7 @@ class BlogFeaturedPostsWidget extends Widget
             return $blog->getBlogPosts()
                 ->filter('ID:not', Director::get_current_page()->ID)
                 ->filter('FeaturedInWidget', true)
-                ->sort('RAND()')
+                ->shuffle()
                 ->limit($this->NumberOfPosts);
         }
 
