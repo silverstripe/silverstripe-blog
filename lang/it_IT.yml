@@ -19,9 +19,9 @@ it_IT:
     PERMISSIONS_CATEGORY: 'Permessi Blog'
     Tagged: Taggato
     has_many_Categories: Categorie
-  SilverStripe\Blog\Model\BlogPost:
-    Categories: Categorie
-    many_many_Categories: Categorie
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Blog Posts'
     TABBLOGPOSTS: 'Blog Posts'
+  SilverStripe\Blog\Model\BlogPost:
+    Categories: Categorie
+    many_many_Categories: Categorie

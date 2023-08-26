@@ -1,5 +1,14 @@
 hr:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: Naslov
+  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
+    Add: 'Dodaj {name}'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: Izmjenjeno
+  SilverStripe\Blog\Model:
+    Title: Naslov
   SilverStripe\Blog\Model\Blog:
+    AND: i
     Archive: Arhiva
     By: od
     CONTRIBUTOR: Suradnik
@@ -27,9 +36,16 @@ hr:
     Tagged: Tagirano
     Tags: Tagovi
     WRITER: Pisac
-    AND: i
     has_many_Categories: Kategorije
     has_many_Tags: Tagovi
+  SilverStripe\Blog\Model\BlogCategory:
+    db_Title: Naslov
+    has_one_Blog: Blog
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Bazna stranica'
+    TABBLOGPOSTS: 'Bazna stranica'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Naslov
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     Authors: Autori
@@ -43,6 +59,9 @@ hr:
     many_many_Authors: Autori
     many_many_Categories: Kategorije
     many_many_Tags: Tagovi
+  SilverStripe\Blog\Model\BlogTag:
+    db_Title: Naslov
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Tip arhive'
     Blog: Blog
@@ -50,6 +69,9 @@ hr:
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: Blog
     Limit: Limit
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Broj zapisa'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Broj zapisa'
@@ -58,25 +80,3 @@ hr:
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Limit: Limit
-  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Title: Naslov
-  SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
-    Add: 'Dodaj {name}'
-  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Modified: Izmjenjeno
-  SilverStripe\Blog\Model:
-    Title: Naslov
-  SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'Bazna stranica'
-    TABBLOGPOSTS: 'Bazna stranica'
-  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
-    NumberOfPosts: 'Broj zapisa'
-  SilverStripe\Blog\Model\BlogCategory:
-    db_Title: Naslov
-    has_one_Blog: Blog
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Naslov
-  SilverStripe\Blog\Model\BlogTag:
-    db_Title: Naslov
-    has_one_Blog: Blog

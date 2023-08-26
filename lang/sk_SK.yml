@@ -47,6 +47,8 @@ sk_SK:
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Príspevky v blogu'
     TABBLOGPOSTS: 'Príspevky v blogu'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Názov
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Doplnkoví autori'
@@ -108,5 +110,3 @@ sk_SK:
     SINGULARNAME: 'Widget štítkov blogu'
     Sort: Usporiadanie
     Sort_Description: 'Zmení usporiadanie štítkov na tomto widgete.'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Názov
