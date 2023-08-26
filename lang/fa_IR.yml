@@ -1,9 +1,16 @@
 fa_IR:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Title: عنوان
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'افزودن {name}'
-    PermissionFail: 'شما دسترسی لازم جهت ایجاد یک {class} را ندارید.'
     AddFail: 'ناتوان از ذخیره‌سازی {class} در بانک داده'
+    PermissionFail: 'شما دسترسی لازم جهت ایجاد یک {class} را ندارید.'
+  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
+    Modified: 'تغییر یافته'
+  SilverStripe\Blog\Model:
+    Title: عنوان
   SilverStripe\Blog\Model\Blog:
+    AND: و
     Archive: بایگانی
     By: توسط
     CONTRIBUTOR: مشارکت‌کننده
@@ -32,7 +39,6 @@ fa_IR:
     Tagged: تگ‌شده
     Tags: تگ‌ها
     WRITER: نویسنده
-    AND: و
     has_many_Categories: مجموعه‌ها
     has_many_Tags: تگ‌ها
   SilverStripe\Blog\Model\BlogCategory:
@@ -40,21 +46,26 @@ fa_IR:
     SINGULARNAME: 'مجموعه وبلاگ'
     db_Title: عنوان
     has_one_Blog: وبلاگ
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'صفحات پایه‌ای'
+    TABBLOGPOSTS: 'صفحات پایه‌ای'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: عنوان
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: نگارنده
     AdditionalCredits: 'دیگر مشارکت‌کنندگان'
+    AdditionalCredits_Description: 'اگر برخی از نگارندگان این ارسال دسترسی به سی‌ام‌اس ندارند، نام آن‌ها را اینجا وارد نمایید. می‌توانید نام‌ها را با علامت ویرگول از هم جدا کنید.'
     Authors: نگارندگان
     CUSTOMSUMMARY: 'افزودن یک خلاصه دلخواه'
     Categories: مجموعه‌ها
+    FeaturedImage: 'تصویر برجسته'
     PLURALNAME: 'صفحه اصلی'
     PageTitleLabel: 'عنوان ارسال'
     PublishDate: 'تاریخ انتشار'
     PublishDate_Description: 'اگر بدون داده‌ای منتشر شود به "اکنون" تنظیم خواهد شد.'
     SINGULARNAME: 'ارسال وبلاگ'
-    Tags: تگ‌ها
-    AdditionalCredits_Description: 'اگر برخی از نگارندگان این ارسال دسترسی به سی‌ام‌اس ندارند، نام آن‌ها را اینجا وارد نمایید. می‌توانید نام‌ها را با علامت ویرگول از هم جدا کنید.'
-    FeaturedImage: 'تصویر برجسته'
     SUMMARY_DESCRIPTION: 'اگر هیچ خلاصه‌ای معرفی نشود ۳۰ کلمه‌ی آغازین استفاده خواهد شد.'
+    Tags: تگ‌ها
     many_many_Authors: نگارندگان
     many_many_Categories: مجموعه‌ها
     many_many_Tags: تگ‌ها
@@ -72,43 +83,32 @@ fa_IR:
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
     Blog: وبلاگ
     Direction: جهت
-    Limit: 'محدود کردن'
-    Sort: مرتب‌سازی
-    Sort_Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
     Direction_Description: 'تغییر جهت ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
+    Limit: 'محدود کردن'
     Limit_Description: 'محدود کردن تعداد مجموعه‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
     PLURALNAME: 'ویجت‌های مجموعه‌های بلاگ'
     SINGULARNAME: 'ویجت‌ مجموعه‌های بلاگ'
+    Sort: مرتب‌سازی
+    Sort_Description: 'تغییر ترتیب مجموعه‌های نمایش داده‌‌شده توسط این ویجت'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: وبلاگ
+    NumberOfPosts: 'شمار ارسال‌ها'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: وبلاگ
     NumberOfPosts: 'شمار ارسال‌ها'
     PLURALNAME: 'ویجت‌های جدیدترین ارسال‌های بلاگ'
     SINGULARNAME: 'ویجت جدیدترین ارسال‌های بلاگ'
-  SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: وبلاگ
-    Direction: جهت
-    Limit: 'محدود کردن'
-    Limit_Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
-    Sort: مرتب‌سازی
-    Direction_Description: 'تغییر جهت ترتیب تگ‌های نمایش داده‌‌شده توسط این ویجت'
-    PLURALNAME: 'ویجت‌های تگ‌های وبلاگ'
-    SINGULARNAME: 'ویجت تگ‌های وبلاگ'
-    Sort_Description: 'تغییر ترتیب تگ‌های نمایش داده‌‌شده توسط این ویجت'
-  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Title: عنوان
-  SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
-    Modified: 'تغییر یافته'
-  SilverStripe\Blog\Model:
-    Title: عنوان
-  SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'صفحات پایه‌ای'
-    TABBLOGPOSTS: 'صفحات پایه‌ای'
-  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: وبلاگ
-    NumberOfPosts: 'شمار ارسال‌ها'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: وبلاگ
     PLURALNAME: 'ویجت ابر تگ‌های وبلاگ'
     SINGULARNAME: 'ویجت‌های ابر تگ‌های وبلاگ'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: عنوان
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
+    Blog: وبلاگ
+    Direction: جهت
+    Direction_Description: 'تغییر جهت ترتیب تگ‌های نمایش داده‌‌شده توسط این ویجت'
+    Limit: 'محدود کردن'
+    Limit_Description: 'محدود کردن تعداد تگ‌های نمایش داده شده توسط این ویجت (روی 0 بگذارید تا همه به نمایش دربیایند)'
+    PLURALNAME: 'ویجت‌های تگ‌های وبلاگ'
+    SINGULARNAME: 'ویجت تگ‌های وبلاگ'
+    Sort: مرتب‌سازی
+    Sort_Description: 'تغییر ترتیب تگ‌های نمایش داده‌‌شده توسط این ویجت'

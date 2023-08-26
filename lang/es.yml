@@ -57,15 +57,17 @@ es:
     Duplicate: 'Ya existe una categoría con el mismo nombre.'
     PLURALNAME: 'Categorías del Blog'
     PLURALS:
+      many: '{count} Categorías de blog'
       one: 'Una categoría de blog'
       other: '{count} Categorías de blog'
-      many: '{count} Categorías de blog'
     SINGULARNAME: 'Categoría del blog'
     db_Title: Título
     has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Artículos del blog'
     TABBLOGPOSTS: 'Artículos del blog'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Título
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autor
     AdditionalCredits: 'Créditos adicionales'
@@ -92,9 +94,9 @@ es:
     Duplicate: 'Ya existe una etiqueta con este nombre.'
     PLURALNAME: 'Etiquetas del Blog'
     PLURALS:
+      many: '{count} Etiquetas de blog'
       one: 'Una etiqueta de blog'
       other: '{count} Etiquetas de blog'
-      many: '{count} Etiquetas de blog'
     SINGULARNAME: 'Etiqueta del Blog'
     db_Title: Título
     has_one_Blog: Blog
@@ -110,6 +112,9 @@ es:
     Limit_Description: 'Limita el número de categorías mostradas por este widget (use 0 para mostrar todas las categorías) '
     Sort: Ordenar
     Sort_Description: 'Cambia el orden de las categorías mostradas por este widget.'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Numero de artículos'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero de artículos'
@@ -123,8 +128,3 @@ es:
     Limit_Description: 'Limita el número de etiquetas mostradas por este widget (use 0 para mostrar todas las etiquetas).'
     Sort: Ordenar
     Sort_Description: 'Cambiar el orden de las etiquetas mostradas por este widget'
-  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
-    NumberOfPosts: 'Numero de artículos'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Título

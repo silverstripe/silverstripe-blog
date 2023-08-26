@@ -68,6 +68,8 @@ fi:
     BLOGPOSTS: Artikkelit
     TABBLOGPOSTS: Artikkelit
     db_URLSegment: 'URL-osoitteen osio'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Otsikko
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Kirjoittaja
     AdditionalCredits: Lisäkiitokset
@@ -160,5 +162,3 @@ fi:
     SINGULARNAME: 'Blogin avainsanavimpain'
     Sort: Järjestä
     Sort_Description: 'Vaihda vimpaimella näytettävien avainsanojen järjestystä.'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Otsikko
