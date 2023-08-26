@@ -1,14 +1,20 @@
 it:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Messaggi
+    Title: Titolo
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Aggiungi {name}'
     AddFail: 'Impossibile salvare {class} nel database.'
     PermissionFail: 'Non hai i permessi per creare un {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Salvato come bozza il {date}'
+    Modified: Modificato
     Published: 'Pubblicato il {date}'
     Timer: 'Pubblicare al {date}'
-    Modified: Modificato
+  SilverStripe\Blog\Model:
+    Title: Titolo
   SilverStripe\Blog\Model\Blog:
+    AND: e
     Archive: Archivia
     By: di
     CONTRIBUTOR: Collaboratore
@@ -27,6 +33,7 @@ it:
     PERMISSIONS_CATEGORY: 'Permessi del blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gestire utenti per i singoli blog'
     PERMISSION_MANAGE_USERS_HELP: 'Consenti l''assegnazione di Editori, Scrittori o Collaboratori ai blog'
+    PLURALNAME: 'Pagine Base'
     Posted: Inserito
     PostedIn: 'Inserito il'
     PostsPerPage: 'Articoli Per Pagina'
@@ -36,32 +43,48 @@ it:
     Tagged: Etichettato
     Tags: Etichette
     WRITER: Scrittore
-    AND: e
-    PLURALNAME: 'Pagine Base'
     has_many_Categories: Categorie
     has_many_Tags: Etichette
+  SilverStripe\Blog\Model\BlogCategory:
+    PLURALNAME: 'Categorie Blog'
+    SINGULARNAME: 'Categoria Blog'
+    db_Title: Titolo
+    db_URLSegment: 'Segmento URL'
+    has_one_Blog: Blog
+  SilverStripe\Blog\Model\BlogMemberExtension:
+    BLOGPOSTS: 'Articoli del Blog'
+    TABBLOGPOSTS: 'Articoli del Blog'
+    db_URLSegment: 'Segmento URL'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Titolo
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
+    AdditionalCredits_Description: 'Se l''autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola.'
     Authors: Autori
     CUSTOMSUMMARY: 'Aggiungi una Sintesi Personalizzata'
     Categories: Categorie
+    FeaturedImage: 'Immagine in Evidenza'
+    PLURALNAME: 'Pagine Base'
     PageTitleLabel: 'Titolo Articolo'
     PublishDate: 'Data Pubblicazione'
+    PublishDate_Description: 'Sarà impostato a "now" se pubblicato senza un valore.'
     SINGULARNAME: 'Articolo del Blog'
     SUMMARY_DESCRIPTION: 'Se non è specificata una sintesi saranno usate le prime 30 parole.'
     Tags: Etichette
-    AdditionalCredits_Description: 'Se l''autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola.'
-    FeaturedImage: 'Immagine in Evidenza'
-    PLURALNAME: 'Pagine Base'
-    PublishDate_Description: 'Sarà impostato a "now" se pubblicato senza un valore.'
     many_many_Authors: Autori
     many_many_Categories: Categorie
     many_many_Tags: Etichette
+  SilverStripe\Blog\Model\BlogTag:
+    PLURALNAME: 'Etichette Blog'
+    SINGULARNAME: 'Etichetta Blog'
+    db_Title: Titolo
+    db_URLSegment: 'Segmento URL'
+    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: TipoArchiviazione
     Blog: Blog
     NumberToDisplay: 'N. da Visualizzare'
-    ArchiveType: TipoArchiviazione
     PLURALNAME: 'Widget Archiviazione Blog'
     SINGULARNAME: 'Widget Archiviazione Blog'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
@@ -74,11 +97,18 @@ it:
     SINGULARNAME: 'Widget Categorie Blog'
     Sort: Ordine
     Sort_Description: 'Modificare l''ordine delle categorie mostrate da questo widget.'
+  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
+    Blog: Blog
+    NumberOfPosts: 'Numero di Articoli'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
     PLURALNAME: 'Widget Articoli Blog Recenti'
     SINGULARNAME: 'Widget Articoli Blog Recenti'
+  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
+    Blog: Blog
+    PLURALNAME: 'Widget Tag Cloud del Blog'
+    SINGULARNAME: 'Widget Tag Cloud del Blog'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
     Blog: Blog
     Direction: Direzione
@@ -89,33 +119,3 @@ it:
     SINGULARNAME: 'Widget Etichette Blog'
     Sort: Ordine
     Sort_Description: 'Modificare l''ordine delle etichette mostrate da questo widget.'
-  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Posts: Messaggi
-    Title: Titolo
-  SilverStripe\Blog\Model:
-    Title: Titolo
-  SilverStripe\Blog\Model\BlogCategory:
-    PLURALNAME: 'Categorie Blog'
-    SINGULARNAME: 'Categoria Blog'
-    db_Title: Titolo
-    db_URLSegment: 'Segmento URL'
-    has_one_Blog: Blog
-  SilverStripe\Blog\Model\BlogMemberExtension:
-    BLOGPOSTS: 'Articoli del Blog'
-    TABBLOGPOSTS: 'Articoli del Blog'
-    db_URLSegment: 'Segmento URL'
-  SilverStripe\Blog\Model\BlogTag:
-    PLURALNAME: 'Etichette Blog'
-    SINGULARNAME: 'Etichetta Blog'
-    db_Title: Titolo
-    db_URLSegment: 'Segmento URL'
-    has_one_Blog: Blog
-  SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
-    NumberOfPosts: 'Numero di Articoli'
-  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
-    PLURALNAME: 'Widget Tag Cloud del Blog'
-    SINGULARNAME: 'Widget Tag Cloud del Blog'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Titolo

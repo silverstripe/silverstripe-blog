@@ -1,14 +1,20 @@
 ru:
+  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
+    Posts: Сообщения
+    Title: Заголовок
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Добавить {name}'
     AddFail: 'Не удалось сохранить {class} в базе данных.'
     PermissionFail: 'У вас нет прав для создания элемента {class}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Черновик сохранен {date}'
+    Modified: Измененные
     Published: 'Опубликовано {date}'
     Timer: 'Опубликовать {date}'
-    Modified: Измененные
+  SilverStripe\Blog\Model:
+    Title: Заголовок
   SilverStripe\Blog\Model\Blog:
+    AND: и
     Archive: Архив
     By: 'автор:'
     CONTRIBUTOR: Автор
@@ -26,6 +32,7 @@ ru:
     NoPosts: 'В блоге нет записей'
     PERMISSIONS_CATEGORY: 'Права доступа к содержимому блога'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Управление пользователями для индивидуальных блогов'
+    PERMISSION_MANAGE_USERS_HELP: 'Разрешить назначать Редакторов, Писателей и Авторов к блогам'
     PLURALNAME: 'Базовые страницы'
     Posted: Отправлено
     PostedIn: Отправлено
@@ -36,64 +43,8 @@ ru:
     Tagged: Метки
     Tags: Метки
     WRITER: Автор
-    AND: и
-    PERMISSION_MANAGE_USERS_HELP: 'Разрешить назначать Редакторов, Писателей и Авторов к блогам'
     has_many_Categories: Категории
     has_many_Tags: Метки
-  SilverStripe\Blog\Model\BlogPost:
-    AUTHOR: Автор
-    AdditionalCredits: 'Дополнительные сведения'
-    Authors: Авторы
-    PLURALNAME: 'Базовые страницы'
-    SINGULARNAME: 'Запись в блоге'
-    Tags: Метки
-    AdditionalCredits_Description: 'Если некоторые авторы этого сообщения не имеют доступа к админке укажите их имена здесь. Для разделения имён используется запятая.'
-    CUSTOMSUMMARY: 'Добавить уникальное описание'
-    Categories: Категории
-    FeaturedImage: Изображение
-    PageTitleLabel: 'Заголовок Сообщения'
-    PublishDate: 'Дата публикации'
-    PublishDate_Description: 'Будет использована текущая дата если не будет указанно значение.'
-    SUMMARY_DESCRIPTION: 'Если не указанно описание будут использованы первые 30 слов.'
-    many_many_Authors: Авторы
-    many_many_Categories: Категории
-    many_many_Tags: Метки
-  SilverStripe\Blog\Widgets\BlogArchiveWidget:
-    ArchiveType: 'Тип архива'
-    Blog: Блог
-    NumberToDisplay: 'Отображать:'
-    PLURALNAME: 'Виджеты архива'
-    SINGULARNAME: 'Виджет архива'
-  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Блог
-    Sort: Сортировать
-    Direction: Направление
-    Direction_Description: 'Изменять направление сортировки категорий отображаемых в этом блоке.'
-    Limit: Ограничение
-    Limit_Description: 'Ограничить количество категорий отображаемых в этом блоке (укажите 0 чтобы отображать все категории).'
-    PLURALNAME: 'Блоки категорий блога'
-    SINGULARNAME: 'Блок категорий блога'
-    Sort_Description: 'Изменить порядок категорий в этом блоке.'
-  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Блог
-    NumberOfPosts: 'Количество записей'
-    PLURALNAME: 'Блоки последних сообщений блога'
-    SINGULARNAME: 'Блок последних сообщений блога'
-  SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Блог
-    Sort: Сортировать
-    Direction: Направление
-    Direction_Description: 'Изменить направление сортировки тэгов отображаемых в этом блоке.'
-    Limit: Ограничение
-    Limit_Description: 'Ограничить количество тэгов в этом блоке (укажите 0 чтобы отобразить все тэги).'
-    PLURALNAME: 'Виджеты для меток блога'
-    SINGULARNAME: 'Виджет для меток блога'
-    Sort_Description: 'Изменить порядок тэгов в этом блоке.'
-  SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Posts: Сообщения
-    Title: Заголовок
-  SilverStripe\Blog\Model:
-    Title: Заголовок
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Категории Блога'
     SINGULARNAME: 'Категория Блога'
@@ -102,17 +53,66 @@ ru:
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Базовые страницы'
     TABBLOGPOSTS: 'Базовые страницы'
+  SilverStripe\Blog\Model\BlogObject:
+    Title: Заголовок
+  SilverStripe\Blog\Model\BlogPost:
+    AUTHOR: Автор
+    AdditionalCredits: 'Дополнительные сведения'
+    AdditionalCredits_Description: 'Если некоторые авторы этого сообщения не имеют доступа к админке укажите их имена здесь. Для разделения имён используется запятая.'
+    Authors: Авторы
+    CUSTOMSUMMARY: 'Добавить уникальное описание'
+    Categories: Категории
+    FeaturedImage: Изображение
+    PLURALNAME: 'Базовые страницы'
+    PageTitleLabel: 'Заголовок Сообщения'
+    PublishDate: 'Дата публикации'
+    PublishDate_Description: 'Будет использована текущая дата если не будет указанно значение.'
+    SINGULARNAME: 'Запись в блоге'
+    SUMMARY_DESCRIPTION: 'Если не указанно описание будут использованы первые 30 слов.'
+    Tags: Метки
+    many_many_Authors: Авторы
+    many_many_Categories: Категории
+    many_many_Tags: Метки
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Тэги Блога'
     SINGULARNAME: 'Тэг Блога'
     db_Title: Заголовок
     has_one_Blog: Блог
+  SilverStripe\Blog\Widgets\BlogArchiveWidget:
+    ArchiveType: 'Тип архива'
+    Blog: Блог
+    NumberToDisplay: 'Отображать:'
+    PLURALNAME: 'Виджеты архива'
+    SINGULARNAME: 'Виджет архива'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Blog: Блог
+    Direction: Направление
+    Direction_Description: 'Изменять направление сортировки категорий отображаемых в этом блоке.'
+    Limit: Ограничение
+    Limit_Description: 'Ограничить количество категорий отображаемых в этом блоке (укажите 0 чтобы отображать все категории).'
+    PLURALNAME: 'Блоки категорий блога'
+    SINGULARNAME: 'Блок категорий блога'
+    Sort: Сортировать
+    Sort_Description: 'Изменить порядок категорий в этом блоке.'
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Блог
     NumberOfPosts: 'Количество записей'
+  SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
+    Blog: Блог
+    NumberOfPosts: 'Количество записей'
+    PLURALNAME: 'Блоки последних сообщений блога'
+    SINGULARNAME: 'Блок последних сообщений блога'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
     Blog: Блог
     PLURALNAME: 'Блоки облака тэгов'
     SINGULARNAME: 'Блок облака тэгов'
-  SilverStripe\Blog\Model\BlogObject:
-    Title: Заголовок
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
+    Blog: Блог
+    Direction: Направление
+    Direction_Description: 'Изменить направление сортировки тэгов отображаемых в этом блоке.'
+    Limit: Ограничение
+    Limit_Description: 'Ограничить количество тэгов в этом блоке (укажите 0 чтобы отобразить все тэги).'
+    PLURALNAME: 'Виджеты для меток блога'
+    SINGULARNAME: 'Виджет для меток блога'
+    Sort: Сортировать
+    Sort_Description: 'Изменить порядок тэгов в этом блоке.'
