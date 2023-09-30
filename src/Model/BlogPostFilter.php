@@ -28,13 +28,17 @@ class BlogPostFilter extends DataExtension
      */
     public function augmentSQL(SQLSelect $query, DataQuery $dataQuery = null)
     {
-        $stage = Versioned::get_stage();
 
         if (Controller::has_curr() && Controller::curr() instanceof LeftAndMain) {
             return;
         }
 
-        if ($stage == 'Live' || !Permission::check('VIEW_DRAFT_CONTENT')) {
+        if (Versioned::get_stage() === Versioned::LIVE ||
+            (
+                Versioned::get_draft_site_secured() &&
+                !Permission::check('VIEW_DRAFT_CONTENT')
+            )
+        ) {
             $query->addWhere(sprintf(
                 '"PublishDate" < \'%s\'',
                 Convert::raw2sql(DBDatetime::now())
