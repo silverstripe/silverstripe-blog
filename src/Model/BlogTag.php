@@ -18,6 +18,8 @@ class BlogTag extends DataObject implements CategorisationObject
 {
     use BlogObject;
 
+    private static bool $allow_urlsegment_multibyte = true;
+
     /**
      * Use an exception code so that attempted writes can continue on
      * duplicate errors.
