@@ -334,8 +334,6 @@ class BlogPost extends Page
                 ? $parent->Tags()
                 : BlogTag::get();
 
-            // @todo: Reimplement the sidebar
-            // $options = BlogAdminSidebar::create(
             $fields->addFieldsToTab(
                 'Root.PostOptions',
                 [
@@ -360,9 +358,6 @@ class BlogPost extends Page
                     $authorNames
                 ]
             );
-            // )->setTitle('Post Options');
-            // $options->setName('blog-admin-sidebar');
-            // $fields->insertBefore($options, 'Root');
 
             $fields->fieldByName('Root.PostOptions')
                 ->setTitle(_t(__CLASS__ . '.PostOptions', 'Post Options'));
