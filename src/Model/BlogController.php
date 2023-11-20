@@ -11,6 +11,8 @@ use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\PaginatedList;
 use SilverStripe\Security\Member;
+use SilverStripe\Blog\Model\BlogTag;
+use SilverStripe\Blog\Model\BlogCategory;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\Control\HTTPRequest;
 
@@ -268,6 +270,7 @@ class BlogController extends PageController
         $tag = $this->request->param('Tag');
         if ($tag) {
             $filter = URLSegmentFilter::create();
+            $filter->setAllowMultibyte(BlogTag::config()->get('allow_urlsegment_multibyte'));
             // url encode unless it's multibyte (already pre-encoded in the database)
             // see https://github.com/silverstripe/silverstripe-cms/pull/2384
             if (!$filter->getAllowMultibyte()) {
@@ -318,6 +321,7 @@ class BlogController extends PageController
         $category = $this->request->param('Category');
         if ($category) {
             $filter = URLSegmentFilter::create();
+            $filter->setAllowMultibyte(BlogCategory::config()->get('allow_urlsegment_multibyte'));
             // url encode unless it's multibyte (already pre-encoded in the database)
             // see https://github.com/silverstripe/silverstripe-cms/pull/2384
             if (!$filter->getAllowMultibyte()) {
