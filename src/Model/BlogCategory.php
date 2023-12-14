@@ -8,11 +8,12 @@ use SilverStripe\ORM\DataObject;
  * A blog category for generalising blog posts.
  *
 *
- * @method Blog Blog()
  *
  * @property string $Title
  * @property string $URLSegment
  * @property int $BlogID
+ * @method Blog Blog()
+ * @method SilverStripe\ORM\ManyManyList<BlogPost> BlogPosts()
  */
 class BlogCategory extends DataObject implements CategorisationObject
 {

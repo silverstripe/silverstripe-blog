@@ -31,17 +31,15 @@ use SilverStripe\View\Requirements;
 /**
  * An individual blog post.
  *
- * @method ManyManyList Categories()
- * @method ManyManyList Tags()
- * @method ManyManyList Authors()
- * @method Blog Parent()
- * @method Image FeaturedImage()
- *
  * @property string $PublishDate
  * @property string $AuthorNames
  * @property string $Summary
  * @property int $ParentID
  * @property int $FeaturedImageID
+ * @method ManyManyList<Member> Authors()
+ * @method ManyManyList<BlogCategory> Categories()
+ * @method Image FeaturedImage()
+ * @method ManyManyList<BlogTag> Tags()
  */
 class BlogPost extends Page
 {

@@ -31,11 +31,11 @@ use SilverStripe\View\Requirements;
 /**
  * Blog Holder
  *
- * @method HasManyList Tags() List of tags in this blog
- * @method HasManyList Categories() List of categories in this blog
- * @method ManyManyList Editors() List of editors
- * @method ManyManyList Writers() List of writers
- * @method ManyManyList Contributors() List of contributors
+ * @method HasManyList<BlogCategory> Categories()
+ * @method ManyManyList<Member> Contributors()
+ * @method ManyManyList<Member> Editors()
+ * @method HasManyList<BlogTag> Tags()
+ * @method ManyManyList<Member> Writers()
  */
 class Blog extends Page implements PermissionProvider
 {
