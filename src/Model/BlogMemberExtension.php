@@ -17,6 +17,8 @@ use SilverStripe\View\Requirements;
 /**
  * This class is responsible for add Blog specific behaviour to Members.
  *
+ * @method SilverStripe\ORM\ManyManyList<BlogPost> BlogPosts()
+ * @method Image BlogProfileImage()
  */
 class BlogMemberExtension extends DataExtension
 {
