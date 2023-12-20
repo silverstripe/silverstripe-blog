@@ -226,7 +226,6 @@ class GridFieldAddByDBField implements GridField_ActionProvider, GridField_HTMLP
             'add',
             'add'
         );
-        $addAction->setAttribute('data-icon', 'add');
         $addAction->addExtraClass('btn btn-primary');
 
         $forTemplate = ArrayData::create([]);
