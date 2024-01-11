@@ -21,7 +21,7 @@ trait BlogObject
 {
     /**
      * @param int|array|null $id Optional ID(s) for parent of this relation, if not the current record
-     * @return DataList
+     * @return DataList<BlogPost>
      */
     public function BlogPosts($id = null)
     {

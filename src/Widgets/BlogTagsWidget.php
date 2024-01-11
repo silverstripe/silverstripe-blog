@@ -3,6 +3,7 @@
 namespace SilverStripe\Blog\Widgets;
 
 use SilverStripe\Blog\Model\Blog;
+use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Core\Convert;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\FieldList;
@@ -106,7 +107,7 @@ class BlogTagsWidget extends Widget
     }
 
     /**
-     * @return DataList
+     * @return DataList<BlogTag>
      */
     public function getTags()
     {

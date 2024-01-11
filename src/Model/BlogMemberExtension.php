@@ -19,6 +19,8 @@ use SilverStripe\View\Requirements;
  *
  * @method SilverStripe\ORM\ManyManyList<BlogPost> BlogPosts()
  * @method Image BlogProfileImage()
+ *
+ * @extends DataExtension<Member>
  */
 class BlogMemberExtension extends DataExtension
 {
