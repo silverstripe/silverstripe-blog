@@ -108,7 +108,7 @@ class BlogArchiveWidget extends Widget
     /**
      * Returns a list of months where blog posts are present.
      *
-     * @return ArrayList
+     * @return ArrayList<ArrayData>
      */
     public function getArchive()
     {

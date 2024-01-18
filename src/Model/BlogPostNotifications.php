@@ -12,6 +12,8 @@ use SilverStripe\Security\Member;
  * Customise blog post to support comment notifications.
  *
  * Extends {@see BlogPost} with extensions to {@see CommentNotifiable}.
+ *
+ * @extends DataExtension<BlogPost>
  */
 class BlogPostNotifications extends DataExtension
 {

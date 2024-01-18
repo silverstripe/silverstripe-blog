@@ -15,7 +15,11 @@ use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Blog\Model\BlogCategory;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\Control\HTTPRequest;
+use SilverStripe\ORM\SS_List;
 
+/**
+ * @extends PageController<Blog>
+ */
 class BlogController extends PageController
 {
     /**
@@ -58,7 +62,7 @@ class BlogController extends PageController
     /**
      * The current Blog Post DataList query.
      *
-     * @var DataList
+     * @var DataList<BlogPost>
      */
     protected $blogPosts;
 
@@ -67,9 +71,6 @@ class BlogController extends PageController
      */
     public function index(HTTPRequest $request)
     {
-        /**
-         * @var Blog $dataRecord
-         */
         $dataRecord = $this->dataRecord;
 
         $this->blogPosts = $dataRecord->getBlogPosts();
@@ -128,7 +129,7 @@ class BlogController extends PageController
     /**
      * Get posts related to the current Member profile.
      *
-     * @return null|DataList
+     * @return null|DataList<BlogPost>
      */
     public function getCurrentProfilePosts()
     {
@@ -443,7 +444,7 @@ class BlogController extends PageController
     /**
      * Returns a list of paginated blog posts based on the BlogPost dataList.
      *
-     * @return PaginatedList
+     * @return PaginatedList<SS_List, BlogPost>
      */
     public function PaginatedList()
     {

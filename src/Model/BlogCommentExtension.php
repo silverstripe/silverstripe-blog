@@ -2,10 +2,13 @@
 
 namespace SilverStripe\Blog\Model;
 
+use SilverStripe\Comments\Model\Comment;
 use SilverStripe\ORM\DataExtension;
 
 /**
  * Adds Blog specific behaviour to Comment.
+ *
+ * @extends DataExtension<Comment>
  */
 class BlogCommentExtension extends DataExtension
 {
