@@ -11,7 +11,6 @@ use SilverStripe\ORM\DataObject;
  * @property string $URLSegment
  * @property int $BlogID
  * @method Blog Blog()
- * @method SilverStripe\ORM\ManyManyList<BlogPost> BlogPosts()
  */
 class BlogTag extends DataObject implements CategorisationObject
 {
