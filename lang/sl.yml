@@ -11,17 +11,27 @@ sl:
     AND: in
     Archive: Arhiv
     Comments: Komentarji
+    FILTERDESCRIPTION_PAGE: 'Stran {page}'
     PLURALNAME: 'Izvorna stran'
   SilverStripe\Blog\Model\BlogCategory:
+    belongs_many_many_BlogPosts: 'Zapisi na blogu'
     db_Title: Naziv
     db_URLSegment: 'Naslov URL'
   SilverStripe\Blog\Model\BlogMemberExtension:
+    belongs_many_many_BlogPosts: 'Zapisi na blogu'
+    db_BlogProfileSummary: 'Povzetek blogerskega profila'
     db_URLSegment: 'Naslov URL'
+    has_one_BlogProfileImage: 'Osebna podoba'
   SilverStripe\Blog\Model\BlogObject:
     Title: Naziv
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Avtor
     PLURALNAME: 'Izvorna stran'
   SilverStripe\Blog\Model\BlogTag:
+    belongs_many_many_BlogPosts: 'Zapisi na blogu'
     db_Title: Naziv
     db_URLSegment: 'Naslov URL'
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Sort: Razvrščanje
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
+    Sort: Razvrščanje
