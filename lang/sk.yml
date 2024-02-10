@@ -45,11 +45,17 @@ sk:
     PLURALNAME: 'Kategórie blogu'
     SINGULARNAME: 'Kategória blogu'
     Title: Názov
+    belongs_many_many_BlogPosts: 'Príspevky v blogu'
     db_Title: Názov
+    db_URLSegment: 'Časť URL'
     has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Základné stránky'
     TABBLOGPOSTS: 'Základné stránky'
+    belongs_many_many_BlogPosts: 'Príspevky v blogu'
+    db_BlogProfileSummary: 'Prehľad profilu blogu'
+    db_URLSegment: 'Časť URL'
+    has_one_BlogProfileImage: 'Profilový obrázok blogu'
   SilverStripe\Blog\Model\BlogObject:
     Title: Názov
   SilverStripe\Blog\Model\BlogPost:
@@ -75,7 +81,9 @@ sk:
     PLURALNAME: 'Štítky blogu'
     SINGULARNAME: 'Štítok blogu'
     Title: Názov
+    belongs_many_many_BlogPosts: 'Príspevky v blogu'
     db_Title: Názov
+    db_URLSegment: 'Časť URL'
     has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Typ archívu'
