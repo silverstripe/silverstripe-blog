@@ -51,6 +51,11 @@ class BlogMemberExtension extends DataExtension
     {
         $count = 1;
 
+        // Auto publish profile images
+        if ($this->owner->BlogProfileImage() && $this->owner->BlogProfileImage()->exists()) {
+            $this->owner->BlogProfileImage()->publishSingle();
+        }
+
         if ($this->owner->URLSegment && !$this->owner->isChanged('FirstName') && !$this->owner->isChanged('Surname')) {
             return;
         }
@@ -60,11 +65,6 @@ class BlogMemberExtension extends DataExtension
         while (!$this->validURLSegment()) {
             $this->owner->URLSegment = preg_replace('/-[0-9]+$/', '', $this->owner->URLSegment ?? '') . '-' . $count;
             $count++;
-        }
-
-        // Auto publish profile images
-        if ($this->owner->BlogProfileImage() && $this->owner->BlogProfileImage()->exists()) {
-            $this->owner->BlogProfileImage()->publishSingle();
         }
     }
 
