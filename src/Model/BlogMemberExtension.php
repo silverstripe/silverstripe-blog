@@ -40,6 +40,13 @@ class BlogMemberExtension extends DataExtension
     /**
      * @var array
      */
+    private static $owns = [
+        'BlogProfileImage',
+    ];
+
+    /**
+     * @var array
+     */
     private static $belongs_many_many = [
         'BlogPosts' => BlogPost::class
     ];
@@ -50,11 +57,6 @@ class BlogMemberExtension extends DataExtension
     public function onBeforeWrite()
     {
         $count = 1;
-
-        // Auto publish profile images
-        if ($this->owner->BlogProfileImage() && $this->owner->BlogProfileImage()->exists()) {
-            $this->owner->BlogProfileImage()->publishSingle();
-        }
 
         if ($this->owner->URLSegment && !$this->owner->isChanged('FirstName') && !$this->owner->isChanged('Surname')) {
             return;
