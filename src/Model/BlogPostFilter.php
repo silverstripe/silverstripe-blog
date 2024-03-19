@@ -17,6 +17,7 @@ use SilverStripe\Versioned\Versioned;
  * This is responsible for filtering only published posts to users who do not have permission to
  * view non-published posts.
  *
+ * @extends DataExtension<BlogPost>
  */
 class BlogPostFilter extends DataExtension
 {

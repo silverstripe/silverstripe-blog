@@ -7,13 +7,10 @@ use SilverStripe\ORM\DataObject;
 /**
  * A blog category for generalising blog posts.
  *
-*
- *
  * @property string $Title
  * @property string $URLSegment
  * @property int $BlogID
  * @method Blog Blog()
- * @method SilverStripe\ORM\ManyManyList<BlogPost> BlogPosts()
  */
 class BlogCategory extends DataObject implements CategorisationObject
 {
@@ -33,6 +30,8 @@ class BlogCategory extends DataObject implements CategorisationObject
      * @var string
      */
     private static $table_name = 'BlogCategory';
+
+    private static bool $allow_urlsegment_multibyte = true;
 
     /**
      * @var array

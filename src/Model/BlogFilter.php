@@ -16,7 +16,6 @@ use SilverStripe\Versioned\Versioned;
 /**
  * This class is responsible for filtering the SiteTree when necessary and also overlaps into
  * filtering only published posts.
- *
  */
 class BlogFilter extends Lumberjack
 {

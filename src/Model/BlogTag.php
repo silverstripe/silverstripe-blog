@@ -11,11 +11,12 @@ use SilverStripe\ORM\DataObject;
  * @property string $URLSegment
  * @property int $BlogID
  * @method Blog Blog()
- * @method SilverStripe\ORM\ManyManyList<BlogPost> BlogPosts()
  */
 class BlogTag extends DataObject implements CategorisationObject
 {
     use BlogObject;
+
+    private static bool $allow_urlsegment_multibyte = true;
 
     /**
      * Use an exception code so that attempted writes can continue on

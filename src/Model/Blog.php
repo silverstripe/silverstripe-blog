@@ -533,7 +533,7 @@ class Blog extends Page implements PermissionProvider
      * @param null|int $month
      * @param null|int $day
      *
-     * @return DataList
+     * @return DataList<BlogPost>
      */
     public function getArchivedBlogPosts($year, $month = null, $day = null)
     {
@@ -574,7 +574,7 @@ class Blog extends Page implements PermissionProvider
     /**
      * Return blog posts.
      *
-     * @return DataList of BlogPost objects
+     * @return DataList<BlogPost> of BlogPost objects
      */
     public function getBlogPosts()
     {

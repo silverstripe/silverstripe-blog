@@ -8,6 +8,8 @@ use SilverStripe\Forms\CheckboxField;
 
 /**
  * Adds a checkbox field for featured blog posts widget.
+ *
+ * @extends DataExtension<BlogPost>
  */
 class BlogPostFeaturedExtension extends DataExtension
 {
