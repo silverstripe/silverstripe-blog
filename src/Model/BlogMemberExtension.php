@@ -35,6 +35,10 @@ class BlogMemberExtension extends DataExtension
         'BlogProfileImage' => Image::class
     ];
 
+    private static array $owns = [
+        'BlogProfileImage',
+    ];
+
     /**
      * @var array
      */
@@ -58,11 +62,6 @@ class BlogMemberExtension extends DataExtension
         while (!$this->validURLSegment()) {
             $this->owner->URLSegment = preg_replace('/-[0-9]+$/', '', $this->owner->URLSegment ?? '') . '-' . $count;
             $count++;
-        }
-
-        // Auto publish profile images
-        if ($this->owner->BlogProfileImage() && $this->owner->BlogProfileImage()->exists()) {
-            $this->owner->BlogProfileImage()->publishSingle();
         }
     }
 
