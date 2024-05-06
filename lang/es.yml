@@ -45,7 +45,7 @@ es:
     Posted: Publicado
     PostedIn: 'Publicado en'
     PostsPerPage: 'Artículos por página'
-    ReadMoreAbout: 'Leer más sobre ''{title}''...'
+    ReadMoreAbout: "Leer más sobre '{title}'..."
     SINGULARNAME: Blog
     Tag: Etiqueta
     Tagged: Etiquetado

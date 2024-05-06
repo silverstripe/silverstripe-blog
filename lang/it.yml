@@ -32,12 +32,12 @@ it:
     NoPosts: 'Non ci sono articoli'
     PERMISSIONS_CATEGORY: 'Permessi del blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gestire utenti per i singoli blog'
-    PERMISSION_MANAGE_USERS_HELP: 'Consenti l''assegnazione di Editori, Scrittori o Collaboratori ai blog'
+    PERMISSION_MANAGE_USERS_HELP: "Consenti l'assegnazione di Editori, Scrittori o Collaboratori ai blog"
     PLURALNAME: 'Pagine Base'
     Posted: Inserito
     PostedIn: 'Inserito il'
     PostsPerPage: 'Articoli Per Pagina'
-    ReadMoreAbout: 'Leggi di più su ''{title}''...'
+    ReadMoreAbout: "Leggi di più su '{title}'..."
     SINGULARNAME: Blog
     Tag: Etichetta
     Tagged: Etichettato
@@ -60,7 +60,7 @@ it:
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
-    AdditionalCredits_Description: 'Se l''autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola.'
+    AdditionalCredits_Description: "Se l'autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola."
     Authors: Autori
     CUSTOMSUMMARY: 'Aggiungi una Sintesi Personalizzata'
     Categories: Categorie
@@ -96,7 +96,7 @@ it:
     PLURALNAME: 'Widget Categorie Blog'
     SINGULARNAME: 'Widget Categorie Blog'
     Sort: Ordine
-    Sort_Description: 'Modificare l''ordine delle categorie mostrate da questo widget.'
+    Sort_Description: "Modificare l'ordine delle categorie mostrate da questo widget."
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
     Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
@@ -118,4 +118,4 @@ it:
     PLURALNAME: 'Widget Etichette Blog'
     SINGULARNAME: 'Widget Etichette Blog'
     Sort: Ordine
-    Sort_Description: 'Modificare l''ordine delle etichette mostrate da questo widget.'
+    Sort_Description: "Modificare l'ordine delle etichette mostrate da questo widget."

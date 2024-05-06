@@ -33,7 +33,7 @@ sk:
     Posted: Uverejnené
     PostedIn: 'Uverejnené v'
     PostsPerPage: 'Príspevky na stránke'
-    ReadMoreAbout: 'Čítať viac o ''{title}''...'
+    ReadMoreAbout: "Čítať viac o '{title}'..."
     SINGULARNAME: Blog
     Tag: Štítok
     Tagged: Oštítkované

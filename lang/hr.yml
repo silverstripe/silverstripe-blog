@@ -30,7 +30,7 @@ hr:
     Posted: Objavljeno
     PostedIn: 'Objavljeno u'
     PostsPerPage: 'Postova po stranici'
-    ReadMoreAbout: 'Pročitaj više o ''{title}''...'
+    ReadMoreAbout: "Pročitaj više o '{title}'..."
     SINGULARNAME: Blog
     Tag: Tag
     Tagged: Tagirano

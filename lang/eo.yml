@@ -47,7 +47,7 @@ eo:
     PostedIn: 'Afiŝita en'
     PostsByUser: 'Afiŝoj laŭ {firstname} {surname} por {title}'
     PostsPerPage: 'Afiŝoj en ĉiu paĝo'
-    ReadMoreAbout: 'Legi plu pri ''{title}''...'
+    ReadMoreAbout: "Legi plu pri '{title}'..."
     SINGULARNAME: Blogo
     Tag: Etikedo
     Tagged: 'Havas etikedon'

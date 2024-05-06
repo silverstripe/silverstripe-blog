@@ -37,7 +37,7 @@ ru:
     Posted: Отправлено
     PostedIn: Отправлено
     PostsPerPage: 'Записей на странице'
-    ReadMoreAbout: 'Узнать больше о ''{title}''...'
+    ReadMoreAbout: "Узнать больше о '{title}'..."
     SINGULARNAME: Блог
     Tag: Метка
     Tagged: Метки

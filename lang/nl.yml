@@ -42,12 +42,12 @@ nl:
     PLURALNAME: Blog
     PLURALS:
       one: 'Eén blogpagina'
-      other: '{count} blogpagina''s'
+      other: "{count} blogpagina's"
     Posted: Geplaatst
     PostedIn: 'Geplaatst in'
     PostsByUser: 'Berichten van {firstname} {surname} bij {title}'
     PostsPerPage: 'Artikelen per pagina'
-    ReadMoreAbout: 'Lees meer over ''{title}''...'
+    ReadMoreAbout: "Lees meer over '{title}'..."
     SINGULARNAME: Blog
     Tag: Tag
     Tagged: Getagd
@@ -77,7 +77,7 @@ nl:
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Auteur
     AdditionalCredits: Dankbetuigingen
-    AdditionalCredits_Description: 'Indien enkele van de auteurs geen toegang hebben tot dit CMS, kunnen ze hier worden toegevoegd. Scheid namen door middel van komma''s.'
+    AdditionalCredits_Description: "Indien enkele van de auteurs geen toegang hebben tot dit CMS, kunnen ze hier worden toegevoegd. Scheid namen door middel van komma's."
     Authors: Auteurs
     CUSTOMSUMMARY: 'Voeg een eigen samenvatting toe'
     Categories: Categorieën

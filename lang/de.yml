@@ -45,7 +45,7 @@ de:
     Posted: Veröffentlicht
     PostedIn: 'Veröffentlicht in'
     PostsPerPage: 'Einträge pro Seite'
-    ReadMoreAbout: 'Lesen Sie mehr über ''{title}'''
+    ReadMoreAbout: "Lesen Sie mehr über '{title}'"
     SINGULARNAME: Blog
     Tag: Schlagwort
     Tagged: Verschlagwortet
