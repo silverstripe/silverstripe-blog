@@ -32,13 +32,12 @@ it:
     NoPosts: 'Non ci sono articoli'
     PERMISSIONS_CATEGORY: 'Permessi del blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gestire utenti per i singoli blog'
-    PERMISSION_MANAGE_USERS_HELP: 'Consenti l''assegnazione di Editori, Scrittori o Collaboratori ai blog'
+    PERMISSION_MANAGE_USERS_HELP: "Consenti l'assegnazione di Editori, Scrittori o Collaboratori ai blog"
     PLURALNAME: 'Pagine Base'
     Posted: Inserito
     PostedIn: 'Inserito il'
     PostsPerPage: 'Articoli Per Pagina'
-    ReadMoreAbout: 'Leggi di più su ''{title}''...'
-    SINGULARNAME: Blog
+    ReadMoreAbout: "Leggi di più su '{title}'..."
     Tag: Etichetta
     Tagged: Etichettato
     Tags: Etichette
@@ -50,7 +49,6 @@ it:
     SINGULARNAME: 'Categoria Blog'
     db_Title: Titolo
     db_URLSegment: 'Segmento URL'
-    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Articoli del Blog'
     TABBLOGPOSTS: 'Articoli del Blog'
@@ -60,7 +58,7 @@ it:
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Autore
     AdditionalCredits: 'Riconoscimenti Aggiuntivi'
-    AdditionalCredits_Description: 'Se l''autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola.'
+    AdditionalCredits_Description: "Se l'autore di questo articolo non ha accesso al CMS inserire qui il suo nome(i). Separare nomi multipli con la virgola."
     Authors: Autori
     CUSTOMSUMMARY: 'Aggiungi una Sintesi Personalizzata'
     Categories: Categorie
@@ -80,15 +78,12 @@ it:
     SINGULARNAME: 'Etichetta Blog'
     db_Title: Titolo
     db_URLSegment: 'Segmento URL'
-    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: TipoArchiviazione
-    Blog: Blog
     NumberToDisplay: 'N. da Visualizzare'
     PLURALNAME: 'Widget Archiviazione Blog'
     SINGULARNAME: 'Widget Archiviazione Blog'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Blog
     Direction: Direzione
     Direction_Description: 'Modificare la direzione di ordinamento delle categorie mostrate da questo widget.'
     Limit: Limite
@@ -96,21 +91,17 @@ it:
     PLURALNAME: 'Widget Categorie Blog'
     SINGULARNAME: 'Widget Categorie Blog'
     Sort: Ordine
-    Sort_Description: 'Modificare l''ordine delle categorie mostrate da questo widget.'
+    Sort_Description: "Modificare l'ordine delle categorie mostrate da questo widget."
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Numero di Articoli'
     PLURALNAME: 'Widget Articoli Blog Recenti'
     SINGULARNAME: 'Widget Articoli Blog Recenti'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
     PLURALNAME: 'Widget Tag Cloud del Blog'
     SINGULARNAME: 'Widget Tag Cloud del Blog'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
     Direction: Direzione
     Direction_Description: 'Modificare la direzione di ordinamento delle etichette mostrate da questo widget.'
     Limit: Limite
@@ -118,4 +109,4 @@ it:
     PLURALNAME: 'Widget Etichette Blog'
     SINGULARNAME: 'Widget Etichette Blog'
     Sort: Ordine
-    Sort_Description: 'Modificare l''ordine delle etichette mostrate da questo widget.'
+    Sort_Description: "Modificare l'ordine delle etichette mostrate da questo widget."

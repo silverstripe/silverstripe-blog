@@ -37,7 +37,7 @@ sv:
     Posted: Postat
     PostedIn: 'Postat den'
     PostsPerPage: 'Blogginlägg per sida'
-    ReadMoreAbout: 'Läs mer om ''{title}''...'
+    ReadMoreAbout: "Läs mer om '{title}'..."
     SINGULARNAME: Blogg
     Tag: Tagg
     Tagged: Taggad

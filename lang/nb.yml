@@ -12,15 +12,11 @@ nb:
     Archive: Arkiver
     By: av
     Comments: Kommentarer
-    Tags: Tags
-    has_many_Tags: Tags
   SilverStripe\Blog\Model\BlogCategory:
     db_Title: Tittel
   SilverStripe\Blog\Model\BlogObject:
     Title: Tittel
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Forfatter
-    Tags: Tags
-    many_many_Tags: Tags
   SilverStripe\Blog\Model\BlogTag:
     db_Title: Tittel

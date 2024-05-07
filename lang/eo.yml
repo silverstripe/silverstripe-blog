@@ -7,7 +7,6 @@ eo:
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Aldoni {name}'
     AddFail: '{klaso} ne estas konservebla al la datumbazo.'
-    ButtonName: '{name}'
     PermissionFail: 'Vi ne havas permeson krei je {klaso}.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Konservita kiel malneto je {dato}'
@@ -47,7 +46,7 @@ eo:
     PostedIn: 'Afiŝita en'
     PostsByUser: 'Afiŝoj laŭ {firstname} {surname} por {title}'
     PostsPerPage: 'Afiŝoj en ĉiu paĝo'
-    ReadMoreAbout: 'Legi plu pri ''{title}''...'
+    ReadMoreAbout: "Legi plu pri '{title}'..."
     SINGULARNAME: Blogo
     Tag: Etikedo
     Tagged: 'Havas etikedon'
@@ -153,7 +152,6 @@ eo:
       other: '{count} fenestraĵoj de lastatempaj blogaĵoj'
     SINGULARNAME: 'Fenestraĵo de lastatempa blogaĵo'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Nombro da afiŝoj'
     PLURALNAME: 'Fenestraĵoj de lastatempaj blogaĵoj'
     PLURALS:
@@ -168,7 +166,6 @@ eo:
       other: '{count} nubaj fenestraĵoj por blogaj etikedoj'
     SINGULARNAME: 'Nuba fenestraĵo por blogaj etikedoj'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
     Direction: Direkto
     Direction_Description: 'Ŝanĝi la direkton de ordigo de etikedoj vidigotaj de tiu fenestraĵo.'
     Limit: Limigi

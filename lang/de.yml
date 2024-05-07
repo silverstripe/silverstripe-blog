@@ -45,8 +45,7 @@ de:
     Posted: Veröffentlicht
     PostedIn: 'Veröffentlicht in'
     PostsPerPage: 'Einträge pro Seite'
-    ReadMoreAbout: 'Lesen Sie mehr über ''{title}'''
-    SINGULARNAME: Blog
+    ReadMoreAbout: "Lesen Sie mehr über '{title}'"
     Tag: Schlagwort
     Tagged: Verschlagwortet
     Tags: Schlagworte
@@ -62,7 +61,6 @@ de:
     SINGULARNAME: 'Blog Kategorie'
     db_Title: Titel
     db_URLSegment: URL-Segment
-    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Blogbeiträge
     TABBLOGPOSTS: Blogbeiträge
@@ -100,10 +98,8 @@ de:
     SINGULARNAME: 'Blog Schlagwort'
     db_Title: Titel
     db_URLSegment: URL-Segment
-    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: Archivtyp
-    Blog: Blog
     NumberToDisplay: 'Anzahl anzeigen'
     PLURALNAME: 'Blog Archiv Widgets'
     PLURALS:
@@ -111,7 +107,6 @@ de:
       other: '{count} Blog Archiv Widgets'
     SINGULARNAME: 'Blog Archiv Widget'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Blog
     Direction: Richtung
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Kategorien, die von diesem Widget angezeigt werden.'
     Limit: Begrenzen
@@ -124,10 +119,8 @@ de:
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Kategorien, die von diesem Widget angezeigt werden.'
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Anzahl der Einträge'
     PLURALNAME: 'Aktuelle Blog Einträge Widgets'
     PLURALS:
@@ -135,22 +128,18 @@ de:
       other: '{count} Aktuelle Blog Einträge Widgets'
     SINGULARNAME: 'Aktuelle Blog Einträge Widget'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
     PLURALNAME: Blog-Tag-Cloud-Widgets
     PLURALS:
       one: 'Ein Blog-Tag-Cloud-Widget'
       other: '{count} Blog-Tag-Cloud-Widgets'
     SINGULARNAME: Blog-Tag-Cloud-Widget
   SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
     Direction: Richtung
     Direction_Description: 'Ändern Sie die Sortierreihenfolge der Schlagworte, die von diesem Widget angezeigt werden.'
     Limit: Begrenzen
     Limit_Description: 'Begrenzen Sie die Anzahl der angezeigten Schlagworte (0 zeigt alle Schlagworte)'
-    PLURALNAME: 'Blog Tags Widgets'
     PLURALS:
       one: 'Ein Blog Tags Widget'
       other: '{count} Blog Tags Widgets'
-    SINGULARNAME: 'Blog Tags Widget'
     Sort: Sortierung
     Sort_Description: 'Ändern Sie die Sortierung der Schlagworte, die von diesem Widget angezeigt werden.'

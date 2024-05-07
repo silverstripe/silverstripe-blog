@@ -33,7 +33,7 @@ fa_IR:
     Posted: 'ارسال شده'
     PostedIn: 'ارسال شده در'
     PostsPerPage: 'تعداد ارسال در صفحه'
-    ReadMoreAbout: 'درباره ''{title}'' بیشتر بخوانید...'
+    ReadMoreAbout: "درباره '{title}' بیشتر بخوانید..."
     SINGULARNAME: وبلاگ
     Tag: تگ
     Tagged: تگ‌شده

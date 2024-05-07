@@ -46,7 +46,7 @@ fi:
     PostedIn: 'Kirjoitettu:'
     PostsByUser: 'Postaukset kirjoittajalta {firstname} {surname} otsikolla {title}'
     PostsPerPage: 'Kirjoitusta per sivu'
-    ReadMoreAbout: 'Lue lisää kirjoituksesta ''{title}''...'
+    ReadMoreAbout: "Lue lisää kirjoituksesta '{title}'..."
     SINGULARNAME: Blogi
     Tag: Avainsana
     Tagged: Merkitty

@@ -31,3 +31,7 @@ pl:
   SilverStripe\Blog\Model\BlogTag:
     db_Title: Tytuł
     db_URLSegment: URL
+  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
+    Sort: Sortuj
+  SilverStripe\Blog\Widgets\BlogTagsWidget:
+    Sort: Sortuj

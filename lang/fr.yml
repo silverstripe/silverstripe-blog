@@ -5,7 +5,7 @@ fr:
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Ajouter {name}'
     AddFail: 'Impossible de sauvegarder {class} dans la base de données.'
-    PermissionFail: 'Vous n''avez pas la permission de créer {class}.'
+    PermissionFail: "Vous n'avez pas la permission de créer {class}."
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Enregistré comme brouillon à {date}'
     Modified: Modifié
@@ -15,7 +15,6 @@ fr:
     Title: Titre
   SilverStripe\Blog\Model\Blog:
     AND: et
-    Archive: Archive
     By: par
     CONTRIBUTOR: Contributeur
     Categories: Catégories
@@ -26,35 +25,28 @@ fr:
     FILTERDESCRIPTION_AUTHOR: 'Par {author}'
     FILTERDESCRIPTION_CATEGORY: 'Dans la catégorie {category}'
     FILTERDESCRIPTION_DATE: 'A {date}'
-    FILTERDESCRIPTION_PAGE: 'Page {page}'
     FILTERDESCRIPTION_TAG: 'Taggé avec {tag}'
     LumberjackTitle: 'Billets du blog'
-    NoPosts: 'Il n''y a pas de billets'
+    NoPosts: "Il n'y a pas de billets"
     PERMISSIONS_CATEGORY: 'Permissions du blog'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Gérer les utilisateurs pour un blog'
-    PERMISSION_MANAGE_USERS_HELP: 'Autoriser l''assignation d''éditeurs, auteurs ou contributeurs au blog'
-    PLURALNAME: 'Base Pages'
+    PERMISSION_MANAGE_USERS_HELP: "Autoriser l'assignation d'éditeurs, auteurs ou contributeurs au blog"
     Posted: Publié
     PostedIn: 'Publié dans'
     PostsPerPage: 'Billets par page'
-    ReadMoreAbout: 'Lire plus à propos de ''{title}''...'
-    SINGULARNAME: Blog
-    Tag: Tag
+    ReadMoreAbout: "Lire plus à propos de '{title}'..."
     Tagged: Taggé
-    Tags: Tags
     WRITER: Auteur
     has_many_Categories: Catégories
-    has_many_Tags: Tags
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Catégories du blog'
     SINGULARNAME: 'Catégorie du blog'
     db_Title: Titre
-    db_URLSegment: 'Segment d''URL'
-    has_one_Blog: Blog
+    db_URLSegment: "Segment d'URL"
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Billets
     TABBLOGPOSTS: Billets
-    db_URLSegment: 'Segment d''URL'
+    db_URLSegment: "Segment d'URL"
   SilverStripe\Blog\Model\BlogObject:
     Title: Titre
   SilverStripe\Blog\Model\BlogPost:
@@ -63,55 +55,41 @@ fr:
     Authors: Auteurs
     CUSTOMSUMMARY: 'Ajouter un sommaire personnalisé'
     Categories: Catégories
-    PLURALNAME: 'Base Pages'
     PageTitleLabel: 'Titre du billet'
     PublishDate: 'Date de publication'
     PublishDate_Description: 'Sera mis à "maintenant" si publié sans valeur.'
     SINGULARNAME: Billet
     SUMMARY_DESCRIPTION: 'Si aucun sommaire, les 30 premiers mots seront utilisés.'
-    Tags: Tags
     many_many_Authors: Auteurs
     many_many_Categories: Catégories
-    many_many_Tags: Tags
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Tags du blog'
     SINGULARNAME: 'Tag du blog'
     db_Title: Titre
-    db_URLSegment: 'Segment d''URL'
-    has_one_Blog: Blog
+    db_URLSegment: "Segment d'URL"
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
-    ArchiveType: ArchiveType
-    Blog: Blog
     NumberToDisplay: 'Num. à afficher'
     PLURALNAME: 'Widgets archive du blog'
     SINGULARNAME: 'Widget archive du blog'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Blog
-    Direction: Direction
     Direction_Description: 'Changer la direction du tri de ce widget.'
     Limit: Limite
     Limit_Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
     PLURALNAME: 'Widgets catégories du blog'
     SINGULARNAME: 'Widget catégories du blog'
     Sort: Tri
-    Sort_Description: 'Changer l''ordre de tri pour ce widget.'
+    Sort_Description: "Changer l'ordre de tri pour ce widget."
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Nombre de billets'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Nombre de billets'
     PLURALNAME: 'Widgets billets récents'
     SINGULARNAME: 'Widget billet récent'
-  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
   SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
-    Direction: Direction
     Direction_Description: 'Changer la direction du tri de ce widget.'
     Limit: Limite
     Limit_Description: 'Limiter le nombre (mettre 0 pour tout montrer).'
     PLURALNAME: 'Widgets tags du blog'
     SINGULARNAME: 'Widget tag du blog'
     Sort: Tri
-    Sort_Description: 'Changer l''ordre de tri pour ce widget.'
+    Sort_Description: "Changer l'ordre de tri pour ce widget."

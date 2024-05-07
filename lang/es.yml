@@ -25,7 +25,6 @@ es:
     Category: Categoría
     Comments: Comentarios
     DESCRIPTION: 'Agrega un blog al sitio web.'
-    EDITOR: Editor
     FILTERDESCRIPTION_AUTHOR: 'Por {author}'
     FILTERDESCRIPTION_CATEGORY: 'En la categoría {category}'
     FILTERDESCRIPTION_DATE: 'En {date}'
@@ -45,8 +44,7 @@ es:
     Posted: Publicado
     PostedIn: 'Publicado en'
     PostsPerPage: 'Artículos por página'
-    ReadMoreAbout: 'Leer más sobre ''{title}''...'
-    SINGULARNAME: Blog
+    ReadMoreAbout: "Leer más sobre '{title}'..."
     Tag: Etiqueta
     Tagged: Etiquetado
     Tags: Etiquetas
@@ -62,7 +60,6 @@ es:
       other: '{count} Categorías de blog'
     SINGULARNAME: 'Categoría del blog'
     db_Title: Título
-    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Artículos del blog'
     TABBLOGPOSTS: 'Artículos del blog'
@@ -99,13 +96,10 @@ es:
       other: '{count} Etiquetas de blog'
     SINGULARNAME: 'Etiqueta del Blog'
     db_Title: Título
-    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Tipo de archivo'
-    Blog: Blog
     NumberToDisplay: 'No. a mostrar'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Blog
     Direction: Dirección
     Direction_Description: 'Cambia la dirección de ordenamiento de las categorías mostradas por este widget.'
     Limit: Limite
@@ -113,18 +107,12 @@ es:
     Sort: Ordenar
     Sort_Description: 'Cambia el orden de las categorías mostradas por este widget.'
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Numero de artículos'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Numero de artículos'
-  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
   SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
     Direction: Dirección
     Direction_Description: 'Cambia la dirección del orden de las etiquetas mostradas por este widget.'
-    Limit: Limit
     Limit_Description: 'Limita el número de etiquetas mostradas por este widget (use 0 para mostrar todas las etiquetas).'
     Sort: Ordenar
     Sort_Description: 'Cambiar el orden de las etiquetas mostradas por este widget'

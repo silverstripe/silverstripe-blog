@@ -33,8 +33,7 @@ sk:
     Posted: Uverejnené
     PostedIn: 'Uverejnené v'
     PostsPerPage: 'Príspevky na stránke'
-    ReadMoreAbout: 'Čítať viac o ''{title}''...'
-    SINGULARNAME: Blog
+    ReadMoreAbout: "Čítať viac o '{title}'..."
     Tag: Štítok
     Tagged: Oštítkované
     Tags: Štítky
@@ -48,7 +47,6 @@ sk:
     belongs_many_many_BlogPosts: 'Príspevky v blogu'
     db_Title: Názov
     db_URLSegment: 'Časť URL'
-    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Základné stránky'
     TABBLOGPOSTS: 'Základné stránky'
@@ -84,15 +82,12 @@ sk:
     belongs_many_many_BlogPosts: 'Príspevky v blogu'
     db_Title: Názov
     db_URLSegment: 'Časť URL'
-    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Typ archívu'
-    Blog: Blog
     NumberToDisplay: 'Počet na zobrazenie'
     PLURALNAME: 'Widgety archívu blogu'
     SINGULARNAME: 'Widget archívu blogu'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Blog
     Direction: Smer
     Direction_Description: 'Zmení smer usporiadania kategórií na tomto widgete.'
     Limit: 'Max. počet'
@@ -102,19 +97,15 @@ sk:
     Sort: Usporiadanie
     Sort_Description: 'Zmení usporiadanie kategórií na tomto widgete.'
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Počet príspevkov'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Počet príspevkov'
     PLURALNAME: 'Widgety nedávnych príspevkov blogu'
     SINGULARNAME: 'Widget nedávnych príspevkov blogu'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
     PLURALNAME: 'Widgety používaných štítkov blogu'
     SINGULARNAME: 'Widget používaných štítkov blogu'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
     Direction: Smer
     Direction_Description: 'Zmení smer usporiadania štítkov na tomto widgete.'
     Limit: 'Max. počet'

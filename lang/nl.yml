@@ -7,7 +7,6 @@ nl:
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Voeg {name} toe'
     AddFail: 'Kon geen {class} opslaan in de database.'
-    ButtonName: '{name}'
     PermissionFail: 'Je hebt geen permissie om een {class} aan te maken.'
   SilverStripe\Blog\Forms\GridField\GridFieldBlogPostState:
     Draft: 'Opgeslagen als concept op {date}'
@@ -29,7 +28,6 @@ nl:
     EDITOR: Redacteur
     FILTERDESCRIPTION_AUTHOR: 'Door {author}'
     FILTERDESCRIPTION_CATEGORY: 'In categorie {category}'
-    FILTERDESCRIPTION_DATE: 'In {date}'
     FILTERDESCRIPTION_PAGE: 'Pagina {page}'
     FILTERDESCRIPTION_TAG: 'Getagd met {tag}'
     LessThanAMinuteToRead: 'Minder dan een minuut om te lezen'
@@ -42,22 +40,18 @@ nl:
     PLURALNAME: Blog
     PLURALS:
       one: 'Eén blogpagina'
-      other: '{count} blogpagina''s'
+      other: "{count} blogpagina's"
     Posted: Geplaatst
     PostedIn: 'Geplaatst in'
     PostsByUser: 'Berichten van {firstname} {surname} bij {title}'
     PostsPerPage: 'Artikelen per pagina'
-    ReadMoreAbout: 'Lees meer over ''{title}''...'
-    SINGULARNAME: Blog
-    Tag: Tag
+    ReadMoreAbout: "Lees meer over '{title}'..."
     Tagged: Getagd
-    Tags: Tags
     UsersContributorsFieldDescription: "Co-auteurs hebben de mogelijkheid om artikelen te maken en te bewerken, maar niet te publiceren\n                        zonder toestemming van een Auteur. Het is ook niet mogelijk om andere auteur toe te kennen\n                        aan hun artikelen.<br />\n                        <br />\n                        Co-auteurs hebben deze rechten:<br />\n                        <br />\n                        Bewerken van artikelen die ze zelf geschreven hebben of aan toegekend zijn"
     UsersEditorsFieldDescription: "Een Redacteur heeft het beheer over specifieke blogs (en alle artikelen die daaronder vallen).\n                     Behalve dat ze andere Redacteuren aan een blog kunnen toewijzen, kunnen ze de meeste instellingen\n                     van hun blog zelf beheren. <br /><br />\n                    Redacteuren hebben deze rechten:<br />\n                    <br />\n                    Bijwerken en publiceren van artikelen in hun blog<br />\n                    Aanpassen en publiceren van hun blog<br />\n                    Auteurs (ont)koppelen aan hun blog\n                    Co-auteurs (ont)koppelen aan hun blog<br />\n                    Een gebruiker instellen als auteur van een artikel"
     UsersWritersFieldDescription: "Een Auteur heeft volledig beheer over artikelen die zij geschreven hebben                      of aan gekoppeld zijn. \nAuteurs kunnen geen artikelen beheren waar zij niet aan gekoppeld zijn.\n                    <br /><br />\n                    Auteurs hebben deze rechten:<br />\n                    <br />\n                    Bewerken of publiceren van artikelen die zij geschreven hebben of aan gekoppeld zijn<br />\n                     Een gebruiker (ont)koppelen als auteur van een artikel die zij geschreven hebben of aan gekoppeld zijn"
     WRITER: Auteur
     has_many_Categories: Categorieën
-    has_many_Tags: Tags
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Een blog categorie met dezelfde naam bestaat al'
     PLURALNAME: 'Blog Categorieën'
@@ -66,18 +60,15 @@ nl:
       other: '{count} Blog Categorieën'
     SINGULARNAME: 'Blog Categorie'
     db_Title: Titel
-    db_URLSegment: 'URL segment'
-    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Blog Artikelen'
     TABBLOGPOSTS: 'Blog Artikel'
-    db_URLSegment: 'URL segment'
   SilverStripe\Blog\Model\BlogObject:
     Title: Titel
   SilverStripe\Blog\Model\BlogPost:
     AUTHOR: Auteur
     AdditionalCredits: Dankbetuigingen
-    AdditionalCredits_Description: 'Indien enkele van de auteurs geen toegang hebben tot dit CMS, kunnen ze hier worden toegevoegd. Scheid namen door middel van komma''s.'
+    AdditionalCredits_Description: "Indien enkele van de auteurs geen toegang hebben tot dit CMS, kunnen ze hier worden toegevoegd. Scheid namen door middel van komma's."
     Authors: Auteurs
     CUSTOMSUMMARY: 'Voeg een eigen samenvatting toe'
     Categories: Categorieën
@@ -92,25 +83,17 @@ nl:
     PublishDate_Description: 'Wordt op "nu" gezet indien gepubliceerd zonder waarde.'
     SINGULARNAME: 'Blog Artikel'
     SUMMARY_DESCRIPTION: 'Als er geen samenvatting ingevoerd wordt, dan worden de eerste 30 woorden gebruikt.'
-    Tags: Tags
     many_many_Authors: Auteurs
     many_many_Categories: Categorieën
-    many_many_Tags: Tags
   SilverStripe\Blog\Model\BlogPostFeaturedExtension:
     FEATURED: 'Dit artikel tonen in de Uitgelicht-widget'
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Een blog tag met dezelfde naam bestaat al.'
-    PLURALNAME: 'Blog Tags'
     PLURALS:
       one: 'Een Blog Tag'
       other: '{count} Blog Tags'
-    SINGULARNAME: 'Blog Tag'
     db_Title: Titel
-    db_URLSegment: 'URL segment'
-    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
-    ArchiveType: ArchiveType
-    Blog: Blog
     NumberToDisplay: 'Aantal te tonen'
     PLURALNAME: 'Blog Archief-widgets'
     PLURALS:
@@ -118,7 +101,6 @@ nl:
       other: '{count} Blog Archief-widgets'
     SINGULARNAME: 'Blog Archief-widget'
   SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Blog
     Direction: Sorteerrichting
     Direction_Description: 'Verander de sorteerrichting van categoriën getoond door deze widget.'
     Limit: Limiet
@@ -131,7 +113,6 @@ nl:
     Sort: Volgorde
     Sort_Description: 'Verander de volgorde van categorieën getoond door deze widget.'
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Aantal berichten'
     PLURALNAME: 'Uitgelichte berichten widgets'
     PLURALS:
@@ -139,7 +120,6 @@ nl:
       other: '{count} uitgelichte berichten widgets'
     SINGULARNAME: 'Uitgelicht bericht widget'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Aantal Artikelen'
     PLURALNAME: 'Blog Recente Artikelen-widgets'
     PLURALS:
@@ -147,14 +127,12 @@ nl:
       other: '{count} Blog Recente Artikelen-widgets'
     SINGULARNAME: 'Blog Recente Artikelen-widget'
   SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
     PLURALNAME: 'Blog Tags Cloud-widgets'
     PLURALS:
       one: 'Een Blog Tags Cloud-widget'
       other: '{count} Blog Tags Cloud-widgets'
     SINGULARNAME: 'Blog Tags Cloud-widget'
   SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
     Direction: Volgorde
     Direction_Description: 'Verander de volgorde van tags getoond door deze widget.'
     Limit: Limiet

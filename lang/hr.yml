@@ -30,9 +30,7 @@ hr:
     Posted: Objavljeno
     PostedIn: 'Objavljeno u'
     PostsPerPage: 'Postova po stranici'
-    ReadMoreAbout: 'Pročitaj više o ''{title}''...'
-    SINGULARNAME: Blog
-    Tag: Tag
+    ReadMoreAbout: "Pročitaj više o '{title}'..."
     Tagged: Tagirano
     Tags: Tagovi
     WRITER: Pisac
@@ -40,7 +38,6 @@ hr:
     has_many_Tags: Tagovi
   SilverStripe\Blog\Model\BlogCategory:
     db_Title: Naslov
-    has_one_Blog: Blog
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Bazna stranica'
     TABBLOGPOSTS: 'Bazna stranica'
@@ -61,22 +58,10 @@ hr:
     many_many_Tags: Tagovi
   SilverStripe\Blog\Model\BlogTag:
     db_Title: Naslov
-    has_one_Blog: Blog
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     ArchiveType: 'Tip arhive'
-    Blog: Blog
     NumberToDisplay: 'Broj za prikaz'
-  SilverStripe\Blog\Widgets\BlogCategoriesWidget:
-    Blog: Blog
-    Limit: Limit
   SilverStripe\Blog\Widgets\BlogFeaturedPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Broj zapisa'
   SilverStripe\Blog\Widgets\BlogRecentPostsWidget:
-    Blog: Blog
     NumberOfPosts: 'Broj zapisa'
-  SilverStripe\Blog\Widgets\BlogTagsCloudWidget:
-    Blog: Blog
-  SilverStripe\Blog\Widgets\BlogTagsWidget:
-    Blog: Blog
-    Limit: Limit
