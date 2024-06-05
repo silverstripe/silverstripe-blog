@@ -6,16 +6,8 @@
   width: 98.75%;
 }
 
-.blog-sidebar .WidgetHolder ul {
-  margin-left: 0;
-
-  li {
-    list-style-type: none;
-  }
-}
-
 // tag cloud related
-$base_tag_font_size: 4pt;
+$base-tag-font-size: 4pt;
 
 ul.blogTagCloud {
   list-style-type: none;
@@ -34,43 +26,51 @@ ul.blogTagCloud {
     }
   }
 
+  .blog-sidebar .WidgetHolder ul {
+    margin-left: 0;
+
+    li {
+      list-style-type: none;
+    }
+  }
+
   .tagCount10 {
-    font-size: $base_tag_font_size + 22pt;
+    font-size: $base-tag-font-size + 22pt;
   }
 
   .tagCount9 {
-    font-size: $base_tag_font_size + 20pt;
+    font-size: $base-tag-font-size + 20pt;
   }
 
   .tagCount8 {
-    font-size: $base_tag_font_size + 18pt;
+    font-size: $base-tag-font-size + 18pt;
   }
 
   .tagCount7 {
-    font-size: $base_tag_font_size + 16pt;
+    font-size: $base-tag-font-size + 16pt;
   }
 
   .tagCount6 {
-    font-size: $base_tag_font_size + 14pt;
+    font-size: $base-tag-font-size + 14pt;
   }
 
   .tagCount5 {
-    font-size: $base_tag_font_size + 12pt;
+    font-size: $base-tag-font-size + 12pt;
   }
 
   .tagCount4 {
-    font-size: $base_tag_font_size + 10pt;
+    font-size: $base-tag-font-size + 10pt;
   }
 
   .tagCount3 {
-    font-size: $base_tag_font_size + 8pt;
+    font-size: $base-tag-font-size + 8pt;
   }
 
   .tagCount2 {
-    font-size: $base_tag_font_size + 6pt;
+    font-size: $base-tag-font-size + 6pt;
   }
 
   .tagCount1 {
-    font-size: $base_tag_font_size + 4pt;
+    font-size: $base-tag-font-size + 4pt;
   }
 }

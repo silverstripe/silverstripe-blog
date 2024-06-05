@@ -2,10 +2,13 @@
  * CMS Styles
  */
 
-#FeaturedImage .middleColumn {
-  clear: none;
-  float: left;
+.cms table.ss-gridfield-table tr td.MergeAction a {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
+
+/* stylelint-disable max-nesting-depth */
 
 .has-panel .cms-content-tools.blog-admin-sidebar {
   width: 280px;
@@ -22,7 +25,7 @@
   }
 
   .cms-panel-toggle.south {
-    border-top: 1px solid #aaaaaa;
+    border-top: 1px solid #aaa;
   }
 
   ~ .blog-admin-outer {
@@ -30,8 +33,7 @@
     padding-right: 280px;
     position: absolute;
     height: 100%;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: hidden hidden;
     box-sizing: border-box;
 
     > .ss-tabset {
@@ -109,6 +111,13 @@
   }
 }
 
+/* stylelint-enable max-nesting-depth */
+
+#FeaturedImage .middleColumn {
+  clear: none;
+  float: left;
+}
+
 .toggle-description {
   display: inline-block;
   font-size: 1.2rem;
@@ -148,12 +157,6 @@
   tr td.MergeAction {
     width: 225px;
 
-    a {
-      display: block;
-      height: 100%;
-      width: 100%;
-    }
-
     select {
       width: 150px;
     }
@@ -167,7 +170,7 @@
 
   .MergeActionReveal:after {
     content: "@";
-    font-family: silverstripe;
+    font-family: "silverstripe";
     display: inline-block;
     position: relative;
     margin-left: 10px;
