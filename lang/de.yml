@@ -41,7 +41,7 @@ de:
     PLURALNAME: 'Basis Seiten'
     PLURALS:
       one: 'Ein Blog'
-      other: '{count} Blogs'
+      other: '{count} Basisseiten'
     Posted: Veröffentlicht
     PostedIn: 'Veröffentlicht in'
     PostsPerPage: 'Einträge pro Seite'
@@ -50,8 +50,12 @@ de:
     Tagged: Verschlagwortet
     Tags: Schlagworte
     WRITER: Autor
+    db_PostsPerPage: 'Beiträge pro Seite'
     has_many_Categories: Kategorien
     has_many_Tags: Schlagwörter
+    many_many_Contributors: Mitwirkende
+    many_many_Editors: Verfasser
+    many_many_Writers: Autoren
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Eine Blog Kategorie mit diesem Namen existiert bereits.'
     PLURALNAME: 'Blog Kategorien'
@@ -59,12 +63,16 @@ de:
       one: 'Eine Blog Kategorie'
       other: '{count} Blog Kategorien'
     SINGULARNAME: 'Blog Kategorie'
+    belongs_many_many_BlogPosts: Blogbeiträge
     db_Title: Titel
     db_URLSegment: URL-Segment
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: Blogbeiträge
     TABBLOGPOSTS: Blogbeiträge
+    belongs_many_many_BlogPosts: Blogbeiträge
+    db_BlogProfileSummary: 'Zusammenfassung für das Blogprofil'
     db_URLSegment: URL-Segment
+    has_one_BlogProfileImage: 'Blogprofil Bild'
   SilverStripe\Blog\Model\BlogObject:
     Title: Titel
   SilverStripe\Blog\Model\BlogPost:
@@ -86,6 +94,10 @@ de:
     SINGULARNAME: Blog-Eintrag
     SUMMARY_DESCRIPTION: 'Wenn keine Zusammenfassung angegeben wird, werden die ersten 30 Wörter verwendet.'
     Tags: Schlagworte
+    db_AuthorNames: 'Namen der Autoren'
+    db_PublishDate: Veröffentlichungsdatum
+    db_Summary: Zusammenfassung
+    has_one_FeaturedImage: Titelbild
     many_many_Authors: Autoren
     many_many_Categories: Kategorien
     many_many_Tags: Schlagwörter
@@ -96,6 +108,7 @@ de:
       one: 'Ein Blog Schlagwort'
       other: '{count} Blog Schlagworte'
     SINGULARNAME: 'Blog Schlagwort'
+    belongs_many_many_BlogPosts: Blogbeiträge
     db_Title: Titel
     db_URLSegment: URL-Segment
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
