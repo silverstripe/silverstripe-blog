@@ -3,13 +3,9 @@
 namespace SilverStripe\Blog\Model;
 
 use Page;
-use SilverStripe\AssetAdmin\Forms\UploadField;
 use SilverStripe\Assets\Image;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Config\Config;
-use SilverStripe\Forms\DatetimeField;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\ListboxField;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\ToggleCompositeField;
@@ -23,7 +19,6 @@ use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\Security;
-use SilverStripe\TagField\TagField;
 use SilverStripe\Versioned\Versioned;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
@@ -98,6 +93,15 @@ class BlogPost extends Page
         'Categories' => BlogCategory::class,
         'Tags'       => BlogTag::class,
         'Authors'    => Member::class
+    ];
+
+    private static array $scaffold_cms_fields_settings = [
+        'ignoreFields' => [
+            'AuthorNames',
+        ],
+        'ignoreRelations' => [
+            'Authors',
+        ],
     ];
 
     /**
@@ -252,41 +256,39 @@ class BlogPost extends Page
         Requirements::javascript('silverstripe/blog:client/dist/js/main.bundle.js');
 
         $this->beforeUpdateCMSFields(function ($fields) {
-            $uploadField = UploadField::create('FeaturedImage', _t(__CLASS__ . '.FeaturedImage', 'Featured Image'));
-            $uploadField->getValidator()->setAllowedExtensions(['jpg', 'jpeg', 'png', 'gif']);
+            $uploadField = $fields->dataFieldByName('FeaturedImage');
+            $uploadField?->getValidator()->setAllowedExtensions(['jpg', 'jpeg', 'png', 'gif']);
 
             $uploadDirectory = $this->config()->get('featured_images_directory');
             if ($uploadDirectory != '') {
-                $uploadField->setFolderName($uploadDirectory);
+                $uploadField?->setFolderName($uploadDirectory);
             }
 
-            /**
-             * @var FieldList $fields
-             */
-            $fields->insertAfter('Content', $uploadField);
-
-            $summary = HtmlEditorField::create('Summary', false);
-            $summary->setRows(5);
-            $summary->setDescription(_t(
+            $summaryField = $fields->dataFieldByName('Summary');
+            $fields->removeByName('Summary');
+            $summaryField?->setTitle('');
+            $summaryField?->setRows(5);
+            $summaryField?->setDescription(_t(
                 __CLASS__ . '.SUMMARY_DESCRIPTION',
                 'If no summary is specified the first 30 words will be used.'
             ));
 
-            $summaryHolder = ToggleCompositeField::create(
-                'CustomSummary',
-                _t(__CLASS__ . '.CUSTOMSUMMARY', 'Add A Custom Summary'),
-                [
-                    $summary,
-                ]
-            );
-            $summaryHolder->setHeadingLevel(4);
-            $summaryHolder->addExtraClass('custom-summary');
+            if ($summaryField) {
+                $summaryHolder = ToggleCompositeField::create(
+                    'CustomSummary',
+                    _t(__CLASS__ . '.CUSTOMSUMMARY', 'Add A Custom Summary'),
+                    [
+                        $summaryField,
+                    ]
+                );
+                $summaryHolder->setHeadingLevel(4);
+                $summaryHolder->addExtraClass('custom-summary');
 
-            if ($this->Summary) {
-                $summaryHolder->setStartClosed(false);
+                if ($this->Summary) {
+                    $summaryHolder->setStartClosed(false);
+                }
+                $fields->insertAfter($uploadField ? 'FeaturedImage' : 'Content', $summaryHolder);
             }
-
-            $fields->insertAfter('FeaturedImage', $summaryHolder);
 
             $authorField = ListboxField::create(
                 'Authors',
@@ -312,10 +314,9 @@ class BlogPost extends Page
                 $authorNames = $authorNames->performDisabledTransformation();
             }
 
-            $publishDate = DatetimeField::create('PublishDate', _t(__CLASS__ . '.PublishDate', 'Publish Date'));
-
+            $publishDate = $fields->dataFieldByName('PublishDate');
             if (!$this->PublishDate) {
-                $publishDate->setDescription(
+                $publishDate?->setDescription(
                     _t(
                         __CLASS__ . '.PublishDate_Description',
                         'Will be set to "now" if published without a value.'
@@ -323,35 +324,23 @@ class BlogPost extends Page
                 );
             }
 
-            // Get categories and tags
-            $parent = $this->Parent();
-            $categories = $parent instanceof Blog
-                ? $parent->Categories()
-                : BlogCategory::get();
-            $tags = $parent instanceof Blog
-                ? $parent->Tags()
-                : BlogTag::get();
+            $postOptions = [];
+            if ($publishDate) {
+                $postOptions[] = $publishDate;
+            }
+            $categories = $fields->dataFieldByName('Categories');
+            if ($categories) {
+                $postOptions[] = $categories;
+            }
+            $tags = $fields->dataFieldByName('Tags');
+            if ($tags) {
+                $postOptions[] = $tags;
+            }
 
             $fields->addFieldsToTab(
                 'Root.PostOptions',
                 [
-                    $publishDate,
-                    TagField::create(
-                        'Categories',
-                        _t(__CLASS__ . '.Categories', 'Categories'),
-                        $categories,
-                        $this->Categories()
-                    )
-                        ->setCanCreate($this->canCreateCategories())
-                        ->setShouldLazyLoad(true),
-                    TagField::create(
-                        'Tags',
-                        _t(__CLASS__ . '.Tags', 'Tags'),
-                        $tags,
-                        $this->Tags()
-                    )
-                        ->setCanCreate($this->canCreateTags())
-                        ->setShouldLazyLoad(true),
+                    ...$postOptions,
                     $authorField,
                     $authorNames
                 ]
@@ -362,8 +351,6 @@ class BlogPost extends Page
         });
 
         $fields = parent::getCMSFields();
-
-        $fields->fieldByName('Root')->setTemplate('TabSet_holder');
 
         return $fields;
     }

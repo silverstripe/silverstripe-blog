@@ -129,6 +129,17 @@ class Blog extends Page implements PermissionProvider
         'PostsPerPage'    => 10
     ];
 
+    private static array $scaffold_cms_fields_settings = [
+        'ignoreFields' => [
+            'PostsPerPage',
+        ],
+        'ignoreRelations' => [
+            'Editors',
+            'Writers',
+            'Contributors',
+        ],
+    ];
+
     /**
      * @var string
      */
