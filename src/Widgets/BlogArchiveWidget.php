@@ -85,6 +85,7 @@ class BlogArchiveWidget extends Widget
             $type = $archiveType->enumValues();
 
             foreach ($type as $k => $v) {
+                /** @phpstan-ignore translation.key (we need the key to be dynamic here) */
                 $type[$k] = _t(__CLASS__ .'.' . ucfirst(strtolower($v ?? '')), $v);
             }
 

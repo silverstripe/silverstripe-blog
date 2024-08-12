@@ -41,7 +41,7 @@ trait BlogObject
             'Root',
             Tab::create(
                 'Main',
-                TextField::create('Title', _t(__CLASS__ . '.Title', 'Title'))
+                TextField::create('Title', $this->fieldLabel('Title'))
             )
         );
 
