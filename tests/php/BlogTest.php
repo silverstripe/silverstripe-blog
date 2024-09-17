@@ -14,7 +14,7 @@ use SilverStripe\Control\Session;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\ORM\SS_List;
+use SilverStripe\Model\List\SS_List;
 use SilverStripe\Security\Member;
 
 class BlogTest extends SapphireTest

@@ -8,7 +8,7 @@ use Silverstripe\Forms\DropdownField;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_ColumnProvider;
-use SilverStripe\ORM\SS_List;
+use SilverStripe\Model\List\SS_List;
 
 class GridFieldMergeAction implements GridField_ColumnProvider, GridField_ActionProvider
 {

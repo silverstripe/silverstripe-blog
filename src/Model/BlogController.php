@@ -6,16 +6,16 @@ use PageController;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPResponse_Exception;
 use SilverStripe\Control\RSS\RSSFeed;
-use SilverStripe\ORM\ArrayList;
+use SilverStripe\Model\List\ArrayList;
 use SilverStripe\ORM\DataList;
 use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\ORM\PaginatedList;
+use SilverStripe\Model\List\PaginatedList;
 use SilverStripe\Security\Member;
 use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Blog\Model\BlogCategory;
 use SilverStripe\View\Parsers\URLSegmentFilter;
 use SilverStripe\Control\HTTPRequest;
-use SilverStripe\ORM\SS_List;
+use SilverStripe\Model\List\SS_List;
 
 /**
  * @extends PageController<Blog>

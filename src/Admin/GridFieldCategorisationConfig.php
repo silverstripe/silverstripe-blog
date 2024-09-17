@@ -7,7 +7,7 @@ use SilverStripe\Blog\Model\CategorisationObject;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 use SilverStripe\Forms\GridField\GridFieldDataColumns;
-use SilverStripe\ORM\SS_List;
+use SilverStripe\Model\List\SS_List;
 
 class GridFieldCategorisationConfig extends GridFieldConfig_RecordEditor
 {

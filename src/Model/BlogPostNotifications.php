@@ -4,7 +4,7 @@ namespace SilverStripe\Blog\Model;
 
 use SilverStripe\Comments\Model\Comment;
 use SilverStripe\Core\Config\Config;
-use SilverStripe\ORM\SS_List;
+use SilverStripe\Model\List\SS_List;
 use SilverStripe\Security\Member;
 use SilverStripe\Core\Extension;
 

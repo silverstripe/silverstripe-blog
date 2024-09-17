@@ -19,7 +19,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
 use SilverStripe\ORM\HasManyList;
 use SilverStripe\ORM\ManyManyList;
-use SilverStripe\ORM\SS_List;
+use SilverStripe\Model\List\SS_List;
 use SilverStripe\ORM\UnsavedRelationList;
 use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;

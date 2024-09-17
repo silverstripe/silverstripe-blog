@@ -9,7 +9,7 @@ use SilverStripe\Blog\Model\BlogTag;
 use SilverStripe\Control\Controller;
 use SilverStripe\Dev\FunctionalTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
-use SilverStripe\ORM\ValidationException;
+use SilverStripe\Core\Validation\ValidationException;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Security;
 
