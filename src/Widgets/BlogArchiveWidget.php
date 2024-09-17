@@ -76,7 +76,7 @@ class BlogArchiveWidget extends Widget
 
     public function __construct($record = [], $creationType = DataObject::CREATE_OBJECT, $queryParams = [])
     {
-        Deprecation::withNoReplacement(function () {
+        Deprecation::withSuppressedNotice(function () {
             Deprecation::notice(
                 '4.3.0',
                 'Will be removed without equivalent functionality to replace it',

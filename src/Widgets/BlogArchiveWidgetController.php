@@ -16,7 +16,7 @@ class BlogArchiveWidgetController extends WidgetController
 {
     public function __construct($widget = null)
     {
-        Deprecation::withNoReplacement(function () {
+        Deprecation::withSuppressedNotice(function () {
             Deprecation::notice(
                 '4.3.0',
                 'Will be removed without equivalent functionality to replace it',
