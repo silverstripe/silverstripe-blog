@@ -51,11 +51,7 @@ class BlogPost extends Page
      */
     private static $table_name = 'BlogPost';
 
-    /**
-     * @var string
-     * @deprecated 4.4.0 Will be renamed to cms_icon_class
-     */
-    private static $icon_class = 'font-icon-p-post';
+    private static $cms_icon_class = 'font-icon-p-post';
 
     /**
      * @var array
