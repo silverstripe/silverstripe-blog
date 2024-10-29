@@ -19,7 +19,7 @@ use SilverStripe\Security\Group;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\Security;
-use SilverStripe\Versioned\Versioned;
+use SilverStripe\Versioned\Mode\Versioned;
 use SilverStripe\Model\ArrayData;
 use SilverStripe\View\Requirements;
 

@@ -9,7 +9,7 @@ use SilverStripe\Dev\SapphireTest;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Security\Member;
 use SilverStripe\Security\Security;
-use SilverStripe\Versioned\Versioned;
+use SilverStripe\Versioned\Mode\Versioned;
 use PHPUnit\Framework\Attributes\DataProvider;
 
 class BlogPostTest extends SapphireTest

@@ -10,7 +10,7 @@ use SilverStripe\ORM\DataQuery;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\ORM\Queries\SQLSelect;
 use SilverStripe\Security\Permission;
-use SilverStripe\Versioned\Versioned;
+use SilverStripe\Versioned\Mode\Versioned;
 use SilverStripe\Core\Extension;
 
 /**

@@ -11,7 +11,7 @@ use SilverStripe\Lumberjack\Model\Lumberjack;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBDatetime;
 use SilverStripe\Security\Permission;
-use SilverStripe\Versioned\Versioned;
+use SilverStripe\Versioned\Mode\Versioned;
 
 /**
  * This class is responsible for filtering the SiteTree when necessary and also overlaps into
