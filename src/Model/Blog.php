@@ -140,12 +140,6 @@ class Blog extends Page implements PermissionProvider
         ],
     ];
 
-    /**
-     * @var string
-     * @deprecated 5.4.0 use class_description instead.
-     */
-    private static $description = 'Adds a blog to your website.';
-
     private static $class_description = 'Adds a blog to your website.';
 
     private static $icon_class = 'font-icon-p-posts';
