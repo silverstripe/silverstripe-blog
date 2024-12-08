@@ -58,6 +58,7 @@ class BlogPost extends Page
 
     /**
      * @var string
+     * @deprecated 4.4.0 Will be renamed to cms_icon_class
      */
     private static $icon_class = 'font-icon-p-post';
 
