@@ -167,4 +167,34 @@ class BlogCategoryTest extends FunctionalTest
             $this->assertEquals(BlogTag::DUPLICATE_EXCEPTION, $messages[0]['messageType']);
         }
     }
+
+    /**
+     * @see https://github.com/silverstripe/silverstripe-blog/issues/606
+     */
+    public function testGetLink()
+    {
+        // Test normal blog location
+        $blog = $this->objFromFixture(Blog::class, 'FirstBlog');
+        $cat = new BlogCategory();
+        $cat->BlogID = $blog->ID;
+        $cat->Title = 'Test Category';
+        $cat->write();
+
+        $expectedLink = '/first-blog/category/test-category';
+        $this->assertEquals($expectedLink, $cat->getLink());
+
+        // Test homepage blog location
+        $homeBlog = new Blog();
+        $homeBlog->Title = 'Home Blog';
+        $homeBlog->URLSegment = 'home';
+        $homeBlog->write();
+
+        $homeCat = new BlogCategory();
+        $homeCat->BlogID = $homeBlog->ID;
+        $homeCat->Title = 'Home Category';
+        $homeCat->write();
+
+        $expectedHomeLink = '/home/category/home-category';
+        $this->assertEquals($expectedHomeLink, $homeCat->getLink());
+    }
 }
