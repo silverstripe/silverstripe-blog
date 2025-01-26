@@ -32,7 +32,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                      */
                     $lastEdited = $record->dbObject('LastEdited');
 
-                    return '<i class="font-icon-edit mr-2"></i> '  . _t(
+                    return '<i class="font-icon-edit me-2"></i> '  . _t(
                         __CLASS__ . '.Draft',
                         'Saved as Draft on {date}',
                         'State for when a post is saved.',
@@ -48,7 +48,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                 $publishDate = $record->dbObject('PublishDate');
 
                 if (strtotime($record->PublishDate ?? '') > time()) {
-                    return '<i class="font-icon-clock mr-2"></i> ' . _t(
+                    return '<i class="font-icon-clock me-2"></i> ' . _t(
                         __CLASS__ . '.Timer',
                         'Publish at {date}',
                         'State for when a post is published.',
@@ -58,7 +58,7 @@ class GridFieldBlogPostState extends GridFieldSiteTreeState
                     ) . $modifiedLabel;
                 }
 
-                return '<i class="font-icon-check-mark-circle text-success mr-2"></i> ' . _t(
+                return '<i class="font-icon-check-mark-circle text-success me-2"></i> ' . _t(
                     __CLASS__ . '.Published',
                     'Published on {date}',
                     'State for when a post is published.',
