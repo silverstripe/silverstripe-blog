@@ -77,11 +77,10 @@ trait BlogObject
      */
     public function getLink()
     {
-        return Controller::join_links(
-            $this->Blog()->Link(),
+        return $this->Blog()->Link(Controller::join_links(
             $this->getListUrlSegment(),
             $this->URLSegment
-        );
+        ));
     }
 
     /**
