@@ -23,14 +23,10 @@ class BlogPostFilter extends Extension
 {
     /**
      * Augment queries so that we don't fetch unpublished articles.
-     *
-     * @param SQLSelect $query
-     * @param DataQuery $query
      */
     protected function augmentSQL(SQLSelect $query, ?DataQuery $dataQuery = null)
     {
-
-        if (Controller::has_curr() && Controller::curr() instanceof LeftAndMain) {
+        if (Controller::curr() instanceof LeftAndMain) {
             return;
         }
 
