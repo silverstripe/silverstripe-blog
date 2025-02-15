@@ -17,6 +17,7 @@ it:
     AND: e
     Archive: Archivia
     By: di
+    CLASS_DESCRIPTION: 'Aggiungi un blog al tuo sito.'
     CONTRIBUTOR: Collaboratore
     Categories: Categorie
     Category: Categoria
@@ -47,12 +48,16 @@ it:
   SilverStripe\Blog\Model\BlogCategory:
     PLURALNAME: 'Categorie Blog'
     SINGULARNAME: 'Categoria Blog'
+    belongs_many_many_BlogPosts: 'Articoli del blog'
     db_Title: Titolo
     db_URLSegment: 'Segmento URL'
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Articoli del Blog'
     TABBLOGPOSTS: 'Articoli del Blog'
+    belongs_many_many_BlogPosts: 'Articoli del blog'
+    db_BlogProfileSummary: 'Riassunto profilo per il blog'
     db_URLSegment: 'Segmento URL'
+    has_one_BlogProfileImage: 'Immagine profilo per il blog'
   SilverStripe\Blog\Model\BlogObject:
     Title: Titolo
   SilverStripe\Blog\Model\BlogPost:
@@ -76,6 +81,7 @@ it:
   SilverStripe\Blog\Model\BlogTag:
     PLURALNAME: 'Etichette Blog'
     SINGULARNAME: 'Etichetta Blog'
+    belongs_many_many_BlogPosts: 'Articoli del blog'
     db_Title: Titolo
     db_URLSegment: 'Segmento URL'
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
