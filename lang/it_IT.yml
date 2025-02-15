@@ -4,6 +4,7 @@ it_IT:
     Published: 'Pubblicato in {date}'
     Timer: 'Pubblica il {date}'
   SilverStripe\Blog\Model\Blog:
+    CLASS_DESCRIPTION: 'Aggiunti un blog al tuo website'
     Categories: Categorie
     Category: Categoria
     Comments: Commenti

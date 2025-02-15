@@ -1,9 +1,9 @@
 nl:
   SilverStripe\Blog\Admin\GridFieldCategorisationConfig:
-    Posts: Artikels
+    Posts: Artikelen
     Title: Titel
   SilverStripe\Blog\Admin\GridFieldMergeAction:
-    MovePostsTo: 'Artikels verplaatsen naar'
+    MovePostsTo: 'Verplaats artikelen naar'
   SilverStripe\Blog\Forms\GridField\GridFieldAddByDBField:
     Add: 'Voeg {name} toe'
     AddFail: 'Kon geen {class} opslaan in de database.'
@@ -19,9 +19,10 @@ nl:
     AND: en
     Archive: Archief
     By: door
+    CLASS_DESCRIPTION: 'Voegt een blog toe aan je site.'
     CONTRIBUTOR: Co-auteur
     Categories: Categorieën
-    Categorisation: Categorisatie
+    Categorisation: Categorisering
     Category: Categorie
     Comments: Reacties
     DESCRIPTION: 'Voegt een blog toe aan je site.'
@@ -38,8 +39,8 @@ nl:
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Beheer gebruikers voor individuele blogs'
     PERMISSION_MANAGE_USERS_HELP: 'Laat toewijzing toe van Redacteurs, Auteurs en Co-auteurs'
     PLURALS:
-      one: 'Eén blogpagina'
-      other: "{count} blogpagina's"
+      one: 'Een artikel'
+      other: '{count} artikelen'
     Posted: Geplaatst
     PostedIn: 'Geplaatst in'
     PostsByUser: 'Berichten van {firstname} {surname} bij {title}'
@@ -50,7 +51,11 @@ nl:
     UsersEditorsFieldDescription: "Een Redacteur heeft het beheer over specifieke blogs (en alle artikelen die daaronder vallen).\n                     Behalve dat ze andere Redacteuren aan een blog kunnen toewijzen, kunnen ze de meeste instellingen\n                     van hun blog zelf beheren. <br /><br />\n                    Redacteuren hebben deze rechten:<br />\n                    <br />\n                    Bijwerken en publiceren van artikelen in hun blog<br />\n                    Aanpassen en publiceren van hun blog<br />\n                    Auteurs (ont)koppelen aan hun blog\n                    Co-auteurs (ont)koppelen aan hun blog<br />\n                    Een gebruiker instellen als auteur van een artikel"
     UsersWritersFieldDescription: "Een Auteur heeft volledig beheer over artikelen die zij geschreven hebben                      of aan gekoppeld zijn. \nAuteurs kunnen geen artikelen beheren waar zij niet aan gekoppeld zijn.\n                    <br /><br />\n                    Auteurs hebben deze rechten:<br />\n                    <br />\n                    Bewerken of publiceren van artikelen die zij geschreven hebben of aan gekoppeld zijn<br />\n                     Een gebruiker (ont)koppelen als auteur van een artikel die zij geschreven hebben of aan gekoppeld zijn"
     WRITER: Auteur
+    db_PostsPerPage: 'Items per pagina'
     has_many_Categories: Categorieën
+    many_many_Contributors: Co-auteurs
+    many_many_Editors: Redacteuren
+    many_many_Writers: Auteurs
   SilverStripe\Blog\Model\BlogCategory:
     Duplicate: 'Een blog categorie met dezelfde naam bestaat al'
     PLURALNAME: 'Blog Categorieën'
@@ -58,10 +63,14 @@ nl:
       one: 'Een Blog Categorie'
       other: '{count} Blog Categorieën'
     SINGULARNAME: 'Blog Categorie'
+    belongs_many_many_BlogPosts: 'Blog Artikelen'
     db_Title: Titel
   SilverStripe\Blog\Model\BlogMemberExtension:
     BLOGPOSTS: 'Blog Artikelen'
     TABBLOGPOSTS: 'Blog Artikel'
+    belongs_many_many_BlogPosts: 'Blog Artikelen'
+    db_BlogProfileSummary: 'Blogprofiel samenvatting'
+    has_one_BlogProfileImage: 'Blogprofiel afbeelding'
   SilverStripe\Blog\Model\BlogObject:
     Title: Titel
   SilverStripe\Blog\Model\BlogPost:
@@ -74,23 +83,29 @@ nl:
     FeaturedImage: 'Prominente Afbeelding'
     PLURALNAME: 'Blog Artikel'
     PLURALS:
-      one: 'Eén artikel'
-      other: '{count} artikelen'
+      one: 'Blog Artikel'
+      other: '{count} Blog Artikelen'
     PageTitleLabel: 'Artikel Titel'
     PostOptions: 'Artikel opties'
     PublishDate: Publicatiedatum
     PublishDate_Description: 'Wordt op "nu" gezet indien gepubliceerd zonder waarde.'
     SINGULARNAME: 'Blog Artikel'
     SUMMARY_DESCRIPTION: 'Als er geen samenvatting ingevoerd wordt, dan worden de eerste 30 woorden gebruikt.'
+    db_AuthorNames: 'Namen auteurs'
+    db_PublishDate: Publicatiedatum
+    db_Summary: Samenvatting
+    has_one_FeaturedImage: 'Prominente afbeelding'
     many_many_Authors: Auteurs
     many_many_Categories: Categorieën
   SilverStripe\Blog\Model\BlogPostFeaturedExtension:
     FEATURED: 'Dit artikel tonen in de Uitgelicht-widget'
+    db_FeaturedInWidget: 'Uitgelicht in widget'
   SilverStripe\Blog\Model\BlogTag:
     Duplicate: 'Een blog tag met dezelfde naam bestaat al.'
     PLURALS:
       one: 'Een Blog Tag'
       other: '{count} Blog Tags'
+    belongs_many_many_BlogPosts: 'Blog artikelen'
     db_Title: Titel
   SilverStripe\Blog\Widgets\BlogArchiveWidget:
     NumberToDisplay: 'Aantal te tonen'

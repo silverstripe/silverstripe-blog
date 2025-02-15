@@ -16,6 +16,7 @@ fr:
   SilverStripe\Blog\Model\Blog:
     AND: et
     By: par
+    CLASS_DESCRIPTION: 'Ajouter un blog à votre site web.'
     CONTRIBUTOR: Contributeur
     Categories: Catégories
     Category: Catégorie
