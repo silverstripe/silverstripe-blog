@@ -2,7 +2,7 @@
 
 namespace SilverStripe\Blog\Model;
 
-use SilverStripe\Admin\LeftAndMain;
+use SilverStripe\Admin\AdminController;
 use SilverStripe\Control\Controller;
 use SilverStripe\Core\Convert;
 use SilverStripe\ORM\DataObject;
@@ -26,7 +26,7 @@ class BlogPostFilter extends Extension
      */
     protected function augmentSQL(SQLSelect $query, ?DataQuery $dataQuery = null)
     {
-        if (Controller::curr() instanceof LeftAndMain) {
+        if (Controller::curr() instanceof AdminController) {
             return;
         }
 
