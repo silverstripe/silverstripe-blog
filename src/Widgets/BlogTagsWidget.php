@@ -19,7 +19,7 @@ if (!class_exists(Widget::class)) {
 
 /**
  * @method Blog Blog()
- * @deprecated 4.3.0 Will be removed without equivalent functionality to replace it
+ * @deprecated 4.3.0 Will be removed without equivalent functionality to replace it in a future major release
  */
 class BlogTagsWidget extends Widget
 {
@@ -64,7 +64,7 @@ class BlogTagsWidget extends Widget
         Deprecation::withSuppressedNotice(function () {
             Deprecation::notice(
                 '4.3.0',
-                'Will be removed without equivalent functionality to replace it',
+                'Will be removed without equivalent functionality to replace it in a future major release',
                 Deprecation::SCOPE_CLASS
             );
         });
