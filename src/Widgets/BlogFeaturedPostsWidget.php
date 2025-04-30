@@ -20,7 +20,7 @@ if (!class_exists(Widget::class)) {
  * @method Blog Blog()
  *
  * @property int $NumberOfPosts
- * @deprecated 4.3.0 Will be removed without equivalent functionality to replace it
+ * @deprecated 4.3.0 Will be removed without equivalent functionality to replace it in a future major release
  */
 class BlogFeaturedPostsWidget extends Widget
 {
@@ -63,7 +63,7 @@ class BlogFeaturedPostsWidget extends Widget
         Deprecation::withSuppressedNotice(function () {
             Deprecation::notice(
                 '4.3.0',
-                'Will be removed without equivalent functionality to replace it',
+                'Will be removed without equivalent functionality to replace it in a future major release',
                 Deprecation::SCOPE_CLASS
             );
         });

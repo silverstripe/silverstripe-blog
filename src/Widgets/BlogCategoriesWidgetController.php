@@ -10,7 +10,7 @@ if (!class_exists(WidgetController::class)) {
 }
 
 /**
- * @deprecated 4.3.0 Will be removed without equivalent functionality to replace it
+ * @deprecated 4.3.0 Will be removed without equivalent functionality to replace it in a future major release
  */
 class BlogCategoriesWidgetController extends WidgetController
 {
@@ -19,7 +19,7 @@ class BlogCategoriesWidgetController extends WidgetController
         Deprecation::withSuppressedNotice(function () {
             Deprecation::notice(
                 '4.3.0',
-                'Will be removed without equivalent functionality to replace it',
+                'Will be removed without equivalent functionality to replace it in a future major release',
                 Deprecation::SCOPE_CLASS
             );
         });
