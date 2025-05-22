@@ -190,8 +190,7 @@ class Blog extends Page implements PermissionProvider
                     $tags
                 ]
             );
-
-            $fields->fieldByName('Root.Categorisation')
+            $fields->findTab('Root.Categorisation')
                 ->addExtraClass('blog-cms-categorisation')
                 ->setTitle(_t(__CLASS__ . '.Categorisation', 'Categorisation'));
         });
@@ -374,7 +373,7 @@ class Blog extends Page implements PermissionProvider
             '<a class="font-icon-info-circled toggle-description"></a>'
         );
 
-        $editorField = ListboxField::create('Editors', 'Editors', $members)
+        $editorField = ListboxField::create('Editors', $this->fieldLabel('Editors'), $members)
             ->setRightTitle($toggleButton)
             ->setDescription(
                 _t(
@@ -394,7 +393,7 @@ class Blog extends Page implements PermissionProvider
         if (!$this->canEditEditors()) {
             $editorField = $editorField->performDisabledTransformation();
         }
-        $writerField = ListboxField::create('Writers', 'Writers', $members)
+        $writerField = ListboxField::create('Writers', $this->fieldLabel('Writers'), $members)
             ->setRightTitle($toggleButton)
             ->setDescription(
                 _t(
@@ -414,7 +413,7 @@ class Blog extends Page implements PermissionProvider
             $writerField = $writerField->performDisabledTransformation();
         }
 
-        $contributorField = ListboxField::create('Contributors', 'Contributors', $members)
+        $contributorField = ListboxField::create('Contributors', $this->fieldLabel('Contributors'), $members)
             // ->setMultiple(true)
             ->setRightTitle($toggleButton)
             ->setDescription(
@@ -442,6 +441,8 @@ class Blog extends Page implements PermissionProvider
                 $contributorField
             ]
         );
+
+        $fields->findTab('Root.Users')->setTitle(_t(__CLASS__ . '.Users', 'Users'));
 
         return $fields;
     }
