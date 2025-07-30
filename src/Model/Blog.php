@@ -273,7 +273,7 @@ class Blog extends Page implements PermissionProvider
             return in_array($member->ID, $relation->getIDList() ?? []);
         }
 
-        return $relation->byID($member->ID) !== null;
+        return $relation->filter('ID', $member->ID)->exists();
     }
 
     /**
