@@ -239,7 +239,7 @@ class BlogPost extends Page
             return in_array($member->ID, $list->getIDList() ?? []);
         }
 
-        return $list->byID($member->ID) !== null;
+        return $list->filter('ID', $member->ID)->exists();
     }
 
     /**
