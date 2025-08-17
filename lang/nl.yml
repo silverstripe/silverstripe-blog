@@ -20,7 +20,7 @@ nl:
     Archive: Archief
     By: door
     CLASS_DESCRIPTION: 'Voegt een blog toe aan je site.'
-    CONTRIBUTOR: Co-auteur
+    CONTRIBUTOR: Bijdrager
     Categories: Categorieën
     Categorisation: Categorisering
     Category: Categorie
@@ -37,7 +37,7 @@ nl:
     NoPosts: 'Er zijn geen blog artikelen'
     PERMISSIONS_CATEGORY: 'Blog rechten'
     PERMISSION_MANAGE_USERS_DESCRIPTION: 'Beheer gebruikers voor individuele blogs'
-    PERMISSION_MANAGE_USERS_HELP: 'Laat toewijzing toe van Redacteurs, Auteurs en Co-auteurs'
+    PERMISSION_MANAGE_USERS_HELP: 'Toewijzen van redacteuren, auteurs en bijdragers aan een blog'
     PLURALS:
       one: 'Een artikel'
       other: '{count} artikelen'
@@ -47,13 +47,13 @@ nl:
     PostsPerPage: 'Artikelen per pagina'
     ReadMoreAbout: "Lees meer over '{title}'..."
     Tagged: Getagd
-    UsersContributorsFieldDescription: "Co-auteurs hebben de mogelijkheid om artikelen te maken en te bewerken, maar niet te publiceren\n                        zonder toestemming van een Auteur. Het is ook niet mogelijk om andere auteur toe te kennen\n                        aan hun artikelen.<br />\n                        <br />\n                        Co-auteurs hebben deze rechten:<br />\n                        <br />\n                        Bewerken van artikelen die ze zelf geschreven hebben of aan toegekend zijn"
-    UsersEditorsFieldDescription: "Een Redacteur heeft het beheer over specifieke blogs (en alle artikelen die daaronder vallen).\n                     Behalve dat ze andere Redacteuren aan een blog kunnen toewijzen, kunnen ze de meeste instellingen\n                     van hun blog zelf beheren. <br /><br />\n                    Redacteuren hebben deze rechten:<br />\n                    <br />\n                    Bijwerken en publiceren van artikelen in hun blog<br />\n                    Aanpassen en publiceren van hun blog<br />\n                    Auteurs (ont)koppelen aan hun blog\n                    Co-auteurs (ont)koppelen aan hun blog<br />\n                    Een gebruiker instellen als auteur van een artikel"
+    UsersContributorsFieldDescription: "Bijdragers hebben de mogelijkheid om artikelen te maken en te bewerken, maar niet te publiceren\n                        zonder toestemming van een redacteur. Het is ook niet mogelijk om andere auteur toe te kennen\n                        aan hun artikelen.<br />\n                        <br />\n                        Bijdragers hebben de volgende rechten:<br />\n                        <br />\n                        - Bewerken van artikelen die ze zelf geschreven hebben of aan toegekend zijn"
+    UsersEditorsFieldDescription: "Een redacteur heeft het beheer over specifieke blogs (en alle artikelen die daaronder vallen).\n                     Behalve dat ze andere redacteuren aan een blog kunnen toewijzen, kunnen ze de meeste instellingen\n                     van hun blog zelf beheren. <br /><br />\n                    Redacteuren hebben de volgende rechten:<br />\n                    <br />\n                    - Bijwerken en publiceren van artikelen in hun blog<br />\n                    - Aanpassen en publiceren van hun blog<br />\n                    - Auteurs (ont)koppelen aan hun blog<br />\n                    - Bijdragers (ont)koppelen aan hun blog<br />\n                    - Een andere gebruiker instellen als auteur van een artikel"
     UsersWritersFieldDescription: "Een Auteur heeft volledig beheer over artikelen die zij geschreven hebben                      of aan gekoppeld zijn. \nAuteurs kunnen geen artikelen beheren waar zij niet aan gekoppeld zijn.\n                    <br /><br />\n                    Auteurs hebben deze rechten:<br />\n                    <br />\n                    Bewerken of publiceren van artikelen die zij geschreven hebben of aan gekoppeld zijn<br />\n                     Een gebruiker (ont)koppelen als auteur van een artikel die zij geschreven hebben of aan gekoppeld zijn"
     WRITER: Auteur
     db_PostsPerPage: 'Items per pagina'
     has_many_Categories: Categorieën
-    many_many_Contributors: Co-auteurs
+    many_many_Contributors: Bijdragers
     many_many_Editors: Redacteuren
     many_many_Writers: Auteurs
   SilverStripe\Blog\Model\BlogCategory:
