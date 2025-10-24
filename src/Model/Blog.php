@@ -234,7 +234,7 @@ class Blog extends Page implements PermissionProvider
         }
 
         if (is_numeric($member)) {
-            $member = Member::get()->byID($member);
+            $member = Member::get()->sort(null)->setUseCache(true)->byID($member);
         }
 
         return $member;
@@ -273,7 +273,7 @@ class Blog extends Page implements PermissionProvider
             return in_array($member->ID, $relation->getIDList() ?? []);
         }
 
-        return $relation->filter('ID', $member->ID)->exists();
+        return $relation->filter('ID', $member->ID)->setUseCache(true)->exists();
     }
 
     /**
@@ -290,7 +290,7 @@ class Blog extends Page implements PermissionProvider
     public function RoleOf($member)
     {
         if (is_numeric($member)) {
-            $member = Member::get()->byId($member);
+            $member = Member::get()->sort(null)->setUseCache(true)->byId($member);
         }
 
         if (!$member) {
