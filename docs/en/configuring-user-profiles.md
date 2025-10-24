@@ -10,3 +10,11 @@ In mysite/_config/settings.yml
 SilverStripe\Blog\Model\BlogController:
   disable_profiles: true
 ```
+
+Note that if you have a really large members table (in the hundreds of thousands or more) you probably want to add an index for the `URLSegment` column:
+
+```yaml
+SilverStripe\Security\Member:
+  indexes:
+    URLSegment: true
+```
