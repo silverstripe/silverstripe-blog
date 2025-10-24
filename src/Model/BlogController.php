@@ -119,8 +119,8 @@ class BlogController extends PageController
             }
 
             return Member::get()
-                ->filter('URLSegment', $urlSegment)
-                ->first();
+                ->sort(null)
+                ->find('URLSegment', $urlSegment);
         }
 
         return null;
@@ -279,8 +279,8 @@ class BlogController extends PageController
             }
 
             return $dataRecord->Tags()
-                ->filter('URLSegment', $tag)
-                ->first();
+                ->sort(null)
+                ->find('URLSegment', $tag);
         }
         return null;
     }
@@ -330,8 +330,8 @@ class BlogController extends PageController
             }
 
             return $dataRecord->Categories()
-                ->filter('URLSegment', $category)
-                ->first();
+                ->sort(null)
+                ->find('URLSegment', $category);
         }
         return null;
     }
