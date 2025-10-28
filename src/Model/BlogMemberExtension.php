@@ -96,7 +96,7 @@ class BlogMemberExtension extends Extension
      */
     public function validURLSegment()
     {
-        $conflict = Member::get()->filter('URLSegment', $this->owner->URLSegment);
+        $conflict = Member::get()->sort(null)->filter('URLSegment', $this->owner->URLSegment);
 
         if ($this->owner->ID) {
             $conflict = $conflict->exclude('ID', $this->owner->ID);

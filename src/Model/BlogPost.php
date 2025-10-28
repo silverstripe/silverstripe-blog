@@ -239,7 +239,7 @@ class BlogPost extends Page
             return in_array($member->ID, $list->getIDList() ?? []);
         }
 
-        return $list->filter('ID', $member->ID)->exists();
+        return $list->filter('ID', $member->ID)->setUseCache(true)->exists();
     }
 
     /**
@@ -410,7 +410,7 @@ class BlogPost extends Page
         }
 
         if (is_numeric($member)) {
-            $member = Member::get()->byID($member);
+            $member = Member::get()->sort(null)->setUseCache(true)->byID($member);
         }
 
         return $member;

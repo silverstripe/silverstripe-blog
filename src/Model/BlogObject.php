@@ -199,6 +199,7 @@ trait BlogObject
     protected function getDuplicatesByField($field)
     {
         $duplicates = DataList::create(self::class)
+            ->sort(null)
             ->filter(
                 [
                     $field   => $this->$field,
