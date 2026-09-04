@@ -252,7 +252,7 @@ class BlogPost extends Page
 
         $this->beforeUpdateCMSFields(function ($fields) {
             $uploadField = $fields->dataFieldByName('FeaturedImage');
-            $uploadField?->getValidator()->setAllowedExtensions(['jpg', 'jpeg', 'png', 'gif']);
+            $uploadField?->getValidator()->setAllowedExtensions(['jpg', 'jpeg', 'png', 'gif', 'webp']);
 
             $uploadDirectory = $this->config()->get('featured_images_directory');
             if ($uploadDirectory != '') {
